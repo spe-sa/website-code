@@ -1,0 +1,73 @@
+<!doctype html>
+{% extends CMS_TEMPLATE %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>{% block title %}This is my new project home page{% endblock title %}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        {# Global stylesheets #}
+    {#      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css"> #}
+
+        {# added block for base spe css overrides #}
+        {% block css_spe_base %}
+            {# Override this in base template to add spe stylesheet includes #}
+        {% endblock %}
+        {# added block for css overrides in the head tags #}
+        {% block css_head %}
+            {# Override this in templates to add extra stylesheet includes #}
+        {% endblock %}
+        {# added block for js overrides in the head tags #}
+        {% block js_head %}
+            {# Override to add a javascript entry between the head tags #}
+        {% endblock %}
+        {% render_block "css" %}
+        {# added block for inline css overrides #}
+        {% block css_inline %}
+            {# Override this in templates to add extra inline styles or stylesheets #}
+        {% endblock %}
+
+    </head>
+    {# added block for body class to base template #}
+    <body class="{% block body_class %}{% endblock %}">
+        {% cms_toolbar %}
+        <div id="outer-page-wrapper">
+            {# adding block content_header to base template; use super() to include default one in child template #}
+            {% block content_header %}
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        {% show_menu 0 1 100 100 "menu.html" %}
+                    </ul>
+                </div>
+            </div>
+            {% endblock content_header %}
+
+            {% block cms_content %}{% endblock cms_content %}
+
+            <div class="clear"></div>
+            {# adding block content_footer to base cms template for overriding #}
+            {% block content_footer %}{% endblock content_footer %}
+        </div>
+        {# global js files for body #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+{#          <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script> #}
+        {# adding block js_body to base cms template for overriding #}
+        {% block js_body %}{% endblock js_body %}
+
+        {% render_block "js" %}
+
+        {# adding block js_inline to base cms template for overriding #}
+        {% block js_inline %}{% endblock js_inline %}
+    </body>
+</html>

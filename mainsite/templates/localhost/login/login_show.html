@@ -1,0 +1,13 @@
+<h1>Show Cookies</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<table>
+    {% for key, values in request.COOKIES.items %}
+    <tr>
+        <td>{{key}}</td>
+        <td>{{values}}</td>
+    </tr>
+    {% endfor %}
+</table>
+

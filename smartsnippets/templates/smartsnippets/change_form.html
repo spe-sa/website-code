@@ -1,0 +1,68 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_modify %}
+{% load static from staticfiles %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/codemirror/codemirror.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/codemirror/javascript.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/codemirror/css.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/codemirror/xml.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/CMInstance.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL}}libs/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL}}admin/js/codemirror/htmlmixed.js"></script>
+{% endblock %}
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/codemirror.css' %}" />
+{% endblock %}
+
+{% block submit_buttons_bottom %}{% if read_only %}
+<div class="submit-row form-actions text-right no-margin-bottom no-background">
+    <a href="../" class="default btn btn-primary">Back to Smart Snippets</a>
+</div>
+{% else %}
+    {% submit_row %}
+{% endif %}
+{% endblock %}
+
+{% block submit_buttons_top %}{% if read_only %}
+<div class="submit-row form-actions text-right no-margin-bottom no-background">
+    <a href="../" class="default btn btn-primary">Back to Smart Snippets</a>
+</div>
+{% else %}
+    {% submit_row %}
+{% endif %}
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    <script type="text/javascript">
+        (function($) {
+            $(document).ready(function() {
+                $('.add-another').click(function(e) {
+                    e.preventDefault();
+                    showAddAnotherPopup(this);
+                });
+                $('.related-lookup').click(function(e) {
+                    e.preventDefault();
+                    showRelatedObjectLookupPopup(this);
+                });
+            {% if adminform and add %}
+                $('form#{{ opts.model_name }}_form :input:visible:enabled:first').focus()
+            {% endif %}
+            });
+        })(django.jQuery);
+    </script>
+{% endblock %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "smartsnippets/fieldset.html" %}
+{% endfor %}
+{% endblock %}

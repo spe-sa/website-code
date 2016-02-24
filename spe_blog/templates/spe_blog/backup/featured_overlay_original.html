@@ -1,0 +1,17 @@
+{% load i18n %}
+{% for article in articles_list %}
+    {% if article.is_featured %}
+    <article class="tile white featured-story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
+        {% if article.featured_image_id %}
+            <a href="{{ article.get_absolute_url }}" target="_blank">
+            <div class="story-wrap" style="background-image:url({{ article.featured_image.url }});">
+            <div class="story-text">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.lead_in }}</p>
+            </div>
+            </div>
+            </a>
+        {% endif %}
+    </article>
+    {% endif %}
+{% endfor %}

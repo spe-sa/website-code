@@ -1,0 +1,13 @@
+-- featured overlay --
+    <article class="tile white featured-story">
+        {% if article.picture.url %}
+            <a href="{{ article.get_absolute_url }}" target="_blank">
+            <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
+            <div class="story-text">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.subheading }}</p>
+            </div>
+            </div>
+            </a>
+        {% endif %}
+    </article>

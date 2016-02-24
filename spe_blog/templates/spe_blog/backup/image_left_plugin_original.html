@@ -1,0 +1,11 @@
+-- image left plugin --
+<div class="row">
+<a href="{{ article.get_absolute_url }}">
+<img src={{article.picture.url}} class="img-rounded" alt={{article.alternate}} width="150" height="150" align="left">
+{{ article.date }}
+<h4>{{article.title}}</h4>
+{{ article.subheading }}
+<p> </p>
+</a>
+</div>
+<hr>

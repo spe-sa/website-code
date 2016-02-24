@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+    <div class="row">
+
+        <div id="{% block main-content-wrapper-id %}content-wrapper{% endblock %}" class="col-sm-12 {% block main-content-wrapper-class %}{% endblock %}">
+            <div id="notice">
+                {% placeholder "notice" %}
+            </div>
+
+            <div id="{% block content-id %}main-content{% endblock %}" class="{% block content-class %}{% endblock %}">
+                {% placeholder "content" %}
+            </div>
+
+            <div id="{% block aside-id %}notices-ads{% endblock %}" class="{% block aside-class %}{% endblock %}">
+                {% placeholder "aside" %}
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

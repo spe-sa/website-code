@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n cms_tags apphooks_config_tags %}
+
+{% block title %}{{ article.title }} - {{ block.super }}{% endblock %}
+{% block container_class %}article-detail page-content{% endblock %}
+{% block content %}
+
+        <div class="article-background">
+            <div class="twelve columns">
+                <article class="story">
+                    {% if article.featured_image_id %}
+                    <div class="featured-image">
+                        <figure class="article-featured-img">
+                            <div class="img-wrap"><img src="{{ article.featured_image.url }}" alt="{{ article.image_caption }}"></div>
+                            <div class="caption"><p>{{ article.image_caption }}</p></div>
+                            <div class="attribution"><span>{{ article.image_attribution }}</span></div>
+                        </figure>
+                    </div>
+                    {% endif %}
+                    <header id="article-info">
+                        <h1>{{ article.title }}</h1>
+                        <span class="author">By <span>{{ article.author_text }}</span></span>
+                        <span class="pub-date">{{ article.publishing_date|date:"d-M-Y" }}</span>
+                    </header>
+                    <div class="social-media-wrap">
+                        <div class="social-media-share floatOnScrollTo" data-scroll-top="30">
+                            <a href="https://facebook.com/sharer.php?u={{ article.get_absolute_url }}" target="_blank"><span class="facebook"></span></a>
+                            <a href="https://twitter.com/share" data-url="{{ article.get_absolute_url }}" target="_blank"><span class="twitter"></span></a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ article.get_absolute_url }}&title={{ article.title }}&summary={{ article.lead_in }}&source=" target="_blank"><span class="linkedin"></span></a>
+                            <a href="mailto:?subject={{ article.title }}&body={{ article.get_absolute_url }}" target="_blank"><span class="email"></span></a>
+                        </div>
+                    </div>
+                    <div class="story-text">
+                        {% render_placeholder article.content language placeholder_language %}
+                    </div>
+                    <div class="clear"></div>
+                </article>
+            </div>
+            <div class="four columns">
+                <aside class="sidebar">
+                    {% render_placeholder view.config.placeholder_base_sidebar %}
+                </aside>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+{% endblock content %}
+

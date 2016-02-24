@@ -1,0 +1,33 @@
+{% extends "aldryn_newsblog/one_column.html" %}
+{% load i18n cms_tags %}
+
+{% block newsblog_content %}
+    {% render_placeholder view.config.list_view_placeholder language placeholder_language %}
+
+    {% for article in article_list %}
+        <article class="tile white story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
+        <a href="{{ article.get_absolute_url }}" target="_blank">
+            <div class="story-wrap" style="min-height:150px;">
+                {% if article.featured_image_id %}
+                <figure class="thumb" style="max-width:200px;">
+                    <div class="img-wrap"><img src="{{ article.featured_image.url }}" style="max-height:150px;max-width: 200px"/></div>
+                </figure>
+                {% endif %}
+                <div class="story-text">
+                    <span class="pub-date">11 Jan 2016</span>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.lead_in }}</p>
+                </div>
+            </div>
+        </a>
+        </article>
+    {% empty %}
+        <p class="well">{% trans "No items available" %}</p>
+    {% endfor %}
+{% endblock %}
+
+{% block newsblog_footer %}
+    <div class="aldryn-newsblog-pagination">
+        {% include "aldryn_newsblog/includes/pagination.html" %}
+    </div>
+{% endblock %}

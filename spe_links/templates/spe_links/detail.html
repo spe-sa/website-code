@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ link_category.title }}</h1>
+
+    <ul>
+    {% for link in links %}
+        <li>{{ link.title }} : {{ link.url }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}

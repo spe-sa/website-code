@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+{% block container_class %}article-detail{% endblock %}
+{% block content %}
+
+    <div class="sixteen columns feature-content">
+        <div class="article-background">
+            <div class="twelve columns">
+                <article class="story">
+                    <div class="featured-image">
+                        <figure class="article-featured-img">
+                            <div class="img-wrap">{% placeholder "story-image" %}</div>
+                            <div class="caption"><p>{% placeholder "story-image-caption" %}</p></div>
+                            <div class="attribution"><span>{% placeholder "story-image-attribution" %}</span></div>
+                        </figure>
+                    </div>
+                    <header id="article-info">
+                        <h1>{% placeholder "story-title" %}</h1>
+                        <span class="author">By <span>{% placeholder "story-author" %}</span></span>
+                        <span class="pub-date">{% placeholder "story-date" %}</span>
+                    </header>
+                    <div class="social-media-wrap">
+                        <div class="social-media-share floatOnScrollTo" data-scroll-top="30">
+                            <a href="https://facebook.com/sharer.php?u=http://www.spe.org/news/article/microfluidics-and-the-future-of-the-oil-and-gas-industry" target="_blank"><span class="facebook"></span></a>
+                            <a href="https://twitter.com/share" data-url="http://www.spe.org/news/article/microfluidics-and-the-future-of-the-oil-and-gas-industry" target="_blank"><span class="twitter"></span></a>
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://www.spe.org/news/article/microfluidics-and-the-future-of-the-oil-and-gas-industry&title=Microfluidics and the Future of the Oil and Gas Industry&summary=Microfluidics, which is gaining traction in the industry, can be used for understanding porescale transport.&source=" target="_blank"><span class="linkedin"></span></a>
+                            <a href="mailto:?subject=A%20shared%20article%20from%20SPE:%20Microfluidics and the Future of the Oil and Gas Industry&body=http://www.spe.org/news/article/microfluidics-and-the-future-of-the-oil-and-gas-industry" target="_blank"><span class="email"></span></a>
+                        </div>
+                    </div>
+                    <div class="story-text">
+                        {% placeholder "story-content" %}
+                    </div>
+                    <div class="clear"></div>
+                </article>
+            </div>
+            <div class="four columns">
+                <aside class="sidebar">
+                    {% placeholder aside %}
+                </aside>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+

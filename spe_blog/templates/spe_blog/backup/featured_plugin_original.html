@@ -1,0 +1,17 @@
+-- featured_plugin --
+<a href="{{ article.get_absolute_url }}">
+<div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="item active">
+        <img src={{article.picture.url}} alt="{{article.alternate}}" class="img-responsive">
+           <div class="carousel-caption">
+               <font color="#0066ff">
+               <h4 >{{article.title}}</h4>
+               {{ article.subheading }}
+               </font>
+           </div>
+        </div>
+    </div>
+</div>
+</a>
+<hr>
