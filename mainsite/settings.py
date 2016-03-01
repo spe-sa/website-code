@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'easy_select2',
     'reversion',
     'mainsite',
-    'aldryn_segmentation',
+    'segmentation',
     'smartsnippets',
     'taggit',
     'spe_links',
