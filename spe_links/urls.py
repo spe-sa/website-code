@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
-app_name='spe_links'
+app_name = 'spe_links'
 urlpatterns = [
     # ex: /spe_links/
     url(r'^$', views.index, name='index'),

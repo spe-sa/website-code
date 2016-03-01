@@ -7,6 +7,7 @@ def index(request):
     context = {'latest_link_list': links}
     return render(request, 'spe_links/index.html', context)
 
+
 def detail(request, category_id):
     link_category = get_object_or_404(SpeLinkCategory, pk=category_id)
     links = SpeLink.objects.filter(category_id__exact=category_id).values()

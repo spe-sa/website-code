@@ -4,6 +4,7 @@ from django.contrib import admin
 
 from .models import *
 
+
 class SpeLinkAdmin(admin.ModelAdmin):
     list_display = ('category', 'title')
 

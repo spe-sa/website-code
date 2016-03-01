@@ -2,10 +2,11 @@
 
 {% for article in articles %}
 {#    {% if instance.hide_featured and not article.is_featured %}#}
-    <article class="tile white story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
+    <article class="tile white story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
+                style="min-height: 150px">
     <a href="{{ article.get_absolute_url }}" target="_blank">
         <div class="story-wrap">
-            {% if article.picture.url %}
+            {% if article.picture and article.picture.url %}
                 <figure class="thumb" style="max-width:200px;">
                     <div class="img-wrap"><img src="{{ article.picture.url }}" style="max-height:150px;max-width: 200px"/></div>
                 </figure>
@@ -13,7 +14,7 @@
             <div class="story-text">
                 <span class="pub-date">{{ article.date }}</span>
                 <h3>{{ article.title }}</h3>
-                <p>{{ article.lead_in }}</p>
+                <p>{{ article.teaser }}</p>
             </div>
         </div>
     </a>
@@ -23,5 +24,6 @@
     <p class="well">{% trans "No items available" %}</p>
 {% endfor %}
 
-
-<a class="see-all" id="features" href="/news/">All Features<span></span></a>
+{% if show_all_url and show_all_text %}
+    <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>
+{% endif %}

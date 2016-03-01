@@ -1,5 +1,6 @@
 from django import forms
 
+
 class FakeLoginForm(forms.Form):
     ERIGHTS = forms.CharField(label='ERIGHTS', max_length=400)
     sm_constitid = forms.CharField(label='sm_constitid', max_length=12)

@@ -1,9 +1,10 @@
-from django.shortcuts import get_object_or_404, render
+# from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.template import loader, Context, RequestContext
+from django.template import loader, RequestContext  # ,Context,
 
 from .forms import FakeLoginForm
+
 
 def login(request):
     # if this is a POST request we need to process the form data
@@ -31,11 +32,12 @@ def login(request):
     else:
         form = FakeLoginForm()
         spe_referrer = request.META['HTTP_REFERER']
-        #save off the session login variable as long as it does not contain /login
-        if not '/login/' in spe_referrer:
+        # save off the session login variable as long as it does not contain /login
+        if '/login/' not in spe_referrer:
             request.session['spe-referrer'] = spe_referrer
 
     return render(request, 'localhost/login/login_form.html', {'form': form})
+
 
 def do_login(request):
     # create or update a cookie for each value
@@ -57,14 +59,15 @@ def do_login(request):
         # Obtain our Response object early so we can add cookie information.
 
         else:
-            context = {'test': 'test'}
+            # context = {'test': 'test'}
             return HttpResponse("Invalid form submission")
     else:
         return HttpResponseRedirect('/localhost/login/')
 
+
 def logout(request):
         spe_referrer = request.META['HTTP_REFERER']
-        #save off the session login variable as long as it does not contain /login
+        # save off the session login variable as long as it does not contain /login
         if '/login/' in spe_referrer:
             spe_referrer = '/'
         response = HttpResponseRedirect(spe_referrer)
@@ -73,6 +76,7 @@ def logout(request):
         response.delete_cookie('first_name')
         response.delete_cookie('last_name')
         return response
+
 
 def login_show(request):
     return render(request, 'localhost/login/login_show.html', {'test': 'test'})

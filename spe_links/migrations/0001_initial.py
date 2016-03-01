@@ -7,6 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('cms', '0013_urlconfrevision'),
     ]
 
     operations = [
@@ -16,7 +17,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=255, null=True)),
                 ('url', models.URLField(max_length=255, null=True, blank=True)),
-                ('pub_date', models.DateTimeField(verbose_name=b'date published')),
             ],
             options={
                 'ordering': ['category__title', 'title'],
@@ -35,6 +35,17 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'category',
             },
+        ),
+        migrations.CreateModel(
+            name='SpeLinkPluginModel',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('category', models.ForeignKey(to='spe_links.SpeLinkCategory')),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
         ),
         migrations.AddField(
             model_name='spelink',
