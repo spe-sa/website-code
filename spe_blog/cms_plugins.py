@@ -1,6 +1,6 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-# from cms.models.pluginmodel import CMSPlugin
+from cms.models.pluginmodel import CMSPlugin
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -139,9 +139,11 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 #         return context
 
 class ShowMeetingByUserPlugin(CMSPluginBase):
+    model = CMSPlugin
     allow_children = False
     cache = False
     module = _('Personalize')
+    name = _('Meetings Near You')
     text_enabled = False
     render_template = 'spe_blog/plugins/location.html'
     #render_plugin = False
