@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
                 ('zid', models.PositiveIntegerField(null=True, verbose_name=b'Zone Id', blank=True)),
                 ('aid', models.PositiveIntegerField(null=True, verbose_name=b'Ad Id', blank=True)),
-                ('div_id', models.CharField(max_length=100, null=True, verbose_name=b'div id for ad', blank=True)),
-                ('div_class', models.CharField(max_length=100, null=True, verbose_name=b'div class for ad', blank=True)),
+                ('num', models.PositiveIntegerField(null=True, verbose_name=b'Number of Ads', blank=True)),
+                ('show_errors', models.BooleanField(default=False)),
             ],
             options={
                 'ordering': ['zid', 'aid'],

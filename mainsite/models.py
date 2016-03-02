@@ -25,18 +25,14 @@ class Tier1Discipline(models.Model):
 class AdSpeedZonePlugin(CMSPlugin):
     zid = models.PositiveIntegerField("Zone Id", blank=True, null=True)
     aid = models.PositiveIntegerField("Ad Id", blank=True, null=True)
-    div_id = models.CharField(
-        max_length=100,
-        verbose_name="div id for ad",
-        blank=True,
-        null=True,
-    )
-    div_class = models.CharField(
-        max_length=100,
-        verbose_name="div class for ad",
-        blank=True,
-        null=True,
-    )
+    num = models.PositiveIntegerField("Number of Ads", blank=True, null=True)
+    show_errors = models.BooleanField(default=False)
+    # div_class = models.CharField(
+    #     max_length=100,
+    #     verbose_name="Wrapper Div Class",
+    #     blank=True,
+    #     null=True,
+    # )
 
     def __unicode__(self):
         buf = "AdSpeed"
@@ -44,6 +40,8 @@ class AdSpeedZonePlugin(CMSPlugin):
             buf += " Zone:" + str(self.zid)
         if self.aid:
             buf += " Ad:" + str(self.aid)
+        if self.num:
+            buf += " display " + str(self.num) + " Ads"
         return buf
 
     class Meta:

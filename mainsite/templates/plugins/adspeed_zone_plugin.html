@@ -1,0 +1,16 @@
+{#{% if instance %}#}
+{#    {{ instance.zid }}<br>#}
+{#    {{ instance.aid }}<br>#}
+{#    {{ instance.num }}<br>#}
+{#    {{ instance.show_errors }} <br>#}
+{#    {{ instance.div_class }}<br>#}
+{#{% else %}#}
+{#    No instance passed#}
+{#{% endif %}#}
+{% if instance %}
+<div>
+    <!-- AdSpeed.com Tag 8.0.2 [Any Dimension] Real test number: 75028 -->
+    <script type="text/javascript" src="//g.adspeed.net/ad.php?do=js{% if instance.aid %}&aid={{ instance.aid }}{% endif %}{% if instance.zid %}&zid={{ instance.zid }}{% endif %}&wd=-1&ht=-1&target=_blank{% if instance.num %}&num={{ instance.num }}{% endif %}{% if not instance.show_errors %}&noerror=1{% endif %}"></script>
+    <!-- AdSpeed.com End -->
+</div>
+{% endif %}

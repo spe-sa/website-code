@@ -13,16 +13,13 @@ class ShowAdSpeedZonePlugin(CMSPluginBase):
     allow_children = False
     cache = False
     module = _('Advertising')
-    render_template = 'adspeed_zone_plugin.html'
+    render_template = 'plugins/adspeed_zone_plugin.html'
     text_enabled = False
     model = AdSpeedZonePlugin
     name = _("AdSpeed Ad")
 
     def render(self, context, instance, placeholder):
-        context.update({'div_id': instance.div_id})
-        context.update({'div_class': instance.div_class})
-        context.update({'zid': instance.zid})
-        context.update({'aid': instance.aid})
+        context.update({'instance': instance})
         return context
 
 

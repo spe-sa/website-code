@@ -1,7 +1,13 @@
+from django.conf import settings
 
 # A context processor to add the spe login cookie information to the current Context
 #   primarily used in header for every page to determine logged in status, url, and welcome message
 def set_login_values(request):
+
+        # get the environment and debug variables from the config file
+        #  NOTE: add to server side variables and check for future requests
+        spe_environment = settings.ENVIRONMENT
+        spe_debug = getattr(settings, "DEBUG", False)
 
         # set the boolean authenticated variable
         spe_cookie_erights = request.COOKIES.get('ERIGHTS', '')
@@ -35,5 +41,7 @@ def set_login_values(request):
             'spe_name': spe_name,
             'spe_url': spe_url,
             'spe_label': spe_label,
+            'spe_environment': spe_environment,
+            'spe_debug': spe_debug
         }
 
