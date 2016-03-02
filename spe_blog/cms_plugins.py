@@ -4,12 +4,15 @@ from cms.plugin_pool import plugin_pool
 
 from django.utils.translation import ugettext_lazy as _
 
+from django.contrib.gis.geoip import GeoIP
+
 # from .models import ArticleDisciplineByUserPluginModel
 # from .models import ArticleDisciplinePluginModel
 # from .models import ArticleByPublicationPluginModel
 # from .models import SelectedFeatureArticlePluginModel
 from .models import Article, ArticlesPlugin, ArticlesListingPlugin
 from .forms import ArticleSelectionForm
+
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -135,6 +138,26 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 #         self.render_template = instance.template
 #         return context
 
+class ShowMeetingByUserPlugin(CMSPluginBase):
+    allow_children = False
+    cache = False
+    module = _('Personalize')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/location.html'
+    #render_plugin = False
+
+    def render(self, context, instance, placeholder):
+        g = GeoIP()
+        ip = context['request'].META.get('REMOTE_ADDR', None) 
+        if ip:
+            loc = g.city(ip)
+        else:
+            loc = None
+        #loc = g.city('google.com')
+        context.update({'location': loc})
+        #return HttpResponse(json.dumps([current_location['country_code3']]))
+        return context
+
 
 # plugin_pool.register_plugin(ShowArticlePlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
@@ -143,3 +166,4 @@ plugin_pool.register_plugin(ShowArticlesListingPlugin)
 # plugin_pool.register_plugin(ShowArticlesByDisciplinePlugin)
 # plugin_pool.register_plugin(ShowArticlesFromPublicationPlugin)
 # plugin_pool.register_plugin(ShowFeatureArticlesPlugin)
+plugin_pool.register_plugin(ShowMeetingByUserPlugin)
