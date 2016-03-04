@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.db import models
 # from ckeditor.fields import RichTextField
@@ -72,6 +73,9 @@ class Article(models.Model):
     publication = models.ForeignKey(Publication)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
+    free = models.BooleanField(default=False)
+    free_start = models.DateField(verbose_name='Start Date', default=timezone.now)
+    free_stop = models.DateField(verbose_name='End Date', default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100, unique_for_month='date',
@@ -84,7 +88,7 @@ class Article(models.Model):
         max_length=18000,
         help_text=u'Full text of the article.'
     )
-    date = models.DateField('date_published', auto_now_add=True)
+    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
     picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
