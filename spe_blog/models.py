@@ -178,6 +178,7 @@ class ArticlesListingPlugin(CMSPlugin):
 
 class Member(models.Model):
     constit_id = models.PositiveIntegerField()
+    name = models.CharField(max_length = 100)
     primary_discipline = models.CharField(max_length = 4)
     secondary_discipline = models.CharField(max_length = 4)
     email = models.EmailField()
@@ -188,12 +189,17 @@ class Member(models.Model):
     membership_type = models.CharField(max_length=30)
     professional = models.BooleanField()
     student = models.BooleanField()
+    grad_student = models.BooleanField()
     yp = models.BooleanField()
     lifetime = models.BooleanField()
-    paid = models.BooleanField()
+    new_grad_y1 = models.BooleanField()
+    new_grad_y2 = models.BooleanField()
+    currently_section_officer = models.BooleanField()
+    currently_committee = models.BooleanField()
+    currently_board_member = models.BooleanField()
+    last_year_paid = models.PositiveIntegerField()
     first_member_date = models.DateField()
-    current_member_start = models.DateField()
-    renewed_next_year = models.BooleanField()
+    continuous_start_date = models.DateField()
 
     def __unicode__(self):
         return str(self.constit_id)
