@@ -7,6 +7,11 @@ from mainsite.models import Tier1Discipline
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
+#    def get_form(self, request, obj=None, **kwargs):
+#        if obj and obj.free:
+#            self.exclude = []
+#        return super(ArticleAdmin, self).get_form(request, obj, **kwargs)
+
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Tier1Discipline)

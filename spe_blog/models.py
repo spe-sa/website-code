@@ -73,6 +73,7 @@ class Article(models.Model):
     publication = models.ForeignKey(Publication)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
+    sponsored = models.BooleanField(default=False)
     free = models.BooleanField(default=False)
     free_start = models.DateField(verbose_name='Start Date', default=timezone.now)
     free_stop = models.DateField(verbose_name='End Date', default=timezone.now)
