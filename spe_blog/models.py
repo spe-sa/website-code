@@ -175,3 +175,25 @@ class ArticlesListingPlugin(CMSPlugin):
             buf += " personalized"
         buf += " using " + dictionary[self.template]
         return buf
+
+class Member(models.Model):
+    constit_id = models.PositiveIntegerField()
+    primary_discipline = models.CharField(max_length = 4)
+    secondary_discipline = models.CharField(max_length = 4)
+    email = models.EmailField()
+    JPT_subscription = models.BooleanField()
+    TWA_subscription = models.BooleanField()
+    OGF_subscription = models.BooleanField()
+    HSE_subscription = models.BooleanField()
+    membership_type = models.CharField(max_length=30)
+    professional = models.BooleanField()
+    student = models.BooleanField()
+    yp = models.BooleanField()
+    lifetime = models.BooleanField()
+    paid = models.BooleanField()
+    first_member_date = models.DateField()
+    current_member_start = models.DateField()
+    renewed_next_year = models.BooleanField()
+
+    def __unicode__(self):
+        return str(self.constit_id)
