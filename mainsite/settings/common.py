@@ -210,3 +210,5 @@ TAGGIT_CASE_INSENSITIVE = True
 CKEDITOR_UPLOAD_PATH = "uploads/"
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'GeoIP')
+
+EMAIL_HOST = "relaydev.spe.org"
