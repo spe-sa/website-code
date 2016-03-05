@@ -192,6 +192,11 @@ class Member(models.Model):
     grad_student = models.BooleanField()
     yp = models.BooleanField()
     lifetime = models.BooleanField()
+    key_club = models.BooleanField()
+    legion_of_honor = models.BooleanField()
+    distinguished = models.BooleanField()
+    honorary = models.BooleanField()
+    century_club = models.BooleanField()
     new_grad_y1 = models.BooleanField()
     new_grad_y2 = models.BooleanField()
     currently_section_officer = models.BooleanField()
@@ -200,6 +205,7 @@ class Member(models.Model):
     last_year_paid = models.PositiveIntegerField()
     first_member_date = models.DateField()
     continuous_start_date = models.DateField()
+    expected_grad_year = models.DateField()
 
     def __unicode__(self):
         return str(self.constit_id)
