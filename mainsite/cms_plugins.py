@@ -4,6 +4,7 @@ from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
 
 from .models import AdSpeedZonePlugin
+from .models import TitleBarPlugin
 
 
 class ShowAdSpeedZonePlugin(CMSPluginBase):
@@ -22,5 +23,22 @@ class ShowAdSpeedZonePlugin(CMSPluginBase):
         context.update({'instance': instance})
         return context
 
+class ShowTitlePlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = True
+    module = _('Components')
+    render_template = 'plugins/title_plugin.html'
+    text_enabled = False
+    model = TitleBarPlugin
+    name = _("Title Bar")
+
+    def render(self, context, instance, placeholder):
+        context.update({'title': instance.title})
+        return context
+
 
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
+plugin_pool.register_plugin(ShowTitlePlugin)

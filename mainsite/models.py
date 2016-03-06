@@ -66,3 +66,11 @@ class AdSpeedZonePlugin(CMSPlugin):
 
     class Meta:
         ordering = ['zid', 'aid']
+
+
+
+class TitleBarPlugin(CMSPlugin):
+    title = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.title
