@@ -17,7 +17,7 @@ def set_default_values(request):
         variables = {}
         variables["ENVIRONMENT"] = get_context_variable(request, "ENVIRONMENT", "localhost")
         variables["DEBUG"] = get_context_variable(request, "DEBUG", True)
-        # TODO: add more variables here as needed
+        # TODO: add more expected variables here as needed from the settings files
         request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters
     # if dev then replace with parameters to make it easier to debug
@@ -37,6 +37,13 @@ def set_default_values(request):
                 variables[key] = get_context_variable(request, key)
 
     logging.error('variables - ' + str(variables))
+
+    # if our customerid changed then reset the login and customer cache
+    customer = request.session.get('session_customer')
+    if customer and customer.get('id') != get_context_variable(request, 'sm_constitid'):
+        request.session['session_customer'] = None
+        if request.session.get('session_login'):
+            request.session['session_login'] = None
 
     login = request.session.get('session_login')
     if not login:

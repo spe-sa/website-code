@@ -7,28 +7,38 @@
     <h3>Testing the context</h3>
     <hr>
     <h4>variables</h4>
-    Debug: {{ variables.DEBUG }}<br>
-    Environment: {{ variables.ENVIRONMENT }}<br>
+    {% for key, value in variables.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
 
     <h4>cookies</h4>
 {#    _ga: {{ cookies["_ga"] }}<br>#}
-    test: {{ cookies.test }}<br>
-    sessionid: {{ cookies.sessionid }}<br>
+    {% for key, value in cookies.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+
 
     <h4>login</h4>
-    authenticated: {{ login.authenticated }}<br>
-    command: {{ login.command }}<br>
-    label: {{ login.label }}<br>
-    url: {{ login.url }}<br>
-    target: {{ login.target_url }}
+    {% for key, value in login.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+{#    authenticated: {{ login.authenticated }}<br>#}
+{#    command: {{ login.command }}<br>#}
+{#    label: {{ login.label }}<br>#}
+{#    url: {{ login.url }}<br>#}
+{#    target: {{ login.target_url }}#}
 
     <h4>visitor</h4>
-    name: {{ visitor.name }}<br>
-    is_sudent: {{ visitor.is_student }}<br>
-    is_staff: {{ visitor.is_staff }}<br>
-    email: {{ visitor.email }}<br>
-    is_superuser {{ visitor.is_superuser }}
-    is_active {{ visitor.is_active }}
+    {% for key, value in visitor.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+
+{#    name: {{ visitor.name }}<br>#}
+{#    is_sudent: {{ visitor.is_student }}<br>#}
+{#    is_staff: {{ visitor.is_staff }}<br>#}
+{#    email: {{ visitor.email }}<br>#}
+{#    is_superuser {{ visitor.is_superuser }}#}
+{#    is_active {{ visitor.is_active }}#}
 
 
     {% placeholder "content" %}
