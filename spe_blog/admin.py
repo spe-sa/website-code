@@ -6,6 +6,12 @@ from mainsite.models import Tier1Discipline
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
+    exclude = ['auto_tags']
+
+#    def get_form(self, request, obj=None, **kwargs):
+#        if obj and obj.free:
+#            self.exclude = []
+#        return super(ArticleAdmin, self).get_form(request, obj, **kwargs)
 
 
 admin.site.register(Article, ArticleAdmin)

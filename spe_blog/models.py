@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.db import models
 # from ckeditor.fields import RichTextField
@@ -72,6 +73,10 @@ class Article(models.Model):
     publication = models.ForeignKey(Publication)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
+    sponsored = models.BooleanField(default=False)
+    free = models.BooleanField(default=False)
+    free_start = models.DateField(verbose_name='Start Date', default=timezone.now)
+    free_stop = models.DateField(verbose_name='End Date', default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100, unique_for_month='date',
@@ -84,7 +89,7 @@ class Article(models.Model):
         max_length=18000,
         help_text=u'Full text of the article.'
     )
-    date = models.DateField('date_published', auto_now_add=True)
+    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
     picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
@@ -170,3 +175,37 @@ class ArticlesListingPlugin(CMSPlugin):
             buf += " personalized"
         buf += " using " + dictionary[self.template]
         return buf
+
+class Member(models.Model):
+    constit_id = models.PositiveIntegerField()
+    name = models.CharField(max_length = 100)
+    primary_discipline = models.CharField(max_length = 4)
+    secondary_discipline = models.CharField(max_length = 4)
+    email = models.EmailField()
+    JPT_subscription = models.BooleanField()
+    TWA_subscription = models.BooleanField()
+    OGF_subscription = models.BooleanField()
+    HSE_subscription = models.BooleanField()
+    membership_type = models.CharField(max_length=30)
+    professional = models.BooleanField()
+    student = models.BooleanField()
+    grad_student = models.BooleanField()
+    yp = models.BooleanField()
+    lifetime = models.BooleanField()
+    key_club = models.BooleanField()
+    legion_of_honor = models.BooleanField()
+    distinguished = models.BooleanField()
+    honorary = models.BooleanField()
+    century_club = models.BooleanField()
+    new_grad_y1 = models.BooleanField()
+    new_grad_y2 = models.BooleanField()
+    currently_section_officer = models.BooleanField()
+    currently_committee = models.BooleanField()
+    currently_board_member = models.BooleanField()
+    last_year_paid = models.PositiveIntegerField()
+    first_member_date = models.DateField()
+    continuous_start_date = models.DateField()
+    expected_grad_year = models.DateField()
+
+    def __unicode__(self):
+        return str(self.constit_id)

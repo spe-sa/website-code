@@ -7,6 +7,26 @@ from django.db import models
 
 from cms.models import CMSPlugin
 
+# DEFAULT_PAGE_TYPE = 'WWW'
+# PAGE_TYPES = (
+#     (DEFAULT_PAGE_TYPE, 'Web Page'),
+#     ('JPT', 'Journal of Petroleum Technology'),
+#     ('TWA', 'The Way Ahead'),
+#     ('OGF', 'Oil and Gas Facilities'),
+#     ('HSE', 'HSE Now'),
+# )
+
+# DEFAULT_PAGE_TEMPLATE = '3Column.html'
+# PAGE_TEMPLATES = (
+#    (DEFAULT_PAGE_TEMPLATE, 'Three Column'),
+#    ('2Column.html', 'Two Column'),
+#    ('1Column.html', 'Single Column'),
+#)
+
+#class PageTemplate(models.Model):
+#    type_of_page = models.CharField(max_length=255, choices=PAGE_TYPES, default=DEFAULT_PAGE_TYPE)
+#    template = models.CharField(max_length=255, choices=PAGE_TEMPLATES, default=DEFAULT_PAGE_TEMPLATE)
+
 
 class Tier1Discipline(models.Model):
     number = models.CharField(max_length=12, unique=True)
@@ -46,3 +66,11 @@ class AdSpeedZonePlugin(CMSPlugin):
 
     class Meta:
         ordering = ['zid', 'aid']
+
+
+
+class TitleBarPlugin(CMSPlugin):
+    title = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.title

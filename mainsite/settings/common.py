@@ -190,18 +190,6 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-DATABASES = {
-    'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': 'localhost',
-        'NAME': 'project.db',
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
-    }
-}
-
 MIGRATION_MODULES = {
 
 }
@@ -249,3 +237,6 @@ LOGGING = {
             },
         }
     }
+
+EMAIL_HOST = "relaydev.spe.org"
+
