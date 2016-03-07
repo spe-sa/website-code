@@ -7,7 +7,12 @@ DEBUG = True
 ENVIRONMENT = "DEV"
 
 # Overriding the templates in development to include a test page
-CMS_TEMPLATES += (('test.html', 'Test Page'),)
+CMS_TEMPLATES += (
+    ('test.html', 'Test Page'),
+    ('html5.html', 'JDs html5 tempate'),
+    ('html5_bootstrap.html', 'JDs html5 bootstrap tempate'),
+    ('spe_base.html', 'SPE Base Header & Footer with blank content area'),
+)
 
 # make all loggers use the console.
 for logger in LOGGING['loggers']:

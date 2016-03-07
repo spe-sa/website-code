@@ -1,0 +1,22 @@
+{% extends "html5.html" %}
+{% load staticfiles %}
+{% block plugs_apps %}
+
+    <script src="{% static 'js/jquery/jquery-1.12.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-migrate-1.2.1.min.js' %}"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+
+{#    <!-- Optional theme -->#}
+{#    <!-- link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" -->#}
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+{% endblock plugs_apps %}
+
+{% block web_fonts %}
+{{ block.super }}
+    <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">
+{% endblock web_fonts %}
