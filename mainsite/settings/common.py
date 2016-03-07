@@ -77,7 +77,7 @@ TEMPLATES = [
                 'sekizai.context_processors.sekizai',
                 'django.core.context_processors.static',
                 'cms.context_processors.cms_settings',
-                'mainsite.context_processors.spe_login.set_login_values',
+                'mainsite.context_processors.spe_context.set_default_values',
             ],
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
@@ -210,3 +210,42 @@ TAGGIT_CASE_INSENSITIVE = True
 CKEDITOR_UPLOAD_PATH = "uploads/"
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'GeoIP')
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+            },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'output.log',
+            'formatter': 'verbose'
+            },
+        },
+    'loggers': {
+        'root': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            },
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            },
+        'website': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            },
+        }
+    }
