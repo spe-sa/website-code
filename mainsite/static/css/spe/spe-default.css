@@ -193,3 +193,5 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* *************************************** */
 /* *************************************** */
 .navbar-collapse { padding-left: 0; }
+
+.sizeIndicator { position: fixed; bottom: 20px; right: 20px; font-size: 30px; font-weight: 700; color: hotpink; }
