@@ -15,8 +15,7 @@
                             <li><a href="/">Home</a></li>
                             <li><a href="/about/">About SPE</a></li>
                             <li><a href="/contact/">Contact Us</a></li>
-                            <li><a href="/login/" class="loginLink invisible" data-logout-txt="<span></span>Sign out">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign in</a></li>
+                            <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
                         </ul>
                     </nav>
                     <div id="translate-widget" class="col-sm-3">
@@ -367,6 +366,12 @@
 <!--                <div class="nav-container">-->
                     <div class="col-sm-5 col-sm-offset-1 logo-wrap">
                         <a href="/" class="spe-logo" title="SPE Homepage"><h1 id="logo">The Society of Petroleum Engineers</h1></a>
+                    </div>
+                    <div class="welcomemsg">
+                        {% if login.authenticated == True %}
+                            Welcome, {{visitor.name}}<br>
+                            <a class="update_profile" href="/ams/Custom/CustomerProfile.aspx">My profile</a>
+                        {% endif %}
                     </div>
                     <div class="col-sm-5 search hidden-xs">
                         <div id="search">
