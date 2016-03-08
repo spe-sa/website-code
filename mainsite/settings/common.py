@@ -1,7 +1,6 @@
 import os
 
 gettext = lambda s: s
-DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 """
 Django settings for mainsite project.
 
@@ -15,7 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DATA_DIR = APP_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -56,7 +56,7 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'mainsite', 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 SITE_ID = 1
 
@@ -195,9 +195,9 @@ MIGRATION_MODULES = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
-CKEDITOR_UPLOAD_PATH = "uploads/"
-PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
+CKEDITOR_UPLOAD_PATH = os.path.join(PROJECT_DIR, 'uploads')
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'GeoIP')
+LOGFILE_NAME = os.path.join(PROJECT_DIR, 'output.log')
 
 LOGGING = {
     'version': 1,
@@ -218,7 +218,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'output.log',
+            'filename': LOGFILE_NAME,
             'formatter': 'verbose'
             },
         },
