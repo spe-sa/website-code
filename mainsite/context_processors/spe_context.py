@@ -17,13 +17,13 @@ def set_default_values(request):
         variables = {}
         variables["ENVIRONMENT"] = get_context_variable(request, "ENVIRONMENT", "localhost")
         variables["DEBUG"] = get_context_variable(request, "DEBUG", True)
-        # variables["DATA_DIR"] = get_context_variable(request, "DATA_DIR")
-        # variables["BASE_DIR"] = get_context_variable(request, "BASE_DIR")
-        # variables["PROJECT_DIR"] = get_context_variable(request, "PROJECT_DIR")
-        # variables["STATIC_URL"] = get_context_variable(request, "STATIC_URL")
-        # variables["MEDIA_URL"] = get_context_variable(request, "MEDIA_URL")
-        # variables["STATIC_ROOT"] = get_context_variable(request, "STATIC_ROOT")
-        # variables["MEDIA_ROOT"] = get_context_variable(request, "MEDIA_ROOT")
+        variables["DATA_DIR"] = get_context_variable(request, "DATA_DIR")
+        variables["BASE_DIR"] = get_context_variable(request, "BASE_DIR")
+        variables["PROJECT_DIR"] = get_context_variable(request, "PROJECT_DIR")
+        variables["STATIC_URL"] = get_context_variable(request, "STATIC_URL")
+        variables["MEDIA_URL"] = get_context_variable(request, "MEDIA_URL")
+        variables["STATIC_ROOT"] = get_context_variable(request, "STATIC_ROOT")
+        variables["MEDIA_ROOT"] = get_context_variable(request, "MEDIA_ROOT")
         # TODO: add more expected variables here as needed from the settings files
         request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters

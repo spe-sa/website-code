@@ -11,14 +11,19 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
+
+See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+
 """
+# APP_DIR is the main application directory (mainsite for us)
+APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# PROJECT_DIR is the directory that is the django project
+PROJECT_DIR = os.path.dirname(APP_DIR)
+# BASE_DIR: is whatever directory contains your environment and project directory
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+# DATA_DIR: is the directory containing our data (database? staticfiles? media?)
+DATA_DIR = os.path.join(PROJECT_DIR, 'data')
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = APP_DIR = os.path.dirname(os.path.dirname(__file__))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@$%x*kpb@)n3tmc$7k^lb18aovbmp&g+ai7@py0rd*)4g(a(_7'
@@ -52,18 +57,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
 )
 SITE_ID = 1
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mainsite', 'templates'), ],
+        'DIRS': [os.path.join(APP_DIR, 'templates'), ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -197,7 +201,7 @@ MIGRATION_MODULES = {
 TAGGIT_CASE_INSENSITIVE = True
 CKEDITOR_UPLOAD_PATH = os.path.join(PROJECT_DIR, 'uploads')
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'GeoIP')
-LOGFILE_NAME = os.path.join(PROJECT_DIR, 'output.log')
+LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
 LOGGING = {
     'version': 1,
