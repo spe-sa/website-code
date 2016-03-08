@@ -17,13 +17,12 @@ See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 """
 # APP_DIR is the main application directory (mainsite for us)
 APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# PROJECT_DIR is the directory that is the django project
+# PROJECT_DIR is the directory that is the django project (website for us)
 PROJECT_DIR = os.path.dirname(APP_DIR)
-# BASE_DIR: is whatever directory contains your environment and project directory
+# BASE_DIR: is whatever directory contains your environment and project directory (djangocms for me)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 # DATA_DIR: is the directory containing our data (database? staticfiles? media?)
-DATA_DIR = os.path.join(PROJECT_DIR, 'data')
-
+DATA_DIR = os.path.join(BASE_DIR, 'website_content')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@$%x*kpb@)n3tmc$7k^lb18aovbmp&g+ai7@py0rd*)4g(a(_7'
@@ -58,7 +57,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'website_static')
 
 STATICFILES_DIRS = (
 )
@@ -199,9 +198,9 @@ MIGRATION_MODULES = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
-CKEDITOR_UPLOAD_PATH = os.path.join(PROJECT_DIR, 'uploads')
-GEOIP_PATH = os.path.join(PROJECT_DIR, 'GeoIP')
-LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
+CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'ck_media')
+GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')
+# LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
 LOGGING = {
     'version': 1,
@@ -219,24 +218,24 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
             },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': LOGFILE_NAME,
-            'formatter': 'verbose'
-            },
+        # 'file': {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.FileHandler',
+        #     'filename': LOGFILE_NAME,
+        #     'formatter': 'verbose'
+        #     },
         },
     'loggers': {
         'root': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             },
         'django': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'level': 'INFO',
             },
         'website': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             },
         }

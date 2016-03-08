@@ -7,9 +7,9 @@ ENVIRONMENT = "PROD"
 
 # make all loggers use the file & make sure debugging is turned to warning.
 for logger in LOGGING['loggers']:
-    LOGGING['loggers'][logger]['handlers'] = ['file']
+    # LOGGING['loggers'][logger]['handlers'] = ['file']
     if LOGGING['loggers'][logger]['level'] == 'DEBUG':
-        LOGGING['loggers'][logger]['level'] = 'WARN'
+        LOGGING['loggers'][logger]['level'] = 'ERROR'
 
 DATABASES = {
     'default': {
