@@ -48,8 +48,10 @@
 
     {# adding block cms_content to base cms template for overriding #}
     {% block cms_content %}
-        <i class="fa fa-meh-o"></i><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
-    {% endblock cms_content %}
+        <div class="container-liquid {% block container_class %}page-content background{% endblock %}">
+            {% block content %}<i class="fa fa-meh-o"></i><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>{% endblock content %}
+        </div>
+    {% endblock %}
 
     {# adding block content_footer to base cms template for overriding #}
     {% block content_footer %}{% endblock content_footer %}
