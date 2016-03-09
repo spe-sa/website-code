@@ -1,4 +1,4 @@
-/** Project: SPE.org Homepage Author: JD Toony Date: 2/28/16 Time: 12:38 9M Copyright 2016 Society of Petroeum Engineers, all rights reserved style="display:block;z-index:9950;" */
+/** Project: SPE.org Homepage Author: JD Toony Date: 2/28/16 Time: 12:38 9M Copyright 2016 Society of Petroleum Engineers, all rights reserved style="display:block;z-index:9950;" */
 /* Base colors */
 /* greys */
 /* blues */
@@ -73,7 +73,7 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* Images */
 #spe-header { border-bottom: 4px solid #e0e4eb; }
 
-#logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span { background: url("/static/img/spe/header-sprite1.2.png") no-repeat; }
+#logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span { background: url("/static/speorg/img/header-sprite1.2.png") no-repeat; }
 
 .link-text { width: 80%; float: right; }
 
@@ -118,11 +118,15 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* *************************************** */
 /* LOGO + SEARCH (White Bar) */
 /* *************************************** */
-#branding { height: 100px; background-color: white; }
+#branding { min-height: 100px; background-color: white; }
+
+.logo-wrap { margin: 20px 0; }
 
 .spe-logo { display: block; margin: 21px 0 0 10px; }
 
-#logo { text-indent: -9999px; background-position: 0 0; height: 57px; width: 413px; }
+#logo { text-indent: -9999px; background-position: 0 0; }
+
+.welcomemsg { margin: 35px 30px 30px 0; font-size: .8em; text-align: right; line-height: 1; font-weight: 600; }
 
 /* Search */
 #search { float: right; margin: 33px 0 0 0; }
@@ -130,7 +134,7 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 #search select { display: none; }
 
 /* Not displaying select box in header search. Is displayed on SRP. */
-#search .searchForm { width: 235px; height: 32px; margin: 0; border-radius: 5px; height: 32px; background-color: #e0e4eb; }
+#search .searchForm { width: 235px; height: 32px; margin: 0; border-radius: 5px; background-color: #e0e4eb; }
 
 #search .GoogleSiteSearch #gssTextInput { float: left; font-size: 14px; border: none; -webkit-appearance: none; background: none; width: 197px; margin: 7px 0 0 0; height: 20px; outline: none; }
 
@@ -199,13 +203,21 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* Images */
 .content-area { margin-top: 30px; }
 
-.section-heading { display: block; margin: 0 0 30px 0; text-transform: uppercase; color: #365d98; font-size: 24px; font-weight: 400; letter-spacing: -1px; }
+.section-heading { display: block; margin: 0 0 10px 0; text-transform: uppercase; color: #365d98; font-size: 24px; font-weight: 400; letter-spacing: -1px; }
 
 .tile { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
-.tile.white { background-color: white; }
 
-.link-box { border-top: 4px solid #365d98; }
+.whiteback { background-color: white; }
+
+.link-box { border-top: 4px solid #365d98; background-color: white; }
+.link-box ul { margin: 0; list-style: disc outside; padding: 0; }
+.link-box ul > :first-child { border-top: 1px solid #f1f2f7; padding-top: 10px; }
+.link-box ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f1f2f7; margin: 0 0 10px 0; letter-spacing: .01rem; }
+.link-box ul li a { color: #57575a; }
+.link-box ul li a:visited { outline: 0; text-decoration: none; }
 
 /* *************************************** */
 /* *************************************** */
 .navbar-collapse { padding-left: 0; }
+
+.pinkBorder { border: 1px solid pink; }

@@ -1,6 +1,6 @@
 {% for article in articles %}
     {% if article.picture and article.picture.url %}
-        <article class="tile white featured-story">
+        <article class="tile whiteback featured-story">
             <a href="{{ article.get_absolute_url }}" target="_blank">
             <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
                 <div class="story-text">
