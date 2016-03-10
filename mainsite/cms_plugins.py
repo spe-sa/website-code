@@ -53,7 +53,7 @@ class ShowTextPlugin(CMSPluginBase):
     name = _("Text")
 
     def render(self, context, instance, placeholder):
-        context.update({'text': instance.text})
+        context.update({'text': instance.txt})
         return context
 
 
@@ -61,4 +61,3 @@ class ShowTextPlugin(CMSPluginBase):
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
 plugin_pool.register_plugin(ShowTitlePlugin)
 plugin_pool.register_plugin(ShowTextPlugin)
-
