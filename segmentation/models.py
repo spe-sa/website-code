@@ -220,6 +220,54 @@ class CookieSegmentPluginModel(SegmentBasePluginModel):
         )()
 
 
+class VariableSegmentPluginModel(SegmentBasePluginModel):
+    variable_key = models.CharField(_('name of variable'),
+                                    blank=False,
+                                    help_text=_('Name of variable to check.'),
+                                    max_length=500,
+                                    )
+    variable_value = models.CharField(_('value to compare'),
+                                    blank=False,
+                                    help_text=_('Value to consider.'),
+                                    max_length=500,
+                                    )
+
+    @property
+    def configuration_string(self):
+
+        def wrapper():
+            return _('“{key}” equals “{value}”').format(key=self.variable_key, value=self.variable_value)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
+class VisitorSegmentPluginModel(SegmentBasePluginModel):
+    visitor_key = models.CharField(_('name of visitor attribute'),
+                                    blank=False,
+                                    help_text=_('Name of visitor attribute to check.'),
+                                    max_length=500,
+                                    )
+    visitor_value = models.CharField(_('value to compare'),
+                                    blank=False,
+                                    help_text=_('Value to consider.'),
+                                    max_length=500,
+                                    )
+
+    @property
+    def configuration_string(self):
+
+        def wrapper():
+            return _('“{key}” equals “{value}”').format(key=self.visitor_key, value=self.visitor_value)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
 class AuthenticatedSegmentPluginModel(SegmentBasePluginModel):
 
     @property
