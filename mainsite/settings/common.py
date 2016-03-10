@@ -183,10 +183,11 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     # Customize this
-    ('page.html', '1 Column Page'),
-    ('feature.html', '1 Column Page with Feature'),
-    ('2column.html', '2 Column Page'),
-    ('3column.html', '3 Column Page'),
+    ('spe_3col.html', 'SPE 3 Column page. Homepage'),
+    # ('page.html', '1 Column Page'),
+    # ('feature.html', '1 Column Page with Feature'),
+    # ('2column.html', '2 Column Page'),
+    # ('3column.html', '3 Column Page'),
 )
 
 CMS_PERMISSION = True
