@@ -11,14 +11,3 @@ for logger in LOGGING['loggers']:
     if LOGGING['loggers'][logger]['level'] == 'DEBUG':
         LOGGING['loggers'][logger]['level'] = 'ERROR'
 
-DATABASES = {
-    'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': 'localhost',
-        'NAME': os.path.join(DATA_DIR, 'project.db'),
-        'PASSWORD': '',
-        'PORT': '',
-        'USER': ''
-    }
-}

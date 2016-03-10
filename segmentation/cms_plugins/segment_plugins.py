@@ -16,14 +16,20 @@ from ..models import (
     SwitchSegmentPluginModel,
     DisciplineSegmentPluginModel,
     CountrySegmentPluginModel,
+    VariableSegmentPluginModel,
+    VisitorSegmentPluginModel,
 )
+
+from mainsite.context_processors.spe_context import (
+    get_context_variable,
+    get_visitor,)
 
 
 class FallbackSegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This segment plugin represents a degenerate case where the segment
     always matches.
-    '''
+    """
 
     model = FallbackSegmentPluginModel
     name = _('Fallback')
@@ -36,11 +42,11 @@ class FallbackSegmentPlugin(SegmentPluginBase):
 
 
 class SwitchSegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This switch segmentation plugin allows the operator to turn the segment ON
     or OFF statically and independently from the context. This is primarily
     useful for testing.
-    '''
+    """
 
     model = SwitchSegmentPluginModel
     name = _('Segment by switch')
@@ -53,10 +59,10 @@ class SwitchSegmentPlugin(SegmentPluginBase):
 
 
 class CookieSegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This is a segmentation plugin that renders output on the condition that a
     cookie with ``cookie_key`` is present and has the value ``cookie_value``.
-    '''
+    """
 
     model = CookieSegmentPluginModel
     name = _('Segment by cookie')
@@ -64,14 +70,51 @@ class CookieSegmentPlugin(SegmentPluginBase):
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
         value = request.COOKIES.get(instance.cookie_key)
-        return (value == instance.cookie_value)
+        return value == instance.cookie_value
+
+
+class VariableSegmentPlugin(SegmentPluginBase):
+    """
+    This is a segmentation plugin that renders output on the condition that a
+    variable with ``variable_key`` is present and has the value ``variable_value``.
+    """
+
+    model = VariableSegmentPluginModel
+    name = _('Segment by variable')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        value = get_context_variable(request, instance.variable_key)
+        is_valid = value == instance.variable_value
+        if not is_valid:
+            is_valid = repr(value) == instance.variable_value
+        return is_valid
+
+
+class VisitorSegmentPlugin(SegmentPluginBase):
+    """
+    This is a segmentation plugin that renders output on the condition that a
+    variable with ``variable_key`` is present and has the value ``variable_value``.
+    """
+
+    model = VisitorSegmentPluginModel
+    name = _('Segment by visitor')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        value = visitor.get(instance.visitor_key)
+        is_true = value == instance.visitor_value
+        if not is_true:
+            is_true = repr(value) == instance.visitor_value
+        return is_true
 
 
 class AuthenticatedSegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This plugin allows segmentation based on the authentication/authorization
     status of the visitor.
-    '''
+    """
 
     model = AuthenticatedSegmentPluginModel
     name = _('Segment by auth')
@@ -80,10 +123,11 @@ class AuthenticatedSegmentPlugin(SegmentPluginBase):
         request = context.get('request')
         return request and request.user and request.user.is_authenticated()
 
+
 class DisciplineSegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This plugin allows segmentation based on the discipline of the visitor.
-    '''
+    """
 
     model = DisciplineSegmentPluginModel
     name = _('Segment by discipline')
@@ -91,16 +135,17 @@ class DisciplineSegmentPlugin(SegmentPluginBase):
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
         value = request.COOKIES.get("discipline")
-        return (value == instance.discipline)
+        return value == instance.discipline
+
 
 class CountrySegmentPlugin(SegmentPluginBase):
-    '''
+    """
     This plugin allows segmentation based on the visitor's IP addresses
     associated country code. Use of this segment requires the use of the
     'resolve_country_code_middleware' provided in this distribution. This
     middleware, in turn, depends on django.contrib.geo_ip and MaxMind's
     GeoLite dataset or similar.
-    '''
+    """
 
     model = CountrySegmentPluginModel
     name = _('Segment by country')
@@ -118,22 +163,24 @@ class CountrySegmentPlugin(SegmentPluginBase):
     def is_context_appropriate(self, context, instance):
         g = GeoIP()
         request = context.get('request')
-        user_agent = request.META.get('HTTP_USER_AGENT', 'unknown')[:400]
+        # user_agent = request.META.get('HTTP_USER_AGENT', 'unknown')[:400]
         # ip_address in case I need to take proxies into account
-        ip_address = (
-            request.META.get('HTTP_X_FORWARDED_FOR')
-            if 'HTTP_X_FORWARDED_FOR' in request.META
-            else request.META.get('REMOTE_ADDR')
-        )[:100]
+        # ip_address = (
+        #     request.META.get('HTTP_X_FORWARDED_FOR')
+        #     if 'HTTP_X_FORWARDED_FOR' in request.META
+        #     else request.META.get('REMOTE_ADDR')
+        # )[:100]
         ip = request.META.get('REMOTE_ADDR', None) 
         if ip:
             code = g.country(ip)['country_code']
         else:
             code = 'XB'
-        return (code == instance.country_code)
+        return code == instance.country_code
 
 plugin_pool.register_plugin(AuthenticatedSegmentPlugin)
 plugin_pool.register_plugin(CookieSegmentPlugin)
+plugin_pool.register_plugin(VariableSegmentPlugin)
+plugin_pool.register_plugin(VisitorSegmentPlugin)
 plugin_pool.register_plugin(FallbackSegmentPlugin)
 plugin_pool.register_plugin(DisciplineSegmentPlugin)
 plugin_pool.register_plugin(CountrySegmentPlugin)
