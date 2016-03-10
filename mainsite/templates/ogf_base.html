@@ -1,0 +1,23 @@
+{% extends "html5_bootstrap.html" %}
+
+{% block web_fonts %}
+{{ block.super }}
+    <script src="https://use.typekit.net/xwk3nys.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+{% endblock web_fonts %}
+
+{% block css_base %}
+    {% load staticfiles %}
+    <!-- CSS_BASE -->
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/ogf-styles.css' %}" />
+{% endblock css_base %}
+
+{% block content_header %}
+
+{% endblock content_header %}
+
+{% block content_footer %}
+
+{% endblock content_footer %}
+
+
