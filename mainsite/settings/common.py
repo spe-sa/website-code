@@ -217,29 +217,38 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
-            },
+        },
         # 'file': {
         #     'level': 'DEBUG',
         #     'class': 'logging.FileHandler',
         #     'filename': LOGFILE_NAME,
         #     'formatter': 'verbose'
         #     },
-        },
+    },
     'loggers': {
         'root': {
             'handlers': ['console'],
             'level': 'DEBUG',
-            },
+        },
         'django': {
             'handlers': ['console'],
             'level': 'INFO',
-            },
+        },
         'website': {
             'handlers': ['console'],
             'level': 'DEBUG',
-            },
-        }
+        },
     }
+}
 
 EMAIL_HOST = "relaydev.spe.org"
 
+CKEDITOR_CONFIGS = {
+    "default": {
+        'removePlugins': 'stylesheetparser',
+        'allowedContent': True,
+    }
+}
+# CKEDITOR_SETTINGS = {
+#         "allowedContent": True
+# }

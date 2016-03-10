@@ -144,14 +144,31 @@
 /* LOGO + SEARCH (White Bar) */
 /* *************************************** */
 
-#branding { height:100px;background-color:$col-white; }
+#branding {
+  min-height:100px;
+  background-color:$col-white;
+}
+.logo-wrap {
+  margin:20px 0;
+}
 .spe-logo { display:block;margin:21px 0 0 10px; }
-#logo { text-indent:-9999px;background-position: 0 0;height:57px;width:413px; }
-
+#logo {
+  text-indent:-9999px;
+  background-position: 0 0;
+  //height:57px;
+  //width:413px;
+}
+.welcomemsg {
+  margin:35px 30px 30px 0;
+  font-size: .8em;
+  text-align: right;
+  line-height: 1;
+  font-weight: 600;
+}
 /* Search */
-#search { float:right;margin:33px 0 0 0; }
+#search { float:right;margin:33px 0 30px 0; }
 #search select { display:none; } /* Not displaying select box in header search. Is displayed on SRP. */
-#search .searchForm { width:235px;height:32px;margin:0;border-radius:5px;height:32px;background-color:$col-lightgrey; }
+#search .searchForm { width:235px;height:32px;margin:0;border-radius:5px;background-color:$col-lightgrey; }
 #search .GoogleSiteSearch #gssTextInput { float:left;font-size:14px;border:none;-webkit-appearance:none;background:none;width:197px;margin:7px 0 0 0;height:20px;outline:none; }
 #search .GoogleSiteSearch #gssSubmitButton { float:left;width:19px;height:17px;background-position:0 -812px;border:none;padding:0;margin:7px 0 0 10px; }
 #search ::-webkit-input-placeholder { color: $col-lightgrey; }
