@@ -74,3 +74,12 @@ class TitleBarPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.title
+
+class TextPlugin(CMSPlugin):
+    text = RichTextField(
+        max_length = 1000,
+    )
+
+
+    def __unicode__(self):
+        return self.text
