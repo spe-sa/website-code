@@ -1,4 +1,8 @@
 from django.db import models
+
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 # from django.core.urlresolvers import reverse
 # from django.utils import six
 # from django.utils.encoding import python_2_unicode_compatible, force_text
@@ -74,3 +78,12 @@ class TitleBarPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.title
+
+class TextPlugin(CMSPlugin):
+    text = RichTextField(
+        max_length = 1000,
+    )
+
+
+    def __unicode__(self):
+        return self.text
