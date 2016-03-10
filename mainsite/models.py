@@ -1,4 +1,8 @@
 from django.db import models
+
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
+
 # from django.core.urlresolvers import reverse
 # from django.utils import six
 # from django.utils.encoding import python_2_unicode_compatible, force_text
