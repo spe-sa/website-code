@@ -1,3 +1,4 @@
+from HTMLParser import HTMLParser
 from django.db import models
 
 from ckeditor.fields import RichTextField
@@ -79,6 +80,20 @@ class TitleBarPlugin(CMSPlugin):
     def __unicode__(self):
         return self.title
 
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+
 class TextPlugin(CMSPlugin):
     txt = RichTextField(
         max_length = 1000,
@@ -86,4 +101,5 @@ class TextPlugin(CMSPlugin):
 
 
     def __unicode__(self):
-        return self.txt
+        lbl = strip_tags(self.txt)
+        return lbl[0:50]
