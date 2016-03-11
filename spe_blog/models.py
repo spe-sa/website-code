@@ -9,6 +9,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
 
 from mainsite.models import Tier1Discipline
+from mainsite.models import Topics
 
 ORDER_BY = (
     ("-article_hits", 'Most Read'),
@@ -56,6 +57,16 @@ class Publication(models.Model):
 
     def __unicode__(self):
         return self.code + ": " + self.name
+
+class Issue(models.Model):
+    publication = models.ForeignKey(Publication)
+    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
+    print_volume = models.PositiveIntegerField(blank=True, null=True)
+    print_issue = models.PositiveIntegerField(blank=True, null=True)
+    cover = models.ImageField(upload_to='covers')
+    issue_url = models.URLField()
+    subscribe_url = models.URLField()
+    active = models.BooleanField(default=True)
 
 
 class Category(models.Model):
