@@ -102,10 +102,10 @@ class Customer(models.Model):
     primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", blank=True, null=True)
     secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", blank=True, null=True)
     # membership_type = models.CharField(max_length=30)
-    last_year_paid = models.PositiveIntegerField()
-    first_member_date = models.DateField()
-    continuous_start_date = models.DateField()
-    expected_grad_year = models.DateField()
+    last_year_paid = models.PositiveIntegerField(blank=True, null=True)
+    first_member_date = models.DateField(blank=True, null=True)
+    continuous_start_date = models.DateField(blank=True, null=True)
+    expected_grad_year = models.DateField(blank=True, null=True)
     subscriptions = models.ManyToManyField(CustomerSubscription, blank=True)
     # classifications are internal classification to perform logic off of
     classifications = models.ManyToManyField(CustomerClassification, related_name="classification_customers",
