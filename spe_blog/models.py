@@ -68,6 +68,8 @@ class Issue(models.Model):
     subscribe_url = models.URLField()
     active = models.BooleanField(default=True)
 
+    def __unicode__(self):
+        return self.publication
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
