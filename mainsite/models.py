@@ -13,7 +13,6 @@ from ckeditor.fields import RichTextField
 from cms.models import CMSPlugin
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -100,7 +99,7 @@ class Customer(models.Model):
     # name is assumed to be filled correctly by country etc
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers",  blank=True, null=True)
+    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", blank=True, null=True)
     secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", blank=True, null=True)
     # membership_type = models.CharField(max_length=30)
     last_year_paid = models.PositiveIntegerField()
@@ -109,10 +108,12 @@ class Customer(models.Model):
     expected_grad_year = models.DateField()
     subscriptions = models.ManyToManyField(CustomerSubscription, blank=True)
     # classifications are internal classification to perform logic off of
-    classifications = models.ManyToManyField(CustomerClassification, related_name="classification_customers", blank=True)
+    classifications = models.ManyToManyField(CustomerClassification, related_name="classification_customers",
+                                             blank=True)
     # achievements are milestones that customers can achieve to gain notoriety
     # (they are sortable and meant for display) subset of classifications for display
     achievements = models.ManyToManyField(CustomerAchievements, related_name="achievement_customers", blank=True)
+
     # awards = models.ManyToManyField(CustomerAwards, blank=True, null=True) - TODO: implement later
 
     # derived from other stuff make def for each
@@ -127,6 +128,7 @@ class Customer(models.Model):
 
     def is_board_member(self):
         return self.classifications.filter(code__exact="BOD").count >= 1
+
     # TODO: add any other is_ or has_ convenience methods for any join items below the same way
 
     def set_achievement_token(self):
@@ -135,9 +137,10 @@ class Customer(models.Model):
             # loop through all classifications; set the bit and then the bitmask and value dicts
             logger.error("private achievement_token not set building it...")
             self.__achievement_token = 3
-            self.__achievement_bitmasks = {"OFFICER": 0x0001, "COMMITTEE": 0x0010,}
-            self.__achievement_values = {"OFFICER": 9991099, "COMMITTEE": 9990123,}
-        logging.error(str(self.__achievement_token) + " | " + str(self.__achievement_bitmasks) + " | " + str(self.__achievement_values))
+            self.__achievement_bitmasks = {"OFFICER": 0x0001, "COMMITTEE": 0x0010, }
+            self.__achievement_values = {"OFFICER": 9991099, "COMMITTEE": 9990123, }
+        logging.error(str(self.__achievement_token) + " | " + str(self.__achievement_bitmasks) + " | " + str(
+            self.__achievement_values))
 
     def __unicode__(self):
         return self.customer_id
@@ -179,6 +182,7 @@ class TitleBarPlugin(CMSPlugin):
 
 class MLStripper(HTMLParser):
     def __init__(self):
+        HTMLParser.__init__(self)
         self.reset()
         self.fed = []
 
@@ -196,10 +200,17 @@ def strip_tags(html):
 
 
 class TextPlugin(CMSPlugin):
-    txt = RichTextField(
-        max_length=1000,
-    )
+    txt = RichTextField(max_length=1000, verbose_name="Text")
 
     def __unicode__(self):
-        lbl = strip_tags(self.txt)
+        lbl = " - " + strip_tags(self.txt)
+        return lbl[0:50]
+
+
+class TextWithClass(CMSPlugin):
+    txt = RichTextField(max_length=1000, verbose_name="Text")
+    cls = models.CharField(max_length=40, verbose_name="Class")
+
+    def __unicode__(self):
+        lbl = " - " + strip_tags(self.txt)
         return lbl[0:50]
