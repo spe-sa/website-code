@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
+import django.utils.timezone
 import taggit.managers
 import ckeditor_uploader.fields
 
@@ -10,9 +11,9 @@ import ckeditor_uploader.fields
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('mainsite', '__first__'),
         ('taggit', '0002_auto_20150616_2121'),
         ('cms', '0013_urlconfrevision'),
-        ('mainsite', '0001_initial'),
     ]
 
     operations = [
@@ -22,13 +23,17 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('print_volume', models.PositiveIntegerField(null=True, blank=True)),
                 ('print_issue', models.PositiveIntegerField(null=True, blank=True)),
+                ('sponsored', models.BooleanField(default=False)),
+                ('free', models.BooleanField(default=False)),
+                ('free_start', models.DateField(default=django.utils.timezone.now, verbose_name=b'Start Date')),
+                ('free_stop', models.DateField(default=django.utils.timezone.now, verbose_name=b'End Date')),
                 ('title', models.CharField(max_length=250)),
                 ('slug', models.SlugField(help_text=b'SEO Friendly name that is unique for use in URL', unique_for_month=b'date', max_length=100)),
                 ('teaser', models.CharField(max_length=250)),
                 ('author', models.CharField(max_length=250)),
                 ('introduction', models.TextField(help_text="Introductory paragraph or 'teaser.' for paywal", null=True, blank=True)),
                 ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=18000)),
-                ('date', models.DateField(auto_now_add=True, verbose_name=b'date_published')),
+                ('date', models.DateField(default=django.utils.timezone.now, verbose_name=b'Publication Date')),
                 ('picture', models.ImageField(upload_to=b'regular_images', null=True, verbose_name='Picture for article', blank=True)),
                 ('picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
                 ('picture_caption', models.CharField(max_length=250, null=True, verbose_name='Picture caption', blank=True)),

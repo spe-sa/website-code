@@ -116,7 +116,6 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'article_id': self.id})
 
-
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)

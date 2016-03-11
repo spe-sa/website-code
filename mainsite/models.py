@@ -45,7 +45,19 @@ class Tier1Discipline(models.Model):
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
 
-    def __str__(self):
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
+class Topics(models.Model):
+    discipline = models.ForeignKey(Tier1Discipline, verbose_name="Discipline")
+    code = models.CharField(max_length=3, primary_key=True)
+    name = models.CharField(max_length=150)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
         return self.name
 
     class Meta:
