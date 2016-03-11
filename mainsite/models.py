@@ -50,6 +50,7 @@ class Tier1Discipline(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = "Discipline"
 
 class Topics(models.Model):
     discipline = models.ForeignKey(Tier1Discipline, verbose_name="Discipline")
@@ -62,6 +63,7 @@ class Topics(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = "Topic"
 
 
 # # subscriptions: move to join table
