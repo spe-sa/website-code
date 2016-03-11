@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import AdSpeedZonePlugin
 from .models import TitleBarPlugin
 from .models import TextPlugin
+from .models import TextWithClass
 
 
 class ShowAdSpeedZonePlugin(CMSPluginBase):
@@ -56,8 +57,24 @@ class ShowTextPlugin(CMSPluginBase):
         context.update({'text': instance.txt})
         return context
 
+class ShowTextWithClassPlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
 
+    allow_children = False
+    cache = True
+    module = _('Components')
+    render_template = 'plugins/text_with_class_plugin.html'
+    text_enabled = False
+    model = TextWithClass
+    name = _("Text with Class")
+
+    def render(self, context, instance, placeholder):
+        context.update({'class': instance.cls})
+        context.update({'text': instance.txt})
+        return context
 
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
 plugin_pool.register_plugin(ShowTitlePlugin)
 plugin_pool.register_plugin(ShowTextPlugin)
+plugin_pool.register_plugin(ShowTextWithClassPlugin)

@@ -95,11 +95,16 @@ def strip_tags(html):
     return s.get_data()
 
 class TextPlugin(CMSPlugin):
-    txt = RichTextField(
-        max_length = 1000,
-    )
-
+    txt = RichTextField(max_length = 1000, verbose_name="Text")
 
     def __unicode__(self):
-        lbl = strip_tags(self.txt)
+        lbl = " - " + strip_tags(self.txt)
+        return lbl[0:50]
+
+class TextWithClass(CMSPlugin):
+    txt = RichTextField(max_length = 1000, verbose_name="Text")
+    cls = models.CharField(max_length = 40, verbose_name="Class")
+
+    def __unicode__(self):
+        lbl = " - " + strip_tags(self.txt)
         return lbl[0:50]
