@@ -1,5 +1,7 @@
 from django.conf import settings
+from ..models import Customer
 import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -8,10 +10,11 @@ logger = logging.getLogger(__name__)
 # - variables: from settings files
 # - login: from cookies to show login/logout info and welcome msg
 # - cookies: added to context for quick referencing
+# - customer: added to context and cached for quick referencing
 def set_default_values(request):
     variables = get_context_variables(request)
 
-    visitor = get_visitor(request)
+    customer = get_visitor(request)
 
     login = request.session.get('session_login')
     if not login:
@@ -45,7 +48,7 @@ def set_default_values(request):
         'variables': variables,
         'cookies': request.COOKIES,
         'login': login,
-        'visitor': visitor,
+        'customer': customer,
     }
 
 
@@ -113,24 +116,38 @@ def get_context_variables(request):
 
 
 def get_visitor(request):
+    cid = get_context_variable(request, "cid")
+    if not cid:
+        cid = get_context_variable(request, "sm_constitid")
     # if our customerid changed then reset the login and customer cache
     visitor = request.session.get('session_visitor')
-    if visitor and visitor.get('id') != get_context_variable(request, 'sm_constitid'):
+    if visitor and visitor.get('id') != cid:
         request.session['session_visitor'] = None
     # re-read to make sure to pick up nulled values above
     visitor = request.session.get('session_visitor')
+    visitor = None
     if not visitor:
-        visitor = {'name': get_context_variable(request, 'first_name', '')}
-        if visitor['name']:
-            visitor['name'] += " "
-        visitor['name'] += get_context_variable(request, 'last_name', '')
-        visitor['email'] = get_context_variable(request, 'email')
-        visitor['id'] = get_context_variable(request, 'sm_constitid')
-        # todo: add info from database read using the id
-        # sample data for testing personalization
-        visitor['is_student'] = get_context_variable(request, 'is_student')
-        visitor['is_staff'] = get_context_variable(request, 'is_staff')
-        # TODO: add more user stuff if needed
-        request.session['session_visitor'] = visitor
+        # read the customer from db and cache it up
+        try:
+            visitor = Customer.objects.get(pk=cid)
+            visitor.set_achievement_token()
+            request.session['session_visitor'] = visitor
+        except Customer.DoesNotExist:
+            visitor = None
+
+        # visitor = {'name': get_context_variable(request, 'first_name', '')}
+        # if visitor['name']:
+        #     visitor['name'] += " "
+        # visitor['name'] += get_context_variable(request, 'last_name', '')
+        # visitor['email'] = get_context_variable(request, 'email')
+        # visitor['id'] = get_context_variable(request, 'sm_constitid')
+        # # todo: add info from database read using the id
+        # # sample data for testing personalization
+        # visitor['is_student'] = get_context_variable(request, 'is_student')
+        # visitor['is_staff'] = get_context_variable(request, 'is_staff')
+        # # TODO: add more user stuff if needed
+
     logging.error('customer - ' + str(visitor))
+    if visitor:
+        logging.error('visitor call to is_officer: ' + visitor.is_officer)
     return visitor
