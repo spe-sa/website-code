@@ -10,7 +10,7 @@ from django.contrib.gis.geoip import GeoIP
 # from .models import ArticleDisciplinePluginModel
 # from .models import ArticleByPublicationPluginModel
 # from .models import SelectedFeatureArticlePluginModel
-from .models import Article, ArticlesPlugin, ArticlesListingPlugin
+from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin
 from .forms import ArticleSelectionForm
 
 
@@ -160,6 +160,23 @@ class ShowMeetingByUserPlugin(CMSPluginBase):
         #return HttpResponse(json.dumps([current_location['country_code3']]))
         return context
 
+class ShowIssuesByPublicationPlugin(CMSPluginBase):
+    model = IssuesByPublicationPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Show Issues by Publication')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/issues.html'
+    #render_plugin = False
+
+    def render(self, context, instance, placeholder):
+        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.cnt]
+        context.update({'issues': queryset})
+        context.update({'show_all_url': instance.all_url})
+        context.update({'show_all_text': instance.all_text})
+        return context
+
 
 # plugin_pool.register_plugin(ShowArticlePlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
@@ -169,3 +186,4 @@ plugin_pool.register_plugin(ShowArticlesListingPlugin)
 # plugin_pool.register_plugin(ShowArticlesFromPublicationPlugin)
 # plugin_pool.register_plugin(ShowFeatureArticlesPlugin)
 plugin_pool.register_plugin(ShowMeetingByUserPlugin)
+plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)

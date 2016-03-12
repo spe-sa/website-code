@@ -60,16 +60,16 @@ class Publication(models.Model):
 
 class Issue(models.Model):
     publication = models.ForeignKey(Publication)
-    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
+    date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     cover = models.ImageField(upload_to='covers')
-    issue_url = models.URLField()
-    subscribe_url = models.URLField()
+    issue_url = models.URLField(blank=True, null=True)
+    subscribe_url = models.URLField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return self.publication
+        return self.publication.name
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
@@ -186,4 +186,16 @@ class ArticlesListingPlugin(CMSPlugin):
         if self.personalized:
             buf += " personalized"
         buf += " using " + dictionary[self.template]
+        return buf
+
+class IssuesByPublicationPlugin(CMSPlugin):
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
+    starting_with = models.PositiveIntegerField(default=1)
+    publication = models.ForeignKey(Publication)
+    active = models.BooleanField(default=True)
+    all_url = models.URLField("Show All URL", blank=True, null=True)
+    all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        buf = " - " + self.publication.name + " - " + str(self.cnt) + " articles, starting with " + str(self.starting_with)
         return buf
