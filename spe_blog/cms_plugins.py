@@ -168,7 +168,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     allow_children = False
     cache = False
     module = _('Publications')
-    name = _('Show Issues by Publication')
+    name = _('Issues by Publication Listing')
     text_enabled = False
     render_template = 'spe_blog/plugins/issues.html'
     #render_plugin = False

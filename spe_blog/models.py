@@ -200,5 +200,9 @@ class IssuesByPublicationPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        buf = " - " + self.publication.name + " - " + str(self.cnt) + " articles, starting with " + str(self.starting_with)
+        buf = " - " + self.publication.name + " - " + str(self.cnt) + " issues, starting "
+        if self.starting_with > 1:
+            buf += str(self.starting_with) + " back"
+        else:
+            buf += "with the newest"
         return buf
