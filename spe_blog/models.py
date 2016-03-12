@@ -24,6 +24,12 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/compact_left_image.html', 'Compact Image on left'),
 )
 
+DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
+ISSUE_TEMPLATES = (
+    (DEFAULT_ISSUE_TEMPLATE, 'Issue channel'),
+    ('spe_blog/plugins/issue_sidebar.html', 'Issue sidebar'),
+)
+
 
 # Moved to tables
 # PUBS =(
@@ -194,6 +200,7 @@ class ArticlesListingPlugin(CMSPlugin):
         return buf
 
 class IssuesByPublicationPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Issues')
     starting_with = models.PositiveIntegerField(default=1)
     publication = models.ForeignKey(Publication)
@@ -202,9 +209,11 @@ class IssuesByPublicationPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
+        dictionary = dict(ISSUE_TEMPLATES)
         buf = " - " + self.publication.name + " - " + str(self.cnt) + " issues, starting "
         if self.starting_with > 1:
             buf += str(self.starting_with) + " back"
         else:
             buf += "with the newest"
+        buf += " using " + dictionary[self.template]
         return buf
