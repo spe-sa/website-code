@@ -20,7 +20,8 @@ DEFAULT_PLUGIN_TEMPLATE = 'spe_blog/plugins/image_left.html'
 PLUGIN_TEMPLATES = (
     (DEFAULT_PLUGIN_TEMPLATE, 'Image on left'),
     ('spe_blog/plugins/overlay.html', 'Image with caption overlay'),
-    ('spe_blog/plugins/picture_with_text_below.html', 'Picture with text below'),
+    ('spe_blog/plugins/picture_with_text_below.html', 'Image with text below'),
+    ('spe_blog/plugins/compact_left_image.html', 'Compact Image on left'),
 )
 
 
