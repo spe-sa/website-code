@@ -26,8 +26,8 @@ PLUGIN_TEMPLATES = (
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
 ISSUE_TEMPLATES = (
-    (DEFAULT_ISSUE_TEMPLATE, 'Issue channel'),
-    ('spe_blog/plugins/issue_sidebar.html', 'Issue sidebar'),
+    (DEFAULT_ISSUE_TEMPLATE, 'Issues listing'),
+    ('spe_blog/plugins/issue_sidebar.html', 'Subscribe & read issue'),
 )
 
 
