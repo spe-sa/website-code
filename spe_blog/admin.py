@@ -7,6 +7,7 @@ from mainsite.models import Tier1Discipline
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
+    filter_horizontal = ('topics', )
 
 #    def get_form(self, request, obj=None, **kwargs):
 #        if obj and obj.free:

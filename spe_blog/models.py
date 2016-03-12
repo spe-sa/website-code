@@ -113,6 +113,8 @@ class Article(models.Model):
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
 
     # add taggit tags, auto-tags, and categories
+    topics = models.ManyToManyField(Topics, verbose_name="Topic")
+
     tags = TaggableManager(verbose_name="Tags", through=Tagged, blank=True)
     tags.rel.related_name = "+"
     auto_tags = TaggableManager(verbose_name="Auto Tags", through=TaggedAuto, blank=True)

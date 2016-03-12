@@ -59,7 +59,8 @@ class Topics(models.Model):
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return self.name
+        buf = self.discipline.name + " - " + self.name
+        return buf
 
     class Meta:
         ordering = ['name']
