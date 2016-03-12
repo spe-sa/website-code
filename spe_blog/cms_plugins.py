@@ -77,6 +77,9 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         else:
             qs = Article.objects.all()
 
+        if instance.category:
+            qs = qs.filter(category=instance.category)
+
         if ducode:
             qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         elif dcode:

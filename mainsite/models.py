@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 class Tier1Discipline(models.Model):
-    number = models.CharField(max_length=12, unique=True)
+    #number = models.CharField(max_length=12, unique=True)
     code = models.CharField(max_length=3, primary_key=True)
     long_code = models.CharField(max_length=20, blank=True, null=True)
     name = models.CharField(max_length=150)

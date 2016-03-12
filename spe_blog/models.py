@@ -174,19 +174,20 @@ class ArticlesListingPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication, blank=True, null=True)
     personalized = models.BooleanField(default=True)
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
+    category = models.ForeignKey(Category, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
     all_url = models.URLField("Show All URL", blank=True, null=True)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
-        buf = "(" + str(self.starting_with) + " - " + str(self.cnt + self.starting_with - 1) + ") by " + self.order_by
-        if self.publication:
-            buf += " [" + str(self.publication.code) + "]"
+        buf = "(" + str(self.starting_with) + " - " + str(self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
         if self.discipline:
             buf += " (" + self.discipline.code + ")"
         if self.personalized:
             buf += " personalized"
+        if self.category:
+            buf += " (" + self.category.name + " only)"
         buf += " using " + dictionary[self.template]
         return buf
 
