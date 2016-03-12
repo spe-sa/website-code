@@ -192,7 +192,7 @@ class ArticlesListingPlugin(CMSPlugin):
         return buf
 
 class IssuesByPublicationPlugin(CMSPlugin):
-    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Issues')
     starting_with = models.PositiveIntegerField(default=1)
     publication = models.ForeignKey(Publication)
     active = models.BooleanField(default=True)
