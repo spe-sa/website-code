@@ -207,6 +207,8 @@ class IssuesByPublicationPlugin(CMSPlugin):
     active = models.BooleanField(default=True)
     all_url = models.URLField("Show All URL", blank=True, null=True)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    issue_url = models.URLField("Issue URL", blank=True, null=True)
+    subscribe_url = models.URLField("Subscribe URL", blank=True, null=True)
 
     def __unicode__(self):
         dictionary = dict(ISSUE_TEMPLATES)
