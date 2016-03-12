@@ -81,9 +81,9 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.filter(category=instance.category)
 
         if ducode:
-            qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         elif dcode:
-            qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
             qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
@@ -174,7 +174,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     #render_plugin = False
 
     def render(self, context, instance, placeholder):
-        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.cnt]
+        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'issues': queryset})
         context.update({'show_all_url': instance.all_url})
         context.update({'show_all_text': instance.all_text})
