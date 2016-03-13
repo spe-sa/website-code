@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'taggit',
     'spe_links',
     'spe_blog',
+    'google_tag_manager',
 )
 
 LANGUAGES = (
