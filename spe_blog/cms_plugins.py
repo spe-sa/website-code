@@ -178,6 +178,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         context.update({'issues': queryset})
         context.update({'show_all_url': instance.all_url})
         context.update({'show_all_text': instance.all_text})
+        context.update({'show_subscribe_url': instance.subscribe_url})
         self.render_template = instance.template
         return context
 
