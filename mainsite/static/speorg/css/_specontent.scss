@@ -15,47 +15,4 @@
   font-weight: 400;
   letter-spacing: -1px;
 }
-.tile {
-  box-shadow: 0 1px 2px $col-boxshadow;
-  margin-bottom: 20px;
-  padding: 15px;
-  min-width: 150px;
-}
-.whiteback {
-    background-color: $col-white;
-  }
-.link-box {
-  border-top: 4px solid $col-speblue2;
-  background-color: $col-white;
 
-  ul {
-    margin:0;
-    list-style: disc outside;
-    padding: 0;
-
-    & > :first-child {
-      border-top: 1px solid $col-pagegrey;
-      padding-top:10px;
-    }
-
-    li {
-      line-height: 18px;
-      list-style-type: none;
-      padding: 0 0 10px 0;
-      //border-bottom: 1px solid #f1f3f6;
-      border-bottom: 1px solid $col-pagegrey;
-      margin: 0 0 10px 0;
-      letter-spacing: .01rem;
-
-      a {
-        color: $col-spegrey;
-
-        &:visited {
-        //color: #105cd0;
-        outline: 0;
-        text-decoration: none;
-      }
-      }
-    }
-  }
-}

@@ -205,16 +205,27 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 
 .section-heading { display: block; margin: 0 0 10px 0; text-transform: uppercase; color: #365d98; font-size: 24px; font-weight: 400; letter-spacing: -1px; }
 
-.tile { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
+/* =================================================================== */
+/* TILES & BOXES
+====================================================================== */
+/* Base colors */
+/* greys */
+/* blues */
+/* Images */
+.tile, .tile-blue, .tile-white { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
 
-.whiteback { background-color: white; }
+.tile-blue { background-color: #26416c; color: #a3bce4; }
+.tile-blue a { color: #a3bce4; }
+.tile-blue a:hover { color: white; }
 
-.link-box { border-top: 4px solid #365d98; background-color: white; }
-.link-box ul { margin: 0; list-style: disc outside; padding: 0; }
-.link-box ul > :first-child { border-top: 1px solid #f1f2f7; padding-top: 10px; }
-.link-box ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f1f2f7; margin: 0 0 10px 0; letter-spacing: .01rem; }
-.link-box ul li a { color: #57575a; }
-.link-box ul li a:visited { outline: 0; text-decoration: none; }
+.whiteback, .tile-white { background-color: white; }
+
+.link-box, .tile-links { border-top: 4px solid #365d98; background-color: white; }
+.link-box ul, .tile-links ul { margin: 0; list-style: disc outside; padding: 0; }
+.link-box ul > :first-child, .tile-links ul > :first-child { border-top: 1px solid #f1f2f7; padding-top: 10px; }
+.link-box ul li, .tile-links ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f1f2f7; margin: 0 0 10px 0; letter-spacing: .01rem; }
+.link-box ul li a, .tile-links ul li a { color: #57575a; }
+.link-box ul li a:visited, .tile-links ul li a:visited { outline: 0; text-decoration: none; }
 
 /* *************************************** */
 /* *************************************** */

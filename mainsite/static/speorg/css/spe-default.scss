@@ -9,16 +9,16 @@
 @import 'vars';
 
 .row {
-    margin-right:0;
-    margin-left:0;
+    margin-right: 0;
+    margin-left:  0;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family:      'Open Sans', sans-serif;
     background-color: $col-pagegrey;
 }
 .redText {
-    color:$col-red;
+    color:            $col-red;
 }
 
 /* ************************ */
@@ -27,22 +27,14 @@ body {
 @import 'speheader';
 @import 'spefooter';
 @import 'specontent';
+@import 'tiles';
 
 /* *************************************** */
 /* *************************************** */
 
 .navbar-collapse {
-    padding-left:0;
+    padding-left: 0;
 }
 .pinkBorder {
-    border:1px solid pink;
+    border:       1px solid pink;
 }
-
-//.sizeIndicator {
-//    position: fixed;
-//    bottom:20px;
-//    right:20px;
-//    font-size:30px;
-//    font-weight:700;
-//    color:hotpink;
-//}
