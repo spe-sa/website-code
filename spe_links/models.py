@@ -20,6 +20,7 @@ class SpeLinkCategory(models.Model):
 
     class Meta:
         verbose_name = "category"
+        verbose_name_plural = "categories"
 
 
 @python_2_unicode_compatible  # only if you need to support Python 2
