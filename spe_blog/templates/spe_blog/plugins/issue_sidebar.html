@@ -15,6 +15,12 @@
             </div>
         </div>
     </a>
+    {% if issue.subscribe_url %}
+        <p></p>
+        <a href="{{ issue.subscribe_url }}">
+        <button type="button" class="btn btn-success btn-block">Subscribe</button>
+        </a>
+    {% endif %}
     </article>
 {#    {% endif %}#}
 {% empty %}
