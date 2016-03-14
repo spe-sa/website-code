@@ -72,45 +72,46 @@
   .story-wrap {
 
     .pub-date {
-      color:$col-redtext;
-      display: block;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
+      color:            $col-redtext;
+      display:          block;
+      text-transform:   uppercase;
+      font-size:        12px;
+      font-weight:      700;
+      letter-spacing:   1px;
     }
     h3 {
-      color: $col-speblack;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 8px;
-      margin-top:0;
-      letter-spacing: -0.02em;
+      color:            $col-speblack;
+      font-weight:      700;
+      line-height:      1.1;
+      margin-bottom:    8px;
+      margin-top:       0;
+      letter-spacing:   -0.02em;
     }
     p {
-      color:$col-copygrey;
+      color:            $col-copygrey;
     }
   }
 }
 .featured-story {
-  padding:15px;
-  min-height:300px;
+  padding:              15px;
+  min-height:           300px;
 
   .story-wrap {
-    min-height:300px;
-    color:$col-white;
-    background-size: cover;
-    position: relative;
+    min-height:         300px;
+    color:              $col-white;
+    background-size:    cover;
+    position:           relative;
 
     .story-text {
-      padding:15px;
-      background: $img-back-black-50 repeat top left fixed;
-      background-size:100%;
-      position: absolute;
-      bottom:0;
+      padding:          15px;
+      background:       $img-back-black-50 repeat top left fixed;
+      background-size:  100%;
+      position:         absolute;
+      bottom:           0;
+      width:            100%;
 
       h2 {
-        font-weight:600;
+        font-weight:    600;
       }
     }
   }
