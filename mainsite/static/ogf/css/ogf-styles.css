@@ -1,4 +1,10 @@
-/* VARS */
+/* =================================================================== */
+/* MAIN STYLE SHEET FOR OGF
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
 /* ************************ */
 /* BASE HTML STYLES         */
 body { font-family: "proxima-nova", sans-serif; }
@@ -11,7 +17,13 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 /* ************************ */
 /* HEAD FOOT & CONTENT      */
-/* VARS */
+/* =================================================================== */
+/* OGF HEADER & MENUS
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
 /* ********************************** */
 /* AD Zone 1 */
 #adLeaderboard { height: 140px; padding: 27px 0 0 0; }
@@ -48,7 +60,10 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 .searchbar { background-color: #e4e1d8; padding: 3px 0; }
 
-/* VARS */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
 .footerUpper { background-color: #181c41; font-family: "proxima-nova", sans-serif; padding: 30px; }
 
 .footerLower { background-color: #2a2a2a; color: white; font-family: "proxima-nova", sans-serif; min-height: 100px; padding: 10px; }
@@ -77,7 +92,15 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 .copyright { font-size: 10px; color: white; white-space: nowrap; }
 
-/* VARS */
+/* =================================================================== */
+/* MAIN CONTENT STYLES FOR OGF
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+.page-content { margin-top: 25px; }
+
 /* ********************************** */
 /* SUPER FEATURE & POPULAR NOW */
 .featurePop { margin-top: 30px; }
@@ -253,6 +276,44 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .prevYearBtn { background-color: #f2efea; margin: 20px 0; padding: 20px; font-size: 25px; font-weight: 700; }
 .prevYearBtn a { color: #808bcf; }
 .prevYearBtn a:hover { color: #181c41; text-decoration: none; }
+
+/* =================================================================== */
+/* TILES & BOXES
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+.tile, .tile-blue, .tile-white, .tile-alert { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
+
+.tile-alert { background-color: #bf1d21; color: white; }
+.tile-alert p { margin: 0; }
+
+.tile-blue { background-color: #26416c; color: #a3bce4; }
+.tile-blue a { color: #a3bce4; }
+.tile-blue a:hover { color: white; }
+
+.whiteback, .tile-white { background-color: white; }
+
+.link-box, .tile-links { border-top: 4px solid #0f1c97; background-color: white; }
+.link-box ul, .tile-links ul { margin: 0; list-style: disc outside; padding: 0; }
+.link-box ul > :first-child, .tile-links ul > :first-child { border-top: 1px solid #f2efea; padding-top: 10px; }
+.link-box ul li, .tile-links ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f2efea; margin: 0 0 10px 0; letter-spacing: .01rem; }
+.link-box ul li a, .tile-links ul li a { color: #57575a; }
+.link-box ul li a:visited, .tile-links ul li a:visited { outline: 0; text-decoration: none; }
+
+.story .story-wrap .pub-date { color: #bf1d21; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.story .story-wrap h3 { color: #2a2a2a; font-weight: 700; line-height: 1.1; margin-bottom: 8px; margin-top: 0; letter-spacing: -0.02em; }
+.story .story-wrap p { color: #3d4044; }
+
+.featured-story { padding: 15px; min-height: 300px; }
+.featured-story .story-wrap { min-height: 300px; color: white; background-size: cover; position: relative; }
+.featured-story .story-wrap .story-text { padding: 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTFDNUU2NzlFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTFDNUU2N0FFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMUM1RTY3N0UxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMUM1RTY3OEUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgqx4c0AAAAbSURBVHjaYmRgYGhgIAIwMRAJRhVSRyFAgAEA3J4AlIKhjKsAAAAASUVORK5CYII=) repeat top left fixed; background-size: 100%; position: absolute; bottom: 0; }
+.featured-story .story-wrap .story-text h2 { font-weight: 600; }
+
+.tiletitlehr { height: 5px; border: none; color: #0f1c97; background-color: #0f1c97; }
+
+.tiletitles { color: #3d4044; font-size: 25px; }
 
 /* ************************************ */
 /* MISC */

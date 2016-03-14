@@ -1,24 +1,26 @@
-//Main style sheet for OGF
+/* =================================================================== */
+/* MAIN STYLE SHEET FOR OGF
+====================================================================== */
 @import 'vars';
 
 /* ************************ */
 /* BASE HTML STYLES         */
 body {
-  font-family: $font-main;
+  font-family:            $font-main;
 }
 h1, h2, h3, h4 {
-  font-family: $font-titles;
-  font-weight: $font-bold;
+  font-family:            $font-titles;
+  font-weight:            $font-bold;
 }
 
 * {
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
+  -webkit-border-radius:  0 !important;
+  -moz-border-radius:     0 !important;
+  border-radius:          0 !important;
 }
 .row {
   //margin:0 !important;
-  margin:0;
+  margin:                 0;
 }
 
 /* ************************ */
@@ -26,32 +28,31 @@ h1, h2, h3, h4 {
 @import 'ogfheader';
 @import 'ogffooter';
 @import 'ogfcontent';
+@import 'tiles';
 
 /* ************************************ */
 /* MISC */
 
 .red {
-  color: $col-ogfred !important;
+  color:          $col-ogfred !important;
 }
 .yellow {
-  color: $col-ogfyellow !important;
+  color:          $col-ogfyellow !important;
 }
 .white {
-  color:$col-white !important;
+  color:          $col-white !important;
 }
 .h2MarginB {
-  margin-bottom:20px;
+  margin-bottom:  20px;
 }
-
 .separatorDotted {
-  border-top:$dotted;
-  margin-top:20px;
-  padding-top:20px;
+  border-top:     $dotted;
+  margin-top:     20px;
+  padding-top:    20px;
 }
-
 .padZero {
-  padding:0;
+  padding:        0;
 }
 .margZero {
-  margin:0;
+  margin:         0;
 }

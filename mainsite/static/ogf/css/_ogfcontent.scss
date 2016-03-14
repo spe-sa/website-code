@@ -1,9 +1,16 @@
+/* =================================================================== */
+/* MAIN CONTENT STYLES FOR OGF
+====================================================================== */
 @import 'vars';
+
+.page-content {
+  margin-top:25px;
+}
 
 /* ********************************** */
 /* SUPER FEATURE & POPULAR NOW */
 .featurePop {
-  margin-top:30px;
+  margin-top:     30px;
 }
 #superFeatured {
   min-height:500px;
