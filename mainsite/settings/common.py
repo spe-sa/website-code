@@ -244,6 +244,7 @@ LOGGING = {
 }
 
 EMAIL_HOST = "relaydev.spe.org"
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 CKEDITOR_CONFIGS = {
     "default": {

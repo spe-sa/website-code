@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 class Tier1Discipline(models.Model):
-    #number = models.CharField(max_length=12, unique=True)
+    # number = models.CharField(max_length=12, unique=True)
     code = models.CharField(max_length=3, primary_key=True)
     long_code = models.CharField(max_length=20, blank=True, null=True)
     name = models.CharField(max_length=150)
@@ -51,6 +51,7 @@ class Tier1Discipline(models.Model):
     class Meta:
         ordering = ['name']
         verbose_name = "Discipline"
+
 
 class Topics(models.Model):
     discipline = models.ForeignKey(Tier1Discipline, verbose_name="Discipline")
@@ -75,6 +76,14 @@ class Topics(models.Model):
 class CustomerSubscription(models.Model):
     code = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
+    value = models.CharField(max_length=150, blank=True, null=True)
+    sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
+
+    def __unicode__(self):
+        return self.description
+
+    class Meta:
+        ordering = ['sort_order', 'description']
 
 
 # # classifications: move to join table
@@ -89,76 +98,110 @@ class CustomerSubscription(models.Model):
 # new_grad_y1 | value?
 # new_grad_y2 | value?
 class CustomerClassification(models.Model):
-    code = models.CharField(max_length=20)
+    classificaton_types = (
+        ('MEMBERSHIP', 'Membership'),
+        ('ACHIEVEMENT', 'Achievement'),
+        # ('SUBSCRIPTION', 'Subscription'),  QUESTION: should subscriptions be their own table or here?
+    )
+    code = models.CharField(max_length=20, primary_key=True)
     description = models.CharField(max_length=100)
-    value = models.CharField(max_length=150)
+    type = models.CharField(max_length=20, choices=classificaton_types, default="MEMBERSHIP")
+    sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
 
+    def __unicode__(self):
+        return self.description
 
-# # Dena's Awards: move to join table
-# key_club
-# legion_of_honor
-# distinguished
-# honorary
-# century_club
-class CustomerAchievements(CustomerClassification):
-    sort_order = models.PositiveSmallIntegerField(blank=True, null=True)
-    weight = models.PositiveSmallIntegerField(blank=True, null=True)
+    class Meta:
+        ordering = ['sort_order', 'description']
 
 
 class Customer(models.Model):
-    __achievement_token = None
-    __achievement_bitmasks = {}
-    __achievement_values = {}
+    # __achievement_token = None
+    # __achievement_bitmasks = {}
+    # __achievement_values = {}
 
-    customer_id = models.CharField(max_length=12, primary_key=True)
+    id = models.CharField(max_length=12, primary_key=True)
     # name is assumed to be filled correctly by country etc
     name = models.CharField(max_length=100)
     email = models.EmailField()
     primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", blank=True, null=True)
     secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", blank=True, null=True)
     # membership_type = models.CharField(max_length=30)
-    last_year_paid = models.PositiveIntegerField(blank=True, null=True)
+    paid_through_year = models.PositiveIntegerField(blank=True, null=True)
     first_member_date = models.DateField(blank=True, null=True)
     continuous_start_date = models.DateField(blank=True, null=True)
     expected_grad_year = models.DateField(blank=True, null=True)
-    subscriptions = models.ManyToManyField(CustomerSubscription, blank=True)
+    subscriptions = models.ManyToManyField(CustomerSubscription, related_name="customers", blank=True)
     # classifications are internal classification to perform logic off of
-    classifications = models.ManyToManyField(CustomerClassification, related_name="classification_customers",
-                                             blank=True)
-    # achievements are milestones that customers can achieve to gain notoriety
-    # (they are sortable and meant for display) subset of classifications for display
-    achievements = models.ManyToManyField(CustomerAchievements, related_name="achievement_customers", blank=True)
+    classifications = models.ManyToManyField(CustomerClassification, related_name='customers',
+                                             blank=True)  # , through='CustomerClassificationJoin'
+
+    # # achievements are milestones that customers can achieve to gain notoriety
+    # # (they are sortable and meant for display) subset of classifications for display
+    # achievements = models.ManyToManyField(CustomerClassification, related_name='achievement_customers',
+    #                                       blank=True)  # , through='CustomerAchievementJoin'
 
     # awards = models.ManyToManyField(CustomerAwards, blank=True, null=True) - TODO: implement later
 
+    def has_achievement(self, achievement_key):
+        return CustomerClassification.objects.filter(customers__id=self.id).filter(
+            code=achievement_key).filter(type='ACHIEVEMENT').count() >= 1
+
+    def has_classification(self, classification_key):
+        return CustomerClassification.objects.filter(customers__id=self.id).filter(
+            code=classification_key).count() >= 1
+
     # derived from other stuff make def for each
     def is_officer(self):
-        if not self.__achievement_token:
-            self.set_achievement_token()
-
-        return self.__achievement_token & self.__achievement_bitmasks.get("OFFICER")
+        return self.has_classification("OFFICER")
 
     def has_committee(self):
-        return self.classifications.filter(code__exact="COMMITTEE").count >= 1
+        return self.has_classification("COMMITTEE")
 
     def is_board_member(self):
-        return self.classifications.filter(code__exact="BOD").count >= 1
+        return self.has_classification("BOD")
 
     # TODO: add any other is_ or has_ convenience methods for any join items below the same way
 
-    def set_achievement_token(self):
-        # try to get from variable if prebuilt
-        if not self.__achievement_token:
-            # loop through all classifications; set the bit and then the bitmask and value dicts
-            logger.error("private achievement_token not set building it...")
-            self.__achievement_token = 3
-            self.__achievement_bitmasks = {"OFFICER": 0x0001, "COMMITTEE": 0x0010, }
-            self.__achievement_values = {"OFFICER": 9991099, "COMMITTEE": 9990123, }
-        logging.error(str(self.__achievement_token) + " | " + str(self.__achievement_bitmasks) + " | " + str(
-            self.__achievement_values))
-
+    # def set_achievement_token(self):
+    #     # try to get from variable if prebuilt
+    #     if not self.__achievement_token:
+    #         # loop through all classifications; set the bit and then the bitmask and value dicts
+    #         logger.error("private achievement_token not set building it...")
+    #         self.__achievement_token = 3
+    #         self.__achievement_bitmasks = {"OFFICER": 0x0001, "COMMITTEE": 0x0010, }
+    #         self.__achievement_values = {"OFFICER": 9991099, "COMMITTEE": 9990123, }
+    #     logging.error(str(self.__achievement_token) + " | " + str(self.__achievement_bitmasks) + " | " + str(
+    #         self.__achievement_values))
+    #
     def __unicode__(self):
-        return self.customer_id
+        return self.id + " : " + self.name
+
+
+# class CustomerClassificationJoin(models.Model):
+#     customer = models.ForeignKey(Customer, related_name='classification_customer')
+#     classification = models.ForeignKey(CustomerClassification, related_name='classification_join')
+#     value = models.CharField(max_length=255, blank=True, null=True)
+#     sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
+#
+#     def __unicode__(self):
+#         return "%s : %s" % (self.customer.id, self.classification.code)
+#
+#
+# # # Dena's Awards: move to join table
+# # key_club
+# # legion_of_honor
+# # distinguished
+# # honorary
+# # century_club
+# class CustomerAchievementJoin(models.Model):
+#     customer = models.ForeignKey(Customer, related_name='achievement_customer')
+#     classification = models.ForeignKey(CustomerClassification, related_name='achievement_join')
+#     value = models.CharField(max_length=255, blank=True, null=True)
+#     sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
+#
+#     def __unicode__(self):
+#         return "%s has achievement %s (%s)" % (self.customer, self.classification, self.value)
 
 
 class AdSpeedZonePlugin(CMSPlugin):
