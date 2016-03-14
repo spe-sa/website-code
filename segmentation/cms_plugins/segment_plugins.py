@@ -18,6 +18,8 @@ from ..models import (
     CountrySegmentPluginModel,
     VariableSegmentPluginModel,
     VisitorSegmentPluginModel,
+    VisitorClassificationSegmentPluginModel,
+
 )
 
 from mainsite.context_processors.spe_context import (
@@ -98,16 +100,35 @@ class VisitorSegmentPlugin(SegmentPluginBase):
     """
 
     model = VisitorSegmentPluginModel
-    name = _('Segment by visitor')
+    name = _('Segment by customer')
 
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
         visitor = get_visitor(request)
-        value = visitor.get(instance.visitor_key)
+        if not visitor:
+            return False
+        value = getattr(visitor, instance.visitor_key, None)
         is_true = value == instance.visitor_value
         if not is_true:
             is_true = repr(value) == instance.visitor_value
         return is_true
+
+
+class VisitorClassificationSegmentPlugin(SegmentPluginBase):
+    """
+    This is a segmentation plugin that renders output on the condition that a
+    customer exists and has a classification with the code specified
+    """
+
+    model = VisitorClassificationSegmentPluginModel
+    name = _('Segment by customer classification')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        if not visitor:
+            return False
+        return visitor.has_classification(instance.classification_code)
 
 
 class AuthenticatedSegmentPlugin(SegmentPluginBase):
@@ -181,6 +202,7 @@ plugin_pool.register_plugin(AuthenticatedSegmentPlugin)
 plugin_pool.register_plugin(CookieSegmentPlugin)
 plugin_pool.register_plugin(VariableSegmentPlugin)
 plugin_pool.register_plugin(VisitorSegmentPlugin)
+plugin_pool.register_plugin(VisitorClassificationSegmentPlugin)
 plugin_pool.register_plugin(FallbackSegmentPlugin)
 plugin_pool.register_plugin(DisciplineSegmentPlugin)
 plugin_pool.register_plugin(CountrySegmentPlugin)

@@ -73,7 +73,6 @@ class Issue(models.Model):
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     cover = models.ImageField(upload_to='covers')
     issue_url = models.URLField(blank=True, null=True)
-    subscribe_url = models.URLField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -207,7 +206,6 @@ class IssuesByPublicationPlugin(CMSPlugin):
     active = models.BooleanField(default=True)
     all_url = models.URLField("Show All URL", blank=True, null=True)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    issue_url = models.URLField("Issue URL", blank=True, null=True)
     subscribe_url = models.URLField("Subscribe URL", blank=True, null=True)
 
     def __unicode__(self):

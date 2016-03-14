@@ -66,7 +66,8 @@ def get_context_variable(request, variable_name, default_value=None):
         if not header_name.startswith("HTTP"):
             header_name = "HTTP-" + header_name
         value = request.META.get(header_name,
-                                 getattr(settings, variable_name, request.COOKIES.get(variable_name, None)))
+                                 getattr(settings, variable_name,
+                                         request.COOKIES.get(variable_name, None)))
     if value is None and debug:
         if variable_name in request.POST:
             value = request.POST[variable_name]
@@ -121,7 +122,7 @@ def get_visitor(request):
         cid = get_context_variable(request, "sm_constitid")
     # if our customerid changed then reset the login and customer cache
     visitor = request.session.get('session_visitor')
-    if visitor and visitor.get('id') != cid:
+    if visitor and visitor.id and unicode(visitor.id) != cid:
         request.session['session_visitor'] = None
     # re-read to make sure to pick up nulled values above
     visitor = request.session.get('session_visitor')
@@ -130,24 +131,12 @@ def get_visitor(request):
         # read the customer from db and cache it up
         try:
             visitor = Customer.objects.get(pk=cid)
-            visitor.set_achievement_token()
+            # visitor.set_achievement_token()
             request.session['session_visitor'] = visitor
         except Customer.DoesNotExist:
             visitor = None
 
-        # visitor = {'name': get_context_variable(request, 'first_name', '')}
-        # if visitor['name']:
-        #     visitor['name'] += " "
-        # visitor['name'] += get_context_variable(request, 'last_name', '')
-        # visitor['email'] = get_context_variable(request, 'email')
-        # visitor['id'] = get_context_variable(request, 'sm_constitid')
-        # # todo: add info from database read using the id
-        # # sample data for testing personalization
-        # visitor['is_student'] = get_context_variable(request, 'is_student')
-        # visitor['is_staff'] = get_context_variable(request, 'is_staff')
-        # # TODO: add more user stuff if needed
-
     logging.error('customer - ' + str(visitor))
-    if visitor:
-        logging.error('visitor call to is_officer: ' + visitor.is_officer)
+    # if visitor:
+    #     logging.error('visitor call to is_officer: ' + str(visitor.has_classification("OFFICER")))
     return visitor

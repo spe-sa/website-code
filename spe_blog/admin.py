@@ -43,7 +43,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(Tier1Discipline)
 admin.site.register(Category)
 admin.site.register(Publication)
 admin.site.register(Issue)

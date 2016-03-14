@@ -170,24 +170,21 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     module = _('Publications')
     name = _('Issues by Publication Listing')
     text_enabled = False
-    render_template = 'spe_blog/plugins/issues.html'
+    render_template = 'spe_blog/plugins/issue_channel.html'
     #render_plugin = False
 
     def render(self, context, instance, placeholder):
         queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        context.update({'publication': instance.publication})
         context.update({'issues': queryset})
         context.update({'show_all_url': instance.all_url})
         context.update({'show_all_text': instance.all_text})
+        context.update({'show_subscribe_url': instance.subscribe_url})
         self.render_template = instance.template
         return context
 
 
-# plugin_pool.register_plugin(ShowArticlePlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
-# plugin_pool.register_plugin(ShowArticlesByUserDisciplinePlugin)
-# plugin_pool.register_plugin(ShowArticlesByDisciplinePlugin)
-# plugin_pool.register_plugin(ShowArticlesFromPublicationPlugin)
-# plugin_pool.register_plugin(ShowFeatureArticlesPlugin)
 plugin_pool.register_plugin(ShowMeetingByUserPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
