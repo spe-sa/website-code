@@ -175,6 +175,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        context.update({'publication': instance.publication})
         context.update({'issues': queryset})
         context.update({'show_all_url': instance.all_url})
         context.update({'show_all_text': instance.all_text})
@@ -183,12 +184,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         return context
 
 
-# plugin_pool.register_plugin(ShowArticlePlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
-# plugin_pool.register_plugin(ShowArticlesByUserDisciplinePlugin)
-# plugin_pool.register_plugin(ShowArticlesByDisciplinePlugin)
-# plugin_pool.register_plugin(ShowArticlesFromPublicationPlugin)
-# plugin_pool.register_plugin(ShowFeatureArticlesPlugin)
 plugin_pool.register_plugin(ShowMeetingByUserPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
