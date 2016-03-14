@@ -73,7 +73,7 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* Images */
 #spe-header { border-bottom: 4px solid #e0e4eb; }
 
-#logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span { background: url("/static/speorg/img/header-sprite1.2.png") no-repeat; }
+#logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span { background: url("/static/www/img/header-sprite1.2.png") no-repeat; }
 
 .link-text { width: 80%; float: right; }
 

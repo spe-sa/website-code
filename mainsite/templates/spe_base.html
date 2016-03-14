@@ -3,8 +3,8 @@
 {% block css_base %}
     {% load staticfiles %}
     <!-- CSS_BASE -->
-    <link rel="stylesheet" type="text/css" media="all" href="{% static 'speorg/css/translateelement.css' %}" /><!-- GOOGLE TRANSLATE WIDGET -->
-    <link rel="stylesheet" type="text/css" media="all" href="{% static 'speorg/css/spe-default.css' %}" />
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/translateelement.css' %}" /><!-- GOOGLE TRANSLATE WIDGET -->
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/mainstyle.css' %}" />
 {% endblock css_base %}
 
 {% block content_header %}
@@ -365,7 +365,7 @@
             <div id="branding" class="row">
                     <div class="col-xs-12 col-sm-4 col-sm-offset-1 logo-wrap">
 {#                        <a href="/" class="spe-logo" title="SPE Homepage"><h1 id="logo">The Society of Petroleum Engineers</h1></a>#}
-                        <img src="{% static 'speorg/img/spe_logo_full.png' %}" class="img-responsive">
+                        <img src="{% static 'www/img/spe_logo_full.png' %}" class="img-responsive">
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-3 welcomemsg text-right">
                         {% if login.authenticated == True %}
