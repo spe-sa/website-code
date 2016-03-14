@@ -76,7 +76,7 @@
     }
   }
 }
-.story {
+.story, .tile-textbelow {
   .story-wrap {
 
     .pub-date {
@@ -124,6 +124,9 @@
     }
   }
 }
+.tile-textbelow {
+  padding-bottom:20px;
+}
 .tiletitlehr {
   height:5px;
   border:none;
@@ -133,4 +136,6 @@
 .tiletitles {
   color:$col-copygrey;
   font-size:25px;
+  border-bottom: 2px dotted $col-basegrey;
+  padding-bottom:10px;
 }
