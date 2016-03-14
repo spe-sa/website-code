@@ -28,6 +28,17 @@
     }
   }
 }
+.tile-lightblue {
+  background-color:     $col-textblue;
+  color:                $col-speblue;
+
+  a {
+    color:              $col-speblue;
+    &:hover {
+      color:            $col-white;
+    }
+  }
+}
 .whiteback, .tile-white {
     background-color:   $col-white;
   }
@@ -105,6 +116,7 @@
       background-size:  100%;
       position:         absolute;
       bottom:           0;
+      width:            100%;
 
       h2 {
         font-weight:    600;

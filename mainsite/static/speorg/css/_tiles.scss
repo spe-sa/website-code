@@ -20,6 +20,17 @@
     }
   }
 }
+.tile-lightblue {
+  background-color:     $col-textblue;
+  color:                $col-speblue;
+
+  a {
+    color:              $col-speblue;
+    &:hover {
+      color:            $col-white;
+    }
+  }
+}
 .whiteback, .tile-white {
     background-color:   $col-white;
   }
