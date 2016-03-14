@@ -170,7 +170,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     module = _('Publications')
     name = _('Issues by Publication Listing')
     text_enabled = False
-    render_template = 'spe_blog/plugins/issues.html'
+    render_template = 'spe_blog/plugins/issue_channel.html'
     #render_plugin = False
 
     def render(self, context, instance, placeholder):
