@@ -30,6 +30,11 @@ ISSUE_TEMPLATES = (
     ('spe_blog/plugins/issue_sidebar.html', 'Subscribe & read issue'),
 )
 
+DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
+EDITORIAL_TEMPLATES = (
+    (DEFAULT_ISSUE_TEMPLATE, 'Editorial'),
+)
+
 
 # Moved to tables
 # PUBS =(
@@ -159,6 +164,16 @@ class ArticlesPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
 
+class EditorialPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
+    title = models.CharField(max_length = 100)
+    articles = models.ManyToManyField(Article)
+
+    def __unicode__(self):
+        return self.title
+
+    def copy_relations(self, old_instance):
+        self.articles = old_instance.articles.all()
 
 # class ArticlePlugin(CMSPlugin):
 #     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)

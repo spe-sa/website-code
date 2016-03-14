@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<h2>{{ title }}</h2>
+{% for article in articles %}
+    <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
+                style="min-height: 150px">
+    <a href="{{ article.get_absolute_url }}" target="_blank">
+        <div class="story-wrap row">
+            {% if article.picture and article.picture.url %}
+                <figure class="thumb col-sm-5"><!-- style="max-width:200px;" -->
+                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div><!--  style="max-height:150px;max-width: 200px" -->
+                </figure>
+            {% endif %}
+            <div class="story-text col-sm-7">
+                <span class="pub-date">{{ article.date }}</span>
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.teaser }}</p>
+            </div>
+        </div>
+    </a>
+    </article>
+{#    {% endif %}#}
+{% empty %}
+    <p class="well">{% trans "No items available" %}</p>
+{% endfor %}
