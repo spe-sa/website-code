@@ -12,7 +12,7 @@ from django.contrib.gis.geoip import GeoIP
 # from .models import SelectedFeatureArticlePluginModel
 from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, EditorialPlugin
 from .forms import ArticleSelectionForm, EditorialSelectionForm
-
+import sys
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -62,6 +62,8 @@ class ShowEditorialPlugin(ArticlePluginBase):
     form = EditorialSelectionForm
 
     def render(self, context, instance, placeholder):
+        # sys.stderr.write("title: " + instance.title + "\n")
+        # sys.stderr.write("template: " + instance.template + "\n")
         queryset = Article.objects.filter(id__in=instance.articles.all())
         context.update({'articles': queryset})
         context.update({'title': instance.title})

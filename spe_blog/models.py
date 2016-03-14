@@ -10,6 +10,7 @@ from taggit.models import TaggedItemBase
 
 from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
+import sys
 
 ORDER_BY = (
     ("-article_hits", 'Most Read'),
@@ -32,7 +33,7 @@ ISSUE_TEMPLATES = (
 
 DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
 EDITORIAL_TEMPLATES = (
-    (DEFAULT_ISSUE_TEMPLATE, 'Editorial'),
+    (DEFAULT_EDITORIAL_TEMPLATE, 'Editorial'),
 )
 
 
@@ -165,6 +166,7 @@ class ArticlesPlugin(CMSPlugin):
         self.articles = old_instance.articles.all()
 
 class EditorialPlugin(CMSPlugin):
+    # sys.stderr.write("editoral templates choices: " + str(EDITORIAL_TEMPLATES) + "\n")
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
     title = models.CharField(max_length = 100)
     articles = models.ManyToManyField(Article)
