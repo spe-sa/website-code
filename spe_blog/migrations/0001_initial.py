@@ -11,9 +11,9 @@ import ckeditor_uploader.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '__first__'),
         ('taggit', '0002_auto_20150616_2121'),
         ('cms', '0013_urlconfrevision'),
+        ('mainsite', '0001_initial'),
     ]
 
     operations = [
@@ -50,14 +50,13 @@ class Migration(migrations.Migration):
             name='ArticlesListingPlugin',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay')])),
+                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/compact_left_image.html', b'Compact Image on left')])),
                 ('cnt', models.PositiveIntegerField(default=5, verbose_name='Number of Articles')),
                 ('order_by', models.CharField(default=b'-article_hits', max_length=20, choices=[(b'-article_hits', b'Most Read'), (b'-date', b'Most Recent')])),
                 ('starting_with', models.PositiveIntegerField(default=1)),
                 ('personalized', models.BooleanField(default=True)),
                 ('all_url', models.URLField(null=True, verbose_name=b'Show All URL', blank=True)),
                 ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
-                ('discipline', models.ForeignKey(blank=True, to='mainsite.Tier1Discipline', null=True)),
             ],
             options={
                 'abstract': False,
@@ -68,7 +67,7 @@ class Migration(migrations.Migration):
             name='ArticlesPlugin',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay')])),
+                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/compact_left_image.html', b'Compact Image on left')])),
                 ('order_by', models.CharField(default=b'-article_hits', max_length=20, choices=[(b'-article_hits', b'Most Read'), (b'-date', b'Most Recent')])),
                 ('all_url', models.CharField(max_length=250, null=True, verbose_name=b'Show All URL', blank=True)),
                 ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
@@ -88,6 +87,35 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name_plural': 'Categories',
             },
+        ),
+        migrations.CreateModel(
+            name='Issue',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('date', models.DateField(null=True, verbose_name=b'Publication Date', blank=True)),
+                ('print_volume', models.PositiveIntegerField(null=True, blank=True)),
+                ('print_issue', models.PositiveIntegerField(null=True, blank=True)),
+                ('cover', models.ImageField(upload_to=b'covers')),
+                ('issue_url', models.URLField(null=True, blank=True)),
+                ('active', models.BooleanField(default=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='IssuesByPublicationPlugin',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('template', models.CharField(default=b'spe_blog/plugins/issue_channel.html', max_length=255, choices=[(b'spe_blog/plugins/issue_channel.html', b'Issues listing'), (b'spe_blog/plugins/issue_sidebar.html', b'Subscribe & read issue')])),
+                ('cnt', models.PositiveIntegerField(default=5, verbose_name='Number of Issues')),
+                ('starting_with', models.PositiveIntegerField(default=1)),
+                ('active', models.BooleanField(default=True)),
+                ('all_url', models.URLField(null=True, verbose_name=b'Show All URL', blank=True)),
+                ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
+                ('subscribe_url', models.URLField(null=True, verbose_name=b'Subscribe URL', blank=True)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
             name='Publication',
@@ -120,6 +148,26 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.AddField(
+            model_name='issuesbypublicationplugin',
+            name='publication',
+            field=models.ForeignKey(to='spe_blog.Publication'),
+        ),
+        migrations.AddField(
+            model_name='issue',
+            name='publication',
+            field=models.ForeignKey(to='spe_blog.Publication'),
+        ),
+        migrations.AddField(
+            model_name='articleslistingplugin',
+            name='category',
+            field=models.ForeignKey(blank=True, to='spe_blog.Category', null=True),
+        ),
+        migrations.AddField(
+            model_name='articleslistingplugin',
+            name='discipline',
+            field=models.ForeignKey(blank=True, to='mainsite.Tier1Discipline', null=True),
+        ),
+        migrations.AddField(
             model_name='articleslistingplugin',
             name='publication',
             field=models.ForeignKey(blank=True, to='spe_blog.Publication', null=True),
@@ -148,6 +196,11 @@ class Migration(migrations.Migration):
             model_name='article',
             name='tags',
             field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Tagged', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Tags'),
+        ),
+        migrations.AddField(
+            model_name='article',
+            name='topics',
+            field=models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topic'),
         ),
         migrations.AlterUniqueTogether(
             name='article',

@@ -29,10 +29,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Customer',
             fields=[
-                ('customer_id', models.CharField(max_length=12, serialize=False, primary_key=True)),
+                ('id', models.CharField(max_length=12, serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('email', models.EmailField(max_length=254)),
-                ('last_year_paid', models.PositiveIntegerField(null=True, blank=True)),
+                ('paid_through_year', models.PositiveIntegerField(null=True, blank=True)),
                 ('first_member_date', models.DateField(null=True, blank=True)),
                 ('continuous_start_date', models.DateField(null=True, blank=True)),
                 ('expected_grad_year', models.DateField(null=True, blank=True)),
@@ -41,11 +41,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CustomerClassification',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('code', models.CharField(max_length=20)),
+                ('code', models.CharField(max_length=20, serialize=False, primary_key=True)),
                 ('description', models.CharField(max_length=100)),
-                ('value', models.CharField(max_length=150)),
+                ('type', models.CharField(default=b'MEMBERSHIP', max_length=20, choices=[(b'MEMBERSHIP', b'Membership'), (b'ACHIEVEMENT', b'Achievement')])),
+                ('sort_order', models.PositiveSmallIntegerField(default=0)),
             ],
+            options={
+                'ordering': ['sort_order', 'description'],
+            },
         ),
         migrations.CreateModel(
             name='CustomerSubscription',
@@ -53,7 +56,12 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('code', models.CharField(max_length=20)),
                 ('description', models.CharField(max_length=100)),
+                ('value', models.CharField(max_length=150, null=True, blank=True)),
+                ('sort_order', models.PositiveSmallIntegerField(default=0)),
             ],
+            options={
+                'ordering': ['sort_order', 'description'],
+            },
         ),
         migrations.CreateModel(
             name='TextPlugin',
@@ -81,7 +89,6 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tier1Discipline',
             fields=[
-                ('number', models.CharField(unique=True, max_length=12)),
                 ('code', models.CharField(max_length=3, serialize=False, primary_key=True)),
                 ('long_code', models.CharField(max_length=20, null=True, blank=True)),
                 ('name', models.CharField(max_length=150)),
@@ -89,6 +96,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ['name'],
+                'verbose_name': 'Discipline',
             },
         ),
         migrations.CreateModel(
@@ -112,21 +120,13 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ['name'],
+                'verbose_name': 'Topic',
             },
-        ),
-        migrations.CreateModel(
-            name='CustomerAchievements',
-            fields=[
-                ('customerclassification_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='mainsite.CustomerClassification')),
-                ('sort_order', models.PositiveSmallIntegerField(null=True, blank=True)),
-                ('weight', models.PositiveSmallIntegerField(null=True, blank=True)),
-            ],
-            bases=('mainsite.customerclassification',),
         ),
         migrations.AddField(
             model_name='customer',
             name='classifications',
-            field=models.ManyToManyField(related_name='classification_customers', to='mainsite.CustomerClassification', blank=True),
+            field=models.ManyToManyField(related_name='customers', to='mainsite.CustomerClassification', blank=True),
         ),
         migrations.AddField(
             model_name='customer',
@@ -141,11 +141,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customer',
             name='subscriptions',
-            field=models.ManyToManyField(to='mainsite.CustomerSubscription', blank=True),
-        ),
-        migrations.AddField(
-            model_name='customer',
-            name='achievements',
-            field=models.ManyToManyField(related_name='achievement_customers', to='mainsite.CustomerAchievements', blank=True),
+            field=models.ManyToManyField(related_name='customers', to='mainsite.CustomerSubscription', blank=True),
         ),
     ]

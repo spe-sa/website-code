@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name': 'category',
+                'verbose_name_plural': 'categories',
             },
         ),
         migrations.CreateModel(
