@@ -23,7 +23,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/overlay.html', 'Image with caption overlay'),
     ('spe_blog/plugins/picture_with_text_below.html', 'Image with text below'),
     ('spe_blog/plugins/picture_with_text_below_full.html', 'Image with text below full width'),
-    ('spe_blog/plugins/compact_left_image.html', 'Compact Image on left'),
+    ('spe_blog/plugins/person_of_interest.html', 'Persons of Interest'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
