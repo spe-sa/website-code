@@ -333,6 +333,12 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .tile-curntIssue .pub-date { font-size: 20px; margin-bottom: 20px; }
 .tile-curntIssue .btn { background-color: #181c41; color: white; }
 
+.tile-poi { padding: 15px; background-color: #f2efea; }
+.tile-poi .poipic { padding: 0; }
+.tile-poi .poiblurb { color: #2a2a2a; }
+.tile-poi .poiblurb h3 { font-size: 15px; font-weight: 700; margin: 0; }
+.tile-poi .poiblurb p { font-size: 12px; }
+
 /* =================================================================== */
 /* AD ZONES
 ====================================================================== */

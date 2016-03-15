@@ -207,3 +207,22 @@
   }
 
 }
+.tile-poi {
+  padding:15px;
+  background-color:$col-ogflightgrey;
+
+  .poipic {
+    padding:0;
+  }
+  .poiblurb {
+    color:            $col-ogfblack;
+    h3 {
+      font-size:15px;
+      font-weight:$font-bold;
+      margin: 0;
+    }
+    p {
+      font-size:12px;
+    }
+  }
+}
