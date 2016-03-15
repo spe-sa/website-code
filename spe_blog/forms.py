@@ -16,7 +16,7 @@ class ArticleSelectionForm(ModelForm):
         fields = ['template', 'order_by', 'articles', ]
 
 class EditorialSelectionForm(ModelForm):
-    editorial = ModelMultipleChoiceField(Editorial.objects.all().order_by('-date'),
+    editorial = ModelMultipleChoiceField(Editorial.objects.all(),
                                         widget=FilteredSelectMultiple("editorial", False, ))
 
     class Meta:
