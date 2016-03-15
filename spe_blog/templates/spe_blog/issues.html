@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    -- issues --
     {% for issue in issues %}
     <article class="tile whiteback story"
                 style="min-height: 150px">
@@ -26,5 +25,7 @@
     {% if show_all_url and show_all_text %}
         <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>
     {% endif %}
+
+{% include "spe_blog/plugins/issue_sidebar.html" %}
 
 {% endblock content %}
