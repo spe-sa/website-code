@@ -1,10 +1,7 @@
 {% load i18n %}
-
+<div class="row padZero margZero">
 {% for article in articles %}
-{#    {% if instance.hide_featured and not article.is_featured %}#}
-    <div class="row padZero margZero">
-        <article class="col-sm-12 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
-                    style="min-height: 150px">
+        <article class="col-sm-12 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
         <a href="{{ article.get_absolute_url }}" target="_blank">
             <div class="story-wrap">
                 {% if article.picture and article.picture.url %}
@@ -20,8 +17,6 @@
             </div>
         </a>
         </article>
-    </div>
-{#    {% endif %}#}
 {% empty %}
     <p class="well">{% trans "No items available" %}</p>
 {% endfor %}
@@ -29,3 +24,4 @@
 {% if show_all_url and show_all_text %}
     <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>
 {% endif %}
+</div>

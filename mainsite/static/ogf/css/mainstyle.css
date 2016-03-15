@@ -279,7 +279,7 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 /* VARIABLES
 ====================================================================== */
 /* Images */
-.tile, .tile-blue, .tile-white, .tile-alert { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
+.tile, .tile-blue, .tile-white, .tile-alert { margin-bottom: 20px; padding: 15px; min-width: 150px; }
 
 .tile-alert { background-color: #bf1d21; color: white; }
 .tile-alert p { margin: 0; }
@@ -326,7 +326,7 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .tile-editorial .authorBio { font-size: 10px; }
 .tile-editorial a { color: white; }
 
-.tile-curntIssue { min-height: 150px; box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; }
+.tile-curntIssue { min-height: 150px; margin-bottom: 20px; padding: 15px; }
 .tile-curntIssue a { color: #2a2a2a; }
 .tile-curntIssue .issueThumb { min-height: 150px; padding: 0; }
 .tile-curntIssue .pub-date, .tile-curntIssue .volume, .tile-curntIssue .number { font-weight: 700; }
