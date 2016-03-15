@@ -25,12 +25,6 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 ====================================================================== */
 /* Images */
 /* ********************************** */
-/* AD Zone 1 */
-#adLeaderboard { height: 140px; padding: 27px 0 0 0; }
-
-#adLeaderboardImg { margin: auto; }
-
-/* ********************************** */
 /* TOP BAR BLACK */
 #topbar { background-color: #d92226; min-height: 50px; color: white; font-weight: 700; }
 #topbar .topbarmenuleft { list-style-type: none; padding: 14px 0 0 0; overflow: hidden; font-size: 14px; }
@@ -135,19 +129,12 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .spacerBar { padding: 0 15px; }
 
 /* ********************************** */
-/* AD Zone2 */
-#adFold { padding: 15px 0; margin-top: 15px; border-top: 1px dotted #2a2a2a; }
-#adFold div { padding-right: 0; padding-left: 0; }
-
-/* ********************************** */
 /* ROW WITH SIDE BAR */
 .sideBarRow { border-top: 7px solid #e4e1d8; margin-left: 0; margin-right: 0; }
 
 .currentIssue, .newsletterBox { min-width: 300px; }
 
-.regionBox, .adZone6 { background-color: #f4f4f4; padding: 0; margin-bottom: 20px; }
-
-.adZone6 { padding: 15px; }
+.regionBox { background-color: #f4f4f4; padding: 0; margin-bottom: 20px; }
 
 .cIssueThmb { padding: 0 10px 0 0; margin: 0 0 0 0; }
 
@@ -334,6 +321,24 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .tile-editorial .authorImg { padding: 0 5px 0 0; margin: 0; }
 .tile-editorial .authorBio { font-size: 10px; }
 .tile-editorial a { color: #fffb22; }
+
+/* =================================================================== */
+/* AD ZONES
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+.adZone1 #adLeaderboard { height: 140px; padding: 27px 0 0 0; }
+.adZone1 #adLeaderboardImg { margin: auto; }
+
+/* AD Zone2 */
+#adFold, .adZone2 { padding: 15px 0; margin-top: 15px; border-top: 1px dotted #2a2a2a; }
+#adFold div, .adZone2 div { padding-right: 0; padding-left: 0; }
+
+.adZone6 { background-color: #f4f4f4; padding: 0; margin-bottom: 20px; }
+
+.adZone6 { padding: 15px; }
 
 /* ************************************ */
 /* MISC  */
