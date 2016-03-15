@@ -15,6 +15,8 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 .row { margin: 0; }
 
+.container-fluid { padding: 0; }
+
 /* ************************ */
 /* HEAD FOOT & CONTENT      */
 /* =================================================================== */
@@ -58,7 +60,7 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 /* VARIABLES
 ====================================================================== */
 /* Images */
-.footerUpper { background-color: #181c41; font-family: "proxima-nova", sans-serif; padding: 30px; }
+.footerUpper { background-color: #181c41; font-family: "proxima-nova", sans-serif; padding: 30px; margin: 30px 0 0 0; }
 
 .footerLower { background-color: #2a2a2a; color: white; font-family: "proxima-nova", sans-serif; min-height: 100px; padding: 10px; }
 .footerLower img { height: 80px; width: auto; float: left; }
@@ -93,6 +95,8 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 /* VARIABLES
 ====================================================================== */
 /* Images */
+.content-area { padding: 0 15px; }
+
 .page-content { margin-top: 25px; }
 
 /* ********************************** */
@@ -320,7 +324,14 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 .tile-editorial .dottedspacer { margin-bottom: 10px; border-bottom: 2px dotted white; height: 10px; }
 .tile-editorial .authorImg { padding: 0 5px 0 0; margin: 0; }
 .tile-editorial .authorBio { font-size: 10px; }
-.tile-editorial a { color: #fffb22; }
+.tile-editorial a { color: white; }
+
+.tile-curntIssue { min-height: 150px; box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; }
+.tile-curntIssue a { color: #2a2a2a; }
+.tile-curntIssue .issueThumb { min-height: 150px; padding: 0; }
+.tile-curntIssue .pub-date, .tile-curntIssue .volume, .tile-curntIssue .number { font-weight: 700; }
+.tile-curntIssue .pub-date { font-size: 20px; margin-bottom: 20px; }
+.tile-curntIssue .btn { background-color: #181c41; color: white; }
 
 /* =================================================================== */
 /* AD ZONES

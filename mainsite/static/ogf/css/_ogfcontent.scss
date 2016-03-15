@@ -3,6 +3,10 @@
 ====================================================================== */
 @import 'vars';
 
+.content-area {
+  padding:          0 15px;
+}
+
 .page-content {
   margin-top:25px;
 }
@@ -503,6 +507,9 @@
 
 .featurecol, .editorialcol, .areaContent, .areaRightSide {
   padding:0;
+}
+.featurecol {
+  //overflow: hidden;
 }
 .areaContent {
   padding-right:15px;
