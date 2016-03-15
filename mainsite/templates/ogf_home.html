@@ -6,16 +6,26 @@
 {% block content %}
     <div class="row content-area">
 
-        <div class="col-sm-8 col-lg-7 col-lg-offset-1 homepage-features">
+        <div class="col-xs-12 col-sm-8 col-lg-7 col-lg-offset-1 featurecol">
+            {% placeholder "feature" %}
+        </div>
+        <div class="col-xs-12 col-sm-3 editorialcol">
+            {% placeholder "editorial" %}
+        </div>
 
+        <div class="col-xs-12 adZone2">
+            <!-- AdSpeed.com Tag 8.0.2 for [Zone] OGF 2 1160x60 [Any Dimension] -->
+            <script type="text/javascript" src="http://g.adspeed.net/ad.php?do=js&zid=79086&oid=7699&wd=-1&ht=-1&target=_blank"></script>
+            <!-- AdSpeed.com End -->
+        </div>
+
+        <div class="col-sm-8 col-lg-7 col-lg-offset-1 areaContent">
             {% placeholder "notice" %}
             {% placeholder "content" %}
-
         </div>
-        <div class="col-sm-3 spe-content">
+        <div class="col-sm-3 areaRightSide">
             {% placeholder "aside" %}
             {% placeholder "additional-content" %}
-
         </div>
     </div>
 

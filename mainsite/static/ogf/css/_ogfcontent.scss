@@ -101,18 +101,7 @@
   padding:0 15px;
 }
 
-/* ********************************** */
-/* AD Zone2 */
-#adFold {
-  padding:15px 0;
-  margin-top: 15px;
-  border-top: $dotted;
 
-  div {
-    padding-right:0;
-    padding-left:0;
-  }
-}
 
 /* ********************************** */
 /* ROW WITH SIDE BAR */
@@ -124,13 +113,10 @@
 .currentIssue, .newsletterBox {
   min-width:300px;
 }
-.regionBox, .adZone6 {
+.regionBox {
   background-color: $col-ogflightgrey2;
   padding:0;
   margin-bottom:20px;
-}
-.adZone6 {
-  padding: 15px;
 }
 .cIssueThmb {
   padding:0 10px 0 0;
@@ -513,4 +499,11 @@
       text-decoration:none;
     }
   }
+}
+
+.featurecol, .editorialcol, .areaContent, .areaRightSide {
+  padding:0;
+}
+.areaContent {
+  padding-right:15px;
 }

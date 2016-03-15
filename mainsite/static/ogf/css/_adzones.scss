@@ -1,0 +1,36 @@
+/* =================================================================== */
+/* AD ZONES
+====================================================================== */
+@import 'vars';
+
+
+.adZone1 {
+  #adLeaderboard {
+    height:               140px;
+    padding:              27px 0 0 0;
+  }
+  #adLeaderboardImg {
+    margin:               auto;
+  }
+}
+
+/* AD Zone2 */
+#adFold, .adZone2 {
+  padding:15px 0;
+  margin-top: 15px;
+  border-top: $dotted;
+
+  div {
+    padding-right:0;
+    padding-left:0;
+  }
+}
+
+.adZone6 {
+  background-color: $col-ogflightgrey2;
+  padding:0;
+  margin-bottom:20px;
+}
+.adZone6 {
+  padding: 15px;
+}

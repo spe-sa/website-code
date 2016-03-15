@@ -1,25 +1,19 @@
 {% load i18n %}
 
-<h2>{{ title }}</h2>
-{% for article in articles %}
-    <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
-                style="min-height: 150px">
-    <a href="{{ article.get_absolute_url }}" target="_blank">
-        <div class="story-wrap row">
-            {% if article.picture and article.picture.url %}
-                <figure class="thumb col-sm-5"><!-- style="max-width:200px;" -->
-                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div><!--  style="max-height:150px;max-width: 200px" -->
-                </figure>
-            {% endif %}
-            <div class="story-text col-sm-7">
-                <span class="pub-date">{{ article.date }}</span>
-                <h3>{{ article.title }}</h3>
-                <p>{{ article.teaser }}</p>
-            </div>
+{% for editorial in editorials %}
+    {% if forloop.first %}
+        <a href={{ link }}>
+        <div class="tile-editorial row">
+            <div class="col-xs-12 title1">{{ editorial.title_main }}</div>
+            <div class="col-xs-12 dottedspacer">&nbsp;</div>
+            <div class="col-xs-12 title2">{{ editorial.title_sub }}</div>
+            <div class="col-xs-12 excerpt">{{ editorial.exerpt | safe }}</div>
+            <div class="col-xs-12 dottedspacer">&nbsp;</div>
+            <div class="col-xs-4 authorImg"><img class="img-responsive" src={{editorial.picture.url}}></div>
+            <div class="col-xs-8 authorBio">{{ editorial.author_bio | safe }}</div>
         </div>
-    </a>
-    </article>
-{#    {% endif %}#}
+        </a>
+    {% endif %}
 {% empty %}
-    <p class="well">{% trans "No items available" %}</p>
+    <p class="well">{% trans "No editorial available" %}</p>
 {% endfor %}

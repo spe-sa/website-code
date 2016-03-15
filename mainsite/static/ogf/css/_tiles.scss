@@ -101,11 +101,11 @@
   }
 }
 .featured-story {
-  padding:              15px;
-  min-height:           300px;
+  padding:              0;
+  min-height:           360px;
 
   .story-wrap {
-    min-height:         300px;
+    min-height:         360px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -125,17 +125,56 @@
   }
 }
 .tile-textbelow {
-  padding-bottom:20px;
+  padding-bottom:       20px;
 }
 .tiletitlehr {
-  height:5px;
-  border:none;
-  color:$col-hrblue;
-  background-color:$col-hrblue;
+  margin-top:           0;
+  height:               5px;
+  border:               none;
+  color:                $col-hrblue;
+  background-color:     $col-hrblue;
 }
 .tiletitles {
-  color:$col-copygrey;
-  font-size:25px;
-  border-bottom: 2px dotted $col-basegrey;
-  padding-bottom:10px;
+  color:                $col-copygrey;
+  font-size:            25px;
+  border-bottom:        2px dotted $col-basegrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
+.tile-editorial {
+  background-color:     $col-ogfblack;
+  color:                $col-white;
+  padding:              15px;
+  min-height:           360px;
+
+  .title1, .title2, .excerpt, .authorBio {
+    padding:0;
+  }
+  .title1 {
+    font-size:          13px;
+    font-weight:        $font-bold;
+    white-space:        nowrap;
+  }
+  .title2 {
+    font-size:          20px;
+    font-weight:        $font-bold;
+  }
+  .excerpt {
+    font-size:          12px;
+  }
+  .dottedspacer {
+    margin-bottom:      10px;
+    border-bottom:      2px dotted $col-white;
+    height:             10px;
+  }
+  .authorImg {
+    padding:            0 5px 0 0;
+    margin:             0;
+  }
+  .authorBio {
+    font-size:          10px;
+  }
+  a {
+    color:              $col-ogfyellow;
+  }
 }
