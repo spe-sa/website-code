@@ -17,11 +17,10 @@
         </div>
     </a>
     </article>
+    {% if show_subscribe_url %}
+        <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-success btn-block">Subscribe</button></a>
+    {% endif %}
   {% endif %}
 {% empty %}
     <p class="well">{% trans "No issues available" %}</p>
 {% endfor %}
-
-{% if show_subscribe_url %}
-    <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-success btn-block">Subscribe</button></a>
-{% endif %}
