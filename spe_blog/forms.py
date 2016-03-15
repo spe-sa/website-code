@@ -21,4 +21,4 @@ class EditorialSelectionForm(ModelForm):
 
     class Meta:
         model = EditorialPlugin
-        fields = ['template', 'editorial', 'link' ]
+        fields = ['template', 'editorial', 'lnk' ]

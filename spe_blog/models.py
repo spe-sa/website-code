@@ -192,7 +192,7 @@ class ArticlesPlugin(CMSPlugin):
 class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
     editorial = models.ManyToManyField(Editorial)
-    link = models.URLField("Link URL", blank=True, null=True)
+    lnk = models.URLField("Link URL", blank=True, null=True)
 
     def __unicode__(self):
         return "Editorial Plugin"

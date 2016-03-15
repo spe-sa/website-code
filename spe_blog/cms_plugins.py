@@ -64,7 +64,7 @@ class ShowEditorialPlugin(ArticlePluginBase):
     def render(self, context, instance, placeholder):
         queryset = Editorial.objects.filter(id__in=instance.editorial.all())
         context.update({'editorials': queryset})
-        context.update({'link': instance.link})
+        context.update({'link': instance.lnk})
         self.render_template = instance.template
         return context
 
