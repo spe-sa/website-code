@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.db import models
-# from ckeditor.fields import RichTextField
+from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from cms.models import CMSPlugin
 # using taggit for all our tagging
@@ -145,6 +145,30 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'article_id': self.id})
 
+class Editorial(models.Model):
+    title_main = models.CharField(max_length=100, verbose_name="Main Title")
+    title_sub = models.CharField(max_length=100, verbose_name="Sub-Title")
+    exerpt = RichTextField(
+        max_length=300,
+        help_text=u'Exerpt'
+    )
+    picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
+    picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
+    picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
+    picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
+    author_bio = RichTextField(
+        max_length=500,
+        help_text=u'Author Bio'
+    )
+    
+    class Meta:
+        verbose_name_plural = "Editorials"
+
+    def __unicode__(self):
+        buf = self.title_main + " - " + self.title_sub
+        return buf
+
+
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)
@@ -166,15 +190,15 @@ class ArticlesPlugin(CMSPlugin):
         self.articles = old_instance.articles.all()
 
 class EditorialPlugin(CMSPlugin):
-    # sys.stderr.write("editoral templates choices: " + str(EDITORIAL_TEMPLATES) + "\n")
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
-    title = models.CharField(max_length = 100)
-    articles = models.ManyToManyField(Article)
+    editorial = models.ManyToManyField(Editorial)
+    link = models.URLField("Link URL", blank=True, null=True)
 
     def __unicode__(self):
-        return self.title
+        return "Editorial Plugin"
 
     def copy_relations(self, old_instance):
+        self.editorial = old_instance.editorial.all()
         self.articles = old_instance.articles.all()
 
 # class ArticlePlugin(CMSPlugin):

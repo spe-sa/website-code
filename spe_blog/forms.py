@@ -4,7 +4,7 @@ from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
 # from cms.models import Page
 # from django.contrib.contenttypes.models import ContentType
-from .models import Article, ArticlesPlugin, EditorialPlugin
+from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin
 
 
 class ArticleSelectionForm(ModelForm):
@@ -16,9 +16,9 @@ class ArticleSelectionForm(ModelForm):
         fields = ['template', 'order_by', 'articles', ]
 
 class EditorialSelectionForm(ModelForm):
-    articles = ModelMultipleChoiceField(Article.objects.all().order_by('-date'),
-                                        widget=FilteredSelectMultiple("articles", False, ))
+    editorial = ModelMultipleChoiceField(Editorial.objects.all().order_by('-date'),
+                                        widget=FilteredSelectMultiple("editorial", False, ))
 
     class Meta:
         model = EditorialPlugin
-        fields = ['template', 'title', 'articles', ]
+        fields = ['template', 'editorial', 'link' ]
