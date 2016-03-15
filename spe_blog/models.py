@@ -199,7 +199,7 @@ class EditorialPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.editorial = old_instance.editorial.all()
-        self.articles = old_instance.articles.all()
+ #       self.articles = old_instance.articles.all()
 
 # class ArticlePlugin(CMSPlugin):
 #     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
