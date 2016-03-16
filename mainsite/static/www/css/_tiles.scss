@@ -3,11 +3,19 @@
 ====================================================================== */
 @import 'vars';
 
-.tile, .tile-blue, .tile-white {
+.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-alert {
   box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
   min-width:            150px;
+}
+.tile-alert {
+  background-color:     $col-redtext;
+  color:                $col-white;
+
+  p {
+    margin:             0;
+  }
 }
 .tile-blue {
   background-color:     $col-speblue;
@@ -24,6 +32,9 @@
   background-color:     $col-textblue;
   color:                $col-speblue;
 
+  h3 {
+    margin-top:         0;
+  }
   a {
     color:              $col-speblue;
     &:hover {
@@ -116,8 +127,46 @@
     }
   }
 }
+.tile-curntIssue {
+  min-height:           150px;
+  margin-bottom:        20px;
+  padding:              0;
 
+  a {
+    color:              $col-speblack;
+  }
 
+  .issueThumb {
+    min-height:         150px;
+    padding:            0;
+  }
+  .pub-date, .volume, .number {
+    font-weight:        $font-bold;
+  }
+  .pub-date {
+    font-size:          20px;
+    margin-bottom:      20px;
+  }
+  .btn {
+    background-color:   $col-speblue;
+    color:              $col-white;
+  }
+
+}
+.tiletitlehr {
+  margin-top:           0;
+  height:               1px;
+  border:               none;
+  color:                $col-speblue;
+  background-color:     $col-speblue;
+}
+.tiletitles {
+  color:                $col-copygrey;
+  font-size:            25px;
+  border-bottom:        1px dotted $col-medgrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
 
 
 

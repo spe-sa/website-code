@@ -184,7 +184,9 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     # Customize this
-    ('spe_3col.html', 'SPE 3 Column page. Homepage'),
+    ('www_3col.html', 'WWW 3 Column page. Homepage'),
+    # ('spe_3col.html', 'SPE 3 Column page. Homepage'),
+    ('ogf_home.html', 'OGF Homepage'),
     # ('page.html', '1 Column Page'),
     # ('feature.html', '1 Column Page with Feature'),
     # ('2column.html', '2 Column Page'),

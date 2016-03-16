@@ -314,7 +314,7 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 .tiletitlehr { margin-top: 0; height: 5px; border: none; color: #0f1c97; background-color: #0f1c97; }
 
-.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 2px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
 
 .tile-editorial { background-color: #2a2a2a; color: white; padding: 15px; min-height: 360px; }
 .tile-editorial .title1, .tile-editorial .title2, .tile-editorial .excerpt, .tile-editorial .authorBio { padding: 0; }

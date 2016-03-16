@@ -8,17 +8,18 @@
  */
 @import 'vars';
 
-.row {
-    margin-right: 0;
-    margin-left:  0;
-}
-
 body {
     font-family:      'Open Sans', sans-serif;
     background-color: $col-pagegrey;
 }
-.redText {
-    color:            $col-red;
+* {
+  -webkit-border-radius:  0 !important;
+  -moz-border-radius:     0 !important;
+  border-radius:          0 !important;
+}
+.row {
+    margin-right: 0;
+    margin-left:  0;
 }
 
 /* ************************ */
@@ -32,6 +33,9 @@ body {
 /* *************************************** */
 /* *************************************** */
 
+.redText {
+    color:            $col-red;
+}
 .navbar-collapse {
     padding-left: 0;
 }

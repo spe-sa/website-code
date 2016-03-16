@@ -17,7 +17,9 @@ def detail(request, article_id):
     q.article_last_viewed = timezone.now()
     q.save()
     i = Issue.objects.filter(publication=q.publication).order_by('-date')[:1]
-    return render(request, 'spe_blog/detail.html', {'article': q, 'issues': i})
+    t = q.publication.code + "_base.html"
+    t = t.lower()
+    return render(request, 'spe_blog/detail.html', {'article': q, 'issues': i, 'base_template': t})
 
 
 def issue(request, publication_code):
