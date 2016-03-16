@@ -372,6 +372,8 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 .white { color: white !important; }
 
+.greyback { background-color: #f2efea; }
+
 .h2MarginB { margin-bottom: 20px; }
 
 .separatorDotted { border-top: 1px dotted #2a2a2a; margin-top: 20px; padding-top: 20px; }

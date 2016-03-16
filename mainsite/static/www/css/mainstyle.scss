@@ -9,8 +9,8 @@
 @import 'vars';
 
 body {
-    font-family:      'Open Sans', sans-serif;
-    background-color: $col-pagegrey;
+    font-family:          'Open Sans', sans-serif;
+    background-color:     $col-pagegrey;
 }
 * {
   -webkit-border-radius:  0 !important;
@@ -18,8 +18,8 @@ body {
   border-radius:          0 !important;
 }
 .row {
-    margin-right: 0;
-    margin-left:  0;
+    margin-right:         0;
+    margin-left:          0;
 }
 
 /* ************************ */
@@ -36,15 +36,18 @@ body {
 .redText {
     color:            $col-red;
 }
+.greyback {
+  background-color:   $col-lightgrey;
+}
 .navbar-collapse {
-    padding-left: 0;
+    padding-left:     0;
 }
 .pinkBorder {
-    border:       1px solid pink;
+    border:           1px solid pink;
 }
 .padZero {
-  padding:        0;
+  padding:            0;
 }
 .margZero {
-  margin:         0;
+  margin:             0;
 }

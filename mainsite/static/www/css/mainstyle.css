@@ -283,6 +283,8 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 /* *************************************** */
 .redText { color: red; }
 
+.greyback { background-color: #e0e4eb; }
+
 .navbar-collapse { padding-left: 0; }
 
 .pinkBorder { border: 1px solid pink; }

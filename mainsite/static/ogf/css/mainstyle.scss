@@ -23,7 +23,7 @@ h1, h2, h3, h4 {
   margin:                 0;
 }
 .container-fluid {
-  padding:0;
+  padding:                0;
 }
 
 /* ************************ */
@@ -38,25 +38,28 @@ h1, h2, h3, h4 {
 /* MISC  */
 
 .red {
-  color:          $col-ogfred !important;
+  color:              $col-ogfred !important;
 }
 .yellow {
-  color:          $col-ogfyellow !important;
+  color:              $col-ogfyellow !important;
 }
 .white {
-  color:          $col-white !important;
+  color:              $col-white !important;
+}
+.greyback {
+  background-color:   $col-ogflightgrey;
 }
 .h2MarginB {
-  margin-bottom:  20px;
+  margin-bottom:      20px;
 }
 .separatorDotted {
-  border-top:     $dotted;
-  margin-top:     20px;
-  padding-top:    20px;
+  border-top:         $dotted;
+  margin-top:         20px;
+  padding-top:        20px;
 }
 .padZero {
-  padding:        0;
+  padding:            0;
 }
 .margZero {
-  margin:         0;
+  margin:             0;
 }

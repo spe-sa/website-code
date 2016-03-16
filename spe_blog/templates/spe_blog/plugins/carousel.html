@@ -1,12 +1,12 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   {% for article in articles %}
       {% if article.picture and article.picture.url %}
           {% if forloop.first %}
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
           {% else %}
-              <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}"></li>
+              <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
           {% endif %}
       {% endif %}
   {% endfor %}
