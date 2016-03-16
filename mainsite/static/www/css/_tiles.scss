@@ -3,11 +3,19 @@
 ====================================================================== */
 @import 'vars';
 
-.tile, .tile-blue, .tile-white {
+.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-alert {
   box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
   min-width:            150px;
+}
+.tile-alert {
+  background-color:     $col-redtext;
+  color:                $col-white;
+
+  p {
+    margin:             0;
+  }
 }
 .tile-blue {
   background-color:     $col-speblue;
@@ -24,6 +32,9 @@
   background-color:     $col-textblue;
   color:                $col-speblue;
 
+  h3 {
+    margin-top:         0;
+  }
   a {
     color:              $col-speblue;
     &:hover {
@@ -34,7 +45,6 @@
 .whiteback, .tile-white {
     background-color:   $col-white;
   }
-
 .link-box, .tile-links {
   border-top: 4px solid $col-speblue2;
   background-color:     $col-white;
@@ -116,9 +126,95 @@
     }
   }
 }
+.tile-curntIssue {
+  min-height:           150px;
+  margin-bottom:        20px;
+  padding:              5px;
+  box-shadow:           0 1px 2px $col-boxshadow;
+  background-color:     $col-white;
 
+  a {
+    color:              $col-speblack;
+  }
 
+  .issueThumb {
+    min-height:         100px;
+    padding:            10px 5px 0 0;
+  }
+  .pub-date, .volume, .number {
+    font-weight:        $font-bold;
+  }
+  .pub-date {
+    padding-top:        10px;
+    font-size:          15px;
+    margin-bottom:      15px;
+    white-space:        nowrap;
+  }
+  .volume, .number {
+    font-size:          10px;
+  }
+  .btn {
+    background-color:   $col-speblue;
+    color:              $col-white;
+  }
 
+}
+.tiletitlehr {
+  margin-top:           0;
+  height:               1px;
+  border:               none;
+  color:                $col-speblue;
+  background-color:     $col-speblue;
+}
+.tiletitles {
+  color:                $col-copygrey;
+  font-size:            25px;
+  border-bottom:        1px dotted $col-medgrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
+.tile-poi {
+  padding:              15px;
+  background-color:     $col-lightgrey;
+
+  .poipic {
+    padding:            0;
+  }
+  .poiblurb {
+    color:              $col-speblack;
+    h3 {
+      font-size:        15px;
+      font-weight:      $font-bold;
+      margin:           0;
+    }
+    p {
+      font-size:        12px;
+    }
+  }
+}
+#myCarousel {
+  .carousel-indicators {
+    bottom: 0;
+  }
+
+  .carousel-inner {
+    height:             360px;
+
+    .item {
+      img {
+        width:          100%;
+        height:         auto;
+      }
+      .carousel-caption {
+        background:     $img-back-black-50 repeat top left fixed;
+        width:          100%;
+        top: 200px;
+        left: 0;
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
 
 
 //// background: #000 url(image.gif) no-repeat top left fixed;

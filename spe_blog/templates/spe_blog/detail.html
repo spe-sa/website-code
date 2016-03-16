@@ -1,3 +1,8 @@
+{% extends base_template %}
+
+{% block content %}
+<p>{{ base_template }}</p>
+<p>Detail</p>
 <h1>{{ article.title }}</h1>
 <img src={{article.picture.url}} class="img-rounded" alt={{article.alternate}} width="600" height="400">
 <h2>by: {{ article.author }}</h2>
@@ -7,3 +12,4 @@
 {% if article.publication.code != "WWW" %}
     {% include "spe_blog/plugins/issue_sidebar.html" %}
 {% endif %}
+{% endblock content %}

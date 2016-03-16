@@ -14,6 +14,7 @@ class ArticleSelectionForm(ModelForm):
     class Meta:
         model = ArticlesPlugin
         fields = ['template', 'order_by', 'articles', ]
+#        fields = ['template', 'keep_original_order', 'order_by', 'articles', ]
 
 class EditorialSelectionForm(ModelForm):
     editorial = ModelMultipleChoiceField(Editorial.objects.all(),

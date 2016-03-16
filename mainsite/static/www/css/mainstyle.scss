@@ -8,17 +8,23 @@
  */
 @import 'vars';
 
-.row {
-    margin-right: 0;
-    margin-left:  0;
-}
-
 body {
-    font-family:      'Open Sans', sans-serif;
-    background-color: $col-pagegrey;
+    font-family:          'Open Sans', sans-serif;
+    background-color:     $col-pagegrey;
 }
-.redText {
-    color:            $col-red;
+* {
+  -webkit-border-radius:  0 !important;
+  -moz-border-radius:     0 !important;
+  border-radius:          0 !important;
+}
+.row {
+    margin-right:         0;
+    margin-left:          0;
+}
+a {
+  &:hover {
+    text-decoration:      none;
+  }
 }
 
 /* ************************ */
@@ -32,9 +38,29 @@ body {
 /* *************************************** */
 /* *************************************** */
 
+.redText {
+    color:            $col-red;
+}
+.greyback {
+  background-color:   $col-lightgrey;
+}
 .navbar-collapse {
-    padding-left: 0;
+    padding-left:     0;
 }
 .pinkBorder {
-    border:       1px solid pink;
+    border:           1px solid pink;
+}
+.padZero {
+  padding:            0;
+}
+.margZero {
+  margin:             0;
+}
+.sponsored {
+  padding:            3px 3px 3px 5px;
+  background-color:   $col-speyellow;
+  color:              $col-speblack;
+  font-weight:        $font-bold;
+  font-size:          12px;
+  letter-spacing:     2px;
 }

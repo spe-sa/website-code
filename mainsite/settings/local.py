@@ -9,7 +9,6 @@ ENVIRONMENT = "DEV"
 # Overriding the templates in development to include a test page
 CMS_TEMPLATES += (
     ('test.html', 'Test Page'),
-    ('ogf_home.html', 'OGF Homepage'),
 )
 
 # make all loggers use the console.

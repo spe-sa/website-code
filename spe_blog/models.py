@@ -22,7 +22,9 @@ PLUGIN_TEMPLATES = (
     (DEFAULT_PLUGIN_TEMPLATE, 'Image on left'),
     ('spe_blog/plugins/overlay.html', 'Image with caption overlay'),
     ('spe_blog/plugins/picture_with_text_below.html', 'Image with text below'),
-    ('spe_blog/plugins/compact_left_image.html', 'Compact Image on left'),
+    ('spe_blog/plugins/picture_with_text_below_full.html', 'Image with text below full width'),
+    ('spe_blog/plugins/person_of_interest.html', 'Persons of Interest'),
+    ('spe_blog/plugins/carousel.html', 'Carousel'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
@@ -172,10 +174,12 @@ class Editorial(models.Model):
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)
+#   keep_original_order = models.BooleanField(default=False)
     order_by = models.CharField(
         max_length=20,
         choices=ORDER_BY,
-        default="-article_hits"
+        default="-article_hits",
+        verbose_name = "Otherwise order by"
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
@@ -183,6 +187,11 @@ class ArticlesPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
+#        if self.keep_original_order:
+#            buf = "Unordered"
+#        else:
+#            buf = self.get_order_by_display()
+#        buf = buf + u" (%s)" % ', '.join([a.slug for a in self.articles.all()])
         buf = self.get_order_by_display() + u" (%s)" % ', '.join([a.slug for a in self.articles.all()])
         return buf
 
@@ -199,7 +208,9 @@ class EditorialPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.editorial = old_instance.editorial.all()
+
 #        self.articles = old_instance.articles.all()
+
 
 # class ArticlePlugin(CMSPlugin):
 #     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)

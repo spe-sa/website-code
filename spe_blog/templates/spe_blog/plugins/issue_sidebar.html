@@ -2,24 +2,22 @@
 
 {% for issue in issues %}
   {% if forloop.first %}
-    <article class="tile whiteback story"
-                style="min-height: 150px">
+    <article class="tile-curntIssue row">
     <a href="{{ issue.issue_url }}" target="_blank">
-        <div class="story-wrap">
-                <figure class="thumb" style="max-width:200px;">
-                    <div class="img-wrap"><img src="{{ issue.cover.url }}" style="max-height:150px;max-width: 200px"/></div>
-                </figure>
-            <div class="story-text">
-                <span class="pub-date">{{ issue.date }}</span>
-                <span>Volume: {{ issue.print_volume }}</span>
-                <span>Issue: {{ issue.print_issue }}</span>
-            </div>
+        <div class="col-xs-5 issueThumb">
+            <img src="{{ issue.cover.url }}" class="img-responsive"/>
+        </div>
+        <div class="col-xs-7 padZero">
+            <div class="pub-date">{{ issue.date }}</div>
+            <div class="volume">Volume: {{ issue.print_volume }}</div>
+            <div class="number">Issue: {{ issue.print_issue }}</div>
         </div>
     </a>
-    </article>
     {% if show_subscribe_url %}
-        <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-success btn-block">Subscribe</button></a>
+        <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-block">Subscribe</button></a>
     {% endif %}
+    </article>
+
   {% endif %}
 {% empty %}
     <p class="well">{% trans "No issues available" %}</p>
