@@ -1,5 +1,9 @@
 {% load i18n %}
 
+{% if articles.count > 1 %}
+    <div class="row" style="margin-bottom:25px;">
+{% endif %}
+
 {% for article in articles %}
 {#    {% if instance.hide_featured and not article.is_featured %}#}
     <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
@@ -23,4 +27,8 @@
 
 {% if show_all_url and show_all_text %}
     <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>
+{% endif %}
+
+{% if articles.count > 1 %}
+    </div>
 {% endif %}
