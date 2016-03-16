@@ -13,7 +13,7 @@
             {% placeholder "editorial" %}
         </div>
 
-        <div class="col-xs-12 adZone2 text-center">
+        <div class="col-xs-12 adZone2 text-center" id="adZone2">
             <!-- AdSpeed.com Tag 8.0.2 for [Zone] OGF 2 1160x60 [Any Dimension] -->
             <script type="text/javascript" src="http://g.adspeed.net/ad.php?do=js&zid=79086&oid=7699&wd=-1&ht=-1&target=_blank"></script>
             <!-- AdSpeed.com End -->
@@ -29,6 +29,24 @@
             {% placeholder "additional-content" %}
         </div>
     </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+{#                $("#testmessage").text("BEEN REPLACED");#}
+
+                if ($("#adZone2").find("img").length > 0) {
+                    //do something
+{#                    $("#adZone1").text("HAS IMAGE");#}
+                } else {
+                    // do something else
+                    $("#adZone2").hide(0);
+                }
+
+            });
+        </script>
+    {%  endaddtoblock %}
 
     {% include 'z_boostrap_size_indicator.html' %}
 
