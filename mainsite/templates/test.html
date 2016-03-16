@@ -1,9 +1,10 @@
 {% extends "spe_base.html" %}
-{% load cms_tags %}
+{% load cms_tags sekizai_tags %}
 
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
 {% block cms_content %}
+    <a href="{% url 'publication_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
     <h3>Testing the context</h3>
     <hr>
     <h4>variables</h4>

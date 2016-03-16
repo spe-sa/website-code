@@ -104,6 +104,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
+    'mainsite.middleware.visitor.VisitorMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -141,6 +142,7 @@ INSTALLED_APPS = (
     'spe_links',
     'spe_blog',
     'google_tag_manager',
+    'spe_contact',
 )
 
 LANGUAGES = (
@@ -244,7 +246,9 @@ LOGGING = {
 }
 
 EMAIL_HOST = "relaydev.spe.org"
+EMAIL_DEFAULT_FROM = "support@spe.org"
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+MANAGERS = (('IT', 'webmaster@spe.org'), )
 
 CKEDITOR_CONFIGS = {
     "default": {
