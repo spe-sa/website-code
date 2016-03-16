@@ -5,13 +5,13 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
 # A context processor to add the default information to the current Context
 # - variables: from settings files
 # - login: from cookies to show login/logout info and welcome msg
 # - cookies: added to context for quick referencing
 # - customer: added to context and cached for quick referencing
 def set_default_values(request):
+
     variables = get_context_variables(request)
 
     customer = get_visitor(request)
@@ -92,7 +92,8 @@ def get_context_variables(request):
                      "STATIC_URL": get_context_variable(request, "STATIC_URL"),
                      "MEDIA_URL": get_context_variable(request, "MEDIA_URL"),
                      "STATIC_ROOT": get_context_variable(request, "STATIC_ROOT"),
-                     "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT")}
+                     "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
+                     "vid": get_context_variable(request, "vid"),}
         # TODO: add more expected variables here as needed from the settings files
         request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters
