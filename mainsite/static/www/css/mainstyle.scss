@@ -21,6 +21,11 @@ body {
     margin-right:         0;
     margin-left:          0;
 }
+a {
+  &:hover {
+    text-decoration:      none;
+  }
+}
 
 /* ************************ */
 // GLOBAL
@@ -50,4 +55,12 @@ body {
 }
 .margZero {
   margin:             0;
+}
+.sponsored {
+  padding:            3px 3px 3px 5px;
+  background-color:   $col-speyellow;
+  color:              $col-speblack;
+  font-weight:        $font-bold;
+  font-size:          12px;
+  letter-spacing:     2px;
 }

@@ -12,6 +12,9 @@
                 <div class="story-text">
                     <span class="pub-date">{{ article.date }}</span>
                     <h3>{{ article.title }}</h3>
+                    {% if article.sponsored %}
+                    <p><span class="sponsored">SPONSORED</span></p>
+                    {% endif %}
                     <p>{{ article.teaser }}</p>
                 </div>
             </div>

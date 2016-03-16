@@ -11,6 +11,8 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 
 .row { margin-right: 0; margin-left: 0; }
 
+a:hover { text-decoration: none; }
+
 /* ************************ */
 /* *************************************** */
 /* *************************************** */
@@ -292,3 +294,5 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 .padZero { padding: 0; }
 
 .margZero { margin: 0; }
+
+.sponsored { padding: 3px 3px 3px 5px; background-color: #FDD017; color: #0C090A; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
