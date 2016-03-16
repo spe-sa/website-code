@@ -40,9 +40,8 @@
   }
 }
 .whiteback, .tile-white {
-    background-color:   $col-white;
-  }
-
+  background-color:   $col-white;
+}
 .link-box, .tile-links {
   border-top: 4px solid $col-hrblue;
   background-color:     $col-white;
@@ -124,23 +123,6 @@
     }
   }
 }
-.tile-textbelow {
-  padding-bottom:       20px;
-}
-.tiletitlehr {
-  margin-top:           0;
-  height:               5px;
-  border:               none;
-  color:                $col-hrblue;
-  background-color:     $col-hrblue;
-}
-.tiletitles {
-  color:                $col-copygrey;
-  font-size:            25px;
-  border-bottom:        1px dotted $col-basegrey;
-  padding-bottom:       10px;
-  margin-bottom:        15px;
-}
 .tile-editorial {
   background-color:     $col-ogfblack;
   color:                $col-white;
@@ -178,6 +160,23 @@
     color:$col-white;
   }
 
+}
+.tile-textbelow {
+  padding-bottom:       20px;
+}
+.tiletitlehr {
+  margin-top:           0;
+  height:               5px;
+  border:               none;
+  color:                $col-hrblue;
+  background-color:     $col-hrblue;
+}
+.tiletitles {
+  color:                $col-copygrey;
+  font-size:            25px;
+  border-bottom:        1px dotted $col-basegrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
 }
 .tile-curntIssue {
   min-height:           150px;
@@ -223,6 +222,30 @@
     }
     p {
       font-size:12px;
+    }
+  }
+}
+#myCarousel {
+  .carousel-indicators {
+    bottom: 0;
+  }
+
+  .carousel-inner {
+    height:             360px;
+    //border:             1px solid hotpink;
+
+    .item {
+      img {
+        width:          100%;
+        height:         auto;
+      }
+      .carousel-caption {
+        background:     $img-back-black-50 repeat top left fixed;
+        width:          100%;
+        top: 200px;
+        left: 0;
+        padding-bottom: 30px;
+      }
     }
   }
 }
