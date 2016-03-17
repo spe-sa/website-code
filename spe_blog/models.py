@@ -269,3 +269,9 @@ class IssuesByPublicationPlugin(CMSPlugin):
             buf += "with the newest"
         buf += " using " + dictionary[self.template]
         return buf
+
+class EventsByCurrentLocationPlugin(CMSPlugin):
+    number = models.PositiveIntegerField(default=1)
+
+    def __unicode__(self):
+        return "Show " + str(self.number) + " events"
