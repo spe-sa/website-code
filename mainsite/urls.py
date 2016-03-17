@@ -23,6 +23,7 @@ urlpatterns = i18n_patterns('',
     url(r'^localhost/login/show', 'mainsite.views.login_show', name='showlogin'),
     url(r'^localhost/logout/', 'mainsite.views.logout', name='logout'),
     url(r'^localhost/login/', 'mainsite.views.login', name='login'),
+    url(r'^polls/', include('spe_polls.urls', namespace='polls')),
     url(r'^', include('cms.urls')),
 )
 

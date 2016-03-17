@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'spe_blog',
     'google_tag_manager',
     'spe_contact',
+    'spe_polls',
 )
 
 LANGUAGES = (
