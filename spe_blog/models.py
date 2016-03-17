@@ -75,6 +75,7 @@ class Publication(models.Model):
     def __unicode__(self):
         return self.code + ": " + self.name
 
+
 class Issue(models.Model):
     publication = models.ForeignKey(Publication)
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
@@ -84,8 +85,20 @@ class Issue(models.Model):
     issue_url = models.URLField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ['-date', 'publication']
+
     def __unicode__(self):
-        return self.publication.name
+        # return self.publication.name
+        buf = self.publication.name
+        if self.print_volume:
+            buf += ": " + str(self.print_volume)
+        if self.print_issue:
+            buf += "-" + str(self.print_issue)
+        if self.date:
+            buf += " :: " + self.date.strftime("%B") + " " + str(self.date.year)
+        return buf
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
@@ -147,6 +160,7 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'article_id': self.id})
 
+
 class Editorial(models.Model):
     title_main = models.CharField(max_length=100, verbose_name="Main Title")
     title_sub = models.CharField(max_length=100, verbose_name="Sub-Title")
@@ -162,7 +176,7 @@ class Editorial(models.Model):
         max_length=500,
         help_text=u'Author Bio'
     )
-    
+
     class Meta:
         verbose_name_plural = "Editorials"
 
@@ -174,12 +188,12 @@ class Editorial(models.Model):
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)
-#   keep_original_order = models.BooleanField(default=False)
+    #   keep_original_order = models.BooleanField(default=False)
     order_by = models.CharField(
         max_length=20,
         choices=ORDER_BY,
         default="-article_hits",
-        verbose_name = "Otherwise order by"
+        verbose_name="Otherwise order by"
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
@@ -187,16 +201,17 @@ class ArticlesPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-#        if self.keep_original_order:
-#            buf = "Unordered"
-#        else:
-#            buf = self.get_order_by_display()
-#        buf = buf + u" (%s)" % ', '.join([a.slug for a in self.articles.all()])
+        #        if self.keep_original_order:
+        #            buf = "Unordered"
+        #        else:
+        #            buf = self.get_order_by_display()
+        #        buf = buf + u" (%s)" % ', '.join([a.slug for a in self.articles.all()])
         buf = self.get_order_by_display() + u" (%s)" % ', '.join([a.slug for a in self.articles.all()])
         return buf
 
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
+
 
 class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
@@ -209,7 +224,8 @@ class EditorialPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.editorial = old_instance.editorial.all()
 
-#        self.articles = old_instance.articles.all()
+
+# self.articles = old_instance.articles.all()
 
 
 # class ArticlePlugin(CMSPlugin):
@@ -241,7 +257,8 @@ class ArticlesListingPlugin(CMSPlugin):
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
-        buf = "(" + str(self.starting_with) + " - " + str(self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
         if self.discipline:
             buf += " (" + self.discipline.code + ")"
         if self.personalized:
@@ -250,6 +267,7 @@ class ArticlesListingPlugin(CMSPlugin):
             buf += " (" + self.category.name + " only)"
         buf += " using " + dictionary[self.template]
         return buf
+
 
 class IssuesByPublicationPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)

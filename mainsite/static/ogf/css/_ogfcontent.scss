@@ -514,3 +514,25 @@
 .areaContent {
   padding-right:15px;
 }
+.issuebar, .issueItem {
+  cursor: pointer;
+  &:hover {
+    background-color: $col-ogfnotsolightgrey;
+  }
+}
+.issueItem {
+  padding:15px;
+
+  .issueLink {
+    color: $col-ogfblack;
+    font-weight:$font-bold;
+
+    .issueDate {
+      font-size:15px;
+      margin: 5px 0 0 0;
+    }
+  }
+}
+.panel-default, .panel, .panel-collapse, .panel-group {
+  border:none;
+}

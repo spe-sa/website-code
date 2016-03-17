@@ -274,6 +274,15 @@ a:hover { text-decoration: none; }
 
 .areaContent { padding-right: 15px; }
 
+.issuebar, .issueItem { cursor: pointer; }
+.issuebar:hover, .issueItem:hover { background-color: #e4e1d8; }
+
+.issueItem { padding: 15px; }
+.issueItem .issueLink { color: #2a2a2a; font-weight: 700; }
+.issueItem .issueLink .issueDate { font-size: 15px; margin: 5px 0 0 0; }
+
+.panel-default, .panel, .panel-collapse, .panel-group { border: none; }
+
 /* =================================================================== */
 /* TILES & BOXES
 ====================================================================== */
