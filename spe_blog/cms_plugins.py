@@ -1,4 +1,5 @@
 #from itertools import chain
+import requests
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
@@ -173,8 +174,12 @@ class ShowMeetingByUserPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         g = GeoIP()
         ip = context['request'].META.get('REMOTE_ADDR', None) 
+        ip = '192.152.183.2'
         if ip:
             loc = g.city(ip)
+            req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList2/1059104?ip='+ ip + '&num=5&numKm='
+            r = requests.get(req_str)
+            context.update({'meetings': r.json()})
         else:
             loc = None
         #loc = g.city('google.com')
