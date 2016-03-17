@@ -1,4 +1,6 @@
 #from itertools import chain
+import requests
+import json
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
@@ -11,7 +13,7 @@ from django.contrib.gis.geoip import GeoIP
 # from .models import ArticleDisciplinePluginModel
 # from .models import ArticleByPublicationPluginModel
 # from .models import SelectedFeatureArticlePluginModel
-from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, Editorial, EditorialPlugin
+from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, Editorial, EditorialPlugin, EventsByCurrentLocationPlugin
 from .forms import ArticleSelectionForm, EditorialSelectionForm
 import sys
 
@@ -161,11 +163,11 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 #         return context
 
 class ShowMeetingByUserPlugin(CMSPluginBase):
-    model = CMSPlugin
+    model = EventsByCurrentLocationPlugin
     allow_children = False
     cache = False
     module = _('Personalize')
-    name = _('Meetings Near You')
+    name = _('Events Near You')
     text_enabled = False
     render_template = 'spe_blog/plugins/location.html'
     #render_plugin = False
@@ -173,8 +175,12 @@ class ShowMeetingByUserPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         g = GeoIP()
         ip = context['request'].META.get('REMOTE_ADDR', None) 
+        ip = '192.152.183.2'
         if ip:
             loc = g.city(ip)
+            req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList2/1059104?ip='+ ip + '&num=' + str(instance.number)+ '&numKm='
+            r = requests.get(req_str)
+            context.update({'meetings': r.json()})
         else:
             loc = None
         #loc = g.city('google.com')
