@@ -184,7 +184,6 @@ class Editorial(models.Model):
         buf = self.title_main + " - " + self.title_sub
         return buf
 
-
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)

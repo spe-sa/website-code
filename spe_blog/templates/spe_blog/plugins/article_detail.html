@@ -1,0 +1,32 @@
+{% load cms_tags sekizai_tags %}
+
+    <div class="row content-area articleContent">
+        <div class="col-sm-8 col-lg-7 col-lg-offset-1 areaContent">
+            <h1>{{ article.title }}</h1>
+
+        {% if article.picture and article.picture.url %}
+            <img src={{article.picture.url}} class="img-rounded" alt={{article.alternate}} width="600" height="400">
+        {% endif %}
+
+            <h2>by: {{ article.author }}</h2>
+            <h3>{{ article.date }}</h3>
+            {{ article.article_text | safe }}
+        </div>
+    </div>
+
+    {% include 'z_boostrap_size_indicator.html' %}
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                if ($("#adZone2").find("img").length > 0) {
+                    //do something
+                } else {
+                    // do something else
+                    $("#adRow2").hide(0);
+                }
+
+            });
+        </script>
+    {%  endaddtoblock %}

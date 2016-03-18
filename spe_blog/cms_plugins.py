@@ -1,6 +1,11 @@
 #from itertools import chain
 import requests
 import json
+import re
+from urlparse import urlparse
+
+from django.shortcuts import get_object_or_404
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
@@ -33,17 +38,18 @@ class ArticlePluginBase(CMSPluginBase):
     text_enabled = False
 
 
-# class ShowArticlePlugin(ArticlePluginBase):
-#     model = ArticlesPlugin
-#     name = _("Selected Article ")
-#
-#     def render(self, context, instance, placeholder):
-#         queryset = Article.objects.filter(id=instance.article.id)
-#         context.update({'articles': queryset})
-#         context.update({'show_all_url': instance.all_url})
-#         context.update({'show_all_text': instance.all_text})
-#         self.render_template = instance.template
-#         return context
+class ShowArticleDetailPlugin(ArticlePluginBase):
+     model = CMSPlugin
+     name = _("Show Article Detail")
+
+     def render(self, context, instance, placeholder):
+         p = urlparse(context.get('request').get_full_path())
+         n = re.findall(r'\d+', p.query)
+         if n:
+             art = get_object_or_404(Article, pk=n[0])
+             context.update({'article': art})
+         self.render_template = 'spe_blog/plugins/article_detail.html' 
+         return context
 
 
 class ShowArticlesPlugin(ArticlePluginBase):
@@ -211,6 +217,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         return context
 
 
+plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
