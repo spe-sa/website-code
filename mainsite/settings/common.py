@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'google_tag_manager',
     'spe_contact',
     'spe_polls',
+    'spe_styledlink',
 )
 
 LANGUAGES = (
@@ -263,3 +264,12 @@ CKEDITOR_CONFIGS = {
 # CKEDITOR_SETTINGS = {
 #         "allowedContent": True
 # }
+
+SPE_STYLEDLINK_MODELS = [
+    {
+        'type': 'CMS Pages',
+        'class_path': 'cms.models.Page',
+        'manager_method': 'public',
+        'filter': { 'publisher_is_draft': False },
+    }
+]
