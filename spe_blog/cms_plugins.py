@@ -18,7 +18,7 @@ from django.contrib.gis.geoip import GeoIP
 # from .models import ArticleDisciplinePluginModel
 # from .models import ArticleByPublicationPluginModel
 # from .models import SelectedFeatureArticlePluginModel
-from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, Editorial, EditorialPlugin, EventsByCurrentLocationPlugin
+from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, Editorial, EditorialPlugin, EventsByCurrentLocationPlugin, ArticleDetailPlugin
 from .forms import ArticleSelectionForm, EditorialSelectionForm
 import sys
 
@@ -39,15 +39,20 @@ class ArticlePluginBase(CMSPluginBase):
 
 
 class ShowArticleDetailPlugin(ArticlePluginBase):
-     model = CMSPlugin
+     model = ArticleDetailPlugin
      name = _("Show Article Detail")
 
      def render(self, context, instance, placeholder):
-         p = urlparse(context.get('request').get_full_path())
-         n = re.findall(r'\d+', p.query)
-         if n:
-             art = get_object_or_404(Article, pk=n[0])
-             context.update({'article': art})
+         if instance.allow_url_to_override_selection:
+             p = urlparse(context.get('request').get_full_path())
+             n = re.findall(r'\d+', p.query)
+             if n:
+                 art = get_object_or_404(Article, pk=n[0])
+             else:
+                 art = get_object_or_404(Article, pk=instance.article.id)
+         else:
+             art = get_object_or_404(Article, pk=instance.article.id)
+         context.update({'article': art})
          self.render_template = 'spe_blog/plugins/article_detail.html' 
          return context
 

@@ -211,6 +211,12 @@ class ArticlesPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
 
+class ArticleDetailPlugin(CMSPlugin):
+    allow_url_to_override_selection = models.BooleanField(default=False)
+    article = models.ForeignKey(Article, on_delete=models.PROTECT)
+    
+    def __unicode__(self):
+        return str(self.article.publication.code) + ": " + self.article.title
 
 class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
