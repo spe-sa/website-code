@@ -179,13 +179,15 @@ class ShowMeetingByUserPlugin(CMSPluginBase):
         if ip:
             loc = g.city(ip)
             req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList2/1059104?ip='+ ip + '&num=' + str(instance.number)+ '&numKm='
-            r = requests.get(req_str)
-            context.update({'meetings': r.json()})
+            try:
+                r = requests.get(req_str)
+                context.update({'meetings': r.json()})
+            except:
+                pass
         else:
             loc = None
         #loc = g.city('google.com')
         context.update({'location': loc})
-        #return HttpResponse(json.dumps([current_location['country_code3']]))
         return context
 
 class ShowIssuesByPublicationPlugin(CMSPluginBase):
