@@ -1,6 +1,5 @@
 {% extends "html5_bootstrap.html" %}
 {% load cms_tags sekizai_tags %}
-{% load menu_tags %}
 
 {% block web_fonts %}
 {{ block.super }}
@@ -56,8 +55,11 @@
             </div>
             <div class="col-md-9 text-right">
                 <ul class="pubMenu">
-                    {% show_menu 0 0 0 0 %}
-                    <li><a href="/articles/publications/ogf/issues">ISSUES</a></li>
+                    <li><a href="">TOPICS</a></li>
+                    <li><a href="">TECHNOLOGY</a></li>
+                    <li><a href="">PEOPLE</a></li>
+                    <li><a href="">PEER REVIEWED PAPERS</a></li>
+                    <li><a href="">MAGAZINE</a></li>
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
                 </ul>
             </div>
@@ -76,7 +78,6 @@
             </div>
         </div>
     <!-- HEADER END -->
-
 {% endblock content_header %}
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
