@@ -18,7 +18,13 @@ from django.contrib.gis.geoip import GeoIP
 # from .models import ArticleDisciplinePluginModel
 # from .models import ArticleByPublicationPluginModel
 # from .models import SelectedFeatureArticlePluginModel
-from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Issue, IssuesByPublicationPlugin, Editorial, EditorialPlugin, EventsByCurrentLocationPlugin, ArticleDetailPlugin
+from .models import (
+    Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
+    Issue, IssuesByPublicationPlugin, 
+    Editorial, EditorialPlugin, 
+    EventsByCurrentLocationPlugin, 
+    BreadCrumbPlugin
+)
 from .forms import ArticleSelectionForm, EditorialSelectionForm
 import sys
 
@@ -221,6 +227,19 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+class ShowBreadCrumbPlugin(CMSPluginBase):
+    model = BreadCrumbPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Bread Crumb')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/bread_crumb.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'title': instance.title})
+        return context
+
 
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
@@ -228,3 +247,4 @@ plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowMeetingByUserPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
+plugin_pool.register_plugin(ShowBreadCrumbPlugin)

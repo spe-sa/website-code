@@ -298,3 +298,9 @@ class EventsByCurrentLocationPlugin(CMSPlugin):
 
     def __unicode__(self):
         return "Show " + str(self.number) + " events"
+
+class BreadCrumbPlugin(CMSPlugin):
+    title = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.title
