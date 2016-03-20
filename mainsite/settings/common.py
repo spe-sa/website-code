@@ -105,6 +105,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
     'mainsite.middleware.visitor.VisitorMiddleware',
+    'request.middleware.RequestMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -145,6 +146,7 @@ INSTALLED_APPS = (
     'spe_contact',
     'spe_polls',
     'spe_styledlink',
+    'request',
 )
 
 LANGUAGES = (
@@ -273,3 +275,30 @@ SPE_STYLEDLINK_MODELS = [
         'filter': { 'publisher_is_draft': False },
     }
 ]
+
+REQUEST_TRAFFIC_MODULES = (
+    'request.traffic.UniqueVisitor',
+    'request.traffic.UniqueVisit',
+    'request.traffic.Hit',
+    'request.traffic.Ajax',
+    'request.traffic.NotAjax',
+    'request.traffic.Error',
+    'request.traffic.Error404',
+    'request.traffic.Search',
+    'request.traffic.Secure',
+    'request.traffic.Unsecure',
+    'request.traffic.User',
+    'request.traffic.UniqueUser',
+)
+
+REQUEST_PLUGINS = (
+    'request.plugins.TrafficInformation',
+    'request.plugins.LatestRequests',
+
+    'request.plugins.TopPaths',
+    'request.plugins.TopErrorPaths',
+    'request.plugins.TopReferrers',
+    'request.plugins.TopSearchPhrases',
+    'request.plugins.TopBrowsers',
+    'request.plugins.ActiveUsers',
+)

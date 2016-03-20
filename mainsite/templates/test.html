@@ -41,6 +41,12 @@
 {#    is_superuser {{ visitor.is_superuser }}#}
 {#    is_active {{ visitor.is_active }}#}
 
+<h4>Active Users:</h4>
+{% load request_tag %}
+{% active_users in 10 minutes as user_list %}
+{% for user in user_list %}
+    {{ user.username }}
+{% endfor %}
 
     {% placeholder "content" %}
 {% endblock cms_content %}
