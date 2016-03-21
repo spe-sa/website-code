@@ -276,20 +276,20 @@ SPE_STYLEDLINK_MODELS = [
     }
 ]
 
-REQUEST_TRAFFIC_MODULES = (
-    'request.traffic.UniqueVisitor',
-    'request.traffic.UniqueVisit',
-    'request.traffic.Hit',
-    'request.traffic.Ajax',
-    'request.traffic.NotAjax',
-    'request.traffic.Error',
-    'request.traffic.Error404',
-    'request.traffic.Search',
-    'request.traffic.Secure',
-    'request.traffic.Unsecure',
-    'request.traffic.User',
-    'request.traffic.UniqueUser',
-)
+#REQUEST_TRAFFIC_MODULES = (
+#    'request.traffic.UniqueVisitor',
+#    'request.traffic.UniqueVisit',
+#    'request.traffic.Hit',
+#    'request.traffic.Ajax',
+#    'request.traffic.NotAjax',
+#    'request.traffic.Error',
+#    'request.traffic.Error404',
+#    'request.traffic.Search',
+#    'request.traffic.Secure',
+#    'request.traffic.Unsecure',
+#    'request.traffic.User',
+#    'request.traffic.UniqueUser',
+#)
 
 REQUEST_PLUGINS = (
     'request.plugins.TrafficInformation',
