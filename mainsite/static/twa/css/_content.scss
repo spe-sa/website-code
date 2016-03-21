@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* MAIN CONTENT STYLES FOR OGF
+/* MAIN CONTENT STYLES FOR jpt
 ====================================================================== */
 @import 'vars';
 
@@ -37,7 +37,7 @@
 }
 #popularNow {
   min-height:500px;
-  background-color: $col-ogfblack;
+  background-color: $col-black;
   padding:25px 30px;
   color:$col-white;
 
@@ -59,12 +59,12 @@
 }
 .popCat {
   a {
-    color: $col-ogfbluehover;
+    color: $col-bluehover;
     text-decoration: none;
     font-weight:$font-bold;
 
     &:hover {
-      color: $col-ogfyellow;
+      color: $col-yellow;
     }
   }
   i {
@@ -73,12 +73,12 @@
 }
 .popCat2 {
   a {
-    color: $col-ogfyellow;
+    color: $col-yellow;
     text-decoration: none;
     font-weight:$font-bold;
 
     &:hover {
-      color: $col-ogfbluehover;
+      color: $col-bluehover;
     }
   }
   i {
@@ -89,10 +89,10 @@
   margin-top:10px;
 
   a {
-    color:$col-ogfyellow;
+    color:$col-yellow;
 
     &:hover {
-      color:$col-ogfbluehover;
+      color:$col-bluehover;
       text-decoration: none;
     }
   }
@@ -118,7 +118,7 @@
   min-width:300px;
 }
 .regionBox {
-  background-color: $col-ogflightgrey2;
+  background-color: $col-lightgrey2;
   padding:0;
   margin-bottom:20px;
 }
@@ -128,7 +128,7 @@
 }
 
 .formBox {
-  background-color: $col-ogflightgrey2;
+  background-color: $col-lightgrey2;
   padding:20px;
 
   input {
@@ -156,10 +156,10 @@
   margin-bottom:10px;
 }
 .sqBtnRed {
-  background-color: $col-ogfblue;
+  background-color: $col-blue;
 }
 .sqBtnBlack {
-  background-color: $col-ogfblack;
+  background-color: $col-black;
 }
 #btnSponsored {
   color:black;
@@ -184,8 +184,8 @@
   ul {
     list-style: none;
     padding:0;
-    border-top: 7px solid $col-ogfred;
-    background-color: $col-ogflightgrey;
+    border-top: 7px solid $col-brightred;
+    background-color: $col-lightgrey;
 
     li {
       padding:10px 0 10px 10px;
@@ -200,8 +200,8 @@
       }
 
       &:hover {
-        color: $col-ogfred;
-        background-color: $col-ogfnotsolightgrey;
+        color: $col-brightred;
+        background-color: $col-notsolightgrey;
       }
     }
   }
@@ -258,7 +258,7 @@
 
 
 .peopleFocus {
-  background-color: $col-ogfnotsolightgrey;
+  background-color: $col-notsolightgrey;
   padding:15px;
 
   img {
@@ -284,7 +284,7 @@
 
 
 #departmentsRow {
-  background-color: $col-ogfred;
+  background-color: $col-brightred;
   color: $col-white;
   margin-top: 20px;
   padding:3px 10px 0 0;
@@ -307,7 +307,7 @@
   cursor: pointer;
 }
 #departmentsSlide {
-  background-color: $col-ogfnotsolightgrey;
+  background-color: $col-notsolightgrey;
   padding:5px;
   //height:30px;
 }
@@ -364,7 +364,7 @@
     margin: 5px;
 
     a {
-      color: $col-ogfred;
+      color: $col-brightred;
       text-decoration: none;
 
       &:hover {
@@ -374,7 +374,7 @@
   }
 
   .authorName {
-    color: $col-ogfred;
+    color: $col-brightred;
   }
 
 }
@@ -394,7 +394,7 @@
       text-decoration: none;
 
       &:hover {
-        color: $col-ogfred;
+        color: $col-brightred;
       }
     }
   }
@@ -402,8 +402,8 @@
   .fbShare {color:$col-fbShare;}
   .twitShare {color:$col-twitShare;}
   .lInShare {color:$col-lInShare;}
-  .emailShare {color: $col-ogfblack;}
-  .prntShare {color: $col-ogfblack;}
+  .emailShare {color: $col-black;}
+  .prntShare {color: $col-black;}
 
 }
 
@@ -424,10 +424,10 @@
   padding-bottom:30px;
 }
 .previewBlock {
-  background-color: $col-ogfnotsolightgrey;
+  background-color: $col-notsolightgrey;
 
   .gainAccessBtn {
-    background-color: $col-ogfred;
+    background-color: $col-brightred;
     margin:20px auto 30px;
     padding:10px;
     width:60%;
@@ -453,10 +453,10 @@
   height:auto;
 }
 .quote {
-  color: $col-ogfred;
+  color: $col-brightred;
 
   i {
-    color: $col-ogfblack;
+    color: $col-black;
   }
 }
 .relatedArticlesBlock {
@@ -479,7 +479,7 @@
 
     a {
       text-decoration: none;
-      color: $col-ogfred;
+      color: $col-brightred;
 
       &:hover {
         color:$col-basegrey;
@@ -489,17 +489,17 @@
 }
 
 .prevYearBtn {
-  background-color:$col-ogflightgrey;
+  background-color:$col-lightgrey;
   margin:20px 0;
   padding:20px;
   font-size:25px;
   font-weight: $font-bold;
 
   a {
-    color:$col-ogfbluehover;
+    color:$col-bluehover;
 
     &:hover {
-      color:$col-ogfblue;
+      color:$col-blue;
       text-decoration:none;
     }
   }
@@ -517,14 +517,14 @@
 .issuebar, .issueItem {
   cursor: pointer;
   &:hover {
-    background-color: $col-ogfnotsolightgrey;
+    background-color: $col-notsolightgrey;
   }
 }
 .issueItem {
   padding:15px;
 
   .issueLink {
-    color: $col-ogfblack;
+    color: $col-black;
     font-weight:$font-bold;
 
     .issueDate {
