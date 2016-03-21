@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.db import models
+
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from cms.models import CMSPlugin
@@ -70,6 +71,7 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
+    url = models.CharField(max_length=255, verbose_name = "URL for article detail page")
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -121,19 +123,19 @@ class Article(models.Model):
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True, default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=100, unique_for_month='date',
+    slug = models.SlugField(max_length=100, 
                             help_text='SEO Friendly name that is unique for use in URL', )
     teaser = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
-    introduction = models.TextField(blank=True, null=True,
+    introduction = RichTextField(blank=True, null=True,
                                     help_text=u'Introductory paragraph or \'teaser.\' for paywal')
     article_text = RichTextUploadingField(
-        max_length=18000,
+        max_length=25000,
         help_text=u'Full text of the article.'
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
-    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture = models.ImageField(upload_to='regular_images', verbose_name=u'Picture for article')
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -150,7 +152,7 @@ class Article(models.Model):
     auto_tags.rel.related_name = "+"
 
     class Meta:
-        unique_together = ('publication', 'print_volume', 'print_issue', 'slug')
+        unique_together = ('publication', 'print_volume', 'print_issue', 'slug','date')
         ordering = ['-date', 'title']
         get_latest_by = ['date']
 
@@ -158,7 +160,11 @@ class Article(models.Model):
         return str(self.publication.code) + ": " + self.title
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'article_id': self.id})
+        if self.publication.url:
+            url = self.publication.url + "?art=" + str(self.id)
+        else:
+            url = reverse('detail', kwargs={'article_id': self.id})
+        return url
 
 
 class Editorial(models.Model):
