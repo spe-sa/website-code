@@ -23,7 +23,8 @@ from .models import (
     Issue, IssuesByPublicationPlugin, 
     Editorial, EditorialPlugin, 
     EventsByCurrentLocationPlugin, 
-    BreadCrumbPlugin
+    BreadCrumbPlugin, Publication,
+    IssuesByYearPlugin
 )
 from .forms import ArticleSelectionForm, EditorialSelectionForm
 import sys
@@ -240,6 +241,19 @@ class ShowBreadCrumbPlugin(CMSPluginBase):
         context.update({'title': instance.title})
         return context
 
+class ShowIssuesByYearPlugin(CMSPluginBase):
+    model = IssuesByYearPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Issues by Year')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/issues_by_year.html'
+
+    def render(self, context, instance, placeholder):
+        issues = Issue.objects.filter(publication=instance.publication).order_by('-date')
+        context.update({'issues': issues})
+        return context
 
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
@@ -248,3 +262,4 @@ plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowMeetingByUserPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 plugin_pool.register_plugin(ShowBreadCrumbPlugin)
+plugin_pool.register_plugin(ShowIssuesByYearPlugin)

@@ -27,10 +27,16 @@ def detail(request, article_id):
 def issue(request, publication_code):
     issues = Issue.objects.filter(publication__code=publication_code.upper()).order_by('-date')
     pub = get_object_or_404(Publication, code=publication_code.upper())
+    if publication_code.upper() in ['WWW', 'JPT', 'TWA', 'HSE']:
+        t = "www_base.html"
+    else:
+        t = pub.code + "_base.html"
+    t = t.lower()
     context = {
         'issues': issues,
         'publication_code': publication_code,
         'show_subscribe_url': pub.subscription_url,
+        'base_template': t,
     }
 
     return render(request, 'spe_blog/issues.html', context)

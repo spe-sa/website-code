@@ -1,0 +1,38 @@
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+
+
+        {% for issue in issues %}
+            {% if forloop.first %}
+
+                <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
+                {#                        <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
+                    <hr class="tiletitlehr">
+                    <h1 class="tiletitles">{{ issue.date.year }}</h1>
+                </div>
+                <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse in row">
+            {% else %}
+                {% ifchanged issue.date.year %}
+                    </div>
+                    <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
+                    {#                            <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
+                        <hr class="tiletitlehr">
+                        <h1 class="tiletitles">{{ issue.date.year }}</h1>
+                    </div>
+                    <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse row">
+                {% endifchanged %}
+            {% endif %}
+            <div class="col-sm-4 issueItem text-center">
+                <a href="{{ issue.issue_url }}" class="issueLink" target="_blank">
+                    <img src="{{ issue.cover.url }}" class="img-responsive">
+                    <p class="issueDate">{{ issue.date }}</p>
+                    <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
+                </a>
+            </div>
+            {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+
+
+    </div>
+</div>

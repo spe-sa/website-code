@@ -304,3 +304,9 @@ class BreadCrumbPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.title
+
+class IssuesByYearPlugin(CMSPlugin):
+    publication = models.ForeignKey(Publication)
+
+    def __unicode__(self):
+        return self.publication.name
