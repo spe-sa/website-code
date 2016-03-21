@@ -2,9 +2,10 @@
 import requests
 import json
 import re
-from urlparse import urlparse
+from urlparse import urlparse, parse_qs
 
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -51,12 +52,12 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 
      def render(self, context, instance, placeholder):
          if instance.allow_url_to_override_selection:
-             p = urlparse(context.get('request').get_full_path())
-             n = re.findall(r'\d+', p.query)
-             if n:
-                 art = get_object_or_404(Article, pk=n[0])
-             else:
-                 art = get_object_or_404(Article, pk=instance.article.id)
+             q = parse_qs(urlparse(context.get('request').get_full_path()).query)
+             try:
+                 pk = int(q['art'][0])
+                 art = get_object_or_404(Article, pk=pk)
+             except:
+                 raise Http404("Article not found")
          else:
              art = get_object_or_404(Article, pk=instance.article.id)
          context.update({'article': art})
