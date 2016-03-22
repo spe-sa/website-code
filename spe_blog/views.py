@@ -4,7 +4,6 @@ from django.utils import timezone
 
 from .models import Article, Issue, Publication
 
-
 def index(request):
     articles = Article.objects.order_by('-date')
     context = {'articles': articles}
@@ -21,7 +20,12 @@ def detail(request, article_id):
     t = t.lower()
     ur = q.publication.subscription_url
     return render(request, 'spe_blog/detail.html',
-                  {'article': q, 'issues': i, 'base_template': t, 'show_subscribe_url': ur})
+                  {
+                      'article': q,
+                      'issues': i,
+                      'base_template': t,
+                      'show_subscribe_url': ur,
+                  })
 
 
 def issue(request, publication_code):

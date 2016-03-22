@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags tz %}
 
     <div class="row articleDetail">
         <div class="col-sm-12 articleTitleBox">
@@ -24,7 +24,9 @@
         <div class="col-sm-12 articleBodyText">
 
 
+
             <p>Free: {{ article.free }}</p>
+            <p>Date Now: {{ dateNow }}</p>
             <p>Start Date: {{ article.free_start }}</p>
             <p>End Date:
                 {% if article.free_stop %}
@@ -37,10 +39,16 @@
             {% if article.free == True %}
                 {{ article.article_text | safe }}
             {% else %}
-                {{ article.introduction | safe }}
+{#                {% if  %}#}
+
+
+                {{ article.introduction | safe }}...
                 <div class="col-sm-12 becomeMember text-center">To read the rest of the article, please<br>
                     <a href="">JOIN SPE</a> or <a href="">Subscribe to OGF</a>
                 </div>
+
+
+
             {% endif %}
 
 

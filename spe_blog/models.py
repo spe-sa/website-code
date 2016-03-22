@@ -71,7 +71,7 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-    url = models.CharField(max_length=255, verbose_name = "URL for article detail page")
+    url = models.CharField(max_length=255, verbose_name="URL for article detail page")
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -123,12 +123,12 @@ class Article(models.Model):
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True, default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=100, 
+    slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
     teaser = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     introduction = RichTextUploadingField(blank=True, null=True,
-                                    help_text=u'Introductory paragraph or \'teaser.\' for paywal')
+                                          help_text=u'Introductory paragraph or \'teaser.\' for paywal')
     article_text = RichTextUploadingField(
         max_length=25000,
         help_text=u'Full text of the article.'
@@ -152,7 +152,7 @@ class Article(models.Model):
     auto_tags.rel.related_name = "+"
 
     class Meta:
-        unique_together = ('publication', 'print_volume', 'print_issue', 'slug','date')
+        unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
         ordering = ['-date', 'title']
         get_latest_by = ['date']
 
@@ -190,6 +190,7 @@ class Editorial(models.Model):
         buf = self.title_main + " - " + self.title_sub
         return buf
 
+
 class ArticlesPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     articles = models.ManyToManyField(Article)
@@ -217,12 +218,14 @@ class ArticlesPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
 
+
 class ArticleDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
     article = models.ForeignKey(Article, on_delete=models.PROTECT)
-    
+
     def __unicode__(self):
         return str(self.article.publication.code) + ": " + self.article.title
+
 
 class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
@@ -299,17 +302,20 @@ class IssuesByPublicationPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]
         return buf
 
+
 class EventsByCurrentLocationPlugin(CMSPlugin):
     number = models.PositiveIntegerField(default=1)
 
     def __unicode__(self):
         return "Show " + str(self.number) + " events"
 
+
 class BreadCrumbPlugin(CMSPlugin):
     title = models.CharField(max_length=50)
 
     def __unicode__(self):
         return self.title
+
 
 class IssuesByYearPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication)

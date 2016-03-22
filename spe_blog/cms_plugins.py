@@ -6,6 +6,7 @@ from urlparse import urlparse, parse_qs
 
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+from django.utils import timezone
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
@@ -51,6 +52,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
      name = _("Show Article Detail")
 
      def render(self, context, instance, placeholder):
+         now = timezone.now()
          art = get_object_or_404(Article, pk=instance.article.id)
          if instance.allow_url_to_override_selection:
              qs = urlparse(context.get('request').get_full_path()).query
@@ -62,6 +64,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                  except:
                      raise Http404("Article not found")
          context.update({'article': art})
+         context.update({'dateNow': now})
          self.render_template = 'spe_blog/plugins/article_detail.html' 
          return context
 

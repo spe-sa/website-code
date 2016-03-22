@@ -159,7 +159,7 @@ a:hover { text-decoration: none; }
 
 .sqBtnBlack { background-color: #2a2a2a; }
 
-#btnSponsored { color: black; background-color: #ffca4c; }
+#btnSponsored { color: #2a2a2a; background-color: #ffca4c; }
 
 /* ********************************** */
 /* CHANNEL ROWS */
@@ -209,7 +209,7 @@ a:hover { text-decoration: none; }
 .departmentsList { list-style-type: none; padding: 0; }
 .departmentsList li { float: left; margin: 20px; }
 .departmentsList li h3 { font-size: 13px; margin: 0; }
-.departmentsList li a { color: black; text-decoration: none; }
+.departmentsList li a { color: #2a2a2a; text-decoration: none; }
 .departmentsList li a:hover { color: white; }
 
 #latestArticlesList { padding: 0; margin: 0; }
@@ -223,7 +223,7 @@ a:hover { text-decoration: none; }
 .articleData { list-style-type: none; padding: 0; font-size: 12px; font-weight: 700; }
 .articleData li { float: left; margin: 5px; }
 .articleData li a { color: #d92226; text-decoration: none; }
-.articleData li a:hover { color: black; }
+.articleData li a:hover { color: #2a2a2a; }
 .articleData .authorName { color: #d92226; }
 
 .articleSocialShares { border-top: 1px dotted #2a2a2a; list-style-type: none; padding: 0; font-size: 25px; font-weight: 700; }
@@ -298,7 +298,9 @@ a:hover { text-decoration: none; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
 
-.becomeMember { background-color: #d92226; }
+.becomeMember { background-color: #d92226; color: white; padding: 15px; margin: 15px 0; font-size: 20px; }
+.becomeMember a { color: #fffb22; font-weight: 700; }
+.becomeMember a:hover { color: #2a2a2a; }
 
 /* =================================================================== */
 /* TILES & BOXES
