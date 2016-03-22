@@ -40,7 +40,7 @@
   }
 }
 .whiteback, .tile-white {
-  background-color:   $col-white;
+  background-color:     $col-white;
 }
 .link-box, .tile-links {
   border-top: 4px solid $col-hrblue;
@@ -130,7 +130,7 @@
   min-height:           360px;
 
   .title1, .title2, .excerpt, .authorBio {
-    padding:0;
+    padding:            0;
   }
   .title1 {
     font-size:          13px;
@@ -157,7 +157,7 @@
     font-size:          10px;
   }
   a {
-    color:$col-white;
+    color:              $col-white;
   }
 
 }
@@ -186,7 +186,7 @@
   padding:              15px;
 
   a {
-    color:                $col-ogfblack;
+    color:              $col-ogfblack;
   }
 
   .issueThumb {
@@ -197,8 +197,8 @@
     font-weight:        $font-bold;
   }
   .pub-date {
-    font-size: 20px;
-    margin-bottom:20px;
+    font-size:          20px;
+    margin-bottom:      20px;
   }
   .btn {
     background-color:   $col-ogfblue;
@@ -207,27 +207,27 @@
 
 }
 .tile-poi {
-  padding:15px;
-  background-color:$col-ogflightgrey;
+  padding:              15px;
+  background-color:     $col-ogflightgrey;
 
   .poipic {
-    padding:0;
+    padding:            0;
   }
   .poiblurb {
-    color:            $col-ogfblack;
+    color:              $col-ogfblack;
     h3 {
-      font-size:15px;
-      font-weight:$font-bold;
-      margin: 0;
+      font-size:        15px;
+      font-weight:      $font-bold;
+      margin:           0;
     }
     p {
-      font-size:12px;
+      font-size:        12px;
     }
   }
 }
 #myCarousel {
   .carousel-indicators {
-    bottom: 0;
+    bottom:             0;
   }
 
   .carousel-inner {
@@ -242,8 +242,8 @@
       .carousel-caption {
         background:     $img-back-black-50 repeat top left fixed;
         width:          100%;
-        top: 200px;
-        left: 0;
+        top:            200px;
+        left:           0;
         padding-bottom: 30px;
       }
     }

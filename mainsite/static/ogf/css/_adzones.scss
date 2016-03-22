@@ -17,8 +17,9 @@
 /* AD Zone2 */
 #adFold, .adZone2 {
   padding:15px 0;
-  margin-top: 15px;
-  border-top: $dotted;
+  margin: 15px 0;
+  //border-top: $dotted;
+  background-color:$col-ogfnotsolightgrey;
 
   div {
     padding-right:0;

@@ -48,7 +48,6 @@ a:hover { text-decoration: none; }
 /* LOGO MENU BAR GREY                 */
 #menubar { background-color: #181c41; min-height: 170px; }
 #menubar #mainLogo { padding-top: 50px; }
-#menubar #mainLogo img { max-width: 300px; height: auto; }
 #menubar .pubMenu { list-style-type: none; margin: 0; padding: 80px 0 0 0; font-size: 18px; float: right; }
 #menubar .pubMenu li { float: left; padding: 0 0 0 30px; }
 #menubar .pubMenu li a { display: block; color: white; text-align: center; text-decoration: none; font-weight: 700; }
@@ -283,6 +282,21 @@ a:hover { text-decoration: none; }
 
 .panel-default, .panel, .panel-collapse, .panel-group { border: none; }
 
+.articleDetail .articleTitle { padding-bottom: 20px; }
+.articleDetail .articleAuthorBox, .articleDetail .articleShares { height: 35px; border-bottom: 1px dotted #2a2a2a; margin-bottom: 15px; padding-right: 0; padding-left: 0; }
+.articleDetail .articleAuthorBox { font-size: 12px; font-weight: 700; padding-top: 10px; }
+
+.articlePicture { margin-bottom: 20px; }
+
+.articleShares { font-size: 18px; padding-top: 5px; }
+.articleShares .fa-facebook-square { color: #3B5998; }
+.articleShares .fa-twitter-square { color: #00ACED; }
+.articleShares .fa-linkedin-square { color: #007BB5; }
+.articleShares .fa-envelope-square { color: #57575a; }
+.articleShares .fa-plus-square { color: #57575a; }
+.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
+.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
+
 /* =================================================================== */
 /* TILES & BOXES
 ====================================================================== */
@@ -366,7 +380,7 @@ a:hover { text-decoration: none; }
 .adZone1 #adLeaderboardImg { margin: auto; }
 
 /* AD Zone2 */
-#adFold, .adZone2 { padding: 15px 0; margin-top: 15px; border-top: 1px dotted #2a2a2a; }
+#adFold, .adZone2 { padding: 15px 0; margin: 15px 0; background-color: #e4e1d8; }
 #adFold div, .adZone2 div { padding-right: 0; padding-left: 0; }
 
 .adZone6 { background-color: #f4f4f4; padding: 0; margin-bottom: 20px; }

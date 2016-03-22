@@ -30,10 +30,10 @@
             <div class="col-sm-6 topbarcol">
                 <ul class="topbarmenuleft">
                     <li><a href="http://www.spe.org/">SPE</a></li>
-                    <li><a href="/">JPT</a></li>
-                    <li><a href="/" class="yellow">OGF</a></li>
-                    <li><a href="/">HSE Now</a></li>
-                    <li><a href="/">The WAY Ahead</a></li>
+                    <li><a href="/jpt/">JPT</a></li>
+                    <li><a href="/ogf/" class="yellow">OGF</a></li>
+                    <li><a href="/hse/">HSE Now</a></li>
+                    <li><a href="/twa/">The WAY Ahead</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 text-right topbarcol">
@@ -51,10 +51,10 @@
         </div>
 
         <div class="row" id="menubar">
-            <div class="col-md-3" id="mainLogo">
-                <img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}"/>
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-offset-1" id="mainLogo">
+                <a href="/ogf/"><img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="img-responsive"></a>
             </div>
-            <div class="col-md-9 text-right">
+            <div class="col-md-8 col-lg-7 text-right">
                 <ul class="pubMenu">
                     {% show_menu 1 0 0 0 %}
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>

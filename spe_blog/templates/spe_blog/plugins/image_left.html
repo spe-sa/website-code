@@ -10,8 +10,10 @@
                 <figure class="thumb col-sm-6"><!-- style="max-width:200px;" -->
                     <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div><!--  style="max-height:150px;max-width: 200px" -->
                 </figure>
+                <div class="story-text col-sm-6">
+            {% else %}
+                <div class="story-text col-sm-12">
             {% endif %}
-            <div class="story-text col-sm-6">
                 <span class="pub-date">{{ article.date }}</span>
                 <h3>{{ article.title }}</h3>
                 {% if article.sponsored %}

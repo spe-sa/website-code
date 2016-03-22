@@ -30,24 +30,7 @@
         </div>
     </div>
 
-    {% addtoblock "js" %}
-        <script type="text/javascript" charset="utf-8">
-            $( document ).ready(function() {
-
-{#                $("#testmessage").text("BEEN REPLACED");#}
-
-                if ($("#adZone2").find("img").length > 0) {
-                    //do something
-{#                    $("#adZone1").text("HAS IMAGE");#}
-                } else {
-                    // do something else
-                    $("#adZone2").hide(0);
-                }
-
-            });
-        </script>
-    {%  endaddtoblock %}
-
+    {% include 'include_hide_ads.html' %}
     {% include 'z_boostrap_size_indicator.html' %}
 
 {% endblock content %}
