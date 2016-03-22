@@ -135,7 +135,7 @@ class Article(models.Model):
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
-    picture = models.ImageField(upload_to='regular_images', verbose_name=u'Picture for article')
+    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
