@@ -29,7 +29,7 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
             req_str = EVENT_PERSONALIZATION_SERVER + '?latitude=' + str(loc['latitude']) + '&longitude=' + str(loc['longitude']) + "&num=" + str(instance.number) + "&numKm=" + str(instance.radius)
             req_str = req_str + "&discipline="
             for discipline in instance.disciplines.all():
-                req_str = req_str + discipline.eva_code
+                req_str = req_str + discipline.eva_code + ":"
             req_str = req_str + "&eventtype="
             for type in instance.types.all():
                 req_str = req_str + type.name + ','
