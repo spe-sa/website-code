@@ -51,15 +51,16 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
      name = _("Show Article Detail")
 
      def render(self, context, instance, placeholder):
+         art = get_object_or_404(Article, pk=instance.article.id)
          if instance.allow_url_to_override_selection:
-             q = parse_qs(urlparse(context.get('request').get_full_path()).query)
-             try:
-                 pk = int(q['art'][0])
-                 art = get_object_or_404(Article, pk=pk)
-             except:
-                 raise Http404("Article not found")
-         else:
-             art = get_object_or_404(Article, pk=instance.article.id)
+             qs = urlparse(context.get('request').get_full_path()).query
+             if qs:
+                 q = parse_qs(qs)
+                 try:
+                     pk = int(q['art'][0])
+                     art = get_object_or_404(Article, pk=pk)
+                 except:
+                     raise Http404("Article not found")
          context.update({'article': art})
          self.render_template = 'spe_blog/plugins/article_detail.html' 
          return context
