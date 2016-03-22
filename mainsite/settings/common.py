@@ -313,3 +313,5 @@ REQUEST_PLUGINS = (
     'request.plugins.TopBrowsers',
     'request.plugins.ActiveUsers',
 )
+
+EVENT_PERSONALIZATION_SERVER = ('http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3')

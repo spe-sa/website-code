@@ -1,12 +1,12 @@
 <div>
     <p>Events close to: {{ location.city }}, {{ location.country_name }}</p>
-    {% for meeting in meetings %}
-        <a href={{ meeting.url }}>
-        <p>Type: {{meeting.type }}</p>
-        <p>Event: {{ meeting.name }}</p>
-        <p>Location: {{ meeting.location }}</p>
-        <p>Starting: {{ meeting.dt_begins }}</p>
-        <p>Ending: {{ meeting.dt_ends }}</P>
+    {% for event in events %}
+        <a href={{ event.url }}>
+        <p>Type: {{ event.type }}</p>
+        <p>Event: {{ event.name }}</p>
+        <p>Location: {{ event.location }}</p>
+        <p>Starting: {{ event.dt_begins }}</p>
+        <p>Ending: {{ event.dt_ends }}</P>
         </a>
     {% endfor %}
 </div>
