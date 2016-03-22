@@ -266,9 +266,13 @@ MANAGERS = (('IT', 'webmaster@spe.org'), )
 CKEDITOR_CONFIGS = {
     "default": {
         'removePlugins': 'stylesheetparser',
+        'toolbar': 'full',
+        'height': 500,
+        'width': '100%',
         'allowedContent': True,
     }
 }
+
 # CKEDITOR_SETTINGS = {
 #         "allowedContent": True
 # }
