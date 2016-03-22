@@ -127,7 +127,7 @@ class Article(models.Model):
                             help_text='SEO Friendly name that is unique for use in URL', )
     teaser = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
-    introduction = RichTextField(blank=True, null=True,
+    introduction = RichTextUploadingField(blank=True, null=True,
                                     help_text=u'Introductory paragraph or \'teaser.\' for paywal')
     article_text = RichTextUploadingField(
         max_length=25000,
