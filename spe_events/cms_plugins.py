@@ -34,11 +34,11 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
             for type in instance.types.all():
                 req_str = req_str + type.name + ','
             headers = {'Accept': 'application/json'}
-            #try:
-            r = requests.get(req_str, headers=headers)
-            context.update({'events': r.json()})
-            #except:
-            #    pass
+            try:
+                r = requests.get(req_str, headers=headers)
+                context.update({'events': r.json()})
+            except:
+                pass
         else:
             loc = None
         context.update({'location': loc})
