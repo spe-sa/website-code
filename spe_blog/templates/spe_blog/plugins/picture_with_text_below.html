@@ -7,7 +7,7 @@
         {#    {% if instance.hide_featured and not article.is_featured %}#}
             <article class="col-sm-6 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
                         style="min-height: 150px">
-            <a href="{{ article.get_absolute_url }}" target="_blank">
+            <a href="{{ article.get_absolute_url }}">
                 <div class="story-wrap row">
                     {% if article.picture and article.picture.url %}
                         <figure class="thumb">
@@ -38,34 +38,3 @@
 {% if articles.count > 1 %}
     </div>
 {% endif %}
-
-
-{#{% else %}#}
-{#    {% for article in articles %}#}
-    {#    {% if instance.hide_featured and not article.is_featured %}#}
-{#        <article class="col-sm-6 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"#}
-{#                    style="min-height: 150px">#}
-{#        <a href="{{ article.get_absolute_url }}" target="_blank">#}
-{#            <div class="story-wrap row">#}
-{#                {% if article.picture and article.picture.url %}#}
-{#                    <figure class="thumb">#}
-{#                        <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>#}
-{#                    </figure>#}
-{#                {% endif %}#}
-{#                <div class="story-text">#}
-{#                    <span class="pub-date">{{ article.date }}</span>#}
-{#                    <h3>{{ article.title }}</h3>#}
-{#                    <p>{{ article.teaser }}</p>#}
-{#                </div>#}
-{#            </div>#}
-{#        </a>#}
-{#        </article>#}
-    {#    {% endif %}#}
-{#    {% empty %}#}
-{#        <p class="well">{% trans "No items available" %}</p>#}
-{#    {% endfor %}#}
-{##}
-{#    {% if show_all_url and show_all_text %}#}
-{#        <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>#}
-{#    {% endif %}#}
-{#{% endif %}#}

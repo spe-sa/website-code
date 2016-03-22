@@ -552,6 +552,12 @@
     font-weight: $font-bold;
     padding-top: 10px;
   }
+  .sponsored {
+    margin:0 0 15px 0 !important;
+  }
+}
+.articleTitleBox {
+
 }
 .articlePicture {
   margin-bottom:20px;
@@ -586,3 +592,7 @@
     }
   }
 }
+.becomeMember {
+  background-color: $col-ogfred;
+}
+

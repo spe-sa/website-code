@@ -285,6 +285,7 @@ a:hover { text-decoration: none; }
 .articleDetail .articleTitle { padding-bottom: 20px; }
 .articleDetail .articleAuthorBox, .articleDetail .articleShares { height: 35px; border-bottom: 1px dotted #2a2a2a; margin-bottom: 15px; padding-right: 0; padding-left: 0; }
 .articleDetail .articleAuthorBox { font-size: 12px; font-weight: 700; padding-top: 10px; }
+.articleDetail .sponsored { margin: 0 0 15px 0 !important; }
 
 .articlePicture { margin-bottom: 20px; }
 
@@ -296,6 +297,8 @@ a:hover { text-decoration: none; }
 .articleShares .fa-plus-square { color: #57575a; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
+
+.becomeMember { background-color: #d92226; }
 
 /* =================================================================== */
 /* TILES & BOXES

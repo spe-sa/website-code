@@ -2,7 +2,7 @@
 <div class="row padZero margZero">
 {% for article in articles %}
         <article class="col-sm-12 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
-        <a href="{{ article.get_absolute_url }}" target="_blank">
+        <a href="{{ article.get_absolute_url }}">
             <div class="story-wrap">
                 {% if article.picture and article.picture.url %}
                     <figure class="thumb">
