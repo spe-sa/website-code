@@ -41,7 +41,8 @@ logger = logging.getLogger(__name__)
 class Tier1Discipline(models.Model):
     # number = models.CharField(max_length=12, unique=True)
     code = models.CharField(max_length=3, primary_key=True)
-    long_code = models.CharField(max_length=20, blank=True, null=True)
+    crm_code = models.CharField(max_length=20, blank=True, null=True, verbose_name="CRM code")
+    eva_code = models.CharField(max_length=100, blank=True, null=True, verbose_name="EVA code")
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
 

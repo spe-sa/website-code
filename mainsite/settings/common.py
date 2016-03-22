@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'spe_polls',
     'spe_styledlink',
     'request',
+    'spe_events',
 )
 
 LANGUAGES = (
