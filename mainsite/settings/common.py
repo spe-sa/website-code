@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'spe_polls',
     'spe_styledlink',
     'request',
+    'spe_events',
 )
 
 LANGUAGES = (
@@ -215,7 +216,7 @@ MIGRATION_MODULES = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
-CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'ck_media')
+CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'media/ck_media')
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')
 # LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
@@ -266,9 +267,13 @@ MANAGERS = (('IT', 'webmaster@spe.org'), )
 CKEDITOR_CONFIGS = {
     "default": {
         'removePlugins': 'stylesheetparser',
+        'toolbar': 'full',
+        'height': 500,
+        'width': '100%',
         'allowedContent': True,
     }
 }
+
 # CKEDITOR_SETTINGS = {
 #         "allowedContent": True
 # }
