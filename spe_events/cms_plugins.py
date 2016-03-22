@@ -23,15 +23,16 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
         ip = '192.152.183.2'
         if ip:
             loc = g.city(ip)
-            req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3?latitude=' + str(loc['latitude']) + '&longitude=' + str(loc['longitude']) + "&num=" + str(instance.number)
+            req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3?latitude=' + str(loc['latitude']) + '&longitude=' + str(loc['longitude']) + "&num=" + str(instance.number) + "&numKm=" + str(instance.radius)
             req_str = req_str + "&discipline="
             for discipline in instance.disciplines.all():
                 req_str = req_str + discipline.eva_code
             req_str = req_str + "&eventtype="
             for type in instance.types.all():
                 req_str = req_str + type.name + ','
+            headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
             try:
-                r = requests.get(req_str, headers='{\'content-type\': \'application/json\'}')
+                r = requests.get(req_str, headers=headers)
                 context.update({'meetings': r.json()})
             except:
                 pass
