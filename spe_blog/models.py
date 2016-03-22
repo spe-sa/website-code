@@ -120,7 +120,7 @@ class Article(models.Model):
     sponsored = models.BooleanField(default=False)
     free = models.BooleanField(default=False)
     free_start = models.DateField(verbose_name='Start Date', default=timezone.now)
-    free_stop = models.DateField(verbose_name='End Date', blank=True, null=True, default=timezone.now)
+    free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100, 
