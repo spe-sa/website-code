@@ -1,6 +1,6 @@
 {% load i18n %}
 
-{% block "form_tag" %}
+{% block form_tag %}
 <form method="POST" action="{% url "polls:vote" %}">
 {% endblock %}
   {% csrf_token %}
@@ -8,7 +8,7 @@
   <input type="hidden" name="next" value="{{ request.path }}"/>
   {% for choice in poll.choice_set.iterator %}
     {% with choice.id as id %}
-      {% block "choice" %}
+      {% block choice %}
         <div class="radiogroup">
           <input type="radio" name="choice" value="{{ id }}" id="choice-{{ id }}">
           <label for="choice-{{ id }}">{{ choice.text }}</label>
@@ -16,9 +16,9 @@
       {% endblock %}
     {% endwith %}
   {% endfor %}
-  {% block "form_submit" %}
+  {% block form_submit %}
   <button type="submit">{% trans "Vote" %}</button>
   {% endblock %}
-{% block "form_tag_close" %}
+{% block form_tag_close %}
 </form>
 {% endblock %}
