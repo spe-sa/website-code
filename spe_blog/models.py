@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from cms.models.fields import PageField
 from cms.models import CMSPlugin
-from cms.model import Page
+from cms.models import Page
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
