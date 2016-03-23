@@ -382,7 +382,8 @@ a:hover { text-decoration: none; }
 .eventsNearYou .eachEvent .eventDetails .eventType { font-weight: 700; }
 
 .tile-poll { background-color: #a3bce4; color: #26416c; }
-.tile-poll h1 { color: #3d4044; font-size: 25px; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+.tile-poll h1 { color: white; font-size: 25px; border-bottom: 1px dotted grey; padding: 0 0 10px 0; margin: 0 0 10px 0; }
+.tile-poll .btn { width: 100%; font-weight: 700; margin-top: 20px; }
 .tile-poll a { color: #26416c; }
 .tile-poll a:hover { color: white; }
 
