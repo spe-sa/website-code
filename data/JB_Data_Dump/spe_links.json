@@ -1,0 +1,265 @@
+[{
+    "fields": {
+        "class_name": "spe-news",
+        "show_all_external": "",
+        "code": "SPENEWS",
+        "show_all_page": null,
+        "title": "SPE News"
+    },
+    "model": "spe_links.spelinkcategory",
+    "pk": 1
+}, {
+    "fields": {
+        "class_name": "spe-disciplines",
+        "show_all_external": "",
+        "code": "DISCIPLINE",
+        "show_all_page": null,
+        "title": "SPE Disciplines"
+    },
+    "model": "spe_links.spelinkcategory",
+    "pk": 2
+}, {
+    "fields": {
+        "class_name": "spe-regions",
+        "show_all_external": "",
+        "code": "REGION",
+        "show_all_page": null,
+        "title": "SPE Regions"
+    },
+    "model": "spe_links.spelinkcategory",
+    "pk": 3
+}, {
+    "fields": {
+        "category": 1,
+        "page_url": null,
+        "external_url": "",
+        "title": "Dan Adamson, Longtime SPE Executive Director, Dies at 76"
+    },
+    "model": "spe_links.spelink",
+    "pk": 1
+}, {
+    "fields": {
+        "category": 1,
+        "page_url": null,
+        "external_url": "",
+        "title": "Sign Up Today for PetroBowl Regional Qualifiers"
+    },
+    "model": "spe_links.spelink",
+    "pk": 2
+}, {
+    "fields": {
+        "category": 1,
+        "page_url": null,
+        "external_url": "",
+        "title": "SPE Announces Distinguished Lecturer Lineup for 2016-2017"
+    },
+    "model": "spe_links.spelink",
+    "pk": 3
+}, {
+    "fields": {
+        "category": 1,
+        "page_url": null,
+        "external_url": "",
+        "title": "ATCE 2016 Call for Papers Now Open (Deadline: 25 January)"
+    },
+    "model": "spe_links.spelink",
+    "pk": 4
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Drilling and Completions"
+    },
+    "model": "spe_links.spelink",
+    "pk": 5
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Health, Safety, Security, Environment, and Social Responsibility"
+    },
+    "model": "spe_links.spelink",
+    "pk": 6
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Asia Pacific"
+    },
+    "model": "spe_links.spelink",
+    "pk": 7
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Management and Information"
+    },
+    "model": "spe_links.spelink",
+    "pk": 8
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Production and Operations"
+    },
+    "model": "spe_links.spelink",
+    "pk": 9
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Projects, Facilities and Construction"
+    },
+    "model": "spe_links.spelink",
+    "pk": 10
+}, {
+    "fields": {
+        "category": 2,
+        "page_url": null,
+        "external_url": "",
+        "title": "Reservoir Description and Dynamics"
+    },
+    "model": "spe_links.spelink",
+    "pk": 11
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Canada"
+    },
+    "model": "spe_links.spelink",
+    "pk": 12
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Europe and Sub-Saharan Africa"
+    },
+    "model": "spe_links.spelink",
+    "pk": 13
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Latin America and Caribbean"
+    },
+    "model": "spe_links.spelink",
+    "pk": 14
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Middle East, North Africa, and South Asia"
+    },
+    "model": "spe_links.spelink",
+    "pk": 15
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "United States"
+    },
+    "model": "spe_links.spelink",
+    "pk": 16
+}, {
+    "fields": {
+        "category": 3,
+        "page_url": null,
+        "external_url": "",
+        "title": "Russia and Caspian"
+    },
+    "model": "spe_links.spelink",
+    "pk": 17
+}, {
+    "fields": {
+        "category": 1,
+        "page_url": null,
+        "external_url": "",
+        "title": "Saibal Did not win the Lottery!"
+    },
+    "model": "spe_links.spelink",
+    "pk": 18
+}, {
+    "fields": {
+        "category": 1
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 2
+}, {
+    "fields": {
+        "category": 1
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 4
+}, {
+    "fields": {
+        "category": 2
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 5
+}, {
+    "fields": {
+        "category": 3
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 7
+}, {
+    "fields": {
+        "category": 2
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 23
+}, {
+    "fields": {
+        "category": 2
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 177
+}, {
+    "fields": {
+        "category": 1
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 178
+}, {
+    "fields": {
+        "category": 2
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 190
+}, {
+    "fields": {
+        "category": 1
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 191
+}, {
+    "fields": {
+        "category": 1
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 278
+}, {
+    "fields": {
+        "category": 2
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 279
+}, {
+    "fields": {
+        "category": 3
+    },
+    "model": "spe_links.spelinkpluginmodel",
+    "pk": 281
+}]
