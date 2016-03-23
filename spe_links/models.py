@@ -1,6 +1,7 @@
 import datetime
 from cms.models import CMSPlugin
 from cms.models import Page
+from cms.models.fields import PageField
 from django.db import models
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
