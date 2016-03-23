@@ -7,8 +7,8 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('mainsite', '__first__'),
         ('cms', '0013_urlconfrevision'),
-        ('mainsite', '0002_auto_20160321_2256'),
     ]
 
     operations = [
@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
                 ('number', models.PositiveIntegerField(default=1)),
-                ('radius', models.PositiveIntegerField(default=500, verbose_name=b'Radius around location in miles')),
-                ('disciplines', models.ManyToManyField(to='mainsite.Tier1Discipline', blank=True)),
+                ('radius', models.PositiveIntegerField(default=500, verbose_name=b'Radius around location in km')),
+                ('disciplines', models.ManyToManyField(to='mainsite.Tier1Discipline')),
             ],
             options={
                 'abstract': False,

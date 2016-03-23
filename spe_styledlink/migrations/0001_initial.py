@@ -43,6 +43,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='styledlink',
             name='styles',
-            field=models.ManyToManyField(related_name='styled_link_style', default=None, to='spe_styledlink.StyledLinkStyle', blank=True, help_text='Optional. Choose one or more styles for this link.', null=True, verbose_name='link style'),
+            field=models.ManyToManyField(related_name='styled_link_style', default=None, to='spe_styledlink.StyledLinkStyle', blank=True, help_text='Optional. Choose one or more styles for this link.', verbose_name='link style'),
         ),
     ]

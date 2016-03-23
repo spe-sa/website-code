@@ -5,6 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import ckeditor.fields
 import django.utils.timezone
+import cms.models.fields
 import taggit.managers
 import ckeditor_uploader.fields
 
@@ -12,9 +13,9 @@ import ckeditor_uploader.fields
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('mainsite', '__first__'),
         ('taggit', '0002_auto_20150616_2121'),
         ('cms', '0013_urlconfrevision'),
-        ('mainsite', '0001_initial'),
     ]
 
     operations = [
@@ -25,15 +26,15 @@ class Migration(migrations.Migration):
                 ('print_volume', models.PositiveIntegerField(null=True, blank=True)),
                 ('print_issue', models.PositiveIntegerField(null=True, blank=True)),
                 ('sponsored', models.BooleanField(default=False)),
-                ('free', models.BooleanField(default=False)),
-                ('free_start', models.DateField(default=django.utils.timezone.now, verbose_name=b'Start Date')),
-                ('free_stop', models.DateField(default=django.utils.timezone.now, null=True, verbose_name=b'End Date', blank=True)),
+                ('free', models.BooleanField(default=False, verbose_name='Always Free')),
+                ('free_start', models.DateField(null=True, verbose_name=b'Start Date', blank=True)),
+                ('free_stop', models.DateField(null=True, verbose_name=b'End Date', blank=True)),
                 ('title', models.CharField(max_length=250)),
-                ('slug', models.SlugField(help_text=b'SEO Friendly name that is unique for use in URL', unique_for_month=b'date', max_length=100)),
+                ('slug', models.SlugField(help_text=b'SEO Friendly name that is unique for use in URL', max_length=100)),
                 ('teaser', models.CharField(max_length=250)),
                 ('author', models.CharField(max_length=250)),
-                ('introduction', models.TextField(help_text="Introductory paragraph or 'teaser.' for paywal", null=True, blank=True)),
-                ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=18000)),
+                ('introduction', ckeditor_uploader.fields.RichTextUploadingField(help_text="Introductory paragraph or 'teaser.' for paywal", null=True, blank=True)),
+                ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=25000)),
                 ('date', models.DateField(default=django.utils.timezone.now, verbose_name=b'Publication Date')),
                 ('picture', models.ImageField(upload_to=b'regular_images', null=True, verbose_name='Picture for article', blank=True)),
                 ('picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
@@ -46,6 +47,18 @@ class Migration(migrations.Migration):
                 'ordering': ['-date', 'title'],
                 'get_latest_by': ['date'],
             },
+        ),
+        migrations.CreateModel(
+            name='ArticleDetailPlugin',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('allow_url_to_override_selection', models.BooleanField(default=False)),
+                ('article', models.ForeignKey(to='spe_blog.Article', on_delete=django.db.models.deletion.PROTECT)),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
             name='ArticlesListingPlugin',
@@ -73,6 +86,17 @@ class Migration(migrations.Migration):
                 ('all_url', models.CharField(max_length=250, null=True, verbose_name=b'Show All URL', blank=True)),
                 ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
                 ('articles', models.ManyToManyField(to='spe_blog.Article')),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
+        ),
+        migrations.CreateModel(
+            name='BreadCrumbPlugin',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('title', models.CharField(max_length=50)),
             ],
             options={
                 'abstract': False,
@@ -162,12 +186,23 @@ class Migration(migrations.Migration):
             bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
+            name='IssuesByYearPlugin',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
+        ),
+        migrations.CreateModel(
             name='Publication',
             fields=[
                 ('code', models.CharField(max_length=3, serialize=False, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=150)),
                 ('subscription_url', models.URLField(null=True, verbose_name='Subscription URL', blank=True)),
                 ('active', models.BooleanField(default=True)),
+                ('cms_url', cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for article detail page', blank=True, to='cms.Page', null=True)),
             ],
         ),
         migrations.CreateModel(
@@ -191,6 +226,11 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
+        ),
+        migrations.AddField(
+            model_name='issuesbyyearplugin',
+            name='publication',
+            field=models.ForeignKey(to='spe_blog.Publication'),
         ),
         migrations.AddField(
             model_name='issuesbypublicationplugin',
@@ -249,6 +289,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='article',
-            unique_together=set([('publication', 'print_volume', 'print_issue', 'slug')]),
+            unique_together=set([('publication', 'print_volume', 'print_issue', 'slug', 'date')]),
         ),
     ]
