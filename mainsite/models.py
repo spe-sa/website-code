@@ -75,9 +75,8 @@ class Topics(models.Model):
 # OGF subscription
 # HSE subscription
 class CustomerSubscription(models.Model):
-    code = models.CharField(max_length=20)
+    code = models.CharField(max_length=20, primary_key=True)
     description = models.CharField(max_length=100)
-    value = models.CharField(max_length=150, blank=True, null=True)
     sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
 
     def __unicode__(self):
@@ -105,15 +104,49 @@ class CustomerClassification(models.Model):
         # ('SUBSCRIPTION', 'Subscription'),  QUESTION: should subscriptions be their own table or here?
     )
     code = models.CharField(max_length=20, primary_key=True)
-    description = models.CharField(max_length=100)
-    type = models.CharField(max_length=20, choices=classificaton_types, default="MEMBERSHIP")
+    description = models.CharField(max_length=100, blank=True, null=True)
+    type = models.CharField(max_length=20, choices=classificaton_types, default="MEMBERSHIP", blank=True, null=True)
     sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
+    # code_value = models.CharField(max_length=100, blank=True, null=True)
+    category = models.CharField(max_length=25, blank=True, null=True)
 
     def __unicode__(self):
         return self.description
 
     class Meta:
         ordering = ['sort_order', 'description']
+
+
+# {     BIZTALK SYNC FIELDS FOR CUSTOMER
+#   "CustomerName": "Mr  Adedeji O Ogunbela",
+#   "CustomerNumber": "3354588",
+#   "Source": "MBR",
+#   "RecordType": "I",
+#   "Birthday": "1979-04-01T19:00:00-05:00",
+#   "Classification": "INDIVIDUAL",
+#   "NamePrefix": "Mr.",
+#   "FirstName": "Adedeji",
+#   "MiddleName": "Olabode",
+#   "LastName": "Ogunbela",
+#   "Nickname": "Adedeji",
+#   "FormalSalutation": "Mr. Adedeji O. Ogunbela",
+#   "AllowEmail": "Y",
+#   "Gender": "MALE",
+#   "originalJoinDate": "2008-05-21T19:00:00-05:00",
+#   "Address_1": null,
+#   "Address_2": null,
+#   "Address_3": null,
+#   "Address_4_SPE": null,
+#   "City": null,
+#   "State": null,
+#   "Country": null,
+#   "Zip": null,
+#   "PrimaryEmail": "dogunbela@hotmail.com",
+#   "MembershipStatus": "Unpaid Member",
+#   "Name_Suffix": null,
+#   "paidThroughDate": null,
+#   "contiguousJoinDate": null
+# }
 
 
 class Customer(models.Model):
@@ -123,20 +156,42 @@ class Customer(models.Model):
 
     id = models.CharField(max_length=12, primary_key=True)
     # name is assumed to be filled correctly by country etc
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+    name = models.CharField(max_length=300, blank=True, null=True)
+    prefix = models.CharField(max_length=50, blank=True, null=True)
+    suffix = models.CharField(max_length=20, blank=True, null=True)
+    first_name = models.CharField(max_length=80, blank=True, null=True)
+    middle_name = models.CharField(max_length=60, blank=True, null=True)
+    last_name = models.CharField(max_length=60, blank=True, null=True)
+    nickname = models.CharField(max_length=80, blank=True, null=True)
+    formal_salutation = models.CharField(max_length=180, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    gender = models.CharField(max_length=12, blank=True, null=True)
+    address1 = models.CharField(max_length=255, blank=True, null=True)
+    address2 = models.CharField(max_length=255, blank=True, null=True)
+    address3 = models.CharField(max_length=255, blank=True, null=True)
+    address4 = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
+    zip = models.CharField(max_length=100, blank=True, null=True)
+    allow_email = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
+    # membership_type = models.CharField(max_length=30)
+    birth_date = models.DateField(blank=True, null=True)
+    membership_status = models.CharField(max_length=50, blank=True, null=True)
+    paid_through_date = models.DateField(blank=True, null=True)
+    original_member_date = models.DateField(blank=True, null=True)
+    continuous_member_date = models.DateField(blank=True, null=True)
+    expected_grad_date = models.DateField(blank=True, null=True)
+
     primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", blank=True, null=True)
     secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", blank=True, null=True)
-    # membership_type = models.CharField(max_length=30)
-    paid_through_year = models.PositiveIntegerField(blank=True, null=True)
-    first_member_date = models.DateField(blank=True, null=True)
-    continuous_start_date = models.DateField(blank=True, null=True)
-    expected_grad_year = models.DateField(blank=True, null=True)
-    subscriptions = models.ManyToManyField(CustomerSubscription, related_name="customers", blank=True)
+    subscriptions = models.ManyToManyField(CustomerSubscription, through='CustomerSubscriptionJoin',
+                                           related_name="customers", blank=True)
     # classifications are internal classification to perform logic off of
-    classifications = models.ManyToManyField(CustomerClassification, related_name='customers',
-                                             blank=True)  # , through='CustomerClassificationJoin'
+    classifications = models.ManyToManyField(CustomerClassification, through='CustomerClassificationJoin',
+                                             related_name='customers', blank=True)
 
+    # ACHIEVEMENTS ARE NOW MERGED INTO CLASSIFICATIONS WITH TYPE 'ACHIEVEMENT'
     # # achievements are milestones that customers can achieve to gain notoriety
     # # (they are sortable and meant for display) subset of classifications for display
     # achievements = models.ManyToManyField(CustomerClassification, related_name='achievement_customers',
@@ -179,14 +234,36 @@ class Customer(models.Model):
         return self.id + " : " + self.name
 
 
-# class CustomerClassificationJoin(models.Model):
-#     customer = models.ForeignKey(Customer, related_name='classification_customer')
-#     classification = models.ForeignKey(CustomerClassification, related_name='classification_join')
-#     value = models.CharField(max_length=255, blank=True, null=True)
-#     sort_order = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
-#
-#     def __unicode__(self):
-#         return "%s : %s" % (self.customer.id, self.classification.code)
+class CustomerClassificationJoin(models.Model):
+    customer = models.ForeignKey(Customer, related_name='classification_customer')
+    classification = models.ForeignKey(CustomerClassification, related_name='classification_join')
+    value = models.CharField(max_length=255, blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
+    crm_id = models.CharField(max_length=100, blank=True, null=True)
+
+    def __unicode__(self):
+        return "%s : %s" % (self.customer.id, self.classification.code)
+
+    class Meta:
+        db_table = 'mainsite_customer_classifications'
+
+
+class CustomerSubscriptionJoin(models.Model):
+    customer = models.ForeignKey(Customer, related_name='subscription_customer')
+    subscription = models.ForeignKey(CustomerSubscription, related_name='subscription_join')
+    value = models.CharField(max_length=255, blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True)
+    end_date = models.DateTimeField(blank=True, null=True)
+    crm_id = models.CharField(max_length=100, blank=True, null=True)
+
+    def __unicode__(self):
+        return "%s : %s" % (self.customer.id, self.subscription.code)
+
+    class Meta:
+        db_table = 'mainsite_customer_subscriptions'
+
+
 #
 #
 # # # Dena's Awards: move to join table
