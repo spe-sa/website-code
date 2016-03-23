@@ -1,10 +1,11 @@
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.db import models
+from cms.models.fields import PageField
+from cms.models import CMSPlugin
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-from cms.models import CMSPlugin
 # using taggit for all our tagging
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
@@ -71,7 +72,11 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
+<<<<<<< Updated upstream
     url = models.CharField(max_length=255, verbose_name="URL for article detail page")
+=======
+    url = PageField(verbose_name = "URL for article detail page")
+>>>>>>> Stashed changes
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
