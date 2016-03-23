@@ -1,5 +1,6 @@
 import datetime
 from cms.models import CMSPlugin
+from cms.models import Page
 from django.db import models
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
@@ -47,7 +48,7 @@ class SpeLink(models.Model):
         help_text=_('A page has priority over an external URL'))
     external_url = models.URLField(
         _('External URL'), blank=True,
-        help_text=_('e.g. http://example.com/thank-you'))`
+        help_text=_('e.g. http://example.com/thank-you'))
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
