@@ -3,7 +3,7 @@
 ====================================================================== */
 @import 'vars';
 
-.tile, .tile-blue, .tile-white, .tile-alert {
+.tile, .tile-blue, .tile-white, .tile-alert, .eventsNearYou {
   //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
@@ -245,6 +245,35 @@
         top:            200px;
         left:           0;
         padding-bottom: 30px;
+      }
+    }
+  }
+}
+.eventsNearYou {
+
+
+  .locCurrent {
+    color:              $col-drkgrey;
+    font-size:          12px;
+    border-bottom:      1px solid $col-ogfnotsolightgrey;
+
+    .locName {
+      color:            $col-drkgrey;
+      font-weight:      $font-bold;
+    }
+  }
+  .eachEvent {
+    border-bottom:      1px solid $col-ogfnotsolightgrey;
+    padding-bottom:     5px;
+    .eventName {
+      font-weight:      $font-bold;
+    }
+    .eventDetails {
+      font-size:        12px;
+      text-align:       right;
+
+      .eventType {
+        font-weight:    $font-bold;
       }
     }
   }

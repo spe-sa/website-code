@@ -17,10 +17,10 @@ class EventsByCurrentIPPlugin(CMSPlugin):
     number = models.PositiveIntegerField(default=1)
     disciplines = models.ManyToManyField(Tier1Discipline)
     types = models.ManyToManyField(EventType)
-    radius = models.PositiveIntegerField(default=500, verbose_name = "Radius around location in km")
+    radius = models.PositiveIntegerField(default=500, verbose_name="Radius around location in km")
 
     def __unicode__(self):
-        return "Show " + str(self.number) + " events"
+        return "Showing " + str(self.number) + " events"
 
     def copy_relations(self, old_instance):
         self.disciplines = old_instance.disciplines.all()

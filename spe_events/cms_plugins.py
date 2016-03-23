@@ -10,6 +10,7 @@ from django.contrib.gis.geoip import GeoIP
 from .models import EventsByCurrentIPPlugin
 from .settings import EVENT_PERSONALIZATION_SERVER
 
+
 class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     model = EventsByCurrentIPPlugin
     allow_children = False
@@ -18,19 +19,21 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     name = _('Events near user')
     text_enabled = False
     render_template = 'spe_events/plugins/location.html'
-    #render_plugin = False
+
+    # render_plugin = False
 
     def render(self, context, instance, placeholder):
         g = GeoIP()
-        ip = context['request'].META.get('REMOTE_ADDR', None) 
+        # ip = context['request'].META.get('REMOTE_ADDR', None)
         ip = '192.152.183.2'
         if ip:
             loc = g.city(ip)
-            req_str = EVENT_PERSONALIZATION_SERVER + '?latitude=' + str(loc['latitude']) + '&longitude=' + str(loc['longitude']) + "&num=" + str(instance.number) + "&numKm=" + str(instance.radius)
-            req_str = req_str + "&discipline="
+            req_str = EVENT_PERSONALIZATION_SERVER + '?latitude=' + str(loc['latitude']) + '&longitude=' + str(
+                loc['longitude']) + "&num=" + str(instance.number) + "&numKm=" + str(instance.radius)
+            req_str += "&discipline="
             for discipline in instance.disciplines.all():
                 req_str = req_str + discipline.eva_code + ":"
-            req_str = req_str + "&eventtype="
+            req_str += "&eventtype="
             for type in instance.types.all():
                 req_str = req_str + type.name + ','
             headers = {'Accept': 'application/json'}
@@ -43,5 +46,6 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
             loc = None
         context.update({'location': loc})
         return context
+
 
 plugin_pool.register_plugin(ShowEventsByCurrentLocationPluginPlugin)
