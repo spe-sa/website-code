@@ -163,7 +163,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         if self.publication.cms_url:
-            page = Page.objects.get(pk=self.publication.cms_url)
+            page = Page.objects.get(pk=self.publication.cms_url.id)
             url = page.get_absolute_url() + "?art=" + str(self.id)
         else:
             url = reverse('detail', kwargs={'article_id': self.id})
