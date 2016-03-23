@@ -72,8 +72,7 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-    url = PageField(verbose_name="URL for article detail page")
-    # url = models.CharField(max_length=255, verbose_name="URL for article detail page")
+    cms_url = PageField(verbose_name = "URL for article detail page")
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -163,7 +162,8 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         if self.publication.url:
-            url = self.publication.url + "?art=" + str(self.id)
+            page = page.objects.get(pk=self.publication.cms_url)
+            url = page.get_absolute_url() + "?art=" + str(self.id)
         else:
             url = reverse('detail', kwargs={'article_id': self.id})
         return url
@@ -186,6 +186,7 @@ class Article(models.Model):
         if self.free_start and self.free_start <= now:
             return not self.free_stop or self.free_stop >= now
         return False
+
 
 
 class Editorial(models.Model):
