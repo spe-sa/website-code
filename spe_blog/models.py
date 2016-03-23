@@ -161,7 +161,7 @@ class Article(models.Model):
         return str(self.publication.code) + ": " + str(self.title)
 
     def get_absolute_url(self):
-        if self.publication.url:
+        if self.publication.cms_url:
             page = page.objects.get(pk=self.publication.cms_url)
             url = page.get_absolute_url() + "?art=" + str(self.id)
         else:
