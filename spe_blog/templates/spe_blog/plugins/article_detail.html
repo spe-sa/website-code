@@ -21,38 +21,33 @@
             <img src="{{article.picture.url}}" alt="{{article.alternate}}" class="img-responsive">
         </div>
     {% endif %}
+
         <div class="col-sm-12 articleBodyText">
 
 
+            {% if article.is_readable == True %}
 
-            <p>Free: {{ article.free }}</p>
-            <p>Date Now: {{ dateNow }}</p>
-            <p>Start Date: {{ article.free_start }}</p>
-            <p>End Date:
-                {% if article.free_stop %}
-                {{ article.free_stop }}
-                {% else %}
-                None
+                {% if article.show_paybox %}
+                    <div class="col-sm-12 becomeMember text-center">
+                        <p>You are have access to this full article to experience the outstanding content that is available to OGF subscibers and SPE members.</p>
+                        <p>Please <a href="">JOIN SPE</a> or <a href="">Subscribe to OGF</a></br>
+                            in order to gain full access to the rest that OGF has to offer.</p>
+                </div>
                 {% endif %}
-            </p>
 
-            {% if article.free == True %}
                 {{ article.article_text | safe }}
+
             {% else %}
-{#                {% if  %}#}
 
 
                 {{ article.introduction | safe }}...
+
                 <div class="col-sm-12 becomeMember text-center">To read the rest of the article, please<br>
                     <a href="">JOIN SPE</a> or <a href="">Subscribe to OGF</a>
                 </div>
 
 
-
             {% endif %}
-
-
-
 
 
         </div>

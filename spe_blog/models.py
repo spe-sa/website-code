@@ -118,8 +118,8 @@ class Article(models.Model):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     sponsored = models.BooleanField(default=False)
-    free = models.BooleanField(default=False)
-    free_start = models.DateField(verbose_name='Start Date', default=timezone.now)
+    free = models.BooleanField(default=False, verbose_name=u'Always Free')
+    free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
     title = models.CharField(max_length=250)
@@ -157,7 +157,7 @@ class Article(models.Model):
         get_latest_by = ['date']
 
     def __unicode__(self):
-        return str(self.publication.code) + ": " + self.title
+        return str(self.publication.code) + ": " + str(self.title)
 
     def get_absolute_url(self):
         if self.publication.url:
@@ -165,6 +165,26 @@ class Article(models.Model):
         else:
             url = reverse('detail', kwargs={'article_id': self.id})
         return url
+
+    def is_readable(self):
+        now = timezone.now().date()
+        if self.free is True:
+            return True
+        if self.free_start and self.free_stop and self.free_start < now < self.free_stop:
+            return True
+        if self.free_start and self.free_start < now:
+            return True
+        # here will go logic for membership viewing rights
+        return False
+
+    def show_paybox(self):
+        now = timezone.now().date()
+        if self.free:
+            return False
+        if self.free_start and self.free_start <= now:
+            return not self.free_stop or self.free_stop >= now
+        return False
+
 
 
 class Editorial(models.Model):
