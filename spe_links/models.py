@@ -42,7 +42,6 @@ class SpeLinkCategory(models.Model):
         return url
 
 
-
 @python_2_unicode_compatible  # only if you need to support Python 2
 class SpeLink(models.Model):
     category = models.ForeignKey(SpeLinkCategory, on_delete=models.CASCADE, null=True)
