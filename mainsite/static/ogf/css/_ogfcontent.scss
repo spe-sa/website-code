@@ -506,6 +506,19 @@
     background-color:   $col-ogfnotsolightgrey;
   }
 }
+.plusSymbol, .minusSymbol {
+  float:                right;
+  margin-right:         20px;
+}
+.issuebar .minusSymbol,
+.issuebar.collapsed .plusSymbol {
+    display: inline-block;
+}
+.issuebar.collapsed .minusSymbol,
+.issuebar .plusSymbol {
+    display: none;
+}
+
 .issueItem {
   padding:              15px;
 
@@ -575,20 +588,6 @@
     &:hover {
       color:            $col-white;
       background-color: $col-hrblue;
-    }
-  }
-}
-.becomeMember {
-  background-color:     $col-ogfred;
-  color:                $col-white;
-  padding:              15px;
-  margin:               15px 0;
-  font-size:            20px;
-  a {
-    color:              $col-ogfyellow;
-    font-weight:        $font-bold;
-    &:hover {
-      color:            $col-ogfblack;
     }
   }
 }

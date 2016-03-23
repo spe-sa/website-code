@@ -302,4 +302,23 @@
       color:            $col-white;
     }
   }
+  .votes {
+    color:              $col-white;
+    font-weight:        $font-bold;
+  }
+}
+
+.becomeMember {
+  background-color:     $col-ogfred;
+  color:                $col-white;
+  padding:              15px;
+  margin:               15px 0;
+  font-size:            20px;
+  a {
+    color:              $col-ogfyellow;
+    font-weight:        $font-bold;
+    &:hover {
+      color:            $col-ogfblack;
+    }
+  }
 }
