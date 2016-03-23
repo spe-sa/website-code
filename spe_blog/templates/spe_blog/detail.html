@@ -34,21 +34,5 @@
         </div>
     </div>
 
+{#    {% include 'include_hide_ads.html' %}#}
     {% include 'z_boostrap_size_indicator.html' %}
-
-    {% addtoblock "js" %}
-        <script type="text/javascript" charset="utf-8">
-            $( document ).ready(function() {
-
-                if ($("#adZone2").find("img").length > 0) {
-                    //do something
-                } else {
-                    // do something else
-                    $("#adRow2").hide(0);
-                }
-
-            });
-        </script>
-    {%  endaddtoblock %}
-
-{% endblock content %}

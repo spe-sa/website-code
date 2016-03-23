@@ -20,3 +20,5 @@
 {{ block.super }}
     <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">
 {% endblock web_fonts %}
+
+{% block last_instructions %}{% include 'z_boostrap_size_indicator.html' %}{% endblock last_instructions %}

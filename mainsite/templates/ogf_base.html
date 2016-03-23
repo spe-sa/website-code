@@ -145,23 +145,8 @@
     <!-- FOOTER END -->
         <!-- div id="testmessage">REPLACE THIS</div -->
 
-    {% addtoblock "js" %}
-        <script type="text/javascript" charset="utf-8">
-            $( document ).ready(function() {
+    {% include 'include_hide_ads.html' %}
 
-{#                $("#testmessage").text("BEEN REPLACED");#}
-
-                if ($("#adLeaderboard").find("img").length > 0) {
-                    //do something
-{#                    $("#adZone1").text("HAS IMAGE");#}
-                } else {
-                    // do something else
-                    $("#adZone1").hide(0);
-                }
-
-            });
-        </script>
-    {%  endaddtoblock %}
 
 {% endblock content_footer %}
 

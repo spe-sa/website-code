@@ -216,6 +216,36 @@
   }
 }
 
+.eventsNearYou {
+
+
+  .locCurrent {
+    color:              $col-spegrey;
+    font-size:          12px;
+    border-bottom:      1px solid $col-sprlghtgry;
+
+    .locName {
+      color:            $col-spegrey;
+      font-weight:      $font-bold;
+    }
+  }
+  .eachEvent {
+    border-bottom:      1px solid $col-sprlghtgry;
+    padding-bottom:     5px;
+    .eventName {
+      font-weight:      $font-bold;
+    }
+    .eventDetails {
+      font-size:        12px;
+      text-align:       right;
+
+      .eventType {
+        font-weight:    $font-bold;
+      }
+    }
+  }
+}
+
 
 //// background: #000 url(image.gif) no-repeat top left fixed;
 //.demoback {

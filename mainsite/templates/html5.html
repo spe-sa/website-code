@@ -62,5 +62,7 @@
     {# adding block js_inline to base cms template for overriding #}
     {% render_block "js" %}
 
+    {#    misc adds to bottom#}
+    {% block last_instructions %}{% endblock last_instructions %}
 </body>
 </html>
