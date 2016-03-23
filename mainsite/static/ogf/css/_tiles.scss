@@ -285,7 +285,7 @@
   h1 {
     color:              $col-white;
     font-size:          25px;
-    border-bottom:      1px dotted $col-basegrey;
+    border-bottom:      1px dotted grey;
     padding:            0 0 10px 0;
     margin:             0 0 10px 0;
   }
@@ -299,26 +299,6 @@
   a {
     color:              $col-speblue;
     &:hover {
-      color:            $col-white;
-    }
-  }
-  .radiogroup {
-    input {
-      margin-right:     20px;
-    }
-  }
-  .resultsTitleRow {
-    margin:             0 0 10px 0;
-    h3 {
-      margin:           0;
-    }
-  }
-  .result {
-    .reslabel {
-
-    }
-    .votes {
-      font-weight:      $font-bold;
       color:            $col-white;
     }
   }

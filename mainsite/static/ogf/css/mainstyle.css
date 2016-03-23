@@ -386,10 +386,6 @@ a:hover { text-decoration: none; }
 .tile-poll .btn { width: 100%; font-weight: 700; margin-top: 20px; }
 .tile-poll a { color: #26416c; }
 .tile-poll a:hover { color: white; }
-.tile-poll .radiogroup input { margin-right: 20px; }
-.tile-poll .resultsTitleRow { margin: 0 0 10px 0; }
-.tile-poll .resultsTitleRow h3 { margin: 0; }
-.tile-poll .result .votes { font-weight: 700; color: white; }
 
 /* =================================================================== */
 /* AD ZONES

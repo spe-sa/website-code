@@ -1,16 +1,15 @@
 {% load poll_tags i18n %}
 
 {% block results_header %}
-    <h1>{% trans "Results" %} for: {{ poll.question }}</h1>
-{% endblock results_header %}
-
+    <h3>{% trans "Results" %}</h3>
+{% endblock %}
 {% with poll.max_votes as max %}
   {% for choice in poll.choice_set.iterator %}
     {% block result %}
-        <div class="result row">
-          <div class="col-xs-1 col-xs-offset-1 votes">{{ choice.votes }}</div>
-          <div class="col-xs-9 reslabel">{{ choice.text }}</div>
-        </div>
+    <div class="result">
+      <span class="label">{{ choice.text }}</span>
+      <span class="votes">{{ choice.votes }}</span>
+    </div>
     {% endblock %}
   {% endfor %}
 {% endwith %}

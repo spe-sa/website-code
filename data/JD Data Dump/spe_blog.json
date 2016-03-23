@@ -2,7 +2,7 @@
     "fields": {
         "active": true,
         "subscription_url": "",
-        "cms_url": null,
+        "cms_url": 16,
         "name": "HSE Now"
     },
     "model": "spe_blog.publication",
@@ -11,7 +11,7 @@
     "fields": {
         "active": true,
         "subscription_url": "",
-        "cms_url": null,
+        "cms_url": 16,
         "name": "Journal of Petroleum Technology"
     },
     "model": "spe_blog.publication",
@@ -20,7 +20,7 @@
     "fields": {
         "active": true,
         "subscription_url": "http://www.spe.org",
-        "cms_url": null,
+        "cms_url": 17,
         "name": "Oil and Gas Facilities"
     },
     "model": "spe_blog.publication",
@@ -29,7 +29,7 @@
     "fields": {
         "active": true,
         "subscription_url": "",
-        "cms_url": null,
+        "cms_url": 16,
         "name": "The Way Ahead"
     },
     "model": "spe_blog.publication",
@@ -38,7 +38,7 @@
     "fields": {
         "active": true,
         "subscription_url": "",
-        "cms_url": null,
+        "cms_url": 16,
         "name": "Online"
     },
     "model": "spe_blog.publication",
