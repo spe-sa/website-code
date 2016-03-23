@@ -7,7 +7,7 @@
         {% endfor %}
 		</ul>
         {% if instance.category.get_absolute_url and instance.category.title %}
-		    <a class="see-all" id="{{ instance.category.class_name }}" href="{{ instace.category.get_abolute_url }}">All {{ instance.category.title }}<span></span></a>
+		    <a class="see-all" id="{{ instance.category.class_name }}" href="{{ instace.category.get_absolute_url }}">All {{ instance.category.title }}<span></span></a>
         {% endif %}
     </div>
 {% endif %}
