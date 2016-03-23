@@ -72,11 +72,7 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-<<<<<<< Updated upstream
-    url = models.CharField(max_length=255, verbose_name="URL for article detail page")
-=======
     url = PageField(verbose_name = "URL for article detail page")
->>>>>>> Stashed changes
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
