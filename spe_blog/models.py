@@ -73,7 +73,7 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-    cms_url = PageField(verbose_name = "URL for article detail page")
+    cms_url = PageField(verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
