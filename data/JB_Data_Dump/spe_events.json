@@ -1,0 +1,24 @@
+[{
+    "fields": {
+        "active": true,
+        "name": "Conference"
+    },
+    "model": "spe_events.eventtype",
+    "pk": 1
+}, {
+    "fields": {
+        "active": true,
+        "name": "Workshop"
+    },
+    "model": "spe_events.eventtype",
+    "pk": 2
+}, {
+    "fields": {
+        "types": [1, 2],
+        "radius": 1000,
+        "number": 4,
+        "disciplines": ["prd"]
+    },
+    "model": "spe_events.eventsbycurrentipplugin",
+    "pk": 273
+}]
