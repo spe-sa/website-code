@@ -1,9 +1,12 @@
 {% block poll_header %}
-<h1>{{ poll.question }}</h1>
+    <div class="tile-poll">
+    <h1>{{ poll.question }}</h1>
 {% endblock %}
 {% if can_vote %}
     {% include "cms/plugins/poll_form.html" %}
 {% else %}
     {% include "cms/plugins/poll_results.html" %}
 {% endif %}
-{% block poll_footer %}{% endblock %}
+{% block poll_footer %}
+    </div><!-- tile-poll end -->
+{% endblock %}
