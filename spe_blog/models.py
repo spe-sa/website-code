@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from cms.models.fields import PageField
 from cms.models import CMSPlugin
+from cms.model import Page
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -162,7 +163,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         if self.publication.cms_url:
-            page = Publication.objects.get(pk=self.publication.cms_url)
+            page = Page.objects.get(pk=self.publication.cms_url)
             url = page.get_absolute_url() + "?art=" + str(self.id)
         else:
             url = reverse('detail', kwargs={'article_id': self.id})
