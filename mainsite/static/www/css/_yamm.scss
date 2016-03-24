@@ -1,5 +1,4 @@
-/* *************************************** */
-/* *************************************** */
+/* =================================================================== */
 /*
  * Yamm!3
  * Y.et A.nother M.ega M.enu for Bootstrap
@@ -7,6 +6,8 @@
  *
  * SPE Menu styles
  */
+/* =================================================================== */
+
 @import 'vars';
 
 /* PRIMARY NAV BEGIN */
@@ -67,7 +68,7 @@
                 letter-spacing: -0.02em;
                 text-transform: uppercase;
                 font-weight: 600;
-                color: $col-speblack;
+                color: $col-black;
                 margin-bottom: 12px;
             }
             .more {
@@ -86,7 +87,7 @@
                 font-size: 15px;
                 line-height: 1;
                 font-weight: 700;
-                color: $col-speblack;
+                color: $col-black;
                 letter-spacing: -0.02em;
 
                 &:hover {

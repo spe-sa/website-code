@@ -304,6 +304,9 @@ a:hover { text-decoration: none; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
 
+.inLineBox { background-color: #f2efea; padding: 15px; margin: 20px 0; }
+.inLineBox h3 { padding: 0 0 15px 0; margin: 0 0 15px 0; border-bottom: 1px dotted #b4b4b9; font-size: 20px; font-weight: 700; }
+
 /* =================================================================== */
 /* TILES & BOXES
 ====================================================================== */

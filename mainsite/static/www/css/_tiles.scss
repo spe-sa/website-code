@@ -1,6 +1,6 @@
 /* =================================================================== */
-/* TILES & BOXES
-====================================================================== */
+/* TILES & BOXES                                                       */
+/* =================================================================== */
 @import 'vars';
 
 .tile, .tile-blue, .tile-lightblue, .tile-white, .tile-alert {
@@ -68,7 +68,7 @@
       letter-spacing:   .01rem;
 
       a {
-        color:          $col-spegrey;
+        color:          $col-darkgrey;
 
         &:visited {
         outline:        0;
@@ -90,7 +90,7 @@
       letter-spacing:   1px;
     }
     h3 {
-      color:            $col-speblack;
+      color:            $col-black;
       font-weight:      700;
       line-height:      1.1;
       margin-bottom:    8px;
@@ -134,7 +134,7 @@
   background-color:     $col-white;
 
   a {
-    color:              $col-speblack;
+    color:              $col-black;
   }
 
   .issueThumb {
@@ -181,7 +181,7 @@
     padding:            0;
   }
   .poiblurb {
-    color:              $col-speblack;
+    color:              $col-black;
     h3 {
       font-size:        15px;
       font-weight:      $font-bold;
@@ -220,12 +220,12 @@
 
 
   .locCurrent {
-    color:              $col-spegrey;
+    color:              $col-darkgrey;
     font-size:          12px;
     border-bottom:      1px solid $col-sprlghtgry;
 
     .locName {
-      color:            $col-spegrey;
+      color:            $col-darkgrey;
       font-weight:      $font-bold;
     }
   }

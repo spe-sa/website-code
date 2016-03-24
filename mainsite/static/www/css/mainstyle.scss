@@ -1,3 +1,4 @@
+/* =================================================================== */
 /**
  * Project: SPE.org Homepage
  * Author: JD Toony
@@ -6,6 +7,8 @@
  * Copyright 2016 Society of Petroleum Engineers, all rights reserved
  * style="display:block;z-index:9950;"
  */
+/* =================================================================== */
+
 @import 'vars';
 
 body {
@@ -30,9 +33,9 @@ a {
 /* ************************ */
 // GLOBAL
 @import 'yamm';
-@import 'speheader';
-@import 'spefooter';
-@import 'specontent';
+@import 'header';
+@import 'footer';
+@import 'content';
 @import 'tiles';
 
 /* *************************************** */
@@ -58,8 +61,8 @@ a {
 }
 .sponsored {
   padding:            3px 3px 3px 5px;
-  background-color:   $col-speyellow;
-  color:              $col-speblack;
+  background-color:   $col-yellow;
+  color:              $col-black;
   font-weight:        $font-bold;
   font-size:          12px;
   letter-spacing:     2px;

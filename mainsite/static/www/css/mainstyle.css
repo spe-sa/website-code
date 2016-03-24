@@ -1,4 +1,6 @@
+/* =================================================================== */
 /** Project: SPE.org Homepage Author: JD Toony Date: 2/28/16 Time: 12:38 9M Copyright 2016 Society of Petroleum Engineers, all rights reserved style="display:block;z-index:9950;" */
+/* =================================================================== */
 /* Base colors */
 /* greys */
 /* blues */
@@ -15,9 +17,9 @@ body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 a:hover { text-decoration: none; }
 
 /* ************************ */
-/* *************************************** */
-/* *************************************** */
+/* =================================================================== */
 /* Yamm!3 Y.et A.nother M.ega M.enu for Bootstrap http://geedmo.github.com/yamm3  SPE Menu styles */
+/* =================================================================== */
 /* Base colors */
 /* greys */
 /* blues */
@@ -36,7 +38,7 @@ a:hover { text-decoration: none; }
 .megarow .nav-col { border-right: 1px solid #e7e7e7; min-height: 220px; }
 .megarow .nav-col ul { margin: 0 0 25px; padding: 0; list-style: none; }
 .megarow .nav-col ul li { line-height: 16px; margin: 0 0 6px 0; font-size: 14px; }
-.megarow .nav-col ul li a { font-weight: 400; font-size: 14px; color: #37373a; display: block; text-decoration: none; margin-bottom: 0; }
+.megarow .nav-col ul li a { font-weight: 400; font-size: 14px; color: #57575a; display: block; text-decoration: none; margin-bottom: 0; }
 .megarow .nav-col ul li a:hover { color: #105cd0; }
 .megarow .nav-col ul .heading { line-height: 18px; font-size: 15px; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 600; color: #0C090A; margin-bottom: 12px; }
 .megarow .nav-col ul .more { font-weight: 600; }
@@ -72,9 +74,9 @@ a:hover { text-decoration: none; }
 /* YAMM MENU END */
 /* *************************************** */
 /* *************************************** */
-/* *************************************** */
-/* *************************************** */
-/** SPE HEADER INCLUDE */
+/* =================================================================== */
+/* HEADER
+====================================================================== */
 /* Base colors */
 /* greys */
 /* blues */
@@ -238,9 +240,12 @@ a:hover { text-decoration: none; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #57575a; }
 
+.inLineBox { background-color: #e7e7e7; padding: 15px; margin: 20px 0; }
+.inLineBox h3 { padding: 0 0 15px 0; margin: 0 0 15px 0; border-bottom: 1px dotted #57575a; font-size: 20px; font-weight: 700; }
+
 /* =================================================================== */
-/* TILES & BOXES
-====================================================================== */
+/* TILES & BOXES                                                       */
+/* =================================================================== */
 /* Base colors */
 /* greys */
 /* blues */

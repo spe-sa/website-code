@@ -1,8 +1,6 @@
-/* *************************************** */
-/* *************************************** */
-/**
- * SPE HEADER INCLUDE
- */
+/* =================================================================== */
+/* HEADER
+====================================================================== */
 @import 'vars';
 
 #spe-header {
@@ -89,7 +87,7 @@
 /* GLOBAL NAV */
 .global-nav {
     min-height: 31px;
-    border-bottom: 1px solid $col-speblack;
+    border-bottom: 1px solid $col-black;
     background-color: $col-suprdrkblue;
     margin: 0;
 
@@ -114,7 +112,7 @@
                 padding: 0 14px;
                 margin: 0 8px 0 0;
 
-                &:hover { color:$col-white;background-color:$col-speblack; }
+                &:hover { color:$col-white;background-color:$col-black; }
             }
         }
 

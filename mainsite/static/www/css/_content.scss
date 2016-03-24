@@ -21,7 +21,7 @@
   }
   .articleAuthorBox, .articleShares {
     height:             35px;
-    border-bottom:      1px dotted $col-speblack;
+    border-bottom:      1px dotted $col-black;
     margin-bottom:      15px;
     padding-right:      0;
     padding-left:       0;
@@ -57,17 +57,30 @@
     color:              $col-lInShare;
   }
   .fa-envelope-square {
-    color:              $col-spegrey;
+    color:              $col-darkgrey;
   }
   .fa-plus-square {
-    color:              $col-spegrey;
+    color:              $col-darkgrey;
   }
   .fa-facebook-square, .fa-twitter-square, .fa-linkedin-square, .fa-envelope-square, .fa-plus-square {
     cursor:             pointer;
     padding:            3px;
     &:hover {
       color:            $col-white;
-      background-color: $col-spegrey;
+      background-color: $col-darkgrey;
     }
+  }
+}
+.inLineBox {
+  background-color:     $col-sprlghtgry;
+  padding:              15px;
+  margin:               20px 0;
+
+  h3 {
+    padding:            0 0 15px 0;
+    margin:             0 0 15px 0;
+    border-bottom:      1px dotted $col-darkgrey;
+    font-size:          20px;
+    font-weight:        $font-bold;
   }
 }

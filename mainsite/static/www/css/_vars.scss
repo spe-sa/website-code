@@ -2,7 +2,7 @@
 $col-white:       white;
 $col-red:         red;
 $col-redtext:     #c63604;
-$col-speyellow:   #FDD017;
+$col-yellow:      #FDD017;
 
 /* greys */
 $col-darkgrey:    #37373a;
@@ -12,10 +12,10 @@ $col-pagegrey:    #f1f2f7;
 $col-boxshadow:   #b4b4b9;
 $col-steelgrey:   #9c9fac;
 $col-medgrey:     #868686;
-$col-spegrey:     #57575a;
+$col-darkgrey:    #57575a;
 $col-copygrey:    #3d4044;
 $col-footgrey:    #25282d;
-$col-speblack:    #0C090A;
+$col-black:       #0C090A;
 
 /* blues */
 $col-oldspeblue:  #336699;
@@ -27,9 +27,9 @@ $col-suprdrkblue: #1c1d22;
 $col-hoverblue:   #105cd0;
 
 /* Socials */
-$col-fbShare:           #3B5998;
-$col-lInShare:          #007BB5;
-$col-twitShare:         #00ACED;
+$col-fbShare:     #3B5998;
+$col-lInShare:    #007BB5;
+$col-twitShare:   #00ACED;
 
 /* Images */
 $img-logosprite: '/static/www/img/header-sprite1.2.png';
@@ -46,5 +46,5 @@ $font-regular:          400;
 $font-bold:             700;
 
 /* Misc */
-$dotted:                1px dotted $col-speblack;
+$dotted:                1px dotted $col-black;
 $blockDivider:          7px solid $col-lightgrey;
