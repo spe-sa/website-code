@@ -46,6 +46,7 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
                 pass
         else:
             loc = None
+        context.update({'IP': ip})
         context.update({'location': loc})
         return context
 

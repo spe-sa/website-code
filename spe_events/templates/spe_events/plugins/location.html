@@ -1,7 +1,7 @@
 {% load cms_tags sekizai_tags %}
 
 <div class="eventsNearYou">
-    <p class="locCurrent">Near to: <span class="locName">{{ location.city }}, {{ location.country_name }}</span></p>
+    <p class="locCurrent">Near to: <span class="locName">{{ IP }}-{{ location.city }}, {{ location.country_name }}</span></p>
 {% for event in events %}
     <p class="eachEvent">
         <a href="{{ event.url }}" class="eventName">Event: {{ event.name }}</a><br>
