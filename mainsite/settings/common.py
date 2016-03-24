@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'spe_styledlink',
     'request',
     'spe_events',
+    'djangocms_forms',
 )
 
 LANGUAGES = (
@@ -316,3 +317,20 @@ REQUEST_PLUGINS = (
 )
 
 EVENT_PERSONALIZATION_SERVER = ('http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3')
+
+# Djangocms_forms Configurations
+
+#DJANGOCMS_FORMS_RECAPTCHA_PUBLIC_KEY = '<recaptcha_site_key>'
+#DJANGOCMS_FORMS_RECAPTCHA_SECRET_KEY = '<recaptcha_secret_key>'
+
+DJANGOCMS_FORMS_PLUGIN_MODULE = ('Forms')
+DJANGOCMS_FORMS_PLUGIN_NAME = ('Form')
+
+DJANGOCMS_FORMS_DEFAULT_TEMPLATE = 'djangocms_forms/form_template/default.html'
+DJANGOCMS_FORMS_TEMPLATES = (
+    ('djangocms_forms/form_template/default.html', ('Default')),
+)
+
+DJANGOCMS_FORMS_USE_HTML5_REQUIRED = False
+
+DJANGOCMS_FORMS_WIDGET_CSS_CLASSES = {'__all__': ('form-control', ) }

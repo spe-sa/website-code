@@ -24,6 +24,7 @@ urlpatterns = i18n_patterns('',
     url(r'^localhost/logout/', 'mainsite.views.logout', name='logout'),
     url(r'^localhost/login/', 'mainsite.views.login', name='login'),
     url(r'^polls/', include('spe_polls.urls', namespace='polls')),
+    url(r'^forms/', include('djangocms_forms.urls')),
     url(r'^', include('cms.urls')),
 )
 
