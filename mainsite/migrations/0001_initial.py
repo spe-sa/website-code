@@ -162,10 +162,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Topics',
             fields=[
-                ('code', models.CharField(max_length=3, serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('code', models.CharField(max_length=10)),
                 ('name', models.CharField(max_length=150)),
                 ('active', models.BooleanField(default=True)),
-                ('discipline', models.ForeignKey(verbose_name=b'Discipline', to='mainsite.Tier1Discipline')),
             ],
             options={
                 'ordering': ['name'],

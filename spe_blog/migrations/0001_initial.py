@@ -13,9 +13,9 @@ import ckeditor_uploader.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '__first__'),
         ('taggit', '0002_auto_20150616_2121'),
         ('cms', '0013_urlconfrevision'),
+        ('mainsite', '0001_initial'),
     ]
 
     operations = [
@@ -137,17 +137,6 @@ class Migration(migrations.Migration):
                 ('template', models.CharField(default=b'spe_blog/plugins/editorial.html', max_length=255, choices=[(b'spe_blog/plugins/editorial.html', b'Editorial')])),
                 ('lnk', models.URLField(null=True, verbose_name=b'Link URL', blank=True)),
                 ('editorial', models.ManyToManyField(to='spe_blog.Editorial')),
-            ],
-            options={
-                'abstract': False,
-            },
-            bases=('cms.cmsplugin',),
-        ),
-        migrations.CreateModel(
-            name='EventsByCurrentLocationPlugin',
-            fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('number', models.PositiveIntegerField(default=1)),
             ],
             options={
                 'abstract': False,

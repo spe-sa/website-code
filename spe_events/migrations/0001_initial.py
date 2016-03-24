@@ -7,8 +7,8 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainsite', '__first__'),
         ('cms', '0013_urlconfrevision'),
+        ('mainsite', '0001_initial'),
     ]
 
     operations = [
