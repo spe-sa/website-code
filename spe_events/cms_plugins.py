@@ -25,7 +25,9 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         g = GeoIP()
         # ip = context['request'].META.get('REMOTE_ADDR', None)
-        ip = '192.152.183.2'
+        ip = context['request'].META.get('HTTP_X_REAL_IP', None)
+        if not ip:
+            ip = '192.152.183.2'
         if ip:
             loc = g.city(ip)
             req_str = EVENT_PERSONALIZATION_SERVER + '?latitude=' + str(loc['latitude']) + '&longitude=' + str(
