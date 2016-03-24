@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'google_tag_manager',
     'spe_contact',
     'spe_polls',
-    'spe_styledlink',
     'request',
     'spe_events',
     'djangocms_forms',
