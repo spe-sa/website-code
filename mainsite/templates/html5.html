@@ -21,6 +21,7 @@
     {% block js_base %}{% endblock js_base %}
     {#  Override block js_site to add javascript includes based on unique templates #}
     {% block js_site %}{% endblock js_site %}
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
     {# use addtoblock "css" to add inline css to this block #}
     {% render_block "css" %}
 </head>

@@ -273,6 +273,7 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
         'allowedContent': True,
         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'contentsCss': '/static/www/css/inline.css',
     'extraPlugins': ','.join(
             [
                 'div',
@@ -296,7 +297,7 @@ CKEDITOR_CONFIGS = {
 # CKEDITOR_SETTINGS = {
 #         "allowedContent": True
 # }
-
+# config.contentsCss = 'http://localhost:8000/static/www/css/inline.css';
 
 #REQUEST_TRAFFIC_MODULES = (
 #    'request.traffic.UniqueVisitor',
