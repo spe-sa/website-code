@@ -55,7 +55,7 @@ class Tier1Discipline(models.Model):
 
 
 class Topics(models.Model):
-    code = models.CharField(max_length=10, primary_key=True)
+    code = models.CharField(max_length=10)
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
 
