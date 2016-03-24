@@ -13,8 +13,7 @@ git clone https://github.com/spe-sa/website-code.git website
 
 ./manage.py loaddata data/auth_users.json (if localhost)
 
-./data/JB_Data_Dump/load_all_data.sh
-NOTE: change the JB_Data_Dump to whatever snapshot of data you want; in future will be a separate repository
+./data/load_all_data.sh
 
 ./manage.py runserver
 
