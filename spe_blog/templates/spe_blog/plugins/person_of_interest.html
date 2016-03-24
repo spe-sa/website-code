@@ -7,7 +7,7 @@
 {% for article in articles %}
 {#    {% if instance.hide_featured and not article.is_featured %}#}
     <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
-    <a href="{{ article.get_absolute_url }}" target="_blank">
+    <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap row">
             <div class="col-sm-3 poipic">
                 {% if article.picture and article.picture.url %}<img src="{{ article.picture.url }}" class="img-responsive"/>

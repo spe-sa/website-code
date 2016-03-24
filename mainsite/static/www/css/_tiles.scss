@@ -246,7 +246,50 @@
   }
 }
 
+.tile-poll {
+  background-color:     $col-textblue;
+  color:                $col-speblue;
 
+  h1 {
+    color:              $col-white;
+    font-size:          25px;
+    border-bottom:      1px dotted grey;
+    padding:            0 0 10px 0;
+    margin:             0 0 10px 0;
+  }
+
+  .btn {
+    width:              100%;
+    font-weight:        $font-bold;
+    margin-top:         20px;
+  }
+
+  a {
+    color:              $col-speblue;
+    &:hover {
+      color:            $col-white;
+    }
+  }
+  .votes {
+    color:              $col-white;
+    font-weight:        $font-bold;
+  }
+}
+
+.becomeMember {
+  background-color:     $col-textblue;
+  color:                $col-speblue;
+  padding:              15px;
+  margin:               15px 0;
+  font-size:            20px;
+  a {
+    color:              $col-white;
+    font-weight:        $font-bold;
+    &:hover {
+      color:            $col-footgrey;
+    }
+  }
+}
 //// background: #000 url(image.gif) no-repeat top left fixed;
 //.demoback {
 //  background-image: url($img-);

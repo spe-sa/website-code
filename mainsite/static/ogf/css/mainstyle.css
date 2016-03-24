@@ -276,6 +276,12 @@ a:hover { text-decoration: none; }
 .issuebar, .issueItem { cursor: pointer; }
 .issuebar:hover, .issueItem:hover { background-color: #e4e1d8; }
 
+.plusSymbol, .minusSymbol { float: right; margin-right: 20px; }
+
+.issuebar .minusSymbol, .issuebar.collapsed .plusSymbol { display: inline-block; }
+
+.issuebar.collapsed .minusSymbol, .issuebar .plusSymbol { display: none; }
+
 .issueItem { padding: 15px; }
 .issueItem .issueLink { color: #2a2a2a; font-weight: 700; }
 .issueItem .issueLink .issueDate { font-size: 15px; margin: 5px 0 0 0; }
@@ -297,10 +303,6 @@ a:hover { text-decoration: none; }
 .articleShares .fa-plus-square { color: #57575a; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
-
-.becomeMember { background-color: #d92226; color: white; padding: 15px; margin: 15px 0; font-size: 20px; }
-.becomeMember a { color: #fffb22; font-weight: 700; }
-.becomeMember a:hover { color: #2a2a2a; }
 
 /* =================================================================== */
 /* TILES & BOXES
@@ -386,6 +388,11 @@ a:hover { text-decoration: none; }
 .tile-poll .btn { width: 100%; font-weight: 700; margin-top: 20px; }
 .tile-poll a { color: #26416c; }
 .tile-poll a:hover { color: white; }
+.tile-poll .votes { color: white; font-weight: 700; }
+
+.becomeMember { background-color: #d92226; color: white; padding: 15px; margin: 15px 0; font-size: 20px; }
+.becomeMember a { color: #fffb22; font-weight: 700; }
+.becomeMember a:hover { color: #2a2a2a; }
 
 /* =================================================================== */
 /* AD ZONES

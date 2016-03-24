@@ -2,6 +2,7 @@
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -20,6 +21,7 @@ a:hover { text-decoration: none; }
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -76,6 +78,7 @@ a:hover { text-decoration: none; }
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -164,6 +167,7 @@ a:hover { text-decoration: none; }
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -210,6 +214,7 @@ a:hover { text-decoration: none; }
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -217,12 +222,29 @@ a:hover { text-decoration: none; }
 
 .section-heading { display: block; margin: 0 0 10px 0; text-transform: uppercase; color: #365d98; font-size: 24px; font-weight: 400; letter-spacing: -1px; }
 
+.articleDetail .articleTitle { padding-bottom: 20px; }
+.articleDetail .articleAuthorBox, .articleDetail .articleShares { height: 35px; border-bottom: 1px dotted #0C090A; margin-bottom: 15px; padding-right: 0; padding-left: 0; }
+.articleDetail .articleAuthorBox { font-size: 12px; font-weight: 700; padding-top: 10px; }
+.articleDetail .sponsored { margin: 0 0 15px 0 !important; }
+
+.articlePicture { margin-bottom: 20px; }
+
+.articleShares { font-size: 18px; padding-top: 5px; }
+.articleShares .fa-facebook-square { color: #3B5998; }
+.articleShares .fa-twitter-square { color: #00ACED; }
+.articleShares .fa-linkedin-square { color: #007BB5; }
+.articleShares .fa-envelope-square { color: #57575a; }
+.articleShares .fa-plus-square { color: #57575a; }
+.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
+.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #57575a; }
+
 /* =================================================================== */
 /* TILES & BOXES
 ====================================================================== */
 /* Base colors */
 /* greys */
 /* blues */
+/* Socials */
 /* Images */
 /* Fonts */
 /* Misc */
@@ -287,6 +309,17 @@ a:hover { text-decoration: none; }
 .eventsNearYou .eachEvent .eventName { font-weight: 700; }
 .eventsNearYou .eachEvent .eventDetails { font-size: 12px; text-align: right; }
 .eventsNearYou .eachEvent .eventDetails .eventType { font-weight: 700; }
+
+.tile-poll { background-color: #a3bce4; color: #26416c; }
+.tile-poll h1 { color: white; font-size: 25px; border-bottom: 1px dotted grey; padding: 0 0 10px 0; margin: 0 0 10px 0; }
+.tile-poll .btn { width: 100%; font-weight: 700; margin-top: 20px; }
+.tile-poll a { color: #26416c; }
+.tile-poll a:hover { color: white; }
+.tile-poll .votes { color: white; font-weight: 700; }
+
+.becomeMember { background-color: #a3bce4; color: #26416c; padding: 15px; margin: 15px 0; font-size: 20px; }
+.becomeMember a { color: white; font-weight: 700; }
+.becomeMember a:hover { color: #25282d; }
 
 /* *************************************** */
 /* *************************************** */

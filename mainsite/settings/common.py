@@ -191,7 +191,8 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     # Customize this
-    ('www_3col.html', 'WWW 3 Column page. Homepage'),
+    ('www_3col.html', 'WWW 3 Column page & Homepage'),
+    ('www_subpage.html', 'WWW SubPage'),
     ('ogf_home.html', 'OGF Homepage'),
     ('ogf_subpage.html', 'OGF SubPage'),
     ('jpt_home.html', 'JPT Homepage'),

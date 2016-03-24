@@ -18,7 +18,7 @@
           {% if article.picture and article.picture.url %}
               {% if forloop.first %}
                   <div class="item active">
-                      <a href="{{ article.get_absolute_url }}" target="_blank">
+                      <a href="{{ article.get_absolute_url }}">
                           <img src={{ article.picture.url }}>
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
@@ -28,7 +28,7 @@
                   </div>
               {% else %}
                   <div class="item">
-                      <a href="{{ article.get_absolute_url }}" target="_blank">
+                      <a href="{{ article.get_absolute_url }}">
                           <img src={{ article.picture.url }}>
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
