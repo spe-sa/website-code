@@ -23,8 +23,7 @@ from django.contrib.gis.geoip import GeoIP
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
     Issue, IssuesByPublicationPlugin, 
-    Editorial, EditorialPlugin, 
-    BreadCrumbPlugin, Publication,
+    Editorial, EditorialPlugin, Publication,
     IssuesByYearPlugin
 )
 from .forms import ArticleSelectionForm, EditorialSelectionForm
@@ -205,18 +204,18 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
-class ShowBreadCrumbPlugin(CMSPluginBase):
-    model = BreadCrumbPlugin
-    allow_children = False
-    cache = False
-    module = _('Publications')
-    name = _('Bread Crumb')
-    text_enabled = False
-    render_template = 'spe_blog/plugins/bread_crumb.html'
-
-    def render(self, context, instance, placeholder):
-        context.update({'title': instance.title})
-        return context
+# class ShowBreadCrumbPlugin(CMSPluginBase):
+#     model = BreadCrumbPlugin
+#     allow_children = False
+#     cache = False
+#     module = _('Publications')
+#     name = _('Bread Crumb')
+#     text_enabled = False
+#     render_template = 'spe_blog/plugins/bread_crumb.html'
+#
+#     def render(self, context, instance, placeholder):
+#         context.update({'title': instance.title})
+#         return context
 
 class ShowIssuesByYearPlugin(CMSPluginBase):
     model = IssuesByYearPlugin
@@ -237,5 +236,5 @@ plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
-plugin_pool.register_plugin(ShowBreadCrumbPlugin)
+# plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
