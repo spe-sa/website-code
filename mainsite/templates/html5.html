@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {# Add Third-party plugins and apps here. Like JQuery & bootstrap #}
     {% block plugs_apps %}{% endblock plugs_apps %}
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
     {# Add Third-party fonts here. Like google fonts, TypeKit, FontAwesome #}
     {% block web_fonts %}
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css'>
@@ -21,7 +22,6 @@
     {% block js_base %}{% endblock js_base %}
     {#  Override block js_site to add javascript includes based on unique templates #}
     {% block js_site %}{% endblock js_site %}
-    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
     {# use addtoblock "css" to add inline css to this block #}
     {% render_block "css" %}
 </head>
