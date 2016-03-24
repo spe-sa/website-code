@@ -5,9 +5,9 @@
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 body { font-family: 'Open Sans', sans-serif; background-color: #f1f2f7; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
@@ -24,9 +24,9 @@ a:hover { text-decoration: none; }
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 /* PRIMARY NAV BEGIN */
 @media (min-width: 767px) { .thumbnail { margin: 0; } }
 .navbar { min-height: 54px; border-top: 1px solid #365d98; background-color: #26416c; margin: 0; border-radius: 0; }
@@ -81,9 +81,9 @@ a:hover { text-decoration: none; }
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 #spe-header { border-bottom: 4px solid #e0e4eb; }
 
 #logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span { background: url("/static/www/img/header-sprite1.2.png") no-repeat; }
@@ -170,9 +170,9 @@ a:hover { text-decoration: none; }
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 #spe-footer { background-color: #25282d; padding: 25px 0; width: 100%; }
 #spe-footer ul, #spe-footer li { margin: 0; padding: 0; }
 #spe-footer li { white-space: nowrap; display: inline-block; }
@@ -217,9 +217,9 @@ a:hover { text-decoration: none; }
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 .content-area { margin-top: 30px; }
 
 .section-heading { display: block; margin: 0 0 10px 0; text-transform: uppercase; color: #365d98; font-size: 24px; font-weight: 400; letter-spacing: -1px; }
@@ -240,9 +240,6 @@ a:hover { text-decoration: none; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #57575a; }
 
-.inLineBox { background-color: #e7e7e7; padding: 15px; margin: 20px 0; }
-.inLineBox h3 { padding: 0 0 15px 0; margin: 0 0 15px 0; border-bottom: 1px dotted #57575a; font-size: 20px; font-weight: 700; }
-
 /* =================================================================== */
 /* TILES & BOXES                                                       */
 /* =================================================================== */
@@ -250,9 +247,9 @@ a:hover { text-decoration: none; }
 /* greys */
 /* blues */
 /* Socials */
-/* Images */
 /* Fonts */
 /* Misc */
+/* Images */
 .tile, .tile-blue, .tile-lightblue, .tile-white, .tile-alert { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
 
 .tile-alert { background-color: #c63604; color: white; }
