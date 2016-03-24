@@ -326,13 +326,6 @@ class IssuesByPublicationPlugin(CMSPlugin):
         return buf
 
 
-class EventsByCurrentLocationPlugin(CMSPlugin):
-    number = models.PositiveIntegerField(default=1)
-
-    def __unicode__(self):
-        return "Show " + str(self.number) + " events"
-
-
 class BreadCrumbPlugin(CMSPlugin):
     title = models.CharField(max_length=50)
 

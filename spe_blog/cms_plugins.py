@@ -24,7 +24,6 @@ from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
     Issue, IssuesByPublicationPlugin, 
     Editorial, EditorialPlugin, 
-    EventsByCurrentLocationPlugin, 
     BreadCrumbPlugin, Publication,
     IssuesByYearPlugin
 )
@@ -185,33 +184,6 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 #         self.render_template = instance.template
 #         return context
 
-class ShowMeetingByUserPlugin(CMSPluginBase):
-    model = EventsByCurrentLocationPlugin
-    allow_children = False
-    cache = False
-    module = _('Personalize')
-    name = _('Events Near You')
-    text_enabled = False
-    render_template = 'spe_blog/plugins/location.html'
-    #render_plugin = False
-
-    def render(self, context, instance, placeholder):
-        g = GeoIP()
-        ip = context['request'].META.get('REMOTE_ADDR', None) 
-        ip = '192.152.183.2'
-        if ip:
-            loc = g.city(ip)
-            req_str = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList2/1059104?ip='+ ip + '&num=' + str(instance.number)+ '&numKm='
-            try:
-                r = requests.get(req_str)
-                context.update({'meetings': r.json()})
-            except:
-                pass
-        else:
-            loc = None
-        #loc = g.city('google.com')
-        context.update({'location': loc})
-        return context
 
 class ShowIssuesByPublicationPlugin(CMSPluginBase):
     model = IssuesByPublicationPlugin
@@ -264,7 +236,6 @@ plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
-plugin_pool.register_plugin(ShowMeetingByUserPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
