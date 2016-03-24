@@ -53,14 +53,14 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
          now = timezone.now()
          art = get_object_or_404(Article, pk=instance.article.id)
          if instance.allow_url_to_override_selection:
-             qs = urlparse(context.get('request').get_full_path()).query
-             if qs:
-                 q = parse_qs(qs)
-                 try:
-                     pk = int(q['art'][0])
-                     art = get_object_or_404(Article, pk=pk)
-                 except:
-                     raise Http404("Article not found")
+             q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+             if q and q[0][0] == 'art':
+                 pk = int(q[0][1])
+                 if pk:
+                     try:
+                         art = get_object_or_404(Article, pk=pk)
+                     except:
+                         raise Http404("Article not found")
          context.update({'article': art})
          context.update({'dateNow': now})
          self.render_template = 'spe_blog/plugins/article_detail.html' 
