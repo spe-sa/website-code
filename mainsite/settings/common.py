@@ -272,6 +272,24 @@ CKEDITOR_CONFIGS = {
         'height': 500,
         'width': '100%',
         'allowedContent': True,
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+    'extraPlugins': ','.join(
+            [
+                'div',
+                'autolink',
+                'autoembed',
+                'embedsemantic',
+                'autogrow',
+                # 'devtools',
+                'widget',
+                'lineutils',
+                'clipboard',
+                'dialog',
+                'dialogui',
+                'elementspath',
+                'codesnippet',
+                'mathjax',
+            ]),
     }
 }
 
@@ -279,14 +297,6 @@ CKEDITOR_CONFIGS = {
 #         "allowedContent": True
 # }
 
-SPE_STYLEDLINK_MODELS = [
-    {
-        'type': 'CMS Pages',
-        'class_path': 'cms.models.Page',
-        'manager_method': 'public',
-        'filter': { 'publisher_is_draft': False },
-    }
-]
 
 #REQUEST_TRAFFIC_MODULES = (
 #    'request.traffic.UniqueVisitor',
