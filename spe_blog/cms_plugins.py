@@ -23,7 +23,9 @@ from django.contrib.gis.geoip import GeoIP
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
     Issue, IssuesByPublicationPlugin, 
-    Editorial, EditorialPlugin, Publication,
+    Editorial, EditorialPlugin, 
+    BreadCrumbPlugin,
+    Publication,
     IssuesByYearPlugin
 )
 from .forms import ArticleSelectionForm, EditorialSelectionForm
@@ -204,18 +206,18 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
-# class ShowBreadCrumbPlugin(CMSPluginBase):
-#     model = BreadCrumbPlugin
-#     allow_children = False
-#     cache = False
-#     module = _('Publications')
-#     name = _('Bread Crumb')
-#     text_enabled = False
-#     render_template = 'spe_blog/plugins/bread_crumb.html'
-#
-#     def render(self, context, instance, placeholder):
-#         context.update({'title': instance.title})
-#         return context
+class ShowBreadCrumbPlugin(CMSPluginBase):
+    model = BreadCrumbPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Bread Crumb')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/bread_crumb.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'title': instance.title})
+        return context
 
 class ShowIssuesByYearPlugin(CMSPluginBase):
     model = IssuesByYearPlugin
