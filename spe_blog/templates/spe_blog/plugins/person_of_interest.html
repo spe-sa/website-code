@@ -1,11 +1,14 @@
 {% load i18n %}
 
 {% if articles.count > 1 %}
-    <div class="row greyback" style="margin-bottom:25px;">
+    <div class="row greyback">
 {% endif %}
 
 {% for article in articles %}
-{#    {% if instance.hide_featured and not article.is_featured %}#}
+    {% if forloop.counter|divisibleby:2 %}{% else %}
+        <div class="row">
+    {% endif %}
+
     <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
     <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap row">
@@ -20,7 +23,15 @@
         </div>
     </a>
     </article>
-{#    {% endif %}#}
+
+    {% if forloop.counter|divisibleby:2 %}
+    </div>
+    {% else %}
+        {% if forloop.last %}
+            </div>
+        {% endif %}
+    {% endif %}
+
 {% empty %}
     <p class="well">{% trans "No items available" %}</p>
 {% endfor %}
