@@ -40,8 +40,8 @@ logger = logging.getLogger(__name__)
 
 class Tier1Discipline(models.Model):
     # number = models.CharField(max_length=12, unique=True)
-    code = models.CharField(max_length=3, primary_key=True)
-    crm_code = models.CharField(max_length=20, blank=True, null=True, verbose_name="CRM code")
+    code = models.CharField(max_length=50, primary_key=True)
+    crm_code = models.CharField(max_length=50, blank=True, null=True, verbose_name="CRM code")
     eva_code = models.CharField(max_length=100, blank=True, null=True, verbose_name="EVA code")
     name = models.CharField(max_length=150)
     active = models.BooleanField(default=True)
@@ -181,8 +181,8 @@ class Customer(models.Model):
     continuous_member_date = models.DateField(blank=True, null=True)
     expected_grad_date = models.DateField(blank=True, null=True)
 
-    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", blank=True, null=True)
-    secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", blank=True, null=True)
+    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", on_delete=models.SET_NULL, blank=True, null=True)
+    secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", on_delete=models.SET_NULL, blank=True, null=True)
     subscriptions = models.ManyToManyField(CustomerSubscription, through='CustomerSubscriptionJoin',
                                            related_name="customers", blank=True)
     # classifications are internal classification to perform logic off of
