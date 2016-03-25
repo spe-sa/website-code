@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+import django.db.models.deletion
 import ckeditor.fields
 
 
@@ -137,8 +138,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tier1Discipline',
             fields=[
-                ('code', models.CharField(max_length=3, serialize=False, primary_key=True)),
-                ('crm_code', models.CharField(max_length=20, null=True, verbose_name=b'CRM code', blank=True)),
+                ('code', models.CharField(max_length=50, serialize=False, primary_key=True)),
+                ('crm_code', models.CharField(max_length=50, null=True, verbose_name=b'CRM code', blank=True)),
                 ('eva_code', models.CharField(max_length=100, null=True, verbose_name=b'EVA code', blank=True)),
                 ('name', models.CharField(max_length=150)),
                 ('active', models.BooleanField(default=True)),
@@ -180,12 +181,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customer',
             name='primary_discipline',
-            field=models.ForeignKey(related_name='primary_customers', blank=True, to='mainsite.Tier1Discipline', null=True),
+            field=models.ForeignKey(related_name='primary_customers', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='mainsite.Tier1Discipline', null=True),
         ),
         migrations.AddField(
             model_name='customer',
             name='secondary_discipline',
-            field=models.ForeignKey(related_name='secondary_customers', blank=True, to='mainsite.Tier1Discipline', null=True),
+            field=models.ForeignKey(related_name='secondary_customers', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='mainsite.Tier1Discipline', null=True),
         ),
         migrations.AddField(
             model_name='customer',
