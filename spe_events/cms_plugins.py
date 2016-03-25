@@ -30,23 +30,24 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
             ip = '216.58.195.46'
         if ip:
             loc = g.city(ip)
-            req_str = EVENT_PERSONALIZATION_SERVER + '?latitude=' + str(loc['latitude']) + '&longitude=' + str(
-                loc['longitude']) + "&num=" + str(instance.number) + "&numKm=" + str(instance.radius)
-            req_str += "&discipline="
-            for discipline in instance.disciplines.all():
-                req_str = req_str + discipline.eva_code + ":"
-            req_str += "&eventtype="
-            for type in instance.types.all():
-                req_str = req_str + type.name + ','
-            headers = {'Accept': 'application/json'}
-            try:
-                r = requests.get(req_str, headers=headers)
-                context.update({'events': r.json()})
-            except:
-                pass
+            if loc:
+                req_str = EVENT_PERSONALIZATION_SERVER
+                req_str += '?latitude=' + str(loc['latitude']) + '&longitude=' + str(loc['longitude'])
+                req_str += '&num=' + str(instance.number) + '&numKm=' + str(instance.radius)
+                req_str += '&discipline='
+                for discipline in instance.disciplines.all():
+                    req_str = req_str + discipline.eva_code + ':'
+                req_str += '&eventtype='
+                for type in instance.types.all():
+                    req_str = req_str + type.name + ','
+                headers = {'Accept': 'application/json'}
+                try:
+                    r = requests.get(req_str, headers=headers)
+                    context.update({'events': r.json()})
+                except:
+                    pass
         else:
             loc = None
-        context.update({'IP': ip})
         context.update({'location': loc})
         return context
 

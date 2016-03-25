@@ -144,9 +144,8 @@ class Article(models.Model):
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
-
-    # add taggit tags, auto-tags, and categories
     topics = models.ManyToManyField(Topics, verbose_name="Topic")
+    # add taggit tags, auto-tags, and categories
 
     tags = TaggableManager(verbose_name="Tags", through=Tagged, blank=True)
     tags.rel.related_name = "+"
