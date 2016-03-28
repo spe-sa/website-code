@@ -285,6 +285,7 @@ CKEDITOR_CONFIGS = {
                 'elementspath',
                 'codesnippet',
                 'mathjax',
+                'maximize',
             ]),
     }
 }

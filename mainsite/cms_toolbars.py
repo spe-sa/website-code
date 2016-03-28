@@ -16,4 +16,4 @@ class PollToolbar(CMSToolbar):
         menu.add_sideframe_item(_('Add Article'), url=url)
         url = reverse('admin:spe_blog_article_changelist')
         menu.add_modal_item(_('List & Edit Articles'), url=url)
-        admin_menu.add_break('poll-break', position=menu)
+        admin_menu.add_break('article-break', position=menu)
