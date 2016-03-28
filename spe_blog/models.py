@@ -284,7 +284,7 @@ class ArticlesListingPlugin(CMSPlugin):
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True)
-    personalized = models.BooleanField(default=True)
+    personalized = models.BooleanField(default=False)
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
