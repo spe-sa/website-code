@@ -158,7 +158,7 @@ class Article(models.Model):
         get_latest_by = ['date']
 
     def __unicode__(self):
-        return str(self.publication.code) + ": " + str(self.title)
+        return self.publication.code + ": " + str(self.title)
 
     def get_absolute_url(self):
         if self.publication.cms_url:
