@@ -338,3 +338,5 @@ a:hover { text-decoration: none; }
 .margZero { margin: 0; }
 
 .sponsored { padding: 3px 3px 3px 5px; background-color: #FDD017; color: #0C090A; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
+
+.cke_maximized { margin-top: 50px !important; }
