@@ -269,6 +269,8 @@ CKEDITOR_CONFIGS = {
         'allowedContent': True,
         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
         'contentsCss': '/static/www/css/inline.css',
+        'toolbarLocation': 'top',
+        'resize_maxHeight': 500,
     'extraPlugins': ','.join(
             [
                 'div',
