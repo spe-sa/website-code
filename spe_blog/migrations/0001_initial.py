@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('teaser', models.CharField(max_length=250)),
                 ('author', models.CharField(max_length=250)),
                 ('introduction', ckeditor_uploader.fields.RichTextUploadingField(help_text="Introductory paragraph or 'teaser.' for paywal", null=True, blank=True)),
-                ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=25000)),
+                ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=35000)),
                 ('date', models.DateField(default=django.utils.timezone.now, verbose_name=b'Publication Date')),
                 ('picture', models.ImageField(upload_to=b'regular_images', null=True, verbose_name='Picture for article', blank=True)),
                 ('picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
                 ('cnt', models.PositiveIntegerField(default=5, verbose_name='Number of Articles')),
                 ('order_by', models.CharField(default=b'-article_hits', max_length=20, choices=[(b'-article_hits', b'Most Read'), (b'-date', b'Most Recent')])),
                 ('starting_with', models.PositiveIntegerField(default=1)),
-                ('personalized', models.BooleanField(default=True)),
+                ('personalized', models.BooleanField(default=False)),
                 ('all_url', models.URLField(null=True, verbose_name=b'Show All URL', blank=True)),
                 ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
             ],
@@ -111,6 +111,16 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name_plural': 'Categories',
+            },
+        ),
+        migrations.CreateModel(
+            name='Coverage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=100, verbose_name=b'Coverage')),
+            ],
+            options={
+                'verbose_name_plural': 'Coverage',
             },
         ),
         migrations.CreateModel(
@@ -258,6 +268,11 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='article',
+            name='coverage',
+            field=models.ManyToManyField(to='spe_blog.Coverage', blank=True),
+        ),
+        migrations.AddField(
+            model_name='article',
             name='disciplines',
             field=models.ManyToManyField(to='mainsite.Tier1Discipline', blank=True),
         ),
@@ -274,7 +289,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='article',
             name='topics',
-            field=models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topic'),
+            field=models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topics of Interest', blank=True),
         ),
         migrations.AlterUniqueTogether(
             name='article',
