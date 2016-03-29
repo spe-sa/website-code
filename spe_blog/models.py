@@ -143,7 +143,7 @@ class Article(models.Model):
     introduction = RichTextUploadingField(blank=True, null=True,
                                           help_text=u'Introductory paragraph or \'teaser.\' for paywal')
     article_text = RichTextUploadingField(
-        max_length=25000,
+        max_length=35000,
         help_text=u'Full text of the article.'
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
