@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Article, Category, Publication, Issue, Editorial
+from .models import Article, Category, Publication, Issue, Editorial, Coverage
 from mainsite.models import Tier1Discipline
 
 
@@ -47,3 +47,4 @@ admin.site.register(Editorial)
 admin.site.register(Category)
 admin.site.register(Publication)
 admin.site.register(Issue)
+admin.site.register(Coverage)
