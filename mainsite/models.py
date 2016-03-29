@@ -38,6 +38,34 @@ logger = logging.getLogger(__name__)
 #    template = models.CharField(max_length=255, choices=PAGE_TEMPLATES, default=DEFAULT_PAGE_TEMPLATE)
 
 
+class Regions(models.Model):
+    region_name = models.CharField(max_length=50, unique=True)
+
+    def __unicode__(self):
+        return self.region_name
+
+    class Meta:
+        ordering = ['region_name']
+        verbose_name = "Region"
+
+
+class Countries(models.Model):
+    country_name = models.CharField(max_length=50, unique=True)
+    country_ISO = models.CharField(max_length=2, unique=True)
+    country_UN = models.CharField(max_length=3, unique=True)
+    country_UN_number = models.PositiveIntegerField()
+    country_dial_code = models.CharField(max_length=20)
+    region = models.ForeignKey(Regions, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.country_name
+
+    class Meta:
+        ordering = ['country_name']
+        verbose_name = "Country"
+        verbose_name_plural = "Countries"
+
+
 class Tier1Discipline(models.Model):
     # number = models.CharField(max_length=12, unique=True)
     code = models.CharField(max_length=50, primary_key=True)

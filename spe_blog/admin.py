@@ -15,7 +15,7 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'coverage', 'topics', 'tags'
             ),
         }),
         (_('Image'), {

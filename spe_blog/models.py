@@ -114,6 +114,17 @@ class Category(models.Model):
         return self.name
 
 
+class Coverage(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Coverage")
+
+    class Meta:
+        verbose_name_plural = "Coverage"
+
+    def __unicode__(self):
+        return self.name
+
+
+
 class Article(models.Model):
     # NOTE: add blank=True if we can have articles not assigned to a publication
     publication = models.ForeignKey(Publication)
@@ -144,7 +155,8 @@ class Article(models.Model):
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
-    topics = models.ManyToManyField(Topics, verbose_name="Topic")
+    coverage = models.ManyToManyField(Coverage, blank=True)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
 
     tags = TaggableManager(verbose_name="Tags", through=Tagged, blank=True)
