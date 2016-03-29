@@ -39,6 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 class Regions(models.Model):
+    region_code = models.CharField(max_length=15, unique=True)
     region_name = models.CharField(max_length=50, unique=True)
 
     def __unicode__(self):
