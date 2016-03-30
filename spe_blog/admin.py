@@ -34,6 +34,15 @@ class ArticleAdmin(admin.ModelAdmin):
                 ('free_start', 'free_stop'),
             ),
         }),
+        (_('Author'), {
+            'classes': ('collapse',),
+            'fields': (
+                'author_name',
+                ('author_picture', 'author_picture_alternate'),
+                'author_bio',
+            ),
+        }),
+
     )
 
 #    def get_form(self, request, obj=None, **kwargs):
