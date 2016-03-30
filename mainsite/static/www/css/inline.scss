@@ -1,6 +1,10 @@
 @import 'vars';
 
+html, body, h1, h3, h2, h4, p {
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
 .wwwInLineBox {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   background-color:     $col-sprlghtgry;
   padding:              15px;
   margin:               20px 0;

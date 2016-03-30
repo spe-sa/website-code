@@ -258,7 +258,7 @@ LOGGING = {
 EMAIL_HOST = "relaydev.spe.org"
 EMAIL_DEFAULT_FROM = "support@spe.org"
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-MANAGERS = (('IT', 'webmaster@spe.org'), )
+MANAGERS = (('IT', 'webmaster@spe.org'),)
 
 CKEDITOR_CONFIGS = {
     "default": {
@@ -271,7 +271,9 @@ CKEDITOR_CONFIGS = {
         'contentsCss': '/static/www/css/inline.css',
         'toolbarLocation': 'top',
         'resize_maxHeight': 500,
-    'extraPlugins': ','.join(
+        'font_defaultLabel': 'Arial',
+        'font_names': 'Arial;Times New Roman;Verdana',
+        'extraPlugins': ','.join(
             [
                 'div',
                 'autolink',
@@ -297,7 +299,7 @@ CKEDITOR_CONFIGS = {
 # }
 # config.contentsCss = 'http://localhost:8000/static/www/css/inline.css';
 
-#REQUEST_TRAFFIC_MODULES = (
+# REQUEST_TRAFFIC_MODULES = (
 #    'request.traffic.UniqueVisitor',
 #    'request.traffic.UniqueVisit',
 #    'request.traffic.Hit',
@@ -310,7 +312,7 @@ CKEDITOR_CONFIGS = {
 #    'request.traffic.Unsecure',
 #    'request.traffic.User',
 #    'request.traffic.UniqueUser',
-#)
+# )
 
 REQUEST_PLUGINS = (
     'request.plugins.TrafficInformation',
@@ -328,8 +330,8 @@ EVENT_PERSONALIZATION_SERVER = ('http://iisdev1/iappsint/p13ndemo/api/I2KTaxonom
 
 # Djangocms_forms Configurations
 
-#DJANGOCMS_FORMS_RECAPTCHA_PUBLIC_KEY = '<recaptcha_site_key>'
-#DJANGOCMS_FORMS_RECAPTCHA_SECRET_KEY = '<recaptcha_secret_key>'
+# DJANGOCMS_FORMS_RECAPTCHA_PUBLIC_KEY = '<recaptcha_site_key>'
+# DJANGOCMS_FORMS_RECAPTCHA_SECRET_KEY = '<recaptcha_secret_key>'
 
 DJANGOCMS_FORMS_PLUGIN_MODULE = ('Forms')
 DJANGOCMS_FORMS_PLUGIN_NAME = ('Form')
@@ -341,6 +343,6 @@ DJANGOCMS_FORMS_TEMPLATES = (
 
 DJANGOCMS_FORMS_USE_HTML5_REQUIRED = False
 
-DJANGOCMS_FORMS_WIDGET_CSS_CLASSES = {'__all__': ('form-control', ) }
+DJANGOCMS_FORMS_WIDGET_CSS_CLASSES = {'__all__': ('form-control',)}
 
 CMS_PERMISSION = True
