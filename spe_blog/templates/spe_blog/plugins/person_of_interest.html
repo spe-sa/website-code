@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n cms_tags sekizai_tags %}
 
 {% if articles.count > 1 %}
     <div class="row greyback">
@@ -12,10 +12,19 @@
     <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
     <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap row">
-            <div class="col-sm-3 poipic">
-                {% if article.picture and article.picture.url %}<img src="{{ article.picture.url }}" class="img-responsive"/>
-                {% endif %}
-            </div>
+
+
+{#            <div class="col-sm-3 poipic">#}
+{#                {% if article.picture and article.picture.url %}<img src="{{ article.picture.url }}" class="img-responsive"/>#}
+{#                {% endif %}#}
+{#            </div>#}
+
+        {% if article.picture and article.picture.url %}
+            <div class="col-sm-3 poipic" style="background-image: url({{ article.picture.url }})"></div>
+        {% else %}
+            <div class="col-sm-3 poipic"></div>
+        {% endif %}
+
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
                 <p>{{ article.teaser }}</p>
@@ -43,3 +52,17 @@
 {% if articles.count > 1 %}
     </div>
 {% endif %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            var poipicwidth = $('.poipic').width();
+            $('.poipic').height(poipicwidth * 1.2);
+
+            $( window ).resize(function() {
+                poipicwidth = $('.poipic').width();
+                $('.poipic').height(poipicwidth * 1.2);
+            });
+        });
+    </script>
+{%  endaddtoblock %}

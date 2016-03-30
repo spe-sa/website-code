@@ -397,13 +397,15 @@ a:hover { text-decoration: none; }
 .becomeMember a { color: #fffb22; font-weight: 700; }
 .becomeMember a:hover { color: #2a2a2a; }
 
-.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft { overflow: hidden; -webkit-background-size: cover; background-size: cover; background-position: center; }
+.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .poipic { overflow: hidden; -webkit-background-size: cover; background-size: cover; background-position: center; }
 
 .detailImgWrap { height: 250px; }
 
 .detailImgWrapFull { height: 350px; }
 
 .detailImgWrapLeft { min-height: 250px; }
+
+.poipic { min-height: 125px; }
 
 /* =================================================================== */
 /* AD ZONES
