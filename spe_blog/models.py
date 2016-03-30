@@ -28,6 +28,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/picture_with_text_below_full.html', 'Image with text below full width'),
     ('spe_blog/plugins/person_of_interest.html', 'Persons of Interest'),
     ('spe_blog/plugins/carousel.html', 'Carousel'),
+    ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
@@ -133,6 +134,15 @@ class Article(models.Model):
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
+    author_name = models.CharField(max_length=250, blank=True, null=True)
+    author_picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
+    author_picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
+    author_bio = RichTextField(
+        max_length=500,
+        help_text=u'Author Bio',
+        blank=True, null=True
+    )
+
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True)

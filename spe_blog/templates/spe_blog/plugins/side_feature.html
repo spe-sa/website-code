@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% for article in articles %}
+    {% if forloop.first %}
+        <a href={{ link }}>
+        <div class="tile-editorial row">
+            <div class="col-xs-12 title1">{{ article.title }}</div>
+            <div class="col-xs-12 dottedspacer">&nbsp;</div>
+            <div class="col-xs-12 title2">{{ article.teaser }}</div>
+            <div class="col-xs-12 excerpt">{{ article.introduction | safe }}</div>
+            <div class="col-xs-12 dottedspacer">&nbsp;</div>
+            {% if article.author_picture %}
+                <div class="col-xs-4 authorImg"><img class="img-responsive" src={{article.author_picture.url}}></div>
+            {% endif %}
+            <div class="col-xs-8 authorBio">{{ article.author_bio | safe }}</div>
+        </div>
+        </a>
+    {% endif %}
+{% empty %}
+    <p class="well">{% trans "No editorial available" %}</p>
+{% endfor %}
