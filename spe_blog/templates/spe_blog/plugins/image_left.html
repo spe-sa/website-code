@@ -13,7 +13,7 @@
             {% else %}
                 <div class="story-text col-sm-12">
             {% endif %}
-                <span class="pub-date">{{ article.date }}</span>
+                <span class="pub-date">{{ article.date|date:"d F Y" }}</span>
                 <h3>{{ article.title }}</h3>
                 {% if article.sponsored %}
                 <p><span class="sponsored">SPONSORED</span></p>

@@ -15,7 +15,7 @@
                         </figure>
                     {% endif %}
                     <div class="story-text">
-                        <span class="pub-date">{{ article.date }}</span>
+                        <span class="pub-date">{{ article.date|date:"d F Y" }}</span>
                         <h3>{{ article.title }}</h3>
 
                         {% if article.sponsored %}
