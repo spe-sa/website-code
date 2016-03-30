@@ -6,7 +6,8 @@
             <div class="story-wrap">
                 {% if article.picture and article.picture.url %}
                     <figure class="thumb">
-                        <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>
+{#                        <div class="img-wrap detailImgWrapFull"><img src="{{ article.picture.url }}" class="detailArticleImage"/></div>#}
+                        <div class="img-wrap detailImgWrapFull" style="background-image: url({{ article.picture.url }})"></div>
                     </figure>
                 {% endif %}
                 <div class="story-text">
