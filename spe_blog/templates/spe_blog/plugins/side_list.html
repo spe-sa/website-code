@@ -1,13 +1,11 @@
 {% load i18n %}
 
 {% for article in articles %}
-    {% if forloop.first %}
         <a href={{ article.get_absolute_url}}>
         <div class="tile-editorial row">
             <div class="col-xs-12 title1">{{ article.title }}</div>
         </div>
         </a>
-    {% endif %}
 {% empty %}
     <p class="well">{% trans "No editorial available" %}</p>
 {% endfor %}

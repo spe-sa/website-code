@@ -28,7 +28,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/picture_with_text_below_full.html', 'Image with text below full width'),
     ('spe_blog/plugins/person_of_interest.html', 'Persons of Interest'),
     ('spe_blog/plugins/carousel.html', 'Carousel'),
-    ('spe_blog/plugins/side_list.html', 'Editorial Sidebari Article List'),
+    ('spe_blog/plugins/side_list.html', 'Editorial Sidebar Article List'),
     ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
 )
 
