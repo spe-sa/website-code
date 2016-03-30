@@ -42,25 +42,6 @@ EDITORIAL_TEMPLATES = (
 )
 
 
-# Moved to tables
-# PUBS =(
-#     ('JPT', 'Journal of Petroleum Technology'),
-#     ('TWA', 'The Way Ahead'),
-#     ('OGF', 'Oil and Gas Facilities'),
-#     ('HSE', 'HSE Now'),
-#     ('WWW', 'Online'),
-# )
-# DISCIPLINES =(
-#     ('D&C', 'Drilling and Completions'),
-#     ('HSE', 'Health, Safety, Security, Environment & Social Responsibility'),
-#     ('M&I', 'Management & Information'),
-#     ('P&O', 'Production & Operations'),
-#     ('PFC', 'Projects, Facilities & Construciton'),
-#     ('RDD', 'Reservoir Description & Dynamics'),
-#     ('UND', 'Undeclared'),
-# )
-
-
 class Tagged(TaggedItemBase):
     content_object = models.ForeignKey("Article")
 
