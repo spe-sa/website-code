@@ -26,7 +26,8 @@ from .models import (
     Editorial, EditorialPlugin, 
     BreadCrumbPlugin,
     Publication,
-    IssuesByYearPlugin
+    IssuesByYearPlugin,
+    MarketoFormPlugin
 )
 from .forms import ArticleSelectionForm, EditorialSelectionForm
 import sys
@@ -233,6 +234,22 @@ class ShowIssuesByYearPlugin(CMSPluginBase):
         context.update({'issues': issues})
         return context
 
+
+class ShowMarketoFormPlugin(CMSPluginBase):
+    model = MarketoFormPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Marketo Form')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/marketo_form.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instructions': instance.instructions})
+        context.update({'marketo_form': instance.marketo_form})
+        context.update({'thank_you': instance.thank_you})
+        return context
+
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowEditorialPlugin)
@@ -240,3 +257,4 @@ plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
+plugin_pool.register_plugin(ShowMarketoFormPlugin)

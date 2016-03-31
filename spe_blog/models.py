@@ -403,3 +403,11 @@ class IssuesByYearPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.publication.name
+
+class MarketoFormPlugin(CMSPlugin):
+    instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
+    thank_you = models.CharField(max_length=200, verbose_name="Confirmation text")
+    marketo_form = models.PositiveIntegerField(verbose_name="Marketo form code")
+
+    def __unicode__(self):
+        return "Marketo Form: " + str(self.marketo_form)
