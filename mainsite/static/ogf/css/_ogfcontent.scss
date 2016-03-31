@@ -605,3 +605,24 @@
     font-weight:        $font-bold;
   }
 }
+
+table {
+  margin:               0 10px 10px 0;
+  border-color:         $col-ogflightgrey;
+
+  caption {
+    font-size:          12px;
+    padding:            5px;
+    background-color:   $col-ogflightgrey;
+  }
+  tbody {
+    border-color:       $col-ogflightgrey;
+  }
+  th {
+    background-color:   $col-ogfblue;
+    color:              $col-white;
+  }
+  th, td {
+    padding:            5px;
+  }
+}
