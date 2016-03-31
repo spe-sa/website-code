@@ -407,6 +407,14 @@ a:hover { text-decoration: none; }
 
 .poipic { min-height: 125px; }
 
+.sideListBoxTitle { font-weight: 700; font-size: 25px; padding-bottom: 10px; border-bottom: 1px dotted white; margin-bottom: 10px; }
+
+.sideListItem { margin-bottom: 10px; }
+.sideListItem .sideListTitle { font-weight: 700; }
+.sideListItem .sideListTitle a:hover { color: #808bcf; }
+.sideListItem .sideListDate { color: #fffb22; font-weight: 300; }
+.sideListItem .sideListLock { color: #d92226; }
+
 /* =================================================================== */
 /* AD ZONES
 ====================================================================== */
