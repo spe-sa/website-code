@@ -44,19 +44,41 @@ EDITORIAL_TEMPLATES = (
 )
 
 
-class Tagged(TaggedItemBase):
+class Article_Tagged(TaggedItemBase):
+    content_object = models.ForeignKey("Article")
+
+class Article_TaggedAuto(TaggedItemBase):
     content_object = models.ForeignKey("Article")
 
 
-class TaggedAuto(TaggedItemBase):
-    content_object = models.ForeignKey("Article")
+class Brief_Tagged(TaggedItemBase):
+    content_object = models.ForeignKey("Brief")
+
+class Brief_TaggedAuto(TaggedItemBase):
+    content_object = models.ForeignKey("Brief")
+
+
+class ArticleDetailPage(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    url = PageField(verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    
+    def __unicode__(self):
+        return self.name
+
+class BriefDetailPage(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    url = PageField(verbose_name = "URL for brief detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    
+    def __unicode__(self):
+        return self.name
 
 
 class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-    cms_url = PageField(verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    article_url = models.ForeignKey(ArticleDetailPage, verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    brief_url = models.ForeignKey(BriefDetailPage, verbose_name = "URL for person of interest detail page", blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -109,7 +131,6 @@ class Coverage(models.Model):
 
 
 class Article(models.Model):
-    # NOTE: add blank=True if we can have articles not assigned to a publication
     publication = models.ForeignKey(Publication)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
@@ -151,25 +172,27 @@ class Article(models.Model):
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
 
-    tags = TaggableManager(verbose_name="Tags", through=Tagged, blank=True)
+    tags = TaggableManager(verbose_name="Tags", through=Article_Tagged, blank=True)
     tags.rel.related_name = "+"
-    auto_tags = TaggableManager(verbose_name="Auto Tags", through=TaggedAuto, blank=True)
+    auto_tags = TaggableManager(verbose_name="Auto Tags", through=Article_TaggedAuto, blank=True)
     auto_tags.rel.related_name = "+"
 
     class Meta:
         unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
         ordering = ['-date', 'title']
         get_latest_by = ['date']
+        verbose_name = "article"
+
 
     def __unicode__(self):
         return self.publication.code + ": " + str(self.title)
 
     def get_absolute_url(self):
-        if self.publication.cms_url:
-            page = Page.objects.get(pk=self.publication.cms_url.id)
+        if self.publication.article_url:
+            page = Page.objects.get(pk=self.publication.article_url.url.id)
             url = page.get_absolute_url() + "?art=" + str(self.id)
         else:
-            url = reverse('detail', kwargs={'article_id': self.id})
+            url = reverse('article_detail', kwargs={'article_id': self.id})
         return url
 
     def is_readable(self):
@@ -191,6 +214,57 @@ class Article(models.Model):
             return not self.free_stop or self.free_stop >= now
         return False
 
+
+class Brief(models.Model):
+    publication = models.ForeignKey(Publication)
+    print_volume = models.PositiveIntegerField(blank=True, null=True)
+    print_issue = models.PositiveIntegerField(blank=True, null=True)
+    free = models.BooleanField(default=True, verbose_name=u'Always Free')
+    free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
+    free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=100,
+                            help_text='SEO Friendly name that is unique for use in URL', )
+    teaser = models.CharField(max_length=250, blank=True, null=True)
+    article_text = RichTextUploadingField(
+        max_length=2000,
+        help_text=u'Full text of the article.'
+    )
+    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
+    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
+    article_hits = models.PositiveIntegerField(default=0, editable=False)
+    article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+    # add taggit tags, auto-tags, and categories
+    tags = TaggableManager(verbose_name="Tags", through=Brief_Tagged, blank=True)
+    tags.rel.related_name = "+"
+    auto_tags = TaggableManager(verbose_name="Auto Tags", through=Brief_TaggedAuto, blank=True)
+    auto_tags.rel.related_name = "+"
+
+    class Meta:
+        unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
+        ordering = ['-date', 'title']
+        get_latest_by = ['date']
+        verbose_name = "brief"
+
+    def __unicode__(self):
+        return self.publication.code + ": " + str(self.title)
+
+    def get_absolute_url(self):
+        if self.publication.brief_url:
+            page = Page.objects.get(pk=self.publication.brief_url.url.id)
+            url = page.get_absolute_url() + "?art=" + str(self.id)
+        else:
+            url = reverse('brief_detail', kwargs={'brief_id': self.id})
+        return url
+
+    def is_readable(self):
+        return True
+
+    def show_paybox(self):
+        return False
 
 
 class Editorial(models.Model):
@@ -268,18 +342,6 @@ class EditorialPlugin(CMSPlugin):
 # self.articles = old_instance.articles.all()
 
 
-# class ArticlePlugin(CMSPlugin):
-#     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-#     article = models.ForeignKey(Article, on_delete=models.PROTECT)
-#     # if user enters url and text then we display the show all link with these values
-#     # todo - change charfield to our URLField that takes relative paths
-#     all_url = models.CharField("Show All URL", max_length=250, blank=True, null=True)
-#     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-#
-#     def __unicode__(self):
-#         return u"%s" % self.article
-#
-#
 class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
