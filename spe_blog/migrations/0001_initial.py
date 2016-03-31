@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=250)),
                 ('slug', models.SlugField(help_text=b'SEO Friendly name that is unique for use in URL', max_length=100)),
                 ('teaser', models.CharField(max_length=250)),
-                ('author', models.CharField(max_length=250)),
+                ('author', models.CharField(max_length=250, null=True, blank=True)),
                 ('introduction', ckeditor_uploader.fields.RichTextUploadingField(help_text="Introductory paragraph or 'teaser.' for paywal", null=True, blank=True)),
                 ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=35000)),
                 ('date', models.DateField(default=django.utils.timezone.now, verbose_name=b'Publication Date')),
@@ -40,13 +40,48 @@ class Migration(migrations.Migration):
                 ('picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
                 ('picture_caption', models.CharField(max_length=250, null=True, verbose_name='Picture caption', blank=True)),
                 ('picture_attribution', models.CharField(max_length=255, null=True, verbose_name='Picture attribution', blank=True)),
+                ('author_name', models.CharField(max_length=250, null=True, blank=True)),
+                ('author_picture', models.ImageField(upload_to=b'authors', null=True, verbose_name='Picture of Author', blank=True)),
+                ('author_picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
+                ('author_bio', ckeditor.fields.RichTextField(help_text='Author Bio', max_length=500, null=True, blank=True)),
                 ('article_hits', models.PositiveIntegerField(default=0, editable=False)),
                 ('article_last_viewed', models.DateTimeField(null=True, editable=False, blank=True)),
             ],
             options={
                 'ordering': ['-date', 'title'],
                 'get_latest_by': ['date'],
+                'verbose_name': 'article',
             },
+        ),
+        migrations.CreateModel(
+            name='Article_Tagged',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('content_object', models.ForeignKey(to='spe_blog.Article')),
+                ('tag', models.ForeignKey(related_name='spe_blog_article_tagged_items', to='taggit.Tag')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='Article_TaggedAuto',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('content_object', models.ForeignKey(to='spe_blog.Article')),
+                ('tag', models.ForeignKey(related_name='spe_blog_article_taggedauto_items', to='taggit.Tag')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='ArticleDetailPage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(unique=True, max_length=150)),
+                ('url', cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for article detail page', blank=True, to='cms.Page', null=True)),
+            ],
         ),
         migrations.CreateModel(
             name='ArticleDetailPlugin',
@@ -64,7 +99,7 @@ class Migration(migrations.Migration):
             name='ArticlesListingPlugin',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/picture_with_text_below_full.html', b'Image with text below full width'), (b'spe_blog/plugins/person_of_interest.html', b'Persons of Interest'), (b'spe_blog/plugins/carousel.html', b'Carousel')])),
+                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/picture_with_text_below_full.html', b'Image with text below full width'), (b'spe_blog/plugins/person_of_interest.html', b'Persons of Interest'), (b'spe_blog/plugins/carousel.html', b'Carousel'), (b'spe_blog/plugins/side_list.html', b'Editorial Sidebar Article List'), (b'spe_blog/plugins/side_feature.html', b'Editorial Sidebar')])),
                 ('cnt', models.PositiveIntegerField(default=5, verbose_name='Number of Articles')),
                 ('order_by', models.CharField(default=b'-article_hits', max_length=20, choices=[(b'-article_hits', b'Most Read'), (b'-date', b'Most Recent')])),
                 ('starting_with', models.PositiveIntegerField(default=1)),
@@ -81,7 +116,7 @@ class Migration(migrations.Migration):
             name='ArticlesPlugin',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/picture_with_text_below_full.html', b'Image with text below full width'), (b'spe_blog/plugins/person_of_interest.html', b'Persons of Interest'), (b'spe_blog/plugins/carousel.html', b'Carousel')])),
+                ('template', models.CharField(default=b'spe_blog/plugins/image_left.html', max_length=255, choices=[(b'spe_blog/plugins/image_left.html', b'Image on left'), (b'spe_blog/plugins/overlay.html', b'Image with caption overlay'), (b'spe_blog/plugins/picture_with_text_below.html', b'Image with text below'), (b'spe_blog/plugins/picture_with_text_below_full.html', b'Image with text below full width'), (b'spe_blog/plugins/person_of_interest.html', b'Persons of Interest'), (b'spe_blog/plugins/carousel.html', b'Carousel'), (b'spe_blog/plugins/side_list.html', b'Editorial Sidebar Article List'), (b'spe_blog/plugins/side_feature.html', b'Editorial Sidebar')])),
                 ('order_by', models.CharField(default=b'-article_hits', max_length=20, verbose_name=b'Otherwise order by', choices=[(b'-article_hits', b'Most Read'), (b'-date', b'Most Recent')])),
                 ('all_url', models.CharField(max_length=250, null=True, verbose_name=b'Show All URL', blank=True)),
                 ('all_text', models.CharField(max_length=50, null=True, verbose_name=b'Show All Text', blank=True)),
@@ -102,6 +137,61 @@ class Migration(migrations.Migration):
                 'abstract': False,
             },
             bases=('cms.cmsplugin',),
+        ),
+        migrations.CreateModel(
+            name='Brief',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('print_volume', models.PositiveIntegerField(null=True, blank=True)),
+                ('print_issue', models.PositiveIntegerField(null=True, blank=True)),
+                ('free', models.BooleanField(default=True, verbose_name='Always Free')),
+                ('free_start', models.DateField(null=True, verbose_name=b'Start Date', blank=True)),
+                ('free_stop', models.DateField(null=True, verbose_name=b'End Date', blank=True)),
+                ('title', models.CharField(max_length=250)),
+                ('slug', models.SlugField(help_text=b'SEO Friendly name that is unique for use in URL', max_length=100)),
+                ('teaser', models.CharField(max_length=250, null=True, blank=True)),
+                ('article_text', ckeditor_uploader.fields.RichTextUploadingField(help_text='Full text of the article.', max_length=2000)),
+                ('date', models.DateField(default=django.utils.timezone.now, verbose_name=b'Publication Date')),
+                ('picture', models.ImageField(upload_to=b'regular_images', null=True, verbose_name='Picture for article', blank=True)),
+                ('picture_alternate', models.CharField(max_length=50, null=True, verbose_name='Picture alternate text', blank=True)),
+                ('article_hits', models.PositiveIntegerField(default=0, editable=False)),
+                ('article_last_viewed', models.DateTimeField(null=True, editable=False, blank=True)),
+            ],
+            options={
+                'ordering': ['-date', 'title'],
+                'get_latest_by': ['date'],
+                'verbose_name': 'brief',
+            },
+        ),
+        migrations.CreateModel(
+            name='Brief_Tagged',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('content_object', models.ForeignKey(to='spe_blog.Brief')),
+                ('tag', models.ForeignKey(related_name='spe_blog_brief_tagged_items', to='taggit.Tag')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='Brief_TaggedAuto',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('content_object', models.ForeignKey(to='spe_blog.Brief')),
+                ('tag', models.ForeignKey(related_name='spe_blog_brief_taggedauto_items', to='taggit.Tag')),
+            ],
+            options={
+                'abstract': False,
+            },
+        ),
+        migrations.CreateModel(
+            name='BriefDetailPage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(unique=True, max_length=150)),
+                ('url', cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for brief detail page', blank=True, to='cms.Page', null=True)),
+            ],
         ),
         migrations.CreateModel(
             name='Category',
@@ -201,30 +291,9 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(unique=True, max_length=150)),
                 ('subscription_url', models.URLField(null=True, verbose_name='Subscription URL', blank=True)),
                 ('active', models.BooleanField(default=True)),
-                ('cms_url', cms.models.fields.PageField(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for article detail page', blank=True, to='cms.Page', null=True)),
+                ('article_url', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for article detail page', blank=True, to='spe_blog.ArticleDetailPage', null=True)),
+                ('brief_url', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name=b'URL for person of interest detail page', blank=True, to='spe_blog.BriefDetailPage', null=True)),
             ],
-        ),
-        migrations.CreateModel(
-            name='Tagged',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content_object', models.ForeignKey(to='spe_blog.Article')),
-                ('tag', models.ForeignKey(related_name='spe_blog_tagged_items', to='taggit.Tag')),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='TaggedAuto',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content_object', models.ForeignKey(to='spe_blog.Article')),
-                ('tag', models.ForeignKey(related_name='spe_blog_taggedauto_items', to='taggit.Tag')),
-            ],
-            options={
-                'abstract': False,
-            },
         ),
         migrations.AddField(
             model_name='issuesbyyearplugin',
@@ -240,6 +309,31 @@ class Migration(migrations.Migration):
             model_name='issue',
             name='publication',
             field=models.ForeignKey(to='spe_blog.Publication'),
+        ),
+        migrations.AddField(
+            model_name='brief',
+            name='auto_tags',
+            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Brief_TaggedAuto', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Auto Tags'),
+        ),
+        migrations.AddField(
+            model_name='brief',
+            name='category',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, blank=True, to='spe_blog.Category', null=True),
+        ),
+        migrations.AddField(
+            model_name='brief',
+            name='publication',
+            field=models.ForeignKey(to='spe_blog.Publication'),
+        ),
+        migrations.AddField(
+            model_name='brief',
+            name='tags',
+            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Brief_Tagged', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Tags'),
+        ),
+        migrations.AddField(
+            model_name='brief',
+            name='topics',
+            field=models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topics of Interest', blank=True),
         ),
         migrations.AddField(
             model_name='articleslistingplugin',
@@ -259,7 +353,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='article',
             name='auto_tags',
-            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.TaggedAuto', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Auto Tags'),
+            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Article_TaggedAuto', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Auto Tags'),
         ),
         migrations.AddField(
             model_name='article',
@@ -284,12 +378,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='article',
             name='tags',
-            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Tagged', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Tags'),
+            field=taggit.managers.TaggableManager(to='taggit.Tag', through='spe_blog.Article_Tagged', blank=True, help_text='A comma-separated list of tags.', verbose_name=b'Tags'),
         ),
         migrations.AddField(
             model_name='article',
             name='topics',
             field=models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topics of Interest', blank=True),
+        ),
+        migrations.AlterUniqueTogether(
+            name='brief',
+            unique_together=set([('publication', 'print_volume', 'print_issue', 'slug', 'date')]),
         ),
         migrations.AlterUniqueTogether(
             name='article',
