@@ -342,26 +342,36 @@
 }
 .sideListBoxTitle {
   font-weight:          $font-bold;
-  font-size:            25px;
-  padding-bottom:       10px;
+  font-size:            20px;
+  padding:              0 0 10px 0;
   border-bottom:        1px dotted $col-white;
   margin-bottom:        10px;
 }
 .sideListItem {
+  padding:              0 0 5px 0;
+  border-bottom:        1px solid #393939;
+  margin-bottom:        5px;
+}
+.sideListTitle {
+  font-weight:          $font-bold;
+  padding:              0 0 5px 0;
+
+  a:hover {
+    color:              $col-ogfbluehover;
+  }
+}
+.sideListDate {
+  color:                $col-ogfyellow;
+  font-weight:          $font-light;
+}
+.sideListLock {
+  color:                $col-ogfred;
+}
+.sideListTeaser {
+  padding:              0 0 10px 0;
+  border-bottom:        1px dotted $col-white;
   margin-bottom:        10px;
-
-  .sideListTitle {
-    font-weight:        $font-bold;
-
-    a:hover {
-      color:            $col-ogfbluehover;
-    }
-  }
-  .sideListDate {
-    color:              $col-ogfyellow;
-    font-weight:        $font-light;
-  }
-  .sideListLock {
-    color:              $col-ogfred;
-  }
+}
+.sideListIntro {
+  padding:              10px 0 0 0;
 }

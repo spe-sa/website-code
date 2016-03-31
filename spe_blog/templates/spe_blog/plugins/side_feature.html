@@ -1,21 +1,39 @@
-{% load i18n %}
+{% load i18n cms_tags sekizai_tags %}
 
 {% for article in articles %}
     {% if forloop.first %}
-        <a href={{ link }}>
+        <a href={{ article.get_absolute_url}}>
         <div class="tile-editorial row">
-            <div class="col-xs-12 title1">{{ article.title }}</div>
-            <div class="col-xs-12 dottedspacer">&nbsp;</div>
-            <div class="col-xs-12 title2">{{ article.teaser }}</div>
-            <div class="col-xs-12 excerpt">{{ article.introduction | safe }}</div>
-            <div class="col-xs-12 dottedspacer">&nbsp;</div>
-            {% if article.author_picture %}
+            <div class="col-xs-12 sideListBoxTitle">FEATURED ARTICLE</div>
+            <div class="col-xs-12 sideListTitle">{{ article.title }}</div>
+            <div class="col-xs-12 sideListTeaser">{{ article.teaser }}</div>
+            <div class="col-xs-12 padZero"><span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
+        {% if article.is_readable == True %}
+            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+        {% endif %}
+            </div>
+
+            {% if article.author_picture and article.author_bio %}
+                <div class="col-xs-12 dottedspacer">&nbsp;</div>
                 <div class="col-xs-4 authorImg"><img class="img-responsive" src={{article.author_picture.url}}></div>
+                <div class="col-xs-8 authorBio">{{ article.author_bio | safe }}</div>
+            {% else %}
+                <div class="col-xs-12 sideListIntro">{{ article.introduction|slice:":250" | safe }}...</div>
             {% endif %}
-            <div class="col-xs-8 authorBio">{{ article.author_bio | safe }}</div>
+
         </div>
         </a>
     {% endif %}
 {% empty %}
     <p class="well">{% trans "No editorial available" %}</p>
 {% endfor %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}
