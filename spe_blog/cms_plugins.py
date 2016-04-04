@@ -16,12 +16,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.gis.geoip import GeoIP
 
-# from .models import ArticleDisciplineByUserPluginModel
-# from .models import ArticleDisciplinePluginModel
-# from .models import ArticleByPublicationPluginModel
-# from .models import SelectedFeatureArticlePluginModel
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
+    Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin,
     Issue, IssuesByPublicationPlugin, 
     Editorial, EditorialPlugin, 
     BreadCrumbPlugin,
@@ -29,7 +26,7 @@ from .models import (
     IssuesByYearPlugin,
     MarketoFormPlugin
 )
-from .forms import ArticleSelectionForm, EditorialSelectionForm
+from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm
 import sys
 
 
@@ -89,6 +86,76 @@ class ShowArticlesPlugin(ArticlePluginBase):
         context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
+
+
+class BriefPluginBase(CMSPluginBase):
+    """
+    Abstract base class to be used for all Brief plugins.
+    """
+
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = _('Article')
+    render_template = 'spe_blog/plugins/brief_interest.html'
+    text_enabled = False
+
+class ShowBriefDetailPlugin(BriefPluginBase):
+     model = BriefDetailPlugin
+     name = _("Show Brief Detail")
+
+     def render(self, context, instance, placeholder):
+         now = timezone.now()
+         art = get_object_or_404(Brief, pk=instance.brief.id)
+         if instance.allow_url_to_override_selection:
+             q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+             if q and q[0][0] == 'art':
+                 pk = int(q[0][1])
+                 if pk:
+                     try:
+                         art = get_object_or_404(Brief, pk=pk)
+                     except:
+                         raise Http404("Article not found")
+         context.update({'art': art})
+         context.update({'dateNow': now})
+         self.render_template = 'spe_blog/plugins/brief_detail.html' 
+         return context
+
+class ShowBriefPlugin(ArticlePluginBase):
+    model = BriefPlugin
+    name = _("Selected Briefs ")
+    form = BriefSelectionForm
+
+    def render(self, context, instance, placeholder):
+        queryset = Brief.objects.filter(id__in=instance.brief.all()).order_by(instance.order_by)
+        context.update({'articles': queryset})
+        context.update({'show_all_url': instance.all_url})
+        context.update({'show_all_text': instance.all_text})
+        self.render_template = instance.template
+        return context
+
+class ShowBriefListingPlugin(ArticlePluginBase):
+    model = BriefListingPlugin
+    name = _("Brief Listing")
+
+    def render(self, context, instance, placeholder):
+        request = context.get('request')
+        if instance.publication:
+            qs = Brief.objects.filter(publication=instance.publication)
+        else:
+            qs = Brief.objects.all()
+
+        if instance.category:
+            qs = qs.filter(category=instance.category)
+
+        qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+        # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
+        context.update({'articles': qs})
+        self.render_template = instance.template
+        return context
+
 
 class ShowEditorialPlugin(ArticlePluginBase):
     model = EditorialPlugin
@@ -252,8 +319,11 @@ class ShowMarketoFormPlugin(CMSPluginBase):
 
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
-plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
+plugin_pool.register_plugin(ShowBriefDetailPlugin)
+plugin_pool.register_plugin(ShowBriefPlugin)
+plugin_pool.register_plugin(ShowBriefListingPlugin)
+plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)

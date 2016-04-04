@@ -43,6 +43,12 @@ EDITORIAL_TEMPLATES = (
     (DEFAULT_EDITORIAL_TEMPLATE, 'Editorial'),
 )
 
+DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
+BRIEF_TEMPLATES = (
+    (DEFAULT_ISSUE_TEMPLATE, 'Brief of interest listing'),
+    ('spe_blog/plugins/brief_index.html', 'Index listing'),
+)
+
 
 class Article_Tagged(TaggedItemBase):
     content_object = models.ForeignKey("Article")
@@ -318,6 +324,28 @@ class ArticlesPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
 
+class BriefPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
+    brief = models.ManyToManyField(Brief)
+    order_by = models.CharField(
+        max_length=20,
+        choices=ORDER_BY,
+        default="-article_hits",
+        verbose_name="Otherwise order by"
+    )
+    # if user enters url and text then we display the show all link with these values
+    # todo - change charfield to our URLField that takes relative paths
+    all_url = models.CharField("Show All URL", max_length=250, blank=True, null=True)
+    all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        buf = self.get_order_by_display() + u" (%s)" % ', '.join([a.slug for a in self.brief.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.brief = old_instance.brief.all()
+
+
 
 class ArticleDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
@@ -325,6 +353,14 @@ class ArticleDetailPlugin(CMSPlugin):
 
     def __unicode__(self):
         return str(self.article.publication.code) + ": " + self.article.title
+
+
+class BriefDetailPlugin(CMSPlugin):
+    allow_url_to_override_selection = models.BooleanField(default=False)
+    article = models.ForeignKey(Brief, on_delete=models.PROTECT)
+
+    def __unicode__(self):
+        return str(self.brief.publication.code) + ": " + self.brief.title
 
 
 class EditorialPlugin(CMSPlugin):
@@ -368,6 +404,31 @@ class ArticlesListingPlugin(CMSPlugin):
         if self.category:
             buf += " (" + self.category.name + " only)"
         buf += " using " + dictionary[self.template]
+        return buf
+
+
+class BriefListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Briefs')
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default="-article_hits")
+    starting_with = models.PositiveIntegerField(default=1)
+    # limit to
+    publication = models.ForeignKey(Publication, blank=True, null=True)
+    category = models.ForeignKey(Category, blank=True, null=True)
+    topic = models.ForeignKey(Topics, blank=True, null=True)
+    # if user enters url and text then we display the show all link with these values
+    all_url = models.URLField("Show All URL", blank=True, null=True)
+    all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf += " using " + dictionary[self.template]
+        if self.category:
+            buf += " (" + self.category.name + " only)"
+        if self.topic:
+            buf += " (" + self.topic.name + " only)"
         return buf
 
 
