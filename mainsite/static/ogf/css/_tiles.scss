@@ -3,6 +3,20 @@
 ====================================================================== */
 @import 'vars';
 
+.tiletitlehr {
+  margin-top:           0;
+  height:               5px;
+  border:               none;
+  color:                $col-hrblue;
+  background-color:     $col-hrblue;
+}
+.tiletitles {
+  color:                $col-copygrey;
+  font-size:            25px;
+  border-bottom:        1px dotted $col-basegrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou {
   //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
@@ -127,7 +141,9 @@
   background-color:     $col-ogfblack;
   color:                $col-white;
   padding:              15px;
-  min-height:           360px;
+  height:               400px;
+  margin-bottom:        15px;
+  overflow:             hidden;
 
   .title1, .title2, .excerpt, .authorBio {
     padding:            0;
@@ -164,26 +180,13 @@
 .tile-textbelow {
   padding-bottom:       20px;
 }
-.tiletitlehr {
-  margin-top:           0;
-  height:               5px;
-  border:               none;
-  color:                $col-hrblue;
-  background-color:     $col-hrblue;
-}
-.tiletitles {
-  color:                $col-copygrey;
-  font-size:            25px;
-  border-bottom:        1px dotted $col-basegrey;
-  padding-bottom:       10px;
-  margin-bottom:        15px;
-}
 .tile-curntIssue {
   min-height:           150px;
+  border-bottom:        1px dotted $col-ogfblack;
 
   //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
-  padding:              15px;
+  padding:              15px 0;
 
   a {
     color:              $col-ogfblack;
@@ -231,7 +234,7 @@
   }
 
   .carousel-inner {
-    height:             360px;
+    height:             400px;
     //border:             1px solid hotpink;
 
     .item {
@@ -250,7 +253,6 @@
   }
 }
 .eventsNearYou {
-
 
   .locCurrent {
     color:              $col-drkgrey;
@@ -322,7 +324,7 @@
     }
   }
 }
-.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .poipic {
+.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic {
   overflow:             hidden;
   -webkit-background-size:cover;
   background-size:      cover;
@@ -330,12 +332,18 @@
 }
 .detailImgWrap {
   height:               250px;
+  margin-bottom:        5px;
 }
 .detailImgWrapFull {
   height:               350px;
+  margin-bottom:        5px;
 }
 .detailImgWrapLeft {
   min-height:           250px;
+}
+.detailImgWrapSide {
+  height:               150px;
+  margin-bottom:        5px;
 }
 .poipic {
   min-height:           125px;
@@ -353,8 +361,10 @@
   margin-bottom:        5px;
 }
 .sideListTitle {
+  font-size:            20px;
   font-weight:          $font-bold;
-  padding:              0 0 5px 0;
+  margin-top:           5px;
+  padding:              5px 0;
 
   a:hover {
     color:              $col-ogfbluehover;
@@ -374,4 +384,23 @@
 }
 .sideListIntro {
   padding:              10px 0 0 0;
+}
+.forms {
+  border-top:           5px solid $col-hrblue;
+  margin-top:           0;
+  margin-bottom:        20px;
+  padding:              0 0 15px 0;
+  min-width:            150px;
+
+  h3 {
+    color:                $col-copygrey;
+    font-size:            25px;
+    border-bottom:        1px dotted $col-basegrey;
+    padding-bottom:       10px;
+    //padding:              0 15px 10px 15px;
+    margin-bottom:        15px;
+  }
+}
+.subscribe-div {
+  margin-top:             10px;
 }

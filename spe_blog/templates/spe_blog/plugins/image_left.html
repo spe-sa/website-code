@@ -14,7 +14,11 @@
             {% else %}
                 <div class="story-text col-sm-12">
             {% endif %}
-                <span class="pub-date">{{ article.date|date:"d F Y" }}</span>
+                <span class="pub-date">{{ article.date|date:"d F Y" }}
+                {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
+                    | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                {% endif %}
+                </span>
                 <h3>{{ article.title }}</h3>
                 {% if article.sponsored %}
                 <p><span class="sponsored">SPONSORED</span></p>
