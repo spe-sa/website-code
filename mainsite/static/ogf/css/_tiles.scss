@@ -393,14 +393,45 @@
   min-width:            150px;
 
   h3 {
-    color:                $col-copygrey;
-    font-size:            25px;
-    border-bottom:        1px dotted $col-basegrey;
-    padding-bottom:       10px;
-    //padding:              0 15px 10px 15px;
-    margin-bottom:        15px;
+    color:              $col-copygrey;
+    font-size:          25px;
+    border-bottom:      1px dotted $col-basegrey;
+    padding-bottom:     10px;
+    //padding:          0 15px 10px 15px;
+    margin-bottom:      15px;
   }
 }
 .subscribe-div {
-  margin-top:             10px;
+  margin-top:           10px;
+}
+.briefListItem {
+  margin:               0 0 15px 0;
+  padding-top:          15px;
+  background:           $img-back-box no-repeat bottom right;
+
+  a {
+    color:              $col-ogfblack;
+    &:hover {
+      color:            $col-ogfbluehover;
+    }
+  }
+  h4 {
+    font-size:          15px;
+    margin:             0;
+  }
+  .briefPub {
+    font-size:          10px;
+    font-weight:        $font-light;
+    color:              $col-boxshadow;
+    width:              100%;
+    text-align:         right;
+  }
+  .badge {
+    border-radius: 10px !important;
+    font-size:10px;
+  }
+  &:hover {
+    background-color:   $col-ogflightgrey;
+    cursor:             pointer;
+  }
 }

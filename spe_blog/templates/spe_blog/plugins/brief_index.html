@@ -1,11 +1,27 @@
 {% load cms_tags sekizai_tags %}
 
 {% block content %}
-    <div class="well">
+    <div class="row tile">
     {% if articles %}
         {% for article in articles %}
+            {% if forloop.last %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="col-sm-6 briefListItem">
+                {% else %}
+                    <div class="col-sm-12 briefListItem">
+                {% endif %}
+            {% else %}
+                <div class="col-sm-6 briefListItem">
+            {% endif %}
+            <a href="{{ article.get_absolute_url }}">
+                <h4>{{ article.title }} | <span class="badge">{{ article.article_hits }}</span></h4>
+                <p>
+                    <span class="briefPub">{{ article.publication }}</span><br>
+                    {{ article.article_text | slice:":100" | safe }}...
+                </p>
+            </a>
+            </div>
 
-            <p><a href="{{ article.get_absolute_url }}"><span class="badge">{{ article.magazine }}</span> {{ article.title }} <span class="badge">{{ article.article_hits }}</span></a></p>
         {% endfor %}
     {% else %}
         <p>No article available. Sorry.</p>
