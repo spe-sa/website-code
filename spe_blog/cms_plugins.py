@@ -118,7 +118,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                          art = get_object_or_404(Brief, pk=pk)
                      except:
                          raise Http404("Article not found")
-         context.update({'art': art})
+         context.update({'article': art})
          context.update({'dateNow': now})
          self.render_template = 'spe_blog/plugins/brief_detail.html' 
          return context
@@ -129,7 +129,7 @@ class ShowBriefPlugin(ArticlePluginBase):
     form = BriefSelectionForm
 
     def render(self, context, instance, placeholder):
-        queryset = Brief.objects.filter(id__in=instance.brief.all()).order_by(instance.order_by)
+        queryset = Brief.objects.filter(id__in=instance.briefs.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
         context.update({'show_all_url': instance.all_url})
         context.update({'show_all_text': instance.all_text})

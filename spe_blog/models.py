@@ -326,7 +326,7 @@ class ArticlesPlugin(CMSPlugin):
 
 class BriefPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
-    brief = models.ManyToManyField(Brief)
+    briefs = models.ManyToManyField(Brief)
     order_by = models.CharField(
         max_length=20,
         choices=ORDER_BY,
@@ -339,11 +339,11 @@ class BriefPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        buf = self.get_order_by_display() + u" (%s)" % ', '.join([a.slug for a in self.brief.all()])
+        buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
         return buf
 
     def copy_relations(self, old_instance):
-        self.brief = old_instance.brief.all()
+        self.briefs = old_instance.briefs.all()
 
 
 
@@ -357,7 +357,7 @@ class ArticleDetailPlugin(CMSPlugin):
 
 class BriefDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
-    article = models.ForeignKey(Brief, on_delete=models.PROTECT)
+    brief = models.ForeignKey(Brief, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return str(self.brief.publication.code) + ": " + self.brief.title
@@ -421,14 +421,13 @@ class BriefListingPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        dictionary = dict(PLUGIN_TEMPLATES)
-        buf = "(" + str(self.starting_with) + " - " + str(
-            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
-        buf += " using " + dictionary[self.template]
+        dictionary = dict(BRIEF_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
         if self.category:
             buf += " (" + self.category.name + " only)"
         if self.topic:
             buf += " (" + self.topic.name + " only)"
+        buf += " using " + dictionary[self.template]
         return buf
 
 
