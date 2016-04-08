@@ -192,14 +192,17 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
         request = context.get('request')
         art = ''
         now = timezone.now()
-        q = re.findall('(topics)=([A-Za-z0-9/&%]+)', urlparse(context.get('request').get_full_path()).query)
-        if q and q[0][0] == 'topics':
-            topic = q[0][1]
-            if topic:
-                art = Article.objects.filter(publication=instance.publication).filter(topics_name__contains=topic).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
-            else:
-                raise Http404("Topic not found")
-        context.update({'article': art})
+        if instance.allow_url_to_override_selection:
+            q = re.findall('(topic)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            if q and q[0][0] == 'topic':
+                pk = int(q[0][1])
+                if pk:
+                    art = Article.objects.all().filter(publication=instance.publication).filter(topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                else:
+                    raise Http404("Topic not found")
+        else:
+            art = Article.objects.all().filter(publication=instance.publication).filter(topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[instance.starting_with - 1:instance.cnt]
+        context.update({'articles': art})
         context.update({'dateNow': now})
         self.render_template = instance.template
         return context

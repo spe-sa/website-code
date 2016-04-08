@@ -4,7 +4,7 @@
     <div>
     {% if topics %}
         {% for topic in topics %}
-            <a href="{{ publication.topics_url.url }}/?topic={{ topic.name }}">
+            <a href="{{ publication.get_absolute_topics_url }}?topic={{ topic.id }}">
             <p>{{ topic.name }}</p>
             </a>
             </div>

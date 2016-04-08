@@ -98,6 +98,15 @@ class Publication(models.Model):
     def __unicode__(self):
         return self.code + ": " + self.name
 
+    def get_absolute_topics_url(self):
+        if self.topics_url:
+            page = Page.objects.get(pk=self.topics_url.url.id)
+            url = page.get_absolute_url()
+        else:
+            url = ''
+        return url
+
+
 
 class Issue(models.Model):
     publication = models.ForeignKey(Publication)
