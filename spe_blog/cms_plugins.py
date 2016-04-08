@@ -24,9 +24,10 @@ from .models import (
     BreadCrumbPlugin,
     Publication,
     IssuesByYearPlugin,
-    MarketoFormPlugin
+    MarketoFormPlugin,
+    TopicsListPlugin, TopicsPlugin
 )
-from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm
+from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, TopicsListSelectionForm
 import sys
 
 
@@ -123,7 +124,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
          self.render_template = 'spe_blog/plugins/brief_detail.html' 
          return context
 
-class ShowBriefPlugin(ArticlePluginBase):
+class ShowBriefPlugin(BriefPluginBase):
     model = BriefPlugin
     name = _("Selected Briefs ")
     form = BriefSelectionForm
@@ -136,7 +137,7 @@ class ShowBriefPlugin(ArticlePluginBase):
         self.render_template = instance.template
         return context
 
-class ShowBriefListingPlugin(ArticlePluginBase):
+class ShowBriefListingPlugin(BriefPluginBase):
     model = BriefListingPlugin
     name = _("Brief Listing")
 
@@ -153,6 +154,53 @@ class ShowBriefListingPlugin(ArticlePluginBase):
         qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
+        self.render_template = instance.template
+        return context
+
+
+class TopicsPluginBase(CMSPluginBase):
+    """
+    Abstract base class to be used for all Topics plugins.
+    """
+
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = _('Article')
+    render_template = 'spe_blog/plugins/topics_list.html'
+    text_enabled = False
+
+class ShowTopicsListPlugin(TopicsPluginBase):
+    model = TopicsListPlugin
+    name = _("Topics Listing")
+    form = TopicsListSelectionForm
+
+    def render(self, context, instance, placeholder):
+        topics = instance.topics.all()
+        context.update({'topics': topics})
+        context.update({'publication': instance.publication})
+        self.render_template = 'spe_blog/plugins/topics_list.html'
+        return context
+
+class ShowTopicsListingPlugin(TopicsPluginBase):
+    model = TopicsPlugin
+    name = _("Show Articles by Topics")
+
+    def render(self, context, instance, placeholder):
+        request = context.get('request')
+        art = ''
+        now = timezone.now()
+        q = re.findall('(topics)=([A-Za-z0-9/&%]+)', urlparse(context.get('request').get_full_path()).query)
+        if q and q[0][0] == 'topics':
+            topic = q[0][1]
+            if topic:
+                art = Article.objects.filter(publication=instance.publication).filter(topics_name__contains=topic).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            else:
+                raise Http404("Topic not found")
+        context.update({'article': art})
+        context.update({'dateNow': now})
         self.render_template = instance.template
         return context
 
@@ -328,3 +376,5 @@ plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowMarketoFormPlugin)
+plugin_pool.register_plugin(ShowTopicsListPlugin)
+plugin_pool.register_plugin(ShowTopicsListingPlugin)

@@ -1,0 +1,14 @@
+{% load cms_tags sekizai_tags %}
+
+{% block content %}
+    <div>
+    {% if topics %}
+        {% for topic in topics %}
+            <a href="{{ publication.topics_url.url }}/?topic={{ topic.name }}">
+            <p>{{ topic.name }}</p>
+            </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock content %}

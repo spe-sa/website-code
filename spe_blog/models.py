@@ -78,13 +78,21 @@ class BriefDetailPage(models.Model):
     def __unicode__(self):
         return self.name
 
+class TopicsPage(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    url = PageField(verbose_name = "URL for topics page", blank=True, null=True, on_delete=models.SET_NULL)
+    
+    def __unicode__(self):
+        return self.name
+
 
 class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
     article_url = models.ForeignKey(ArticleDetailPage, verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
-    brief_url = models.ForeignKey(BriefDetailPage, verbose_name = "URL for person of interest detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    brief_url = models.ForeignKey(BriefDetailPage, verbose_name = "URL for brief detail page", blank=True, null=True, on_delete=models.SET_NULL)
+    topics_url = models.ForeignKey(TopicsPage, verbose_name = "URL for topics page", blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -135,7 +143,6 @@ class Coverage(models.Model):
         return self.name
 
 
-
 class Article(models.Model):
     publication = models.ForeignKey(Publication)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
@@ -170,7 +177,6 @@ class Article(models.Model):
         help_text=u'Author Bio',
         blank=True, null=True
     )
-
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
@@ -346,13 +352,44 @@ class BriefPlugin(CMSPlugin):
         self.briefs = old_instance.briefs.all()
 
 
-
 class ArticleDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
-    article = models.ForeignKey(Article, on_delete=models.PROTECT)
+    article = models.ForeignKey(Article, verbose_name="Selected article (default)", on_delete=models.PROTECT)
 
     def __unicode__(self):
         return str(self.article.publication.code) + ": " + self.article.title
+
+
+class TopicsPlugin(CMSPlugin):
+    allow_url_to_override_selection = models.BooleanField(default=False)
+    publication = models.ForeignKey(Publication)
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default="-article_hits")
+    starting_with = models.PositiveIntegerField(default=1)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf += " using " + dictionary[self.template] # + " - "
+        #buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.topics = old_instance.topics.all()
+
+
+class TopicsListPlugin(CMSPlugin):
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.publication.name
+
+    def copy_relations(self, old_instance):
+        self.topics = old_instance.topics.all()
 
 
 class BriefDetailPlugin(CMSPlugin):
@@ -373,9 +410,6 @@ class EditorialPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.editorial = old_instance.editorial.all()
-
-
-# self.articles = old_instance.articles.all()
 
 
 class ArticlesListingPlugin(CMSPlugin):

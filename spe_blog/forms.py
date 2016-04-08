@@ -1,11 +1,8 @@
-# import re
 # from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
-# from cms.models import Page
-# from django.contrib.contenttypes.models import ContentType
 
-from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin
+from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, Topics, TopicsPlugin, TopicsListPlugin
 
 class ArticleSelectionForm(ModelForm):
     articles = ModelMultipleChoiceField(Article.objects.all().order_by('-date'),
@@ -32,3 +29,20 @@ class BriefSelectionForm(ModelForm):
     class Meta:
         model = BriefPlugin
         fields = ['template', 'order_by', 'briefs', ]
+
+
+class TopicsSelectionForm(ModelForm):
+    topics = ModelMultipleChoiceField(Topics.objects.all(),
+                                        widget=FilteredSelectMultiple("briefs", False, ))
+
+    class Meta:
+        model = TopicsPlugin
+        fields = ['allow_url_to_override_selection', 'publication', 'template', 'cnt', 'order_by', 'starting_with', 'topics', ]
+
+class TopicsListSelectionForm(ModelForm):
+    topics = ModelMultipleChoiceField(Topics.objects.all(),
+                                        widget=FilteredSelectMultiple("briefs", False, ))
+
+    class Meta:
+        model = TopicsListPlugin
+        fields = ['publication', 'topics', ]
