@@ -23,6 +23,7 @@ PROJECT_DIR = os.path.dirname(APP_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 # DATA_DIR: is the directory containing our data (database? staticfiles? media?)
 DATA_DIR = os.path.join(BASE_DIR, 'website_content')
+#DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@$%x*kpb@)n3tmc$7k^lb18aovbmp&g+ai7@py0rd*)4g(a(_7'
@@ -212,7 +213,8 @@ MIGRATION_MODULES = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
-CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'media/ck_media')
+#CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'media/ck_media')
+CKEDITOR_UPLOAD_PATH = "ck_media/"
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')
 # LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
