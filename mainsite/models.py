@@ -1,7 +1,7 @@
 from HTMLParser import HTMLParser
 from django.db import models
 
-#from ckeditor.fields import RichTextField
+# from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # from django.core.urlresolvers import reverse
@@ -210,8 +210,10 @@ class Customer(models.Model):
     continuous_member_date = models.DateField(blank=True, null=True)
     expected_grad_date = models.DateField(blank=True, null=True)
 
-    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", on_delete=models.SET_NULL, blank=True, null=True)
-    secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers", on_delete=models.SET_NULL, blank=True, null=True)
+    primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", on_delete=models.SET_NULL,
+                                           blank=True, null=True)
+    secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers",
+                                             on_delete=models.SET_NULL, blank=True, null=True)
     subscriptions = models.ManyToManyField(CustomerSubscription, through='CustomerSubscriptionJoin',
                                            related_name="customers", blank=True)
     # classifications are internal classification to perform logic off of
@@ -380,6 +382,21 @@ class TextWithClass(CMSPlugin):
         help_text=u'Text'
     )
     cls = models.CharField(max_length=40, verbose_name="Class")
+
+    def __unicode__(self):
+        lbl = " - " + strip_tags(self.txt)
+        return lbl[0:50]
+
+
+class TileImgBack(CMSPlugin):
+    ttl = models.CharField(max_length=250, verbose_name="Title")
+    txt = RichTextUploadingField(
+        max_length=2000,
+        help_text=u'Text Area'
+    )
+    lnk = models.CharField(max_length=250, verbose_name="Link")
+    img = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Background Image')
+    date = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)

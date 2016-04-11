@@ -264,6 +264,8 @@ a:hover { text-decoration: none; }
 .tile-lightblue a { color: #26416c; }
 .tile-lightblue a:hover { color: white; }
 
+.tileImgBack { background-position: center; -webkit-background-size: cover; background-size: cover; }
+
 .whiteback, .tile-white { background-color: white; }
 
 .link-box, .tile-links { border-top: 4px solid #365d98; background-color: white; }
@@ -293,6 +295,11 @@ a:hover { text-decoration: none; }
 .tiletitlehr { margin-top: 0; height: 1px; border: none; color: #26416c; background-color: #26416c; }
 
 .tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted #868686; padding-bottom: 10px; margin-bottom: 15px; }
+
+.tileDate { font-weight: 700; margin-bottom: 10px; }
+
+.tileText { color: #0C090A; }
+.tileText:hover { color: #0C090A; }
 
 .tile-poi { padding: 15px; background-color: #e0e4eb; }
 .tile-poi .poipic { padding: 0; }

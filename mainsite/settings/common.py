@@ -213,6 +213,7 @@ MIGRATION_MODULES = {
 }
 
 TAGGIT_CASE_INSENSITIVE = True
+
 #CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'media/ck_media')
 CKEDITOR_UPLOAD_PATH = "ck_media/"
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')

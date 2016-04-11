@@ -6,6 +6,9 @@
                 <div class="story-text">
                     <h2>{{ article.title }}</h2>
                     <p>{{ article.teaser }}</p>
+                    {% if article.sponsored %}
+                    <p><span class="sponsored">SPONSORED</span></p>
+                    {% endif %}
                 </div>
             </div>
             </a>
