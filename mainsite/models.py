@@ -1,8 +1,8 @@
 from HTMLParser import HTMLParser
 from django.db import models
 
-from ckeditor.fields import RichTextField
-# from ckeditor_uploader.fields import RichTextUploadingField
+#from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # from django.core.urlresolvers import reverse
 # from django.utils import six
@@ -363,7 +363,10 @@ def strip_tags(html):
 
 
 class TextPlugin(CMSPlugin):
-    txt = RichTextField(max_length=1000, verbose_name="Text")
+    txt = RichTextUploadingField(
+        max_length=2000,
+        help_text=u'Text'
+    )
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
@@ -371,7 +374,11 @@ class TextPlugin(CMSPlugin):
 
 
 class TextWithClass(CMSPlugin):
-    txt = RichTextField(max_length=1000, verbose_name="Text")
+
+    txt = RichTextUploadingField(
+        max_length=2000,
+        help_text=u'Text'
+    )
     cls = models.CharField(max_length=40, verbose_name="Class")
 
     def __unicode__(self):
