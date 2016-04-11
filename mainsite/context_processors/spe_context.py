@@ -39,10 +39,10 @@ def set_default_values(request):
 
         # TODO: add more login stuff if needed
         request.session['session_login'] = login
-    logging.error('login - ' + str(login))
+    #logging.error('login - ' + str(login))
 
     # NOTE: cookies are not generated so just append them to the context under cookies; no session info needed
-    logging.error('cookies - ' + str(request.COOKIES))
+    #logging.error('cookies - ' + str(request.COOKIES))
 
     return {
         'variables': variables,
@@ -113,7 +113,7 @@ def get_context_variables(request):
             if key not in variables:
                 variables[key] = get_context_variable(request, key)
 
-    logging.error('variables - ' + str(variables))
+    #logging.error('variables - ' + str(variables))
     return variables
 
 
@@ -137,7 +137,7 @@ def get_visitor(request):
         except Customer.DoesNotExist:
             visitor = None
 
-    logging.error('customer - ' + str(visitor))
+    #logging.error('customer - ' + str(visitor))
     # if visitor:
     #     logging.error('visitor call to is_officer: ' + str(visitor.has_classification("OFFICER")))
     return visitor
