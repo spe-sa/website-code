@@ -151,6 +151,11 @@ class ShowBriefListingPlugin(BriefPluginBase):
         if instance.category:
             qs = qs.filter(category=instance.category)
 
+        if instance.print_volume:
+            qs = qs.filter(print_volume=instance.print_volume)
+        if instance.print_issue:
+            qs = qs.filter(print_issue=instance.print_issue)
+
         qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
@@ -242,6 +247,11 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 
         if instance.category:
             qs = qs.filter(category=instance.category)
+
+        if instance.print_volume:
+            qs = qs.filter(print_volume=instance.print_volume)
+        if instance.print_issue:
+            qs = qs.filter(print_issue=instance.print_issue)
 
         if ducode:
             qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
