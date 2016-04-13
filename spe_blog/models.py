@@ -276,7 +276,12 @@ class Brief(models.Model):
         verbose_name = "brief"
 
     def __unicode__(self):
-        return self.publication.code + ": " + str(self.title)
+        buf = ""
+        if self.print_volume:
+            buf = " " + str(self.print_volume)
+        if self.print_issue:
+            buf += ", " + str(self.print_issue)
+        return self.publication.code + buf + ": " + str(self.title)
 
     def get_absolute_url(self):
         if self.publication.brief_url:
