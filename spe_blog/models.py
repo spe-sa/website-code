@@ -15,6 +15,7 @@ from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
 import sys
 
+DEFAULT_ORDER_BY = '-date'
 ORDER_BY = (
     ("-article_hits", 'Most Read'),
     ("-date", 'Most Recent'),
@@ -329,7 +330,7 @@ class ArticlesPlugin(CMSPlugin):
     order_by = models.CharField(
         max_length=20,
         choices=ORDER_BY,
-        default="-article_hits",
+        default=DEFAULT_ORDER_BY,
         verbose_name="Otherwise order by"
     )
     # if user enters url and text then we display the show all link with these values
@@ -355,7 +356,7 @@ class BriefPlugin(CMSPlugin):
     order_by = models.CharField(
         max_length=20,
         choices=ORDER_BY,
-        default="-article_hits",
+        default=DEFAULT_ORDER_BY,
         verbose_name="Otherwise order by"
     )
     # if user enters url and text then we display the show all link with these values
@@ -384,7 +385,7 @@ class TopicsPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication)
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
-    order_by = models.CharField(max_length=20, choices=ORDER_BY, default="-article_hits")
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
 
@@ -435,10 +436,12 @@ class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
-    order_by = models.CharField(max_length=20, choices=ORDER_BY, default="-article_hits")
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True)
+    print_volume = models.PositiveIntegerField(blank=True, null=True)
+    print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True)
@@ -463,10 +466,12 @@ class ArticlesListingPlugin(CMSPlugin):
 class BriefListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Briefs')
-    order_by = models.CharField(max_length=20, choices=ORDER_BY, default="-article_hits")
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True)
+    print_volume = models.PositiveIntegerField(blank=True, null=True)
+    print_issue = models.PositiveIntegerField(blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True)
     topic = models.ForeignKey(Topics, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
