@@ -11,7 +11,7 @@
     </div>
     <div class="row content-area articleContent">
         <div class="col-sm-8 col-lg-7 col-lg-offset-1 areaContent">
-            <h1>{{ article.title }}</h1>
+            <h1>{{ article.id }}: {{ article.title }}</h1>
 
         {% if article.picture and article.picture.url %}
             <img src={{article.picture.url}} class="img-rounded" alt={{article.alternate}} width="600" height="400">

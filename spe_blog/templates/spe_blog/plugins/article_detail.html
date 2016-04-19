@@ -59,14 +59,41 @@
         </div>
 
     </div>
-        <div>
-            <h2>Related Topics</h2>
-            {% if article.topics %}
-                {% for topic in article.topics.all %}
-                    <a href="{{ publication.get_absolute_topics_url }}?topic={{ topic.id }}">
-                    <p>{{ topic.name }}</p>
-                    </a>
+    <div>
+        {# glenda wants the 3 most related topics articles #}
+        {% if topic_articles %}
+            <div class="row">
+                <hr class="tiletitlehr">
+                <h1 class="tiletitles">Related Articles</h1>
+            </div>
+            {% for article in topic_articles %}
+                <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
+                            style="min-height: 150px">
+                <a href="{{ article.get_absolute_url }}">
+                    <div class="story-wrap row">
+                        {% if article.picture and article.picture.url %}
+                            <figure class="thumb col-sm-6">
+            {#                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>#}
+                                <div class="img-wrap detailImgWrapLeft" style="background-image: url({{ article.picture.url }})"></div>
+                            </figure>
+                            <div class="story-text col-sm-6">
+                        {% else %}
+                            <div class="story-text col-sm-12">
+                        {% endif %}
+                            <span class="pub-date">{{ article.date|date:"d F Y" }}
+                            {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
+                                | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                            {% endif %}
+                            </span>
+                            <h3>{{ article.title }}</h3>
+                            {% if article.sponsored %}
+                            <p><span class="sponsored">SPONSORED</span></p>
+                            {% endif %}
+                            <p>{{ article.teaser }}</p>
+                        </div>
                     </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+                </a>
+                </article>
+            {% endfor %}
+        {% endif %}
+    </div>
