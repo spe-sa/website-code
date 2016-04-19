@@ -56,4 +56,16 @@
         <div class="col-sm-12 articleShares text-left">
             {% include 'include_article_shares.html' %}
         </div>
+
     </div>
+        <div>
+            <h2>Related Topics</h2>
+            {% if article.topics %}
+                {% for topic in article.topics.all %}
+                    <a href="{{ publication.get_absolute_topics_url }}?topic={{ topic.id }}">
+                    <p>{{ topic.name }}</p>
+                    </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
