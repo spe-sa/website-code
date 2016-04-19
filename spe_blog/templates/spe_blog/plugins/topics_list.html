@@ -1,14 +1,42 @@
-{% load cms_tags sekizai_tags %}
+{#{% load cms_tags sekizai_tags %}#}
+{##}
+{#{% block content %}#}
+{#    <div>#}
+{#    {% if topics %}#}
+{#        {% for topic in topics %}#}
+{#            <a href="{{ publication.get_absolute_topics_url }}?topic={{ topic.id }}">#}
+{#            <p>{{ topic.name }}</p>#}
+{#            </a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#    </div>#}
+{#{% endblock content %}#}
+
+{% load cms_tags sekizai_tags divideby %}
 
 {% block content %}
-    <div>
+    <div class="tile row">
     {% if topics %}
+{#        <p>COUNT: {{ topics.count }}</p>#}
+
+
+        <div class="col-sm-6">
         {% for topic in topics %}
+
             <a href="{{ publication.get_absolute_topics_url }}?topic={{ topic.id }}">
-            <p>{{ topic.name }}</p>
+                <p>{{ topic.name }}</p>
             </a>
-            </div>
+
+            {% if forloop.counter == topics.count|divideby:2 %}
+                </div>
+                <div class="col-sm-6">
+            {% endif %}
+
         {% endfor %}
+        </div>
+
+
     {% endif %}
     </div>
 {% endblock content %}

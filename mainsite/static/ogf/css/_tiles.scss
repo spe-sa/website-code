@@ -423,17 +423,24 @@
   margin:               0 0 15px 0;
   padding-top:          15px;
   background:           $img-back-box no-repeat bottom right;
+  min-height:           100px;
+  
+  img {
+    display: none;
+  }
 
   a {
     color:              $col-ogfblack;
     &:hover {
       color:            $col-ogfbluehover;
+      text-decoration:  none;
     }
   }
   h4 {
     font-size:          15px;
     margin:             0;
   }
+
   .briefPub {
     font-size:          10px;
     font-weight:        $font-light;
@@ -448,5 +455,11 @@
   &:hover {
     background-color:   $col-ogflightgrey;
     cursor:             pointer;
+  }
+}
+.briefofinterest {
+
+  p {
+    margin:             6px 0 0 0;
   }
 }

@@ -533,14 +533,18 @@
 .panel-default, .panel, .panel-collapse, .panel-group {
   border:               none;
 }
+.dottedSpacer {
+    border-bottom:      1px dotted $col-ogfblack;
+  margin:               0 0 15px 0;
+}
+
 .articleDetail {
   .articleTitle {
     padding-bottom:     20px;
   }
   .articleAuthorBox, .articleShares {
-    height:             35px;
-    border-bottom:      1px dotted $col-ogfblack;
-    margin-bottom:      15px;
+    min-height:         35px;
+    //margin-bottom:      15px;
     padding-right:      0;
     padding-left:       0;
   }

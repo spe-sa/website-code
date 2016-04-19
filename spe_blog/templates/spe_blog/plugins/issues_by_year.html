@@ -4,10 +4,12 @@
 
 
         {% for issue in issues %}
-            {% if forloop.first %}
 
-                <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
-                {#                        <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
+            {% ifchanged issue.date.year %}
+                {# PRIMARY YEAR BOX #}
+                {% if forloop.first %}
+
+                    <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
                     <hr class="tiletitlehr">
                         <h1 class="tiletitles">{{ issue.date.year }}
                             <div class="plusSymbol"><i class="fa fa-plus"></i></div>
@@ -16,11 +18,11 @@
 
                 </div>
                 <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse in row">
-            {% else %}
-                {% ifchanged issue.date.year %}
+
+                {% else %}
+                    {# SECONDARY YEAR BOX #}
                     </div>
                     <div class="row issuebar collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
-                    {#                            <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
                         <hr class="tiletitlehr">
                         <h1 class="tiletitles">{{ issue.date.year }}
                             <div class="plusSymbol"><i class="fa fa-plus"></i></div>
@@ -29,8 +31,13 @@
 
                     </div>
                     <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse row">
-                {% endifchanged %}
-            {% endif %}
+                {% endif %}
+
+            {% endifchanged %}
+
+{#            <p>#}
+{#                {{ forloop.counter }} - {{ issue.date.year }}#}
+{#            </p>#}
             <div class="col-sm-4 issueItem text-center">
                 <a href="{{ issue.issue_url }}" class="issueLink" target="_blank">
                     <img src="{{ issue.cover.url }}" class="img-responsive">
@@ -38,9 +45,10 @@
                     <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
                 </a>
             </div>
-            {% if forloop.last %}</div>{% endif %}
-        {% endfor %}
 
 
+        {% endfor %}{# END for issue in issues #}
+
+        </div>
     </div>
 </div>

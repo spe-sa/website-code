@@ -1,7 +1,7 @@
 {% load i18n cms_tags sekizai_tags %}
 
 {% if articles.count > 1 %}
-    <div class="row greyback">
+    <div class="row greyback briefofinterest">
 {% endif %}
 
 {% for article in articles %}
@@ -27,7 +27,9 @@
 
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
-                <p>{{ article.teaser }}</p>
+                {% if article.teaser %}
+                    <p>{{ article.teaser }}</p>
+                {% endif %}
             </div>
         </div>
     </a>
@@ -51,6 +53,7 @@
 
 {% if articles.count > 1 %}
     </div>
+    <div class="col-xs-12 dottedSpacer"></div>
 {% endif %}
 
 {% addtoblock "js" %}
