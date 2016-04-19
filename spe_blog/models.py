@@ -335,7 +335,7 @@ class ArticlesPlugin(CMSPlugin):
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
-    all_url = models.CharField("Show All URL", max_length=250, blank=True, null=True)
+    all_url = PageField(verbose_name = "URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -361,7 +361,7 @@ class BriefPlugin(CMSPlugin):
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
-    all_url = models.CharField("Show All URL", max_length=250, blank=True, null=True)
+    all_url = PageField(verbose_name = "URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -446,7 +446,7 @@ class ArticlesListingPlugin(CMSPlugin):
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
-    all_url = models.URLField("Show All URL", blank=True, null=True)
+    all_url = PageField(verbose_name = "URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -475,7 +475,7 @@ class BriefListingPlugin(CMSPlugin):
     category = models.ForeignKey(Category, blank=True, null=True)
     topic = models.ForeignKey(Topics, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
-    all_url = models.URLField("Show All URL", blank=True, null=True)
+    all_url = PageField(verbose_name = "URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -495,7 +495,7 @@ class IssuesByPublicationPlugin(CMSPlugin):
     starting_with = models.PositiveIntegerField(default=1)
     publication = models.ForeignKey(Publication)
     active = models.BooleanField(default=True)
-    all_url = models.URLField("Show All URL", blank=True, null=True)
+    all_url = PageField(verbose_name = "URL for issues listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
