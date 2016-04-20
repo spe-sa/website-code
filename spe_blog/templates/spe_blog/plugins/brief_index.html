@@ -1,9 +1,14 @@
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags bleachall %}
 
 {% block content %}
     <div class="row tile">
     {% if articles %}
         {% for article in articles %}
+
+            {% if forloop.counter|divisibleby:2 %}{% else %}
+                <div class="row">
+            {% endif %}
+
             {% if forloop.last %}
                 {% if forloop.counter|divisibleby:2 %}
                     <div class="col-sm-6 briefListItem">
@@ -19,10 +24,18 @@
                 {% if article.teaser %}
                     <p>{{ article.teaser }}</p>
                 {% endif %}
-                {{ article.article_text | slice:":100" | striptags | safe }} ...
+                {{ article.article_text | bleachall | slice:":100" | striptags | safe }} ...
                 </p>
             </a>
             </div>
+
+            {% if forloop.counter|divisibleby:2 %}
+                </div>
+            {% else %}
+                {% if forloop.last %}
+                    </div>
+                {% endif %}
+            {% endif %}
 
         {% endfor %}
     {% else %}

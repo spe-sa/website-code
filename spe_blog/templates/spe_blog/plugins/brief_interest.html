@@ -12,13 +12,6 @@
     <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
     <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap row">
-
-
-{#            <div class="col-sm-3 poipic">#}
-{#                {% if article.picture and article.picture.url %}<img src="{{ article.picture.url }}" class="img-responsive"/>#}
-{#                {% endif %}#}
-{#            </div>#}
-
         {% if article.picture and article.picture.url %}
             <div class="col-sm-3 poipic" style="background-image: url({{ article.picture.url }})"></div>
         {% else %}
@@ -28,7 +21,7 @@
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
                 {% if article.article_text %}
-                    <p>{{ article.article_text | safe }}</p>
+                    <p>{{ article.article_text | bleachall | slice:":100" | safe }}</p>
                 {% endif %}
             </div>
         </div>
