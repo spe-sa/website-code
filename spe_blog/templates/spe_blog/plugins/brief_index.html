@@ -14,13 +14,12 @@
                 <div class="col-sm-6 briefListItem">
             {% endif %}
             <a href="{{ article.get_absolute_url }}">
-                <h4>{{ article.title }} | <span class="badge">{{ article.article_hits }}</span></h4>
+                <h4>{{ article.title }}</h4>
                 <p>
-                    <span class="briefPub">{{ article.publication }}</span><br>
-                    {% if article.teaser %}
+                {% if article.teaser %}
                     <p>{{ article.teaser }}</p>
                 {% endif %}
-{#                    {{ article.article_text | slice:":100" | safe }}...#}
+                {{ article.article_text | slice:":100" }}
                 </p>
             </a>
             </div>
