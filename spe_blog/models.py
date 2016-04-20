@@ -48,7 +48,6 @@ DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
 BRIEF_TEMPLATES = (
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
-    (DEFAULT_ISSUE_TEMPLATE, 'BAD TEMPLATE'),
 )
 
 
@@ -490,7 +489,6 @@ class BriefListingPlugin(CMSPlugin):
             buf += " (" + self.topic.name + " only)"
         buf += " using " + dictionary[self.template]
         return buf
-
 
 class IssuesByPublicationPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)
