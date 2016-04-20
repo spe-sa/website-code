@@ -10,11 +10,11 @@ from django.utils import timezone
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from cms.models.pluginmodel import CMSPlugin
+# from cms.models.pluginmodel import CMSPlugin
 
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.gis.geoip import GeoIP
+# from django.contrib.gis.geoip import GeoIP
 
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
@@ -27,8 +27,9 @@ from .models import (
     MarketoFormPlugin,
     TopicsListPlugin, TopicsPlugin
 )
-from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, TopicsListSelectionForm
-import sys
+from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
+    TopicsListSelectionForm, ArticlesListingForm
+# import sys
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -235,6 +236,7 @@ class ShowEditorialPlugin(ArticlePluginBase):
 class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
     name = _("Articles Listing")
+    form = ArticlesListingForm
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
@@ -252,8 +254,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         else:
             qs = Article.objects.all()
 
-        if instance.category:
-            qs = qs.filter(category=instance.category)
+        if instance.categories:
+            qs = qs.filter(categories__in=instance.categories.all)
 
         if instance.print_volume:
             qs = qs.filter(print_volume=instance.print_volume)

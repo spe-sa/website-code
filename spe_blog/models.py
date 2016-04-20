@@ -54,6 +54,7 @@ BRIEF_TEMPLATES = (
 class Article_Tagged(TaggedItemBase):
     content_object = models.ForeignKey("Article")
 
+
 class Article_TaggedAuto(TaggedItemBase):
     content_object = models.ForeignKey("Article")
 
@@ -61,28 +62,31 @@ class Article_TaggedAuto(TaggedItemBase):
 class Brief_Tagged(TaggedItemBase):
     content_object = models.ForeignKey("Brief")
 
+
 class Brief_TaggedAuto(TaggedItemBase):
     content_object = models.ForeignKey("Brief")
 
 
 class ArticleDetailPage(models.Model):
     name = models.CharField(max_length=150, unique=True)
-    url = PageField(verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
-    
+    url = PageField(verbose_name="URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
+
     def __unicode__(self):
         return self.name
+
 
 class BriefDetailPage(models.Model):
     name = models.CharField(max_length=150, unique=True)
-    url = PageField(verbose_name = "URL for brief detail page", blank=True, null=True, on_delete=models.SET_NULL)
-    
+    url = PageField(verbose_name="URL for brief detail page", blank=True, null=True, on_delete=models.SET_NULL)
+
     def __unicode__(self):
         return self.name
 
+
 class TopicsPage(models.Model):
     name = models.CharField(max_length=150, unique=True)
-    url = PageField(verbose_name = "URL for topics page", blank=True, null=True, on_delete=models.SET_NULL)
-    
+    url = PageField(verbose_name="URL for topics page", blank=True, null=True, on_delete=models.SET_NULL)
+
     def __unicode__(self):
         return self.name
 
@@ -91,9 +95,12 @@ class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
     subscription_url = models.URLField(verbose_name=u'Subscription URL', blank=True, null=True)
-    article_url = models.ForeignKey(ArticleDetailPage, verbose_name = "URL for article detail page", blank=True, null=True, on_delete=models.SET_NULL)
-    brief_url = models.ForeignKey(BriefDetailPage, verbose_name = "URL for brief detail page", blank=True, null=True, on_delete=models.SET_NULL)
-    topics_url = models.ForeignKey(TopicsPage, verbose_name = "URL for topics page", blank=True, null=True, on_delete=models.SET_NULL)
+    article_url = models.ForeignKey(ArticleDetailPage, verbose_name="URL for article detail page", blank=True,
+                                    null=True, on_delete=models.SET_NULL)
+    brief_url = models.ForeignKey(BriefDetailPage, verbose_name="URL for brief detail page", blank=True, null=True,
+                                  on_delete=models.SET_NULL)
+    topics_url = models.ForeignKey(TopicsPage, verbose_name="URL for topics page", blank=True, null=True,
+                                   on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -106,7 +113,6 @@ class Publication(models.Model):
         else:
             url = ''
         return url
-
 
 
 class Issue(models.Model):
@@ -151,7 +157,8 @@ class Article(models.Model):
     free = models.BooleanField(default=False, verbose_name=u'Always Free')
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    # category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
@@ -171,7 +178,8 @@ class Article(models.Model):
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     author_name = models.CharField(max_length=250, blank=True, null=True)
     author_picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
-    author_picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
+    author_picture_alternate = models.CharField(max_length=50, blank=True, null=True,
+                                                verbose_name=u'Picture alternate text')
     author_bio = RichTextField(
         max_length=500,
         help_text=u'Author Bio',
@@ -193,7 +201,6 @@ class Article(models.Model):
         ordering = ['-date', 'title']
         get_latest_by = ['date']
         verbose_name = "article"
-
 
     def __unicode__(self):
         buf = ""
@@ -324,7 +331,7 @@ class ArticlesPlugin(CMSPlugin):
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
-    all_url = PageField(verbose_name = "URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -339,6 +346,7 @@ class ArticlesPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.articles = old_instance.articles.all()
 
+
 class BriefPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
     briefs = models.ManyToManyField(Brief)
@@ -350,7 +358,7 @@ class BriefPlugin(CMSPlugin):
     )
     # if user enters url and text then we display the show all link with these values
     # todo - change charfield to our URLField that takes relative paths
-    all_url = PageField(verbose_name = "URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -382,8 +390,8 @@ class TopicsPlugin(CMSPlugin):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = "(" + str(self.starting_with) + " - " + str(
             self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
-        buf += " using " + dictionary[self.template] # + " - "
-        #buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
+        buf += " using " + dictionary[self.template]  # + " - "
+        # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
 
     def copy_relations(self, old_instance):
@@ -433,9 +441,10 @@ class ArticlesListingPlugin(CMSPlugin):
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
-    category = models.ForeignKey(Category, blank=True, null=True)
+    # category = models.ForeignKey(Category, blank=True, null=True)
+    categories = models.ManyToManyField(Category)
     # if user enters url and text then we display the show all link with these values
-    all_url = PageField(verbose_name = "URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -446,10 +455,13 @@ class ArticlesListingPlugin(CMSPlugin):
             buf += " (" + self.discipline.code + ")"
         if self.personalized:
             buf += " personalized"
-        if self.category:
-            buf += " (" + self.category.name + " only)"
+        # if self.category:
+        #     buf += " (" + self.category.name + " only)"
         buf += " using " + dictionary[self.template]
         return buf
+
+    def copy_relations(self, old_instance):
+        self.categories = old_instance.categories.all()
 
 
 class BriefListingPlugin(CMSPlugin):
@@ -464,12 +476,13 @@ class BriefListingPlugin(CMSPlugin):
     category = models.ForeignKey(Category, blank=True, null=True)
     topic = models.ForeignKey(Topics, blank=True, null=True)
     # if user enters url and text then we display the show all link with these values
-    all_url = PageField(verbose_name = "URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         dictionary = dict(BRIEF_TEMPLATES)
-        buf = "(" + str(self.starting_with) + " - " + str(self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
         if self.category:
             buf += " (" + self.category.name + " only)"
         if self.topic:
@@ -484,7 +497,7 @@ class IssuesByPublicationPlugin(CMSPlugin):
     starting_with = models.PositiveIntegerField(default=1)
     publication = models.ForeignKey(Publication)
     active = models.BooleanField(default=True)
-    all_url = PageField(verbose_name = "URL for issues listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_url = PageField(verbose_name="URL for issues listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
@@ -510,6 +523,7 @@ class IssuesByYearPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.publication.name
+
 
 class MarketoFormPlugin(CMSPlugin):
     instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
