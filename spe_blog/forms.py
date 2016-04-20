@@ -22,7 +22,7 @@ class ArticleSelectionForm(ModelForm):
 
     class Meta:
         model = ArticlesPlugin
-        fields = ['template', 'order_by', 'articles', ]
+        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', ]
 
 
 # fields = ['template', 'keep_original_order', 'order_by', 'articles', ]

@@ -91,8 +91,9 @@ class ShowArticlesPlugin(ArticlePluginBase):
 #            queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
         queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
-        context.update({'show_all_url': instance.all_url})
-        context.update({'show_all_text': instance.all_text})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
 
@@ -140,8 +141,9 @@ class ShowBriefPlugin(BriefPluginBase):
     def render(self, context, instance, placeholder):
         queryset = Brief.objects.filter(id__in=instance.briefs.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
-        context.update({'show_all_url': instance.all_url})
-        context.update({'show_all_text': instance.all_text})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
 
@@ -270,6 +272,9 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
 
@@ -338,8 +343,9 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'publication': instance.publication})
         context.update({'issues': queryset})
-        context.update({'show_all_url': instance.all_url})
-        context.update({'show_all_text': instance.all_text})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         context.update({'show_subscribe_url': instance.publication.subscription_url})
         self.render_template = instance.template
         return context
