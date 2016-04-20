@@ -46,7 +46,7 @@ EDITORIAL_TEMPLATES = (
 
 DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
 BRIEF_TEMPLATES = (
-    # (DEFAULT_ISSUE_TEMPLATE, 'WRONG Brief of interest listing'),
+    ('spe_blog/plugins/issue_channel.html', 'WRONG'),
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
