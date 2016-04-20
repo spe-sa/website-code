@@ -28,7 +28,7 @@
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
                 {% if article.article_text %}
-                    <p>{{ article.article_text }}</p>
+                    <p>{{ article.article_text | safe }}</p>
                 {% endif %}
             </div>
         </div>
