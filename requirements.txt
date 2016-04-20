@@ -1,4 +1,5 @@
 aldryn-addons==1.0.0
+bleach==1.4.2
 dj-database-url==0.4.0
 Django<1.9
 django-admin-extend==0.0.3
