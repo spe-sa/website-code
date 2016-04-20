@@ -28,7 +28,7 @@ from .models import (
     TopicsListPlugin, TopicsPlugin
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm, ArticlesListingForm
+    TopicsListSelectionForm
 # import sys
 
 
