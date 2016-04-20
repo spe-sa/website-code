@@ -21,10 +21,7 @@
             <a href="{{ article.get_absolute_url }}">
                 <h4>{{ article.title }}</h4>
                 <p>
-                {% if article.teaser %}
-                    <p>{{ article.teaser }}</p>
-                {% endif %}
-                {{ article.article_text | bleachall | slice:":100" | striptags | safe }} ...
+                    {{ article.article_text | bleachall | slice:":100" | striptags | safe }} ...
                 </p>
             </a>
             </div>

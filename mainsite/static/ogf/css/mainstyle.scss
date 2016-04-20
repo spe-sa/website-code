@@ -79,3 +79,13 @@ a {
 .cke_maximized {
   margin-top:         50px !important;
 }
+.more {
+  position:           absolute;
+  right:              20px;
+  bottom:             20px;
+  color:              $col-ogfblack;
+
+  &:hover {
+    color:            $col-ogfbluehover;
+  }
+}
