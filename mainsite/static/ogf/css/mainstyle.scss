@@ -89,3 +89,16 @@ a {
     color:            $col-ogfbluehover;
   }
 }
+.see-all-div {
+  margin:             15px 0;
+  padding:            0;
+}
+.see-all {
+  font-size:          15px;
+  font-weight:        $font-bold;
+  color:              $col-speblue;
+
+  &:hover {
+    color:            $col-ogfbluehover;
+  }
+}

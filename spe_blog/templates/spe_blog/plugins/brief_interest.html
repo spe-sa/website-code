@@ -42,7 +42,7 @@
 {% endfor %}
 
 {% if show_all_url and show_all_text %}
-    <a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a>
+    <div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span></a></div>
 {% endif %}
 
 {% if articles.count > 1 %}
