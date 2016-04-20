@@ -38,3 +38,4 @@ pytz==2015.7
 requests==2.9.1  # check if we need this
 six==1.10.0
 tzlocal==1.2
+bleach==1.4.2
