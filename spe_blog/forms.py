@@ -8,7 +8,7 @@ from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Editorial, E
 
 class ArticlesListingForm(ModelForm):
     categories = ModelMultipleChoiceField(Category.objects.all().order_by('name'),
-                                          widget=FilteredSelectMultiple("categories", False, ))
+                                          widget=FilteredSelectMultiple("categories", False, ), required=False)
 
     class Meta:
         model = ArticlesListingPlugin

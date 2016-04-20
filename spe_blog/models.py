@@ -442,7 +442,7 @@ class ArticlesListingPlugin(CMSPlugin):
     personalized = models.BooleanField(default=False)
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
     # category = models.ForeignKey(Category, blank=True, null=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)

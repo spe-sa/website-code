@@ -144,7 +144,7 @@ INSTALLED_APPS = (
     'spe_links',
     'spe_blog',
     'google_tag_manager',
-    'spe_contact',
+#    'spe_contact',
     'spe_polls',
     'request',
     'spe_events',
