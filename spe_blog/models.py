@@ -157,8 +157,8 @@ class Article(models.Model):
     free = models.BooleanField(default=False, verbose_name=u'Always Free')
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
-    # category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    categories = models.ManyToManyField(Category, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    #categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )

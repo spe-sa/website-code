@@ -2,18 +2,8 @@
 from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
-from .models import Article, ArticlesPlugin, ArticlesListingPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
+from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
     Topics, TopicsPlugin, TopicsListPlugin, Category
-
-
-class ArticlesListingForm(ModelForm):
-    categories = ModelMultipleChoiceField(Category.objects.all().order_by('name'),
-                                          widget=FilteredSelectMultiple("categories", False, ), required=False)
-
-    class Meta:
-        model = ArticlesListingPlugin
-        fields = ['template', 'cnt', 'order_by', 'starting_with', 'publication', 'print_volume', 'print_issue',
-                  'personalized', 'discipline', 'categories', 'all_url', 'all_text', ]
 
 
 class ArticleSelectionForm(ModelForm):

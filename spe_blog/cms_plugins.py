@@ -260,7 +260,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = Article.objects.all()
 
         if instance.categories.all():
-            qs = qs.filter(categories__in=instance.categories.all())
+            qs = qs.filter(category__in=instance.categories.all())
 
         if instance.print_volume:
             qs = qs.filter(print_volume=instance.print_volume)
