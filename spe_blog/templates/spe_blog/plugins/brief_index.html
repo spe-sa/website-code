@@ -19,7 +19,7 @@
                 {% if article.teaser %}
                     <p>{{ article.teaser }}</p>
                 {% endif %}
-                {{ article.article_text | slice:":100" | striptags }}
+                {{ article.article_text | slice:":100" | striptags | safe }}
                 </p>
             </a>
             </div>
