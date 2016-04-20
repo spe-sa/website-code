@@ -169,6 +169,9 @@ class ShowBriefListingPlugin(BriefPluginBase):
         qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
 
