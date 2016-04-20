@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Article, Category, Publication, Issue, Editorial, Coverage
+from .models import Article, Category, Publication, Issue, Editorial 
 from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage
 from mainsite.models import Tier1Discipline
 
@@ -16,7 +16,7 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'coverage', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -84,7 +84,6 @@ admin.site.register(Editorial)
 admin.site.register(Category)
 admin.site.register(Publication)
 admin.site.register(Issue)
-admin.site.register(Coverage)
 admin.site.register(ArticleDetailPage)
 admin.site.register(BriefDetailPage)
 admin.site.register(TopicsPage)
