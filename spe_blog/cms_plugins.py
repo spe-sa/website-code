@@ -241,7 +241,6 @@ class ShowEditorialPlugin(ArticlePluginBase):
 class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
     name = _("Articles Listing")
-    form = ArticlesListingForm
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
