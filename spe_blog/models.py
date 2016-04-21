@@ -240,7 +240,6 @@ class Brief(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
-    teaser = models.CharField(max_length=250, blank=True, null=True)
     article_text = RichTextUploadingField(
         max_length=2000,
         help_text=u'Full text of the article.'
