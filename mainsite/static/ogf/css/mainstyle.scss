@@ -80,16 +80,24 @@ a {
   margin-top:         50px !important;
 }
 .more {
-  position:           absolute;
-  right:              20px;
-  bottom:             20px;
+  //position:           absolute;
+  //right:              20px;
+  //bottom:             20px;
+  float:              right;
   color:              $col-ogfblack;
 
   &:hover {
     color:            $col-ogfbluehover;
   }
 }
+.moreB {
+  color:              $col-ogfblack;
+  float:  right;
 
+  &:hover {
+    color:            $col-ogfbluehover;
+  }
+}
 .see-all-div {
   margin:             15px 0;
   padding:            10px 0 0 0;

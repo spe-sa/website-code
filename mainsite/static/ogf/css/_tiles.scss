@@ -253,6 +253,10 @@
     //border:             1px solid hotpink;
 
     .item {
+      height:             400px;
+      background-size:  cover;
+      background-position: center;
+      
       img {
         width:          100%;
         height:         auto;
@@ -260,7 +264,8 @@
       .carousel-caption {
         background:     $img-back-black-50 repeat top left fixed;
         width:          100%;
-        top:            200px;
+        //top:            200px;
+        bottom:         0;
         left:           0;
         padding-bottom: 30px;
       }

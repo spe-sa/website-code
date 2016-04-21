@@ -24,6 +24,7 @@
                     {{ article.article_text | bleachall | slice:":100" | striptags | safe }} ...
                 </p>
             </a>
+            <div class="moreB">... Read More</div>
             </div>
 
             {% if forloop.counter|divisibleby:2 %}

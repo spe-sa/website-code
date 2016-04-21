@@ -1,7 +1,10 @@
+{% load cms_tags sekizai_tags %}
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   {% for article in articles %}
+
       {% if article.picture and article.picture.url %}
           {% if forloop.first %}
               <li data-target="#myCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
@@ -17,9 +20,10 @@
       {% for article in articles %}
           {% if article.picture and article.picture.url %}
               {% if forloop.first %}
-                  <div class="item active">
+{#                  <div class="item active">#}
+                  <div class="item active" style="background-image: url({{ article.picture.url }})">
                       <a href="{{ article.get_absolute_url }}">
-                          <img src={{ article.picture.url }}>
+{#                          <img src={{ article.picture.url }}>#}
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
                               <h4>{{ article.teaser }}</h4>
@@ -27,9 +31,9 @@
                       </a>
                   </div>
               {% else %}
-                  <div class="item">
+                  <div class="item" style="background-image: url({{ article.picture.url }})">
                       <a href="{{ article.get_absolute_url }}">
-                          <img src={{ article.picture.url }}>
+{#                          <img src={{ article.picture.url }}>#}
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
                               <h4>{{ article.teaser }}</h4>
@@ -38,6 +42,7 @@
                   </div>
               {% endif %}
           {% endif %}
+
       {% endfor %}
   </div>
 </div>

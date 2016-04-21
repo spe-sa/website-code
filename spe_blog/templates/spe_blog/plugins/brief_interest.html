@@ -21,10 +21,11 @@
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
                 {% if article.article_text %}
-                    <p>{{ article.article_text | bleachall | slice:":100" | safe }}...</p>
+                    <p>{{ article.article_text | bleachall | slice:":100" | safe }}... </p>
+                    <span class="more"> ...Read More</span>
                 {% endif %}
             </div>
-            <div class="more">Read More...</div>
+
         </div>
     </a>
     </article>
