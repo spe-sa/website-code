@@ -628,3 +628,30 @@ table {
     padding:            5px;
   }
 }
+.topicListBox, .topicListColumnL, .topicListColumnR {
+  padding:              0 !important;
+}
+.topicListBox {
+  background-color:     $col-ogflightgrey;
+  border-top:           5px solid $col-red;
+
+  .topicListItem {
+    border-bottom:      1px dotted $col-boxshadow;
+    border-right:       1px dotted $col-boxshadow;
+    padding:            10px;
+
+    &:hover {
+      background-color: $col-ogfnotsolightgrey;
+    }
+
+    p {
+      margin:           0;
+    }
+
+  }
+}
+.topicListColumnL {
+  .topicListItem {
+    border-left:        1px dotted $col-boxshadow;
+  }
+}

@@ -315,6 +315,15 @@ table tbody { border-color: #f2efea; }
 table th { background-color: #181c41; color: white; }
 table th, table td { padding: 5px; }
 
+.topicListBox, .topicListColumnL, .topicListColumnR { padding: 0 !important; }
+
+.topicListBox { background-color: #f2efea; border-top: 5px solid #bf1d21; }
+.topicListBox .topicListItem { border-bottom: 1px dotted #b4b4b9; border-right: 1px dotted #b4b4b9; padding: 10px; }
+.topicListBox .topicListItem:hover { background-color: #e4e1d8; }
+.topicListBox .topicListItem p { margin: 0; }
+
+.topicListColumnL .topicListItem { border-left: 1px dotted #b4b4b9; }
+
 /* =================================================================== */
 /* TILES & BOXES
 ====================================================================== */
@@ -429,7 +438,7 @@ table th, table td { padding: 5px; }
 
 .sideListItem { padding: 0 0 5px 0; border-bottom: 1px solid #393939; margin-bottom: 5px; }
 
-.sideListTitle { font-size: 20px; font-weight: 700; margin-top: 5px; padding: 5px 0; }
+.sideListTitle { font-size: 15px; font-weight: 700; margin-top: 5px; padding: 5px 0; }
 .sideListTitle a:hover { color: #808bcf; }
 
 .sideListDate { color: #fffb22; font-weight: 300; }
