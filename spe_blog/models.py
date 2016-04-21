@@ -372,6 +372,7 @@ class BriefPlugin(CMSPlugin):
 class ArticleDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
     article = models.ForeignKey(Article, verbose_name="Selected article (default)", on_delete=models.PROTECT)
+    show_related_articles = models.BooleanField(default=False)
 
     def __unicode__(self):
         return str(self.article.publication.code) + ": " + self.article.title

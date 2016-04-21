@@ -63,11 +63,12 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                          art = get_object_or_404(Article, pk=pk)
                      except:
                          raise Http404("Article not found")
-
+         topic_related = None
          filter_topics = art.topics.all()
-         filter_main = Article.objects.filter(topics__in=filter_topics.all())
-         filter_ex = filter_main.exclude(id=art.id)
-         topic_related = filter_ex.order_by('-date')[:3]
+         if filter_topics and instance.show_related_articles:
+            filter_main = Article.objects.filter(topics__in=filter_topics.all())
+            filter_ex = filter_main.exclude(id=art.id)
+            topic_related = filter_ex.order_by('-date')[:3]
 
          context.update({'article': art})
          context.update({'dateNow': now})
