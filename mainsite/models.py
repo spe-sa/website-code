@@ -37,6 +37,13 @@ logger = logging.getLogger(__name__)
 #    type_of_page = models.CharField(max_length=255, choices=PAGE_TYPES, default=DEFAULT_PAGE_TYPE)
 #    template = models.CharField(max_length=255, choices=PAGE_TEMPLATES, default=DEFAULT_PAGE_TEMPLATE)
 
+DEFAULT_TEXT_CLASS = '.tile-white'
+TEXT_CLASS = (
+    ('.tile-Alert', 'Alert Box'),
+    ('.tile-blue', 'Blue Box'),
+    (DEFAULT_TEXT_CLASS, 'White Box'),
+)
+
 
 class Regions(models.Model):
     region_code = models.CharField(max_length=15, unique=True)
