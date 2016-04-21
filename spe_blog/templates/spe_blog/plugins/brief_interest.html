@@ -20,6 +20,9 @@
 
             <div class="col-sm-9 poiblurb">
                 <h3>{{ article.title }}</h3>
+                {% if article.date %}
+                    <p class="poi-date">{{ article.date|date:"d F Y" }}</p>
+                {% endif %}
                 {% if article.article_text %}
                     <p>{{ article.article_text | bleachall | slice:":100" | safe }}... </p>
                     <span class="more"> ...Read More</span>
@@ -48,7 +51,7 @@
 
 {% if articles.count > 1 %}
     </div>
-    <div class="col-xs-12 dottedSpacer"></div>
+    <div class="row dottedSpacer"></div>
 {% endif %}
 
 {% addtoblock "js" %}

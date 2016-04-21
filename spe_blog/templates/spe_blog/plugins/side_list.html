@@ -1,9 +1,9 @@
 {% load i18n cms_tags sekizai_tags %}
 
 <div class="tile-editorial row">
-    <div class="col-xs-12 sideListBoxTitle">
-        THIS IS THE TITLE
-    </div>
+{#    <div class="col-xs-12 sideListBoxTitle">#}
+{#        THIS IS THE TITLE#}
+{#    </div>#}
 {% for article in articles %}
     <div class="col-xs-12 sideListItem">
         <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
