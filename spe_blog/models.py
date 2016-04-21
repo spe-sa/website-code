@@ -13,6 +13,7 @@ from taggit.models import TaggedItemBase
 
 from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
+from datetime import datetime
 import sys
 
 DEFAULT_ORDER_BY = '-date'
@@ -213,10 +214,12 @@ class Article(models.Model):
         now = timezone.now().date()
         if self.free is True:
             return True
-        if self.free_start and self.free_stop and self.free_start < now < self.free_stop:
-            return True
-        if self.free_start and self.free_start < now:
-            return True
+        if self.free_start is None or self.free_start <= now:
+            if self.free_stop is None:
+                return True
+            if self.free_stop >= now:
+                return True
+
         # here will go logic for membership viewing rights
         return False
 
@@ -224,8 +227,11 @@ class Article(models.Model):
         now = timezone.now().date()
         if self.free:
             return False
-        if self.free_start and self.free_start <= now:
-            return not self.free_stop or self.free_stop >= now
+        if self.free_start is None or self.free_start <= now:
+            if self.free_stop is None:
+                return True
+            if self.free_stop >= now:
+                return True
         return False
 
 
