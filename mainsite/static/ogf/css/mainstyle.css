@@ -340,7 +340,7 @@ table th, table td { padding: 5px; }
 .tileText { color: #2a2a2a; }
 .tileText:hover { color: #2a2a2a; }
 
-.tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou { margin-bottom: 20px; padding: 15px; min-width: 150px; }
+.tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou { margin-bottom: 10px; padding: 15px; min-width: 150px; }
 
 .tile-alert { background-color: #bf1d21; color: white; }
 .tile-alert p { margin: 0; }

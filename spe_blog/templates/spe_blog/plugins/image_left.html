@@ -10,9 +10,9 @@
 {#                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>#}
                     <div class="img-wrap detailImgWrapLeft" style="background-image: url({{ article.picture.url }})"></div>
                 </figure>
-                <div class="story-text col-sm-6">
+                <div class="col-sm-6">
             {% else %}
-                <div class="story-text col-sm-12">
+                <div class="col-sm-12">
             {% endif %}
                 <span class="pub-date">{{ article.date|date:"d F Y" }}
                 {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}

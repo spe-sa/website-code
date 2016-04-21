@@ -29,7 +29,7 @@
 }
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou {
   //box-shadow:           0 1px 2px $col-boxshadow;
-  margin-bottom:        20px;
+  margin-bottom:        10px;
   padding:              15px;
   min-width:            150px;
 }
@@ -63,6 +63,7 @@
     }
   }
 }
+
 .tileImgBack {
   background-position: center;
   -webkit-background-size: cover;
