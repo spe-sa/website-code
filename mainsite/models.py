@@ -388,7 +388,7 @@ class TextWithClass(CMSPlugin):
         max_length=2000,
         help_text=u'Text'
     )
-    cls = models.CharField(max_length=40, verbose_name="Class")
+    cls = models.CharField(max_length=40, verbose_name="Class", choices=TEXT_CLASS, default=DEFAULT_TEXT_CLASS)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
