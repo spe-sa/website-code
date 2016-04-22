@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_TEXT_CLASS = '.tile-white'
 TEXT_CLASS = (
-    ('.tile-Alert', 'Alert Box'),
+    ('.tile-alert', 'Alert Box'),
     ('.tile-blue', 'Blue Box'),
     (DEFAULT_TEXT_CLASS, 'White Box'),
 )
