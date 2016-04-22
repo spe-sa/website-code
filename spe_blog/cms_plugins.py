@@ -66,7 +66,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
          topic_related = None
          filter_topics = art.topics.all()
          if filter_topics and instance.show_related_articles:
-            filter_main = Article.objects.filter(topics__in=filter_topics.all())
+            filter_main = Article.objects.filter(published=True).filter(topics__in=filter_topics.all())
             filter_ex = filter_main.exclude(id=art.id)
             topic_related = filter_ex.order_by('-date')[:3]
 
@@ -90,7 +90,7 @@ class ShowArticlesPlugin(ArticlePluginBase):
 #                queryset = list(chain(queryset, queryadd))
 #        else:
 #            queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
-        queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
+        queryset = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
@@ -140,7 +140,7 @@ class ShowBriefPlugin(BriefPluginBase):
     form = BriefSelectionForm
 
     def render(self, context, instance, placeholder):
-        queryset = Brief.objects.filter(id__in=instance.briefs.all()).order_by(instance.order_by)
+        queryset = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
@@ -155,9 +155,9 @@ class ShowBriefListingPlugin(BriefPluginBase):
     def render(self, context, instance, placeholder):
         request = context.get('request')
         if instance.publication:
-            qs = Brief.objects.filter(publication=instance.publication)
+            qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
         else:
-            qs = Brief.objects.all()
+            qs = Brief.objects.all().filter(published=True)
 
         if instance.category:
             qs = qs.filter(category=instance.category)
@@ -216,11 +216,11 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
             if q and q[0][0] == 'topic':
                 pk = int(q[0][1])
                 if pk:
-                    art = Article.objects.all().filter(publication=instance.publication).filter(topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                    art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
                 else:
                     raise Http404("Topic not found")
         else:
-            art = Article.objects.all().filter(publication=instance.publication).filter(topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[instance.starting_with - 1:instance.cnt]
+            art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[instance.starting_with - 1:instance.cnt]
         context.update({'articles': art})
         context.update({'dateNow': now})
         self.render_template = instance.template
@@ -255,9 +255,9 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         context.update({'ducode': ducode, 'dcode': dcode})
         # NOTE: todo - create an in clause filter with each code if there are any
         if instance.publication:
-            qs = Article.objects.filter(publication=instance.publication)
+            qs = Article.objects.filter(published=True).filter(publication=instance.publication)
         else:
-            qs = Article.objects.all()
+            qs = Article.objects.all().filter(published=True)
 
         if instance.categories.all():
             qs = qs.filter(category__in=instance.categories.all())

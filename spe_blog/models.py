@@ -187,6 +187,7 @@ class Article(models.Model):
     tags.rel.related_name = "+"
     auto_tags = TaggableManager(verbose_name="Auto Tags", through=Article_TaggedAuto, blank=True)
     auto_tags.rel.related_name = "+"
+    published = models.BooleanField(default=False, verbose_name=u'Publish')
 
     class Meta:
         unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
@@ -264,6 +265,7 @@ class Brief(models.Model):
     tags.rel.related_name = "+"
     auto_tags = TaggableManager(verbose_name="Auto Tags", through=Brief_TaggedAuto, blank=True)
     auto_tags.rel.related_name = "+"
+    published = models.BooleanField(default=False, verbose_name=u'Publish')
 
     class Meta:
         unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
