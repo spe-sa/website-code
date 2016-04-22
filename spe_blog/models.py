@@ -201,7 +201,10 @@ class Article(models.Model):
             buf = " " + str(self.print_volume)
         if self.print_issue:
             buf += ", " + str(self.print_issue)
-        return self.publication.code + buf + ": " + str(self.title)
+        buf = self.publication.code + buf + ": " + str(self.title)
+        if self.published:
+            buf += " (PUBLISHED)"
+        return buf
 
     def get_absolute_url(self):
         if self.publication.article_url:
@@ -279,7 +282,10 @@ class Brief(models.Model):
             buf = " " + str(self.print_volume)
         if self.print_issue:
             buf += ", " + str(self.print_issue)
-        return self.publication.code + buf + ": " + str(self.title)
+        buf = self.publication.code + buf + ": " + str(self.title)
+        if self.published:
+            buf += " (PUBLISHED)"
+        return buf
 
     def get_absolute_url(self):
         if self.publication.brief_url:
