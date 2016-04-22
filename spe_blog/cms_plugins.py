@@ -1,4 +1,4 @@
-#from itertools import chain
+# from itertools import chain
 import requests
 import json
 import re
@@ -19,8 +19,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
     Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin,
-    Issue, IssuesByPublicationPlugin, 
-    Editorial, EditorialPlugin, 
+    Issue, IssuesByPublicationPlugin,
+    Editorial, EditorialPlugin,
     BreadCrumbPlugin,
     Publication,
     IssuesByYearPlugin,
@@ -29,6 +29,8 @@ from .models import (
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
     TopicsListSelectionForm
+
+
 # import sys
 
 
@@ -48,33 +50,33 @@ class ArticlePluginBase(CMSPluginBase):
 
 
 class ShowArticleDetailPlugin(ArticlePluginBase):
-     model = ArticleDetailPlugin
-     name = _("Show Article Detail")
+    model = ArticleDetailPlugin
+    name = _("Show Article Detail")
 
-     def render(self, context, instance, placeholder):
-         now = timezone.now()
-         art = get_object_or_404(Article, pk=instance.article.id)
-         if instance.allow_url_to_override_selection:
-             q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
-             if q and q[0][0] == 'art':
-                 pk = int(q[0][1])
-                 if pk:
-                     try:
-                         art = get_object_or_404(Article, pk=pk)
-                     except:
-                         raise Http404("Article not found")
-         topic_related = None
-         filter_topics = art.topics.all()
-         if filter_topics and instance.show_related_articles:
+    def render(self, context, instance, placeholder):
+        now = timezone.now()
+        art = get_object_or_404(Article, pk=instance.article.id)
+        if instance.allow_url_to_override_selection:
+            q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            if q and q[0][0] == 'art':
+                pk = int(q[0][1])
+                if pk:
+                    try:
+                        art = get_object_or_404(Article, pk=pk)
+                    except:
+                        raise Http404("Article not found")
+        topic_related = None
+        filter_topics = art.topics.all()
+        if filter_topics and instance.show_related_articles:
             filter_main = Article.objects.filter(published=True).filter(topics__in=filter_topics.all())
             filter_ex = filter_main.exclude(id=art.id)
             topic_related = filter_ex.order_by('-date')[:3]
 
-         context.update({'article': art})
-         context.update({'dateNow': now})
-         context.update({'topic_articles': topic_related})
-         self.render_template = 'spe_blog/plugins/article_detail.html' 
-         return context
+        context.update({'article': art})
+        context.update({'dateNow': now})
+        context.update({'topic_articles': topic_related})
+        self.render_template = 'spe_blog/plugins/article_detail.html'
+        return context
 
 
 class ShowArticlesPlugin(ArticlePluginBase):
@@ -83,14 +85,15 @@ class ShowArticlesPlugin(ArticlePluginBase):
     form = ArticleSelectionForm
 
     def render(self, context, instance, placeholder):
-#        if instance.keep_original_order:
-#            queryset = Article.objects.none()
-#            for art in instance.articles.all():
-#                queryadd = Article.objects.filter(id=art.id).all()
-#                queryset = list(chain(queryset, queryadd))
-#        else:
-#            queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
-        queryset = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(instance.order_by)
+        #        if instance.keep_original_order:
+        #            queryset = Article.objects.none()
+        #            for art in instance.articles.all():
+        #                queryadd = Article.objects.filter(id=art.id).all()
+        #                queryset = list(chain(queryset, queryadd))
+        #        else:
+        #            queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
+        queryset = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(
+            instance.order_by)
         context.update({'articles': queryset})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
@@ -113,26 +116,28 @@ class BriefPluginBase(CMSPluginBase):
     render_template = 'spe_blog/plugins/brief_interest.html'
     text_enabled = False
 
-class ShowBriefDetailPlugin(BriefPluginBase):
-     model = BriefDetailPlugin
-     name = _("Show Brief Detail")
 
-     def render(self, context, instance, placeholder):
-         now = timezone.now()
-         art = get_object_or_404(Brief, pk=instance.brief.id)
-         if instance.allow_url_to_override_selection:
-             q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
-             if q and q[0][0] == 'art':
-                 pk = int(q[0][1])
-                 if pk:
-                     try:
-                         art = get_object_or_404(Brief, pk=pk)
-                     except:
-                         raise Http404("Article not found")
-         context.update({'article': art})
-         context.update({'dateNow': now})
-         self.render_template = 'spe_blog/plugins/brief_detail.html' 
-         return context
+class ShowBriefDetailPlugin(BriefPluginBase):
+    model = BriefDetailPlugin
+    name = _("Show Brief Detail")
+
+    def render(self, context, instance, placeholder):
+        now = timezone.now()
+        art = get_object_or_404(Brief, pk=instance.brief.id)
+        if instance.allow_url_to_override_selection:
+            q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            if q and q[0][0] == 'art':
+                pk = int(q[0][1])
+                if pk:
+                    try:
+                        art = get_object_or_404(Brief, pk=pk)
+                    except:
+                        raise Http404("Article not found")
+        context.update({'article': art})
+        context.update({'dateNow': now})
+        self.render_template = 'spe_blog/plugins/brief_detail.html'
+        return context
+
 
 class ShowBriefPlugin(BriefPluginBase):
     model = BriefPlugin
@@ -147,6 +152,7 @@ class ShowBriefPlugin(BriefPluginBase):
             context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
+
 
 class ShowBriefListingPlugin(BriefPluginBase):
     model = BriefListingPlugin
@@ -191,9 +197,23 @@ class TopicsPluginBase(CMSPluginBase):
     render_template = 'spe_blog/plugins/topics_list.html'
     text_enabled = False
 
+
+class ShowTopicsListOneColPlugin(TopicsPluginBase):
+    model = TopicsListPlugin
+    name = _("Topics Listing 1 Column")
+    form = TopicsListSelectionForm
+
+    def render(self, context, instance, placeholder):
+        topics = instance.topics.all()
+        context.update({'topics': topics})
+        context.update({'publication': instance.publication})
+        self.render_template = 'spe_blog/plugins/topics_list_1col.html'
+        return context
+
+
 class ShowTopicsListPlugin(TopicsPluginBase):
     model = TopicsListPlugin
-    name = _("Topics Listing")
+    name = _("Topics Listing 2 Columns")
     form = TopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
@@ -202,6 +222,20 @@ class ShowTopicsListPlugin(TopicsPluginBase):
         context.update({'publication': instance.publication})
         self.render_template = 'spe_blog/plugins/topics_list.html'
         return context
+
+
+class ShowTopicsListThreeColPlugin(TopicsPluginBase):
+    model = TopicsListPlugin
+    name = _("Topics Listing 3 Columns")
+    form = TopicsListSelectionForm
+
+    def render(self, context, instance, placeholder):
+        topics = instance.topics.all()
+        context.update({'topics': topics})
+        context.update({'publication': instance.publication})
+        self.render_template = 'spe_blog/plugins/topics_list_3col.html'
+        return context
+
 
 class ShowTopicsListingPlugin(TopicsPluginBase):
     model = TopicsPlugin
@@ -216,11 +250,14 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
             if q and q[0][0] == 'topic':
                 pk = int(q[0][1])
                 if pk:
-                    art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                    art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                        topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
                 else:
                     raise Http404("Topic not found")
         else:
-            art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[instance.starting_with - 1:instance.cnt]
+            art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
+                  instance.starting_with - 1:instance.cnt]
         context.update({'articles': art})
         context.update({'dateNow': now})
         self.render_template = instance.template
@@ -238,6 +275,7 @@ class ShowEditorialPlugin(ArticlePluginBase):
         context.update({'link': instance.lnk})
         self.render_template = instance.template
         return context
+
 
 class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
@@ -268,9 +306,11 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.filter(print_issue=instance.print_issue)
 
         if ducode:
-            qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+            qs = qs.filter(disciplines=ducode).order_by(instance.order_by)[
+                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         elif dcode:
-            qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+            qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[
+                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
             qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
@@ -340,10 +380,12 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     name = _('Issues by Publication Listing')
     text_enabled = False
     render_template = 'spe_blog/plugins/issue_channel.html'
-    #render_plugin = False
+
+    # render_plugin = False
 
     def render(self, context, instance, placeholder):
-        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[
+                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'publication': instance.publication})
         context.update({'issues': queryset})
         if instance.all_url:
@@ -352,6 +394,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
         context.update({'show_subscribe_url': instance.publication.subscription_url})
         self.render_template = instance.template
         return context
+
 
 class ShowBreadCrumbPlugin(CMSPluginBase):
     model = BreadCrumbPlugin
@@ -365,6 +408,7 @@ class ShowBreadCrumbPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context.update({'title': instance.title})
         return context
+
 
 class ShowIssuesByYearPlugin(CMSPluginBase):
     model = IssuesByYearPlugin
@@ -396,6 +440,7 @@ class ShowMarketoFormPlugin(CMSPluginBase):
         context.update({'thank_you': instance.thank_you})
         return context
 
+
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
@@ -407,5 +452,7 @@ plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowMarketoFormPlugin)
+plugin_pool.register_plugin(ShowTopicsListOneColPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)
+plugin_pool.register_plugin(ShowTopicsListThreeColPlugin)
 plugin_pool.register_plugin(ShowTopicsListingPlugin)

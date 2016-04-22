@@ -628,7 +628,7 @@ table {
     padding:            5px;
   }
 }
-.topicListBox, .topicListColumnL, .topicListColumnR {
+.topicListBox, .topicListColumnL, .topicListColumnR, .topicListColumnOne {
   padding:              0 !important;
 }
 .topicListBox {
@@ -636,8 +636,9 @@ table {
   border-top:           5px solid $col-red;
 
   .topicListItem {
-    border-bottom:      1px dotted $col-boxshadow;
-    border-right:       1px dotted $col-boxshadow;
+    //border-bottom:      1px dotted $col-boxshadow;
+    //border-right:       1px dotted $col-boxshadow;
+    border:             1px dotted $col-boxshadow;
     padding:            10px;
 
     &:hover {
@@ -650,8 +651,13 @@ table {
 
   }
 }
-.topicListColumnL {
-  .topicListItem {
-    border-left:        1px dotted $col-boxshadow;
-  }
-}
+//.topicListColumnL {
+//  .topicListItem {
+//    border-left:        1px dotted $col-boxshadow;
+//  }
+//}
+//.topicListColumnOne {
+//  .topicListItem {
+//    border:             1px dotted $col-boxshadow;
+//  }
+//}
