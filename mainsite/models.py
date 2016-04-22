@@ -37,10 +37,10 @@ logger = logging.getLogger(__name__)
 #    type_of_page = models.CharField(max_length=255, choices=PAGE_TYPES, default=DEFAULT_PAGE_TYPE)
 #    template = models.CharField(max_length=255, choices=PAGE_TEMPLATES, default=DEFAULT_PAGE_TEMPLATE)
 
-DEFAULT_TEXT_CLASS = '.tile-white'
+DEFAULT_TEXT_CLASS = 'tile-white'
 TEXT_CLASS = (
-    ('.tile-alert', 'Alert Box'),
-    ('.tile-blue', 'Blue Box'),
+    ('tile-alert', 'Alert Box'),
+    ('tile-blue', 'Blue Box'),
     (DEFAULT_TEXT_CLASS, 'White Box'),
 )
 
@@ -403,7 +403,7 @@ class TileImgBack(CMSPlugin):
     )
     lnk = models.CharField(max_length=250, verbose_name="Link")
     img = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Background Image')
-    date = models.DateTimeField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
