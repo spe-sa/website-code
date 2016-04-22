@@ -318,9 +318,11 @@ table th, table td { padding: 5px; }
 .topicListBox, .topicListColumnL, .topicListColumnR, .topicListColumnOne { padding: 0 !important; }
 
 .topicListBox { background-color: #f2efea; border-top: 5px solid #bf1d21; }
-.topicListBox .topicListItem { border: 1px dotted #b4b4b9; padding: 10px; }
+.topicListBox .topicListItem { border: 1px dotted #b4b4b9; padding: 5px; }
 .topicListBox .topicListItem:hover { background-color: #e4e1d8; }
 .topicListBox .topicListItem p { margin: 0; }
+
+.topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
 
 /* =================================================================== */
 /* TILES & BOXES

@@ -639,7 +639,7 @@ table {
     //border-bottom:      1px dotted $col-boxshadow;
     //border-right:       1px dotted $col-boxshadow;
     border:             1px dotted $col-boxshadow;
-    padding:            10px;
+    padding:            5px;
 
     &:hover {
       background-color: $col-ogfnotsolightgrey;
@@ -650,6 +650,12 @@ table {
     }
 
   }
+}
+.topicListItem3 {
+  border:             1px dotted $col-boxshadow;
+  padding:            5px;
+  display:            inline-block;
+  width:32%;
 }
 //.topicListColumnL {
 //  .topicListItem {
