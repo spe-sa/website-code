@@ -13,6 +13,8 @@ from cms.plugin_pool import plugin_pool
 # from cms.models.pluginmodel import CMSPlugin
 
 from django.utils.translation import ugettext_lazy as _
+from django.db import connection
+from django.db.models import Q
 
 # from django.contrib.gis.geoip import GeoIP
 
@@ -30,7 +32,7 @@ from .models import (
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
     TopicsListSelectionForm
 
-
+from mainsite.models import Topics
 # import sys
 
 
@@ -230,7 +232,23 @@ class ShowTopicsListThreeColPlugin(TopicsPluginBase):
     form = TopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
-        topics = instance.topics.all()
+        cursor = connection.cursor()
+        cursor.execute('''
+    select distinct(t.topics_id) as id from spe_blog_topicslistplugin_topics t
+	right outer join spe_blog_topicslistplugin p on t.topicslistplugin_id = p.cmsplugin_ptr_id
+	right outer join spe_blog_article_topics at on t.topics_id = at.topics_id
+	right outer join spe_blog_article a on at.article_id = a.id
+	where t.topicslistplugin_id = %s
+		and p.cmsplugin_ptr_id is not null
+		and at.topics_id is not null
+		and a.publication_id = p.publication_id;
+        ''', [instance.pk])
+        used_topic_ids = cursor.fetchall()
+
+        in_filter = Q()
+        for tid in used_topic_ids:
+            in_filter = in_filter | Q(pk__in=tid)
+        topics = instance.topics.filter(in_filter)
         context.update({'topics': topics})
         context.update({'publication': instance.publication})
         self.render_template = 'spe_blog/plugins/topics_list_3col.html'
