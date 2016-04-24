@@ -51,6 +51,13 @@ BRIEF_TEMPLATES = (
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
+DEFAULT_TOPIC_TEMPLATE = 'spe_blog/plugins/topics_list_3col.html'
+TOPIC_TEMPLATES = (
+    ('spe_blog/plugins/topics_list_1col.html', 'Topic List 1 Column'),
+    ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
+    (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
+)
+
 
 class Article_Tagged(TaggedItemBase):
     content_object = models.ForeignKey("Article")
@@ -407,11 +414,13 @@ class TopicsPlugin(CMSPlugin):
 
 
 class TopicsListPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=TOPIC_TEMPLATES, default=DEFAULT_TOPIC_TEMPLATE)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     publication = models.ForeignKey(Publication, blank=True, null=True)
 
     def __unicode__(self):
-        return self.publication.name
+        dictionary = dict(TOPIC_TEMPLATES)
+        return self.publication.code + ": " + dictionary[self.template]
 
     def copy_relations(self, old_instance):
         self.topics = old_instance.topics.all()

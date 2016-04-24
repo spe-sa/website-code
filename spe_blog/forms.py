@@ -3,7 +3,7 @@ from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
-    Topics, TopicsPlugin, TopicsListPlugin, Category
+    Topics, TopicsPlugin, TopicsListPlugin
 
 
 class ArticleSelectionForm(ModelForm):
@@ -37,7 +37,7 @@ class BriefSelectionForm(ModelForm):
 
 class TopicsSelectionForm(ModelForm):
     topics = ModelMultipleChoiceField(Topics.objects.all(),
-                                      widget=FilteredSelectMultiple("briefs", False, ))
+                                      widget=FilteredSelectMultiple("topics", False, ))
 
     class Meta:
         model = TopicsPlugin
@@ -46,6 +46,15 @@ class TopicsSelectionForm(ModelForm):
 
 
 class TopicsListSelectionForm(ModelForm):
+    topics = ModelMultipleChoiceField(Topics.objects.all(),
+                                      widget=FilteredSelectMultiple("topics", False, ))
+
+    class Meta:
+        model = TopicsListPlugin
+        fields = ['template', 'publication', 'topics', ]
+
+
+class OldTopicsListSelectionForm(ModelForm):
     topics = ModelMultipleChoiceField(Topics.objects.all(),
                                       widget=FilteredSelectMultiple("briefs", False, ))
 

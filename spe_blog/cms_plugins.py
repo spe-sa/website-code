@@ -1,8 +1,8 @@
 # from itertools import chain
-import requests
-import json
+# import requests
+# import json
 import re
-from urlparse import urlparse, parse_qs
+import urlparse
 
 from django.shortcuts import get_object_or_404
 from django.http import Http404
@@ -24,16 +24,13 @@ from .models import (
     Issue, IssuesByPublicationPlugin,
     Editorial, EditorialPlugin,
     BreadCrumbPlugin,
-    Publication,
+    # Publication,
     IssuesByYearPlugin,
     MarketoFormPlugin,
     TopicsListPlugin, TopicsPlugin
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm
-
-from mainsite.models import Topics
-# import sys
+    TopicsListSelectionForm, OldTopicsListSelectionForm
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -59,7 +56,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         now = timezone.now()
         art = get_object_or_404(Article, pk=instance.article.id)
         if instance.allow_url_to_override_selection:
-            q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            q = re.findall('(art)=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
             if q and q[0][0] == 'art':
                 pk = int(q[0][1])
                 if pk:
@@ -127,7 +124,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         now = timezone.now()
         art = get_object_or_404(Brief, pk=instance.brief.id)
         if instance.allow_url_to_override_selection:
-            q = re.findall('(art)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            q = re.findall('(art)=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
             if q and q[0][0] == 'art':
                 pk = int(q[0][1])
                 if pk:
@@ -161,7 +158,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
     name = _("Brief Listing")
 
     def render(self, context, instance, placeholder):
-        request = context.get('request')
+        # request = context.get('request')
         if instance.publication:
             qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
         else:
@@ -200,10 +197,43 @@ class TopicsPluginBase(CMSPluginBase):
     text_enabled = False
 
 
+class ShowTopicsListPlugin(TopicsPluginBase):
+    model = TopicsListPlugin
+    name = _("[GOOD USE ME] Topics Listing")
+    form = TopicsListSelectionForm
+
+    def render(self, context, instance, placeholder):
+        cursor = connection.cursor()
+        cursor.execute('''
+          select distinct(t.topics_id) as id from spe_blog_topicslistplugin_topics t
+          right outer join spe_blog_topicslistplugin p on t.topicslistplugin_id = p.cmsplugin_ptr_id
+          right outer join spe_blog_article_topics at on t.topics_id = at.topics_id
+          right outer join spe_blog_article a on at.article_id = a.id
+          where t.topicslistplugin_id = %s
+          and p.cmsplugin_ptr_id is not null
+          and at.topics_id is not null
+          and a.publication_id = p.publication_id;
+        ''', [instance.pk])
+        used_topic_ids = cursor.fetchall()
+
+        if used_topic_ids:
+            in_filter = Q()
+            for tid in used_topic_ids:
+                in_filter = in_filter | Q(pk__in=tid)
+            topics = instance.topics.filter(in_filter)
+        else:
+            topics = None
+
+        context.update({'topics': topics})
+        context.update({'publication': instance.publication})
+        self.render_template = instance.template
+        return context
+
+
 class ShowTopicsListOneColPlugin(TopicsPluginBase):
     model = TopicsListPlugin
-    name = _("Topics Listing 1 Column")
-    form = TopicsListSelectionForm
+    name = _("[BAD CHANGE ME] Topics Listing 1 Column")
+    form = OldTopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
         topics = instance.topics.all()
@@ -213,10 +243,10 @@ class ShowTopicsListOneColPlugin(TopicsPluginBase):
         return context
 
 
-class ShowTopicsListPlugin(TopicsPluginBase):
+class ShowTopicsListTwoColPlugin(TopicsPluginBase):
     model = TopicsListPlugin
-    name = _("Topics Listing 2 Columns")
-    form = TopicsListSelectionForm
+    name = _("[BAD CHANGE ME] Topics Listing 2 Columns")
+    form = OldTopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
         topics = instance.topics.all()
@@ -228,20 +258,20 @@ class ShowTopicsListPlugin(TopicsPluginBase):
 
 class ShowTopicsListThreeColPlugin(TopicsPluginBase):
     model = TopicsListPlugin
-    name = _("Topics Listing 3 Columns")
-    form = TopicsListSelectionForm
+    name = _("[BAD CHANGE ME] Topics Listing 3 Columns")
+    form = OldTopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
         cursor = connection.cursor()
         cursor.execute('''
-    select distinct(t.topics_id) as id from spe_blog_topicslistplugin_topics t
-	right outer join spe_blog_topicslistplugin p on t.topicslistplugin_id = p.cmsplugin_ptr_id
-	right outer join spe_blog_article_topics at on t.topics_id = at.topics_id
-	right outer join spe_blog_article a on at.article_id = a.id
-	where t.topicslistplugin_id = %s
-		and p.cmsplugin_ptr_id is not null
-		and at.topics_id is not null
-		and a.publication_id = p.publication_id;
+          select distinct(t.topics_id) as id from spe_blog_topicslistplugin_topics t
+          right outer join spe_blog_topicslistplugin p on t.topicslistplugin_id = p.cmsplugin_ptr_id
+          right outer join spe_blog_article_topics at on t.topics_id = at.topics_id
+          right outer join spe_blog_article a on at.article_id = a.id
+          where t.topicslistplugin_id = %s
+          and p.cmsplugin_ptr_id is not null
+          and at.topics_id is not null
+          and a.publication_id = p.publication_id;
         ''', [instance.pk])
         used_topic_ids = cursor.fetchall()
 
@@ -260,11 +290,11 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
     name = _("Show Articles by Topics")
 
     def render(self, context, instance, placeholder):
-        request = context.get('request')
+        # request = context.get('request')
         art = ''
         now = timezone.now()
         if instance.allow_url_to_override_selection:
-            q = re.findall('(topic)=(\d+)', urlparse(context.get('request').get_full_path()).query)
+            q = re.findall('(topic)=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
             if q and q[0][0] == 'topic':
                 pk = int(q[0][1])
                 if pk:
@@ -472,5 +502,6 @@ plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowMarketoFormPlugin)
 plugin_pool.register_plugin(ShowTopicsListOneColPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)
+plugin_pool.register_plugin(ShowTopicsListTwoColPlugin)
 plugin_pool.register_plugin(ShowTopicsListThreeColPlugin)
 plugin_pool.register_plugin(ShowTopicsListingPlugin)

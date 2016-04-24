@@ -1,9 +1,8 @@
 {% load cms_tags sekizai_tags divideby %}
 
 {% block content %}
-    <div class="tile col-sm-6 col-md-5 col-lg-4 topicListBox">
     {% if topics %}
-
+        <div class="tile col-sm-6 col-md-5 col-lg-4 topicListBox">
             <div class="row topicListColumnOne">
             {% for topic in topics %}
 
@@ -15,8 +14,6 @@
 
             {% endfor %}
             </div>
-
+        </div>
     {% endif %}
-    </div>
-
 {% endblock content %}
