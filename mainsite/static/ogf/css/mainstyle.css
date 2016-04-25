@@ -391,7 +391,7 @@ table th, table td { padding: 5px; }
 
 .tile-curntIssue { min-height: 150px; border-bottom: 1px dotted #2a2a2a; margin-bottom: 20px; padding: 15px 0; }
 .tile-curntIssue a { color: #2a2a2a; }
-.tile-curntIssue .issueThumb { min-height: 150px; padding: 0; }
+.tile-curntIssue .issueThumb { min-height: 150px; padding: 0 10px 10px 0; }
 .tile-curntIssue .pub-date, .tile-curntIssue .volume, .tile-curntIssue .number { font-weight: 700; }
 .tile-curntIssue .pub-date { font-size: 20px; margin-bottom: 20px; }
 .tile-curntIssue .btn { background-color: #181c41; color: white; }
