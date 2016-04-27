@@ -20,6 +20,9 @@
             {% endif %}
             <a href="{{ article.get_absolute_url }}">
                 <h4>{{ article.title }}</h4>
+                {% if article.date %}
+                    <p class="brief-date">{{ article.date|date:"d F Y" }}</p>
+                {% endif %}
                 <p>
                     {{ article.article_text | bleachall | slice:":100" | striptags | safe }} ...
                 </p>

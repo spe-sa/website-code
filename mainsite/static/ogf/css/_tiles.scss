@@ -162,7 +162,16 @@
   }
 }
 .story-text {
-      min-height:       175px;
+      height:           175px;
+      overflow:         hidden;
+}
+.whitefadebottom {
+  background:           $img-whitefade repeat-x bottom left;
+  height:               20px;
+  width:                100%;
+  position:             absolute;
+  bottom:               19px;
+  //border:               1px solid hotpink;
 }
 .tile-editorial {
   background-color:     $col-ogfblack;
@@ -455,7 +464,7 @@
   }
   h4 {
     font-size:          15px;
-    margin:             0;
+    margin:             0 0 5px 0;
   }
 
   .briefPub {
@@ -473,6 +482,14 @@
     background-color:   $col-ogflightgrey;
     cursor:             pointer;
   }
+}
+.brief-date {
+  color:            $col-red;
+  display:          block;
+  text-transform:   uppercase;
+  font-size:        10px !important;
+  font-weight:      700;
+  letter-spacing:   1px;
 }
 .briefofinterest {
 
