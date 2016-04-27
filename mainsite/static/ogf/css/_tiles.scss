@@ -142,7 +142,7 @@
   min-height:           360px;
 
   .story-wrap {
-    min-height:         360px;
+    height:             400px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -161,6 +161,7 @@
     }
   }
 }
+
 .story-text {
       height:           175px;
       overflow:         hidden;
