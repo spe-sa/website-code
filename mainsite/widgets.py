@@ -12,7 +12,8 @@ class ColorPickerWidget(forms.TextInput):
             )
         }
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js',
+            # 'http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js',
+            settings.STATIC_URL + 'js/jquery/jquery-1.12.0.min.js',
             settings.STATIC_URL + 'js/jquery.colorPicker.js',
         )
 
