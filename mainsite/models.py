@@ -3,6 +3,7 @@ from django.db import models
 
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from mainsite.widgets import ColorPickerWidget
 
 # from django.core.urlresolvers import reverse
 # from django.utils import six
@@ -43,6 +44,16 @@ TEXT_CLASS = (
     ('tile-blue', 'Blue Box'),
     (DEFAULT_TEXT_CLASS, 'White Box'),
 )
+
+
+class ColorField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10
+        super(ColorField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        kwargs['widget'] = ColorPickerWidget
+        return super(ColorField, self).formfield(**kwargs)
 
 
 class Regions(models.Model):

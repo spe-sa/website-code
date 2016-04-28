@@ -14,6 +14,7 @@ from taggit.models import TaggedItemBase
 from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
 from datetime import datetime
+from mainsite.widgets import ColorPickerWidget
 import sys
 
 DEFAULT_ORDER_BY = '-date'
@@ -57,6 +58,16 @@ TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
 )
+
+
+class ColorField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10
+        super(ColorField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        kwargs['widget'] = ColorPickerWidget
+        return super(ColorField, self).formfield(**kwargs)
 
 
 class Article_Tagged(TaggedItemBase):
@@ -347,6 +358,7 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
 
     def __unicode__(self):
         #        if self.keep_original_order:
@@ -438,6 +450,7 @@ class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
     editorial = models.ManyToManyField(Editorial)
     lnk = models.URLField("Link URL", blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True)
 
     def __unicode__(self):
         return "Editorial Plugin"
