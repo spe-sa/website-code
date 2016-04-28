@@ -464,7 +464,7 @@ table th, table td { padding: 5px; }
 .briefListItem img { display: none; }
 .briefListItem a { color: #2a2a2a; }
 .briefListItem a:hover { color: #808bcf; text-decoration: none; }
-.briefListItem h4 { font-size: 15px; margin: 0 0 5px 0; }
+.briefListItem h4 { font-size: 18px; margin: 0 0 5px 0; }
 .briefListItem .briefPub { font-size: 10px; font-weight: 300; color: #b4b4b9; width: 100%; text-align: right; }
 .briefListItem .badge { border-radius: 10px !important; font-size: 10px; }
 .briefListItem:hover { background-color: #f2efea; cursor: pointer; }

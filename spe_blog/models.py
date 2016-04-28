@@ -300,7 +300,7 @@ class Brief(models.Model):
             buf = " " + str(self.print_volume)
         if self.print_issue:
             buf += ", " + str(self.print_issue)
-        buf = self.publication.code + buf + ": " + str(self.title)
+        buf = self.publication.code + buf + ": " + unicode(self.title)
         if self.published:
             buf += " (PUBLISHED)"
         return buf
