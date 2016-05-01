@@ -22,9 +22,9 @@ DATABASES = {
             'OPTIONS': {
                 'read_default_file': '/Applications/MAMP/tmp/mysql/my.cnf',
             },
-            'NAME': 'website',
+            'NAME': 'newsite',
             'USER': 'root',
-            'PASSWORD': 'root',
+            'PASSWORD': 'Zaph0d!',
         }
 }
 

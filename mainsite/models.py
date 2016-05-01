@@ -402,7 +402,6 @@ class TileImgBack(CMSPlugin):
         help_text=u'Text Area'
     )
     lnk = models.CharField(max_length=250, verbose_name="Link")
-    img = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Background Image')
     date = models.DateField(blank=True, null=True)
 
     def __unicode__(self):

@@ -7,7 +7,7 @@
             <h1 class="tiletitles">{{ article.title }}</h1>
             <div class="col-sm-12 tiletitlehr"></div>
             <div class="col-sm-8 articleAuthorBox">
-                {{ article.author }} | {{ article.date|date:"d F Y" }}
+                {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
             </div>
             <div class="col-sm-4 articleShares text-right">
                 {% include 'include_article_shares.html' %}

@@ -142,7 +142,7 @@
   min-height:           360px;
 
   .story-wrap {
-    min-height:         360px;
+    height:             400px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -161,8 +161,18 @@
     }
   }
 }
+
 .story-text {
-      min-height:       175px;
+      height:           175px;
+      overflow:         hidden;
+}
+.whitefadebottom {
+  background:           $img-whitefade repeat-x bottom left;
+  height:               20px;
+  width:                100%;
+  position:             absolute;
+  bottom:               19px;
+  //border:               1px solid hotpink;
 }
 .tile-editorial {
   background-color:     $col-ogfblack;
@@ -453,9 +463,10 @@
       text-decoration:  none;
     }
   }
+
   h4 {
-    font-size:          15px;
-    margin:             0;
+    font-size:          18px;
+    margin:             0 0 5px 0;
   }
 
   .briefPub {
@@ -474,6 +485,14 @@
     cursor:             pointer;
   }
 }
+.brief-date {
+  color:            $col-red;
+  display:          block;
+  text-transform:   uppercase;
+  font-size:        10px !important;
+  font-weight:      700;
+  letter-spacing:   1px;
+}
 .briefofinterest {
 
   p {
@@ -485,4 +504,7 @@
   height:               100%;
   width:                100%;
   padding:              10px;
+}
+.marketoForm {
+  margin-bottom:        15px;
 }

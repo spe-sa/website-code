@@ -94,6 +94,7 @@ class ShowArticlesPlugin(ArticlePluginBase):
         queryset = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(
             instance.order_by)
         context.update({'articles': queryset})
+        context.update({'backcol': instance.backcol})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -321,6 +322,7 @@ class ShowEditorialPlugin(ArticlePluginBase):
         queryset = Editorial.objects.filter(id__in=instance.editorial.all())
         context.update({'editorials': queryset})
         context.update({'link': instance.lnk})
+        context.update({'backcol': instance.backcol})
         self.render_template = instance.template
         return context
 
@@ -363,6 +365,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
+        context.update({'backcol': instance.backcol})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})

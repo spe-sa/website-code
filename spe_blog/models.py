@@ -4,6 +4,7 @@ from django.db import models
 from cms.models.fields import PageField
 from cms.models import CMSPlugin
 from cms.models import Page
+from filer.fields.image import FilerImageField
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -14,6 +15,7 @@ from taggit.models import TaggedItemBase
 from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
 from datetime import datetime
+from mainsite.widgets import ColorPickerWidget
 import sys
 
 DEFAULT_ORDER_BY = '-date'
@@ -57,6 +59,16 @@ TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
 )
+
+
+class ColorField(models.CharField):
+    def __init__(self, *args, **kwargs):
+        kwargs['max_length'] = 10
+        super(ColorField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        kwargs['widget'] = ColorPickerWidget
+        return super(ColorField, self).formfield(**kwargs)
 
 
 class Article_Tagged(TaggedItemBase):
@@ -128,7 +140,7 @@ class Issue(models.Model):
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    cover = models.ImageField(upload_to='covers')
+    cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
     issue_url = models.URLField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
@@ -180,7 +192,7 @@ class Article(models.Model):
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
-    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article', related_name="article_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -265,7 +277,7 @@ class Brief(models.Model):
         help_text=u'Full text of the article.'
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
-    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for brief', related_name="brief_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
@@ -289,7 +301,7 @@ class Brief(models.Model):
             buf = " " + str(self.print_volume)
         if self.print_issue:
             buf += ", " + str(self.print_issue)
-        buf = self.publication.code + buf + ": " + str(self.title)
+        buf = self.publication.code + buf + ": " + unicode(self.title)
         if self.published:
             buf += " (PUBLISHED)"
         return buf
@@ -316,7 +328,7 @@ class Editorial(models.Model):
         max_length=300,
         help_text=u'Exerpt'
     )
-    picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for editorial', related_name="editorial_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -347,6 +359,7 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
 
     def __unicode__(self):
         #        if self.keep_original_order:
@@ -438,6 +451,7 @@ class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
     editorial = models.ManyToManyField(Editorial)
     lnk = models.URLField("Link URL", blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True)
 
     def __unicode__(self):
         return "Editorial Plugin"
@@ -449,6 +463,7 @@ class EditorialPlugin(CMSPlugin):
 class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)

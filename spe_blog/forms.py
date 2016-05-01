@@ -12,7 +12,7 @@ class ArticleSelectionForm(ModelForm):
 
     class Meta:
         model = ArticlesPlugin
-        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', ]
+        fields = ['template', 'backcol', 'order_by', 'articles', 'all_url', 'all_text', ]
 
 
 # fields = ['template', 'keep_original_order', 'order_by', 'articles', ]
@@ -23,7 +23,7 @@ class EditorialSelectionForm(ModelForm):
 
     class Meta:
         model = EditorialPlugin
-        fields = ['template', 'editorial', 'lnk']
+        fields = ['template', 'backcol', 'editorial', 'lnk']
 
 
 class BriefSelectionForm(ModelForm):
