@@ -1,5 +1,35 @@
-<a href="/"><i class="fa fa-facebook-square"></i></a>
-<a href="/"><i class="fa fa-twitter-square"></i></a>
-<a href="/"><i class="fa fa-linkedin-square"></i></a>
-<a href="/"><i class="fa fa-envelope-square"></i></a>
-<a href="/"><i class="fa fa-plus-square"></i></a>
+{#{% autoescape on %}#}
+
+{#    {% with "http://www.spe.org" as host %}#}
+{#        {% with "Share in" as share_txt %}#}
+
+{#            {% with "twitter" as service %}#}
+                <a href="https://twitter.com/home?status={{ request.build_absolute_uri }}{{ object.get_absolute_url }}" target="_blank">
+                    <i class="fa fa-twitter-square"></i>
+                </a>
+{#            {% endwith%}#}
+
+{#            {% with "facebook" as service %}#}
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
+                    <i class="fa fa-facebook-square"></i>
+                </a>
+{#            {% endwith %}#}
+
+{#            {% with "linkedin" as service %}#}
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}&title={{ title }}&summary=&source=">
+                    <i class="fa fa-linkedin-square"></i>
+                </a>
+{#            {% endwith %}#}
+
+{#            {% with "email" as service %}#}
+                <a href="mailto:recipient?&subject=Thought you'd be interested&body=I%20thought%20you'd%20like%20this,%20as%20I%20found%20it%20very%20interesting.%0A%0A{{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
+                    <i class="fa fa-envelope-square"></i>
+                </a>
+
+
+{#            {% endwith %}#}
+
+{#        {% endwith %}#}
+{#    {% endwith %}#}
+
+{#{% endautoescape %}#}
