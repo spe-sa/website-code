@@ -10,12 +10,17 @@
   color:                $col-hrblue;
   background-color:     $col-hrblue;
 }
-.tiletitles {
+.tiletitles, .topictitles {
   color:                $col-copygrey;
-  font-size:            25px;
   border-bottom:        1px dotted $col-basegrey;
   padding-bottom:       10px;
   margin-bottom:        15px;
+}
+.tiletitles {
+  font-size:            25px;
+}
+.topictitles {
+  font-size:            30px;
 }
 .tileDate {
   font-weight:          $font-bold;

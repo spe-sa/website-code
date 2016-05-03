@@ -7,15 +7,13 @@ import urlparse
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.utils import timezone
-
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-# from cms.models.pluginmodel import CMSPlugin
-
 from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.db.models import Q
 
+# from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
 
 from .models import (
@@ -26,7 +24,7 @@ from .models import (
     BreadCrumbPlugin,
     # Publication,
     IssuesByYearPlugin,
-    TopicsListPlugin, TopicsPlugin
+    TopicsListPlugin, TopicsPlugin, Topics
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
     TopicsListSelectionForm, OldTopicsListSelectionForm
@@ -262,6 +260,22 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
         return context
 
 
+class ShowTopicTitlePlugin(TopicsPluginBase):
+    model = TopicsListPlugin
+    name = _("Topic Title")
+
+    def render(self, context, instance, placeholder):
+        topicid = re.findall('topic=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
+        if len(topicid) > 0:
+            topicname = Topics.objects.get(pk=topicid[0]).name.upper()
+        else:
+            topicname = ''
+
+        context.update({'topicname': topicname})
+        self.render_template = 'spe_blog/plugins/topic_title_plugin.html'
+        return context
+
+
 class ShowEditorialPlugin(ArticlePluginBase):
     model = EditorialPlugin
     name = _("Selected Editorials")
@@ -387,3 +401,4 @@ plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)
 plugin_pool.register_plugin(ShowTopicsListingPlugin)
+plugin_pool.register_plugin(ShowTopicTitlePlugin)
