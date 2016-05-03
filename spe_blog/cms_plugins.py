@@ -26,7 +26,6 @@ from .models import (
     BreadCrumbPlugin,
     # Publication,
     IssuesByYearPlugin,
-    MarketoFormPlugin,
     TopicsListPlugin, TopicsPlugin
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
@@ -50,7 +49,8 @@ class ArticlePluginBase(CMSPluginBase):
 
 class ShowArticleDetailPlugin(ArticlePluginBase):
     model = ArticleDetailPlugin
-    name = _("Show Article Detail")
+    name = _("Article Details")
+    module = _('Article Page Components')
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -119,7 +119,8 @@ class BriefPluginBase(CMSPluginBase):
 
 class ShowBriefDetailPlugin(BriefPluginBase):
     model = BriefDetailPlugin
-    name = _("Show Brief Detail")
+    name = _("Brief Details")
+    module = _('Article Page Components')
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -200,7 +201,7 @@ class TopicsPluginBase(CMSPluginBase):
 
 class ShowTopicsListPlugin(TopicsPluginBase):
     model = TopicsListPlugin
-    name = _("[GOOD USE ME] Topics Listing")
+    name = _("Topics Listing")
     form = TopicsListSelectionForm
 
     def render(self, context, instance, placeholder):
@@ -231,64 +232,12 @@ class ShowTopicsListPlugin(TopicsPluginBase):
         return context
 
 
-class ShowTopicsListOneColPlugin(TopicsPluginBase):
-    model = TopicsListPlugin
-    name = _("[BAD CHANGE ME] Topics Listing 1 Column")
-    form = OldTopicsListSelectionForm
-
-    def render(self, context, instance, placeholder):
-        topics = instance.topics.all()
-        context.update({'topics': topics})
-        context.update({'publication': instance.publication})
-        self.render_template = 'spe_blog/plugins/topics_list_1col.html'
-        return context
-
-
-class ShowTopicsListTwoColPlugin(TopicsPluginBase):
-    model = TopicsListPlugin
-    name = _("[BAD CHANGE ME] Topics Listing 2 Columns")
-    form = OldTopicsListSelectionForm
-
-    def render(self, context, instance, placeholder):
-        topics = instance.topics.all()
-        context.update({'topics': topics})
-        context.update({'publication': instance.publication})
-        self.render_template = 'spe_blog/plugins/topics_list.html'
-        return context
-
-
-class ShowTopicsListThreeColPlugin(TopicsPluginBase):
-    model = TopicsListPlugin
-    name = _("[BAD CHANGE ME] Topics Listing 3 Columns")
-    form = OldTopicsListSelectionForm
-
-    def render(self, context, instance, placeholder):
-        cursor = connection.cursor()
-        cursor.execute('''
-          select distinct(t.topics_id) as id from spe_blog_topicslistplugin_topics t
-          right outer join spe_blog_topicslistplugin p on t.topicslistplugin_id = p.cmsplugin_ptr_id
-          right outer join spe_blog_article_topics at on t.topics_id = at.topics_id
-          right outer join spe_blog_article a on at.article_id = a.id
-          where t.topicslistplugin_id = %s
-          and p.cmsplugin_ptr_id is not null
-          and at.topics_id is not null
-          and a.publication_id = p.publication_id;
-        ''', [instance.pk])
-        used_topic_ids = cursor.fetchall()
-
-        in_filter = Q()
-        for tid in used_topic_ids:
-            in_filter = in_filter | Q(pk__in=tid)
-        topics = instance.topics.filter(in_filter)
-        context.update({'topics': topics})
-        context.update({'publication': instance.publication})
-        self.render_template = 'spe_blog/plugins/topics_list_3col.html'
-        return context
 
 
 class ShowTopicsListingPlugin(TopicsPluginBase):
     model = TopicsPlugin
-    name = _("Show Articles by Topics")
+    name = _("Topic Details")
+    module = _('Article Page Components')
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')
@@ -315,7 +264,7 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
 
 class ShowEditorialPlugin(ArticlePluginBase):
     model = EditorialPlugin
-    name = _("Editorial")
+    name = _("Selected Editorials")
     form = EditorialSelectionForm
 
     def render(self, context, instance, placeholder):
@@ -373,56 +322,6 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         return context
 
 
-# class ShowArticlesByUserDisciplinePlugin(ArticlePluginBase):
-#     model = ArticleDisciplineByUserPluginModel
-#     name = _("Show Articles by User Discipline")
-#
-#     def render(self, context, instance, placeholder):
-#         dc = context.get('request').COOKIES.get("dc")
-#         queryset = Article.objects.filter(disciplines=dc).order_by(instance.orderby)[
-#                    instance.starting_with:instance.articles]
-#         context.update({'articles': queryset})
-#         context.update({'title': instance.title})
-#         return context
-#
-#
-# class ShowArticlesByDisciplinePlugin(ArticlePluginBase):
-#     model = ArticleDisciplinePluginModel
-#     name = _("Show Articles by Discipline")
-#
-#     def render(self, context, instance, placeholder):
-#         queryset = Article.objects.filter(disciplines=instance.discipline.code).order_by(instance.orderby)[
-#                    instance.starting_with:instance.articles]
-#         context.update({'articles': queryset})
-#         context.update({'title': instance.title})
-#         return context
-#
-#
-# class ShowArticlesFromPublicationPlugin(ArticlePluginBase):
-#     model = ArticleByPublicationPluginModel
-#     name = _("Show Articles From Publication")
-#
-#     def render(self, context, instance, placeholder):
-#         queryset = Article.objects.filter(publication=instance.publication).order_by(instance.orderby)[
-#                    instance.starting_with:instance.articles]
-#         context.update({'articles': queryset})
-#         context.update({'title': instance.title})
-#         return context
-#
-#
-# class ShowFeatureArticlesPlugin(ArticlePluginBase):
-#     model = SelectedFeatureArticlePluginModel
-#     name = _("Show Article From Publication")
-#
-#     def render(self, context, instance, placeholder):
-#         queryset = Article.objects.filter(publication=instance.publication).filter(print_issue=instance.issue).filter(
-#             slug=instance.slug)
-#         if queryset:
-#             context.update({'articles': queryset})
-#         self.render_template = instance.template
-#         return context
-
-
 class ShowIssuesByPublicationPlugin(CMSPluginBase):
     model = IssuesByPublicationPlugin
     allow_children = False
@@ -466,29 +365,13 @@ class ShowIssuesByYearPlugin(CMSPluginBase):
     allow_children = False
     cache = False
     module = _('Publications')
-    name = _('Issues by Year')
+    name = _('Issues by Year Listing')
     text_enabled = False
     render_template = 'spe_blog/plugins/issues_by_year.html'
 
     def render(self, context, instance, placeholder):
         issues = Issue.objects.filter(publication=instance.publication).order_by('-date')
         context.update({'issues': issues})
-        return context
-
-
-class ShowMarketoFormPlugin(CMSPluginBase):
-    model = MarketoFormPlugin
-    allow_children = False
-    cache = False
-    module = _('Publications')
-    name = _('Marketo Form')
-    text_enabled = False
-    render_template = 'spe_blog/plugins/marketo_form.html'
-
-    def render(self, context, instance, placeholder):
-        context.update({'instructions': instance.instructions})
-        context.update({'marketo_form': instance.marketo_form})
-        context.update({'thank_you': instance.thank_you})
         return context
 
 
@@ -502,9 +385,5 @@ plugin_pool.register_plugin(ShowEditorialPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
-plugin_pool.register_plugin(ShowMarketoFormPlugin)
-plugin_pool.register_plugin(ShowTopicsListOneColPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)
-plugin_pool.register_plugin(ShowTopicsListTwoColPlugin)
-plugin_pool.register_plugin(ShowTopicsListThreeColPlugin)
 plugin_pool.register_plugin(ShowTopicsListingPlugin)

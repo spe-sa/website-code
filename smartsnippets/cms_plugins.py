@@ -42,6 +42,7 @@ class SmartSnippetPlugin(CMSPluginBase):
 
     change_form_template = 'smartsnippets/snippet_change_form.html'
 
+    module = 'Developer Tools'
     model = SmartSnippetPointer
     name = 'Smart Snippet'
     render_template = 'smartsnippets/plugin.html'

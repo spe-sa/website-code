@@ -386,19 +386,7 @@ def strip_tags(html):
 
 class TextPlugin(CMSPlugin):
     txt = RichTextUploadingField(
-        max_length=2000,
-        help_text=u'Text'
-    )
-
-    def __unicode__(self):
-        lbl = " - " + strip_tags(self.txt)
-        return lbl[0:50]
-
-
-class TextWithClass(CMSPlugin):
-
-    txt = RichTextUploadingField(
-        max_length=2000,
+        max_length=50000,
         help_text=u'Text'
     )
     cls = models.CharField(max_length=40, verbose_name="Class", choices=TEXT_CLASS, default=DEFAULT_TEXT_CLASS)
@@ -421,3 +409,12 @@ class TileImgBack(CMSPlugin):
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
         return lbl[0:50]
+
+
+class MarketoFormPlugin(CMSPlugin):
+    instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
+    thank_you = models.CharField(max_length=200, verbose_name="Confirmation text")
+    marketo_form = models.PositiveIntegerField(verbose_name="Marketo form code")
+
+    def __unicode__(self):
+        return "Marketo Form: " + str(self.marketo_form)

@@ -214,7 +214,131 @@ CMS_TEMPLATES = (
 
 CMS_PERMISSION = True
 
-CMS_PLACEHOLDER_CONF = {}
+CMS_PLACEHOLDER_CONF = {
+    'content': {
+        'plugins': ['ShowTextPlugin',
+                    'ShowAdSpeedZonePlugin',
+                    'ShowTitlePlugin',
+                    'ShowTileImgBack',
+                    # filer plugins
+                    'FilerFilePlugin',
+                    'FilerFolderPlugin',
+                    'FilerImagePlugin',
+                    'FilerVideoPlugin',
+                    # Generic plugins
+                    'GoogleMapPlugin',
+                    # 'InheritPagePlaceholderPlugin',
+                    'LinkPlugin',
+                    'StylePlugin',
+                    # links plugin
+                    'SpeLinkPluginPublisher',
+                    # multi-column
+                    'MultiColumnPlugin',
+                    # forms
+                    'FormPlugin',
+                    # blog
+                    'ShowArticleDetailPlugin',
+                    'ShowArticlesPlugin',
+                    'ShowArticlesListingPlugin',
+                    'ShowBriefDetailPlugin',
+                    'ShowBriefPlugin',
+                    'ShowBriefListingPlugin',
+                    'ShowEditorialPlugin',
+                    'ShowIssuesByPublicationPlugin',
+                    'ShowIssuesByYearPlugin',
+                    'ShowMarketoFormPlugin',
+                    'ShowTopicsListPlugin',
+                    'ShowTopicsListingPlugin',
+                    # snippets
+                    'SmartSnippetPlugin',
+                    # events
+                    'ShowEventsByCurrentLocationPluginPlugin',
+                    'PollPlugin',
+                    # segmentation
+                    'SegmentLimitPlugin',
+
+                    ],
+        'child_classes': {
+            'SegmentLimitPlugin': [
+                'ShowTextPlugin',
+                'ShowAdSpeedZonePlugin',
+                'ShowTitlePlugin',
+                'ShowTileImgBack',
+                # filer plugins
+                'FilerFilePlugin',
+                'FilerFolderPlugin',
+                'FilerImagePlugin',
+                'FilerVideoPlugin',
+                # Generic plugins
+                'GoogleMapPlugin',
+                # 'InheritPagePlaceholderPlugin',
+                'LinkPlugin',
+                'StylePlugin',
+                # links plugin
+                'SpeLinkPluginPublisher',
+                # multi-column
+                'MultiColumnPlugin',
+                # forms
+                'FormPlugin',
+                # blog
+                'ShowArticleDetailPlugin',
+                'ShowArticlesPlugin',
+                'ShowArticlesListingPlugin',
+                'ShowBriefDetailPlugin',
+                'ShowBriefPlugin',
+                'ShowBriefListingPlugin',
+                'ShowEditorialPlugin',
+                'ShowIssuesByPublicationPlugin',
+                'ShowIssuesByYearPlugin',
+                'ShowMarketoFormPlugin',
+                'ShowTopicsListPlugin',
+                'ShowTopicsListingPlugin',
+                # snippets
+                'SmartSnippetPlugin',
+                # events
+                'ShowEventsByCurrentLocationPluginPlugin',
+                'PollPlugin',
+                # segmentation
+                'SegmentLimitPlugin',
+                'CookieSegmentPlugin',
+                'VariableSegmentPlugin',
+                'VisitorSegmentPlugin',
+                'VisitorClassificationSegmentPlugin',
+                'FallbackSegmentPlugin',
+                'DisciplineSegmentPlugin',
+                'CountrySegmentPlugin',
+            ],
+        },
+        'plugin_modules': {
+            'LinkPlugin': 'Links',
+            'GoogleMapPlugin': 'Components',
+            'StylePlugin': 'Components',
+        },
+
+    },
+    'notice': {
+        'inherit': 'content',
+    },
+    'aside': {
+        'inherit': 'content',
+    },
+    'additional content': {
+        'inherit': 'content',
+    },
+    'feature': {
+        'inherit': 'content',
+    },
+    'editorial': {
+        'inherit': 'content',
+    },
+    'page title': {
+        'inherit': 'content',
+    },
+    'title area': {
+        'inherit': 'content',
+    },
+
+}
 
 MIGRATION_MODULES = {
     'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
