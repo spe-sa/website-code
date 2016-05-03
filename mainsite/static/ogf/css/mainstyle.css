@@ -333,7 +333,11 @@ table th, table td { padding: 5px; }
 /* Images */
 .tiletitlehr { margin-top: 0; height: 5px; border: none; color: #0f1c97; background-color: #0f1c97; }
 
-.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+.tiletitles, .topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+
+.tiletitles { font-size: 25px; }
+
+.topictitles { font-size: 30px; }
 
 .tileDate { font-weight: 700; margin-bottom: 10px; }
 

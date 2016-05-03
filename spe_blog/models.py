@@ -521,6 +521,7 @@ class BriefListingPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]
         return buf
 
+
 class IssuesByPublicationPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Issues')
