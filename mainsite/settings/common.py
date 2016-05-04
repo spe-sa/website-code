@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'djangocms_column',
     'easy_thumbnails',
     'filer',
-    'mptt',
+#    'mptt',
     'ckeditor',
     'ckeditor_uploader',
     'cmsplugin_filer_image',
