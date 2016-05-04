@@ -95,6 +95,8 @@ def get_context_variables(request):
                      "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
                      "vid": get_context_variable(request, "vid"),}
         # TODO: add more expected variables here as needed from the settings files
+        # tack on the gtm user part of the data layer
+        
         request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters
     # if dev then replace with parameters to make it easier to debug

@@ -76,7 +76,7 @@ class Countries(models.Model):
     country_UN = models.CharField(max_length=3, unique=True)
     country_UN_number = models.PositiveIntegerField()
     country_dial_code = models.CharField(max_length=20)
-    region = models.ForeignKey(Regions, blank=True, null=True)
+    region = models.ForeignKey(Regions, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return self.country_name

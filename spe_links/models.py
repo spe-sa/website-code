@@ -44,7 +44,7 @@ class SpeLinkCategory(models.Model):
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class SpeLink(models.Model):
-    category = models.ForeignKey(SpeLinkCategory, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(SpeLinkCategory, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255, null=True)
     page_url = PageField(
         verbose_name=_('Page URL'), blank=True, null=True,
@@ -72,7 +72,7 @@ class SpeLink(models.Model):
 
 @python_2_unicode_compatible
 class SpeLinkPluginModel(CMSPlugin):
-    category = models.ForeignKey(SpeLinkCategory)
+    category = models.ForeignKey(SpeLinkCategory, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.category.title

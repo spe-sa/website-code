@@ -136,7 +136,7 @@ class Publication(models.Model):
 
 
 class Issue(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
@@ -170,7 +170,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     sponsored = models.BooleanField(default=False)
@@ -262,7 +262,7 @@ class Article(models.Model):
 
 
 class Brief(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     free = models.BooleanField(default=True, verbose_name=u'Always Free')
@@ -407,7 +407,7 @@ class ArticleDetailPlugin(CMSPlugin):
 
 class TopicsPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
@@ -429,7 +429,7 @@ class TopicsPlugin(CMSPlugin):
 class TopicsListPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=TOPIC_TEMPLATES, default=DEFAULT_TOPIC_TEMPLATE)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         dictionary = dict(TOPIC_TEMPLATES)
@@ -468,12 +468,12 @@ class ArticlesListingPlugin(CMSPlugin):
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
-    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
-    # category = models.ForeignKey(Category, blank=True, null=True)
+    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL)
+    # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
@@ -502,11 +502,11 @@ class BriefListingPlugin(CMSPlugin):
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, blank=True, null=True)
-    topic = models.ForeignKey(Topics, blank=True, null=True)
+    category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
+    topic = models.ForeignKey(Topics, blank=True, null=True, on_delete=models.SET_NULL)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
@@ -527,7 +527,7 @@ class IssuesByPublicationPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Issues')
     starting_with = models.PositiveIntegerField(default=1)
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     active = models.BooleanField(default=True)
     all_url = PageField(verbose_name="URL for issues listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
@@ -551,7 +551,7 @@ class BreadCrumbPlugin(CMSPlugin):
 
 
 class IssuesByYearPlugin(CMSPlugin):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return self.publication.name
