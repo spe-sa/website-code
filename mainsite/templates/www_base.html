@@ -1,4 +1,12 @@
 {% extends "html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+
+{% block web_fonts %}
+
+    {% include 'include_scripts.html' %}
+
+{% endblock web_fonts %}
 
 {% block css_base %}
     {% load staticfiles %}

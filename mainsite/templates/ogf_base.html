@@ -2,53 +2,11 @@
 {% load cms_tags sekizai_tags %}
 {% load menu_tags %}
 
-
 {% block web_fonts %}
 
-{% addtoblock "google_scripts" %}
-<!-- Google Tag Manager -->
-    <script>
-       var dataLayer = [{"user":{"memberCustomer":"Customer","id":"{{ variables.vid }}"},"content":{"category":"(OGF)"}}];
-       (function (w, d, s, l, i) {
-       w[l] = w[l] || [];
-       w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-       var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-       j.async = true;
-       j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-       f.parentNode.insertBefore(j, f);
-       })(window, document, 'script', 'dataLayer', 'GTM-T8JL43');
-    </script>
-    <noscript>
-       <iframe src="//www.googletagmanager.com/ns.html?id=GTM-T8JL43" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-<!-- END Google Tag Manager -->
-{%  endaddtoblock %}
-{% addtoblock "marketo_scripts" %}
-    <script type="text/javascript">
-        (function() {
-            var didInit = false;
-            function initMunchkin() {
-                if(didInit === false) {
-                    didInit = true;
-                    Munchkin.init('833-LLT-087');
-                }
-            }
-            var mkto_script = document.createElement('script');
-            mkto_script.type = 'text/javascript';
-            mkto_script.async = true;
-            mkto_script.src = '//munchkin.marketo.net/munchkin.js';
-            mkto_script.onreadystatechange = function() {
-                if (this.readyState == 'complete' || this.readyState == 'loaded') {
-                    initMunchkin();
-                }
-            };
-            mkto_script.onload = initMunchkin;
-            document.getElementsByTagName('head')[0].appendChild(mkto_script);
-        })();
-    </script>
-{% endaddtoblock %}
+    {% include 'include_scripts.html' %}
 
-{{ block.super }}
+    {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
