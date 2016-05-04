@@ -2,11 +2,55 @@
 {% load cms_tags sekizai_tags %}
 {% load menu_tags %}
 
+
 {% block web_fonts %}
+
+{% addtoblock "google_scripts" %}
+<!-- Google Tag Manager -->
+    <script>
+       var dataLayer = [{"user":{"memberCustomer":"Customer","id":"{{ variables.vid }}"},"content":{"category":"(OGF)"}}];
+       (function (w, d, s, l, i) {
+       w[l] = w[l] || [];
+       w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+       var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+       j.async = true;
+       j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+       f.parentNode.insertBefore(j, f);
+       })(window, document, 'script', 'dataLayer', 'GTM-T8JL43');
+    </script>
+    <noscript>
+       <iframe src="//www.googletagmanager.com/ns.html?id=GTM-T8JL43" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+<!-- END Google Tag Manager -->
+{%  endaddtoblock %}
+{% addtoblock "marketo_scripts" %}
+    <script type="text/javascript">
+        (function() {
+            var didInit = false;
+            function initMunchkin() {
+                if(didInit === false) {
+                    didInit = true;
+                    Munchkin.init('833-LLT-087');
+                }
+            }
+            var mkto_script = document.createElement('script');
+            mkto_script.type = 'text/javascript';
+            mkto_script.async = true;
+            mkto_script.src = '//munchkin.marketo.net/munchkin.js';
+            mkto_script.onreadystatechange = function() {
+                if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                    initMunchkin();
+                }
+            };
+            mkto_script.onload = initMunchkin;
+            document.getElementsByTagName('head')[0].appendChild(mkto_script);
+        })();
+    </script>
+{% endaddtoblock %}
+
 {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
-{#    {% include 'spectrumjs.html' %}#}
 
 {% endblock web_fonts %}
 
@@ -14,20 +58,19 @@
     {% load staticfiles %}
     <!-- CSS_BASE -->
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/mainstyle.css' %}" />
-{#    <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/spectrum.css' %}" />#}
 {% endblock css_base %}
 
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
 
 {% block content_header %}
     <!-- HEADER Begin -->
-        <div class="row adZone1" id="adZone1">
-            <div class="col-md-12 text-center" id="adLeaderboard">
-                <!-- AdSpeed.com Tag 8.0.2 for [Zone] OGF 1 728x90 [Any Dimension] -->
-                <script type="text/javascript" src="http://g.adspeed.net/ad.php?do=js&zid=79084&oid=7699&wd=-1&ht=-1&target=_blank&noerror=1"></script>
-                <!-- AdSpeed.com End -->
-            </div>
-        </div>
+{#        <div class="row adZone1" id="adZone1">#}
+{#            <div class="col-md-12 text-center" id="adLeaderboard">#}
+{#                <!-- AdSpeed.com Tag 8.0.2 for [Zone] OGF 1 728x90 [Any Dimension] -->#}
+{#                <script type="text/javascript" src="http://g.adspeed.net/ad.php?do=js&zid=79084&oid=7699&wd=-1&ht=-1&target=_blank&noerror=1"></script>#}
+{#                <!-- AdSpeed.com End -->#}
+{#            </div>#}
+{#        </div>#}
 
         <div class="row" id="topbar">
             <div class="col-sm-6 topbarcol">

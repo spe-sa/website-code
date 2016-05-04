@@ -7,6 +7,7 @@
     <title>{% block title %}This is my new project home page{% endblock title %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {# Add Third-party plugins and apps here. Like JQuery & bootstrap #}
+    {% render_block "marketo_scripts" %}
     {% block plugs_apps %}{% endblock plugs_apps %}
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
     {# Add Third-party fonts here. Like google fonts, TypeKit, FontAwesome #}
@@ -26,7 +27,7 @@
     {% render_block "css" %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-
+{% render_block "google_scripts" %}
     {# adding django-cms toolbar to the top of the page if logged in #}
     {% cms_toolbar %}
 
