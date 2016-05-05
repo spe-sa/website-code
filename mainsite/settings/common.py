@@ -61,7 +61,7 @@ MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'website_static')
 
 STATICFILES_DIRS = (
-                    os.path.join(BASE_DIR, 'mainsite', 'static'),
+
 )
 
 SITE_ID = 1
