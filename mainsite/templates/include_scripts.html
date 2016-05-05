@@ -3,7 +3,8 @@
 {% addtoblock "google_scripts" %}
 <!-- Google Tag Manager -->
     <script>
-       var dataLayer = [{"user":{"memberCustomer":"Customer","id":"{{ variables.vid }}"},"content":{"category":"(OGF)"}}];
+       var dataLayer = [{{ variables.gtm_dataLayer|safe }}];
+       dataLayer.push({"content":{"category":"(OGF)"}});
        (function (w, d, s, l, i) {
        w[l] = w[l] || [];
        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
