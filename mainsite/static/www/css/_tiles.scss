@@ -1,7 +1,11 @@
 /* =================================================================== */
-/* TILES & BOXES                                                       */
+/* WWW TILES & BOXES                                                       */
 /* =================================================================== */
 @import 'vars';
+
+.tile {
+  background-color:     $col-white;
+}
 
 .tile, .tile-blue, .tile-lightblue, .tile-white, .tile-alert {
   box-shadow:           0 1px 2px $col-boxshadow;
@@ -47,9 +51,55 @@
   -webkit-background-size: cover;
   background-size: cover;
 }
+.tile-editorial {
+  background-color:     $col_black;
+  color:                $col-white;
+  padding:              15px;
+  height:               400px;
+  margin-bottom:        15px;
+  overflow:             hidden;
+
+  .title1, .title2, .excerpt, .authorBio {
+    padding:            0;
+  }
+  .title1 {
+    font-size:          13px;
+    font-weight:        $font-bold;
+    white-space:        nowrap;
+  }
+  .title2 {
+    font-size:          20px;
+    font-weight:        $font-bold;
+  }
+  .excerpt {
+    font-size:          12px;
+  }
+  .dottedspacer {
+    margin-bottom:      10px;
+    border-bottom:      2px dotted $col-white;
+    height:             10px;
+  }
+  .authorImg {
+    padding:            0 5px 0 0;
+    margin:             0;
+  }
+  .authorBio {
+    font-size:          10px;
+  }
+  a {
+    color:              $col-white;
+  }
+
+}
+.whiteFade {
+  background:           $img-back-white-75 repeat top left fixed;
+  height:               100%;
+  width:                100%;
+  padding:              10px;
+}
 .whiteback, .tile-white {
     background-color:   $col-white;
-  }
+}
 .link-box, .tile-links {
   border-top: 4px solid $col-speblue2;
   background-color:     $col-white;
@@ -83,11 +133,11 @@
     }
   }
 }
-.story {
+.story, .tile-textbelow {
   .story-wrap {
 
     .pub-date {
-      color:            $col-redtext;
+      color:            $col-red;
       display:          block;
       text-transform:   uppercase;
       font-size:        12px;
@@ -107,12 +157,20 @@
     }
   }
 }
+.poi-date {
+  color:            $col-red;
+  display:          block;
+  text-transform:   uppercase;
+  font-size:        10px !important;
+  font-weight:      700;
+  letter-spacing:   1px;
+}
 .featured-story {
-  padding:              15px;
-  min-height:           300px;
+  padding:              0;
+  min-height:           360px;
 
   .story-wrap {
-    min-height:         300px;
+    height:             400px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -131,32 +189,36 @@
     }
   }
 }
+
+.story-text {
+      //height:           175px;
+      overflow:         hidden;
+}
+.subscribe-div {
+  margin-top:           10px;
+}
 .tile-curntIssue {
   min-height:           150px;
+  border-bottom:        1px dotted $col-black;
+
+  //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
-  padding:              5px;
-  box-shadow:           0 1px 2px $col-boxshadow;
-  background-color:     $col-white;
+  padding:              15px 0;
 
   a {
     color:              $col-black;
   }
 
   .issueThumb {
-    min-height:         100px;
-    padding:            10px 5px 0 0;
+    min-height:         150px;
+    padding:            0 10px 10px 0;
   }
   .pub-date, .volume, .number {
     font-weight:        $font-bold;
   }
   .pub-date {
-    padding-top:        10px;
-    font-size:          15px;
-    margin-bottom:      15px;
-    white-space:        nowrap;
-  }
-  .volume, .number {
-    font-size:          10px;
+    font-size:          20px;
+    margin-bottom:      20px;
   }
   .btn {
     background-color:   $col-speblue;
@@ -206,6 +268,30 @@
       font-size:        12px;
     }
   }
+}
+.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic {
+  overflow:             hidden;
+  -webkit-background-size:cover;
+  background-size:      cover;
+  background-position:  center;
+}
+.detailImgWrap {
+  height:               250px;
+  margin-bottom:        5px;
+}
+.detailImgWrapFull {
+  height:               350px;
+  margin-bottom:        5px;
+}
+.detailImgWrapLeft {
+  min-height:           250px;
+}
+.detailImgWrapSide {
+  height:               150px;
+  margin-bottom:        5px;
+}
+.poipic {
+  min-height:           125px;
 }
 #myCarousel {
   .carousel-indicators {
@@ -303,6 +389,59 @@
     &:hover {
       color:            $col-footgrey;
     }
+  }
+}
+.briefListItem {
+  margin:               0 0 15px 0;
+  padding-top:          15px;
+  background:           $img-back-box no-repeat bottom right;
+  min-height:           100px;
+
+  img {
+    display: none;
+  }
+
+  a {
+    color:              $col-black;
+    &:hover {
+      color:            $col-hoverblue;
+      text-decoration:  none;
+    }
+  }
+
+  h4 {
+    font-size:          18px;
+    margin:             0 0 5px 0;
+  }
+
+  .briefPub {
+    font-size:          10px;
+    font-weight:        $font-light;
+    color:              $col-boxshadow;
+    width:              100%;
+    text-align:         right;
+  }
+  .badge {
+    border-radius: 10px !important;
+    font-size:10px;
+  }
+  &:hover {
+    background-color:   $col-lightgrey;
+    cursor:             pointer;
+  }
+}
+.brief-date {
+  color:            $col-red;
+  display:          block;
+  text-transform:   uppercase;
+  font-size:        10px !important;
+  font-weight:      700;
+  letter-spacing:   1px;
+}
+.briefofinterest {
+
+  p {
+    margin:             6px 0 0 0;
   }
 }
 //// background: #000 url(image.gif) no-repeat top left fixed;
