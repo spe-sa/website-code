@@ -22,9 +22,9 @@ DATABASES = {
             'OPTIONS': {
                 'read_default_file': '/Applications/MAMP/tmp/mysql/my.cnf',
             },
-            'NAME': 'newsite',
+            'NAME': 'django',
             'USER': 'root',
-            'PASSWORD': 'Zaph0d!',
+            'PASSWORD': 'root',
         }
 }
 
