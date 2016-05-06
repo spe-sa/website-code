@@ -59,11 +59,11 @@ def set_default_values(request):
                 dict_buffer['user']['memberCustomer'] = visitor_membership
                 is_student = sanitize(get_context_variable(request, 'student'))
                 if is_student:
-                    visitor_membership_type = 'Professional'
+                    visitor_membership_type = 'Student'
                     variables['membership_type'] = visitor_membership_type
                     dict_buffer['user']['memberType'] = visitor_membership_type
                 else:
-                    visitor_membership_type = 'Student'
+                    visitor_membership_type = 'Professional'
                     variables['membership_type'] = visitor_membership_type
                     dict_buffer['user']['memberType'] = visitor_membership_type
             else:
