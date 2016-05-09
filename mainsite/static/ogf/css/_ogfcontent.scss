@@ -655,7 +655,26 @@ table {
   border:             1px dotted $col-boxshadow;
   padding:            5px;
   display:            inline-block;
-  width:32%;
+  width:              32%;
+}
+
+.article-topics {
+  background-color:   $col-ogflightgrey;
+  padding:            10px;
+  font-size:          12px;
+  margin-bottom:      15px;
+
+  ul {
+    list-style:       none;
+    padding:          0;
+
+    li {
+      float:          left;
+      list-style-position:inside;
+      margin:         0 15px 0 0;
+      padding:        0;
+    }
+  }
 }
 //.topicListColumnL {
 //  .topicListItem {

@@ -324,6 +324,10 @@ table th, table td { padding: 5px; }
 
 .topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
 
+.article-topics { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
+.article-topics ul { list-style: none; padding: 0; }
+.article-topics ul li { float: left; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
+
 /* =================================================================== */
 /* OGF TILES & BOXES
 ====================================================================== */

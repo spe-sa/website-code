@@ -30,6 +30,13 @@
 
     <div class="col-sm-12 articleBodyText">
 
+        <div class="col-sm-12 article-topics">
+            <ul>
+            {% for topic in article.topics.all %}
+                    <li>{{ topic }}{{ topic }}</li>
+            {% endfor %}
+            </ul>
+        </div>
 
         {% if article.is_readable == True %}
 
