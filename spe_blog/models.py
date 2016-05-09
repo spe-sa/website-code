@@ -208,6 +208,22 @@ class Article(models.Model):
     auto_tags.rel.related_name = "+"
     published = models.BooleanField(default=False, verbose_name=u'Publish')
 
+    # additional metohs for the editorials
+    editorial_title = models.CharField(max_length=100, blank=True, null=True)
+    author_picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
+    # author_picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for author',
+    #                                  related_name="editorial_author_picture")
+    author_picture_alternate = models.CharField(max_length=50, blank=True, null=True,
+                                                verbose_name=u'Author Picture Alternate Text')
+    author_picture_caption = models.CharField(max_length=250, blank=True, null=True,
+                                              verbose_name=u'Author Picture Caption')
+    author_picture_attribution = models.CharField(max_length=255, blank=True, null=True,
+                                                  verbose_name=u'Author Picture Attribution')
+    author_bio = RichTextField(
+        max_length=500,
+        help_text=u'Author Bio', blank=True, null=True
+    )
+
     class Meta:
         unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
         ordering = ['-date', 'title']

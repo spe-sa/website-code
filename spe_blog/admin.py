@@ -4,18 +4,20 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Article, Category, Publication, Issue, Editorial 
+from .models import Article, Category, Publication, Issue, Editorial
 from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage
-from mainsite.models import Tier1Discipline
+# from mainsite.models import Tier1Discipline
+
 
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    filter_horizontal = ('topics', )
+    filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser',
+                'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -27,6 +29,17 @@ class ArticleAdmin(admin.ModelAdmin):
                 'picture_caption',
             ),
         }),
+        (_('Editorial'), {
+            'classes': ('collapse',),
+            'fields': (
+                'editorial_title',
+                'author_picture',
+                'author_picture_alternate',
+                'author_picture_attribution',
+                'author_picture_caption',
+                'author_bio',
+            ),
+        }),
         (_('Free'), {
             'classes': ('collapse',),
             'fields': (
@@ -35,20 +48,23 @@ class ArticleAdmin(admin.ModelAdmin):
             ),
         }),
     )
+
 
 class ArticleEditor(Article):
     class Meta:
         proxy = True
         verbose_name_plural = "articles (editor view)"
 
+
 class ArticleEditorAdmin(ArticleAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    filter_horizontal = ('topics', )
+    filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser', 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser',
+                'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -60,6 +76,17 @@ class ArticleEditorAdmin(ArticleAdmin):
                 'picture_caption',
             ),
         }),
+        (_('Editorial'), {
+            'classes': ('collapse',),
+            'fields': (
+                'editorial_title',
+                'author_picture',
+                'author_picture_alternate',
+                'author_picture_attribution',
+                'author_picture_caption',
+                'author_bio',
+            ),
+        }),
         (_('Free'), {
             'classes': ('collapse',),
             'fields': (
@@ -70,18 +97,20 @@ class ArticleEditorAdmin(ArticleAdmin):
         (None, {
             'fields': (
                 'published',
-                ),
+            ),
         }),
-    ) 
+    )
+
 
 class BriefAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    filter_horizontal = ('topics', )
+    filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date',
+                'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -99,20 +128,23 @@ class BriefAdmin(admin.ModelAdmin):
             ),
         }),
     )
+
 
 class BriefEditor(Brief):
     class Meta:
         proxy = True
         verbose_name_plural = "briefs (editor view)"
 
+
 class BriefEditorAdmin(BriefAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    filter_horizontal = ('topics', )
+    filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date', 'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date',
+                'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -132,11 +164,12 @@ class BriefEditorAdmin(BriefAdmin):
         (None, {
             'fields': (
                 'published',
-                ),
+            ),
         }),
     )
 
-#    def get_form(self, request, obj=None, **kwargs):
+
+# def get_form(self, request, obj=None, **kwargs):
 #        if obj and obj.free:
 #            self.exclude = []
 #        return super(ArticleAdmin, self).get_form(request, obj, **kwargs)
