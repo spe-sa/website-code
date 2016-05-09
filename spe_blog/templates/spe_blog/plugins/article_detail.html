@@ -31,9 +31,10 @@
     <div class="col-sm-12 articleBodyText">
 
         <div class="col-sm-12 article-topics">
+            <h4>Topics</h4>
             <ul>
             {% for topic in article.topics.all %}
-                    <li>{{ topic }}{{ topic }}</li>
+                    <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
             {% endfor %}
             </ul>
         </div>
