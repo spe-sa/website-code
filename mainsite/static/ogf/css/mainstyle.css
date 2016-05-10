@@ -324,13 +324,13 @@ table th, table td { padding: 5px; }
 
 .topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
 
-.article-topics { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
-.article-topics h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
-.article-topics ul { list-style: none; padding: 0; }
-.article-topics ul li { float: left; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
-.article-topics ul li:hover { background-color: grey; color: white; }
-.article-topics ul li a { padding: 5px; }
-.article-topics ul li a:hover { background-color: grey; color: white; }
+.article-topics, .article-tags { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
+.article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
+.article-topics ul, .article-tags ul { list-style: none; padding: 0; }
+.article-topics ul li, .article-tags ul li { float: left; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
+.article-topics ul li:hover, .article-tags ul li:hover { background-color: grey; color: white; }
+.article-topics ul li a, .article-tags ul li a { padding: 5px; }
+.article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
 
 /* =================================================================== */
 /* OGF TILES & BOXES

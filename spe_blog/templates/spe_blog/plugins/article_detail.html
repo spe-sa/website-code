@@ -15,6 +15,15 @@
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
 
+    <div class="col-sm-12 article-topics">
+        <h4>Topics</h4>
+        <ul>
+        {% for topic in article.topics.all %}
+                <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+
     {% if article.sponsored == True %}
         <div class="col-sm-12 sponsored">SPONSORED</div>
     {% endif %}
@@ -30,11 +39,10 @@
 
     <div class="col-sm-12 articleBodyText">
 
-        <div class="col-sm-12 article-topics">
-            <h4>Topics</h4>
+        <div class="col-sm-12 article-tags">
             <ul>
-            {% for topic in article.topics.all %}
-                    <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+            {% for tag in article.tags.all %}
+                    <li><!-- a href="/ogf/topics/?topic=/}" --><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}<!-- /a --></li>
             {% endfor %}
             </ul>
         </div>
