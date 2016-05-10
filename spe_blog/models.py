@@ -33,6 +33,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/carousel.html', 'Carousel'),
     ('spe_blog/plugins/side_list.html', 'Editorial Sidebar Article List'),
     ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
+    ('spe_blog/plugins/article_editorial.html', 'Editorial w/ Author'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
@@ -212,10 +213,10 @@ class Article(models.Model):
     author_picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
     # author_picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for author',
     #                                  related_name="editorial_author_picture")
-    author_picture_alternate = models.CharField(max_length=50, blank=True, null=True,
-                                                verbose_name=u'Author Picture Alternate Text')
-    author_picture_caption = models.CharField(max_length=250, blank=True, null=True,
-                                              verbose_name=u'Author Picture Caption')
+    # author_picture_alternate = models.CharField(max_length=50, blank=True, null=True,
+    #                                             verbose_name=u'Author Picture Alternate Text')
+    # author_picture_caption = models.CharField(max_length=250, blank=True, null=True,
+    #                                           verbose_name=u'Author Picture Caption')
     author_picture_attribution = models.CharField(max_length=255, blank=True, null=True,
                                                   verbose_name=u'Author Picture Attribution')
     author_bio = RichTextField(
