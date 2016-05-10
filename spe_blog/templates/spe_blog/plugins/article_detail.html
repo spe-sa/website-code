@@ -39,6 +39,7 @@
 
     <div class="col-sm-12 articleBodyText">
 
+    {% if article.tags.count >= 1 %}
         <div class="col-sm-12 article-tags">
             <ul>
             {% for tag in article.tags.all %}
@@ -46,6 +47,7 @@
             {% endfor %}
             </ul>
         </div>
+    {% endif %}
 
         {% if article.is_readable == True %}
 
