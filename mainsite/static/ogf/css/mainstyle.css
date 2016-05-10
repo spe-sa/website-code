@@ -366,6 +366,8 @@ table th, table td { padding: 5px; }
 .tile-lightblue a:hover { color: white; }
 
 .tileImgBack { background-position: center; -webkit-background-size: cover; background-size: cover; }
+.tileImgBack .tiletitles { font-weight: 700; }
+.tileImgBack .tileDate { color: #26416c; }
 
 .whiteback, .tile-white { background-color: white; }
 
