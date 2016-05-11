@@ -80,6 +80,9 @@
   .tileDate {
     color:              $col-speblue;
   }
+  a {
+    color:              $col-speblue;
+  }
 }
 .whiteback, .tile-white {
   background-color:     $col-white;
@@ -506,6 +509,7 @@
   letter-spacing:   1px;
 }
 .briefofinterest {
+  margin-bottom:    10px;
 
   p {
     margin:             6px 0 0 0;

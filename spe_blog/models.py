@@ -50,6 +50,7 @@ EDITORIAL_TEMPLATES = (
 DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
 BRIEF_TEMPLATES = (
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
+    ('spe_blog/plugins/brief_accordion.html', 'POI Accordion Listing'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
