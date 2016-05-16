@@ -530,11 +530,19 @@
     }
   }
 }
+.tiletitlesPOI {
+  font-size:      18px;
+  color:          #3d4044;
+  border-bottom:  1px dotted grey;
+  border-top:     1px dotted grey;
+  padding:        10px;
+  margin:         0 0 15px 0;
+}
 .panel-default, .panel, .panel-collapse, .panel-group {
   border:               none;
 }
 .dottedSpacer {
-    border-bottom:      1px dotted $col-ogfblack;
+  border-bottom:      1px dotted $col-ogfblack;
   margin:               0 0 15px 0;
 }
 
