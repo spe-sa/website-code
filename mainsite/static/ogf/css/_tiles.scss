@@ -70,9 +70,16 @@
 }
 
 .tileImgBack {
-  background-position: center;
-  -webkit-background-size: cover;
-  background-size: cover;
+  background-position:      center;
+  -webkit-background-size:  cover;
+  background-size:          cover;
+
+  .tiletitles {
+    font-weight:        $font-bold;
+  }
+  .tileDate {
+    color:              $col-speblue;
+  }
 }
 .whiteback, .tile-white {
   background-color:     $col-white;
