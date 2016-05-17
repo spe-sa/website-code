@@ -8,8 +8,8 @@
         {% for article in articles %}
 
             <p><a href="{{ article.get_absolute_url }}"><span class="badge">{{ article.magazine }}</span> {{ article.title }} <span class="badge">{{ article.article_hits }}</span></a>
-            <br>[{% for topic in article.topics %}
-                    {{ topic.id }} ", "
+            <br>[{% for topic in article.topics.all %}
+                    {{ topic.code }} ", "
                 {% endfor %}]
             </p>
         {% endfor %}
