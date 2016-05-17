@@ -129,11 +129,13 @@ INSTALLED_APPS = (
     'djangocms_style',
     'djangocms_column',
     'easy_thumbnails',
-    'filer',
-#    'mptt',
+    # 'filer',
+    'config.apps.FilerConfig',
+    #    'mptt',
     'ckeditor',
     'ckeditor_uploader',
-    'cmsplugin_filer_image',
+    # 'cmsplugin_filer_image',
+    'config.apps.FilerPluginConfig',
     'cmsplugin_filer_file',
     'cmsplugin_filer_folder',
     'cmsplugin_filer_teaser',
@@ -142,20 +144,26 @@ INSTALLED_APPS = (
     'djangocms_googlemap',
     'djangocms_inherit',
     'djangocms_link',
-    'djangocms_picture',
+    # 'djangocms_picture',
     'easy_select2',
     'reversion',
-    'mainsite',
+    'config.apps.MainsiteConfig',
     'segmentation',
-    'smartsnippets',
+    # 'smartsnippets',
+    'config.apps.SmartsnippetConfig',
     'taggit',
-    'spe_links',
-    'spe_blog',
+    # 'spe_links',
+    'config.apps.SpeLinkConfig',
+    # 'spe_blog',
+    'config.apps.SpeBlogConfig',
     'google_tag_manager',
 #    'spe_contact',
-    'spe_polls',
-    'request',
-    'spe_events',
+    'config.apps.SpePollConfig',
+    # 'spe_polls',
+    # 'request',
+    'config.apps.RequestConfig',
+    # 'spe_events',
+    'config.apps.SpeEventConfig',
     'djangocms_forms',
 )
 
@@ -229,7 +237,7 @@ CMS_PLACEHOLDER_CONF = {
                     'GoogleMapPlugin',
                     # 'InheritPagePlaceholderPlugin',
                     'LinkPlugin',
-                    'StylePlugin',
+                    #'StylePlugin',
                     # links plugin
                     'SpeLinkPluginPublisher',
                     # multi-column
@@ -243,7 +251,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowBriefDetailPlugin',
                     'ShowBriefPlugin',
                     'ShowBriefListingPlugin',
-                    'ShowEditorialPlugin',
+                    # 'ShowEditorialPlugin',
                     'ShowIssuesByPublicationPlugin',
                     'ShowIssuesByYearPlugin',
                     'ShowMarketoFormPlugin',
@@ -273,7 +281,7 @@ CMS_PLACEHOLDER_CONF = {
                 'GoogleMapPlugin',
                 # 'InheritPagePlaceholderPlugin',
                 'LinkPlugin',
-                'StylePlugin',
+                #'StylePlugin',
                 # links plugin
                 'SpeLinkPluginPublisher',
                 # multi-column
@@ -287,7 +295,7 @@ CMS_PLACEHOLDER_CONF = {
                 'ShowBriefDetailPlugin',
                 'ShowBriefPlugin',
                 'ShowBriefListingPlugin',
-                'ShowEditorialPlugin',
+                # 'ShowEditorialPlugin',
                 'ShowIssuesByPublicationPlugin',
                 'ShowIssuesByYearPlugin',
                 'ShowMarketoFormPlugin',
@@ -312,29 +320,29 @@ CMS_PLACEHOLDER_CONF = {
         'plugin_modules': {
             'LinkPlugin': 'Links',
             'GoogleMapPlugin': 'Components',
-            'StylePlugin': 'Components',
+            #'StylePlugin': 'Components',
         },
 
     },
     'notice': {
         'inherit': 'content',
     },
-    'aside': {
+    'secondary content': {
         'inherit': 'content',
     },
-    'additional content': {
+    'tertiary content': {
         'inherit': 'content',
     },
     'feature': {
         'inherit': 'content',
     },
-    'editorial': {
+    # 'editorial': {
+    #     'inherit': 'content',
+    # },
+    'content title': {
         'inherit': 'content',
     },
     'page title': {
-        'inherit': 'content',
-    },
-    'title area': {
         'inherit': 'content',
     },
 
