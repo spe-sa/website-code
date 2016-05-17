@@ -40,4 +40,4 @@ Thumbs.db
 
 *.db
 
-*/migrations/*.py
+*/migrations/*
