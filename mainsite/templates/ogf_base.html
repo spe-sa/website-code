@@ -30,7 +30,7 @@
 {#            </div>#}
 {#        </div>#}
 
-        <div class="row" id="topbar">
+        <div class="row dontPrintMe" id="topbar">
             <div class="col-sm-6 topbarcol">
                 <ul class="topbarmenuleft">
                     <li><a href="http://www.spe.org/">SPE</a></li>
@@ -54,7 +54,7 @@
 
         </div>
 
-        <div class="row" id="menubar">
+        <div class="row dontPrintMe" id="menubar">
             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-offset-1" id="mainLogo">
                 <a href="/ogf/ogf-home/"><img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="img-responsive"></a>
             </div>
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="row searchbar collapse" id="collapseSearch">
+        <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
                 <form class="form-inline">
                     <div class="input-group">
@@ -86,7 +86,7 @@
 
 {% block content_footer %}
     <!-- FOOTER Begin -->
-    <div class="footerUpper row">
+    <div class="footerUpper row dontPrintMe">
         <div class="footerULeft col-md-3">
             <img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="footerLogo">
             <ul class="footerSocial">
@@ -136,7 +136,7 @@
             </div>
         </div>
     </div>
-    <div class="footerLower">
+    <div class="footerLower dontPrintMe">
         <img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/>
         <ul class="footerSPEMenu">
             <li><a href="">MEMBERSHIP</a></li>

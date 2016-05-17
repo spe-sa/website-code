@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags tz %}
 
-<div class="row articleDetail">
+<div class="row articleDetail" id="printMe">
     <div class="col-sm-12 articleTitleBox">
 {#            <h1 class="articleTitle">{{ article.title }}</h1>#}
         <hr class="tiletitlehr">
@@ -9,13 +9,13 @@
         <div class="col-sm-8 articleAuthorBox">
             {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
         </div>
-        <div class="col-sm-4 articleShares text-right">
+        <div class="col-sm-4 articleShares text-right dontPrintMe">
             {% include 'include_article_shares.html' %}
         </div>
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
 
-    <div class="col-sm-12 article-topics">
+    <div class="col-sm-12 article-topics dontPrintMe">
         <h4>Topics</h4>
         <ul>
         {% for topic in article.topics.all %}
@@ -77,12 +77,12 @@
 
 
     </div>
-    <div class="col-sm-12 articleShares text-left">
+    <div class="col-sm-12 articleShares text-left dontPrintMe">
         {% include 'include_article_shares.html' %}
     </div>
 
 </div>
-<div>
+<div class="dontPrintMe">
     {# glenda wants the 3 most related topics articles #}
     {% if topic_articles %}
         <div class="row">
