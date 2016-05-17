@@ -7,6 +7,7 @@
 /* BASE HTML STYLES         */
 body {
   font-family:            $font-main;
+  font-size:              14px !important;
 }
 h1, h2, h3, h4 {
   font-family:            $font-titles;
@@ -118,16 +119,39 @@ a {
 }
 
 @media print {
+  html * {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
+  }
+  body {
+    //background: white;
+    font-size: 20pt;
+    width:  100%;
+  }
   body * {
     visibility: hidden;
   }
   #printMe, #printMe * {
     visibility: visible;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .dontPrintMe, .dontPrintMe * {
+    visibility: hidden;
+    display: none;
   }
   #printMe {
     position: absolute;
     left: 0;
     top: 0;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .articleBodyText, .articleBodyText p {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
   }
 }
 .panel {

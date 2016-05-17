@@ -7,7 +7,7 @@
 /* Images */
 /* ************************ */
 /* BASE HTML STYLES         */
-body { font-family: "proxima-nova", sans-serif; }
+body { font-family: "proxima-nova", sans-serif; font-size: 14px !important; }
 
 h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
@@ -299,6 +299,8 @@ a:hover { text-decoration: none; }
 
 .articlePicture { margin-bottom: 20px; }
 
+.articleBodyText img { margin: 0 10px 0 10px; }
+
 .articleShares { font-size: 18px; padding-top: 5px; }
 .articleShares .fa-facebook-square { color: #3B5998; }
 .articleShares .fa-twitter-square { color: #00ACED; }
@@ -549,7 +551,11 @@ table th, table td { padding: 5px; }
 .see-all:hover { color: #808bcf; }
 .see-all i { margin-left: 25px; }
 
-@media print { body * { visibility: hidden; }
-  #printMe, #printMe * { visibility: visible; }
-  #printMe { position: absolute; left: 0; top: 0; } }
+@media print { html * { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; }
+  body { font-size: 20pt; width: 100%; }
+  body * { visibility: hidden; }
+  #printMe, #printMe * { visibility: visible; font-size: 20pt; width: 100%; }
+  .dontPrintMe, .dontPrintMe * { visibility: hidden; display: none; }
+  #printMe { position: absolute; left: 0; top: 0; font-size: 20pt; width: 100%; }
+  .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; } }
 .panel { background-color: transparent; }
