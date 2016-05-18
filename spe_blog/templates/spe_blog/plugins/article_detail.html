@@ -2,26 +2,28 @@
 
 <div class="row articleDetail" id="printMe">
     <div class="col-sm-12 articleTitleBox">
-{#            <h1 class="articleTitle">{{ article.title }}</h1>#}
         <hr class="tiletitlehr">
         <h1 class="tiletitles">{{ article.title }}</h1>
+    </div>
+    <div class="row">
         <div class="col-sm-12 tiletitlehr"></div>
-        <div class="col-sm-8 articleAuthorBox">
+        <div class="col-xs-7 col-sm-7 col-md-8 articleAuthorBox">
             {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
         </div>
-        <div class="col-sm-4 articleShares text-right dontPrintMe">
+        <div class="col-md-4 articleShares text-right dontPrintMe">
             {% include 'include_article_shares.html' %}
         </div>
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
-
-    <div class="col-sm-12 article-topics dontPrintMe">
-        <h4>Topics</h4>
-        <ul>
-        {% for topic in article.topics.all %}
-                <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
-        {% endfor %}
-        </ul>
+    <div class="row">
+        <div class="col-sm-12 article-topics dontPrintMe">
+            <h4>Topics</h4>
+            <ul>
+            {% for topic in article.topics.all %}
+                    <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
     </div>
 
     {% if article.sponsored == True %}

@@ -171,46 +171,12 @@ a:hover { text-decoration: none; }
 .channelsList ul li:last-child { border-bottom: none; }
 .channelsList ul li:hover { color: #d92226; background-color: #e4e1d8; }
 
+/* ********************************** */
+/* ARTICLES */
 .articleBox { border-bottom: 1px dotted #2a2a2a; padding: 0 20px 15px 0; }
 
 .articleListItem { border-bottom: 1px dotted #2a2a2a; margin-bottom: 10px; }
 .articleListItem h4 { padding-top: 0; margin-top: 0; }
-
-.fboxTitle { margin: 0; }
-
-.techFocusBox, .columnBox { padding: 0 10px 0 0; }
-
-/* ********************************** */
-/* SPONSORED BLOCK */
-#sponsoredProfile { min-height: 400px; -webkit-background-size: cover; background-size: cover; text-align: center; }
-#sponsoredProfile h1, #sponsoredProfile p { color: white; }
-
-.sponsoredFBack { position: absolute; bottom: 0; padding: 20px 15%; }
-
-.peopleFocus { background-color: #e4e1d8; padding: 15px; }
-.peopleFocus img { float: left; margin-right: 15px; }
-
-.personName { font-family: "proxima-nova", sans-serif; font-size: 16px; font-weight: 700; padding-top: 10px; }
-
-.personDets { font-size: 11px; }
-
-.boxTitleBig { font-size: 20px; padding-top: 20px !important; }
-
-#departmentsRow { background-color: #d92226; color: white; margin-top: 20px; padding: 3px 10px 0 0; }
-#departmentsRow h3 { font-size: 15px; margin: 0; padding: 5px; }
-#departmentsRow a { color: white; }
-
-#deptsTitle { float: left; width: 60%; }
-
-#deptDownArrow { float: right; width: 35%; font-size: 20px; cursor: pointer; }
-
-#departmentsSlide { background-color: #e4e1d8; padding: 5px; }
-
-.departmentsList { list-style-type: none; padding: 0; }
-.departmentsList li { float: left; margin: 20px; }
-.departmentsList li h3 { font-size: 13px; margin: 0; }
-.departmentsList li a { color: #2a2a2a; text-decoration: none; }
-.departmentsList li a:hover { color: white; }
 
 #latestArticlesList { padding: 0; margin: 0; }
 
@@ -240,9 +206,79 @@ a:hover { text-decoration: none; }
 
 .articleMainImg { padding: 0; margin: 0; }
 
-.imgCaption { font-size: 10px; padding: 10px 0 0 0; margin: 0; }
-
 .articleText { padding-bottom: 30px; }
+
+.relatedArticlesBlock { border-top: 7px solid #e4e1d8; margin-top: 25px; }
+
+.articleDetail .articleTitle { padding-bottom: 20px; }
+.articleDetail .articleAuthorBox, .articleDetail .articleShares { min-height: 35px; padding-right: 0; padding-left: 0; }
+.articleDetail .articleAuthorBox { font-size: 14px; font-weight: 700; padding-top: 10px; }
+.articleDetail .sponsored { margin: 0 0 15px 0 !important; }
+
+.articleTitleBox { padding-left: 0; padding-right: 0; }
+
+.articlePicture { margin-bottom: 20px; padding-left: 0; padding-right: 0; }
+
+.articleBodyText img { margin: 0 10px 0 10px; }
+
+.articleShares { font-size: 18px; padding-top: 5px; }
+.articleShares .fa-facebook-square { color: #3B5998; }
+.articleShares .fa-twitter-square { color: #00ACED; }
+.articleShares .fa-linkedin-square { color: #007BB5; }
+.articleShares .fa-envelope-square { color: #57575a; }
+.articleShares .fa-plus-square { color: #57575a; }
+.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
+.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
+
+.article-topics, .article-tags { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
+.article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
+.article-topics ul, .article-tags ul { list-style: none; padding: 0; margin: 0; }
+.article-topics ul li, .article-tags ul li { display: inline-block; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
+.article-topics ul li:hover, .article-tags ul li:hover { background-color: grey; color: white; }
+.article-topics ul li a, .article-tags ul li a { padding: 5px; }
+.article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
+
+.techFocusBox, .columnBox { padding: 0 10px 0 0; }
+
+/* ********************************** */
+/* SPONSORED BLOCK */
+#sponsoredProfile { min-height: 400px; -webkit-background-size: cover; background-size: cover; text-align: center; }
+#sponsoredProfile h1, #sponsoredProfile p { color: white; }
+
+.sponsoredFBack { position: absolute; bottom: 0; padding: 20px 15%; }
+
+/* ********************************** */
+/* POI */
+.peopleFocus { background-color: #e4e1d8; padding: 15px; }
+.peopleFocus img { float: left; margin-right: 15px; }
+
+.personName { font-family: "proxima-nova", sans-serif; font-size: 16px; font-weight: 700; padding-top: 10px; }
+
+.personDets { font-size: 11px; }
+
+.boxTitleBig { font-size: 20px; padding-top: 20px !important; }
+
+/* ********************************** */
+/* DEPARTMENTS */
+#departmentsRow { background-color: #d92226; color: white; margin-top: 20px; padding: 3px 10px 0 0; }
+#departmentsRow h3 { font-size: 15px; margin: 0; padding: 5px; }
+#departmentsRow a { color: white; }
+
+#deptsTitle { float: left; width: 60%; }
+
+#deptDownArrow { float: right; width: 35%; font-size: 20px; cursor: pointer; }
+
+#departmentsSlide { background-color: #e4e1d8; padding: 5px; }
+
+.departmentsList { list-style-type: none; padding: 0; }
+.departmentsList li { float: left; margin: 20px; }
+.departmentsList li h3 { font-size: 13px; margin: 0; }
+.departmentsList li a { color: #2a2a2a; text-decoration: none; }
+.departmentsList li a:hover { color: white; }
+
+/* ********************************** */
+/* IMAGES */
+.imgCaption { font-size: 10px; padding: 10px 0 0 0; margin: 0; }
 
 .previewBlock { background-color: #e4e1d8; }
 .previewBlock .gainAccessBtn { background-color: #d92226; margin: 20px auto 30px; padding: 10px; width: 60%; color: white; }
@@ -255,8 +291,6 @@ a:hover { text-decoration: none; }
 
 .quote { color: #d92226; }
 .quote i { color: #2a2a2a; }
-
-.relatedArticlesBlock { border-top: 7px solid #e4e1d8; margin-top: 25px; }
 
 .socialBottom { margin-bottom: 30px; }
 
@@ -292,24 +326,6 @@ a:hover { text-decoration: none; }
 
 .dottedSpacer { border-bottom: 1px dotted #2a2a2a; margin: 0 0 15px 0; }
 
-.articleDetail .articleTitle { padding-bottom: 20px; }
-.articleDetail .articleAuthorBox, .articleDetail .articleShares { min-height: 35px; padding-right: 0; padding-left: 0; }
-.articleDetail .articleAuthorBox { font-size: 12px; font-weight: 700; padding-top: 10px; }
-.articleDetail .sponsored { margin: 0 0 15px 0 !important; }
-
-.articlePicture { margin-bottom: 20px; }
-
-.articleBodyText img { margin: 0 10px 0 10px; }
-
-.articleShares { font-size: 18px; padding-top: 5px; }
-.articleShares .fa-facebook-square { color: #3B5998; }
-.articleShares .fa-twitter-square { color: #00ACED; }
-.articleShares .fa-linkedin-square { color: #007BB5; }
-.articleShares .fa-envelope-square { color: #57575a; }
-.articleShares .fa-plus-square { color: #57575a; }
-.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
-.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
-
 .inLineBox { background-color: #f2efea; padding: 15px; margin: 20px 0; }
 .inLineBox h3 { padding: 0 0 15px 0; margin: 0 0 15px 0; border-bottom: 1px dotted #b4b4b9; font-size: 20px; font-weight: 700; }
 
@@ -327,14 +343,6 @@ table th, table td { padding: 5px; }
 .topicListBox .topicListItem p { margin: 0; }
 
 .topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
-
-.article-topics, .article-tags { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
-.article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
-.article-topics ul, .article-tags ul { list-style: none; padding: 0; }
-.article-topics ul li, .article-tags ul li { float: left; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
-.article-topics ul li:hover, .article-tags ul li:hover { background-color: grey; color: white; }
-.article-topics ul li a, .article-tags ul li a { padding: 5px; }
-.article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
 
 /* =================================================================== */
 /* OGF TILES & BOXES
@@ -520,6 +528,8 @@ table th, table td { padding: 5px; }
 
 /* ************************************ */
 /* MISC  */
+.bigbol { font-weight: bold; }
+
 .red { color: #d92226 !important; }
 
 .yellow { color: #fffb22 !important; }
