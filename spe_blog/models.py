@@ -497,6 +497,9 @@ class ArticlesListingPlugin(CMSPlugin):
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
+    fixedheight = models.BooleanField("Fixed Height", default=True)
+    whitetext = models.BooleanField("White Text", default=True)
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
