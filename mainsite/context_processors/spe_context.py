@@ -36,7 +36,7 @@ def set_default_values(request):
         else:
             # build out the erights url for if we are not localhost
             login['target_url'] = request.get_full_path()
-            login['url'] = "/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + str(login['command']) + \
+            login['url'] = "https://www.spe.org/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + str(login['command']) + \
                            "&ERIGHTS_TARGET=" + str(login['target_url'])
 
         # TODO: add more login stuff if needed
