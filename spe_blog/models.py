@@ -376,7 +376,9 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
+    backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
+    fixedheight = models.BooleanField("Fixed Height", default=True)
+    whitetext = models.BooleanField("White Text", default=True)
 
     def __unicode__(self):
         #        if self.keep_original_order:
@@ -480,7 +482,7 @@ class EditorialPlugin(CMSPlugin):
 class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only.)", blank=True, null=True)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)

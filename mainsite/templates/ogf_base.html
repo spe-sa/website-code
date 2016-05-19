@@ -50,6 +50,11 @@
             </div>
             <div class="col-sm-2 text-center topbarcol" id="signin">
                 <a href=""><i class="fa fa-user"></i> Sign In</a>
+
+
+                {% if login.url %}
+                <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                {% endif %}
             </div>
 
         </div>

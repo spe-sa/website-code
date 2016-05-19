@@ -25,7 +25,7 @@
                 {% endif %}
                 {% if article.article_text %}
                     <p>{{ article.article_text | bleachall | slice:":100" | safe }}... </p>
-                    <span class="more"> ...Read More</span>
+                    <span class="more"><strong>....Read More</strong></span>
                 {% endif %}
             </div>
 
@@ -64,6 +64,7 @@
                 poipicwidth = $('.poipic').width();
                 $('.poipic').height(poipicwidth * 1.2);
             });
+{#            $(".poiblurb p").text().strValue.replace('<strong>', '').strValue.replace('</strong>', '');#}
         });
     </script>
 {%  endaddtoblock %}

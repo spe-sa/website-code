@@ -7,10 +7,12 @@ register = template.Library()
 @register.filter
 def bleachall(value):
     """
-    removes images from the text
+    removes tags from the text
     """
+    # value.replace("<strong>", "")
+    # value.replace("</strong>", "")
     try:
-        value = bleach.clean(value, strip=True)
+        value = bleach.clean(value, tags=[], strip=True)
         return value
     except:
         pass

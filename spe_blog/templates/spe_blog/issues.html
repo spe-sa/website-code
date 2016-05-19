@@ -14,7 +14,7 @@
 
 
         <div class="col-sm-8 col-lg-7 col-lg-offset-1 areaContent">
-            <h1>MAGAZINE ARCHIVE</h1>
+            <h2 class="tiletitles">MAGAZINE ARCHIVE</h2>
 
         <!-- ISSUES BY YEAR ACCORDION BEGIN -->
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -25,7 +25,7 @@
                         <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
 {#                        <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
                             <hr class="tiletitlehr">
-                            <h1 class="tiletitles">{{ issue.date.year }}</h1>
+                            <h2 class="tiletitles">{{ issue.date.year }}</h2>
                         </div>
                         <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse in row">
                     {% else %}
@@ -34,7 +34,7 @@
                             <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">
 {#                            <div class="row issuebar" data-toggle="collapse" data-target="#collapse{{ issue.date.year }}" aria-expanded="true" aria-controls="collapse{{ issue.date.year }}">#}
                                 <hr class="tiletitlehr">
-                                <h1 class="tiletitles">{{ issue.date.year }}</h1>
+                                <h2 class="tiletitles">{{ issue.date.year }}</h2>
                             </div>
                             <div id="collapse{{ issue.date.year }}" class="panel-collapse collapse row">
                         {% endifchanged %}
@@ -58,7 +58,7 @@
 
             <div class="row">
                 <hr class="tiletitlehr">
-                <h1 class="tiletitles">CURRENT ISSUE</h1>
+                <h2 class="tiletitles">CURRENT ISSUE</h2>
             </div>
 
             {% if article.publication.code != "WWW" %}

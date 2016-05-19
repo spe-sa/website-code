@@ -1,5 +1,6 @@
 # from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm, ModelMultipleChoiceField
+# from django.forms.models import ModelFormOptions
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
@@ -12,7 +13,27 @@ class ArticleSelectionForm(ModelForm):
 
     class Meta:
         model = ArticlesPlugin
-        fields = ['template', 'backcol', 'order_by', 'articles', 'all_url', 'all_text', ]
+        exclude = []
+        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext', ]
+        # fieldsets = (
+        #     (None, {
+        #         'fields': (
+        #             'template',
+        #             'order_by',
+        #             'articles',
+        #             'all_url',
+        #             'all_text',
+        #         )
+        #     }),
+        #     ('Editorial Feature 2', {
+        #         'classes': ('collapse',),
+        #         'fields': (
+        #             'backcol',
+        #             'fixedheight',
+        #         )
+        #     }),
+        # )
+        # fields = ['template', 'backcol', 'fixedheight', 'order_by', 'articles', 'all_url', 'all_text', ]
 
 
 # fields = ['template', 'keep_original_order', 'order_by', 'articles', ]

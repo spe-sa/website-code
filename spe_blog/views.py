@@ -4,10 +4,12 @@ from django.utils import timezone
 
 from .models import Article, Brief, Issue, Publication
 
+
 def article_index(request):
     articles = Article.objects.order_by('-date')
     context = {'articles': articles}
     return render(request, 'spe_blog/article_index.html', context)
+
 
 def brief_index(request):
     briefs = Brief.objects.order_by('-date')
@@ -32,6 +34,7 @@ def article_detail(request, article_id):
                       'show_subscribe_url': ur,
                   })
 
+
 def brief_detail(request, brief_id):
     q = get_object_or_404(Brief, pk=brief_id)
     q.article_hits += 1
@@ -48,7 +51,6 @@ def brief_detail(request, brief_id):
                       'base_template': t,
                       'show_subscribe_url': ur,
                   })
-
 
 
 def issue(request, publication_code):

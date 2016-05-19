@@ -189,11 +189,53 @@
   bottom:               19px;
   //border:               1px solid hotpink;
 }
+.sideListBoxTitle {
+  font-weight:          $font-bold;
+  font-size:            20px;
+  padding:              0 0 10px 0;
+  border-bottom:        1px dotted $col-white;
+  margin-bottom:        10px;
+}
+.sideListItem {
+  padding:              0 0 5px 0;
+  margin-bottom:        5px;
+  border-bottom:        1px solid $col-basegrey;
+
+}
+.sideListItem-borgry {
+  border-bottom:        1px solid $col-drkgrey;
+}
+.sideListItem-borwht {
+  border-bottom:        1px solid $col-white;
+}
+.sideListTitle {
+  font-size:            15px;
+  font-weight:          $font-bold;
+  margin-top:           5px;
+  padding:              5px 0;
+
+  a:hover {
+    color:              $col-ogfbluehover;
+  }
+}
+.sideListDate {
+  color:                $col-ogfyellow;
+  font-weight:          $font-light;
+}
+.sideListLock {
+  color:                $col-ogfred;
+}
+.sideListTeaser {
+  padding:              0 0 10px 0;
+  border-bottom:        1px dotted $col-white;
+  margin-bottom:        10px;
+}
+.sideListIntro {
+  padding:              10px 0 0 0;
+}
 .tile-editorial {
   background-color:     $col-ogfblack;
-  color:                $col-white;
   padding:              15px;
-  height:               400px;
   margin-bottom:        15px;
   overflow:             hidden;
 
@@ -224,10 +266,25 @@
   .authorBio {
     font-size:          10px;
   }
+
+}
+.tile-editorial-fixed {
+  height:               400px;
+}
+.tile-editorial-txtwht {
+  color:                $col-white;
   a {
     color:              $col-white;
   }
-
+}
+.tile-editorial-txtblck {
+  color:                $col-ogfblack;
+  a {
+    color:              $col-ogfblack;
+  }
+  .sideListDate {
+    color:              $col-red;
+  }
 }
 .tile-textbelow {
   padding-bottom:       20px;
@@ -405,43 +462,7 @@
 .poipic {
   min-height:           125px;
 }
-.sideListBoxTitle {
-  font-weight:          $font-bold;
-  font-size:            20px;
-  padding:              0 0 10px 0;
-  border-bottom:        1px dotted $col-white;
-  margin-bottom:        10px;
-}
-.sideListItem {
-  padding:              0 0 5px 0;
-  border-bottom:        1px solid #393939;
-  margin-bottom:        5px;
-}
-.sideListTitle {
-  font-size:            15px;
-  font-weight:          $font-bold;
-  margin-top:           5px;
-  padding:              5px 0;
 
-  a:hover {
-    color:              $col-ogfbluehover;
-  }
-}
-.sideListDate {
-  color:                $col-ogfyellow;
-  font-weight:          $font-light;
-}
-.sideListLock {
-  color:                $col-ogfred;
-}
-.sideListTeaser {
-  padding:              0 0 10px 0;
-  border-bottom:        1px dotted $col-white;
-  margin-bottom:        10px;
-}
-.sideListIntro {
-  padding:              10px 0 0 0;
-}
 .forms {
   border-top:           5px solid $col-hrblue;
   margin-top:           0;
