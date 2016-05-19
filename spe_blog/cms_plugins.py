@@ -79,21 +79,16 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 
 class ShowArticlesPlugin(ArticlePluginBase):
     model = ArticlesPlugin
-    name = _("Selected Articles ")
+    name = _("Selected Articles")
     form = ArticleSelectionForm
 
     def render(self, context, instance, placeholder):
-        #        if instance.keep_original_order:
-        #            queryset = Article.objects.none()
-        #            for art in instance.articles.all():
-        #                queryadd = Article.objects.filter(id=art.id).all()
-        #                queryset = list(chain(queryset, queryadd))
-        #        else:
-        #            queryset = Article.objects.filter(id__in=instance.articles.all()).order_by(instance.order_by)
         queryset = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(
             instance.order_by)
         context.update({'articles': queryset})
         context.update({'backcol': instance.backcol})
+        context.update({'fixedheight': instance.fixedheight})
+        context.update({'whitetext': instance.whitetext})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})

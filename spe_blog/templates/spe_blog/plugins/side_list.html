@@ -1,6 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
-<div class="tile-editorial row" style="background-color:{{ backcol }}">
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
 {#    <div class="col-xs-12 sideListBoxTitle">#}
 {#        THIS IS THE TITLE#}
 {#    </div>#}
