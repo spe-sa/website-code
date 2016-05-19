@@ -29,20 +29,31 @@ def set_default_values(request):
         else:
             login['command'] = 'login'
             login['label'] = 'Sign In'
-        # if our host is localhost or 127.0.0.1 then lets use our login that sets cookies specifically for testing
+        # if localhost then lets use our login that sets cookies specifically for testing
         # otherwise we route to erights
-        if get_context_variable(request, 'REMOTE_ADDR') == '127.0.0.1':
+        # check if httphost is not localhost or empty; otherwise use the address
+        # NOTE: we can use sstacha-mac.spe.org on our local environment pointing to 127.0.0.1
+        # !! cookies will work even authenticating against prod !!
+        # determine if we are localhost
+        is_localhost = False
+        host = request.get_host()
+        if host and (host.startswith('localhost') or host.startswith('127.0.0.1')):
+            is_localhost = True
+        if host == None or host == '':
+            if get_context_variable(request, 'REMOTE_ADDR') == '127.0.0.1':
+                is_localhost = True
+
+        if is_localhost:
             login['url'] = "/localhost/" + str(login['command']) + "/"
         else:
             # build out the erights url for if we are not localhost
-            login['target_url'] = request.get_full_path()
-            # login['url'] = "/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + str(login['command']) + \
-            #                "&ERIGHTS_TARGET=" + str(login['target_url'])
+            login['target_url'] = request.build_absolute_uri(request.get_full_path())
             if login['command'] == 'logout':
                 login['url'] = "https://www.spe.org/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + \
                                str(login['command']) + "&ERIGHTS_TARGET=" + str(login['target_url'])
             else:
-                login['url'] = "https://www.spe.org/login/?ERIGHTS_TARGET=" + str(login['target_url'])
+                login['url'] = "https://www.spe.org/appssecured/login/servlet/ErightsLoginServlet?g=ci" + \
+                               "&ERIGHTS_TARGET=" + str(login['target_url'])
 
         # TODO: add more login stuff if needed
         request.session['session_login'] = login
