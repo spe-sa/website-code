@@ -325,6 +325,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
+        context.update({'fixedheight': instance.fixedheight})
+        context.update({'whitetext': instance.whitetext})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
