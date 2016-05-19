@@ -3,7 +3,7 @@
 <div class="row articleDetail" id="printMe">
     <div class="col-sm-12 articleTitleBox">
         <hr class="tiletitlehr">
-        <h1 class="tiletitles">{{ article.title }}</h1>
+        <h2 class="tiletitles">{{ article.title }}</h2>
     </div>
     <div class="row">
         <div class="col-sm-12 tiletitlehr"></div>
@@ -89,7 +89,7 @@
     {% if topic_articles %}
         <div class="row">
             <hr class="tiletitlehr">
-            <h1 class="tiletitles">Related Articles</h1>
+            <h2 class="tiletitles">Related Articles</h2>
         </div>
         {% for article in topic_articles %}
             <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
