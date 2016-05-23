@@ -1,0 +1,11 @@
+{% load cms_tags sekizai_tags %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+
+            $(".articleBodyText img").addClass("img-responsive");
+
+        });
+    </script>
+{%  endaddtoblock %}
