@@ -3,7 +3,7 @@
 {% for issue in issues %}
     <article class="tile whiteback story"
                 style="min-height: 150px">
-    <a href="{{ issue.issue_url }}" target="_blank">
+    <a href="{{ issue.get_absolute_url }}" target="_blank">
         <div class="story-wrap">
                 <figure class="thumb" style="max-width:200px;">
                     <div class="img-wrap"><img src="{{ issue.cover.url }}" style="max-height:150px;max-width: 200px"/></div>

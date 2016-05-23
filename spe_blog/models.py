@@ -142,8 +142,9 @@ class Issue(models.Model):
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
-    issue_url = models.URLField(blank=True, null=True)
+    cover = models.ImageField(upload_to='covers')
+    # issue_url = models.URLField(blank=True, null=True)
+    issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     class Meta:
@@ -160,6 +161,12 @@ class Issue(models.Model):
             buf += " :: " + self.date.strftime("%B") + " " + str(self.date.year)
         return buf
 
+    def get_absolute_url(self):
+        if self.issue_page:
+            url = self.issue_page.get_absolute_url()
+        else:
+            url = ''
+        return url
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
@@ -237,7 +244,8 @@ class Article(models.Model):
             buf = " " + str(self.print_volume)
         if self.print_issue:
             buf += ", " + str(self.print_issue)
-        buf = self.publication.code + buf + ": " + str(self.title)
+        # buf = self.publication.code + buf + ": " + str(self.title)
+        buf = self.publication.code + buf + ": " + unicode(self.title)
         if self.published:
             buf += " (PUBLISHED)"
         return buf
