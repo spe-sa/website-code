@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12 tiletitlehr"></div>
         <div class="col-xs-7 col-sm-7 col-md-8 articleAuthorBox">
-            {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
+            {% if article.author %}{{ article.author }} | {% endif %}<span class="articleDate">{{ article.date|date:"d F Y" }}</span>
         </div>
         <div class="col-md-4 articleShares text-right dontPrintMe">
             {% include 'include_article_shares.html' %}
