@@ -15,6 +15,7 @@
         </div>
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
+{% if article.topics %}
     <div class="row">
         <div class="col-sm-12 article-topics dontPrintMe">
             <h4>Topics</h4>
@@ -25,6 +26,7 @@
             </ul>
         </div>
     </div>
+{% endif %}
 
     {% if article.sponsored == True %}
         <div class="col-sm-12 sponsored">SPONSORED</div>
