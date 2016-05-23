@@ -142,7 +142,7 @@ class Issue(models.Model):
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    cover = models.ImageField(upload_to='covers')
+    cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
     # issue_url = models.URLField(blank=True, null=True)
     issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
