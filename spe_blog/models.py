@@ -142,7 +142,8 @@ class Issue(models.Model):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     cover = models.ImageField(upload_to='covers')
-    issue_url = models.URLField(blank=True, null=True)
+    # issue_url = models.URLField(blank=True, null=True)
+    issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     class Meta:
@@ -159,6 +160,12 @@ class Issue(models.Model):
             buf += " :: " + self.date.strftime("%B") + " " + str(self.date.year)
         return buf
 
+    def get_absolute_url(self):
+        if self.issue_page:
+            url = self.issue_page.get_absolute_url()
+        else:
+            url = ''
+        return url
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
