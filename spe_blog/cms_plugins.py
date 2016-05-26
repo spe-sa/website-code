@@ -257,7 +257,7 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
 
 
 class ShowTopicTitlePlugin(TopicsPluginBase):
-    model = TopicsListPlugin
+    model = CMSPlugin
     name = _("Topic Title")
 
     def render(self, context, instance, placeholder):
