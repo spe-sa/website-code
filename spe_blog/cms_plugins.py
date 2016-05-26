@@ -18,7 +18,7 @@ from django.db.models import Q
 
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
-    Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin,
+    Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, TagsDetailPlugin,
     Issue, IssuesByPublicationPlugin,
     Editorial, EditorialPlugin,
     BreadCrumbPlugin,
@@ -27,7 +27,7 @@ from .models import (
     TopicsListPlugin, TopicsPlugin, Topics
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm, OldTopicsListSelectionForm
+    TopicsListSelectionForm
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -226,8 +226,6 @@ class ShowTopicsListPlugin(TopicsPluginBase):
         return context
 
 
-
-
 class ShowTopicsListingPlugin(TopicsPluginBase):
     model = TopicsPlugin
     name = _("Topic Details")
@@ -387,13 +385,39 @@ class ShowIssuesByYearPlugin(CMSPluginBase):
         return context
 
 
+class ShowTagsDetailPlugin(CMSPluginBase):
+
+    model = TagsDetailPlugin
+    allow_children = False
+    cache = False
+    module = _('Article Page Components')
+    name = _('Tags Details')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/image_left.html'
+
+    def render(self, context, instance, placeholder):
+        art = ''
+        now = timezone.now()
+        q = re.findall('(tag)=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
+        if q and q[0][0] == 'tag':
+            pk = int(q[0][1])
+            if pk:
+                art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                    tags__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            else:
+                raise Http404("Tag not found")
+        context.update({'articles': art})
+        context.update({'dateNow': now})
+        self.render_template = instance.template
+        return context
+
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowBriefDetailPlugin)
 plugin_pool.register_plugin(ShowBriefPlugin)
 plugin_pool.register_plugin(ShowBriefListingPlugin)
-# plugin_pool.register_plugin(ShowEditorialPlugin)
+plugin_pool.register_plugin(ShowTagsDetailPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)

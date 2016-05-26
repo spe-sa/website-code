@@ -62,7 +62,6 @@ TOPIC_TEMPLATES = (
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
 )
 
-
 class ColorField(models.CharField):
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 10
@@ -113,6 +112,14 @@ class TopicsPage(models.Model):
         return self.name
 
 
+class TagsPage(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    url = PageField(verbose_name="URL for tags page", blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
@@ -122,6 +129,8 @@ class Publication(models.Model):
     brief_url = models.ForeignKey(BriefDetailPage, verbose_name="URL for brief detail page", blank=True, null=True,
                                   on_delete=models.SET_NULL)
     topics_url = models.ForeignKey(TopicsPage, verbose_name="URL for topics page", blank=True, null=True,
+                                   on_delete=models.SET_NULL)
+    tags_url = models.ForeignKey(TagsPage, verbose_name="URL for tags page", blank=True, null=True,
                                    on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
@@ -585,3 +594,29 @@ class IssuesByYearPlugin(CMSPlugin):
 
     def __unicode__(self):
         return self.publication.name
+
+# class TagNameField(models.Model):
+#     name = models.CharField(max_length=200)
+#
+#
+#     def __unicode__(self):
+#         return self.name
+#
+
+class TagsDetailPlugin(CMSPlugin):
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
+    starting_with = models.PositiveIntegerField(default=1)
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf += " using " + dictionary[self.template]  # + " - "
+        # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
+        return buf
+#
+#     def copy_relations(self, old_instance):
+#         self.selected_tags = old_instance.selected_tags.all()

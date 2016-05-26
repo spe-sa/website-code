@@ -257,6 +257,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowMarketoFormPlugin',
                     'ShowTopicsListPlugin',
                     'ShowTopicsListingPlugin',
+                    'ShowTagsDetailPlugin',
                     # snippets
                     'SmartSnippetPlugin',
                     # events
@@ -301,6 +302,7 @@ CMS_PLACEHOLDER_CONF = {
                 'ShowMarketoFormPlugin',
                 'ShowTopicsListPlugin',
                 'ShowTopicsListingPlugin',
+                'ShowTagsDetailPlugin',
                 # snippets
                 'SmartSnippetPlugin',
                 # events

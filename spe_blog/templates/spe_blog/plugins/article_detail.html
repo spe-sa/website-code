@@ -48,7 +48,7 @@
         <div class="col-sm-12 article-tags">
             <ul>
             {% for tag in article.tags.all %}
-                    <li><!-- a href="/ogf/topics/?topic=/}" --><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}<!-- /a --></li>
+                    <li><a href="{{ article.publication.tags_url.url.get_absolute_url }}?tag={{ tag.id }}"><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}</a></li>
             {% endfor %}
             </ul>
         </div>

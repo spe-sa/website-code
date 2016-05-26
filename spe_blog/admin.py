@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Article, Category, Publication, Issue, Editorial
-from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage
+from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsPage
 # from mainsite.models import Tier1Discipline
 
 
@@ -186,3 +186,4 @@ admin.site.register(Issue)
 admin.site.register(ArticleDetailPage)
 admin.site.register(BriefDetailPage)
 admin.site.register(TopicsPage)
+admin.site.register(TagsPage)
