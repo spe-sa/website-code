@@ -4,6 +4,7 @@
 import re
 import urlparse
 
+from cms.models import CMSPlugin
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 from django.utils import timezone
@@ -15,6 +16,7 @@ from django.db.models import Q
 
 # from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
+from taggit.models import Tag
 
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
@@ -411,6 +413,27 @@ class ShowTagsDetailPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+
+class ShowTagTitlePlugin(CMSPluginBase):
+    model = CMSPlugin
+    name = _("Tag Title")
+    allow_children = False
+    cache = False
+    module = _('Article')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/topic_title_plugin.html'
+
+    def render(self, context, instance, placeholder):
+        tag_id = re.findall('tag=(\d+)', urlparse.urlparse(context.get('request').get_full_path()).query)
+        if len(tag_id) > 0:
+            topicname = Tag.objects.get(pk=tag_id[0]).name.upper()
+        else:
+            topicname = ''
+
+        context.update({'topicname': topicname})
+        return context
+
+
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
@@ -424,3 +447,4 @@ plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)
 plugin_pool.register_plugin(ShowTopicsListingPlugin)
 plugin_pool.register_plugin(ShowTopicTitlePlugin)
+plugin_pool.register_plugin(ShowTagTitlePlugin)

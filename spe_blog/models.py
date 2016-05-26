@@ -595,13 +595,6 @@ class IssuesByYearPlugin(CMSPlugin):
     def __unicode__(self):
         return self.publication.name
 
-# class TagNameField(models.Model):
-#     name = models.CharField(max_length=200)
-#
-#
-#     def __unicode__(self):
-#         return self.name
-#
 
 class TagsDetailPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
@@ -617,6 +610,3 @@ class TagsDetailPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]  # + " - "
         # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
-#
-#     def copy_relations(self, old_instance):
-#         self.selected_tags = old_instance.selected_tags.all()
