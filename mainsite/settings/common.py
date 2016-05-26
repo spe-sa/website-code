@@ -258,6 +258,8 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowTopicsListPlugin',
                     'ShowTopicsListingPlugin',
                     'ShowTagsDetailPlugin',
+                    'ShowTagTitlePlugin',
+                    'ShowTopicTitlePlugin'
                     # snippets
                     'SmartSnippetPlugin',
                     # events
@@ -303,6 +305,8 @@ CMS_PLACEHOLDER_CONF = {
                 'ShowTopicsListPlugin',
                 'ShowTopicsListingPlugin',
                 'ShowTagsDetailPlugin',
+                'ShowTagTitlePlugin',
+                'ShowTopicTitlePlugin'
                 # snippets
                 'SmartSnippetPlugin',
                 # events
@@ -345,6 +349,9 @@ CMS_PLACEHOLDER_CONF = {
         'inherit': 'content',
     },
     'page title': {
+        'inherit': 'content',
+    },
+    'title area': {
         'inherit': 'content',
     },
 
