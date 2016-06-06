@@ -200,7 +200,7 @@ class Article(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
-    teaser = models.CharField(max_length=250)
+    teaser = models.CharField(max_length=300)
     author = models.CharField(max_length=500, blank=True, null=True)
     introduction = RichTextUploadingField(blank=True, null=True,
                                           help_text=u'Introductory paragraph or \'teaser.\' for paywal')
@@ -212,7 +212,7 @@ class Article(models.Model):
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article', related_name="article_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
-    picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
+    picture_caption = models.CharField(max_length=300, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
