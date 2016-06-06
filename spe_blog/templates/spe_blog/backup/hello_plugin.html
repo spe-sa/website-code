@@ -1,7 +1,7 @@
 -- hello plugin --
 {% for article in articles %}
     <article class="tile white story">
-    <a href="{{ article.get_absolute_url }}" target="_blank">
+    <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap">
             {% if article.picture.url %}
                 <figure class="thumb" style="max-width:200px;">

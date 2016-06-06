@@ -3,7 +3,7 @@
     {% if article.is_featured %}
     <article class="tile white featured-story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
         {% if article.featured_image_id %}
-            <a href="{{ article.get_absolute_url }}" target="_blank">
+            <a href="{{ article.get_absolute_url }}">
             <div class="story-wrap" style="background-image:url({{ article.featured_image.url }});">
             <div class="story-text">
                 <h2>{{ article.title }}</h2>
