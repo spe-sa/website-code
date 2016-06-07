@@ -246,6 +246,10 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
                         topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
                 else:
                     raise Http404("Topic not found")
+            else:
+                art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                    topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
+                      instance.starting_with - 1:instance.cnt]
         else:
             art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
                 topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
