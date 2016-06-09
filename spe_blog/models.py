@@ -155,7 +155,7 @@ class Issue(models.Model):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
-    coverblurb = models.CharField(max_length=1000, blank=True, null=True)
+    coverblurb = models.TextField(verbose_name='Cover Description', max_length=1000, blank=True, null=True)
     covercredit = models.CharField(max_length=1000, blank=True, null=True)
     # issue_url = models.URLField(blank=True, null=True)
     issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
