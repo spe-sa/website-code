@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% for issue in issues %}
+  {% if forloop.first %}
+    <article class="tile-curntIssue row">
+        <a href="{{ issue.get_absolute_url }}">
+            <div class="col-xs-5 issueThumb">
+                <img src="{{ issue.cover.url }}" class="img-responsive"/>
+            <div class="covercredit">{{ issue.covercredit }}</div>
+            </div>
+        </a>
+        <div class="col-xs-7 padZero">
+            <div class="coverblurb">{{ issue.coverblurb }}</div>
+        </div>
+    </article>
+
+  {% endif %}
+{% empty %}
+    <p class="well">{% trans "No issues available" %}</p>
+{% endfor %}

@@ -16,6 +16,7 @@ from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
 # from datetime import datetime
 from mainsite.widgets import ColorPickerWidget
+
 # import sys
 
 DEFAULT_ORDER_BY = '-date'
@@ -41,6 +42,7 @@ DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
 ISSUE_TEMPLATES = (
     (DEFAULT_ISSUE_TEMPLATE, 'Issues listing'),
     ('spe_blog/plugins/issue_sidebar.html', 'Subscribe & read issue'),
+    ('spe_blog/plugins/on_the_cover.html', 'On The Cover'),
 )
 
 DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
@@ -61,6 +63,7 @@ TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
 )
+
 
 class ColorField(models.CharField):
     def __init__(self, *args, **kwargs):
@@ -131,7 +134,7 @@ class Publication(models.Model):
     topics_url = models.ForeignKey(TopicsPage, verbose_name="URL for topics page", blank=True, null=True,
                                    on_delete=models.SET_NULL)
     tags_url = models.ForeignKey(TagsPage, verbose_name="URL for tags page", blank=True, null=True,
-                                   on_delete=models.SET_NULL)
+                                 on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -152,6 +155,8 @@ class Issue(models.Model):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
+    coverblurb = models.CharField(max_length=1000, blank=True, null=True)
+    covercredit = models.CharField(max_length=1000, blank=True, null=True)
     # issue_url = models.URLField(blank=True, null=True)
     issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
@@ -177,6 +182,7 @@ class Issue(models.Model):
             url = ''
         return url
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
 
@@ -196,7 +202,7 @@ class Article(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    #categories = models.ManyToManyField(Category, blank=True)
+    # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
@@ -210,7 +216,8 @@ class Article(models.Model):
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
-    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article', related_name="article_picture")
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article',
+                              related_name="article_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=300, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -362,7 +369,8 @@ class Editorial(models.Model):
         max_length=300,
         help_text=u'Exerpt'
     )
-    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for editorial', related_name="editorial_picture")
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for editorial',
+                              related_name="editorial_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -610,3 +618,14 @@ class TagsDetailPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]  # + " - "
         # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
+
+# class OnTheCover(CMSPlugin):
+#     cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
+#     blurb = models.CharField(max_length=250)
+#     credit = models.CharField(max_length=250)
+#
+#     def __unicode__(self):
+#         buf = "(" + str(self.starting_with) + " - " + str(
+#             self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+#         buf += " using " + dictionary[self.template]
+#         return buf

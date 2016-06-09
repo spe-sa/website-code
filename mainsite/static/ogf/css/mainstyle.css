@@ -520,6 +520,10 @@ table th, table td { padding: 5px; }
 .marketoForm { margin-bottom: 15px; }
 .marketoForm form { margin-top: 15px; }
 
+.coverblurb { font-size: 14px; line-height: 14px; }
+
+.covercredit { margin: 10px 0 0 0; font-size: 10px; }
+
 /* =================================================================== */
 /* AD ZONES
 ====================================================================== */
