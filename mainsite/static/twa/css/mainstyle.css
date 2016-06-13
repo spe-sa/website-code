@@ -19,6 +19,8 @@ h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
 
 a:hover { text-decoration: none; }
 
+.dummyClass { font-size: 10px; }
+
 /* ************************ */
 /* HEAD FOOT & CONTENT      */
 /* =================================================================== */
