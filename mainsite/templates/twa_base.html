@@ -33,9 +33,9 @@
                 <ul class="topbarmenuleft">
                     <li><a href="http://www.spe.org/">SPE</a></li>
                     <li><a href="/jpt/">JPT</a></li>
-                    <li><a href="/ogf/" class="yellow">OGF</a></li>
+                    <li><a href="/ogf/">OGF</a></li>
                     <li><a href="/hse/">HSE Now</a></li>
-                    <li><a href="/twa/">The WAY Ahead</a></li>
+                    <li><a href="/twa/" class="activeLink">The WAY Ahead</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 text-right topbarcol">
@@ -55,10 +55,10 @@
         </div>
 
         <div class="row dontPrintMe" id="menubar">
-            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-offset-1" id="mainLogo">
+            <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
                 <a href="/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
             </div>
-            <div class="col-md-8 col-lg-7 text-right">
+            <div class="col-md-8 text-right">
                 <ul class="pubMenu">
                     {% show_menu 1 100 0 1 %}
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
@@ -88,7 +88,7 @@
     <!-- FOOTER Begin -->
     <div class="footerUpper row dontPrintMe">
         <div class="footerULeft col-md-3">
-            <img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="footerLogo">
+            <img src="{% static 'twa/img/twa_logo_white.svg' %}" class="footerLogo">
             <ul class="footerSocial">
                 <li><a href=""><i class="fa fa-facebook"></i></a></li>
                 <li><a href=""><i class="fa fa-twitter"></i></a></li>

@@ -8,7 +8,7 @@
 /* ********************************** */
 /* TOP BAR BLACK */
 #topbar {
-  background-color:     $col-red;
+  background-color:     $col-twablue;
   min-height:           50px;
   color:                $col-white;
   font-weight:          $font-bold;
@@ -36,7 +36,7 @@
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-yellow !important;
     }
 
   }
@@ -68,7 +68,7 @@
   }
 
   #signin {
-    background-color:   $col-red;
+    background-color:   $col-bluehover;
     height:             50px;
     font-size:          14px;
     text-align:         center;
@@ -83,7 +83,7 @@
       background-color: $col-white;
 
       a {
-        color:          $col-red;
+        color:          $col-twablue;
       }
     }
   }
@@ -93,8 +93,8 @@
 /* ********************************** */
 /* LOGO MENU BAR GREY                 */
 #menubar {
-  background-color:     $col-blue;
-  min-height:           170px;
+  background-color:     $col-drkgrey;
+  min-height:           125px;
 
   #mainLogo {
     padding-top:        50px;
@@ -107,8 +107,8 @@
 
   .pubMenu {
     list-style-type:    none;
-    margin:             0;
-    padding:            80px 0 0 0;
+    margin:             0 0 20px 0;
+    padding:            50px 0 0 0;
     font-size:          18px;
     float:              right;
 
