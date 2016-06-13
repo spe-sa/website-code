@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* jpt HEADER & MENUS
+/* OGF HEADER & MENUS
 ====================================================================== */
 @import 'vars';
 
@@ -8,7 +8,7 @@
 /* ********************************** */
 /* TOP BAR BLACK */
 #topbar {
-  background-color:     $col-brightred;
+  background-color:     $col-red;
   min-height:           50px;
   color:                $col-white;
   font-weight:          $font-bold;
@@ -83,7 +83,7 @@
       background-color: $col-white;
 
       a {
-        color:          $col-brightred;
+        color:          $col-red;
       }
     }
   }
@@ -100,8 +100,8 @@
     padding-top:        50px;
 
     img {
-      max-width:        300px;
-      height:           auto;
+      //max-width:        300px;
+      //height:           auto;
     }
   }
 
@@ -132,7 +132,7 @@
 }
 .searchIcon {
   &:hover {
-    color:              $col-brightred;
+    color:              $col-red;
     cursor:             pointer;
   }
 }

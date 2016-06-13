@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* MAIN STYLE SHEET FOR TWA
+/* MAIN STYLE SHEET FOR OGF
 ====================================================================== */
 @import 'vars';
 
@@ -7,6 +7,7 @@
 /* BASE HTML STYLES         */
 body {
   font-family:            $font-main;
+  font-size:              14px !important;
 }
 h1, h2, h3, h4 {
   font-family:            $font-titles;
@@ -33,17 +34,20 @@ a {
 
 /* ************************ */
 /* HEAD FOOT & CONTENT      */
-//@import 'header';
-//@import 'footer';
-//@import 'content';
-//@import 'tiles';
-//@import 'adzones';
+@import 'header';
+@import 'footer';
+@import 'content';
+@import 'tiles';
+@import 'adzones';
 
 /* ************************************ */
 /* MISC  */
 
+.bigbol {
+  font-weight: bold;
+}
 .red {
-  color:              $col-brightred !important;
+  color:              $col-red !important;
 }
 .yellow {
   color:              $col-yellow !important;
@@ -75,4 +79,81 @@ a {
   font-weight:        $font-bold;
   font-size:          12px;
   letter-spacing:     2px;
+}
+.cke_maximized {
+  margin-top:         50px !important;
+}
+.more {
+  float:              right;
+  color:              $col-black;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+}
+.moreB {
+  color:              $col-black;
+  float:  right;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+}
+.see-all-div {
+  margin:             15px 0;
+  padding:            10px 0 0 0;
+  border-top:         1px solid $col-notsolightgrey;
+}
+.see-all {
+  font-size:          15px;
+  font-weight:        $font-bold;
+  color:              $col-speblue;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+
+  i {
+    margin-left:      25px;
+  }
+}
+
+@media print {
+  html * {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
+  }
+  body {
+    //background: white;
+    font-size: 20pt;
+    width:  100%;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #printMe, #printMe * {
+    visibility: visible;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .dontPrintMe, .dontPrintMe * {
+    visibility: hidden;
+    display: none;
+  }
+  #printMe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .articleBodyText, .articleBodyText p {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
+  }
+}
+.panel {
+  background-color: transparent;
 }
