@@ -25,7 +25,7 @@ from .models import (
     Editorial, EditorialPlugin,
     BreadCrumbPlugin,
     # Publication,
-    IssuesByYearPlugin,
+    IssuesByYearPlugin, IssueCoverPlugin,
     TopicsListPlugin, TopicsPlugin, Topics
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
@@ -438,6 +438,27 @@ class ShowTagTitlePlugin(CMSPluginBase):
         return context
 
 
+class ShowIssueCoverPlugin(CMSPluginBase):
+    model = IssueCoverPlugin
+    allow_children = False
+    cache = False
+    module = _('Publications')
+    name = _('Issue Cover Plugin')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/on_the_cover.html'
+
+    def render(self, context, instance, placeholder):
+        queryset = Issue.objects.get(pk=instance.issue.id)
+        context.update({'issue': queryset})
+        # context.update({'issues': issue})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
+        context.update({'show_subscribe_url': instance.publication.subscription_url})
+        self.render_template = instance.template
+        return context
+
+
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
@@ -446,6 +467,7 @@ plugin_pool.register_plugin(ShowBriefPlugin)
 plugin_pool.register_plugin(ShowBriefListingPlugin)
 plugin_pool.register_plugin(ShowTagsDetailPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
+plugin_pool.register_plugin(ShowIssueCoverPlugin)
 # plugin_pool.register_plugin(ShowBreadCrumbPlugin)
 plugin_pool.register_plugin(ShowIssuesByYearPlugin)
 plugin_pool.register_plugin(ShowTopicsListPlugin)

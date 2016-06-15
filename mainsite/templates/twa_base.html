@@ -9,6 +9,8 @@
     {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bitter:700,400' rel='stylesheet' type='text/css'>
 
 {% endblock web_fonts %}
 
@@ -56,9 +58,9 @@
 
         <div class="row dontPrintMe" id="menubar">
             <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
-                <a href="/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
+                <a href="/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
             </div>
-            <div class="col-md-8 text-right">
+            <div class="col-md-9 text-right">
                 <ul class="pubMenu">
                     {% show_menu 1 100 0 1 %}
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
@@ -149,6 +151,3 @@
 
 
 {% endblock content_footer %}
-
-
-

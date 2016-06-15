@@ -336,7 +336,8 @@
         // Default color set.
         colors : [
             '181c41', '193b44', '57575a', '808080', 'b4b4b9', '0f1c97',
-            '26416c', '365d98', '3B5998', '007BB5', '808bcf', 'FFCC00'
+            '26416c', '365d98', '3B5998', '007BB5', '808bcf', 'FFCC00',
+            'eeeeee', 'ffffff'
         ],
 
         // If we want to simply add more colors to the default set, use addColors.
