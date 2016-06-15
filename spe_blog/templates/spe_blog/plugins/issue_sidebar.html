@@ -3,7 +3,7 @@
 {% for issue in issues %}
   {% if forloop.first %}
     <article class="tile-curntIssue row">
-    <a href="{{ issue.get_absolute_url }}" target="_blank">
+    <a href="{{ issue.get_absolute_url }}">
         <div class="col-xs-5 issueThumb">
             <img src="{{ issue.cover.url }}" class="img-responsive"/>
         </div>

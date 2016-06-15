@@ -1,6 +1,8 @@
 from django.conf import settings
 from ..models import Customer
 import logging
+import bleach
+import json
 
 
 logger = logging.getLogger(__name__)
@@ -16,7 +18,7 @@ def set_default_values(request):
 
     customer = get_visitor(request)
 
-    login = request.session.get('session_login')
+    login = None # request.session.get('session_login')
     if not login:
         login = {'authenticated': (
             get_context_variable(request, 'ERIGHTS', '') != '' and get_context_variable(request, 'sm_constitid',
@@ -27,19 +29,64 @@ def set_default_values(request):
         else:
             login['command'] = 'login'
             login['label'] = 'Sign In'
-        # if our host is localhost or 127.0.0.1 then lets use our login that sets cookies specifically for testing
+        # if localhost then lets use our login that sets cookies specifically for testing
         # otherwise we route to erights
-        if get_context_variable(request, 'REMOTE_ADDR') == '127.0.0.1':
+        # check if httphost is not localhost or empty; otherwise use the address
+        # NOTE: we can use sstacha-mac.spe.org on our local environment pointing to 127.0.0.1
+        # !! cookies will work even authenticating against prod !!
+        # determine if we are localhost
+        is_localhost = False
+        host = request.get_host()
+        if host and (host.startswith('localhost') or host.startswith('127.0.0.1')):
+            is_localhost = True
+        if host == None or host == '':
+            if get_context_variable(request, 'REMOTE_ADDR') == '127.0.0.1':
+                is_localhost = True
+
+        if is_localhost:
             login['url'] = "/localhost/" + str(login['command']) + "/"
         else:
             # build out the erights url for if we are not localhost
-            login['target_url'] = request.get_full_path()
-            login['url'] = "/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + str(login['command']) + \
-                           "&ERIGHTS_TARGET=" + str(login['target_url'])
+            login['target_url'] = request.build_absolute_uri(request.get_full_path())
+            if login['command'] == 'logout':
+                login['url'] = "https://www.spe.org/appssecured/login/servlet/ErightsLoginServlet?g=ci&command=" + \
+                               str(login['command']) + "&ERIGHTS_TARGET=" + str(login['target_url'])
+            else:
+                login['url'] = "https://www.spe.org/appssecured/login/servlet/ErightsLoginServlet?g=ci" + \
+                               "&ERIGHTS_TARGET=" + str(login['target_url'])
 
         # TODO: add more login stuff if needed
         request.session['session_login'] = login
     #logging.error('login - ' + str(login))
+
+    # create the dataLayer json for appending to each gtm request
+    dict_buffer = {}
+    if customer and login['authenticated']:
+        dict_buffer['user'] = {}
+        visitor_status = sanitize(get_context_variable(request, 'status', ''))
+        variables['visitor_status'] = visitor_status
+        dict_buffer['user']['memberStatus'] = visitor_status
+        variables['visitor_id'] = customer.id
+        dict_buffer['user']['id'] = customer.id
+        if visitor_status != '':
+            if visitor_status == 'Paid' or visitor_status == 'Unpaid':
+                visitor_membership = 'Member'
+                variables['visitor_membership'] = visitor_membership
+                dict_buffer['user']['memberCustomer'] = visitor_membership
+                is_student = sanitize(get_context_variable(request, 'student'))
+                if is_student:
+                    visitor_membership_type = 'Student'
+                    variables['membership_type'] = visitor_membership_type
+                    dict_buffer['user']['memberType'] = visitor_membership_type
+                else:
+                    visitor_membership_type = 'Professional'
+                    variables['membership_type'] = visitor_membership_type
+                    dict_buffer['user']['memberType'] = visitor_membership_type
+            else:
+                visitor_membership = 'Customer'
+                variables['visitor_membership'] = visitor_membership
+                dict_buffer['user']['memberCustomer'] = visitor_membership
+    variables['gtm_dataLayer'] = json.dumps(dict_buffer)
 
     # NOTE: cookies are not generated so just append them to the context under cookies; no session info needed
     #logging.error('cookies - ' + str(request.COOKIES))
@@ -50,6 +97,16 @@ def set_default_values(request):
         'login': login,
         'customer': customer,
     }
+
+def sanitize(value):
+    """
+    removes images from the text
+    """
+    try:
+        value = bleach.clean(value, strip=True)
+        return value
+    except:
+        return ''
 
 
 # environment variables are looked up:
@@ -95,6 +152,7 @@ def get_context_variables(request):
                      "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
                      "vid": get_context_variable(request, "vid"),}
         # TODO: add more expected variables here as needed from the settings files
+
         request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters
     # if dev then replace with parameters to make it easier to debug

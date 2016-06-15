@@ -5,6 +5,8 @@ from .common import *
 
 DEBUG = True
 ENVIRONMENT = "DEV"
+WS_EVENTS_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3'
+WS_EVENTS_GENERIC_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList4'
 
 # Overriding the templates in development to include a test page
 CMS_TEMPLATES += (
@@ -22,7 +24,7 @@ DATABASES = {
             'OPTIONS': {
                 'read_default_file': '/Applications/MAMP/tmp/mysql/my.cnf',
             },
-            'NAME': 'website',
+            'NAME': 'django',
             'USER': 'root',
             'PASSWORD': 'root',
         }

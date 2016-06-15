@@ -3,6 +3,8 @@ from django.db import models
 
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from filer.fields.image import FilerImageField
+
 from mainsite.widgets import ColorPickerWidget
 
 # from django.core.urlresolvers import reverse
@@ -74,7 +76,7 @@ class Countries(models.Model):
     country_UN = models.CharField(max_length=3, unique=True)
     country_UN_number = models.PositiveIntegerField()
     country_dial_code = models.CharField(max_length=20)
-    region = models.ForeignKey(Regions, blank=True, null=True)
+    region = models.ForeignKey(Regions, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return self.country_name
@@ -384,19 +386,7 @@ def strip_tags(html):
 
 class TextPlugin(CMSPlugin):
     txt = RichTextUploadingField(
-        max_length=2000,
-        help_text=u'Text'
-    )
-
-    def __unicode__(self):
-        lbl = " - " + strip_tags(self.txt)
-        return lbl[0:50]
-
-
-class TextWithClass(CMSPlugin):
-
-    txt = RichTextUploadingField(
-        max_length=2000,
+        max_length=50000,
         help_text=u'Text'
     )
     cls = models.CharField(max_length=40, verbose_name="Class", choices=TEXT_CLASS, default=DEFAULT_TEXT_CLASS)
@@ -413,9 +403,18 @@ class TileImgBack(CMSPlugin):
         help_text=u'Text Area'
     )
     lnk = models.CharField(max_length=250, verbose_name="Link")
-    img = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Background Image')
+    img = FilerImageField(blank=True, null=True, verbose_name=u'Background Image', related_name="background_picture")
     date = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
         return lbl[0:50]
+
+
+class MarketoFormPlugin(CMSPlugin):
+    instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
+    thank_you = models.CharField(max_length=200, verbose_name="Confirmation text")
+    marketo_form = models.PositiveIntegerField(verbose_name="Marketo form code")
+
+    def __unicode__(self):
+        return "Marketo Form: " + str(self.marketo_form)

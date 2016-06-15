@@ -4,6 +4,7 @@ from django.db import models
 from cms.models.fields import PageField
 from cms.models import CMSPlugin
 from cms.models import Page
+from filer.fields.image import FilerImageField
 
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -13,9 +14,10 @@ from taggit.models import TaggedItemBase
 
 from mainsite.models import Tier1Discipline
 from mainsite.models import Topics
-from datetime import datetime
+# from datetime import datetime
 from mainsite.widgets import ColorPickerWidget
-import sys
+
+# import sys
 
 DEFAULT_ORDER_BY = '-date'
 ORDER_BY = (
@@ -40,6 +42,7 @@ DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
 ISSUE_TEMPLATES = (
     (DEFAULT_ISSUE_TEMPLATE, 'Issues listing'),
     ('spe_blog/plugins/issue_sidebar.html', 'Subscribe & read issue'),
+    ('spe_blog/plugins/on_the_cover.html', 'On The Cover'),
 )
 
 DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
@@ -112,6 +115,14 @@ class TopicsPage(models.Model):
         return self.name
 
 
+class TagsPage(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    url = PageField(verbose_name="URL for tags page", blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Publication(models.Model):
     code = models.CharField(max_length=3, primary_key=True)
     name = models.CharField(max_length=150, unique=True)
@@ -122,6 +133,8 @@ class Publication(models.Model):
                                   on_delete=models.SET_NULL)
     topics_url = models.ForeignKey(TopicsPage, verbose_name="URL for topics page", blank=True, null=True,
                                    on_delete=models.SET_NULL)
+    tags_url = models.ForeignKey(TagsPage, verbose_name="URL for tags page", blank=True, null=True,
+                                 on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):
@@ -137,11 +150,13 @@ class Publication(models.Model):
 
 
 class Issue(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     date = models.DateField(verbose_name='Publication Date', blank=True, null=True)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    cover = models.ImageField(upload_to='covers')
+    cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
+    coverblurb = models.TextField(verbose_name='Cover Description', max_length=1000, blank=True, null=True)
+    covercredit = models.CharField(max_length=1000, blank=True, null=True)
     # issue_url = models.URLField(blank=True, null=True)
     issue_page = PageField(blank=True, null=True, on_delete=models.SET_NULL)
     active = models.BooleanField(default=True)
@@ -167,6 +182,7 @@ class Issue(models.Model):
             url = ''
         return url
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
 
@@ -178,7 +194,7 @@ class Category(models.Model):
 
 
 class Article(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     sponsored = models.BooleanField(default=False)
@@ -186,12 +202,12 @@ class Article(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    #categories = models.ManyToManyField(Category, blank=True)
+    # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
-    teaser = models.CharField(max_length=250)
-    author = models.CharField(max_length=250, blank=True, null=True)
+    teaser = models.CharField(max_length=300)
+    author = models.CharField(max_length=500, blank=True, null=True)
     introduction = RichTextUploadingField(blank=True, null=True,
                                           help_text=u'Introductory paragraph or \'teaser.\' for paywal')
     article_text = RichTextUploadingField(
@@ -200,9 +216,10 @@ class Article(models.Model):
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
-    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article',
+                              related_name="article_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
-    picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
+    picture_caption = models.CharField(max_length=300, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
@@ -218,9 +235,8 @@ class Article(models.Model):
 
     # additional metohs for the editorials
     editorial_title = models.CharField(max_length=100, blank=True, null=True)
-    author_picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
-    # author_picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for author',
-    #                                  related_name="editorial_author_picture")
+    author_picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for author',
+                                     related_name="editorial_author_picture")
     # author_picture_alternate = models.CharField(max_length=50, blank=True, null=True,
     #                                             verbose_name=u'Author Picture Alternate Text')
     # author_picture_caption = models.CharField(max_length=250, blank=True, null=True,
@@ -287,7 +303,7 @@ class Article(models.Model):
 
 
 class Brief(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     free = models.BooleanField(default=True, verbose_name=u'Always Free')
@@ -302,7 +318,7 @@ class Brief(models.Model):
         help_text=u'Full text of the article.'
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
-    picture = models.ImageField(upload_to='regular_images', blank=True, null=True, verbose_name=u'Picture for article')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for brief', related_name="brief_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
@@ -353,7 +369,8 @@ class Editorial(models.Model):
         max_length=300,
         help_text=u'Exerpt'
     )
-    picture = models.ImageField(upload_to='authors', blank=True, null=True, verbose_name=u'Picture of Author')
+    picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for editorial',
+                              related_name="editorial_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     picture_caption = models.CharField(max_length=250, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
@@ -434,7 +451,7 @@ class ArticleDetailPlugin(CMSPlugin):
 
 class TopicsPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
@@ -456,7 +473,7 @@ class TopicsPlugin(CMSPlugin):
 class TopicsListPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=TOPIC_TEMPLATES, default=DEFAULT_TOPIC_TEMPLATE)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         dictionary = dict(TOPIC_TEMPLATES)
@@ -495,12 +512,12 @@ class ArticlesListingPlugin(CMSPlugin):
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
-    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True)
-    # category = models.ForeignKey(Category, blank=True, null=True)
+    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL)
+    # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
@@ -532,11 +549,11 @@ class BriefListingPlugin(CMSPlugin):
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     # limit to
-    publication = models.ForeignKey(Publication, blank=True, null=True)
+    publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, blank=True, null=True)
-    topic = models.ForeignKey(Topics, blank=True, null=True)
+    category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
+    topic = models.ForeignKey(Topics, blank=True, null=True, on_delete=models.SET_NULL)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
@@ -557,7 +574,7 @@ class IssuesByPublicationPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=ISSUE_TEMPLATES, default=DEFAULT_ISSUE_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Issues')
     starting_with = models.PositiveIntegerField(default=1)
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     active = models.BooleanField(default=True)
     all_url = PageField(verbose_name="URL for issues listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
@@ -581,16 +598,34 @@ class BreadCrumbPlugin(CMSPlugin):
 
 
 class IssuesByYearPlugin(CMSPlugin):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
 
     def __unicode__(self):
         return self.publication.name
 
 
-class MarketoFormPlugin(CMSPlugin):
-    instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
-    thank_you = models.CharField(max_length=200, verbose_name="Confirmation text")
-    marketo_form = models.PositiveIntegerField(verbose_name="Marketo form code")
+class TagsDetailPlugin(CMSPlugin):
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
+    order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
+    starting_with = models.PositiveIntegerField(default=1)
 
     def __unicode__(self):
-        return "Marketo Form: " + str(self.marketo_form)
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+        buf += " using " + dictionary[self.template]  # + " - "
+        # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
+        return buf
+
+# class OnTheCover(CMSPlugin):
+#     cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
+#     blurb = models.CharField(max_length=250)
+#     credit = models.CharField(max_length=250)
+#
+#     def __unicode__(self):
+#         buf = "(" + str(self.starting_with) + " - " + str(
+#             self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
+#         buf += " using " + dictionary[self.template]
+#         return buf

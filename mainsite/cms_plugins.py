@@ -5,8 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import AdSpeedZonePlugin
 from .models import TitleBarPlugin
 from .models import TextPlugin
-from .models import TextWithClass
-from .models import TileImgBack
+# from .models import TextWithClass
+from .models import TileImgBack,MarketoFormPlugin
 
 
 class ShowAdSpeedZonePlugin(CMSPluginBase):
@@ -60,22 +60,22 @@ class ShowTextPlugin(CMSPluginBase):
         return context
 
 
-class ShowTextWithClassPlugin(CMSPluginBase):
-    class Meta:
-        abstract = True
-
-    allow_children = False
-    cache = True
-    module = _('Components')
-    render_template = 'plugins/text_with_class_plugin.html'
-    text_enabled = False
-    model = TextWithClass
-    name = _("Text with Class")
-
-    def render(self, context, instance, placeholder):
-        context.update({'class': instance.cls})
-        context.update({'text': instance.txt})
-        return context
+# class ShowTextWithClassPlugin(CMSPluginBase):
+#     class Meta:
+#         abstract = True
+#
+#     allow_children = False
+#     cache = True
+#     module = _('Components')
+#     render_template = 'plugins/text_with_class_plugin.html'
+#     text_enabled = False
+#     model = TextWithClass
+#     name = _("Text with Class")
+#
+#     def render(self, context, instance, placeholder):
+#         context.update({'class': instance.cls})
+#         context.update({'text': instance.txt})
+#         return context
 
 
 class ShowTileImgBack(CMSPluginBase):
@@ -98,9 +98,26 @@ class ShowTileImgBack(CMSPluginBase):
         context.update({'date': instance.date})
         return context
 
+class ShowMarketoFormPlugin(CMSPluginBase):
+    model = MarketoFormPlugin
+    allow_children = False
+    cache = False
+    module = _('Forms')
+    name = _('Marketo Form')
+    text_enabled = False
+    render_template = 'plugins/marketo_form.html'
 
+    def render(self, context, instance, placeholder):
+        context.update({'instructions': instance.instructions})
+        context.update({'marketo_form': instance.marketo_form})
+        context.update({'thank_you': instance.thank_you})
+        return context
+
+
+
+plugin_pool.register_plugin(ShowMarketoFormPlugin)
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
 plugin_pool.register_plugin(ShowTitlePlugin)
 plugin_pool.register_plugin(ShowTextPlugin)
-plugin_pool.register_plugin(ShowTextWithClassPlugin)
+# plugin_pool.register_plugin(ShowTextWithClassPlugin)
 plugin_pool.register_plugin(ShowTileImgBack)

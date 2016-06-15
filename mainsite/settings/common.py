@@ -57,11 +57,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media/')
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'website_static')
 
 STATICFILES_DIRS = (
+
 )
+
 SITE_ID = 1
 
 TEMPLATES = [
@@ -124,30 +126,44 @@ INSTALLED_APPS = (
     'sekizai',
     'treebeard',
     'djangocms_text_ckeditor',
-    'ckeditor',
-    'ckeditor_uploader',
     'djangocms_style',
     'djangocms_column',
-    'djangocms_file',
+    'easy_thumbnails',
+    # 'filer',
+    'config.apps.FilerConfig',
+    #    'mptt',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'cmsplugin_filer_image',
+    'config.apps.FilerPluginConfig',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_utils',
+    'cmsplugin_filer_video',
     'djangocms_googlemap',
     'djangocms_inherit',
     'djangocms_link',
-    'djangocms_picture',
-    'djangocms_teaser',
-    'djangocms_video',
+    # 'djangocms_picture',
     'easy_select2',
     'reversion',
-    'mainsite',
+    'config.apps.MainsiteConfig',
     'segmentation',
-    'smartsnippets',
+    # 'smartsnippets',
+    'config.apps.SmartsnippetConfig',
     'taggit',
-    'spe_links',
-    'spe_blog',
+    # 'spe_links',
+    'config.apps.SpeLinkConfig',
+    # 'spe_blog',
+    'config.apps.SpeBlogConfig',
     'google_tag_manager',
 #    'spe_contact',
-    'spe_polls',
-    'request',
-    'spe_events',
+    'config.apps.SpePollConfig',
+    # 'spe_polls',
+    # 'request',
+    'config.apps.RequestConfig',
+    # 'spe_events',
+    'config.apps.SpeEventConfig',
     'djangocms_forms',
 )
 
@@ -206,17 +222,157 @@ CMS_TEMPLATES = (
 
 CMS_PERMISSION = True
 
-CMS_PLACEHOLDER_CONF = {}
+CMS_PLACEHOLDER_CONF = {
+    'content': {
+        'plugins': ['ShowTextPlugin',
+                    'ShowAdSpeedZonePlugin',
+                    'ShowTitlePlugin',
+                    'ShowTileImgBack',
+                    # filer plugins
+                    'FilerFilePlugin',
+                    'FilerFolderPlugin',
+                    'FilerImagePlugin',
+                    'FilerVideoPlugin',
+                    # Generic plugins
+                    'GoogleMapPlugin',
+                    # 'InheritPagePlaceholderPlugin',
+                    'LinkPlugin',
+                    #'StylePlugin',
+                    # links plugin
+                    'SpeLinkPluginPublisher',
+                    # multi-column
+                    'MultiColumnPlugin',
+                    # forms
+                    'FormPlugin',
+                    # blog
+                    'ShowArticleDetailPlugin',
+                    'ShowArticlesPlugin',
+                    'ShowArticlesListingPlugin',
+                    'ShowBriefDetailPlugin',
+                    'ShowBriefPlugin',
+                    'ShowBriefListingPlugin',
+                    # 'ShowEditorialPlugin',
+                    'ShowIssuesByPublicationPlugin',
+                    'ShowIssuesByYearPlugin',
+                    'ShowMarketoFormPlugin',
+                    'ShowTopicsListPlugin',
+                    'ShowTopicsListingPlugin',
+                    'ShowTagsDetailPlugin',
+                    'ShowTagTitlePlugin',
+                    'ShowTopicTitlePlugin'
+                    # snippets
+                    'SmartSnippetPlugin',
+                    # events
+                    'ShowEventsByCurrentLocationPluginPlugin',
+                    'PollPlugin',
+                    # segmentation
+                    'SegmentLimitPlugin',
+
+                    ],
+        'child_classes': {
+            'SegmentLimitPlugin': [
+                'ShowTextPlugin',
+                'ShowAdSpeedZonePlugin',
+                'ShowTitlePlugin',
+                'ShowTileImgBack',
+                # filer plugins
+                'FilerFilePlugin',
+                'FilerFolderPlugin',
+                'FilerImagePlugin',
+                'FilerVideoPlugin',
+                # Generic plugins
+                'GoogleMapPlugin',
+                # 'InheritPagePlaceholderPlugin',
+                'LinkPlugin',
+                #'StylePlugin',
+                # links plugin
+                'SpeLinkPluginPublisher',
+                # multi-column
+                'MultiColumnPlugin',
+                # forms
+                'FormPlugin',
+                # blog
+                'ShowArticleDetailPlugin',
+                'ShowArticlesPlugin',
+                'ShowArticlesListingPlugin',
+                'ShowBriefDetailPlugin',
+                'ShowBriefPlugin',
+                'ShowBriefListingPlugin',
+                # 'ShowEditorialPlugin',
+                'ShowIssuesByPublicationPlugin',
+                'ShowIssuesByYearPlugin',
+                'ShowMarketoFormPlugin',
+                'ShowTopicsListPlugin',
+                'ShowTopicsListingPlugin',
+                'ShowTagsDetailPlugin',
+                'ShowTagTitlePlugin',
+                'ShowTopicTitlePlugin'
+                # snippets
+                'SmartSnippetPlugin',
+                # events
+                'ShowEventsByCurrentLocationPluginPlugin',
+                'PollPlugin',
+                # segmentation
+                'SegmentLimitPlugin',
+                'CookieSegmentPlugin',
+                'VariableSegmentPlugin',
+                'VisitorSegmentPlugin',
+                'VisitorClassificationSegmentPlugin',
+                'FallbackSegmentPlugin',
+                'DisciplineSegmentPlugin',
+                'CountrySegmentPlugin',
+            ],
+        },
+        'plugin_modules': {
+            'LinkPlugin': 'Links',
+            'GoogleMapPlugin': 'Components',
+            #'StylePlugin': 'Components',
+        },
+
+    },
+    'notice': {
+        'inherit': 'content',
+    },
+    'secondary content': {
+        'inherit': 'content',
+    },
+    'tertiary content': {
+        'inherit': 'content',
+    },
+    'feature': {
+        'inherit': 'content',
+    },
+    # 'editorial': {
+    #     'inherit': 'content',
+    # },
+    'content title': {
+        'inherit': 'content',
+    },
+    'page title': {
+        'inherit': 'content',
+    },
+    'title area': {
+        'inherit': 'content',
+    },
+
+}
 
 MIGRATION_MODULES = {
-
+    'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
+    'cmsplugin_filer_file': 'cmsplugin_filer_file.migrations_django',
+    'cmsplugin_filer_folder': 'cmsplugin_filer_folder.migrations_django',
+    'cmsplugin_filer_video': 'cmsplugin_filer_video.migrations_django',
+    'cmsplugin_filer_teaser': 'cmsplugin_filer_teaser.migrations_django'
 }
 
 TAGGIT_CASE_INSENSITIVE = True
 
-#CKEDITOR_UPLOAD_PATH = os.path.join(DATA_DIR, 'media/ck_media')
-CKEDITOR_UPLOAD_PATH = "ck_media/"
+
+# GeoIP Configuration
+
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')
+
+
 # LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
 LOGGING = {
@@ -258,49 +414,17 @@ LOGGING = {
     }
 }
 
+# email Configuration
+
 EMAIL_HOST = "relaydev.spe.org"
 EMAIL_DEFAULT_FROM = "support@spe.org"
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 MANAGERS = (('IT', 'webmaster@spe.org'),)
 
-CKEDITOR_CONFIGS = {
-    "default": {
-        'removePlugins': 'stylesheetparser',
-        'toolbar': 'full',
-        'height': 500,
-        'width': '100%',
-        'allowedContent': True,
-        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-        'contentsCss': '/static/www/css/inline.css',
-        'toolbarLocation': 'top',
-        'resize_maxHeight': 500,
-        'font_defaultLabel': 'Arial',
-        'font_names': 'Arial;Times New Roman;Verdana',
-        'extraPlugins': ','.join(
-            [
-                'div',
-                'autolink',
-                'autoembed',
-                'embedsemantic',
-                'autogrow',
-                # 'devtools',
-                'widget',
-                'lineutils',
-                'clipboard',
-                'dialog',
-                'dialogui',
-                'elementspath',
-                'codesnippet',
-                'mathjax',
-                'maximize',
-            ]),
-    }
-}
-
-# CKEDITOR_SETTINGS = {
-#         "allowedContent": True
-# }
 # config.contentsCss = 'http://localhost:8000/static/www/css/inline.css';
+
+
+# Request Tracking
 
 # REQUEST_TRAFFIC_MODULES = (
 #    'request.traffic.UniqueVisitor',
@@ -329,7 +453,11 @@ REQUEST_PLUGINS = (
     'request.plugins.ActiveUsers',
 )
 
+
+# Event Personalization Server Configuration
+
 EVENT_PERSONALIZATION_SERVER = ('http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3')
+
 
 # Djangocms_forms Configurations
 
@@ -348,4 +476,122 @@ DJANGOCMS_FORMS_USE_HTML5_REQUIRED = False
 
 DJANGOCMS_FORMS_WIDGET_CSS_CLASSES = {'__all__': ('form-control',)}
 
-CMS_PERMISSION = True
+
+# CKEditor Configuration including embedded images
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+TEXT_SAVE_IMAGE_FUNCTION = 'djangocms_text_ckeditor.picture_save.create_picture_plugin'
+
+FILER_CANONICAL_URL = 'sharing/'
+
+CKEDITOR_UPLOAD_PATH = 'filer_public/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CMSPLUGIN_FILER_IMAGE_STYLE_CHOICES = (
+                                       ('default', 'Default'),
+                                       ('boxed', 'Boxed'),
+                                       )
+CMSPLUGIN_FILER_IMAGE_DEFAULT_STYLE = 'boxed'
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
+
+THUMBNAIL_HIGH_RESOLUTION = True
+
+CKEDITOR_BROWSE_SHOW_DIRS = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+    'language': '{{ language }}',
+    'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+    'toolbarCanCollapse': False,
+    'toolbar': [
+                ['Undo', 'Redo'],
+                ['cmsplugins'],
+                ['-', 'ShowBlocks'],
+                ['Format', 'Styles'],
+                ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+                ['Mathjax', 'SpecialChar'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+                ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+                ['Link', 'Unlink'],
+                ['Image'],
+                ['Source', 'Preview'],
+                ['Maximize'],
+                ],
+        'extraPlugins': ','.join(
+                                 [
+                                  'widget',
+                                  'lineutils',
+                                  'clipboard',
+                                  'dialog',
+                                  'dialogui',
+                                  'mathjax',
+                                  'maximize',
+                                  'justify',
+                                  'div',
+                                  'specialchar',
+                                  'blockquote',
+                                  'horizontalrule',
+                                  'image2',
+                                  ]),
+        'removePlugins': 'stylesheetparser',
+        'skin': 'moono',
+        'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
+        'filebrowserImageUploadUrl': 'ckeditor/upload/',
+        'filebrowserImageBrowseUrl': '/ckeditor/browse/',
+        'filebrowserBrowseUrl': '/ckeditor/browse/',
+},}
+
+CKEDITOR_SETTINGS = {
+    'default': {
+    'language': '{{ language }}',
+    'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+    'toolbarCanCollapse': False,
+    'toolbar': [
+                ['Undo', 'Redo'],
+                ['cmsplugins'],
+                ['-', 'ShowBlocks'],
+                ['Format', 'Styles'],
+                ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+                ['Mathjax', 'SpecialChar'],
+                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+                ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+                ['Link', 'Unlink'],
+                ['Image'],
+                ['Source', 'Preview'],
+                ['Maximize'],
+                ],
+        'extraPlugins': ','.join(
+                                 [
+                                  'widget',
+                                  'lineutils',
+                                  'clipboard',
+                                  'dialog',
+                                  'dialogui',
+                                  'mathjax',
+                                  'maximize',
+                                  'justify',
+                                  'div',
+                                  'specialchar',
+                                  'blockquote',
+                                  'horizontalrule',
+                                  'image2',
+                                  ]),
+                                  'removePlugins': 'stylesheetparser',
+                                  'skin': 'moono',
+                                  'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
+                                  'filebrowserImageUploadUrl': 'ckeditor/upload/',
+                                  'filebrowserImageBrowseUrl': '/ckeditor/browse/',
+                                  'filebrowserBrowseUrl': '/ckeditor/browse/',
+
+},}

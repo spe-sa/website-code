@@ -11,11 +11,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
-    url(r'^admin/', include(admin.site.urls)),  # NOQA
+    url(r'/ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    # ran into a problem where the ckeditor is not at the root
+    # ex: /en/admin/spe_blog/article/add/ckeditor/upload/?CKEditor=id_introduction&CKEd...
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
     url(r'^select2/', include('django_select2.urls')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^articles/', include('spe_blog.urls')),
     url(r'^spe_links/', include('spe_links.urls')),
     #url(r'^contact/', include('spe_contact.urls')),
@@ -25,7 +27,8 @@ urlpatterns = i18n_patterns('',
     url(r'^localhost/login/', 'mainsite.views.login', name='login'),
     url(r'^polls/', include('spe_polls.urls', namespace='polls')),
     url(r'^forms/', include('djangocms_forms.urls')),
-    #url(r'^filer/', include('filer.urls')),
+    url(r'^filer/', include('filer.urls')),
+    url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
 )
 

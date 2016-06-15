@@ -7,7 +7,8 @@ from .models import PollPlugin as Plugin
 
 class PollPlugin(CMSPluginBase):
     model = Plugin
-    name = _('Poll Plugin')
+    name = _('Poll')
+    module = _('Forms')
     render_template = 'cms/plugins/poll.html'
 
     def render(self, context, instance, placeholder):

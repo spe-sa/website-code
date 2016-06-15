@@ -1,17 +1,22 @@
 {% load cms_tags sekizai_tags %}
 
 {% block content %}
-    -- index --
+    -- index --<br>
     <div class="well">
     <h2>{{ title }}</h2>
     {% if articles %}
         {% for article in articles %}
 
-            <p><a href="{{ article.get_absolute_url }}"><span class="badge">{{ article.magazine }}</span> {{ article.title }} <span class="badge">{{ article.article_hits }}</span></a></p>
+            <p><a href="{{ article.get_absolute_url }}"><span class="badge">{{ article.magazine }}</span> {{ article.title }} <span class="badge">{{ article.article_hits }}</span></a>
+            <br>[{% for topic in article.topics.all %}
+                    {{ topic.code }} ,
+                {% endfor %}]
+            </p>
         {% endfor %}
     {% else %}
-        <p>No article available. Sorry.</p>
+        <p>No articles available. Sorry.</p>
     {% endif %}
+    ------------<br>
 
     </div>
 {% endblock content %}

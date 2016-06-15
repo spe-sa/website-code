@@ -3,9 +3,13 @@
 {% load menu_tags %}
 
 {% block web_fonts %}
-{{ block.super }}
+
+    {% include 'include_scripts.html' %}
+
+    {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
 {% endblock web_fonts %}
 
 {% block css_base %}
@@ -14,26 +18,24 @@
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'twa/css/mainstyle.css' %}" />
 {% endblock css_base %}
 
-{% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
+{% block wrap_begin %}<div class="container">{% endblock wrap_begin %}
 
 {% block content_header %}
     <!-- HEADER Begin -->
-{#        <div class="row adZone1" id="adZone1">#}
-{#            <div class="col-md-12 text-center" id="adLeaderboard">#}
-{#                <!-- AdSpeed.com Tag 8.0.2 for [Zone] OGF 1 728x90 [Any Dimension] -->#}
-{#                <script type="text/javascript" src="http://g.adspeed.net/ad.php?do=js&zid=79084&oid=7699&wd=-1&ht=-1&target=_blank&noerror=1"></script>#}
-{#                <!-- AdSpeed.com End -->#}
-{#            </div>#}
-{#        </div>#}
+        <div class="row adZone1" id="adZone1">
+            <div class="col-md-12 text-center" id="adLeaderboard">
+                {% placeholder "ad zone 1" %}
+            </div>
+        </div>
 
-        <div class="row" id="topbar">
+        <div class="row dontPrintMe" id="topbar">
             <div class="col-sm-6 topbarcol">
                 <ul class="topbarmenuleft">
                     <li><a href="http://www.spe.org/">SPE</a></li>
-                    <li><a href="/">JPT</a></li>
-                    <li><a href="/" class="yellow">OGF</a></li>
-                    <li><a href="/">HSE Now</a></li>
-                    <li><a href="/">The WAY Ahead</a></li>
+                    <li><a href="/jpt/">JPT</a></li>
+                    <li><a href="/ogf/">OGF</a></li>
+                    <li><a href="/hse/">HSE Now</a></li>
+                    <li><a href="/twa/" class="activeLink">The WAY Ahead</a></li>
                 </ul>
             </div>
             <div class="col-sm-4 text-right topbarcol">
@@ -45,25 +47,26 @@
                 </ul>
             </div>
             <div class="col-sm-2 text-center topbarcol" id="signin">
-                <a href=""><i class="fa fa-user"></i> Sign In</a>
+                {% if login.url %}
+                <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                {% endif %}
             </div>
 
         </div>
 
-        <div class="row" id="menubar">
-            <div class="col-md-3" id="mainLogo">
-                <img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}"/>
+        <div class="row dontPrintMe" id="menubar">
+            <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
+                <a href="/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
             </div>
-            <div class="col-md-9 text-right">
+            <div class="col-md-8 text-right">
                 <ul class="pubMenu">
-                    {% show_menu 0 0 0 0 %}
-                    <li><a href="/articles/publications/ogf/issues">ISSUES</a></li>
+                    {% show_menu 1 100 0 1 %}
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
                 </ul>
             </div>
         </div>
 
-        <div class="row searchbar collapse" id="collapseSearch">
+        <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
                 <form class="form-inline">
                     <div class="input-group">
@@ -83,9 +86,9 @@
 
 {% block content_footer %}
     <!-- FOOTER Begin -->
-    <div class="footerUpper row">
+    <div class="footerUpper row dontPrintMe">
         <div class="footerULeft col-md-3">
-            <img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="footerLogo">
+            <img src="{% static 'twa/img/twa_logo_white.svg' %}" class="footerLogo">
             <ul class="footerSocial">
                 <li><a href=""><i class="fa fa-facebook"></i></a></li>
                 <li><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -97,56 +100,53 @@
         <div class="footerURight col-md-9">
             <div class="col-md-2 col-md-offset-1">
                 <h3>MAIN</h3>
-                <p><a>Topics</a></p>
-                <p><a>Technology</a></p>
-                <p><a>News</a></p>
-                <p><a>People</a></p>
-                <p><a>Papers</a></p>
-                <p><a>Magazine</a></p>
+                <p><a href="/ogf/topics/">Topics</a></p>
+                <p><a href="/ogf/people/">People</a></p>
+                <p><a href="/ogf/peer-reviewed-papers/">Papers</a></p>
+                <p><a href="/ogf/issues/">Archive</a></p>
             </div>
             <div class="col-md-3">
                 <h3>DEPARTMENTS</h3>
-                <p><a>From the PFC Technical Director</a></p>
-                <p><a>Culture Matters</a></p>
-                <p><a>Global Market Trends</a></p>
-                <p><a>PFC Roundup</a></p>
-                <p><a>Technology Marketplace</a></p>
-                <p><a>Calendar</a></p>
-                <p><a>Peer-Reviewed Papers</a></p>
+                <p><a href="/ogf/pfc-director/">From the PFC Technical Director</a></p>
+                <p><a href="/ogf/culture-matters/">Culture Matters</a></p>
+                <p><a href="/ogf/global-market-trends/">Global Market Trends</a></p>
+                <p><a href="/ogf/pfc-roundup/">PFC Roundup</a></p>
+                <p><a href="/ogf/technology-marketplace/">Technology Marketplace</a></p>
+{#                <p><a>Calendar</a></p>#}
+                <p><a href="/ogf/peer-reviewed-papers/">Peer-Reviewed Papers</a></p>
             </div>
             <div class="col-md-3">
                 <h3>UTILITY</h3>
-                <p><a>About</a></p>
-                <p><a>Contact</a></p>
-                <p><a>Subscribe</a></p>
-                <p><a>Advertise</a></p>
-                <p><a>Archive</a></p>
-                <p><a>Submit a Paper<br>for Peer Review</a></p>
+                <p><a href="/ogf/about-ogf/">About</a></p>
+                <p><a href="http://www.spe.org/contact/">Contact</a></p>
+                <p><a href="http://www.spe.org/publications/subscribe.php">Subscribe</a></p>
+                <p><a href="http://www.spe.org/sales/publications.php">Advertise</a></p>
             </div>
             <div class="col-md-3">
                 <h3>SPE</h3>
-                <p><a>SPE</a></p>
+                <p><a href="http://www.spe.org/">SPE</a></p>
                 <p><a>JPT</a></p>
-                <p><a>OGF</a></p>
+                <p><a href="/ogf/ogf-main-page/">OGF</a></p>
                 <p><a>SPE Journals</a></p>
                 <p><a>HSE Now</a></p>
             </div>
         </div>
     </div>
-    <div class="footerLower">
-        <img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/>
+    <div class="footerLower dontPrintMe">
+        <a href="http://www.spe.org/"><img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/></a>
         <ul class="footerSPEMenu">
-            <li><a href="">MEMBERSHIP</a></li>
-            <li><a href="">EVENTS</a></li>
-            <li><a href="">PUBLICATIONS</a></li>
-            <li><a href="">TRAINING</a></li>
-            <li><a href="">RESOURCES</a></li>
+            <li><a href="http://www.spe.org/members/">MEMBERSHIP</a></li>
+            <li><a href="http://www.spe.org/events/about-events.php">EVENTS</a></li>
+            <li><a href="http://www.spe.org/publications/">PUBLICATIONS</a></li>
+            <li><a href="http://www.spe.org/training/">TRAINING</a></li>
+            <li><a href="http://www.spe.org/industry/">RESOURCES</a></li>
         </ul>
     </div>
     <!-- FOOTER END -->
         <!-- div id="testmessage">REPLACE THIS</div -->
 
-    {% include "include_hide_ads.html" %}
+    {% include 'include_hide_ads.html' %}
+
 
 {% endblock content_footer %}
 
