@@ -45,6 +45,12 @@ ISSUE_TEMPLATES = (
     ('spe_blog/plugins/on_the_cover.html', 'On The Cover'),
 )
 
+DEFAULT_ISSUECOVER_TEMPLATE = 'spe_blog/plugins/on_the_cover.html'
+ISSUECOVER_TEMPLATES = (
+    (DEFAULT_ISSUECOVER_TEMPLATE, 'On The Cover'),
+    ('spe_blog/plugins/issue_sidebar_single.html', 'Subscribe & read issue'),
+)
+
 DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
 EDITORIAL_TEMPLATES = (
     (DEFAULT_EDITORIAL_TEMPLATE, 'Editorial'),
@@ -604,6 +610,21 @@ class IssuesByYearPlugin(CMSPlugin):
         return self.publication.name
 
 
+class IssueCoverPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=ISSUECOVER_TEMPLATES, default=DEFAULT_ISSUECOVER_TEMPLATE)
+    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
+    issue = models.ForeignKey(Issue, on_delete=models.PROTECT)
+    all_url = PageField(verbose_name="URL for Issue Page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_text = models.CharField("More Items Link", max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        dictionary = dict(ISSUECOVER_TEMPLATES)
+        buf = dictionary[self.template]
+        buf += " || Pub: " + self.publication.name
+        buf += " || Issue: " + str(self.issue.print_volume) + "-" + str(self.issue.print_issue)
+        return buf
+
+
 class TagsDetailPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
@@ -618,14 +639,3 @@ class TagsDetailPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]  # + " - "
         # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
-
-# class OnTheCover(CMSPlugin):
-#     cover = FilerImageField(blank=True, null=True, verbose_name=u'Cover', related_name="cover_picture")
-#     blurb = models.CharField(max_length=250)
-#     credit = models.CharField(max_length=250)
-#
-#     def __unicode__(self):
-#         buf = "(" + str(self.starting_with) + " - " + str(
-#             self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
-#         buf += " using " + dictionary[self.template]
-#         return buf

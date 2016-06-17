@@ -1,0 +1,19 @@
+{% for article in articles %}
+    {% if article.picture and article.picture.url %}
+        <article class="tile whiteback featured-story">
+            <a href="{{ article.get_absolute_url }}">
+            <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
+                <div class="story-text">
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.teaser }}</p>
+                    {% if article.sponsored %}
+                    <p><span class="sponsored">SPONSORED</span></p>
+                    {% endif %}
+                </div>
+            </div>
+            </a>
+        </article>
+    {% endif %}
+{% empty %}
+    No Articles Found
+{% endfor %}

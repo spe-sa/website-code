@@ -9,6 +9,8 @@
     {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bitter:700,400' rel='stylesheet' type='text/css'>
 
 {% endblock web_fonts %}
 
@@ -28,37 +30,14 @@
             </div>
         </div>
 
-        <div class="row dontPrintMe" id="topbar">
-            <div class="col-sm-6 topbarcol">
-                <ul class="topbarmenuleft">
-                    <li><a href="http://www.spe.org/">SPE</a></li>
-                    <li><a href="/jpt/">JPT</a></li>
-                    <li><a href="/ogf/">OGF</a></li>
-                    <li><a href="/hse/">HSE Now</a></li>
-                    <li><a href="/twa/" class="activeLink">The WAY Ahead</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-4 text-right topbarcol">
-                <ul class="topbarmenuright">
-                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href=""><i class="fa fa-youtube-play"></i></a></li>
-                </ul>
-            </div>
-            <div class="col-sm-2 text-center topbarcol" id="signin">
-                {% if login.url %}
-                <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
-                {% endif %}
-            </div>
-
-        </div>
+        <!-- topbar -->
+        {% include 'include_topbar.html' %}
 
         <div class="row dontPrintMe" id="menubar">
             <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
-                <a href="/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
+                <a href="/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
             </div>
-            <div class="col-md-8 text-right">
+            <div class="col-md-9 text-right">
                 <ul class="pubMenu">
                     {% show_menu 1 100 0 1 %}
                     <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
@@ -90,10 +69,10 @@
         <div class="footerULeft col-md-3">
             <img src="{% static 'twa/img/twa_logo_white.svg' %}" class="footerLogo">
             <ul class="footerSocial">
-                <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                <li><a href=""><i class="fa fa-youtube-play"></i></a></li>
+                <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
+                <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
             </ul>
             <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers, All Rights Reserved.</p>
         </div>
@@ -125,10 +104,11 @@
             <div class="col-md-3">
                 <h3>SPE</h3>
                 <p><a href="http://www.spe.org/">SPE</a></p>
-                <p><a>JPT</a></p>
+                <p><a href="http://www.spe.org/jpt/">JPT</a></p>
                 <p><a href="/ogf/ogf-main-page/">OGF</a></p>
-                <p><a>SPE Journals</a></p>
-                <p><a>HSE Now</a></p>
+                <p><a href="http://www.spe.org/publications/journals.php">Journals</a></p>
+                <p><a href="http://www.spe.org/hsenow/">HSE Now</a></p>
+                <p><a href="http://www.spe.org/twa/">The WAY Ahead</a></p>
             </div>
         </div>
     </div>
@@ -149,6 +129,3 @@
 
 
 {% endblock content_footer %}
-
-
-
