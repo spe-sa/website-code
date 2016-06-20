@@ -23,7 +23,7 @@ PROJECT_DIR = os.path.dirname(APP_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 # DATA_DIR: is the directory containing our data (database? staticfiles? media?)
 DATA_DIR = os.path.join(BASE_DIR, 'website_content')
-#DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+# DATA_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@$%x*kpb@)n3tmc$7k^lb18aovbmp&g+ai7@py0rd*)4g(a(_7'
@@ -157,7 +157,7 @@ INSTALLED_APPS = (
     # 'spe_blog',
     'config.apps.SpeBlogConfig',
     'google_tag_manager',
-#    'spe_contact',
+    #    'spe_contact',
     'config.apps.SpePollConfig',
     # 'spe_polls',
     # 'request',
@@ -237,7 +237,7 @@ CMS_PLACEHOLDER_CONF = {
                     'GoogleMapPlugin',
                     # 'InheritPagePlaceholderPlugin',
                     'LinkPlugin',
-                    #'StylePlugin',
+                    # 'StylePlugin',
                     # links plugin
                     'SpeLinkPluginPublisher',
                     # multi-column
@@ -284,7 +284,7 @@ CMS_PLACEHOLDER_CONF = {
                 'GoogleMapPlugin',
                 # 'InheritPagePlaceholderPlugin',
                 'LinkPlugin',
-                #'StylePlugin',
+                # 'StylePlugin',
                 # links plugin
                 'SpeLinkPluginPublisher',
                 # multi-column
@@ -326,7 +326,7 @@ CMS_PLACEHOLDER_CONF = {
         'plugin_modules': {
             'LinkPlugin': 'Links',
             'GoogleMapPlugin': 'Components',
-            #'StylePlugin': 'Components',
+            # 'StylePlugin': 'Components',
         },
 
     },
@@ -367,11 +367,9 @@ MIGRATION_MODULES = {
 
 TAGGIT_CASE_INSENSITIVE = True
 
-
 # GeoIP Configuration
 
 GEOIP_PATH = os.path.join(PROJECT_DIR, 'data', 'GeoIP')
-
 
 # LOGFILE_NAME = os.path.join(BASE_DIR, 'output.log')
 
@@ -453,11 +451,9 @@ REQUEST_PLUGINS = (
     'request.plugins.ActiveUsers',
 )
 
-
 # Event Personalization Server Configuration
 
 EVENT_PERSONALIZATION_SERVER = ('http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3')
-
 
 # Djangocms_forms Configurations
 
@@ -476,7 +472,6 @@ DJANGOCMS_FORMS_USE_HTML5_REQUIRED = False
 
 DJANGOCMS_FORMS_WIDGET_CSS_CLASSES = {'__all__': ('form-control',)}
 
-
 # CKEditor Configuration including embedded images
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
@@ -489,9 +484,9 @@ CKEDITOR_UPLOAD_PATH = 'filer_public/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 CMSPLUGIN_FILER_IMAGE_STYLE_CHOICES = (
-                                       ('default', 'Default'),
-                                       ('boxed', 'Boxed'),
-                                       )
+    ('default', 'Default'),
+    ('boxed', 'Boxed'),
+)
 CMSPLUGIN_FILER_IMAGE_DEFAULT_STYLE = 'boxed'
 
 THUMBNAIL_PROCESSORS = (
@@ -507,91 +502,95 @@ CKEDITOR_BROWSE_SHOW_DIRS = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-    'language': '{{ language }}',
-    'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-    'toolbarCanCollapse': False,
-    'toolbar': [
-                ['Undo', 'Redo'],
-                ['cmsplugins'],
-                ['-', 'ShowBlocks'],
-                ['Format', 'Styles'],
-                ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
-                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
-                ['Mathjax', 'SpecialChar'],
-                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
-                ['CreateDiv', 'Blockquote', 'HorizontalRule'],
-                ['Link', 'Unlink'],
-                ['Image'],
-                ['Source', 'Preview'],
-                ['Maximize'],
-                ],
+        'language': '{{ language }}',
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'toolbarCanCollapse': False,
+        'toolbar': [
+            ['Undo', 'Redo'],
+            ['cmsplugins'],
+            ['-', 'ShowBlocks'],
+            ['Format', 'Styles'],
+            ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+            ['Mathjax', 'SpecialChar'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+            ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+            ['Link', 'Unlink'],
+            ['Image'],
+            ['Source', 'Preview'],
+            ['Maximize'],
+        ],
         'extraPlugins': ','.join(
-                                 [
-                                  'widget',
-                                  'lineutils',
-                                  'clipboard',
-                                  'dialog',
-                                  'dialogui',
-                                  'mathjax',
-                                  'maximize',
-                                  'justify',
-                                  'div',
-                                  'specialchar',
-                                  'blockquote',
-                                  'horizontalrule',
-                                  'image2',
-                                  ]),
+            [
+                'widget',
+                'lineutils',
+                'clipboard',
+                'dialog',
+                'dialogui',
+                'mathjax',
+                'maximize',
+                'justify',
+                'div',
+                'specialchar',
+                'blockquote',
+                'horizontalrule',
+                'image2',
+            ]),
         'removePlugins': 'stylesheetparser',
         'skin': 'moono',
         'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
         'filebrowserImageUploadUrl': 'ckeditor/upload/',
         'filebrowserImageBrowseUrl': '/ckeditor/browse/',
         'filebrowserBrowseUrl': '/ckeditor/browse/',
-},}
+        'specialChars': ','.join(
+            [
+                '&alpha;&beta;&gamma;&delta;&epsilon;&zeta;&eta;&theta;&iota;&kappa;&lambda;&mu;&nu;&xi;&omicron;&pi;&rho;&sigma;&sigma;&tau;&upsilon;&phi;&chi;&psi;&omega;&Delta;&euro;&lsquo;&rsquo;&ldquo;&rdquo;&ndash;&mdash;&iexcl;&cent;&pound;&curren;&yen;&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&reg;&macr;&deg;&sup2;&sup3;&acute;&micro;&para;&middot;&cedil;&sup1;&ordm;&raquo;&frac14;&frac12;&frac34;&iquest;&Agrave;&Aacute;&Acirc;&Atilde;&Auml;&Aring;&AElig;&Ccedil;&Egrave;&Eacute;&Ecirc;&Euml;&Igrave;&Iacute;&Icirc;&Iuml;&ETH;&Ntilde;&Ograve;&Oacute;&Ocirc;&Otilde;&Ouml;&times;&Oslash;&Ugrave;&Uacute;&Ucirc;&Uuml;&Yacute;&THORN;&szlig;&agrave;&aacute;&acirc;&atilde;&auml;&aring;&aelig;&ccedil;&egrave;&eacute;&ecirc;&euml;&igrave;&iacute;&icirc;&iuml;&eth;&ntilde;&ograve;&oacute;&ocirc;&otilde;&ouml;&divide;&oslash;&ugrave;&uacute;&ucirc;&uuml;&yacute;&thorn;&yuml;&OElig;&oelig;&#372;&#374;&#373;&#375;&sbquo;&#8219;&bdquo;&hellip;&trade;&#9658;&bull;&rarr;&rArr;&hArr;&diams;&asymp;',
+            ]),
+    }, }
 
 CKEDITOR_SETTINGS = {
     'default': {
-    'language': '{{ language }}',
-    'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-    'toolbarCanCollapse': False,
-    'toolbar': [
-                ['Undo', 'Redo'],
-                ['cmsplugins'],
-                ['-', 'ShowBlocks'],
-                ['Format', 'Styles'],
-                ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
-                ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
-                ['Mathjax', 'SpecialChar'],
-                ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
-                ['CreateDiv', 'Blockquote', 'HorizontalRule'],
-                ['Link', 'Unlink'],
-                ['Image'],
-                ['Source', 'Preview'],
-                ['Maximize'],
-                ],
+        'language': '{{ language }}',
+        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'toolbarCanCollapse': False,
+        'toolbar': [
+            ['Undo', 'Redo'],
+            ['cmsplugins'],
+            ['-', 'ShowBlocks'],
+            ['Format', 'Styles'],
+            ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+            ['Mathjax', 'SpecialChar'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+            ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+            ['Link', 'Unlink'],
+            ['Image'],
+            ['Source', 'Preview'],
+            ['Maximize'],
+        ],
         'extraPlugins': ','.join(
-                                 [
-                                  'widget',
-                                  'lineutils',
-                                  'clipboard',
-                                  'dialog',
-                                  'dialogui',
-                                  'mathjax',
-                                  'maximize',
-                                  'justify',
-                                  'div',
-                                  'specialchar',
-                                  'blockquote',
-                                  'horizontalrule',
-                                  'image2',
-                                  ]),
-                                  'removePlugins': 'stylesheetparser',
-                                  'skin': 'moono',
-                                  'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
-                                  'filebrowserImageUploadUrl': 'ckeditor/upload/',
-                                  'filebrowserImageBrowseUrl': '/ckeditor/browse/',
-                                  'filebrowserBrowseUrl': '/ckeditor/browse/',
+            [
+                'widget',
+                'lineutils',
+                'clipboard',
+                'dialog',
+                'dialogui',
+                'mathjax',
+                'maximize',
+                'justify',
+                'div',
+                'specialchar',
+                'blockquote',
+                'horizontalrule',
+                'image2',
+            ]),
+        'removePlugins': 'stylesheetparser',
+        'skin': 'moono',
+        'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
+        'filebrowserImageUploadUrl': 'ckeditor/upload/',
+        'filebrowserImageBrowseUrl': '/ckeditor/browse/',
+        'filebrowserBrowseUrl': '/ckeditor/browse/',
 
-},}
+    }, }
