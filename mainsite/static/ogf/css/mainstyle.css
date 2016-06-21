@@ -535,7 +535,7 @@ table th, table td { padding: 5px; }
 
 .adZone6 { padding: 15px; }
 
-.tile-adspeed { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; background-color: #f2efea; }
+.tile-adspeed { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; }
 
 /* AD Zone1 */
 .adZone1 #adLeaderboard { height: 140px; padding: 27px 0 0 0; }
@@ -543,7 +543,7 @@ table th, table td { padding: 5px; }
 .adZone1 #adLeaderboardImg { margin: auto; }
 
 /* AD Zone2 */
-#adFold, .adZone2 { padding: 15px 0; margin: 15px 0; background-color: #e4e1d8; }
+#adFold, .adZone2 { padding: 15px 0; margin: 15px 0; }
 #adFold .tile-adspeed, .adZone2 .tile-adspeed { box-shadow: none; margin-bottom: 0; padding: 0; background-color: transparent; }
 #adFold div, .adZone2 div { padding-right: 0; padding-left: 0; }
 
