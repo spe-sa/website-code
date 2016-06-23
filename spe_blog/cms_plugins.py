@@ -18,6 +18,10 @@ from django.db.models import Q
 # from django.contrib.gis.geoip import GeoIP
 from taggit.models import Tag
 
+from mainsite.context_processors.spe_context import (
+    get_context_variable,
+    get_visitor,)
+
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
     Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, TagsDetailPlugin,
@@ -70,7 +74,16 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             filter_main = Article.objects.filter(published=True).filter(topics__in=filter_topics.all())
             filter_ex = filter_main.exclude(id=art.id)
             topic_related = filter_ex.order_by('-date')[:3]
-
+        show_paybox = art.show_paybox()
+        if show_paybox:
+            # check if this person has a membership or subscription to the publication and set to false instead
+            request = context.get('request')
+            visitor = get_visitor(request)
+            if visitor and visitor.is_professional_member():
+                show_paybox = False
+            if visitor and visitor.has_subscription(instance.article.publication.code):
+                show_paybox = False
+        context.update({'show_paybox': show_paybox})
         context.update({'article': art})
         context.update({'dateNow': now})
         context.update({'topic_articles': topic_related})
@@ -130,6 +143,16 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                         art = get_object_or_404(Brief, pk=pk)
                     except:
                         raise Http404("Article not found")
+        show_paybox = art.show_paybox()
+        if show_paybox:
+            # check if this person has a membership or subscription to the publication and set to false instead
+            request = context.get('request')
+            visitor = get_visitor(request)
+            if visitor and visitor.is_professional_member():
+                show_paybox = False
+            if visitor and visitor.has_subscription(instance.brief.publication.code):
+                show_paybox = False
+        context.update({'show_paybox': show_paybox})
         context.update({'article': art})
         context.update({'dateNow': now})
         self.render_template = 'spe_blog/plugins/brief_detail.html'
