@@ -256,15 +256,23 @@ class Customer(models.Model):
         return CustomerClassification.objects.filter(customers__id=self.id).filter(
             code=classification_key).count() >= 1
 
+    def has_subscription(self, subscription_code):
+        return CustomerSubscription.objects.filter(customers__id=self.id).filter(
+            code=subscription_code).count() >= 1
+
     # derived from other stuff make def for each
     def is_officer(self):
         return self.has_classification("OFFICER")
-
     def has_committee(self):
         return self.has_classification("COMMITTEE")
-
     def is_board_member(self):
         return self.has_classification("BOD")
+    def is_staff(self):
+        return self.has_classification("STAFF")
+    def is_professional_member(self):
+        return self.has_classification("PROFESSIONAL") or self.has_classification("LIFE")
+    def is_student_member(self):
+        return self.has_classification("STUDENT")
 
     # TODO: add any other is_ or has_ convenience methods for any join items below the same way
 
