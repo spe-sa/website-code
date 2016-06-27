@@ -75,6 +75,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             filter_ex = filter_main.exclude(id=art.id)
             topic_related = filter_ex.order_by('-date')[:3]
         show_paybox = art.show_paybox()
+        visitor = None
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
             request = context.get('request')
@@ -83,6 +84,16 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                 show_paybox = False
             if visitor and visitor.has_subscription(instance.article.publication.code):
                 show_paybox = False
+        is_readable = art.is_readable()
+        if not is_readable:
+            if visitor is None:
+                request = context.get('request')
+                visitor = get_visitor(request)
+            if visitor and visitor.is_professional_member():
+                is_readable = True
+            if visitor and visitor.has_subscription(instance.article.publication.code):
+                is_readable = True
+        context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
         context.update({'article': art})
         context.update({'dateNow': now})
@@ -143,6 +154,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                         art = get_object_or_404(Brief, pk=pk)
                     except:
                         raise Http404("Article not found")
+        visitor = None
         show_paybox = art.show_paybox()
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
@@ -152,6 +164,16 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                 show_paybox = False
             if visitor and visitor.has_subscription(instance.brief.publication.code):
                 show_paybox = False
+        is_readable = art.is_readable()
+        if not is_readable:
+            if visitor is None:
+                request = context.get('request')
+                visitor = get_visitor(request)
+            if visitor and visitor.is_professional_member():
+                is_readable = True
+            if visitor and visitor.has_subscription(instance.article.publication.code):
+                is_readable = True
+        context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
         context.update({'article': art})
         context.update({'dateNow': now})
