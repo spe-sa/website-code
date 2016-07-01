@@ -7,6 +7,7 @@ from django.conf.urls import *  # NOQA
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import RedirectView
 
 admin.autodiscover()
 
@@ -29,6 +30,8 @@ urlpatterns = i18n_patterns('',
     url(r'^forms/', include('djangocms_forms.urls')),
     url(r'^filer/', include('filer.urls')),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
+    # ex: /ogf/  -> /ogf/ogf-main-page/
+    url(r'^ogf/$', RedirectView.as_view(url='/ogf/ogf-main-page/', permanent=False), name='ogf-main-page'),
     url(r'^', include('cms.urls')),
 )
 
