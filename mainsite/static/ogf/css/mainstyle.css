@@ -583,6 +583,7 @@ table th, table td { padding: 5px; }
 .see-all:hover { color: #808bcf; }
 .see-all i { margin-left: 25px; }
 
+/* PRINT SIZE */
 @media print { html * { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; }
   body { font-size: 20pt; width: 100%; }
   body * { visibility: hidden; }
