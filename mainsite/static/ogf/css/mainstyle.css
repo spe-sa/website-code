@@ -592,3 +592,5 @@ table th, table td { padding: 5px; }
   #printMe { position: absolute; left: 0; top: 0; font-size: 11pt; width: 100%; }
   .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; } }
 .panel { background-color: transparent; }
+
+.emptyClass { font-size: 0; }
