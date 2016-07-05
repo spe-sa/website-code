@@ -80,3 +80,6 @@ def logout(request):
 
 def login_show(request):
     return render(request, 'localhost/login/login_show.html', {'test': 'test'})
+
+def register_ogf(request):
+    return render(request, 'google_registration.html', {'site_code': 'googleaa5ff496c6812444'})

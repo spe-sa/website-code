@@ -31,7 +31,8 @@ urlpatterns = i18n_patterns('',
     url(r'^filer/', include('filer.urls')),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     # ex: /ogf/  -> /ogf/ogf-main-page/
-    url(r'^ogf/$', RedirectView.as_view(url='/ogf/ogf-main-page/', permanent=False), name='ogf-main-page'),
+    url(r'^ogf/$', RedirectView.as_view(url='ogf-main-page/', permanent=False), name='ogf-main-page'),
+    url(r'^ogf/ogf-main-page/googleaa5ff496c6812444.html', 'mainsite.views.register_ogf', name='google-registration-ogf'),
     url(r'^', include('cms.urls')),
 )
 

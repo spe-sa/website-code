@@ -9,7 +9,7 @@
 /* BASE HTML STYLES         */
 body { font-family: "proxima-nova", sans-serif; font-size: 14px !important; }
 
-h1, h2, h3, h4 { font-family: "Oswald", sans-serif; font-weight: 700; }
+h1, h2, h3, h4 { font-family: "Roboto Slab", serif; font-weight: 700; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
 
@@ -50,9 +50,9 @@ a:hover { text-decoration: none; }
 /* LOGO MENU BAR GREY                 */
 #menubar { background-color: #424143; min-height: 125px; }
 #menubar #mainLogo { padding-top: 50px; }
-#menubar .pubMenu { font-family: "Oswald", sans-serif; list-style-type: none; margin: 0 0 20px 0; padding: 50px 0 0 0; font-size: 18px; float: right; }
+#menubar .pubMenu { font-family: "Roboto Slab", serif; list-style-type: none; margin: 0 0 20px 0; padding: 50px 0 0 0; font-size: 18px; float: right; }
 #menubar .pubMenu li { float: left; padding: 0 0 0 30px; }
-#menubar .pubMenu li a { display: block; color: white; text-align: center; text-decoration: none; font-weight: 400; letter-spacing: 1px; }
+#menubar .pubMenu li a { display: block; color: white; text-align: center; text-decoration: none; font-weight: 400; }
 #menubar .pubMenu li a:hover { color: #fffb22; }
 
 .searchIcon:hover { color: #bf1d21; cursor: pointer; }
@@ -63,9 +63,9 @@ a:hover { text-decoration: none; }
 /* VARIABLES
 ====================================================================== */
 /* Images */
-.footerUpper { background-color: #32bbbc; font-family: "Oswald", sans-serif; padding: 30px; margin: 30px 0 0 0; }
+.footerUpper { background-color: #32bbbc; font-family: "Roboto Slab", serif; padding: 30px; margin: 30px 0 0 0; }
 
-.footerLower { background-color: #424143; color: white; font-family: "Oswald", sans-serif; min-height: 100px; padding: 10px; }
+.footerLower { background-color: #424143; color: white; font-family: "Roboto Slab", serif; min-height: 100px; padding: 10px; }
 .footerLower img { height: 80px; width: auto; float: left; }
 
 .footerULeft { float: left; }
@@ -167,7 +167,7 @@ a:hover { text-decoration: none; }
 /* CHANNEL ROWS */
 .channelBlockRow { border-top: 7px solid #e4e1d8; margin-top: 20px; }
 
-.channelsList { padding: 0; font-family: "Oswald", sans-serif; font-weight: 700; font-size: 12px; }
+.channelsList { padding: 0; font-family: "Roboto Slab", serif; font-weight: 700; font-size: 12px; }
 .channelsList ul { list-style: none; padding: 0; border-top: 7px solid #bf1d21; background-color: #f2efea; }
 .channelsList ul li { padding: 10px 0 10px 10px; border-bottom: 1px dotted #2a2a2a; }
 .channelsList ul li:last-child { border-bottom: none; }
@@ -256,7 +256,7 @@ a:hover { text-decoration: none; }
 .peopleFocus { background-color: #e4e1d8; padding: 15px; }
 .peopleFocus img { float: left; margin-right: 15px; }
 
-.personName { font-family: "Oswald", sans-serif; font-size: 16px; font-weight: 700; padding-top: 10px; }
+.personName { font-family: "Roboto Slab", serif; font-size: 16px; font-weight: 700; padding-top: 10px; }
 
 .personDets { font-size: 11px; }
 
@@ -404,7 +404,7 @@ table th, table td { padding: 5px; }
 .featured-story { padding: 0 20px 0 0; min-height: 360px; }
 .featured-story .story-wrap { height: 400px; color: white; background-size: cover; position: relative; }
 .featured-story .story-wrap .story-text { padding: 75px 15px 15px 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAEsCAYAAAD6sCIiAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Rjg1OEQwQTIyOUM0MTFFNjlDMzE4Nzc2Nzk4RjkyRUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Rjg1OEQwQTMyOUM0MTFFNjlDMzE4Nzc2Nzk4RjkyRUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGODU4RDBBMDI5QzQxMUU2OUMzMTg3NzY3OThGOTJFRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGODU4RDBBMTI5QzQxMUU2OUMzMTg3NzY3OThGOTJFRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PocuIiEAAAmvSURBVHja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) repeat-x top right; background-size: contain; position: absolute; bottom: 0; width: 100%; height: 100%; }
-.featured-story .story-wrap .story-text h2 { font-family: "Bitter", serif; font-weight: 600; }
+.featured-story .story-wrap .story-text h2 { font-family: "Roboto Slab", serif; font-weight: 600; }
 
 .story-text { overflow: hidden; }
 
@@ -418,7 +418,7 @@ table th, table td { padding: 5px; }
 
 .sideListItem-borwht { border-bottom: 1px solid white; }
 
-.sideListTitle { font-size: 15px; font-weight: 700; margin-top: 5px; padding: 5px 0; }
+.sideListTitle { font-size: 15px; font-weight: 700; font-family: "Roboto Slab", serif; margin-top: 5px; padding: 5px 0; }
 .sideListTitle a:hover { color: #2d9e9f; }
 
 .sideListDate { color: #fffb22; font-weight: 300; }
