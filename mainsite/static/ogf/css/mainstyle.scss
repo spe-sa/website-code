@@ -137,7 +137,11 @@ a {
   }
   #printMe, #printMe * {
     visibility: visible;
+<<<<<<< HEAD
     font-size: 10pt;
+=======
+    font-size: 11pt;
+>>>>>>> jdt-develop
     width:  100%;
   }
   .dontPrintMe, .dontPrintMe * {
@@ -148,7 +152,11 @@ a {
     position: absolute;
     left: 0;
     top: 0;
+<<<<<<< HEAD
     font-size: 10pt;
+=======
+    font-size: 11pt;
+>>>>>>> jdt-develop
     width:  100%;
   }
   .articleBodyText, .articleBodyText p {
