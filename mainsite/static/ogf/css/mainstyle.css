@@ -587,10 +587,13 @@ table th, table td { padding: 5px; }
 @media print { html * { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; }
   body { font-size: 20pt; width: 100%; }
   body * { visibility: hidden; }
-  #printMe, #printMe * { visibility: visible; font-size: 13pt; width: 100%; }
+  #printMe, #printMe * { visibility: visible; font-size: 20px; }
   .dontPrintMe, .dontPrintMe * { visibility: hidden; display: none; }
-  #printMe { position: absolute; left: 0; top: 0; font-size: 13pt; width: 100%; }
-  .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; } }
+  #printMe { position: absolute; left: 0; top: 0; font-size: 20px; }
+  #printMe table { table-layout: fixed; }
+  #printMe table td { padding: 10px; }
+  #printMe img { page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */ page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */ page-break-inside: avoid; /* or 'auto' */ }
+  .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20px; width: 100%; } }
 .panel { background-color: transparent; }
 
 .emptyClass { font-size: 0; }

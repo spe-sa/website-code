@@ -135,10 +135,13 @@ a {
   body * {
     visibility: hidden;
   }
+
+  $printFontSize: 20px;
+
   #printMe, #printMe * {
     visibility: visible;
-    font-size: 13pt;
-    width:  100%;
+    font-size: $printFontSize;
+    //width:  100%;
   }
   .dontPrintMe, .dontPrintMe * {
     visibility: hidden;
@@ -148,12 +151,24 @@ a {
     position: absolute;
     left: 0;
     top: 0;
-    font-size: 13pt;
-    width:  100%;
+    font-size: $printFontSize;
+    //width:  100%;
+
+    table {
+      table-layout: fixed;
+
+      td {padding:10px;}
+    }
+
+    img {
+      page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+      page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+      page-break-inside: avoid; /* or 'auto' */
+    }
   }
   .articleBodyText, .articleBodyText p {
     font-family: Arial, sans-serif;
-    font-size: 20pt;
+    font-size: $printFontSize;
     width:  100%;
   }
 }
