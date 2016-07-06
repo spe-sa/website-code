@@ -1,0 +1,54 @@
+/* =================================================================== */
+/* Printable Page Styles
+====================================================================== */
+
+$printFontSize: 12pt;
+
+html, html * {
+  font-family: Arial, sans-serif;
+}
+body {
+  font-size: $printFontSize;
+  width:  100%;
+}
+body * {
+  visibility: hidden;
+}
+.dontPrintMe, .dontPrintMe * {
+  visibility: hidden;
+  display: none;
+}
+
+
+#printMe, #printMe * {
+  visibility: visible;
+  font-size: $printFontSize;
+}
+
+#printMe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: $printFontSize;
+
+  table {
+    table-layout: fixed;
+
+    td {padding:10px;}
+  }
+
+  img {
+    page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-inside: avoid; /* or 'auto' */
+  }
+}
+.articleBodyText, .articleBodyText p {
+  font-size: $printFontSize;
+}
+.articlePicture {
+  width:  50%;
+  height: auto;
+  float:  right;
+  margin: 0 0 10px 10px;
+}
