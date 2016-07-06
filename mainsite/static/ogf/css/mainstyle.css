@@ -587,9 +587,9 @@ table th, table td { padding: 5px; }
 @media print { html * { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; }
   body { font-size: 20pt; width: 100%; }
   body * { visibility: hidden; }
-  #printMe, #printMe * { visibility: visible; font-size: 11pt; width: 100%; }
+  #printMe, #printMe * { visibility: visible; font-size: 13pt; width: 100%; }
   .dontPrintMe, .dontPrintMe * { visibility: hidden; display: none; }
-  #printMe { position: absolute; left: 0; top: 0; font-size: 11pt; width: 100%; }
+  #printMe { position: absolute; left: 0; top: 0; font-size: 13pt; width: 100%; }
   .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; } }
 .panel { background-color: transparent; }
 
