@@ -16,6 +16,7 @@
     {% load staticfiles %}
     <!-- CSS_BASE -->
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/mainstyle.css' %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static 'ogf/css/printstyles.css' %}" />
 {% endblock css_base %}
 
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
@@ -55,9 +56,22 @@
                 </form>
             </div>
         </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("JD WUZ HEER!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
     <!-- HEADER END -->
 
 {% endblock content_header %}
+
+
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
 
