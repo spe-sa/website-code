@@ -56,9 +56,22 @@
                 </form>
             </div>
         </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("JD WUZ HEER!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
     <!-- HEADER END -->
 
 {% endblock content_header %}
+
+
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
 
