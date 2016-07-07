@@ -199,6 +199,16 @@ class Category(models.Model):
         return self.name
 
 
+class SecondaryCategory(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Category (Secondary)")
+
+    class Meta:
+        verbose_name_plural = "Categories (Secondary)"
+
+    def __unicode__(self):
+        return self.name
+
+
 class Article(models.Model):
     publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
@@ -208,6 +218,7 @@ class Article(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Category (Secondary)")
     # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
