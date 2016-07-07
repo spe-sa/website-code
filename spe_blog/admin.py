@@ -64,7 +64,8 @@ class ArticleEditorAdmin(ArticleAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'title', 'slug', 'teaser',
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'secondary_category', 'title',
+                'slug', 'teaser',
                 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
         }),
