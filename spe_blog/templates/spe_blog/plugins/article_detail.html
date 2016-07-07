@@ -60,7 +60,7 @@
                 <div class="col-sm-12 becomeMember text-center">
                     <p>You have access to this full article to experience the outstanding content<br>
                         that is available to OGF subscribers and SPE members.</p>
-                    <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="http://www.spe.org/publications/subscribe.php">Subscribe to OGF</a><br>
+                    <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
                     in order to gain full access to all that OGF has to offer.</p>
             </div>
             {% endif %}
@@ -74,7 +74,7 @@
 
             <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and OGF subscribers.<br>
                 If you would like to continue reading,<br>
-                please <a href="https://www.spe.org/appssecured/login/servlet/LoginServlet">Login</a>, <a href="">JOIN SPE</a> or <a href="">Subscribe to OGF</a>
+                please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
             </div>
 
 

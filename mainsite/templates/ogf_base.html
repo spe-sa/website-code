@@ -46,11 +46,14 @@
 
         <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
-                <form class="form-inline">
+                <form class="form-inline" action="https://dev.spe.org/sitemap/search.php" method="post" accept-charset="utf-8">
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
+                        <input type="hidden" id="gssscope" name="scope" value="ogf"/>
+                        <!-- sas comment -->
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
                         </span>
                     </div>
                 </form>
