@@ -22,7 +22,7 @@
             <h4>Topics</h4>
             <ul>
             {% for topic in article.topics.all %}
-                    <li><a href="/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+                    <li><a href="/en/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
             {% endfor %}
             </ul>
         </div>
@@ -45,7 +45,7 @@
     <div class="col-sm-12 articleBodyText">
 
     {% if article.tags.count >= 1 %}
-        <div class="col-sm-12 article-tags">
+        <div class="col-sm-12 article-tags dontPrintMe">
             <ul>
             {% for tag in article.tags.all %}
                     <li><a href="{{ article.publication.tags_url.url.get_absolute_url }}?tag={{ tag.id }}"><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}</a></li>
@@ -60,7 +60,7 @@
                 <div class="col-sm-12 becomeMember text-center">
                     <p>You have access to this full article to experience the outstanding content<br>
                         that is available to OGF subscribers and SPE members.</p>
-                    <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="http://www.spe.org/publications/subscribe.php">Subscribe to OGF</a><br>
+                    <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
                     in order to gain full access to all that OGF has to offer.</p>
             </div>
             {% endif %}
@@ -74,7 +74,7 @@
 
             <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and OGF subscribers.<br>
                 If you would like to continue reading,<br>
-                please <a href="https://www.spe.org/appssecured/login/servlet/LoginServlet">Login</a>, <a href="">JOIN SPE</a> or <a href="">Subscribe to OGF</a>
+                please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
             </div>
 
 

@@ -16,6 +16,7 @@
     {% load staticfiles %}
     <!-- CSS_BASE -->
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/mainstyle.css' %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static 'ogf/css/printstyles.css' %}" />
 {% endblock css_base %}
 
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
@@ -45,19 +46,35 @@
 
         <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
-                <form class="form-inline">
+                <form class="form-inline" action="https://dev.spe.org/sitemap/search.php" method="post" accept-charset="utf-8">
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
+                        <input type="hidden" id="gssscope" name="scope" value="ogf"/>
+                        <!-- sas comment -->
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
                         </span>
                     </div>
                 </form>
             </div>
         </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("JD WUZ HEER!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
     <!-- HEADER END -->
 
 {% endblock content_header %}
+
+
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
 
