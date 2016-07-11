@@ -29,9 +29,9 @@ DATA_DIR = os.path.join(BASE_DIR, 'website_content')
 SECRET_KEY = '@$%x*kpb@)n3tmc$7k^lb18aovbmp&g+ai7@py0rd*)4g(a(_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 ROOT_URLCONF = 'mainsite.urls'
