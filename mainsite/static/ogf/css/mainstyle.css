@@ -30,12 +30,12 @@ a:hover { text-decoration: none; }
 /* Images */
 /* ********************************** */
 /* TOP BAR BLACK */
-#topbar { background-color: #d92226; min-height: 50px; color: white; font-weight: 700; }
-#topbar .topbarmenuleft { list-style-type: none; padding: 14px 0 0 0; overflow: hidden; font-size: 14px; }
+#topbar { background-color: #d92226; color: white; font-weight: 700; }
+#topbar .topbarmenuleft { list-style-type: none; padding: 5px 0 0 0; overflow: hidden; font-size: 14px; margin-bottom: 0px; }
 #topbar .topbarmenuleft li { float: left; }
 #topbar .topbarmenuleft li a { display: block; color: white; text-align: center; padding: 0 15px; text-decoration: none; }
 #topbar .topbarmenuleft li a:hover { color: #fffb22; }
-#topbar .topbarmenuright { float: right; font-size: 20px; list-style-type: none; padding: 13px 0 0 0; overflow: hidden; }
+#topbar .topbarmenuright { float: right; font-size: 20px; list-style-type: none; padding: 5px 0 0 0; overflow: hidden; margin-bottom: 0px; }
 #topbar .topbarmenuright li { float: left; margin-top: -4px; }
 #topbar .topbarmenuright li a { display: block; color: white; text-align: center; padding: 0 10px; text-decoration: none; }
 #topbar .topbarmenuright li a:hover { color: #fffb22; }
@@ -46,9 +46,9 @@ a:hover { text-decoration: none; }
 
 /* ********************************** */
 /* LOGO MENU BAR GREY                 */
-#menubar { background-color: #181c41; min-height: 170px; }
-#menubar #mainLogo { padding-top: 50px; }
-#menubar .pubMenu { list-style-type: none; margin: 0; padding: 80px 0 0 0; font-size: 18px; float: right; }
+#menubar { background-color: #181c41; padding-bottom: 20px; }
+#menubar #mainLogo { padding-top: 20px; }
+#menubar .pubMenu { list-style-type: none; margin: 0; padding: 30px 0 0 0; font-size: 18px; float: right; }
 #menubar .pubMenu li { float: left; padding: 0 0 0 30px; }
 #menubar .pubMenu li a { display: block; color: white; text-align: center; text-decoration: none; font-weight: 700; }
 #menubar .pubMenu li a:hover { color: #fffb22; }
