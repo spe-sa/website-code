@@ -68,12 +68,32 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                         art = get_object_or_404(Article, pk=pk)
                     except:
                         raise Http404("Article not found")
-        topic_related = None
-        filter_topics = art.topics.all()
-        if filter_topics and instance.show_related_articles:
-            filter_main = Article.objects.filter(published=True).filter(topics__in=filter_topics.all())
-            filter_ex = filter_main.exclude(id=art.id)
-            topic_related = filter_ex.order_by('-date')[:3]
+        related_articles = None
+        # filter_topics = art.topics.all()
+        # if filter_topics and instance.show_related_articles:
+        #     filter_main = Article.objects.distinct(id).filter(published=True).filter(topics__in=filter_topics.all())
+        #     filter_ex = filter_main.exclude(id=art.id)
+        #     # topic_related = filter_ex.order_by('-date')[:3]
+        #     topic_related = Article.objects.filter(id__in=filter_ex.all()).order_by('-date')[:3]
+        #
+        cursor = connection.cursor()
+        cursor.execute('''
+        select distinct(a.id) as article_id from spe_blog_article a
+	      right outer join spe_blog_article_topics at on at.article_id = a.id
+	      where a.published=True
+	      and at.topics_id in (select topics_id from spe_blog_article_topics where article_id = %s)
+	      and a.id != %s
+	      order by date DESC
+	      limit 3
+	    ''', tuple([art.id, art.id]))
+        related_article_ids = cursor.fetchall()
+
+        if related_article_ids:
+            in_filter = Q()
+            for tid in related_article_ids:
+                in_filter = in_filter | Q(pk__in=tid)
+            related_articles = Article.objects.filter(in_filter)
+
         show_paybox = art.show_paybox()
         visitor = None
         if show_paybox:
@@ -97,7 +117,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         context.update({'show_paybox': show_paybox})
         context.update({'article': art})
         context.update({'dateNow': now})
-        context.update({'topic_articles': topic_related})
+        context.update({'topic_articles': related_articles})
         # context.update({'topics_selected': art.topics})
         self.render_template = 'spe_blog/plugins/article_detail.html'
         return context
