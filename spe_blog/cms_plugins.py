@@ -113,6 +113,10 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                 is_readable = True
             if visitor and visitor.has_subscription(instance.article.publication.code):
                 is_readable = True
+        is_loggedout = True
+        if visitor:
+            is_loggedout=False
+        context.update({'is_loggedout': is_loggedout})
         context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
         context.update({'article': art})
