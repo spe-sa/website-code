@@ -481,6 +481,7 @@ TEXT_SAVE_IMAGE_FUNCTION = 'djangocms_text_ckeditor.picture_save.create_picture_
 FILER_CANONICAL_URL = 'sharing/'
 
 CKEDITOR_UPLOAD_PATH = 'filer_public/'
+CKEDITOR_THUMBNAIL_PATH = 'filer_public_thumbnails/filer_public/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 CMSPLUGIN_FILER_IMAGE_STYLE_CHOICES = (

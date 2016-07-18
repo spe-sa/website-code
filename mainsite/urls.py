@@ -36,9 +36,13 @@ urlpatterns = i18n_patterns('',
     url(r'^', include('cms.urls')),
 )
 
+
+
 # This is only needed when using runserver.
 if settings.DEBUG:
     urlpatterns = patterns('',
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve',  # NOQA
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-        ) + staticfiles_urlpatterns() + urlpatterns  # NOQA
+        url(r'^en/media/(?P<path>.*)$', 'django.views.static.serve',  # NOQA
+            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),) \
+                  + staticfiles_urlpatterns() + urlpatterns  # NOQA
