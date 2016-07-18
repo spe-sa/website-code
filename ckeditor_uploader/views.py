@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import os, sys
 from datetime import datetime
+from operator import itemgetter
 
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -17,8 +18,7 @@ from ckeditor_uploader.forms import SearchForm
 from django.utils.html import escape
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger("ckeditor.uploader")
+logger = logging.getLogger(__name__)
 
 def get_upload_filename(upload_name, user):
     # If CKEDITOR_RESTRICT_BY_USER is True upload file to user specific path.
@@ -175,31 +175,58 @@ def browse(request):
 
     # dirs = get_directories(request.user)
     # get our directory
+    # path = ''
+    # browse_path = os.path.join(settings.MEDIA_ROOT, settings.CKEDITOR_UPLOAD_PATH, path)
+    # # thumbnail_path = os.path.join(settings.DATA_DIR, settings.CKEDITOR_THUMBNAIL_PATH, path)
+    # logger.debug("browse_path: %s", browse_path)
+    # i=0
+    # img_files = []
+    # for root, dirs, files in os.walk(browse_path):
+    #     # for name in dirs:
+    #     #     logger.debug(os.path.join(root, name))
+    #     if (i>=100):
+    #         break
+    #     for name in files:
+    #         i=i+1
+    #         if i>=100:
+    #             break
+    #         logger.debug(name)
+    #         src = get_relative_path(os.path.join(root, name))
+    #         img_files.append({
+    #             'thumb': src.replace(settings.CKEDITOR_UPLOAD_PATH, settings.CKEDITOR_THUMBNAIL_PATH),
+    #             'src': src,
+    #             'is_image': is_image(src),
+    #             'visible_filename': name,
+    #         })
+    #
+    # logger.debug("image count: %s", i)
+    #
+
+
     path = ''
     browse_path = os.path.join(settings.MEDIA_ROOT, settings.CKEDITOR_UPLOAD_PATH, path)
     # thumbnail_path = os.path.join(settings.DATA_DIR, settings.CKEDITOR_THUMBNAIL_PATH, path)
     logger.debug("browse_path: %s", browse_path)
-    i=0
     img_files = []
+    i=0
     for root, dirs, files in os.walk(browse_path):
         # for name in dirs:
         #     logger.debug(os.path.join(root, name))
-        if (i>=25):
-            break
         for name in files:
             i=i+1
-            if i>=25:
-                break
             logger.debug(name)
-            src = get_relative_path(os.path.join(root, name))
+            full_filename = os.path.join(root, name)
+            src = get_relative_path(full_filename)
             img_files.append({
                 'thumb': src.replace(settings.CKEDITOR_UPLOAD_PATH, settings.CKEDITOR_THUMBNAIL_PATH),
                 'src': src,
                 'is_image': is_image(src),
                 'visible_filename': name,
+                'modified': os.path.getmtime(full_filename)
             })
 
     logger.debug("image count: %s", i)
+
     # for name in os.listdir(browse_path):
     #     # print all dirs
     #     if os.path.isdir(name):
@@ -222,6 +249,24 @@ def browse(request):
     show_dirs = getattr(settings, 'CKEDITOR_BROWSE_SHOW_DIRS', False)
     dir_list = sorted(set(os.path.dirname(f['src']) for f in img_files), reverse=True)
 
+    logger.debug("sorting...")
+    # sort our list by last modified date so we can pull the last 25 files
+    # sorted(img_files, key=itemgetter(4), reverse=True)
+    sorted(img_files, key=lambda image_props: image_props.get('modified', 0), reverse=True)  # sort by modified mtime
+    logger.debug("sorted...")
+    # grab the first 25 files in the sorted list to return to the view
+    i=0
+    show_files = []
+    for img in img_files:
+        i=i+1
+        if i >= 25:
+            break
+        logger.debug("moving file: %s [%s]", img.get('src', None), img.get('modified', None))
+        show_files.append(img)
+
+    logger.debug("moved %s files", i)
+
+
     # Ensures there are no objects created from Thumbs.db files - ran across this problem while developing on Windows
     # if os.name == 'nt':
     #     files = [f for f in files if os.path.basename(f['src']) != 'Thumbs.db']
@@ -229,7 +274,7 @@ def browse(request):
     context = RequestContext(request, {
         'show_dirs': show_dirs,
         'dirs': dir_list,
-        'files': img_files,
+        'files': show_files,
         'form': form
     })
     return render_to_response('ckeditor/browse.html', context)
