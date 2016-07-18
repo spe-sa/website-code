@@ -74,7 +74,11 @@
 
             <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and OGF subscribers.<br>
                 If you would like to continue reading,<br>
-                please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
+                please {% if is_loggedout %}{% if login.url %}
+                    <a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>
+                    {% else %}
+                    Login using the link at the top of the page.
+                {% endif %}{% else %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>{% endif %}
             </div>
 
 
