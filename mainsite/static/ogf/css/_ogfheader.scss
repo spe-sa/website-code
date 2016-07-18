@@ -9,7 +9,7 @@
 /* TOP BAR BLACK */
 #topbar {
   background-color:     $col-ogfred;
-  min-height:           50px;
+  //min-height:           50px;
   color:                $col-white;
   font-weight:          $font-bold;
 
@@ -19,9 +19,10 @@
 
   .topbarmenuleft {
     list-style-type:    none;
-    padding:            14px 0 0 0;
+    padding:            5px 0 0 0;
     overflow:           hidden;
     font-size:          14px;
+    margin-bottom:      0px;
 
     li {
       float:            left;
@@ -45,8 +46,9 @@
     float:              right;
     font-size:          20px;
     list-style-type:    none;
-    padding:            13px 0 0 0;
+    padding:            5px 0 0 0;
     overflow:           hidden;
+    margin-bottom:      0px;
 
     li {
       float:            left;
@@ -94,10 +96,11 @@
 /* LOGO MENU BAR GREY                 */
 #menubar {
   background-color:     $col-ogfblue;
-  min-height:           170px;
+  //min-height:           170px;
+  padding-bottom:       20px;
 
   #mainLogo {
-    padding-top:        50px;
+    padding-top:        20px;
 
     img {
       //max-width:        300px;
@@ -108,7 +111,7 @@
   .pubMenu {
     list-style-type:    none;
     margin:             0;
-    padding:            80px 0 0 0;
+    padding:            30px 0 0 0;
     font-size:          18px;
     float:              right;
 
