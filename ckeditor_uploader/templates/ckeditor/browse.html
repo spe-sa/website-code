@@ -33,9 +33,9 @@
         <div id="page">
             <div id="container" style="width: 880px">
                 {% if files %}
-                    <h2>Browse for the image you want, then click 'Embed Image' to continue...</h2>
+                    <h2>Browse for the {{ file_type }} you want, then click 'Embed {{ file_type }}' to continue...</h2>
                 {% else %}
-                    <h2>No images found. Upload images using the 'Image Button' dialog's 'Upload' tab.</h2>
+                    <h2>No {{ file_type }} found. Upload {{ file_type }} using the Admin Console.</h2>
                 {% endif %}
 
                 <!-- Start Advanced Gallery Html Containers -->
@@ -57,7 +57,7 @@
                     <div class="col-sm-6">
                         <ul class="list-group">
                         {% for file in files %}
-                            <li class="list-group-item img-clickable" data-src="{% if file.is_image %}{{ file.src }}{% else %}{{ file.thumb }}{% endif %}">
+                            <li class="list-group-item img-clickable" data-src="{{ file.src }}">
                                 {% if file.visible_filename %}
                                     <span class="filename">{{ file.visible_filename }}</span>
                                 {% endif %}
@@ -71,7 +71,7 @@
                             <div id="caption" class="caption-container">
                                 <div class="caption">
                                     <div class="submit-row">
-                                        <input id="img-send" href="#" class="default embed" type="submit" name="_embed" value="Embed Image" />
+                                        <input id="img-send" href="#" class="default embed" type="submit" name="_embed" value="Embed {{ file_type }}" />
                                     </div>
                                 </div>
                             </div>

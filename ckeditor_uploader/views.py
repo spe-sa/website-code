@@ -172,6 +172,10 @@ def get_relative_path(url):
 def browse(request):
 
     logger.debug('in browse...')
+    file_type = 'File'
+    param_type = request.GET.get('type', '')
+    if param_type == 'image':
+        file_type = 'Image'
 
     # dirs = get_directories(request.user)
     # get our directory
@@ -258,11 +262,24 @@ def browse(request):
     i=0
     show_files = []
     for img in img_files:
-        i=i+1
         if i >= 25:
             break
-        logger.debug("moving file: %s [%s]", img.get('src', None), img.get('modified', None))
-        show_files.append(img)
+        if file_type == 'Image':
+            if img.get('is_image') == True:
+                # only move over images
+                logger.debug("moving image: %s [%s]", img.get('src', ''), img.get('modified', ''))
+                i = i + 1
+                show_files.append(img)
+            else:
+                logger.debug("file [%s] is not an image skipping...", img.get('src', ''))
+        else: # file type is File
+            if img.get('is_image') == False:
+                # only move over files that are not images
+                logger.debug("moving file: %s [%s]", img.get('src', ''), img.get('modified', ''))
+                i = i + 1
+                show_files.append(img)
+            else:
+                logger.debug("file [%s] is an image skipping...", img.get('src', ''))
 
     logger.debug("moved %s files", i)
 
@@ -272,6 +289,7 @@ def browse(request):
     #     files = [f for f in files if os.path.basename(f['src']) != 'Thumbs.db']
 
     context = RequestContext(request, {
+        'file_type': file_type,
         'show_dirs': show_dirs,
         'dirs': dir_list,
         'files': show_files,
