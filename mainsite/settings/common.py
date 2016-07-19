@@ -540,10 +540,9 @@ CKEDITOR_CONFIGS = {
             ]),
         'removePlugins': 'stylesheetparser',
         'skin': 'moono',
-        'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
-        'filebrowserImageUploadUrl': 'ckeditor/upload/',
-        'filebrowserImageBrowseUrl': '/ckeditor/browse/',
+        'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
         'filebrowserBrowseUrl': '/ckeditor/browse/',
+        'filebrowserUploadUrl': '',
         'specialChars': ','.join(
             [
                 '&alpha;&beta;&gamma;&delta;&epsilon;&zeta;&eta;&theta;&iota;&kappa;&lambda;&mu;&nu;&xi;&omicron;&pi;&rho;&sigma;&sigma;&tau;&upsilon;&phi;&chi;&psi;&omega;&Delta;&euro;&lsquo;&rsquo;&ldquo;&rdquo;&ndash;&mdash;&iexcl;&cent;&pound;&curren;&yen;&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&reg;&macr;&deg;&sup2;&sup3;&acute;&micro;&para;&middot;&cedil;&sup1;&ordm;&raquo;&frac14;&frac12;&frac34;&iquest;&Agrave;&Aacute;&Acirc;&Atilde;&Auml;&Aring;&AElig;&Ccedil;&Egrave;&Eacute;&Ecirc;&Euml;&Igrave;&Iacute;&Icirc;&Iuml;&ETH;&Ntilde;&Ograve;&Oacute;&Ocirc;&Otilde;&Ouml;&times;&Oslash;&Ugrave;&Uacute;&Ucirc;&Uuml;&Yacute;&THORN;&szlig;&agrave;&aacute;&acirc;&atilde;&auml;&aring;&aelig;&ccedil;&egrave;&eacute;&ecirc;&euml;&igrave;&iacute;&icirc;&iuml;&eth;&ntilde;&ograve;&oacute;&ocirc;&otilde;&ouml;&divide;&oslash;&ugrave;&uacute;&ucirc;&uuml;&yacute;&thorn;&yuml;&OElig;&oelig;&#372;&#374;&#373;&#375;&sbquo;&#8219;&bdquo;&hellip;&trade;&#9658;&bull;&rarr;&rArr;&hArr;&diams;&asymp;',
@@ -589,9 +588,7 @@ CKEDITOR_SETTINGS = {
             ]),
         'removePlugins': 'stylesheetparser',
         'skin': 'moono',
-        'filebrowserImageBrowseLinkUrl': '/ckeditor/browse/',
-        'filebrowserImageUploadUrl': 'ckeditor/upload/',
-        'filebrowserImageBrowseUrl': '/ckeditor/browse/',
+        'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
         'filebrowserBrowseUrl': '/ckeditor/browse/',
-
+        'filebrowserUploadUrl': '',
     }, }
