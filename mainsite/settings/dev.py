@@ -17,3 +17,10 @@ CMS_TEMPLATES += (
 for logger in LOGGING['loggers']:
     LOGGING['loggers'][logger]['handlers'] = ['console']
 
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '/tmp/redis.sock',
+    },
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'

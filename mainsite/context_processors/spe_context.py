@@ -18,6 +18,7 @@ def set_default_values(request):
 
     customer = get_visitor(request)
 
+    # look at moving this login stuff to javascript for caching purposes
     login = None # request.session.get('session_login')
     if not login:
         login = {'authenticated': (
@@ -56,7 +57,7 @@ def set_default_values(request):
                                "&ERIGHTS_TARGET=" + str(login['target_url'])
 
         # TODO: add more login stuff if needed
-        request.session['session_login'] = login
+        # request.session['session_login'] = login
     #logging.error('login - ' + str(login))
 
     # create the dataLayer json for appending to each gtm request
@@ -139,7 +140,7 @@ def get_context_variables(request):
     # get the environment and debug variables from the config file
     #  NOTE: add to server side variables and check for future requests
     # try and read the dictionary value from the session; if not found then create it and put it in this session
-    variables = None  # request.session.get('session_variables')
+    variables = request.session.get('session_variables')
     if not variables:
         variables = {"ENVIRONMENT": get_context_variable(request, "ENVIRONMENT", "localhost"),
                      "DEBUG": get_context_variable(request, "DEBUG", True),
@@ -183,9 +184,7 @@ def get_visitor(request):
     visitor = request.session.get('session_visitor')
     if visitor and visitor.id and unicode(visitor.id) != cid:
         request.session['session_visitor'] = None
-    # re-read to make sure to pick up nulled values above
-    visitor = request.session.get('session_visitor')
-    visitor = None
+        visitor=None
     if not visitor:
         # read the customer from db and cache it up
         try:
@@ -194,6 +193,7 @@ def get_visitor(request):
             request.session['session_visitor'] = visitor
         except Customer.DoesNotExist:
             visitor = None
+            request.session['session_visitor'] = None
 
     #logging.error('customer - ' + str(visitor))
     # if visitor:

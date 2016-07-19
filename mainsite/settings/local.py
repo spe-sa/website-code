@@ -42,3 +42,10 @@ DATABASES = {
 #     }
 # }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '/tmp/redis.sock',
+    },
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'

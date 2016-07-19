@@ -7,10 +7,16 @@ For more information on this file, see
 https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
-import os
+import os, sys
+
+# add the project path into the sys.path
+sys.path.append('/Users/sstacha/dev/projects/djangocms/website/')
+
+# add the virtualenv site-packages path to the sys.path
+sys.path.append('/Users/sstacha/dev/projects/djangocms/env/lib/python2.7/site-packages')
+
+# pointing to project settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mainsite.settings.local")
 
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mainsite.settings")
-
 application = get_wsgi_application()

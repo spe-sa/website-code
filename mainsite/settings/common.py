@@ -95,6 +95,7 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,13 +110,14 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.language.LanguageCookieMiddleware',
     'mainsite.middleware.visitor.VisitorMiddleware',
     'request.middleware.RequestMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 INSTALLED_APPS = (
     'djangocms_admin_style',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.sitemaps',
