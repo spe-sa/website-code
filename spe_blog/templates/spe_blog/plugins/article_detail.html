@@ -37,7 +37,10 @@
     <div class="col-sm-12 articlePicture">
         <img src="{{article.picture.url}}" alt="{{article.alternate}}" class="img-responsive">
         {% if article.picture_attribution %}
-        <span class="imgattrib">{{ article.picture_attribution }}</span>
+            <div class="imgattrib">{{ article.picture_attribution }}</div>
+        {% endif %}
+        {% if article.picture_caption %}
+            <div class="imgcapt">{{ article.picture_caption }}</div>
         {% endif %}
     </div>
 {% endif %}
