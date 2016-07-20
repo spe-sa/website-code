@@ -39,7 +39,7 @@ a:hover { text-decoration: none; }
 #topbar .topbarmenuright li { float: left; margin-top: -4px; }
 #topbar .topbarmenuright li a { display: block; color: white; text-align: center; padding: 0 10px; text-decoration: none; }
 #topbar .topbarmenuright li a:hover { color: #fffb22; }
-#topbar #signin { background-color: #bf1d21; height: 50px; font-size: 14px; text-align: center; padding: 14px 0 0 0; }
+#topbar #signin { background-color: #bf1d21; height: 30px; font-size: 14px; text-align: center; padding: 5px 0 0 0; }
 #topbar #signin a { color: white; text-decoration: none; }
 #topbar #signin:hover { background-color: white; }
 #topbar #signin:hover a { color: #d92226; }
@@ -99,6 +99,10 @@ a:hover { text-decoration: none; }
 .content-area { padding: 0 15px; }
 
 .page-content { margin-top: 25px; }
+
+.imgattrib { font-size: 10px; }
+
+.imgcapt { margin-top: 5px; border-bottom: 1px dotted lightgrey; }
 
 /* ********************************** */
 /* SUPER FEATURE & POPULAR NOW */
