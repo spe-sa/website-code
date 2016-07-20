@@ -94,6 +94,11 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                 in_filter = in_filter | Q(pk__in=tid)
             related_articles = Article.objects.filter(in_filter)
 
+        # adding back in the incrementing for most popular
+        art.article_hits += 1
+        art.article_last_viewed = timezone.now()
+        art.save()
+
         show_paybox = art.show_paybox()
         visitor = None
         if show_paybox:
@@ -179,6 +184,12 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                     except:
                         raise Http404("Article not found")
         visitor = None
+        
+        # adding back in the incrementing for most popular
+        art.article_hits += 1
+        art.article_last_viewed = timezone.now()
+        art.save()
+
         show_paybox = art.show_paybox()
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
