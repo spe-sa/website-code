@@ -31,7 +31,7 @@
                 {% if show_paybox %}
                     <div class="col-sm-12 becomeMember text-center">
                         <p>You have access to this full article to experience the outstanding content that is available to OGF subscribers and SPE members.</p>
-                        <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
+                        <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
                             in order to gain full access to the rest that OGF has to offer.</p>
                 </div>
                 {% endif %}
@@ -42,14 +42,12 @@
 
                 {{ article.introduction | safe }}...
 
-                <div class="col-sm-12 becomeMember text-center">To read the rest of the article, please<br>
-                    <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
+                <div class="col-sm-12 becomeMember text-center">To read the rest of the article, please <br>
+                    {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
                 </div>
 
-
             {% endif %}
-
-
+        
         </div>
         <div class="col-sm-12 articleShares text-left">
             {% include 'include_article_shares.html' %}
