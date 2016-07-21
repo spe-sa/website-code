@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags tz %}
 
-{% block title %}{{ article.title }}{% endblock title %}
+{#{% addtoblock title %}{{ article.title }}{% endaddtoblock %}#}
 
 <div class="row articleDetail" id="printMe">
     <div class="col-sm-12 articleTitleBox">
@@ -134,6 +134,8 @@
         $( document ).ready(function() {
 
             $(".articleBodyText img").addClass("img-responsive");
+
+            $( document ).prop('title', '{{ article.title }}');
 
         });
     </script>
