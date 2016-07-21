@@ -1,5 +1,7 @@
 {% load cms_tags sekizai_tags tz %}
 
+{% addtoblock "title2" %}{{ article.title }}{% endaddtoblock %}
+
     <div class="row articleDetail" id="printMe">
         <div class="col-sm-12 articleTitleBox">
 {#            <h2 class="articleTitle">{{ article.title }}</h2>#}
