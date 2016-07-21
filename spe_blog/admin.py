@@ -10,6 +10,7 @@ from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsP
 
 
 class ArticleAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
@@ -105,6 +106,7 @@ class ArticleEditorAdmin(ArticleAdmin):
 
 
 class BriefAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
