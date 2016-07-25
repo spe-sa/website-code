@@ -3,8 +3,8 @@ from .common import *
 
 # Development overrides
 
-DEBUG = False
-ENVIRONMENT = "PROD"
+DEBUG = True
+ENVIRONMENT = "DEV"
 WS_EVENTS_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3'
 WS_EVENTS_GENERIC_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList4'
 
