@@ -536,6 +536,7 @@ class ArticlesListingPlugin(CMSPlugin):
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL)
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
+    secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
@@ -558,6 +559,7 @@ class ArticlesListingPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.categories = old_instance.categories.all()
+        self.secondary_categories = old_instance.secondary_categories.all()
 
 
 class BriefListingPlugin(CMSPlugin):

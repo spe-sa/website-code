@@ -393,6 +393,9 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         if instance.categories.all():
             qs = qs.filter(category__in=instance.categories.all())
 
+        if instance.secondary_categories.all():
+            qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
+
         if instance.print_volume:
             qs = qs.filter(print_volume=instance.print_volume)
         if instance.print_issue:
