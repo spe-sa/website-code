@@ -83,9 +83,10 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 	      where a.published=True
 	      and at.topics_id in (select topics_id from spe_blog_article_topics where article_id = %s)
 	      and a.id != %s
+	      and a.publication_id = %s
 	      order by date DESC
 	      limit 3
-	    ''', tuple([art.id, art.id]))
+	    ''', tuple([art.id, art.id, art.publication.code]))
         related_article_ids = cursor.fetchall()
 
         if related_article_ids:
@@ -93,6 +94,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             for tid in related_article_ids:
                 in_filter = in_filter | Q(pk__in=tid)
             related_articles = Article.objects.filter(in_filter)
+            # related_articles = related_articles.filter(publication__code = art.publication.code)
 
         # adding back in the incrementing for most popular
         art.article_hits += 1
