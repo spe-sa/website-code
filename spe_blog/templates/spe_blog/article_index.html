@@ -1,22 +1,123 @@
+{% extends "staff_base.html" %}
 {% load cms_tags sekizai_tags %}
 
 {% block content %}
-    -- index --<br>
+
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
     <div class="well">
-    <h2>{{ title }}</h2>
+    <section class="search_section">
+        <form id="search-form" action="{{ form_url  }}">
+            <fieldset>
+                <legend>filter: {{ filter }} <span class="pull-right">({{ articles.count }}) articles</span></legend>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Publication
+                            <select id="pub" name="pub">
+                                <option></option>
+                                {% for pub in pub_list %}
+                                    <option label="{{ pub }}" value="{{ pub }}"
+                                    {% if pub == pub_selected %} selected{% endif %}></option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        <label>Volume
+                            <input id="vol" name="vol" type="number" title="The publications volume number." value="{{ vol_selected }}">
+                        </label>
+                        <label>Issue
+                            <input id="issue" name="issue" type="number" title="The publications issue number." value="{{ issue_selected }}">
+                        </label>
+                        <label>Search
+                            <input id="search" name="search" type="text" title="A search term to look for in titles." value="{{ search_selected }}">
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Published
+                            <select id="published" name="published">
+                                <option></option>
+                                <option label="Only Published" value="True"
+                                        {% if published_selected %} selected{% endif %}></option>
+                                <option label="Only Unpublished" value="False"
+                                        {% if published_selected == False %} selected{% endif %}></option>
+                            </select>
+                        </label>
+                        <label>Render
+                            <select id="render" name="render">
+                                <option label="Admin Urls" value="admin" {% if render_type == "admin" %} selected{% endif %}></option>
+                                <option label="Detail Urls" value="detail" {%  if render_type == "detail" %} selected{% endif %}></option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="checkbox" name="show_details" value="True"
+                            {% if show_details %} checked{% endif %}>&nbsp;Show Details
+                        </label>
+                         <label>Limit results to
+                            <select id="limit_results" name="limit_results">
+                                <option label="200" value="200"
+                                        {% if limit_selected == '200' %} selected{% endif %}></option>
+                                <option label="500" value="500"
+                                        {% if limit_selected == '500' %} selected{% endif %}></option>
+                            </select>
+                        </label>
+                   </div>
+                </div>
+                <input class="pull-right btn btn-default" type="submit" value="Submit"/>
+            </fieldset>
+        </form>
+    </section>
+{#    <h2>{{ title }}</h2>#}
     {% if articles %}
         {% for article in articles %}
 
-            <p><a href="{{ article.get_absolute_url }}"><span class="badge">{{ article.magazine }}</span> {{ article.title }} <span class="badge">{{ article.article_hits }}</span></a>
-            <br>[{% for topic in article.topics.all %}
-                    {{ topic.code }} ,
-                {% endfor %}]
+            <p><a href="{% if render_type == 'admin' %}/en/admin/spe_blog/article/{{ article.id }}/{% else %}{{ article.get_absolute_url }}{% endif %}" target="_blank">
+                <button class="btn{% if article.published %} btn-success{% else %} btn-warning{% endif %}" type="button">
+                    {{ article.publication.code }}
+                </button>&nbsp;
+                {{ article.title }}
+                </a><br>
+                {% if show_details %}
+                <button class="btn" type="button">
+                    Volume: {{ article.print_volume }} Issue: {{ article.print_issue }}
+                </button>
+                <button class="btn" type="button">
+                    <span class="badge">{{ article.article_hits }}</span> Hits
+                </button>
+                <button class="btn" type="button">
+                    <span class="badge">{{ article.topics.count }}</span> Topics
+                </button>
+                <button class="btn" type="button">
+                    <span class="badge">{{ article.tags.count }}</span> Tags
+                </button>
+                {% endif %}
             </p>
         {% endfor %}
     {% else %}
         <p>No articles available. Sorry.</p>
     {% endif %}
-    ------------<br>
-
     </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("Page Level Javascript Ran!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
 {% endblock content %}

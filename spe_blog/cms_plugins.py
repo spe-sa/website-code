@@ -252,7 +252,8 @@ class ShowBriefListingPlugin(BriefPluginBase):
         if instance.print_issue:
             qs = qs.filter(print_issue=instance.print_issue)
 
-        qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+        qs = qs.order_by(instance.order_by)[
+                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         if instance.all_url:
@@ -325,17 +326,18 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
                 pk = int(q[0][1])
                 if pk:
                     art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
-                        topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                        topics__pk=pk).order_by(instance.order_by)[
+                            instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
                 else:
                     raise Http404("Topic not found")
             else:
                 art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
                     topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
-                      instance.starting_with - 1:instance.cnt]
+                      instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
             art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
                 topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
-                  instance.starting_with - 1:instance.cnt]
+                  instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'articles': art})
         context.update({'dateNow': now})
         self.render_template = instance.template
@@ -410,7 +412,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[
                  instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
-            qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
@@ -494,7 +496,8 @@ class ShowTagsDetailPlugin(CMSPluginBase):
             pk = int(q[0][1])
             if pk:
                 art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
-                    tags__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                    tags__pk=pk).order_by(instance.order_by)[
+                      instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
             else:
                 raise Http404("Tag not found")
         context.update({'articles': art})
