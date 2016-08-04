@@ -61,8 +61,8 @@ def article_index(request):
         articles = articles.filter(title__icontains=search_term)
         filter = build_filter(filter, " title contains '" + search_term + "'")
     articles = articles[:limit_selected]
-    # if (search == None):
-    #     search = ""
+    if (search_term == None):
+        search_term = ''
 
     # get a list of publication codes to send to build the drop down from
     pub_list = Publication.objects.values_list('code', flat=True)
