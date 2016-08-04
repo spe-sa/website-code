@@ -258,11 +258,6 @@
       }
     }
   }
-
-  .authorName {
-    color:              $col-red;
-  }
-
 }
 .articleSocialShares {
   border-top:           $dotted;
@@ -319,13 +314,21 @@
   }
   .articleAuthorBox {
     font-size:          14px;
-    font-weight:        $font-bold;
     padding-top:        10px;
+    margin-bottom:      10px;
   }
   .sponsored {
     margin:             0 0 15px 0 !important;
   }
 }
+.ratingStars {
+  color:                $col-rating;
+  white-space:          nowrap;
+}
+.authorName {
+    color:              $col-bluehover;
+    font-weight:        $font-bold;
+  }
 .articleTitleBox {
   padding-left:         0;
   padding-right:        0;
@@ -342,28 +345,31 @@
 }
 .articleShares {
   font-size:            18px;
-  padding-top:          5px;
-  .fa-facebook-square {
-    color:              $col-fbShare;
-  }
-  .fa-twitter-square {
-    color:              $col-twitShare;
-  }
-  .fa-linkedin-square {
-    color:              $col-lInShare;
-  }
-  .fa-envelope-square {
-    color:              $col-drkgrey;
-  }
-  .fa-plus-square {
-    color:              $col-drkgrey;
-  }
-  .fa-facebook-square, .fa-twitter-square, .fa-linkedin-square, .fa-envelope-square, .fa-plus-square {
+  //padding-top:          5px;
+
+  //.fa-facebook-square {
+  //  color:              $col-fbShare;
+  //}
+  //.fa-twitter-square {
+  //  color:              $col-twitShare;
+  //}
+  //.fa-linkedin-square {
+  //  color:              $col-lInShare;
+  //}
+  //.fa-envelope-square {
+  //  color:              $col-drkgrey;
+  //}
+  //.fa-plus-square {
+  //  color:              $col-drkgrey;
+  //}
+
+  .fa-facebook-square, .fa-twitter-square, .fa-linkedin-square, .fa-envelope-square, .fa-plus-square, .fa-print {
+    color:              $col-twablue;
     cursor:             pointer;
     padding:            3px;
     &:hover {
       color:            $col-white;
-      background-color: $col-hrblue;
+      background-color: $col-boxshadow;
     }
   }
 }
@@ -396,7 +402,7 @@
       }
 
       a {
-        padding:      5px;
+        padding:          5px;
       }
       a:hover {
         background-color: $col-basegrey;
@@ -406,13 +412,15 @@
   }
 }
 .articleDate {
-  white-space: nowrap;
+  white-space:            nowrap;
+  color:                  $col-boxshadow;
+    font-weight:          $font-light;
 }
 //.fboxTitle {
 //  margin:               0;
 //}
 .techFocusBox, .columnBox {
-  padding:              0 10px 0 0;
+  padding:                0 10px 0 0;
 }
 
 /* ********************************** */

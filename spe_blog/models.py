@@ -36,6 +36,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/side_list.html', 'Editorial Sidebar Article List'),
     ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
     ('spe_blog/plugins/article_editorial.html', 'Editorial w/ Author'),
+    ('spe_blog/plugins/twa_articlebox.html', 'TWA Article Box'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'

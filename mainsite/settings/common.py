@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     # 'spe_events',
     'config.apps.SpeEventConfig',
     'djangocms_forms',
+    'django_extensions',
 )
 
 LANGUAGES = (
@@ -218,6 +219,7 @@ CMS_TEMPLATES = (
     ('hse_subpage.html', 'HSE SubPage'),
     ('twa_home.html', 'TWA Homepage'),
     ('twa_subpage.html', 'TWA SubPage'),
+    # ('twa_detailpage.html', 'TWA Detail Page'),
 )
 
 CMS_PERMISSION = True
@@ -409,6 +411,11 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        'werkzeug': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
     }
 }
 

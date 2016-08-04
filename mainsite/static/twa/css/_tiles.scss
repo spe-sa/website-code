@@ -10,14 +10,20 @@
   color:                $col-hrblue;
   background-color:     $col-hrblue;
 }
-.tiletitles, .topictitles {
+.topictitles {
   color:                $col-copygrey;
   border-bottom:        1px dotted $col-basegrey;
   padding-bottom:       10px;
   margin-bottom:        15px;
 }
 .tiletitles {
-  font-size:            25px;
+  color:                $col-copygrey;
+  //border-bottom:        1px dotted $col-basegrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
+.tiletitles {
+  font-size:            30px;
 }
 .topictitles {
   font-size:            30px;
@@ -545,19 +551,24 @@
   width:                100%;
   padding:              10px;
 }
-
 .marketoForm {
   margin-bottom:        15px;
 
   form {
-      margin-top: 15px;
+      margin-top:       15px;
   }
 }
 .coverblurb {
-  font-size: 14px;
-  line-height: 14px;
+  font-size:            14px;
+  line-height:          14px;
 }
 .covercredit {
-  margin: 10px 0 0 0;
-  font-size: 10px;
+  margin:               10px 0 0 0;
+  font-size:            10px;
+}
+.categoryTitle {
+  background-color:     $col-twablue;
+  font-family:          $font-tiletitle;
+  color:                white;
+  padding:              5px;
 }

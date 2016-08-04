@@ -192,7 +192,6 @@ a:hover { text-decoration: none; }
 .articleData li { float: left; margin: 5px; }
 .articleData li a { color: #bf1d21; text-decoration: none; }
 .articleData li a:hover { color: #2a2a2a; }
-.articleData .authorName { color: #bf1d21; }
 
 .articleSocialShares { border-top: 1px dotted #2a2a2a; list-style-type: none; padding: 0; font-size: 25px; font-weight: 700; }
 .articleSocialShares li { float: left; margin: 5px; }
@@ -214,8 +213,12 @@ a:hover { text-decoration: none; }
 
 .articleDetail .articleTitle { padding-bottom: 20px; }
 .articleDetail .articleAuthorBox, .articleDetail .articleShares { min-height: 35px; padding-right: 0; padding-left: 0; }
-.articleDetail .articleAuthorBox { font-size: 14px; font-weight: 700; padding-top: 10px; }
+.articleDetail .articleAuthorBox { font-size: 14px; padding-top: 10px; margin-bottom: 10px; }
 .articleDetail .sponsored { margin: 0 0 15px 0 !important; }
+
+.ratingStars { color: #ffa42d; white-space: nowrap; }
+
+.authorName { color: #2d9e9f; font-weight: 700; }
 
 .articleTitleBox { padding-left: 0; padding-right: 0; }
 
@@ -223,14 +226,9 @@ a:hover { text-decoration: none; }
 
 .articleBodyText img { margin: 0 10px 0 10px; }
 
-.articleShares { font-size: 18px; padding-top: 5px; }
-.articleShares .fa-facebook-square { color: #3B5998; }
-.articleShares .fa-twitter-square { color: #00ACED; }
-.articleShares .fa-linkedin-square { color: #007BB5; }
-.articleShares .fa-envelope-square { color: #424143; }
-.articleShares .fa-plus-square { color: #424143; }
-.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square { cursor: pointer; padding: 3px; }
-.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover { color: white; background-color: #0f1c97; }
+.articleShares { font-size: 18px; }
+.articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square, .articleShares .fa-print { color: #32bbbc; cursor: pointer; padding: 3px; }
+.articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover, .articleShares .fa-print:hover { color: white; background-color: #b4b4b9; }
 
 .article-topics, .article-tags { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
 .article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
@@ -240,7 +238,7 @@ a:hover { text-decoration: none; }
 .article-topics ul li a, .article-tags ul li a { padding: 5px; }
 .article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
 
-.articleDate { white-space: nowrap; }
+.articleDate { white-space: nowrap; color: #b4b4b9; font-weight: 300; }
 
 .techFocusBox, .columnBox { padding: 0 10px 0 0; }
 
@@ -357,9 +355,11 @@ table th, table td { padding: 5px; }
 /* Images */
 .tiletitlehr { margin-top: 0; height: 5px; border: none; color: #0f1c97; background-color: #0f1c97; }
 
-.tiletitles, .topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+.topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
 
-.tiletitles { font-size: 25px; }
+.tiletitles { color: #3d4044; padding-bottom: 10px; margin-bottom: 15px; }
+
+.tiletitles { font-size: 30px; }
 
 .topictitles { font-size: 30px; }
 
@@ -525,6 +525,8 @@ table th, table td { padding: 5px; }
 .coverblurb { font-size: 14px; line-height: 14px; }
 
 .covercredit { margin: 10px 0 0 0; font-size: 10px; }
+
+.categoryTitle { background-color: #32bbbc; font-family: "Roboto Slab", serif; color: white; padding: 5px; }
 
 /* =================================================================== */
 /* AD ZONES
