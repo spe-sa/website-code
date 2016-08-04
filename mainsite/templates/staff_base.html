@@ -1,0 +1,39 @@
+{% extends "html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+
+{% block web_fonts %}
+    {% include 'include_scripts.html' %}
+    {{ block.super }}
+{% endblock web_fonts %}
+
+{% block css_base %}
+    {% load staticfiles %}
+    <!-- CSS_BASE -->
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'ogf/css/mainstyle.css' %}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{% static 'ogf/css/printstyles.css' %}" />
+{% endblock css_base %}
+
+{% block wrap_begin %}<div class="container-fluid"><!-- CONTAINER BEGIN -->{% endblock wrap_begin %}
+
+{% block content_header %}
+    <!-- HEADER Begin -->
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("STEVE WUZ HEER!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+    <!-- HEADER END -->
+{% endblock content_header %}
+
+{% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
+
+{% block content_footer %}
+    <!-- FOOTER Begin -->
+    <!-- FOOTER END -->
+{% endblock content_footer %}
