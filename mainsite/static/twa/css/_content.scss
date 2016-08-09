@@ -4,9 +4,7 @@
 @import 'vars';
 
 .content-area {
-  padding:                0 15px;
-  //max-width:              1200px;
-  //margin:                 auto;
+  padding:                0;
 }
 .page-content {
   margin-top:             25px;
@@ -416,7 +414,7 @@
   color:                  $col-boxshadow;
     font-weight:          $font-light;
 }
-//.fboxTitle {
+//.boxTitle {
 //  margin:               0;
 //}
 .techFocusBox, .columnBox {
@@ -611,14 +609,17 @@
   }
 }
 
-.featurecol, .editorialcol, .areaContent, .areaRightSide {
+.featurecol, .areaContent, .areaRightSide {
   padding:              0;
+}
+.editorialcol {
+  padding:            10px;
 }
 .featurecol {
   //overflow: hidden;
 }
 .areaContent {
-  padding-right:        15px;
+  //padding-right:        15px;
 }
 .issuebar, .issueItem {
   cursor:               pointer;

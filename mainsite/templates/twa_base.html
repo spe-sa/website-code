@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'twa/css/mainstyle.css' %}" />
 {% endblock css_base %}
 
-{% block wrap_begin %}<div class="container">{% endblock wrap_begin %}
+{% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
 
 {% block content_header %}
     <!-- HEADER Begin -->
@@ -32,17 +32,50 @@
         </div>
 
         <!-- topbar -->
-        {% include 'include_topbar.html' %}
+{#        {% include 'include_topbar.html' %}#}
+        <div class="row dontPrintMe" id="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 topbarcol">
+                        <ul class="topbarmenuleft">
+                            <li><a href="http://www.spe.org/">SPE</a></li>
+                            <li><a href="http://www.spe.org/jpt/">JPT</a></li>
+                            <li><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></li>
+                            <li><a href="http://www.spe.org/hsenow/">HSE Now</a></li>
+                            <li><a href="http://www.spe.org/twa/">The WAY Ahead</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 text-right topbarcol">
+                        <ul class="topbarmenuright">
+                            <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 text-center topbarcol" id="signin">
+                        {% if login.url %}
+                        <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <div class="row dontPrintMe" id="menubar">
-            <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
-                <a href="/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
-            </div>
-            <div class="col-md-9 text-right">
-                <ul class="pubMenu">
-                    {% show_menu 1 100 0 1 %}
-                    <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
-                </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
+                        <a href="/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
+                    </div>
+                    <div class="col-md-9 text-right">
+                        <ul class="pubMenu">
+                            {% show_menu 1 100 0 1 %}
+                            <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -67,61 +100,69 @@
 {% block content_footer %}
     <!-- FOOTER Begin -->
     <div class="footerUpper row dontPrintMe">
-        <div class="footerULeft col-md-3">
-            <img src="{% static 'twa/img/twa_logo_white.svg' %}" class="footerLogo">
-            <ul class="footerSocial">
-                <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
-                <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
-            </ul>
-            <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers, All Rights Reserved.</p>
+        <div class="container">
+            <div class="row">
+                <div class="footerULeft col-md-3">
+                    <img src="{% static 'twa/img/twa_logo_white.svg' %}" class="footerLogo">
+                    <ul class="footerSocial">
+                        <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
+                        <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
+                    </ul>
+                    <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers, All Rights Reserved.</p>
+                </div>
+                <div class="footerURight col-md-9">
+        <div class="col-md-2 col-md-offset-1">
+            <h3>MAIN</h3>
+            <p><a href="/ogf/topics/">Topics</a></p>
+            <p><a href="/ogf/people/">People</a></p>
+            <p><a href="/ogf/peer-reviewed-papers/">Papers</a></p>
+            <p><a href="/ogf/issues/">Archive</a></p>
         </div>
-        <div class="footerURight col-md-9">
-            <div class="col-md-2 col-md-offset-1">
-                <h3>MAIN</h3>
-                <p><a href="/ogf/topics/">Topics</a></p>
-                <p><a href="/ogf/people/">People</a></p>
-                <p><a href="/ogf/peer-reviewed-papers/">Papers</a></p>
-                <p><a href="/ogf/issues/">Archive</a></p>
-            </div>
-            <div class="col-md-3">
-                <h3>DEPARTMENTS</h3>
-                <p><a href="/ogf/pfc-director/">From the PFC Technical Director</a></p>
-                <p><a href="/ogf/culture-matters/">Culture Matters</a></p>
-                <p><a href="/ogf/global-market-trends/">Global Market Trends</a></p>
-                <p><a href="/ogf/pfc-roundup/">PFC Roundup</a></p>
-                <p><a href="/ogf/technology-marketplace/">Technology Marketplace</a></p>
+        <div class="col-md-3">
+            <h3>DEPARTMENTS</h3>
+            <p><a href="/ogf/pfc-director/">From the PFC Technical Director</a></p>
+            <p><a href="/ogf/culture-matters/">Culture Matters</a></p>
+            <p><a href="/ogf/global-market-trends/">Global Market Trends</a></p>
+            <p><a href="/ogf/pfc-roundup/">PFC Roundup</a></p>
+            <p><a href="/ogf/technology-marketplace/">Technology Marketplace</a></p>
 {#                <p><a>Calendar</a></p>#}
-                <p><a href="/ogf/peer-reviewed-papers/">Peer-Reviewed Papers</a></p>
-            </div>
-            <div class="col-md-3">
-                <h3>UTILITY</h3>
-                <p><a href="/ogf/about-ogf/">About</a></p>
-                <p><a href="http://www.spe.org/contact/">Contact</a></p>
-                <p><a href="http://www.spe.org/publications/subscribe.php">Subscribe</a></p>
-                <p><a href="http://www.spe.org/sales/publications.php">Advertise</a></p>
-            </div>
-            <div class="col-md-3">
-                <h3>SPE</h3>
-                <p><a href="http://www.spe.org/">SPE</a></p>
-                <p><a href="http://www.spe.org/jpt/">JPT</a></p>
-                <p><a href="/ogf/ogf-main-page/">OGF</a></p>
-                <p><a href="http://www.spe.org/publications/journals.php">Journals</a></p>
-                <p><a href="http://www.spe.org/hsenow/">HSE Now</a></p>
-                <p><a href="http://www.spe.org/twa/">The WAY Ahead</a></p>
+            <p><a href="/ogf/peer-reviewed-papers/">Peer-Reviewed Papers</a></p>
+        </div>
+        <div class="col-md-3">
+            <h3>UTILITY</h3>
+            <p><a href="/ogf/about-ogf/">About</a></p>
+            <p><a href="http://www.spe.org/contact/">Contact</a></p>
+            <p><a href="http://www.spe.org/publications/subscribe.php">Subscribe</a></p>
+            <p><a href="http://www.spe.org/sales/publications.php">Advertise</a></p>
+        </div>
+        <div class="col-md-3">
+            <h3>SPE</h3>
+            <p><a href="http://www.spe.org/">SPE</a></p>
+            <p><a href="http://www.spe.org/jpt/">JPT</a></p>
+            <p><a href="/ogf/ogf-main-page/">OGF</a></p>
+            <p><a href="http://www.spe.org/publications/journals.php">Journals</a></p>
+            <p><a href="http://www.spe.org/hsenow/">HSE Now</a></p>
+            <p><a href="http://www.spe.org/twa/">The WAY Ahead</a></p>
+        </div>
+    </div>
             </div>
         </div>
     </div>
     <div class="footerLower dontPrintMe">
-        <a href="http://www.spe.org/"><img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/></a>
-        <ul class="footerSPEMenu">
+        <div class="container">
+            <div class="row">
+                <a href="http://www.spe.org/"><img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/></a>
+                <ul class="footerSPEMenu">
             <li><a href="http://www.spe.org/members/">MEMBERSHIP</a></li>
             <li><a href="http://www.spe.org/events/about-events.php">EVENTS</a></li>
             <li><a href="http://www.spe.org/publications/">PUBLICATIONS</a></li>
             <li><a href="http://www.spe.org/training/">TRAINING</a></li>
             <li><a href="http://www.spe.org/industry/">RESOURCES</a></li>
         </ul>
+            </div>
+        </div>
     </div>
     <!-- FOOTER END -->
         <!-- div id="testmessage">REPLACE THIS</div -->

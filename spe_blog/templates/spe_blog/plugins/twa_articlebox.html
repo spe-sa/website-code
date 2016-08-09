@@ -1,24 +1,29 @@
-{% load i18n %}
+{% load i18n removepub %}
 
+<!-- BEGIN BoxLoop -->
 {% for article in articles %}
     {% if article.picture and article.picture.url %}
-        <article class="tile whiteback featured-story">
+        <!-- Begin Box {{ forloop.counter }} -->
+{#        <div class="col-md-3"></div>#}
+        <article class="tile whiteback twa-storybox col-md-4">
             <a href="{{ article.get_absolute_url }}">
-            <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
-                <div class="story-text">
-                    <h2>{{ article.title }}</h2>
-                    <p>{{ article.teaser }}</p>
-                    {% if article.sponsored %}
-                    <p><span class="sponsored">SPONSORED</span></p>
-                    {% endif %}
+                <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
+                    <div class="story-text">
+                        <span class="categoryTitle">{{ article.category|removepub }}</span>
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.teaser }}</p>
+                        {% if article.sponsored %}
+                        <p><span class="sponsored">SPONSORED</span></p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
             </a>
         </article>
     {% endif %}
 {% empty %}
     No Articles Found
 {% endfor %}
+<!-- END BoxLoop -->
 
 {% if show_all_url and show_all_text %}
     <div class="row"><div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
