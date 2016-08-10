@@ -1,21 +1,32 @@
-{% load cms_tags sekizai_tags tz %}
+{% load cms_tags sekizai_tags tz removepub %}
 
+<!-- ARTICLE DETAIL BEGIN -->
 {% addtoblock "title2" %}{{ article.title }}{% endaddtoblock %}
 
 <div class="row articleDetail" id="printMe">
-    <div class="col-sm-12 articleTitleBox">
-        <hr class="tiletitlehr">
-        <h2 class="tiletitles">{{ article.title }}</h2>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 tiletitlehr"></div>
-        <div class="col-xs-7 col-sm-7 col-md-8 articleAuthorBox">
-            {% if article.author %}{{ article.author }} | {% endif %}<span class="articleDate">{{ article.date|date:"d F Y" }}</span>
+    <div class="row articleTitleBox text-center">
+        <div class="col-sm-12">
+            <span class="categoryTitle">{{ article.category|removepub }}</span>
+            <h2 class="tiletitles">{{ article.title }}</h2>
         </div>
-        <div class="col-md-4 articleShares text-right dontPrintMe">
+    </div>
+    <div class="row articleAuthorBox text-center">
+        <div class="col-md-2 articleDate">
+            {{ article.date|date:"d F Y" }}
+        </div>
+        <div class="col-md-5 authorName text-center">
+            {% if article.author %}{{ article.author }}{% endif %}
+        </div>
+        <div class="col-md-2 ratingStars text-center">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-3 articleShares text-center dontPrintMe">
             {% include 'include_article_shares.html' %}
         </div>
-        <div class="col-xs-12 dottedSpacer"></div>
     </div>
 
 {% if article.topics.all %}
@@ -130,6 +141,8 @@
         {% endfor %}
     {% endif %}
 </div>
+<!-- ARTICLE DETAIL END -->
+
     <script type="text/javascript" charset="utf-8">
         $( document ).ready(function() {
 

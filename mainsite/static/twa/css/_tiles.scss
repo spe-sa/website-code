@@ -10,14 +10,20 @@
   color:                $col-hrblue;
   background-color:     $col-hrblue;
 }
-.tiletitles, .topictitles {
+.topictitles {
   color:                $col-copygrey;
   border-bottom:        1px dotted $col-basegrey;
   padding-bottom:       10px;
   margin-bottom:        15px;
 }
 .tiletitles {
-  font-size:            25px;
+  color:                $col-copygrey;
+  //border-bottom:        1px dotted $col-basegrey;
+  padding-bottom:       10px;
+  margin-bottom:        15px;
+}
+.tiletitles {
+  font-size:            30px;
 }
 .topictitles {
   font-size:            30px;
@@ -33,7 +39,6 @@
   }
 }
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou {
-  //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        10px;
   padding:              15px;
   min-width:            150px;
@@ -153,8 +158,37 @@
   letter-spacing:   1px;
 }
 
+.twa-storybox {
+  padding:              10px;
+  margin:               0;
+  //min-height:           300px;
+
+  .story-wrap {
+    min-height:         300px;
+    color:              $col-white;
+    background-size:    cover;
+    position:           relative;
+
+    .story-text {
+      padding:          75px 15px 15px 15px;
+      background:       $img-twa-feature repeat-x top right;
+      background-size:  contain;
+      position:         absolute;
+      bottom:           0;
+      width:            100%;
+      height:           100%;
+
+      h2 {
+        font-family:    $font-tiletitle;
+        font-size:      20px;
+        font-weight:    600;
+      }
+    }
+  }
+}
 .featured-story {
-  padding:              0 20px 0 0;
+  padding:              10px;
+  margin:               0;
   min-height:           360px;
 
   .story-wrap {
@@ -164,7 +198,7 @@
     position:           relative;
 
     .story-text {
-      padding:          75px 15px 15px 15px;
+      padding:          200px 15px 15px 15px;
       background:       $img-twa-feature repeat-x top right;
       background-size:  contain;
       position:         absolute;
@@ -239,7 +273,7 @@
 .tile-editorial {
   background-color:     $col-black;
   padding:              15px;
-  margin-bottom:        15px;
+  //margin-bottom:        15px;
   overflow:             hidden;
 
   .title1, .title2, .excerpt, .authorBio {
@@ -545,19 +579,24 @@
   width:                100%;
   padding:              10px;
 }
-
 .marketoForm {
   margin-bottom:        15px;
 
   form {
-      margin-top: 15px;
+      margin-top:       15px;
   }
 }
 .coverblurb {
-  font-size: 14px;
-  line-height: 14px;
+  font-size:            14px;
+  line-height:          14px;
 }
 .covercredit {
-  margin: 10px 0 0 0;
-  font-size: 10px;
+  margin:               10px 0 0 0;
+  font-size:            10px;
+}
+.categoryTitle {
+  background-color:     $col-twablue;
+  font-family:          $font-tiletitle;
+  color:                white;
+  padding:              5px;
 }
