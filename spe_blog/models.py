@@ -72,6 +72,19 @@ TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
 )
+DEFAULT_BOX_WIDTH = 'col-md-4'
+BOX_WIDTH = (
+    ('col-md-12', '1 Full Width Column'),
+    ('col-md-6', '2 Column Format'),
+    (DEFAULT_BOX_WIDTH, '3 Column Format'),
+    ('col-md-3', '4 Column Format'),
+)
+DEFAULT_BOX_HEIGHT = 300
+BOX_HEIGHT = (
+    (DEFAULT_BOX_HEIGHT, 'Short Box'),
+    (400, 'Medium Box'),
+    (500, 'Tall Box'),
+)
 
 
 class ColorField(models.CharField):
@@ -444,9 +457,11 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
     whitetext = models.BooleanField("White Text", default=True)
+    boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
+    boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
     def __unicode__(self):
         #        if self.keep_original_order:
@@ -569,6 +584,8 @@ class ArticlesListingPlugin(CMSPlugin):
     backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
     whitetext = models.BooleanField("White Text", default=True)
+    boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
+    boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
