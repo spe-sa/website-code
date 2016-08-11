@@ -233,36 +233,6 @@ class ShowBriefPlugin(BriefPluginBase):
         return context
 
 
-class ShowBriefListingPlugin(BriefPluginBase):
-    model = BriefListingPlugin
-    name = _("Brief Listing")
-
-    def render(self, context, instance, placeholder):
-        # request = context.get('request')
-        if instance.publication:
-            qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
-        else:
-            qs = Brief.objects.all().filter(published=True)
-
-        if instance.category:
-            qs = qs.filter(category=instance.category)
-
-        if instance.print_volume:
-            qs = qs.filter(print_volume=instance.print_volume)
-        if instance.print_issue:
-            qs = qs.filter(print_issue=instance.print_issue)
-
-        qs = qs.order_by(instance.order_by)[
-                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
-        # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
-        context.update({'articles': qs})
-        if instance.all_url:
-            context.update({'show_all_url': instance.all_url.get_absolute_url()})
-            context.update({'show_all_text': instance.all_text})
-        self.render_template = instance.template
-        return context
-
-
 class TopicsPluginBase(CMSPluginBase):
     """
     Abstract base class to be used for all Topics plugins.
@@ -370,6 +340,39 @@ class ShowEditorialPlugin(ArticlePluginBase):
         context.update({'editorials': queryset})
         context.update({'link': instance.lnk})
         context.update({'backcol': instance.backcol})
+        self.render_template = instance.template
+        return context
+
+
+class ShowBriefListingPlugin(BriefPluginBase):
+    model = BriefListingPlugin
+    name = _("Brief Listing")
+
+    def render(self, context, instance, placeholder):
+        # request = context.get('request')
+        if instance.publication:
+            qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
+        else:
+            qs = Brief.objects.all().filter(published=True)
+
+        if instance.category:
+            qs = qs.filter(category=instance.category)
+
+        if instance.secondary_categories.all():
+            qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
+
+        if instance.print_volume:
+            qs = qs.filter(print_volume=instance.print_volume)
+        if instance.print_issue:
+            qs = qs.filter(print_issue=instance.print_issue)
+
+        qs = qs.order_by(instance.order_by)[
+                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
+        context.update({'articles': qs})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
         self.render_template = instance.template
         return context
 
