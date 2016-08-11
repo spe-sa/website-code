@@ -165,7 +165,7 @@ INSTALLED_APPS = (
     # 'spe_events',
     'config.apps.SpeEventConfig',
     'djangocms_forms',
-    'django_extensions',
+#    'django_extensions',
 )
 
 LANGUAGES = (
