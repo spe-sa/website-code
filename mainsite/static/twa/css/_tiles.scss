@@ -4,11 +4,12 @@
 @import 'vars';
 
 .tiletitlehr {
-  margin-top:           0;
-  height:               5px;
-  border:               none;
-  color:                $col-hrblue;
-  background-color:     $col-hrblue;
+  display:              none;
+  //margin-top:           0;
+  //height:               5px;
+  //border:               none;
+  //color:                $col-hrblue;
+  //background-color:     $col-hrblue;
 }
 .topictitles {
   color:                $col-copygrey;
@@ -17,9 +18,10 @@
   margin-bottom:        15px;
 }
 .tiletitles {
-  color:                $col-copygrey;
+  color:                $col-twablue;
   //border-bottom:        1px dotted $col-basegrey;
-  padding-bottom:       10px;
+  //padding-bottom:       10px;
+  padding:              0 10px 10px 10px;
   margin-bottom:        15px;
 }
 .tiletitles {
@@ -164,7 +166,7 @@
   //min-height:           300px;
 
   .story-wrap {
-    min-height:         300px;
+    //min-height:         300px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -224,19 +226,33 @@
   width:                100%;
   position:             absolute;
   bottom:               19px;
-  //border:               1px solid hotpink;
 }
 .sideListBoxTitle {
-  font-weight:          $font-bold;
-  font-size:            20px;
   padding:              0 0 10px 0;
-  border-bottom:        1px dotted $col-white;
   margin-bottom:        10px;
+  background:           $img-twa-downarrow no-repeat bottom left;
+
+  .boxTitleText {
+    background-color:     $col-twablue;
+    color:                white;
+    padding:              10px;
+    font-weight:          $font-bold;
+    font-size:            20px;
+  }
+}
+.sideListNum {
+  float:                  left;
+  padding:                0 20px 0 0;
+  height:                 100%;
+  color:                  $col-orange;
+  font-size:              30px;
+  font-weight:            $font-bold;
+  font-family:            $font-main;
 }
 .sideListItem {
-  padding:              0 0 5px 0;
+  padding:              0 10px 5px 10px;
   margin-bottom:        5px;
-  //border-bottom:        1px solid $col-basegrey;
+  //border-bottom:        1px solid black;
 }
 .sideListItem-borgry {
   border-bottom:        1px solid $col-drkgrey;
@@ -250,6 +266,7 @@
   font-family:          $font-tiletitle;
   margin-top:           5px;
   padding:              5px 0;
+  line-height:          1em;
 
   a:hover {
     color:              $col-bluehover;
@@ -272,9 +289,10 @@
 }
 .tile-editorial {
   background-color:     $col-black;
-  padding:              15px;
+  //padding:              15px;
   //margin-bottom:        15px;
-  overflow:             hidden;
+  //overflow:             hidden;
+  overflow-y:           auto;
 
   .title1, .title2, .excerpt, .authorBio {
     padding:            0;

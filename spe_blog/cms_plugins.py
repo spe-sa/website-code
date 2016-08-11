@@ -146,6 +146,8 @@ class ShowArticlesPlugin(ArticlePluginBase):
         context.update({'backcol': instance.backcol})
         context.update({'fixedheight': instance.fixedheight})
         context.update({'whitetext': instance.whitetext})
+        context.update({'boxwidth': instance.boxwidth})
+        context.update({'boxheight': instance.boxheight})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -421,6 +423,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         context.update({'backcol': instance.backcol})
         context.update({'fixedheight': instance.fixedheight})
         context.update({'whitetext': instance.whitetext})
+        context.update({'boxwidth': instance.boxwidth})
+        context.update({'boxheight': instance.boxheight})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})

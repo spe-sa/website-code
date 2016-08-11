@@ -5,9 +5,9 @@
     {% if article.picture and article.picture.url %}
         <!-- Begin Box {{ forloop.counter }} -->
 {#        <div class="col-md-3"></div>#}
-        <article class="tile whiteback twa-storybox col-md-4">
+        <article class="tile whiteback twa-storybox {{ boxwidth }}">
             <a href="{{ article.get_absolute_url }}">
-                <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
+                <div class="story-wrap" style="background-image:url({{ article.picture.url }}); height:{{ boxheight }}px;">
                     <div class="story-text">
                         <span class="categoryTitle">{{ article.category|removepub }}</span>
                         <h2>{{ article.title }}</h2>
