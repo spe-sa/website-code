@@ -14,7 +14,7 @@ class ArticleSelectionForm(ModelForm):
     class Meta:
         model = ArticlesPlugin
         exclude = []
-        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext', ]
+        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext', 'boxwidth', 'boxheight', ]
         # fieldsets = (
         #     (None, {
         #         'fields': (

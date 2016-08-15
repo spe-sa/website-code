@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     # 'spe_events',
     'config.apps.SpeEventConfig',
     'djangocms_forms',
+    'cmsplugin_bootstrap_columns',
 #    'django_extensions',
 )
 
@@ -269,7 +270,8 @@ CMS_PLACEHOLDER_CONF = {
                     'PollPlugin',
                     # segmentation
                     'SegmentLimitPlugin',
-
+                    'BootStrapContainerPlugin',
+                    'BootstrapRowPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
@@ -323,6 +325,7 @@ CMS_PLACEHOLDER_CONF = {
                 'FallbackSegmentPlugin',
                 'DisciplineSegmentPlugin',
                 'CountrySegmentPlugin',
+                'BootstrapColumnPlugin',
             ],
         },
         'plugin_modules': {
@@ -342,7 +345,7 @@ CMS_PLACEHOLDER_CONF = {
         'inherit': 'content',
     },
     'feature': {
-        'inherit': 'content',
+        # 'inherit': 'content',
     },
     # 'editorial': {
     #     'inherit': 'content',
@@ -449,7 +452,6 @@ MANAGERS = (('IT', 'webmaster@spe.org'),)
 REQUEST_PLUGINS = (
     'request.plugins.TrafficInformation',
     'request.plugins.LatestRequests',
-
     'request.plugins.TopPaths',
     'request.plugins.TopErrorPaths',
     'request.plugins.TopReferrers',
