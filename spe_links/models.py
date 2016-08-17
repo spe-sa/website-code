@@ -22,9 +22,10 @@ class SpeLinkCategory(models.Model):
         verbose_name=_('Show all - Page URL'), blank=True, null=True,
         on_delete=models.SET_NULL,
         help_text=_('A page has priority over an external URL'))
-    show_all_external = models.URLField(
+    show_all_external = models.CharField(
         _('Show all - External URL'), blank=True,
-        help_text=_('e.g. http://example.com/thank-you'))
+        max_length=255,
+        help_text=_('e.g. /thank-you'))
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
@@ -50,9 +51,10 @@ class SpeLink(models.Model):
         verbose_name=_('Page URL'), blank=True, null=True,
         on_delete=models.SET_NULL,
         help_text=_('A page has priority over an external URL'))
-    external_url = models.URLField(
+    external_url = models.CharField(
         _('External URL'), blank=True,
-        help_text=_('e.g. http://example.com/thank-you'))
+        max_length=255,
+        help_text=_('e.g. /thank-you'))
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title

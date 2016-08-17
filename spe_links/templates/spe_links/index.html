@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if latest_link_list %}
+    {% if instance.list %}
         <ul>
-        {% for link in latest_link_list %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% for link in instance.list %}
+            <li><a href="{{ link.get_absolute_url }}">{{ link.title }}</a></li>
         {% endfor %}
         </ul>
+        {% if instance.category.get_absolute_url %}
+            <div class="row"><div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ instance.category.get_absolute_url }}">All {{ instance.category.title }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+        {% endif %}
+
+
     {% else %}
         <p>No links are available.</p>
     {% endif %}
+
 {% endblock content %}
