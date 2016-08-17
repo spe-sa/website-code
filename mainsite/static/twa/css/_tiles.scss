@@ -392,6 +392,9 @@
     }
   }
 }
+.poiblurb {
+  padding-left:         15px;
+}
 #myCarousel {
   .carousel-indicators {
     bottom:             0;
@@ -509,6 +512,7 @@
 }
 .detailImgWrapLeft {
   min-height:           250px;
+  margin-right:         15px;
 }
 .detailImgWrapSide {
   height:               150px;
@@ -516,6 +520,7 @@
 }
 .poipic {
   min-height:           125px;
+  //margin-right:         15px;
 }
 
 .forms {

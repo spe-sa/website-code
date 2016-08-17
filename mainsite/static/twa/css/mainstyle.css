@@ -484,6 +484,8 @@ table th, table td { padding: 5px; }
 .tile-poi .poiblurb h3 { font-size: 15px; font-weight: 700; margin: 0; }
 .tile-poi .poiblurb p { font-size: 12px; }
 
+.poiblurb { padding-left: 15px; }
+
 #myCarousel .carousel-indicators { bottom: 0; }
 #myCarousel .carousel-inner { height: 400px; }
 #myCarousel .carousel-inner .item { height: 400px; background-size: cover; background-position: center; }
@@ -514,7 +516,7 @@ table th, table td { padding: 5px; }
 
 .detailImgWrapFull { height: 350px; margin-bottom: 5px; }
 
-.detailImgWrapLeft { min-height: 250px; }
+.detailImgWrapLeft { min-height: 250px; margin-right: 15px; }
 
 .detailImgWrapSide { height: 150px; margin-bottom: 5px; }
 
