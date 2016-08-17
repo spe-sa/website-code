@@ -326,7 +326,10 @@
 .authorName {
     color:              $col-bluehover;
     font-weight:        $font-bold;
-  }
+}
+.authorNameBox {
+    color:              $col-twitShare;
+}
 .articleTitleBox {
   padding-left:         0;
   padding-right:        0;
@@ -619,7 +622,7 @@
   //overflow: hidden;
 }
 .areaContent {
-  //padding-right:        15px;
+  padding-right:        15px;
 }
 .issuebar, .issueItem {
   cursor:               pointer;

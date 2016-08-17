@@ -4,17 +4,17 @@
 {% for article in articles %}
     {% if article.picture and article.picture.url %}
         <!-- Begin Box {{ forloop.counter }} -->
-{#        <div class="col-md-3"></div>#}
+
         <article class="tile whiteback twa-storybox {{ boxwidth }}">
             <a href="{{ article.get_absolute_url }}">
                 <div class="story-wrap" style="background-image:url({{ article.picture.url }}); height:{{ boxheight }}px;">
                     <div class="story-text">
-                        <span class="categoryTitle">{{ article.category|removepub }}</span>
-                        <h2>{{ article.title }}</h2>
-                        <p>{{ article.teaser }}</p>
-                        {% if article.sponsored %}
-                        <p><span class="sponsored">SPONSORED</span></p>
-                        {% endif %}
+                        <div class="story-contents">
+                            <span class="categoryTitle">{{ article.category|removepub }}</span>
+                            <h2>{{ article.title }}</h2>
+                            <p><span>{{ article.date }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
+    {#                        <p>{{ article.teaser }}</p>#}
+                        </div>
                     </div>
                 </div>
             </a>
