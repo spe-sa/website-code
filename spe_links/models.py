@@ -64,7 +64,7 @@ class SpeLink(models.Model):
         ordering = ['category__title', 'title']
 
     def get_absolute_url(self):
-        if self.show_all_page:
+        if self.page_url:
             page = Page.objects.get(pk=self.page_url.id)
             url = page.get_absolute_url()
         else:
