@@ -10,6 +10,7 @@ from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsP
 
 
 class ArticleAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
@@ -105,14 +106,15 @@ class ArticleEditorAdmin(ArticleAdmin):
 
 
 class BriefAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date',
-                'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category' , 'title', 'slug',
+                'author', 'article_text', 'date', 'topics', 'tags'
             ),
         }),
         (_('Image'), {
@@ -145,8 +147,8 @@ class BriefEditorAdmin(BriefAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'title', 'slug', 'article_text', 'date',
-                'topics', 'tags'
+                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
+                'author', 'article_text', 'date', 'topics', 'tags'
             ),
         }),
         (_('Image'), {

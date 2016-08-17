@@ -4,20 +4,23 @@
 @import 'vars';
 
 .tiletitlehr {
-  margin-top:           0;
-  height:               5px;
-  border:               none;
-  color:                $col-hrblue;
-  background-color:     $col-hrblue;
+  display:              none;
 }
-.tiletitles, .topictitles {
+.topictitles {
   color:                $col-copygrey;
   border-bottom:        1px dotted $col-basegrey;
   padding-bottom:       10px;
   margin-bottom:        15px;
 }
 .tiletitles {
-  font-size:            25px;
+  color:                $col-twablue;
+  //border-bottom:        1px dotted $col-basegrey;
+  //padding-bottom:       10px;
+  padding:              0 10px 10px 10px;
+  margin-bottom:        15px;
+}
+.tiletitles {
+  font-size:            30px;
 }
 .topictitles {
   font-size:            30px;
@@ -33,9 +36,8 @@
   }
 }
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-poll, .eventsNearYou {
-  //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        10px;
-  padding:              15px;
+  //padding:              15px;
   min-width:            150px;
 }
 .tile-alert {
@@ -153,8 +155,41 @@
   letter-spacing:   1px;
 }
 
+.twa-storybox {
+  padding:              10px;
+  margin:               0;
+  //min-height:           300px;
+
+  .story-wrap {
+    //min-height:         300px;
+    color:              $col-white;
+    background-size:    cover;
+    position:           relative;
+
+    .story-text {
+      padding:          15px 15px 15px 15px;
+      background:       $img-twa-feature repeat-x top right;
+      background-size:  contain;
+      position:         absolute;
+      bottom:           0;
+      width:            100%;
+      height:           100%;
+
+      h2 {
+        font-family:    $font-tiletitle;
+        font-size:      20px;
+        font-weight:    600;
+      }
+    }
+  }
+}
+.story-contents {
+  position: absolute;
+  bottom:   15px;
+}
 .featured-story {
-  padding:              0 20px 0 0;
+  padding:              10px;
+  margin:               0;
   min-height:           360px;
 
   .story-wrap {
@@ -164,7 +199,7 @@
     position:           relative;
 
     .story-text {
-      padding:          75px 15px 15px 15px;
+      padding:          200px 15px 15px 15px;
       background:       $img-twa-feature repeat-x top right;
       background-size:  contain;
       position:         absolute;
@@ -175,11 +210,11 @@
       h2 {
         font-family:    $font-tiletitle;
         font-weight:    600;
+        font-size:      20px;
       }
     }
   }
 }
-
 .story-text {
       //height:           175px;
       overflow:         hidden;
@@ -190,19 +225,33 @@
   width:                100%;
   position:             absolute;
   bottom:               19px;
-  //border:               1px solid hotpink;
 }
 .sideListBoxTitle {
-  font-weight:          $font-bold;
-  font-size:            20px;
   padding:              0 0 10px 0;
-  border-bottom:        1px dotted $col-white;
   margin-bottom:        10px;
+  background:           $img-twa-downarrow no-repeat bottom left;
+
+  .boxTitleText {
+    background-color:     $col-twablue;
+    color:                white;
+    padding:              10px;
+    font-weight:          $font-bold;
+    font-size:            20px;
+  }
+}
+.sideListNum {
+  float:                  left;
+  padding:                0 20px 0 0;
+  height:                 100%;
+  color:                  $col-orange;
+  font-size:              30px;
+  font-weight:            $font-bold;
+  font-family:            $font-main;
 }
 .sideListItem {
-  padding:              0 0 5px 0;
+  padding:              0 10px 5px 10px;
   margin-bottom:        5px;
-  //border-bottom:        1px solid $col-basegrey;
+  //border-bottom:        1px solid black;
 }
 .sideListItem-borgry {
   border-bottom:        1px solid $col-drkgrey;
@@ -216,6 +265,7 @@
   font-family:          $font-tiletitle;
   margin-top:           5px;
   padding:              5px 0;
+  line-height:          1em;
 
   a:hover {
     color:              $col-bluehover;
@@ -238,9 +288,10 @@
 }
 .tile-editorial {
   background-color:     $col-black;
-  padding:              15px;
-  margin-bottom:        15px;
-  overflow:             hidden;
+  //padding:              15px;
+  //margin-bottom:        15px;
+  //overflow:             hidden;
+  overflow-y:           auto;
 
   .title1, .title2, .excerpt, .authorBio {
     padding:            0;
@@ -290,7 +341,8 @@
   }
 }
 .tile-textbelow {
-  padding-bottom:       20px;
+  //padding-bottom:       20px;
+  padding:              0 15px 20px 0;
 }
 .tile-curntIssue {
   min-height:           150px;
@@ -339,6 +391,9 @@
       font-size:        12px;
     }
   }
+}
+.poiblurb {
+  padding-left:         15px;
 }
 #myCarousel {
   .carousel-indicators {
@@ -457,6 +512,7 @@
 }
 .detailImgWrapLeft {
   min-height:           250px;
+  margin-right:         15px;
 }
 .detailImgWrapSide {
   height:               150px;
@@ -464,6 +520,7 @@
 }
 .poipic {
   min-height:           125px;
+  //margin-right:         15px;
 }
 
 .forms {
@@ -545,19 +602,24 @@
   width:                100%;
   padding:              10px;
 }
-
 .marketoForm {
   margin-bottom:        15px;
 
   form {
-      margin-top: 15px;
+      margin-top:       15px;
   }
 }
 .coverblurb {
-  font-size: 14px;
-  line-height: 14px;
+  font-size:            14px;
+  line-height:          14px;
 }
 .covercredit {
-  margin: 10px 0 0 0;
-  font-size: 10px;
+  margin:               10px 0 0 0;
+  font-size:            10px;
+}
+.categoryTitle {
+  background-color:     $col-twablue;
+  font-family:          $font-tiletitle;
+  color:                white;
+  padding:              5px;
 }

@@ -46,7 +46,7 @@
 
         <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
-                <form class="form-inline" action="https://dev.spe.org/sitemap/search.php" method="post" accept-charset="utf-8">
+                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">
                     <div class="input-group">
                         <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
                         <input type="hidden" id="gssscope" name="scope" value="ogf"/>
@@ -60,16 +60,16 @@
             </div>
         </div>
 
-    {% addtoblock "js" %}
-        <script type="text/javascript" charset="utf-8">
-            $( document ).ready(function() {
-
-                // Add JQuery Here
-                console.log("JD WUZ HEER!");
-
-            });
-        </script>
-    {%  endaddtoblock %}
+{#    {% addtoblock "js" %}#}
+{#        <script type="text/javascript" charset="utf-8">#}
+{#            $( document ).ready(function() {#}
+{##}
+{#                // Add JQuery Here#}
+{#                console.log("JD WUZ HEER!");#}
+{##}
+{#            });#}
+{#        </script>#}
+{#    {%  endaddtoblock %}#}
     <!-- HEADER END -->
 
 {% endblock content_header %}

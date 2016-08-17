@@ -1,6 +1,36 @@
-{% load cms_tags sekizai_tags tz %}
+{% load cms_tags sekizai_tags tz removepub tostring %}
+
+<!-- ARTICLE DETAIL BEGIN -->
+{% addtoblock "title2" %}{{ article.title }}{% endaddtoblock %}
 
 <div class="row articleDetail" id="printMe">
+
+{% if current_page.parent|tostring == "TWA" %}
+    <div class="row articleTitleBox text-center">
+        <div class="col-sm-12">
+            <span class="categoryTitle">{{ article.category|removepub }}</span>
+            <h2 class="tiletitles">{{ article.title }}</h2>
+        </div>
+    </div>
+    <div class="row articleAuthorBox text-center">
+        <div class="col-md-2 articleDate">
+            {{ article.date|date:"d F Y" }}
+        </div>
+        <div class="col-md-6 authorName text-center">
+            {% if article.author %}{{ article.author }}{% endif %}
+        </div>
+{#        <div class="col-md-2 ratingStars text-center">#}
+{#            <i class="fa fa-star" aria-hidden="true"></i>#}
+{#            <i class="fa fa-star" aria-hidden="true"></i>#}
+{#            <i class="fa fa-star" aria-hidden="true"></i>#}
+{#            <i class="fa fa-star-half-o" aria-hidden="true"></i>#}
+{#            <i class="fa fa-star-o" aria-hidden="true"></i>#}
+{#        </div>#}
+        <div class="col-md-4 articleShares text-center dontPrintMe">
+            {% include 'include_article_shares.html' %}
+        </div>
+    </div>
+{% else %}
     <div class="col-sm-12 articleTitleBox">
         <hr class="tiletitlehr">
         <h2 class="tiletitles">{{ article.title }}</h2>
@@ -15,6 +45,8 @@
         </div>
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
+{% endif %}
+
 
 {% if article.topics.all %}
     <div class="row">
@@ -37,7 +69,10 @@
     <div class="col-sm-12 articlePicture">
         <img src="{{article.picture.url}}" alt="{{article.alternate}}" class="img-responsive">
         {% if article.picture_attribution %}
-        <span class="imgattrib">{{ article.picture_attribution }}</span>
+            <div class="imgattrib">{{ article.picture_attribution }}</div>
+        {% endif %}
+        {% if article.picture_caption %}
+            <div class="imgcapt">{{ article.picture_caption }}</div>
         {% endif %}
     </div>
 {% endif %}
@@ -60,7 +95,7 @@
                 <div class="col-sm-12 becomeMember text-center">
                     <p>You have access to this full article to experience the outstanding content<br>
                         that is available to OGF subscribers and SPE members.</p>
-                    <p>Please <a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
+                    <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
                     in order to gain full access to all that OGF has to offer.</p>
             </div>
             {% endif %}
@@ -74,11 +109,7 @@
 
             <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and OGF subscribers.<br>
                 If you would like to continue reading,<br>
-                please {% if is_loggedout %}{% if login.url %}
-                    <a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>
-                    {% else %}
-                    Login using the link at the top of the page.
-                {% endif %}{% else %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>{% endif %}
+                please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
             </div>
 
 
@@ -129,10 +160,14 @@
         {% endfor %}
     {% endif %}
 </div>
+<!-- ARTICLE DETAIL END -->
+
     <script type="text/javascript" charset="utf-8">
         $( document ).ready(function() {
 
             $(".articleBodyText img").addClass("img-responsive");
+
+{#            $( document ).prop('title', '{{ article.title }}');#}
 
         });
     </script>

@@ -36,6 +36,9 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/side_list.html', 'Editorial Sidebar Article List'),
     ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
     ('spe_blog/plugins/article_editorial.html', 'Editorial w/ Author'),
+    ('spe_blog/plugins/twa_articlebox.html', 'TWA Article Box'),
+    ('spe_blog/plugins/twa_featured.html', 'TWA Featured Article Box'),
+    # ('spe_blog/plugins/side_list.html', 'TWA Article List'),
 )
 
 DEFAULT_ISSUE_TEMPLATE = 'spe_blog/plugins/issue_channel.html'
@@ -68,6 +71,19 @@ TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list_1col.html', 'Topic List 1 Column'),
     ('spe_blog/plugins/topics_list.html', 'Topic List 2 Column'),
     (DEFAULT_TOPIC_TEMPLATE, 'Topic List 3 Column'),
+)
+DEFAULT_BOX_WIDTH = 'col-md-4'
+BOX_WIDTH = (
+    ('col-md-12', '1 Full Width Column'),
+    ('col-md-6', '2 Column Format'),
+    (DEFAULT_BOX_WIDTH, '3 Column Format'),
+    ('col-md-3', '4 Column Format'),
+)
+DEFAULT_BOX_HEIGHT = 300
+BOX_HEIGHT = (
+    (DEFAULT_BOX_HEIGHT, 'Short Box'),
+    (400, 'Medium Box'),
+    (500, 'Tall Box'),
 )
 
 
@@ -327,11 +343,13 @@ class Brief(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
+    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Category (Secondary)")
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
+    author = models.CharField(max_length=500, blank=True, null=True)
     article_text = RichTextUploadingField(
-        max_length=2000,
+        max_length=50000,
         help_text=u'Full text of the article.'
     )
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
@@ -373,9 +391,30 @@ class Brief(models.Model):
         return url
 
     def is_readable(self):
-        return True
+        now = timezone.now().date()
+        if self.free is True:
+            return True
+        if self.free_start is None and self.free_stop is None:
+            return False
+        if self.free_start is None or self.free_start <= now:
+            if self.free_stop is None:
+                return True
+            if self.free_stop >= now:
+                return True
+        # here will go logic for membership viewing rights
+        return False
 
     def show_paybox(self):
+        now = timezone.now().date()
+        if self.free:
+            return False
+        if self.free_start is None and self.free_stop is None:
+            return False
+        if self.free_start is None or self.free_start <= now:
+            if self.free_stop is None:
+                return True
+            if self.free_stop >= now:
+                return True
         return False
 
 
@@ -418,9 +457,11 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
     whitetext = models.BooleanField("White Text", default=True)
+    boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
+    boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
     def __unicode__(self):
         #        if self.keep_original_order:
@@ -536,12 +577,15 @@ class ArticlesListingPlugin(CMSPlugin):
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL)
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
+    secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
     backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
     whitetext = models.BooleanField("White Text", default=True)
+    boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
+    boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -558,6 +602,7 @@ class ArticlesListingPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.categories = old_instance.categories.all()
+        self.secondary_categories = old_instance.secondary_categories.all()
 
 
 class BriefListingPlugin(CMSPlugin):
@@ -570,6 +615,7 @@ class BriefListingPlugin(CMSPlugin):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
+    secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
     topic = models.ForeignKey(Topics, blank=True, null=True, on_delete=models.SET_NULL)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)

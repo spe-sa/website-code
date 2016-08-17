@@ -13,6 +13,7 @@ from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.db.models import Q
+from datetime import datetime
 
 # from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
@@ -78,21 +79,31 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         #
         cursor = connection.cursor()
         cursor.execute('''
-        select distinct(a.id) as article_id from spe_blog_article a
+        select distinct(a.id) as article_id, a.date from spe_blog_article a
 	      right outer join spe_blog_article_topics at on at.article_id = a.id
 	      where a.published=True
 	      and at.topics_id in (select topics_id from spe_blog_article_topics where article_id = %s)
 	      and a.id != %s
+	      and a.publication_id = %s
+	      and a.date <= now()
 	      order by date DESC
 	      limit 3
-	    ''', tuple([art.id, art.id]))
+	    ''', tuple([art.id, art.id, art.publication.code]))
         related_article_ids = cursor.fetchall()
 
         if related_article_ids:
             in_filter = Q()
-            for tid in related_article_ids:
-                in_filter = in_filter | Q(pk__in=tid)
+            ids = []
+            for tid, tdate in related_article_ids:
+                ids.append(tid)
+            in_filter = in_filter | Q(pk__in=ids)
             related_articles = Article.objects.filter(in_filter)
+            # related_articles = related_articles.filter(publication__code = art.publication.code)
+
+        # adding back in the incrementing for most popular
+        art.article_hits += 1
+        art.article_last_viewed = timezone.now()
+        art.save()
 
         show_paybox = art.show_paybox()
         visitor = None
@@ -139,6 +150,8 @@ class ShowArticlesPlugin(ArticlePluginBase):
         context.update({'backcol': instance.backcol})
         context.update({'fixedheight': instance.fixedheight})
         context.update({'whitetext': instance.whitetext})
+        context.update({'boxwidth': instance.boxwidth})
+        context.update({'boxheight': instance.boxheight})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -179,6 +192,12 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                     except:
                         raise Http404("Article not found")
         visitor = None
+        
+        # adding back in the incrementing for most popular
+        art.article_hits += 1
+        art.article_last_viewed = timezone.now()
+        art.save()
+
         show_paybox = art.show_paybox()
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
@@ -213,35 +232,6 @@ class ShowBriefPlugin(BriefPluginBase):
     def render(self, context, instance, placeholder):
         queryset = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
-        if instance.all_url:
-            context.update({'show_all_url': instance.all_url.get_absolute_url()})
-            context.update({'show_all_text': instance.all_text})
-        self.render_template = instance.template
-        return context
-
-
-class ShowBriefListingPlugin(BriefPluginBase):
-    model = BriefListingPlugin
-    name = _("Brief Listing")
-
-    def render(self, context, instance, placeholder):
-        # request = context.get('request')
-        if instance.publication:
-            qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
-        else:
-            qs = Brief.objects.all().filter(published=True)
-
-        if instance.category:
-            qs = qs.filter(category=instance.category)
-
-        if instance.print_volume:
-            qs = qs.filter(print_volume=instance.print_volume)
-        if instance.print_issue:
-            qs = qs.filter(print_issue=instance.print_issue)
-
-        qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
-        # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
-        context.update({'articles': qs})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -312,17 +302,18 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
                 pk = int(q[0][1])
                 if pk:
                     art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
-                        topics__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                        topics__pk=pk).order_by(instance.order_by)[
+                            instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
                 else:
                     raise Http404("Topic not found")
             else:
                 art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
                     topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
-                      instance.starting_with - 1:instance.cnt]
+                      instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
             art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
                 topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
-                  instance.starting_with - 1:instance.cnt]
+                  instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'articles': art})
         context.update({'dateNow': now})
         self.render_template = instance.template
@@ -359,6 +350,39 @@ class ShowEditorialPlugin(ArticlePluginBase):
         return context
 
 
+class ShowBriefListingPlugin(BriefPluginBase):
+    model = BriefListingPlugin
+    name = _("Brief Listing")
+
+    def render(self, context, instance, placeholder):
+        # request = context.get('request')
+        qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now())
+
+        if instance.publication:
+            qs = qs.filter(publication=instance.publication)
+
+        if instance.category:
+            qs = qs.filter(category=instance.category)
+
+        if instance.secondary_categories.all():
+            qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
+
+        if instance.print_volume:
+            qs = qs.filter(print_volume=instance.print_volume)
+        if instance.print_issue:
+            qs = qs.filter(print_issue=instance.print_issue)
+
+        qs = qs.order_by(instance.order_by)[
+                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
+        context.update({'articles': qs})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
+        self.render_template = instance.template
+        return context
+
+
 class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
     name = _("Articles Listing")
@@ -374,13 +398,16 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             dcode = instance.discipline.code
         context.update({'ducode': ducode, 'dcode': dcode})
         # NOTE: todo - create an in clause filter with each code if there are any
+        qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
+
         if instance.publication:
-            qs = Article.objects.filter(published=True).filter(publication=instance.publication)
-        else:
-            qs = Article.objects.all().filter(published=True)
+            qs = qs.filter(publication=instance.publication)
 
         if instance.categories.all():
             qs = qs.filter(category__in=instance.categories.all())
+
+        if instance.secondary_categories.all():
+            qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
 
         if instance.print_volume:
             qs = qs.filter(print_volume=instance.print_volume)
@@ -394,12 +421,14 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             qs = qs.filter(disciplines=dcode).order_by(instance.order_by)[
                  instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
-            qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+            qs = qs.order_by(instance.order_by)[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
         context.update({'fixedheight': instance.fixedheight})
         context.update({'whitetext': instance.whitetext})
+        context.update({'boxwidth': instance.boxwidth})
+        context.update({'boxheight': instance.boxheight})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -478,7 +507,8 @@ class ShowTagsDetailPlugin(CMSPluginBase):
             pk = int(q[0][1])
             if pk:
                 art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
-                    tags__pk=pk).order_by(instance.order_by)[instance.starting_with - 1:instance.cnt]
+                    tags__pk=pk).order_by(instance.order_by)[
+                      instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
             else:
                 raise Http404("Tag not found")
         context.update({'articles': art})

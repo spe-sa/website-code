@@ -22,7 +22,7 @@
 {#            {% endwith %}#}
 
 {#            {% with "email" as service %}#}
-                <a href="mailto:recipient?&subject=Thought you'd be interested&body=I%20thought%20you'd%20like%20this,%20as%20I%20found%20it%20very%20interesting.%0A%0A{{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
+                <a href="mailto:?&subject=Thought you'd be interested&body=I%20thought%20you'd%20like%20this,%20as%20I%20found%20it%20very%20interesting.%0A%0A{{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
                     <i class="fa fa-envelope-square"></i>
                 </a>
 

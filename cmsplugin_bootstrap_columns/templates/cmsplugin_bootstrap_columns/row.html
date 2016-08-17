@@ -1,0 +1,7 @@
+{% load cms_tags %}
+
+<div class="row {{instance.classes}}" id="{{instance.element_id}}" styles="{{instance.element_style}}">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>
