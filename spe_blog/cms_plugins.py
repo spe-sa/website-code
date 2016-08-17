@@ -13,6 +13,7 @@ from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.db.models import Q
+from datetime import datetime
 
 # from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
@@ -78,12 +79,13 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         #
         cursor = connection.cursor()
         cursor.execute('''
-        select distinct(a.id) as article_id from spe_blog_article a
+        select distinct(a.id) as article_id, a.date from spe_blog_article a
 	      right outer join spe_blog_article_topics at on at.article_id = a.id
 	      where a.published=True
 	      and at.topics_id in (select topics_id from spe_blog_article_topics where article_id = %s)
 	      and a.id != %s
 	      and a.publication_id = %s
+	      and a.date <= now()
 	      order by date DESC
 	      limit 3
 	    ''', tuple([art.id, art.id, art.publication.code]))
@@ -91,8 +93,10 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 
         if related_article_ids:
             in_filter = Q()
-            for tid in related_article_ids:
-                in_filter = in_filter | Q(pk__in=tid)
+            ids = []
+            for tid, tdate in related_article_ids:
+                ids.append(tid)
+            in_filter = in_filter | Q(pk__in=ids)
             related_articles = Article.objects.filter(in_filter)
             # related_articles = related_articles.filter(publication__code = art.publication.code)
 
@@ -352,10 +356,10 @@ class ShowBriefListingPlugin(BriefPluginBase):
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')
+        qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now())
+
         if instance.publication:
-            qs = Brief.objects.filter(published=True).filter(publication=instance.publication)
-        else:
-            qs = Brief.objects.all().filter(published=True)
+            qs = qs.filter(publication=instance.publication)
 
         if instance.category:
             qs = qs.filter(category=instance.category)
@@ -394,10 +398,10 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             dcode = instance.discipline.code
         context.update({'ducode': ducode, 'dcode': dcode})
         # NOTE: todo - create an in clause filter with each code if there are any
+        qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
+
         if instance.publication:
-            qs = Article.objects.filter(published=True).filter(publication=instance.publication)
-        else:
-            qs = Article.objects.all().filter(published=True)
+            qs = qs.filter(publication=instance.publication)
 
         if instance.categories.all():
             qs = qs.filter(category__in=instance.categories.all())

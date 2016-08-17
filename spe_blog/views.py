@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.db.models import Q
 # import sys
 
 from .models import Article, Brief, Issue, Publication
@@ -19,6 +20,11 @@ def article_index(request):
     search_term = request.POST.get('search', None)
     if (search_term == None):
         search_term = request.GET.get("search", None)
+    try:
+        search_id = int(search_term)
+    except Exception:
+        search_id = 0
+
     published = request.POST.get("published", None)
     if (published == None):
         published = request.GET.get("published", None)
@@ -58,8 +64,11 @@ def article_index(request):
         articles = articles.filter(published__exact=published)
         filter = build_filter(filter, " only published")
     if (search_term):
-        articles = articles.filter(title__icontains=search_term)
-        filter = build_filter(filter, " title contains '" + search_term + "'")
+        if (search_id != 0):
+            articles = articles.filter(Q(id=search_id) | Q(title__icontains=search_term))
+        else:
+            articles = articles.filter(title__icontains=search_term)
+        filter = build_filter(filter, " title or id contains '" + search_term + "'")
     articles = articles[:limit_selected]
     if (search_term == None):
         search_term = ''
