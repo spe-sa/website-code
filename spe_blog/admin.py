@@ -147,7 +147,7 @@ class BriefEditorAdmin(BriefAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category' , 'title', 'slug',
+                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
                 'author', 'article_text', 'date', 'topics', 'tags'
             ),
         }),
