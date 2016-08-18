@@ -8,6 +8,11 @@ ENVIRONMENT = "DEV"
 WS_EVENTS_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3'
 WS_EVENTS_GENERIC_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList4'
 
+# tuple for old host to new host for this environment
+HOST_REPLACEMENTS = (
+    ('www.spe.org', 'dev.spe.org'),
+)
+
 # Overriding the templates in development to include a test page
 CMS_TEMPLATES += (
     ('test.html', 'Test Page'),

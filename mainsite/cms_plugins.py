@@ -94,7 +94,7 @@ class ShowTileImgBack(CMSPluginBase):
         context.update({'title': instance.ttl})
         context.update({'text': instance.txt})
         context.update({'image': instance.img})
-        context.update({'link': instance.lnk})
+        context.update({'link': instance.get_absolute_url()})
         context.update({'date': instance.date})
         return context
 

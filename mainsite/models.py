@@ -4,7 +4,7 @@ from django.db import models
 # from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from filer.fields.image import FilerImageField
-
+from django.conf import settings
 from mainsite.widgets import ColorPickerWidget
 
 # from django.core.urlresolvers import reverse
@@ -410,13 +410,25 @@ class TileImgBack(CMSPlugin):
         max_length=2000,
         help_text=u'Text Area'
     )
-    lnk = models.CharField(max_length=250, verbose_name="Link")
+    lnk = models.URLField(max_length=250, verbose_name="Link")
     img = FilerImageField(blank=True, null=True, verbose_name=u'Background Image', related_name="background_picture")
     date = models.DateField(blank=True, null=True)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
         return lbl[0:50]
+
+    def get_absolute_url(self):
+        # TODO: push this down to the SPEURLFIELD level and replace the URLFields above
+        # replace all instances containing '//production_host_name/' with //env.hostname/ if we have env.hostname
+        url = self.lnk
+        if url:
+            replacements = getattr(settings, "HOST_REPLACEMENTS", None)
+            if replacements:
+                for replace_host, new_host in replacements:
+                    if (url.find(replace_host) > -1):
+                        url = url.replace(replace_host, new_host)
+        return url
 
 
 class MarketoFormPlugin(CMSPlugin):
