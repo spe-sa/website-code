@@ -10,9 +10,11 @@
                 <div class="story-wrap" style="background-image:url({{ article.picture.url }}); height:{{ boxheight }}px;">
                     <div class="story-text">
                         <div class="story-contents">
+                            {% if article.category|removepub != 'None' %}
                             <span class="categoryTitle">{{ article.category|removepub }}</span>
+                            {% endif %}
                             <h2>{{ article.title }}</h2>
-                            <p><span>{{ article.date }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
+                            <p><span>{{ article.date|date:"d F Y" }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
     {#                        <p>{{ article.teaser }}</p>#}
                         </div>
                     </div>

@@ -246,7 +246,7 @@ a:hover { text-decoration: none; }
 .article-topics ul li a, .article-tags ul li a { padding: 5px; }
 .article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
 
-.articleDate { white-space: nowrap; color: #b4b4b9; font-weight: 300; }
+.articleDate { white-space: nowrap; color: grey; font-weight: 300; }
 
 .techFocusBox, .columnBox { padding: 0 10px 0 0; }
 
@@ -407,7 +407,7 @@ table th, table td { padding: 5px; }
 .link-box ul li a, .tile-links ul li a { color: #424143; }
 .link-box ul li a:visited, .tile-links ul li a:visited { outline: 0; text-decoration: none; }
 
-.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #bf1d21; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #ff8400; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
 .story .story-wrap h3, .tile-textbelow .story-wrap h3 { color: #2a2a2a; font-weight: 700; line-height: 1.1; margin-bottom: 8px; margin-top: 0; letter-spacing: -0.02em; }
 .story .story-wrap p, .tile-textbelow .story-wrap p { color: #3d4044; }
 
@@ -440,16 +440,21 @@ table th, table td { padding: 5px; }
 
 .sideListItem-borwht { border-bottom: 1px solid white; }
 
-.sideListTitle { font-size: 15px; font-weight: 700; font-family: "Roboto Slab", serif; margin-top: 5px; padding: 5px 0; line-height: 1em; }
+.sideListTitle { font-size: 15px; font-weight: 700; font-family: "Roboto Slab", serif; margin-top: 5px; padding: 5px 0 0 10px; line-height: 1em; }
 .sideListTitle a:hover { color: #2d9e9f; }
 
-.sideListDate { color: #fffb22; font-weight: 300; }
+.sideListTitleTWA { font-size: 15px; font-weight: 700; font-family: "Roboto Slab", serif; margin-top: 5px; padding: 5px 0 0 0; line-height: 1em; }
+.sideListTitleTWA a:hover { color: #2d9e9f; }
+
+.sideListDate { color: #fffb22; font-weight: 300; padding: 0 0 0 10px; }
+
+.sideListDateTWA { color: #ff8400; font-weight: 300; padding: 0 0 0 0; }
 
 .sideListLock { color: #bf1d21; }
 
-.sideListTeaser { padding: 0 0 10px 0; border-bottom: 1px dotted white; margin-bottom: 10px; }
+.sideListTeaser { padding: 0 0 10px 10px; border-bottom: 1px dotted white; margin-bottom: 10px; }
 
-.sideListIntro { padding: 10px 0 0 0; }
+.sideListIntro { padding: 10px 0 0 10px; }
 
 .tile-editorial { background-color: #2a2a2a; overflow-y: auto; }
 .tile-editorial .title1, .tile-editorial .title2, .tile-editorial .excerpt, .tile-editorial .authorBio { padding: 0; }

@@ -1,4 +1,4 @@
-{% load i18n cms_tags sekizai_tags %}
+{% load i18n cms_tags sekizai_tags tostring %}
 
 {% if articles.count > 1 %}
     <div class="row">
@@ -16,7 +16,10 @@
                     {% endif %}
                     <div class="story-text">
                         <span class="pub-date">{{ article.date|date:"d F Y" }}
-                        {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
+{#                        {% if current_page.parent|tostring == "OGF" %}#}
+{##}
+{#                        {% endif %}#}
+                        {% if current_page.parent|tostring == "OGF" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
                             | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
                         {% endif %}
                         </span>
