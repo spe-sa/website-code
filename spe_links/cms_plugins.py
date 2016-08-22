@@ -13,7 +13,7 @@ class SpeLinkPluginPublisher(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         if instance.category and instance.category.id:
-            instance.links = SpeLink.objects.filter(category_id__exact=instance.category.id).values().order_by("title")
+            instance.links = SpeLink.objects.filter(category_id__exact=instance.category.id).order_by("title")
 
         context.update({'instance': instance})
 
