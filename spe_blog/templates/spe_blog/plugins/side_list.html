@@ -1,7 +1,7 @@
-{% load i18n cms_tags sekizai_tags tostring %}
+{% load i18n cms_tags sekizai_tags %}
 
 <div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
-    {% if current_page.parent|tostring == "TWA" %}
+    {% if pubcode == "TWA" %}
         <div class="col-xs-12 sideListBoxTitle">
             <span class="boxTitleText col-xs-12">Most Read</span>
         </div>
@@ -9,7 +9,7 @@
 {% for article in articles %}
 {#    <div class="row">#}
         <div class="row sideListItem">
-        {% if current_page.parent|tostring == "TWA" %}
+        {% if pubcode == "TWA" %}
             <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>
             <div class="col-xs-11">
         {% else %}
@@ -18,7 +18,7 @@
 {#            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>#}
             <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
             <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
-        {% if current_page.parent|tostring == "TWA" %}
+        {% if pubcode == "TWA" %}
 {#            <span class="sideListAuthor">{{ article.author }}</span>#}
         {% else %}
             {% if article.is_readable == True %}
@@ -32,6 +32,7 @@
 {% empty %}
     <p class="well">{% trans "No editorial available" %}</p>
 {% endfor %}
+
 </div>
 
 {% addtoblock "js" %}

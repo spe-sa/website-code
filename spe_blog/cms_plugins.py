@@ -429,6 +429,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         context.update({'whitetext': instance.whitetext})
         context.update({'boxwidth': instance.boxwidth})
         context.update({'boxheight': instance.boxheight})
+        context.update({'pubcode': instance.publication.code})
+
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})

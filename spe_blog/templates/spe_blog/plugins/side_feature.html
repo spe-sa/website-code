@@ -1,4 +1,4 @@
-{% load i18n cms_tags sekizai_tags %}
+{% load i18n cms_tags sekizai_tags tostring %}
 
 {% for article in articles %}
 
@@ -13,11 +13,15 @@
                     <div class="sideListTitle">{{ article.title }}</div>
             {% endif %}
 
+        {% if current_page.parent|tostring == "OGF" %}
             <div class="col-xs-12 padZero"><span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
-        {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
-            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-        {% endif %}
+            {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
+                | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+            {% endif %}
             </div>
+        {% else %}
+            <p style="padding:0 0 0 10px;"><span>{{ article.date|date:"d F Y" }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
+        {% endif %}
             {# if the article has a author pic AND bio, then show that, otherwise show the article intro paragraph #}
             {% if article.author_picture and article.author_bio %}
                 <div class="col-xs-12 dottedspacer">&nbsp;</div>

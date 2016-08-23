@@ -8,6 +8,7 @@
                 <div class="story-text">
                     <span class="categoryTitle">{{ article.category|removepub }}</span>
                     <h2>{{ article.title }}</h2>
+                    <p><span>{{ article.date|date:"d F Y" }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
                     <p>{{ article.teaser }}</p>
                     {% if article.sponsored %}
                     <p><span class="sponsored">SPONSORED</span></p>
