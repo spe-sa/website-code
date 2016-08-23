@@ -16,10 +16,10 @@
             <div class="col-xs-12">
         {% endif %}
 {#            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>#}
-            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
-            <span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
+            <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
+            <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
         {% if current_page.parent|tostring == "TWA" %}
-            <span class="sideListAuthor">{{ article.author }}</span>
+{#            <span class="sideListAuthor">{{ article.author }}</span>#}
         {% else %}
             {% if article.is_readable == True %}
                 | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>

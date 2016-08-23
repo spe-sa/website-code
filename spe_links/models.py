@@ -9,7 +9,7 @@ from cms.models.fields import PageField
 from django.db import models
 # from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
-
+from django.conf import settings
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class SpeLinkCategory(models.Model):
@@ -22,10 +22,10 @@ class SpeLinkCategory(models.Model):
         verbose_name=_('Show all - Page URL'), blank=True, null=True,
         on_delete=models.SET_NULL,
         help_text=_('A page has priority over an external URL'))
-    show_all_external = models.CharField(
+    show_all_external = models.URLField(
         _('Show all - External URL'), blank=True,
         max_length=255,
-        help_text=_('e.g. /thank-you'))
+        help_text=_('e.g. http://www.spe.org/membership/thank-you'))
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
@@ -40,6 +40,13 @@ class SpeLinkCategory(models.Model):
             url = page.get_absolute_url()
         else:
             url = self.show_all_external
+        # TODO: push this down to the SPEURLFIELD level and replace the URLFields above
+        # replace all instances containing '//production_host_name/' with //env.hostname/ if we have env.hostname
+            replacements = getattr(settings, "HOST_REPLACEMENTS", None)
+        if replacements:
+            for replace_host, new_host in replacements:
+                if (url.find(replace_host) > -1):
+                    url = url.replace(replace_host, new_host)
         return url
 
 
@@ -51,10 +58,10 @@ class SpeLink(models.Model):
         verbose_name=_('Page URL'), blank=True, null=True,
         on_delete=models.SET_NULL,
         help_text=_('A page has priority over an external URL'))
-    external_url = models.CharField(
+    external_url = models.URLField(
         _('External URL'), blank=True,
         max_length=255,
-        help_text=_('e.g. /thank-you'))
+        help_text=_('e.g. http://www.spe.org/membership/thank-you'))
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
@@ -64,11 +71,18 @@ class SpeLink(models.Model):
         ordering = ['category__title', 'title']
 
     def get_absolute_url(self):
-        if self.show_all_page:
+        if self.page_url:
             page = Page.objects.get(pk=self.page_url.id)
             url = page.get_absolute_url()
         else:
             url = self.external_url
+        # TODO: push this down to the SPEURLFIELD level and replace the URLFields above
+        # replace all instances containing '//production_host_name/' with //env.hostname/ if we have env.hostname
+        replacements = getattr(settings, "HOST_REPLACEMENTS", None)
+        if replacements:
+            for replace_host, new_host in replacements:
+                if (url.find(replace_host) > -1):
+                    url = url.replace(replace_host, new_host)
         return url
 
 
