@@ -38,7 +38,7 @@
             <div class="col-sm-4 issueItem text-center">
                 <a href="{{ issue.get_absolute_url }}" class="issueLink">
                     <img src="{{ issue.cover.url }}" class="img-responsive">
-                    <p class="issueDate">{{ issue.date }}</p>
+                    <p class="issueDate">{{ issue.date|date:"F Y" }}</p>
                     <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
                 </a>
             </div>

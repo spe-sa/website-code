@@ -627,8 +627,16 @@
 .areaRightSide {
   padding-left:         15px;
 }
-.issuebar, .issueItem {
-  cursor:               pointer;
+.issuebar {
+    cursor:             pointer;
+    background-color:   $col-notsolightgrey;
+  &:hover {
+    background-color:   $col-boxshadow;
+  }
+}
+.issueItem {
+  cursor:             pointer;
+
   &:hover {
     background-color:   $col-notsolightgrey;
   }

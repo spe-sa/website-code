@@ -90,13 +90,23 @@
   background-color:     $col-white;
 }
 .link-box, .tile-links {
-  border-top: 4px solid $col-hrblue;
+  border-bottom:        1px solid $col-boxshadow;
   background-color:     $col-white;
+  padding:              15px;
+
+  .section-heading {
+    font-family:        $font-tiletitle;
+    font-size:          30px;
+    font-weight:        $font-bold;
+    color:              $col-twablue;
+    //padding:            0 10px 10px 10px;
+    margin-bottom:      15px;
+  }
 
   ul {
     margin:             0;
     list-style:         disc outside;
-    padding:            0;
+    padding:            0 10px;
 
     & > :first-child {
       border-top:       1px solid $col-lightgrey;
@@ -108,15 +118,16 @@
       list-style-type:  none;
       padding:          0 0 10px 0;
       border-bottom:    1px solid $col-lightgrey;
-      margin:           0 0 10px 0;
+      //margin:           0 0 10px 0;
       letter-spacing:   .01rem;
 
       a {
-        color:          $col-drkgrey;
+        color:          $col-speblue2;
 
-        &:visited {
-        outline:        0;
-        text-decoration:none;
+        &:hover {
+          color:        $col-orange;
+          outline:      0;
+        text-decoration:underline;
       }
       }
     }
@@ -284,7 +295,7 @@
   }
 }
 .sideListDate {
-  color:                $col-yellow;
+  color:                $col-twablue;
   font-weight:          $font-light;
   padding:              0 0 0 10px;
 }
@@ -294,6 +305,7 @@
   padding:              0 0 0 0;
 }
 .sideListLock {
+  //display:              none;
   color:                $col-red;
 }
 .sideListTeaser {
@@ -622,7 +634,7 @@
 }
 .marketoForm {
   margin-bottom:        15px;
-
+  padding:              0 20px;
   form {
       margin-top:       15px;
   }
