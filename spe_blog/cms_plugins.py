@@ -361,8 +361,8 @@ class ShowBriefListingPlugin(BriefPluginBase):
         if instance.publication:
             qs = qs.filter(publication=instance.publication)
 
-        if instance.category:
-            qs = qs.filter(category=instance.category)
+        if instance.categories.all():
+            qs = qs.filter(category__in=instance.categories.all())
 
         if instance.secondary_categories.all():
             qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
