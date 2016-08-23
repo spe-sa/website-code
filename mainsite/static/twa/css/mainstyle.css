@@ -321,8 +321,11 @@ a:hover { text-decoration: none; }
 
 .areaRightSide { padding-left: 15px; }
 
-.issuebar, .issueItem { cursor: pointer; }
-.issuebar:hover, .issueItem:hover { background-color: #e4e1d8; }
+.issuebar { cursor: pointer; background-color: #e4e1d8; }
+.issuebar:hover { background-color: #b4b4b9; }
+
+.issueItem { cursor: pointer; }
+.issueItem:hover { background-color: #e4e1d8; }
 
 .plusSymbol, .minusSymbol { float: right; margin-right: 20px; }
 
@@ -400,12 +403,13 @@ table th, table td { padding: 5px; }
 
 .whiteback, .tile-white { background-color: white; }
 
-.link-box, .tile-links { border-top: 4px solid #0f1c97; background-color: white; }
-.link-box ul, .tile-links ul { margin: 0; list-style: disc outside; padding: 0; }
+.link-box, .tile-links { border-bottom: 1px solid #b4b4b9; background-color: white; padding: 15px; }
+.link-box .section-heading, .tile-links .section-heading { font-family: "Roboto Slab", serif; font-size: 30px; font-weight: 700; color: #32bbbc; margin-bottom: 15px; }
+.link-box ul, .tile-links ul { margin: 0; list-style: disc outside; padding: 0 10px; }
 .link-box ul > :first-child, .tile-links ul > :first-child { border-top: 1px solid #f2efea; padding-top: 10px; }
-.link-box ul li, .tile-links ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f2efea; margin: 0 0 10px 0; letter-spacing: .01rem; }
-.link-box ul li a, .tile-links ul li a { color: #424143; }
-.link-box ul li a:visited, .tile-links ul li a:visited { outline: 0; text-decoration: none; }
+.link-box ul li, .tile-links ul li { line-height: 18px; list-style-type: none; padding: 0 0 10px 0; border-bottom: 1px solid #f2efea; letter-spacing: .01rem; }
+.link-box ul li a, .tile-links ul li a { color: #365d98; }
+.link-box ul li a:hover, .tile-links ul li a:hover { color: #ff8400; outline: 0; text-decoration: underline; }
 
 .story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #ff8400; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
 .story .story-wrap h3, .tile-textbelow .story-wrap h3 { color: #2a2a2a; font-weight: 700; line-height: 1.1; margin-bottom: 8px; margin-top: 0; letter-spacing: -0.02em; }
@@ -446,7 +450,7 @@ table th, table td { padding: 5px; }
 .sideListTitleTWA { font-size: 15px; font-weight: 700; font-family: "Roboto Slab", serif; margin-top: 5px; padding: 5px 0 0 0; line-height: 1em; }
 .sideListTitleTWA a:hover { color: #2d9e9f; }
 
-.sideListDate { color: #fffb22; font-weight: 300; padding: 0 0 0 10px; }
+.sideListDate { color: #32bbbc; font-weight: 300; padding: 0 0 0 10px; }
 
 .sideListDateTWA { color: #ff8400; font-weight: 300; padding: 0 0 0 0; }
 
@@ -548,7 +552,7 @@ table th, table td { padding: 5px; }
 
 .whiteFade { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDcxREZERkQwMDE4MTFFNjhBNEJCMjY0MzAzODZBMDkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDcxREZERkUwMDE4MTFFNjhBNEJCMjY0MzAzODZBMDkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowNzFERkRGQjAwMTgxMUU2OEE0QkIyNjQzMDM4NkEwOSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowNzFERkRGQzAwMTgxMUU2OEE0QkIyNjQzMDM4NkEwOSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PpmdozEAAAAbSURBVHjaYvz///9+BiIAEwORYFQhdRQCBBgABBoD0Lonh8IAAAAASUVORK5CYII=) repeat top left fixed; height: 100%; width: 100%; padding: 10px; }
 
-.marketoForm { margin-bottom: 15px; }
+.marketoForm { margin-bottom: 15px; padding: 0 20px; }
 .marketoForm form { margin-top: 15px; }
 
 .coverblurb { font-size: 14px; line-height: 14px; }

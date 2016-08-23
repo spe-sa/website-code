@@ -12,8 +12,8 @@
                 {% endif %}
                 <div class="story-text">
                     <span class="pub-date">{{ article.date|date:"d F Y" }}
-                        {% if current_page.parent|tostring == "OGF" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
-                            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                        {% if pubcode == "OGF" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
+                            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i>{{ pubcode }}</span>
                         {% endif %}
                         </span>
                     <h3>{{ article.title }}</h3>
