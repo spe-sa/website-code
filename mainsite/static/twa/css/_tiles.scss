@@ -167,7 +167,7 @@
 }
 
 .twa-storybox {
-  padding:              10px;
+  padding:               0 10px 20px 10px;
   margin:               0;
   //min-height:           300px;
 
@@ -573,8 +573,9 @@
   margin-top:           10px;
 }
 .briefListItem {
-  margin:               0 0 15px 0;
-  padding-top:          15px;
+  //margin:               0 0 15px 0;
+  //padding-top:          15px;
+  padding:              15px 10px 10px 10px;
   background:           $img-back-box no-repeat bottom right;
   min-height:           100px;
 
@@ -612,7 +613,7 @@
   }
 }
 .brief-date {
-  color:            $col-red;
+  color:            $col-orange;
   display:          block;
   text-transform:   uppercase;
   font-size:        10px !important;
