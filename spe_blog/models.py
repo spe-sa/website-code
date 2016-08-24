@@ -614,7 +614,8 @@ class BriefListingPlugin(CMSPlugin):
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
+    # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
+    categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
     topic = models.ForeignKey(Topics, blank=True, null=True, on_delete=models.SET_NULL)
     # if user enters url and text then we display the show all link with these values
@@ -625,12 +626,15 @@ class BriefListingPlugin(CMSPlugin):
         dictionary = dict(BRIEF_TEMPLATES)
         buf = "(" + str(self.starting_with) + " - " + str(
             self.cnt + self.starting_with - 1) + ") by " + self.get_order_by_display()
-        if self.category:
-            buf += " (" + self.category.name + " only)"
+        # if self.category:
+        #     buf += " (" + self.category.name + " only)"
         if self.topic:
             buf += " (" + self.topic.name + " only)"
         buf += " using " + dictionary[self.template]
         return buf
+
+    def copy_relations(self, old_instance):
+        self.categories = old_instance.categories.all()
 
 
 class IssuesByPublicationPlugin(CMSPlugin):
