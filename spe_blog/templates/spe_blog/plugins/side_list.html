@@ -12,11 +12,12 @@
         {% if pubcode == "TWA" %}
             <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>
             <div class="col-xs-11">
+            <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
         {% else %}
             <div class="col-xs-12">
+            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
         {% endif %}
-{#            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>#}
-            <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
+
             <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
         {% if pubcode == "TWA" %}
 {#            <span class="sideListAuthor">{{ article.author }}</span>#}
