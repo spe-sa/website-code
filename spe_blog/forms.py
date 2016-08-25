@@ -14,29 +14,9 @@ class ArticleSelectionForm(ModelForm):
     class Meta:
         model = ArticlesPlugin
         exclude = []
-        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext', 'boxwidth', 'boxheight', ]
-        # fieldsets = (
-        #     (None, {
-        #         'fields': (
-        #             'template',
-        #             'order_by',
-        #             'articles',
-        #             'all_url',
-        #             'all_text',
-        #         )
-        #     }),
-        #     ('Editorial Feature 2', {
-        #         'classes': ('collapse',),
-        #         'fields': (
-        #             'backcol',
-        #             'fixedheight',
-        #         )
-        #     }),
-        # )
-        # fields = ['template', 'backcol', 'fixedheight', 'order_by', 'articles', 'all_url', 'all_text', ]
+        fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext',
+                  'boxwidth', 'boxheight', ]
 
-
-# fields = ['template', 'keep_original_order', 'order_by', 'articles', ]
 
 class EditorialSelectionForm(ModelForm):
     editorial = ModelMultipleChoiceField(Editorial.objects.all(),
@@ -53,7 +33,7 @@ class BriefSelectionForm(ModelForm):
 
     class Meta:
         model = BriefPlugin
-        fields = ['template', 'order_by', 'briefs', ]
+        fields = ['template', 'order_by', 'briefs', 'backcol', 'whitetext', ]
 
 
 class TopicsSelectionForm(ModelForm):

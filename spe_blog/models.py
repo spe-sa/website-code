@@ -63,6 +63,8 @@ DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
 BRIEF_TEMPLATES = (
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
     ('spe_blog/plugins/brief_accordion.html', 'POI Accordion Listing'),
+    ('spe_blog/plugins/side_list.html', 'Brief List'),
+    ('spe_blog/plugins/best_shot.html', 'Best Shot'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
@@ -489,6 +491,8 @@ class BriefPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True)
+    whitetext = models.BooleanField("White Text", default=True)
 
     def __unicode__(self):
         buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
@@ -621,6 +625,8 @@ class BriefListingPlugin(CMSPlugin):
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True)
+    whitetext = models.BooleanField("White Text", default=True)
 
     def __unicode__(self):
         dictionary = dict(BRIEF_TEMPLATES)

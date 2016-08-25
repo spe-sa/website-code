@@ -376,6 +376,10 @@ class ShowBriefListingPlugin(BriefPluginBase):
                  instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
+        context.update({'backcol': instance.backcol})
+        context.update({'whitetext': instance.whitetext})
+        context.update({'pubcode': instance.publication.code})
+        context.update({'isbrief': True})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
