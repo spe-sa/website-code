@@ -378,7 +378,10 @@ class ShowBriefListingPlugin(BriefPluginBase):
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
         context.update({'whitetext': instance.whitetext})
-        context.update({'pubcode': instance.publication.code})
+        if instance.publication:
+            context.update({'pubcode': instance.publication.code})
+        else:
+            context.update({'pubcode': ""})
         context.update({'isbrief': True})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
