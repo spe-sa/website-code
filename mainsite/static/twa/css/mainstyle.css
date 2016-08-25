@@ -559,7 +559,7 @@ table th, table td { padding: 5px; }
 
 .bestshotpic:after { content: ""; display: block; padding-bottom: 100%; }
 
-.bestshotblurb { padding-left: 15px; color: #2a2a2a; }
+.bestshotblurb { padding-left: 15px; color: #2a2a2a; height: 150px; }
 .bestshotblurb h3 { font-size: 15px; font-weight: 700; margin: 0; }
 .bestshotblurb p { font-size: 12px; }
 
