@@ -4,26 +4,17 @@
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
-    {% if pubcode == "TWA" %}
-        {% if isbrief == True %}
-            <div class="spacer10px"></div>
-        {% else %}
-            <div class="col-xs-12 sideListBoxTitle">
-                <span class="boxTitleText col-xs-12">Most Read</span>
-            </div>
-        {% endif %}
-    {% endif %}
+{#    {% if pubcode == "TWA" %}#}
+{#        <div class="col-xs-12 sideListBoxTitle">#}
+{#            <span class="boxTitleText col-xs-12">Most Read</span>#}
+{#        </div>#}
+{#    {% endif %}#}
 {% for article in articles %}
 {#    <div class="row">#}
         <div class="row sideListItem">
         {% if pubcode == "TWA" %}
-            {% if isbrief %}
-                <div class="col-xs-12">
-            {% else %}
-                <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>
-                <div class="col-xs-11">
-            {% endif %}
-
+{#            <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>#}
+            <div class="col-xs-11">
             <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
         {% else %}
             <div class="col-xs-12">
