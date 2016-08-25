@@ -9,7 +9,7 @@
 {#        <div class="row">#}
 {#    {% endif %}#}
 
-    <article class="bestshotbox col-sm-6 col-md-4 col-lg-3 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
+    <article class="bestshotbox col-sm-6 col-md-4 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
         <a href="{{ article.get_absolute_url }}">
             <div class="story-wrap row">
         {% if article.picture and article.picture.url %}
@@ -18,7 +18,7 @@
             <div class="col-xs-12 bestshotpic"></div>
         {% endif %}
 
-            <div class="col-xs-12 poiblurb">
+            <div class="col-xs-12 bestshotblurb">
                 <h3>{{ article.title }}</h3>
                 {% if article.date %}
                     <p class="poi-date">{{ article.date|date:"d F Y" }}</p>
