@@ -6,7 +6,7 @@
 
 {% for article in articles %}
 
-    <article class="bestshotbox col-sm-6 col-md-4 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
+    <article class="bestshotbox col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
         <a href="{{ article.get_absolute_url }}">
             <div class="story-wrap row">
         {% if article.picture and article.picture.url %}
