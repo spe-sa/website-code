@@ -254,7 +254,7 @@ class Article(models.Model):
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article',
                               related_name="article_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
-    picture_caption = models.CharField(max_length=300, blank=True, null=True, verbose_name=u'Picture caption')
+    picture_caption = models.CharField(max_length=500, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
