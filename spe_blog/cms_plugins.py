@@ -133,6 +133,8 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         context.update({'article': art})
         context.update({'dateNow': now})
         context.update({'topic_articles': related_articles})
+        # context.update({'pubcode': self.publication})
+
         # context.update({'topics_selected': art.topics})
         self.render_template = 'spe_blog/plugins/article_detail.html'
         return context

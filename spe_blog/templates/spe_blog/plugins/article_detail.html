@@ -4,8 +4,8 @@
 {% addtoblock "title2" %}{{ article.title }}{% endaddtoblock %}
 
 <div class="row articleDetail" id="printMe">
-
-{% if current_page.parent|tostring == "TWA" %}
+{#<p>Publication: {{ pubcode }} - {{ article.publication.code }}</p>#}
+{% if article.publication.code == "TWA" %}
     <div class="row articleTitleBox text-center">
         <div class="col-sm-12">
             <span class="categoryTitle">{{ article.category|removepub }}</span>
@@ -34,6 +34,9 @@
     <div class="col-sm-12 articleTitleBox">
         <hr class="tiletitlehr">
         <h2 class="tiletitles">{{ article.title }}</h2>
+        {% if article.publication.code == "JPT" %}
+            <span class="categoryTitle">{{ article.category|removepub }}</span>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col-sm-12 tiletitlehr"></div>
