@@ -5,6 +5,7 @@ from . import views
 # app_name='spe_preferences'
 urlpatterns = [
     url(r'^hi$', views.hello_world, name='hello_world'),
+    url(r'^search/?$', views.find_user, name='find_user'),
     url(r'^set/?$', views.prefs_new, name='prefs_new'),
     # NOTE: we should have no publicly defined views; moved to urls_internal
     # SEE: urls_internal.py

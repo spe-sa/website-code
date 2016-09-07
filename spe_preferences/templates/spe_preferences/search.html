@@ -1,0 +1,68 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block content %}
+
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    <div class="well">
+        <a href="{% url 'find_user' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <h1>Find User</h1>
+        <form method="POST" class="search-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Search</button>
+        </form>
+
+        <div id="search_results">
+{% if users_found %}
+    <h3>Please select one of the following:</h3>
+    {% for u in users_found %}
+            {{ u.id }} {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+    {% endfor %}
+{% endif %}
+        </div>
+
+{#        <section class="search_section">#}
+{#            <form id="search-form" action="{{ form_url }}">#}
+{#                <fieldset>#}
+{#                    <legend>Who</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Search "/>#}
+{#                </fieldset>#}
+{#                <fieldset>#}
+{#                    <legend>Communication Preferences</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Save "/>#}
+{#                </fieldset>#}
+{#            </form>#}
+{#        </section>#}
+
+    </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                if('{{ saved }}' == 'True'){
+                    alert('Saved successfully');
+                }
+                // Add JQuery Here
+//                console.log("Page Level Javascript Ran!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+{% endblock content %}
