@@ -29,6 +29,8 @@ urlpatterns = i18n_patterns('',
     url(r'^polls/', include('spe_polls.urls', namespace='polls')),
     url(r'^forms/', include('djangocms_forms.urls')),
     url(r'^filer/', include('filer.urls')),
+    url(r'^preferences/', include('spe_preferences.urls')),
+
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     # ex: /ogf/  -> /ogf/ogf-main-page/
     url(r'^ogf/$', RedirectView.as_view(url='ogf-main-page/', permanent=False), name='ogf-main-page'),
