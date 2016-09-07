@@ -1,14 +1,14 @@
 @import 'vars';
 
 .footerUpper {
-  background-color:   $col-blue;
+  background-color:   $col-lightgrey;
   font-family:        $font-titles;
   padding:            30px;
   margin:             30px 0 0 0;
 }
 .footerLower {
-  background-color:   $col-black;
-  color:              $col-white;
+  background-color:   $col-drkgrey;
+  color:              $col-red;
   font-family:        $font-titles;
   min-height:         100px;
   padding:            10px;
@@ -24,13 +24,13 @@
 }
 .footerURight {
   float:              right;
-  color:              $col-menuwhite;
+  color:              $col-red;
 
   a {
-    color:            $col-menuwhite;
+    color:            $col-red;
 
     &:hover {
-      color:          $col-yellow;
+      color:          $col-grey;
       text-decoration:none;
     }
   }
@@ -50,14 +50,14 @@
 
   li a {
     display:          block;
-    color:            $col-menuwhite;
+    color:            $col-red;
     text-align:       center;
     padding:          0 10px;
     text-decoration:  none;
   }
 
   li a:hover {
-    color:            $col-yellow;
+    color:            $col-grey;
   }
 }
 .footerMenu {
@@ -114,6 +114,6 @@
 }
 .copyright {
   font-size:          10px;
-  color:              $col-menuwhite;
+  color:              $col-grey;
   white-space:        nowrap;
 }

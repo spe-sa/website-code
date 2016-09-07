@@ -1,5 +1,5 @@
 /* =================================================================== */
-/* jpt HEADER & MENUS
+/* OGF HEADER & MENUS
 ====================================================================== */
 @import 'vars';
 
@@ -8,8 +8,8 @@
 /* ********************************** */
 /* TOP BAR BLACK */
 #topbar {
-  background-color:     $col-brightred;
-  min-height:           50px;
+  background-color:     $col-black;
+  //min-height:           50px;
   color:                $col-white;
   font-weight:          $font-bold;
 
@@ -19,9 +19,10 @@
 
   .topbarmenuleft {
     list-style-type:    none;
-    padding:            14px 0 0 0;
+    padding:            5px 0 0 0;
     overflow:           hidden;
     font-size:          14px;
+    margin-bottom:      0;
 
     li {
       float:            left;
@@ -36,7 +37,7 @@
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-red !important;
     }
 
   }
@@ -45,8 +46,9 @@
     float:              right;
     font-size:          20px;
     list-style-type:    none;
-    padding:            13px 0 0 0;
+    padding:            5px 0 0 0;
     overflow:           hidden;
+    margin-bottom:      0;
 
     li {
       float:            left;
@@ -69,10 +71,10 @@
 
   #signin {
     background-color:   $col-red;
-    height:             50px;
+    height:             30px;
     font-size:          14px;
     text-align:         center;
-    padding:            14px 0 0 0;
+    padding:            5px 0 0 0;
 
     a {
       color:            $col-menuwhite;
@@ -83,7 +85,7 @@
       background-color: $col-white;
 
       a {
-        color:          $col-brightred;
+        color:          $col-red;
       }
     }
   }
@@ -93,22 +95,24 @@
 /* ********************************** */
 /* LOGO MENU BAR GREY                 */
 #menubar {
-  background-color:     $col-blue;
-  min-height:           170px;
+  background-color:     $col-lightgrey;
+  //min-height:           125px;
+  padding-bottom:       20px;
 
   #mainLogo {
-    padding-top:        50px;
+    padding-top:        20px;
 
     img {
-      max-width:        300px;
-      height:           auto;
+      //max-width:        300px;
+      //height:           auto;
     }
   }
 
   .pubMenu {
+    font-family:        $font-titles;
     list-style-type:    none;
-    margin:             0;
-    padding:            80px 0 0 0;
+    margin:             0 0 20px 0;
+    padding:            50px 0 0 0;
     font-size:          18px;
     float:              right;
 
@@ -119,20 +123,21 @@
 
     li a {
       display:          block;
-      color:            $col-menuwhite;
+      color:            $col-black;
       text-align:       center;
       text-decoration:  none;
       font-weight:      $font-bold;
+      //letter-spacing:   1px;
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-red;
     }
   }
 }
 .searchIcon {
   &:hover {
-    color:              $col-brightred;
+    color:              $col-red;
     cursor:             pointer;
   }
 }
