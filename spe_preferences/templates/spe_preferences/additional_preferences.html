@@ -1,0 +1,97 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block content %}
+
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    <div class="well">
+        <h1>Find User</h1>
+        <form method="POST" class="search-form">{% csrf_token %}
+            {{ search_form.as_p }}
+            <button id="search_button" type="submit" class="save btn btn-default">Search</button>
+        </form>
+
+        {% if users_found.count > 1 %}
+            <div id="search_results">
+                 <h3>Please select one of the following:</h3>
+                {% for u in users_found %}
+                {{ u.id }} {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                </div>
+            {% endfor %}
+            <p><label for="cid">Customer id:</label> <input id="cid" maxlength="12" name="customer_id" type="text" value="{{ cid }}" /></p>
+            <p><label for="pref_one">Pref one:</label> <input id="id_pref_one" maxlength="1" name="pref_one" type="text" /></p>
+            <p><label for="pref_two">Pref two:</label> <input id="id_pref_two" maxlength="1" name="pref_two" type="text" /></p>
+{#            <p><label for="submitted_date">Submitted date:</label> <input id="id_submitted_date" name="submitted_date" type="text" value="2016-09-08 16:12:07" />#}
+{#                <input id="initial-id_submitted_date" name="initial-submitted_date" type="hidden" value="2016-09-08 16:12:07" /></p>#}
+
+            <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
+        </form>
+
+{#        <section class="search_section">#}
+{#            <form id="search-form" action="{{ form_url }}">#}
+{#                <fieldset>#}
+{#                    <legend>Who</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Search "/>#}
+{#                </fieldset>#}
+{#                <fieldset>#}
+{#                    <legend>Communication Preferences</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Save "/>#}
+{#                </fieldset>#}
+{#            </form>#}
+{#        </section>#}
+
+    </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                if('{{ saved }}' == 'True'){
+                    alert('Saved successfully');
+                }
+                var cid = '{{ cid }}';
+                if (cid == undefined || cid == '') {
+                    // enable the search and disable the preferences
+                    $('#search_button').attr('disabled', false);
+                    $('#submit_button').attr('disabled', true);
+                } else {
+                    $('#search_button').attr('disabled', true);
+                    $('#submit_button').attr('disabled', false);
+{#                    $('#id_customer_id').val({{ cid }});#}
+                }
+//                console.log("Page Level Javascript Ran!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+{% endblock content %}
