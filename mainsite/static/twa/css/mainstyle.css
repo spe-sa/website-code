@@ -419,6 +419,10 @@ table th, table td { padding: 5px; }
 
 .topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
 
+table#authortable tr td:first-child { width: 125px; padding: 0 5px; }
+table#authortable img { padding: 0; margin-right: 10px; }
+table#authortable p { padding-left: 10px; }
+
 /* =================================================================== */
 /* OGF TILES & BOXES
 ====================================================================== */

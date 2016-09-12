@@ -747,3 +747,16 @@ table {
   width:              32%;
 }
 
+table#authortable {
+  tr td:first-child{
+    width:    125px;
+    padding:  0 5px;
+  }
+  img {
+    padding:0;
+    margin-right: 10px;
+  }
+  p {
+    padding-left: 10px;
+  }
+}
