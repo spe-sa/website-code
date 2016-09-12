@@ -1,5 +1,5 @@
 from django import forms
-from .models import AdditionalPreference
+from .models import AdditionalPreference, PrefsSubmission
 
 
 #class FindUserForm(forms.fields_for_model('constituent_id', 'email_address', 'first_name', 'last_name', 'country_code'))
@@ -24,3 +24,8 @@ class PrefsUserSearchForm(forms.Form):
     email = forms.CharField(max_length=90, required=False)
     first_name = forms.CharField(max_length=80, required=False)
     last_name = forms.CharField(max_length=60, required=False)
+
+class PrefsSubmissionForm(forms.ModelForm):
+    class Meta:
+        model = PrefsSubmission
+        exclude = ()

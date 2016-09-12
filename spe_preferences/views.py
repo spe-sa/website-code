@@ -93,3 +93,18 @@ def additional_prefs_insert(request):
     context = { 'prefs_form': prefs_form, 'saved' : False, 'search_form': search_form}
     return render(request, 'spe_preferences/additional_preferences.html', context)
 
+def submit_prefs(request):
+    if request.method == "POST":
+        search_form = PrefsUserSearchForm(request.POST)
+        prefs_form = PrefsSubmissionForm(request.POST)
+        if prefs_form.is_valid():
+            prefs = prefs_form.save(commit=False)
+            prefs.when_submitted = timezone.now()
+            prefs.save()
+            return redirect('add_prefs_search', {'saved': True})
+    else:
+        prefs_form = PrefsForm()
+        search_form = FindUserForm()
+    context = { 'prefs_form': prefs_form, 'saved' : False, 'search_form': search_form}
+    return render(request, 'spe_preferences/submit_prefs.html', context)
+

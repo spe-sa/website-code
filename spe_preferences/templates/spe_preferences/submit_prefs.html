@@ -1,0 +1,237 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block content %}
+
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    <div class="well">
+        <h1>Find User</h1>
+        <form method="POST" class="search-form">{% csrf_token %}
+            {{ search_form.as_p }}
+            <button id="search_button" type="submit" class="save btn btn-default">Search</button>
+        </form>
+
+        {% if users_found.count > 1 %}
+            <div id="search_results">
+                 <h3>Please select one of the following:</h3>
+                {% for u in users_found %}
+                {{ u.id }} {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                </div>
+            {% endfor %}
+
+          <fieldset><legend>Resources/Operating Environments of Interest</legend>
+            <h4 data-w="r">Resources</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <!-- button type="button" class="btn btn-info" data-toggle="collapse" data-target="#roei_r">Select...</button -->
+            <div id="roei_r" class="Xcollapse">
+              <div class="checkbox"><label><input type="checkbox" name="r_1">Carbonates</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="r_2">Gas condensates</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="r_3">Geothermal</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="r_4">Heavy oil/tar sands</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="r_5">Shale oil</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="r_6">Tight gas/shale gas/coalbed methane</label></div>
+            </div>
+            <h4 data-w="oe">Operating Environments</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <!-- button type="button" class="btn btn-info" data-toggle="collapse" data-target="#roei_oe">Select...</button -->
+            <div id="roei_oe" class="Xcollapse">
+              <div class="checkbox"><label><input type="checkbox" name="oe_1">Arctic/extreme environments</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="oe_2">Greenfields</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="oe_3">Marginal/aging fields</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="oe_4">Offshore</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="oe_5">Onshore</label></div>
+            </div>
+          </fieldset>
+
+
+          <fieldset><legend>Technical Topics of Interest</legend>
+            <h4 data-w="wd">Drilling</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_wd"> Select... </button>
+            <div id="tti_wd" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="wd_1">Casing/cementing/zonal isolation</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_2">Drilling automation</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_3">Drilling fluids</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_4">Drilling operations</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_5">Formation damage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_6">Directional/extended reach wells</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_7">HP/HT</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_8">MPD/UBD</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_9">Water treatment and management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wd_10">Well integrity/control</label></div>
+            </div>
+            <h4 data-w="wc">Completions</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_wc"> Select... </button>
+            <div id="tti_wc" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="wc_1">Stimulation/acidizing</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_2">Completion fluids</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_3">Formation damage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_4">Hydraulic fracturing</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_5">Intelligent fields/surveillance</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_6">Sand management/control</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_7">Water treatment and management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_8">Well integrity/control</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="wc_9">Well intervention/recompletion</label></div>
+            </div>
+            <h4 data-w="rdd">Reservoir Description and Dynamics</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_rdd"> Select... </button>
+            <div id="tti_rdd" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="rdd_1">Carbon capture and storage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_2">Enhanced recovery</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_3">HP/HT</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_4">Intelligent fields/surveillance</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_5">Petroleum reserves</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_6">Petrophysics/geophysics</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_7">Reservoir characterization</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_8">Reservoir management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="rdd_9">Reservoir simulation</label></div>
+            </div>
+            <h4 data-w="po">Production and Well Operations</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_po"> Select... </button>
+            <div id="tti_po" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="po_1">Artificial lift</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_2">Carbon capture and storage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_3">Coiled tubing</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_4">Continued service of fields</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_5">Decommisioning/site remediation</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_6">Enhanced recovery</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_7">Field start-up/commissioning</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_8">H2S/sour gas</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_9">Intelligent fields/surveillance</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_10">Production chemistry</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_11">Sand management/control</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_12">Separation/metering</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_13">Stimulation/acidizing</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_14">Water treatment and management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="po_15">Well intervention/recompletion</label></div>
+            </div>
+            <h4 data-w="pfc">Projects, Facilities and Construction</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_pfc"> Select... </button>
+            <div id="tti_pfc" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="pfc_1">Carbon capture and storage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_2">Continued service of fields</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_3">Corrosion</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_4">Decommisioning/site remediation</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_5">Facilities planning and maintenance</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_6">Field start-up/commissioning</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_7">Flow assurance</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_8">Gas conversion (LNG/GTL)</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_9">HP/HT</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_10">Processing systems/design</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_11">Project management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_12">Risers/flowlines/pipelines</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_13">Separation/metering</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_14">Subsea systems</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_15">Topsides/floating production systems</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="pfc_16">Water treatment and management</label></div>
+            </div>
+            <h4 data-w="hse">HSSE-SRQ</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_hse"> Select... </button>
+            <div id="tti_hse" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="hse_1">Carbon capture and storage</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="hse_2">Decommisioning/site remediation</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="hse_3">Environment</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="hse_4">Safety/health</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="hse_5">Social responsibility/sustainability</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="hse_6">Water treatment and management</label></div>
+            </div>
+            <h4 data-w="mi">Management and Information</h4>
+            <button type="button" class="btn btn-info"> All </button>
+            <button type="button" class="btn btn-info"> None </button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#tti_mi"> Select... </button>
+            <div id="tti_mi" class="collapse">
+              <div class="checkbox"><label><input type="checkbox" name="mi_1">Asset/portfolio management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_2">Petroleum economics/production forecasting</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_3">Risk management/decision-making</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_4">Data and information management</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_5">R&amp;D</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_6">Faculty/engineering education</label></div>
+              <div class="checkbox"><label><input type="checkbox" name="mi_7">HR/people management</label></div>
+            </div>
+          </fieldset>
+
+            <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
+        </form>
+
+    </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+
+function check_all(prefix,bool){
+  if(bool) $('[name^='+prefix+'_]').prop('checked','checked');
+  else $('[name^='+prefix+'_]').removeProp('checked');
+  return true;
+}
+// $('#user_search_form').load('f1.htm').on('submit',find_user());
+// $('#comm_prefs_form').load('f2.htm').on('submit',set_prefs());
+
+setTimeout(function(){
+  $('BUTTON').filter(':contains(" All ")').on('click',function(){ var w = $(this).prev('H4').data('w'); check_all(w,true); });
+//  $('BUTTON').filter(':contains(" None ")').on('click',function(){ var w = $(this).prev('H4').data('w'); check_all(w,false); });
+  $('BUTTON').filter(':contains(" None ")').hide(); });
+},1800);
+
+                if('{{ saved }}' == 'True'){
+                    alert('Saved successfully');
+                }
+                var cid = '{{ cid }}';
+                if (cid == undefined || cid == '') {
+                    // enable the search and disable the preferences
+                    $('#search_button').attr('disabled', false);
+                    $('#submit_button').attr('disabled', true);
+                }
+                else {
+                    $('#search_button').attr('disabled', true);
+                    $('#submit_button').attr('disabled', false);
+{#                    $('#id_customer_id').val({{ cid }});#}
+                }
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+{% endblock content %}
