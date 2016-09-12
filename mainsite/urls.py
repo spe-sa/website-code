@@ -35,6 +35,16 @@ urlpatterns = i18n_patterns('',
     # ex: /ogf/  -> /ogf/ogf-main-page/
     url(r'^ogf/$', RedirectView.as_view(url='ogf-main-page/', permanent=False), name='ogf-main-page'),
     url(r'^ogf/ogf-main-page/googleaa5ff496c6812444.html', 'mainsite.views.register_ogf', name='google-registration-ogf'),
+
+    url(r'^favicon\.ico', 'mainsite.views.status_code_418', name='status_code_418'),
+
+    url(r'^test/sc200', 'mainsite.views.status_code_200', name='status_code_200'),
+    url(r'^test/sc301', 'mainsite.views.status_code_301', name='status_code_301'),
+    url(r'^test/sc404', 'mainsite.views.status_code_404', name='status_code_404'),
+    url(r'^test/sc410', 'mainsite.views.status_code_410', name='status_code_410'),
+    url(r'^test/sc418', 'mainsite.views.status_code_418', name='status_code_418'),
+    url(r'^test/sc500', 'mainsite.views.status_code_500', name='status_code_500'),
+
     url(r'^', include('cms.urls')),
 )
 

@@ -83,3 +83,20 @@ def login_show(request):
 
 def register_ogf(request):
     return render(request, 'google_registration.html', {'site_code': 'googleaa5ff496c6812444'})
+
+
+def status_code_200(request):
+    return HttpResponse("<h1>200: OK</h1>", status=200)
+
+def status_code_301(request):
+    return HttpResponse('<h1>301: Permanent Redirect</h1><p>The resource has been moved to <a href="/test/sc200">here</a>.</p><p>Please update your local links and bookmarks.</p>', status=301, location="/test/sc200")
+
+def status_code_410(request):
+    return HttpResponse("<h1>410: Resource is Gone</h1><p>The requested resource is no longer available.</p>", status=410)
+
+def status_code_418(request):
+    return HttpResponse("<h1>418: Placeholder</h1><p>The requested resource has yet to be created.</p>", status=418)
+
+def status_code_500(request):
+    return HttpResponse("<h1>500: Server Error</h1><p>The server is experiencing a temporary problem. Please try again later.</p>", status=500)
+
