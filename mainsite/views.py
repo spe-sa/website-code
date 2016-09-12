@@ -91,6 +91,9 @@ def status_code_200(request):
 def status_code_301(request):
     return HttpResponse('<h1>301: Permanent Redirect</h1><p>The resource has been moved to <a href="/test/sc200">here</a>.</p><p>Please update your local links and bookmarks.</p>', status=301, location="/test/sc200")
 
+def status_code_404(request):
+    return HttpResponse("<h1>404: Resource Not Found</h1><p>The requested resource could not be found. Please check your typing or start fresh from our sitemap or search.</p>", status=404)
+
 def status_code_410(request):
     return HttpResponse("<h1>410: Resource is Gone</h1><p>The requested resource is no longer available.</p>", status=410)
 
