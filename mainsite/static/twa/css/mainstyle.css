@@ -30,6 +30,60 @@ a:hover { text-decoration: none; }
 /* ************************ */
 /* HEAD FOOT & CONTENT      */
 /* =================================================================== */
+/* Yamm!3 Y.et A.nother M.ega M.enu for Bootstrap http://geedmo.github.com/yamm3  SPE Menu styles */
+/* =================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+/* PRIMARY NAV BEGIN */
+@media (min-width: 767px) { .thumbnail { margin: 0; } }
+.navbar { min-height: 54px; margin: 0; border-radius: 0; }
+.navbar ul { margin: 0; padding: 0; list-style: none; }
+
+.navbar-default { border: none; background: none; }
+
+.megarow { padding: 40px 30px 30px 30px; }
+.megarow .nav-col { border-right: 1px solid #e7e7e7; min-height: 220px; }
+.megarow .nav-col ul { margin: 0 0 25px; padding: 0; list-style: none; }
+.megarow .nav-col ul li { line-height: 16px; margin: 0 0 6px 0; font-size: 14px; }
+.megarow .nav-col ul li a { font-weight: 400; font-size: 14px; color: #424143; display: block; text-decoration: none; margin-bottom: 0; }
+.megarow .nav-col ul li a:hover { color: #2d9e9f; }
+.megarow .nav-col ul .heading { line-height: 18px; font-size: 15px; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 600; color: #2a2a2a; margin-bottom: 12px; }
+.megarow .nav-col ul .more { font-weight: 600; }
+.megarow .nav-col a { margin-bottom: 1.5em; display: block; text-decoration: none; }
+.megarow .nav-col a .link-title { display: inline-block; padding-top: 6px; font-size: 15px; line-height: 1; font-weight: 700; color: #2a2a2a; letter-spacing: -0.02em; }
+.megarow .nav-col a .link-title:hover { color: #2d9e9f; }
+.megarow .navcolborder { border-bottom: 1px solid #e7e7e7; margin-bottom: 20px; }
+.megarow .last { border: none; }
+.megarow .see-all { margin-top: 25px; text-align: center; color: #646e93; border-radius: 3px; font-weight: 700; font-size: 16px; }
+.megarow .see-all:hover { background-color: #32bbbc; }
+.megarow .see-all a { line-height: 34px; letter-spacing: -0.02em; }
+.megarow .see-all a:hover { color: white; }
+
+.navbar-default .navbar-nav > li { text-align: left; }
+
+.navbar-default .navbar-nav > li > a { min-height: 53px; color: white; font-weight: 600; font-size: 14px; }
+.navbar-default .navbar-nav > li > a:hover { color: #26416c; background-color: #e7e7e7; }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover { color: #26416c; }
+
+.clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
+
+.yamm .nav, .yamm .collapse, .yamm .dropup, .yamm .dropdown { position: static; }
+.yamm ul.nav li.dropdown:hover > ul.dropdown-menu { display: block; }
+.yamm .container { position: relative; width: auto; max-width: 1170px; min-height: 54px; }
+.yamm .navbar-collapse, .yamm .nav { min-height: 54px; }
+.yamm .dropdown-menu { left: auto; background-color: white; }
+.yamm .yamm-content { padding: 20px 30px; }
+.yamm .dropdown.yamm-fw .dropdown-menu { left: 0; right: 0; }
+
+.navbar-nav .open .dropdown-menu { background-color: white; }
+
+/* YAMM MENU END */
+/* *************************************** */
+/* *************************************** */
+/* =================================================================== */
 /* OGF HEADER & MENUS
 ====================================================================== */
 /* =================================================================== */
@@ -64,6 +118,10 @@ a:hover { text-decoration: none; }
 .searchIcon:hover { color: #bf1d21; cursor: pointer; }
 
 .searchbar { background-color: #e4e1d8; padding: 3px 0; }
+
+.menu2cont { background-color: #57575a; width: 100%; }
+
+.menu2 { color: white; padding: 0; }
 
 /* =================================================================== */
 /* VARIABLES
@@ -360,6 +418,10 @@ table th, table td { padding: 5px; }
 .topicListBox .topicListItem p { margin: 0; }
 
 .topicListItem3 { border: 1px dotted #b4b4b9; padding: 5px; display: inline-block; width: 32%; }
+
+table#authortable tr td:first-child { width: 125px; padding: 0 5px; }
+table#authortable img { padding: 0; margin-right: 10px; }
+table#authortable p { padding-left: 10px; }
 
 /* =================================================================== */
 /* OGF TILES & BOXES

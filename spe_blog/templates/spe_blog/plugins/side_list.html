@@ -1,6 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
-<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}; {% if isbrief == True %}margin-left:10px;padding-left: 10px;{% endif %}">
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
@@ -9,7 +9,7 @@
             <div class="spacer10px"></div>
         {% else %}
             <div class="col-xs-12 sideListBoxTitle">
-                <span class="boxTitleText col-xs-12">Most Read</span>
+                <span class="boxTitleText col-xs-12">What's Trending Now</span>
             </div>
         {% endif %}
     {% endif %}
