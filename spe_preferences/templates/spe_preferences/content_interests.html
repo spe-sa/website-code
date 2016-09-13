@@ -1,0 +1,121 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags var_tags %}
+
+{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block content %}
+
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    {% if  emsg  %}
+        <div class="error panel panel-danger">
+            {{ emsg }}
+        </div>
+    {%  endif %}
+
+    <div class="well">
+        <div id="search_panel">
+        <h1>Find User</h1>
+        <form id=search_form method="POST" class="search-form">{% csrf_token %}
+            {{ search_form.as_p }}
+            <button id="search_button" type="submit" class="save btn btn-default">Search</button>
+        </form>
+
+        {% if users_found.count > 0 %}
+            <div id="search_results">
+                 <h3>Please select one of the following:</h3>
+                {% for u in users_found %}
+                <a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">{{ u.id }}</a> {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+
+        <div id="prefs_panel">
+        <form id=prefs_form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <label for="prefs_customer_id">Customer id:</label> <input id="prefs_customer_id" maxlength="12" name="customer_id" type="text" />
+            </div>
+            {% set_var "" as cur_gid %}
+            {% for pgroup in pgroups %}
+                {{ cur_gid }}
+                {% if pgroup.id != cur_gid %}
+                    <h3>{{ pgroup.name }}</h3>
+                    {% set_var "{{pgroup.id}}" as cur_gid %}
+                {% endif %}
+                <div class="fieldWrapper">
+                    <h4>{{ pgroup.name }}</h4><!-- id: {{ pgroup.id }} -->
+                </div>
+                <div class="fieldWrapper">
+                {% for pitem in pitems %}
+                    {% if pitem.group_id == pgroup.id %}
+                        <label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}"><input id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" type="checkbox" value="{{ pitem.id }}" /> {{ pitem.name }}</label>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+{#            <p><label for="cid">Customer id:</label> <input id="cid" maxlength="12" name="customer_id" type="text" value="{{ cid }}" /></p>#}
+{#            <p><label for="pref_one">Pref one:</label> <input id="id_pref_one" maxlength="1" name="pref_one" type="text" /></p>#}
+{#            <p><label for="pref_two">Pref two:</label> <input id="id_pref_two" maxlength="1" name="pref_two" type="text" /></p>#}
+{#            <p><label for="submitted_date">Submitted date:</label> <input id="id_submitted_date" name="submitted_date" type="text" value="2016-09-08 16:12:07" />#}
+{#                <input id="initial-id_submitted_date" name="initial-submitted_date" type="hidden" value="2016-09-08 16:12:07" /></p>#}
+
+            <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
+        </form>
+        </div>
+{#        <section class="search_section">#}
+{#            <form id="search-form" action="{{ form_url }}">#}
+{#                <fieldset>#}
+{#                    <legend>Who</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Search "/>#}
+{#                </fieldset>#}
+{#                <fieldset>#}
+{#                    <legend>Communication Preferences</legend>#}
+{#                    <input class="pull-right btn btn-default" type="submit" value=" Save "/>#}
+{#                </fieldset>#}
+{#            </form>#}
+{#        </section>#}
+
+    </div>
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $( document ).ready(function() {
+
+                if('{{ saved }}' == 'True'){
+                    alert('Saved successfully');
+                }
+                var cid = '{{ cid }}';
+                if (cid == undefined || cid == '') {
+                    // enable the search and disable the preferences
+                    $('#search_button').attr('disabled', false);
+                    $('#submit_button').attr('disabled', true);
+                    // $('#search_panel').show();
+                    // $('#prefs_panel').hide();
+                } else {
+                    $('#search_button').attr('disabled', true);
+                    $('#submit_button').attr('disabled', false);
+                    $('#prefs_customer_id').val('{{ cid }}');
+                    // $('#search_panel').hide();
+                    // s$('#prefs_panel').show();
+                }
+//                console.log("Page Level Javascript Ran!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+{% endblock content %}
