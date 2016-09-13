@@ -19,26 +19,34 @@
         </style>
     {%  endaddtoblock %}
 
+    {% if  emsg  %}
+        <div class="error panel panel-danger">
+            {{ emsg }}
+        </div>
+    {%  endif %}
+
     <div class="well">
+        <div id="search_panel">
         <h1>Find User</h1>
-        <form method="POST" class="search-form">{% csrf_token %}
+        <form id=search_form method="POST" class="search-form">{% csrf_token %}
             {{ search_form.as_p }}
             <button id="search_button" type="submit" class="save btn btn-default">Search</button>
         </form>
 
-        {% if users_found.count > 1 %}
+        {% if users_found.count > 0 %}
             <div id="search_results">
                  <h3>Please select one of the following:</h3>
                 {% for u in users_found %}
-                {{ u.id }} {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+                <a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">{{ u.id }}</a> {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
                 {% endfor %}
             </div>
         {% endif %}
-
-        <form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
+        </div>
+        <div id="prefs_panel">
+        <form id=prefs_form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
             {% csrf_token %}
             {{ form.non_field_errors }}
-            {% for field in form %}
+            {% for field in prefs_form %}
                 <div class="fieldWrapper">
                 {{ field.errors }}
                 {{ field.label_tag }} {{ field }}
@@ -47,15 +55,15 @@
                 {% endif %}
                 </div>
             {% endfor %}
-            <p><label for="cid">Customer id:</label> <input id="cid" maxlength="12" name="customer_id" type="text" value="{{ cid }}" /></p>
-            <p><label for="pref_one">Pref one:</label> <input id="id_pref_one" maxlength="1" name="pref_one" type="text" /></p>
-            <p><label for="pref_two">Pref two:</label> <input id="id_pref_two" maxlength="1" name="pref_two" type="text" /></p>
+{#            <p><label for="cid">Customer id:</label> <input id="cid" maxlength="12" name="customer_id" type="text" value="{{ cid }}" /></p>#}
+{#            <p><label for="pref_one">Pref one:</label> <input id="id_pref_one" maxlength="1" name="pref_one" type="text" /></p>#}
+{#            <p><label for="pref_two">Pref two:</label> <input id="id_pref_two" maxlength="1" name="pref_two" type="text" /></p>#}
 {#            <p><label for="submitted_date">Submitted date:</label> <input id="id_submitted_date" name="submitted_date" type="text" value="2016-09-08 16:12:07" />#}
 {#                <input id="initial-id_submitted_date" name="initial-submitted_date" type="hidden" value="2016-09-08 16:12:07" /></p>#}
 
             <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
         </form>
-
+        </div>
 {#        <section class="search_section">#}
 {#            <form id="search-form" action="{{ form_url }}">#}
 {#                <fieldset>#}
@@ -83,10 +91,14 @@
                     // enable the search and disable the preferences
                     $('#search_button').attr('disabled', false);
                     $('#submit_button').attr('disabled', true);
+                    $('#search_panel').show();
+                    $('#prefs_panel').hide();
                 } else {
                     $('#search_button').attr('disabled', true);
                     $('#submit_button').attr('disabled', false);
-{#                    $('#id_customer_id').val({{ cid }});#}
+                    $('#picks_customer_id').val('{{ cid }}');
+                    $('#search_panel').hide();
+                    $('#prefs_panel').show();
                 }
 //                console.log("Page Level Javascript Ran!");
 

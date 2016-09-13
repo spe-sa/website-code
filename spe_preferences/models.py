@@ -23,3 +23,20 @@ class AdditionalPreference(models.Model):
 
     def __str__(self):
         return "ci=" + self.customer_id + " p1=" + self.pref_one + " p2=" + self.pref_two
+
+class Preference(models.Model):
+    name = models.CharField(max_length=120, blank=True, null=True)
+    status = models.CharField(max_length=12, blank=True, default='ACTIVE')
+    sort_order = models.IntegerField(default=0)
+    submitted_date = models.DateTimeField(default=timezone.now, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class CustomerPreference(models.Model):
+    meeting_id = models.CharField(max_length=25)
+    customer_id = models.CharField(max_length=12)
+    preference = models.ForeignKey(Preference, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return "[" + self.meeting_id + "] " + self.customer_id + " - " + self.preference.name

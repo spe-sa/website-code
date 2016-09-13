@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import TextInput
+
 from .models import AdditionalPreference
 
 
@@ -24,3 +26,7 @@ class PrefsUserSearchForm(forms.Form):
     email = forms.CharField(max_length=90, required=False)
     first_name = forms.CharField(max_length=80, required=False)
     last_name = forms.CharField(max_length=60, required=False)
+
+class PrefsListForm(forms.Form):
+    customer_id = forms.CharField(max_length=12, widget=forms.TextInput(attrs={'id':'picks_customer_id'}))
+    prefs = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, label="Pick your preferences")
