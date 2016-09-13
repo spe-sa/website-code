@@ -123,7 +123,15 @@ class PrefsSubmission(models.Model):
         return "ci=" + self.customer_id + " p1=" + self.pref_one + " p2=" + self.pref_two
 
 
+class PreferenceGroup(models.Model):
+    name = models.CharField(max_length=120)
+    category = models.CharField(max_length=120)
+    status = models.CharField(max_length=12, blank=True, default='ACTIVE')
+    sort_order = models.IntegerField(default=0)
+
+
 class Preference(models.Model):
+    group = models.ForeignKey(PreferenceGroup, on_delete=models.PROTECT)
     name = models.CharField(max_length=120, blank=True, null=True)
     status = models.CharField(max_length=12, blank=True, default='ACTIVE')
     sort_order = models.IntegerField(default=0)
@@ -131,6 +139,7 @@ class Preference(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class CustomerPreference(models.Model):
     meeting_id = models.CharField(max_length=25)

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import FindUserForm, PrefsForm, PrefsUserSearchForm, PrefsListForm, PrefsSubmissionForm
-from .models import Preference, CustomerPreference
+from .models import Preference, CustomerPreference, PreferenceGroup
 from mainsite.models import Customer
 from django.utils import timezone
 
@@ -81,25 +81,26 @@ def additional_prefs_search(request):
         user_id = request.GET.get('user_id', '')
     else:
         search_form = PrefsUserSearchForm()
-    prefs_form = PrefsListForm()
-    # set the choices
-    prefs_form.fields['prefs'].choices = [(x.id, x) for x in Preference.objects.filter(status__in=['ACTIVE'])]
-    context = {'search_form': search_form, 'users_found': users_found, 'prefs_form': prefs_form, 'cid': user_id,
-               'saved': saved, 'emsg': emsg}
+    pgroups = PreferenceGroup.objects.filter(status='ACTIVE').order_by('category', 'sort_order', 'name')
+    pitems = Preference.objects.filter(status='ACTIVE').order_by('group_id', 'sort_order', 'name')
+    context = {'search_form': search_form, 'users_found': users_found, 'pgroups': pgroups, 'cid': user_id,
+               'saved': saved, 'emsg': emsg, 'pitems': pitems}
     return render(request, 'spe_preferences/additional_preferences.html', context)
 
 # called to insert the membernumber and preferences into the database and then return a blank record with an alert
 def additional_prefs_insert(request):
     if request.method == "POST":
         meeting_id = "16ATCE"
-        selection_list = request.POST.getlist('prefs')
         customer_id = request.POST.get('customer_id', None)
         if customer_id:
             try:
                 # remove all records for this guy for this meeting
                 CustomerPreference.objects.filter(customer_id=customer_id, meeting_id=meeting_id).delete()
-                for selection in selection_list:
-                    try:
+                # get a list of the groups selections will be applied to
+                groups = PreferenceGroup.objects.filter(status='ACTIVE').all()
+                for group in groups:
+                    selection_list = request.POST.getlist('prefs_' + str(group.id))
+                    for selection in selection_list:
                         id = int(selection)
                         p = Preference.objects.get(pk=id)
                         result = CustomerPreference()
@@ -107,10 +108,7 @@ def additional_prefs_insert(request):
                         result.customer_id = customer_id
                         result.preference = p
                         result.save()
-                    except Exception as save_e:
-                        request.session['emsg'] = save_e
-                if not request.session['emsg']:
-                    request.session['prefs_inserted'] = True
+                request.session['prefs_inserted'] = True
             except Exception as insert_e:
                 request.session['emsg'] = insert_e
         else:
