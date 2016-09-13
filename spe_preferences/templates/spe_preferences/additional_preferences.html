@@ -49,46 +49,29 @@
             <div class="fieldWrapper">
                 <label for="prefs_customer_id">Customer id:</label> <input id="prefs_customer_id" maxlength="12" name="customer_id" type="text" />
             </div>
-            {% set_var "" as cur_gid %}
+            {% set_var "" as cur_cat %}
             {% for pgroup in pgroups %}
-                {{ cur_gid }}
-                {% if pgroup.id != cur_gid %}
-                    <h3>{{ pgroup.name }}</h3>
-                    {% set_var "{{pgroup.id}}" as cur_gid %}
+                {% if pgroup.category != cur_cat %}
+                    <h3>{{ pgroup.category }}</h3>
+                    {% set_var "{{pgroup.category}}" as cur_cat %}
                 {% endif %}
                 <div class="fieldWrapper">
                     <h4>{{ pgroup.name }}</h4><!-- id: {{ pgroup.id }} -->
                 </div>
                 <div class="fieldWrapper">
+                <ul>
                 {% for pitem in pitems %}
                     {% if pitem.group_id == pgroup.id %}
-                        <label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}"><input id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" type="checkbox" value="{{ pitem.id }}" /> {{ pitem.name }}</label>
+                        <li><label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}"><input id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" type="checkbox" value="{{ pitem.id }}" /> {{ pitem.name }}</label></li>
                     {% endif %}
                 {% endfor %}
+                </ul>
                 </div>
             {% endfor %}
-{#            <p><label for="cid">Customer id:</label> <input id="cid" maxlength="12" name="customer_id" type="text" value="{{ cid }}" /></p>#}
-{#            <p><label for="pref_one">Pref one:</label> <input id="id_pref_one" maxlength="1" name="pref_one" type="text" /></p>#}
-{#            <p><label for="pref_two">Pref two:</label> <input id="id_pref_two" maxlength="1" name="pref_two" type="text" /></p>#}
-{#            <p><label for="submitted_date">Submitted date:</label> <input id="id_submitted_date" name="submitted_date" type="text" value="2016-09-08 16:12:07" />#}
-{#                <input id="initial-id_submitted_date" name="initial-submitted_date" type="hidden" value="2016-09-08 16:12:07" /></p>#}
 
             <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
         </form>
         </div>
-{#        <section class="search_section">#}
-{#            <form id="search-form" action="{{ form_url }}">#}
-{#                <fieldset>#}
-{#                    <legend>Who</legend>#}
-{#                    <input class="pull-right btn btn-default" type="submit" value=" Search "/>#}
-{#                </fieldset>#}
-{#                <fieldset>#}
-{#                    <legend>Communication Preferences</legend>#}
-{#                    <input class="pull-right btn btn-default" type="submit" value=" Save "/>#}
-{#                </fieldset>#}
-{#            </form>#}
-{#        </section>#}
-
     </div>
 
     {% addtoblock "js" %}
@@ -103,14 +86,14 @@
                     // enable the search and disable the preferences
                     $('#search_button').attr('disabled', false);
                     $('#submit_button').attr('disabled', true);
-                    // $('#search_panel').show();
-                    // $('#prefs_panel').hide();
+                    $('#search_panel').show();
+                    $('#prefs_panel').hide();
                 } else {
                     $('#search_button').attr('disabled', true);
                     $('#submit_button').attr('disabled', false);
                     $('#prefs_customer_id').val('{{ cid }}');
-                    // $('#search_panel').hide();
-                    // s$('#prefs_panel').show();
+                    $('#search_panel').hide();
+                    $('#prefs_panel').show();
                 }
 //                console.log("Page Level Javascript Ran!");
 

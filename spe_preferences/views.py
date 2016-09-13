@@ -85,7 +85,7 @@ def additional_prefs_search(request):
     pitems = Preference.objects.filter(status='ACTIVE').order_by('group_id', 'sort_order', 'name')
     context = {'search_form': search_form, 'users_found': users_found, 'pgroups': pgroups, 'cid': user_id,
                'saved': saved, 'emsg': emsg, 'pitems': pitems}
-    return render(request, 'spe_preferences/content_interests.html', context)
+    return render(request, 'spe_preferences/additional_preferences.html', context)
 
 # called to insert the membernumber and preferences into the database and then return a blank record with an alert
 def additional_prefs_insert(request):
