@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import FindUserForm, PrefsForm, PrefsUserSearchForm, PrefsListForm
+from .forms import FindUserForm, PrefsForm, PrefsUserSearchForm, PrefsListForm, PrefsSubmissionForm
 from .models import Preference, CustomerPreference
 from mainsite.models import Customer
 from django.utils import timezone
@@ -88,7 +88,6 @@ def additional_prefs_search(request):
                'saved': saved, 'emsg': emsg}
     return render(request, 'spe_preferences/additional_preferences.html', context)
 
-
 # called to insert the membernumber and preferences into the database and then return a blank record with an alert
 def additional_prefs_insert(request):
     if request.method == "POST":
@@ -119,3 +118,19 @@ def additional_prefs_insert(request):
     else:
         request.session['emsg'] = "Invalid save method.  Preferences were not saved."
     return redirect('add_prefs_search')
+
+def submit_prefs(request):
+    if request.method == "POST":
+        search_form = PrefsUserSearchForm(request.POST)
+        prefs_form = PrefsSubmissionForm(request.POST)
+        if prefs_form.is_valid():
+            prefs = prefs_form.save(commit=False)
+            prefs.when_submitted = timezone.now()
+            prefs.save()
+            return redirect('add_prefs_search', {'saved': True})
+    else:
+        prefs_form = PrefsForm()
+        search_form = FindUserForm()
+    context = { 'prefs_form': prefs_form, 'saved' : False, 'search_form': search_form}
+    return render(request, 'spe_preferences/submit_prefs.html', context)
+
