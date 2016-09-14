@@ -1,7 +1,7 @@
 {% extends "www_base.html" %}
 {% load cms_tags sekizai_tags %}
 
-{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block title %}Communication Preferences :: SPE{% endblock title %}
 {% block content %}
 
     {% addtoblock "css" %}
@@ -29,10 +29,14 @@
 
         <div id="search_results">
 {% if users_found %}
-    <h3>Please select one of the following:</h3>
+    <h3>Multiple matches found.  Please select from the following:</h3>
+    <ul>
     {% for u in users_found %}
+        <li>
             {{ u.id }} {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+        </li>
     {% endfor %}
+    </ul>
 {% endif %}
         </div>
 

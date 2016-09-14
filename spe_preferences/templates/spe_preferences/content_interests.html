@@ -1,22 +1,38 @@
 {% extends "www_base.html" %}
 {% load cms_tags sekizai_tags var_tags %}
 
-{% block title %}Communication Preferences - SPE{% endblock title %}
+{% block title %}Content Interests :: Communication Preferences :: SPE{% endblock title %}
 {% block content %}
 
     {% addtoblock "css" %}
-        <style>
-            section.search_section {
-                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
-                background-color: #ffffff;
-                border: 1px solid #777;
-                color: #777;
-            }
-            legend {
-                color: #777;
-                padding-left: 20px; padding-right: 20px;
-            }
-        </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style xmlns="http://www.w3.org/1999/html">
+    section.search_section {
+        margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+        background-color: #ffffff;
+        border: 1px solid #777;
+        color: #777;
+    }
+    legend {
+        color: #777;
+        padding-left: 20px; padding-right: 20px;
+    }
+    HEADER {
+        font-weight: bolder;
+    }
+    LI.user_match {
+        display: inline-block;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        border-collapse: collapse;
+        padding: 2px 5px;
+        font-size: 126%;
+    }
+    LI.user_match:hover {
+        background: #cfd;
+    }
+</style>
     {%  endaddtoblock %}
 
     {% if  emsg  %}
@@ -27,7 +43,7 @@
 
     <div class="well">
         <div id="search_panel">
-        <h1>Find User</h1>
+        <h2>Find your account:</h2>
         <form id=search_form method="POST" class="search-form">{% csrf_token %}
             {{ search_form.as_p }}
             <button id="search_button" type="submit" class="save btn btn-default">Search</button>
@@ -35,70 +51,132 @@
 
         {% if users_found.count > 0 %}
             <div id="search_results">
-                 <h3>Please select one of the following:</h3>
+                <h3>Multiple matches found.  Please select from the following:</h3>
+                <ul>
                 {% for u in users_found %}
-                <a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">{{ u.id }}</a> {{ u.email }} {{ u.first_name }} {{ u.last_name }} {{ u.country }}
+                    <li class="user_match">
+                        <b><a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">#{{ u.id }} &nbsp; {{ u.email }}</b> &nbsp; {{ u.first_name }} {{ u.last_name }} &nbsp; {{ u.country }}</a>
+                    </li><br />
                 {% endfor %}
+                </ul>
             </div>
         {% endif %}
         </div>
 
         <div id="prefs_panel">
+        <h2>Indicate communication preferences, based on your interests:</h2>
         <form id=prefs_form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
             {% csrf_token %}
-            <div class="fieldWrapper">
-                <label for="prefs_customer_id">Customer id:</label> <input id="prefs_customer_id" maxlength="12" name="customer_id" type="text" />
-            </div>
-            {% set_var "" as cur_cat %}
+
+            {% set_var "" as rendered_supergroup_name %}
+            {% set_var "" as rendered_group_name %}
             {% for pgroup in pgroups %}
-                {% if pgroup.category != cur_cat %}
-                    <h3>{{ pgroup.category }}</h3>
-                    {% set_var "{{pgroup.category}}" as cur_cat %}
+                <!-- <br />group id: {{  pgroup.id }} // supergroup htm: {{ pgroup.category }} // group htm: {{ pgroup.name }} -->
+
+                {% if rendered_supergroup_name != pgroup.category %}
+                    {% if rendered_supergroup_name != "" %}
+    </fieldset>
+                    {% endif %}
+    <fieldset class="prefs_supergroup"><legend>{{ pgroup.category }}</legend>
+                    {% set_var "{{pgroup.category}}" as rendered_supergroup_name %}
                 {% endif %}
-                <div class="fieldWrapper">
-                    <h4>{{ pgroup.name }}</h4><!-- id: {{ pgroup.id }} -->
-                </div>
-                <div class="fieldWrapper">
-                <ul>
+
+                {% if rendered_group_name != pgroup.name %}
+        <header class="prefs_group_header" data-group="{{ pgroup.id }}">{{ pgroup.name }}</header>
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> All </button>
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> None </button>
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}" data-toggle="collapse" data-target="#prefs_group_{{ pgroup.id }}_wrapper"> Select... </button>
+        <div id="prefs_group_{{ pgroup.id }}_wrapper" class="prefs_group_wrapper{% if prgoup.category != 'Resources/Operating Environments of Interest' %} collapse{% endif %}">
+                    {% set_var "{{pgroup.name}}" as rendered_group_name %}
+                {% endif %}
                 {% for pitem in pitems %}
                     {% if pitem.group_id == pgroup.id %}
-                        <li><label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}"><input id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" type="checkbox" value="{{ pitem.id }}" /> {{ pitem.name }}</label></li>
+                    <div class="checkbox">
+                    <label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}">
+                        <input type="checkbox" id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" value="{{ pitem.id }}" data-g="{{ pitem.group.id }}">
+                        {{ pitem.name }}
+                    </label>
+                    </div>
                     {% endif %}
-                {% endfor %}
-                </ul>
-                </div>
-            {% endfor %}
 
-            <button id="submit_button" type="submit" class="save btn btn-default">Submit</button>
+                {% endfor %}
+                </div>
+
+            {% endfor %}
+            </fieldset>
+
+            <input id="prefs_customer_id" maxlength="12" name="customer_id" type="hidden" />
+
+            <button id="submit_button" type="submit" class="save btn btn-default"> Save Preferences </button>
+
         </form>
+
         </div>
     </div>
 
     {% addtoblock "js" %}
-        <script type="text/javascript" charset="utf-8">
-            $( document ).ready(function() {
+<script type="text/javascript" charset="utf-8">
+//*
+// checkbox group helper function: check/uncheck a lot of inputs at once
+function check_boxes_for_group(g,bool){
+    var sel = '[data-g='+g+']';
+    if(bool) return $('INPUT[type=checkbox]').filter(sel).prop('checked','checked');
+    else return $('INPUT[type=checkbox]').filter(sel).removeProp('checked');
+}
 
-                if('{{ saved }}' == 'True'){
-                    alert('Saved successfully');
-                }
-                var cid = '{{ cid }}';
-                if (cid == undefined || cid == '') {
-                    // enable the search and disable the preferences
-                    $('#search_button').attr('disabled', false);
-                    $('#submit_button').attr('disabled', true);
-                    $('#search_panel').show();
-                    $('#prefs_panel').hide();
-                } else {
-                    $('#search_button').attr('disabled', true);
-                    $('#submit_button').attr('disabled', false);
-                    $('#prefs_customer_id').val('{{ cid }}');
-                    $('#search_panel').hide();
-                    $('#prefs_panel').show();
-                }
-//                console.log("Page Level Javascript Ran!");
+// conditional cross-platform console log shim, with boolean for quick global disabling
+function xlog(text){
+    if( false ){
+        if( typeof console == 'object' && typeof console.log == 'function' ){
+            console.log(text);
+        }
+        else {
+            // alert(text);
+        }
+    }
+}
+//*/
 
-            });
-        </script>
+// as soon as the DOM is ready...
+$(function() {
+
+    // alert if the communications preferences were successfully saved
+    if('{{ saved }}' == 'True'){
+        alert('Saved successfully');
+    }
+
+    // display the appropriate form content based on whether we have a single match
+    var cid = '{{ cid }}';
+//    var no_single_user_match_found_yet = (cid == undefined || cid == '');
+    if ( cid == undefined || cid == '' ) {// we are on step 1
+        // enable the user search and hide the preference options
+        $('#search_button').attr('disabled', false);
+        $('#submit_button').attr('disabled', true);
+        $('#search_panel').show();
+        $('#prefs_panel').hide();
+    }
+    else {// we are on step 2
+        // disable the user search and show the preference options
+        $('#search_button').attr('disabled', true);
+        $('#submit_button').attr('disabled', false);
+        $('#search_panel').hide();
+        $('#prefs_panel').show();
+        // stamp the constituent/customer ID# into a hidden field
+        $('#prefs_customer_id').val('{{ cid }}');
+    }
+
+//*
+    // bind the checkbox group helper function to the appropriate buttons
+    setTimeout(function(){
+        xlog('Intent: bind checkbox group helper function to the All/None buttons');
+        $('BUTTON').filter(':contains(" All ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: check all g#'+g); check_boxes_for_group(g,true); });
+        $('BUTTON').filter(':contains(" None ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: uncheck all g#'+g); check_boxes_for_group(g,false); });
+    },1800);
+//*/
+
+
+});
+</script>
     {%  endaddtoblock %}
 
 {% endblock content %}
