@@ -14,14 +14,24 @@
         border: 1px solid #777;
         color: #777;
     }
-    legend {
+    LEGEND {
         color: #777;
-        padding-left: 20px; padding-right: 20px;
+/*        padding-left: 20px; padding-right: 20px;*/
+        margin: 1.8em .18em 0 1.8em;
     }
     HEADER {
+        margin-top: 1.08em;
+    }
+    HEADER, #submit_button {
         font-weight: bolder;
     }
-    LI.user_match {
+    #submit_button {
+        margin: 3.6em;
+    }
+    DIV.prefs_group {
+        margin-left: 5.4em;
+    }
+    LI.user_match A {
         display: inline-block;
         border-top: 1px solid white;
         border-bottom: 1px solid white;
@@ -29,8 +39,9 @@
         padding: 2px 5px;
         font-size: 126%;
     }
-    LI.user_match:hover {
-        background: #cfd;
+    LI.user_match:hover A {
+        background: #5bc0de;
+        color: #fff;
     }
 </style>
     {%  endaddtoblock %}
@@ -56,7 +67,7 @@
                 {% for u in users_found %}
                     <li class="user_match">
                         <b><a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">#{{ u.id }} &nbsp; {{ u.email }}</b> &nbsp; {{ u.first_name }} {{ u.last_name }} &nbsp; {{ u.country }}</a>
-                    </li><br />
+                    </li>
                 {% endfor %}
                 </ul>
             </div>
@@ -70,7 +81,13 @@
 
             {% set_var "" as rendered_supergroup_name %}
             {% set_var "" as rendered_group_name %}
+
             {% for pgroup in pgroups %}
+                {% if pgroup.category == 'Resources/Operating Environments of Interest' %}
+                    {% set_var 'N' as group_is_collapsible %}
+                {% else %}
+                    {% set_var 'Y' as group_is_collapsible %}
+                {% endif %}
                 <!-- <br />group id: {{  pgroup.id }} // supergroup htm: {{ pgroup.category }} // group htm: {{ pgroup.name }} -->
 
                 {% if rendered_supergroup_name != pgroup.category %}
@@ -82,11 +99,14 @@
                 {% endif %}
 
                 {% if rendered_group_name != pgroup.name %}
+      <div class="prefs_group">
         <header class="prefs_group_header" data-group="{{ pgroup.id }}">{{ pgroup.name }}</header>
         <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> All </button>
         <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> None </button>
-        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}" data-toggle="collapse" data-target="#prefs_group_{{ pgroup.id }}_wrapper"> Select... </button>
-        <div id="prefs_group_{{ pgroup.id }}_wrapper" class="prefs_group_wrapper{% if prgoup.category != 'Resources/Operating Environments of Interest' %} collapse{% endif %}">
+{% if group_is_collapsible == 'Y' %}
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}" data-toggle="collapse" data-target="#prefs_group_{{ pgroup.id }}_details_wrapper"> Select... </button>
+{% endif %}
+        <div id="prefs_group_{{ pgroup.id }}_details_wrapper" class="prefs_group_wrapper{% if group_is_collapsible == 'Y' %} collapse{% endif %}">
                     {% set_var "{{pgroup.name}}" as rendered_group_name %}
                 {% endif %}
                 {% for pitem in pitems %}
@@ -101,6 +121,7 @@
 
                 {% endfor %}
                 </div>
+        </div>
 
             {% endfor %}
             </fieldset>
@@ -117,11 +138,52 @@
     {% addtoblock "js" %}
 <script type="text/javascript" charset="utf-8">
 //*
-// checkbox group helper function: check/uncheck a lot of inputs at once
-function check_boxes_for_group(g,bool){
-    var sel = '[data-g='+g+']';
-    if(bool) return $('INPUT[type=checkbox]').filter(sel).prop('checked','checked');
-    else return $('INPUT[type=checkbox]').filter(sel).removeProp('checked');
+// checkbox group helper function: check/uncheck a lot of inputs at once; enable/disable the All/None buttons
+function check_boxes_for_group(g,b) {
+    // the first parameter is required, and must be an integer: the ID# of a prefs group
+    if( typeof (g - 0) != 'number' ){
+        return false;
+    }
+    var sel = '[data-g=' + g + ']';
+    var $els = $('INPUT[type=checkbox]').filter(sel);
+    var $btn_all = $els.filter(':first').parents('DIV.prefs_group').find('BUTTON:contains(" All ")');
+    var $btn_none = $els.filter(':first').parents('DIV.prefs_group').find('BUTTON:contains(" None ")');
+    // the first parameter is optional; normally it is boolean (to check or uncheck the boxes); if omitted, it only enables/disables the All/None buttons that correspond to the specified prefs group
+    if( typeof b != 'boolean' ){
+        var count_boxes = $els.length;
+        var count_checked = $els.filter(':checked').length;
+        var count_unchecked = $els.filter(':not(:checked)').length;
+        var some_are_checked = ( count_boxes > count_unchecked );
+        var some_are_unchecked = ( count_boxes > count_checked );
+        if( some_are_checked ){
+            $btn_none.removeProp('disabled');
+        }
+        else {
+            $btn_none.prop('disabled','disabled');
+        }
+        if( some_are_unchecked ){
+            $btn_all.removeProp('disabled');
+        }
+        else {
+            $btn_all.prop('disabled','disabled');
+        }
+        return true;
+    }
+    else {
+        setTimeout(function(){
+            check_boxes_for_group(g);
+        },180);
+        if (b) {
+            $btn_all.prop('disabled','disabled');
+            $btn_none.removeProp('disabled');
+            return $els.prop('checked', 'checked');
+        }
+        else {
+            $btn_none.prop('disabled','disabled');
+            $btn_all.removeProp('disabled');
+            return $els.removeProp('checked');
+        }
+    }
 }
 
 // conditional cross-platform console log shim, with boolean for quick global disabling
@@ -171,6 +233,8 @@ $(function() {
         xlog('Intent: bind checkbox group helper function to the All/None buttons');
         $('BUTTON').filter(':contains(" All ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: check all g#'+g); check_boxes_for_group(g,true); });
         $('BUTTON').filter(':contains(" None ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: uncheck all g#'+g); check_boxes_for_group(g,false); });
+        $('BUTTON').filter(':contains(" Select... ")').one('click',function(){ $(this).fadeOut(); });
+        $('INPUT[type=checkbox][data-g]').on('click',function(){ var g = $(this).data('g'); check_boxes_for_group(g); });
     },1800);
 //*/
 

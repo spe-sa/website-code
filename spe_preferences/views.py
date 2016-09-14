@@ -4,6 +4,7 @@ from .forms import FindUserForm, PrefsForm, PrefsUserSearchForm, PrefsListForm, 
 from .models import Preference, CustomerPreference, PreferenceGroup
 from mainsite.models import Customer
 from django.utils import timezone
+import time
 
 
 def hello_world(request):
@@ -53,7 +54,6 @@ def additional_prefs_search(request):
     user_id = ''
     saved = request.session.get('prefs_inserted', False)
     emsg = request.session.get('emsg', '')
-    selection_list = request.session.get('selection_list', '')
     request.session['prefs_inserted'] = False
     request.session['emsg'] = ''
 
@@ -116,6 +116,7 @@ def additional_prefs_insert(request):
             request.session['emsg'] = "Customer id was not found with submission.  Unable to save."
     else:
         request.session['emsg'] = "Invalid save method.  Preferences were not saved."
+    time.sleep(1)
     return redirect('add_prefs_search')
 
 def submit_prefs(request):
