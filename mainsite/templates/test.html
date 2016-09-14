@@ -4,6 +4,7 @@
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
 {% block cms_content %}
+
     <h3>Testing the context</h3>
     <hr>
     <h4>variables</h4>
@@ -12,7 +13,6 @@
     {% endfor %}
 
     <h4>cookies</h4>
-{#    _ga: {{ cookies["_ga"] }}<br>#}
     {% for key, value in cookies.items %}
         {{ key }}:&nbsp;{{ value }}<br>
     {% endfor %}
@@ -22,30 +22,37 @@
     {% for key, value in login.items %}
         {{ key }}:&nbsp;{{ value }}<br>
     {% endfor %}
-{#    authenticated: {{ login.authenticated }}<br>#}
-{#    command: {{ login.command }}<br>#}
-{#    label: {{ login.label }}<br>#}
-{#    url: {{ login.url }}<br>#}
-{#    target: {{ login.target_url }}#}
+    {#    authenticated: {{ login.authenticated }}<br>#}
+    {#    command: {{ login.command }}<br>#}
+    {#    label: {{ login.label }}<br>#}
+    {#    url: {{ login.url }}<br>#}
+    {#    target: {{ login.target_url }}#}
 
     <h4>visitor</h4>
     {% for key, value in visitor.items %}
         {{ key }}:&nbsp;{{ value }}<br>
     {% endfor %}
 
-{#    name: {{ visitor.name }}<br>#}
-{#    is_sudent: {{ visitor.is_student }}<br>#}
-{#    is_staff: {{ visitor.is_staff }}<br>#}
-{#    email: {{ visitor.email }}<br>#}
-{#    is_superuser {{ visitor.is_superuser }}#}
-{#    is_active {{ visitor.is_active }}#}
-
-<h4>Active Users:</h4>
-{% load request_tag %}
-{% active_users in 10 minutes as user_list %}
-{% for user in user_list %}
-    {{ user.username }}
-{% endfor %}
+    <h4>Active Users:</h4>
+    {% load request_tag %}
+    {% active_users in 10 minutes as user_list %}
+    {% for user in user_list %}
+        {{ user.username }}
+    {% endfor %}
 
     {% placeholder "content" %}
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+
+                // Add JQuery Here
+                console.log("Page Level Javascript Ran!");
+
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+
 {% endblock cms_content %}
