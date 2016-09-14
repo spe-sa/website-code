@@ -84,6 +84,7 @@ def login_show(request):
 def register_ogf(request):
     return render(request, 'google_registration.html', {'site_code': 'googleaa5ff496c6812444'})
 
+<<<<<<< HEAD
 
 def status_code_200(request):
     return HttpResponse("<h1>200: OK</h1>", status=200)
@@ -103,3 +104,7 @@ def status_code_418(request):
 def status_code_500(request):
     return HttpResponse("<h1>500: Server Error</h1><p>The server is experiencing a temporary problem. Please try again later.</p>", status=500)
 
+=======
+def test_gtm(request):
+    return render(request, 'test.html', { })
+>>>>>>> master
