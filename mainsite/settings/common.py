@@ -166,6 +166,7 @@ INSTALLED_APPS = (
     'config.apps.SpeEventConfig',
     'djangocms_forms',
     'cmsplugin_bootstrap_columns',
+    'spe_preferences',
 #    'django_extensions',
 )
 
