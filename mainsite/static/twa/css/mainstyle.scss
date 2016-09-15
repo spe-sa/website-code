@@ -181,3 +181,7 @@ a {
 .bscol .tile-editorial {
   margin-top: 10px;
 }
+.dropdown-menu li:hover {
+  color: $col-white;
+  background-color: $col-basegrey;
+}

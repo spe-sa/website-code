@@ -56,6 +56,7 @@ class ShowTextPlugin(CMSPluginBase):
     name = _("Text")
 
     def render(self, context, instance, placeholder):
+        context.update({'class': instance.cls})
         context.update({'text': instance.txt})
         return context
 
