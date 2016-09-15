@@ -43,6 +43,15 @@
         background: #5bc0de;
         color: #fff;
     }
+    .findTitle {
+        margin-bottom:  30px;
+    }
+    #search_form label {
+        width: 100px;
+    }
+    #search_button {
+        margin-top: 30px;
+    }
 </style>
     {%  endaddtoblock %}
 
@@ -54,24 +63,26 @@
 
     <div class="well">
         <div id="search_panel">
-        <h2>Find your account:</h2>
-        <form id=search_form method="POST" class="search-form">{% csrf_token %}
-            {{ search_form.as_p }}
-            <button id="search_button" type="submit" class="save btn btn-default">Search</button>
-        </form>
+        <h2 class="findTitle">Find your account:</h2>
 
-        {% if users_found.count > 0 %}
-            <div id="search_results">
-                <h3>Multiple matches found.  Please select from the following:</h3>
-                <ul>
-                {% for u in users_found %}
-                    <li class="user_match">
-                        <b><a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">#{{ u.id }} &nbsp; {{ u.email }}</b> &nbsp; {{ u.first_name }} {{ u.last_name }} &nbsp; {{ u.country }}</a>
-                    </li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+            <form id=search_form method="POST" class="search-form">{% csrf_token %}
+                {{ search_form.as_p }}
+                <button id="search_button" type="submit" class="save btn btn-default">Search</button>
+            </form>
+
+            {% if users_found.count > 0 %}
+                <div id="search_results">
+                    <h3>Multiple matches found.  Please select from the following:</h3>
+                    <ul>
+                    {% for u in users_found %}
+                        <li class="user_match">
+                            <b><a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">#{{ u.id }} &nbsp; {{ u.email }}</b> &nbsp; {{ u.first_name }} {{ u.last_name }} &nbsp; {{ u.country }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
         </div>
 
         <div id="prefs_panel">
