@@ -83,3 +83,6 @@ def login_show(request):
 
 def register_ogf(request):
     return render(request, 'google_registration.html', {'site_code': 'googleaa5ff496c6812444'})
+
+def test_gtm(request):
+    return render(request, 'test.html', { })
