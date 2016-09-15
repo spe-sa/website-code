@@ -64,7 +64,7 @@ a:hover { text-decoration: none; }
 .navbar-default .navbar-nav > li { text-align: left; }
 
 .navbar-default .navbar-nav > li > a { min-height: 53px; color: white; font-weight: 600; font-size: 14px; }
-.navbar-default .navbar-nav > li > a:hover { color: #26416c; background-color: #e7e7e7; }
+.navbar-default .navbar-nav > li > a:hover { color: white; background-color: grey; }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover { color: #26416c; }
 
@@ -709,3 +709,5 @@ table#authortable p { padding-left: 10px; }
 .panel { background-color: transparent; }
 
 .bscol .tile-editorial { margin-top: 10px; }
+
+.dropdown-menu li:hover { color: white; background-color: grey; }

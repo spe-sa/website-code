@@ -266,7 +266,9 @@ a:hover { text-decoration: none; }
 .tile-lightblue a { color: #26416c; }
 .tile-lightblue a:hover { color: white; }
 
-.tileImgBack { background-position: center; -webkit-background-size: cover; background-size: cover; }
+.tileImgBack { box-shadow: 0 1px 2px #b4b4b9; background-position: center; -webkit-background-size: cover; background-size: cover; margin-bottom: 20px; }
+
+.tile-adspeed { margin-bottom: 20px; box-shadow: 0 1px 2px #b4b4b9; }
 
 .tile-editorial { background-color: #0C090A; color: white; padding: 15px; height: 400px; margin-bottom: 15px; overflow: hidden; }
 .tile-editorial .title1, .tile-editorial .title2, .tile-editorial .excerpt, .tile-editorial .authorBio { padding: 0; }
@@ -313,7 +315,7 @@ a:hover { text-decoration: none; }
 
 .tiletitlehr { margin-top: 0; height: 1px; border: none; color: #26416c; background-color: #26416c; }
 
-.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted #868686; padding-bottom: 10px; margin-bottom: 15px; }
+.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted #868686; padding-bottom: 10px; margin-bottom: 15px; font-weight: 700; }
 
 .tileDate { font-weight: 700; margin-bottom: 10px; }
 

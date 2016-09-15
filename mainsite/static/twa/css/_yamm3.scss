@@ -107,7 +107,6 @@
     .see-all {
         margin-top:25px;
         text-align:center;
-        //background-color:$col-sprlghtgry;
         color:$col-bluegrey;
         border-radius:3px;
         font-weight:700;
@@ -134,8 +133,8 @@
     font-size: 14px;
 
     &:hover {
-        color: $col-speblue;
-        background-color: $col-sprlghtgry;
+        color: $col-white;
+        background-color: $col-basegrey;
     }
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
@@ -172,7 +171,7 @@
         max-width: 1170px;
         min-height:54px;
     }
-    .navbar-collapse, .nav{
+    .navbar-collapse, .nav {
         min-height: 54px;
     }
     // by default aligns menu to left
@@ -195,6 +194,7 @@
 .navbar-nav .open .dropdown-menu {
     background-color:$col-white;
 }
+
 /* YAMM MENU END */
 /* *************************************** */
 /* *************************************** */
