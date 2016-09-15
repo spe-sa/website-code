@@ -5,10 +5,10 @@
 {% block content %}
 
     {% addtoblock "css" %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>#}
+{#<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
 <style xmlns="http://www.w3.org/1999/html">
-    section.search_section {
+    SECTION.search_section {
         margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
         background-color: #ffffff;
         border: 1px solid #777;
@@ -88,7 +88,6 @@
                 {% else %}
                     {% set_var 'Y' as group_is_collapsible %}
                 {% endif %}
-                <!-- <br />group id: {{  pgroup.id }} // supergroup htm: {{ pgroup.category }} // group htm: {{ pgroup.name }} -->
 
                 {% if rendered_supergroup_name != pgroup.category %}
                     {% if rendered_supergroup_name != "" %}
@@ -137,7 +136,7 @@
 
     {% addtoblock "js" %}
 <script type="text/javascript" charset="utf-8">
-//*
+
 // checkbox group helper function: check/uncheck a lot of inputs at once; enable/disable the All/None buttons
 function check_boxes_for_group(g,b) {
     // the first parameter is required, and must be an integer: the ID# of a prefs group
@@ -190,14 +189,14 @@ function check_boxes_for_group(g,b) {
 function xlog(text){
     if( false ){
         if( typeof console == 'object' && typeof console.log == 'function' ){
-            console.log(text);
+            return console.log(text);
         }
-        else {
+        else {// looking at you, IE
             // alert(text);
         }
     }
+    else return true;
 }
-//*/
 
 // as soon as the DOM is ready...
 $(function() {
@@ -227,7 +226,6 @@ $(function() {
         $('#prefs_customer_id').val('{{ cid }}');
     }
 
-//*
     // bind the checkbox group helper function to the appropriate buttons
     setTimeout(function(){
         xlog('Intent: bind checkbox group helper function to the All/None buttons');
@@ -236,7 +234,6 @@ $(function() {
         $('BUTTON').filter(':contains(" Select... ")').one('click',function(){ $(this).fadeOut(); });
         $('INPUT[type=checkbox][data-g]').on('click',function(){ var g = $(this).data('g'); check_boxes_for_group(g); });
     },1800);
-//*/
 
 
 });

@@ -4,12 +4,12 @@ from . import views
 
 # app_name='spe_preferences'
 urlpatterns = [
-    url(r'^hi$', views.hello_world, name='hello_world'),
-    url(r'^search/?$', views.find_user, name='find_user'),
-    url(r'^set/?$', views.prefs_new, name='prefs_new'),
-    url(r'^submit/?$', views.submit_prefs, name='submit_prefs'),
-    url(r'^test/$', views.additional_prefs_search, name='add_prefs_search'),
-    url(r'^test/save/$', views.additional_prefs_insert, name='add_prefs_insert'),
+    # url(r'^hi$', views.hello_world, name='hello_world'),
+    # url(r'^search/?$', views.find_user, name='find_user'),
+    # url(r'^set/?$', views.prefs_new, name='prefs_new'),
+    # url(r'^submit/?$', views.submit_prefs, name='submit_prefs'),
+    # url(r'^test/$', views.additional_prefs_search, name='add_prefs_search'),
+    # url(r'^test/save/$', views.additional_prefs_insert, name='add_prefs_insert'),
     url(r'^interests/$', views.additional_prefs_search, name='add_prefs_search'),
     url(r'^interests/save/$', views.additional_prefs_insert, name='add_prefs_insert'),
     # NOTE: we should have no publicly defined views; moved to urls_internal

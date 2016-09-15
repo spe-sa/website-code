@@ -1,6 +1,7 @@
 from django.contrib import admin
+from .models import PreferenceGroup, Preference, CustomerPreference
 
-from .models import AdditionalPreference
 
-
-admin.site.register(AdditionalPreference)
+admin.site.register(PreferenceGroup)
+admin.site.register(Preference)
+admin.site.register(CustomerPreference)
