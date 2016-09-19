@@ -42,7 +42,7 @@
                             <li><a href="http://www.spe.org/jpt/">JPT</a></li>
                             <li><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></li>
                             <li><a href="http://www.spe.org/hsenow/">HSE Now</a></li>
-                            <li><a href="http://www.spe.org/twa/">The Way Ahead</a></li>
+                            <li><a href="https://www.spe.org/en/twa/">The Way Ahead</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 text-right topbarcol">
@@ -67,7 +67,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
-                        <a href="/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
+                        <a href="https://www.spe.org/en/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
                     </div>
                     <div class="col-md-9 text-right">
                         <ul class="pubMenu">
@@ -81,11 +81,14 @@
 
         <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
             <div class="col-sm-12 text-right">
-                <form class="form-inline">
+                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
+                        <input type="hidden" id="gssscope" name="scope" value="twa"/>
+                        <!-- sas comment -->
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
                         </span>
                     </div>
                 </form>
