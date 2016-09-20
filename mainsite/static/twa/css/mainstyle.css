@@ -647,7 +647,7 @@ table#authortable p { padding-left: 10px; }
 
 .adZone6 { padding: 15px; }
 
-.tile-adspeed { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; background-color: #f2efea; }
+.tile-adspeed { margin-bottom: 20px; padding: 15px; }
 
 /* AD Zone1 */
 .adZone1 #adLeaderboard { height: 140px; padding: 27px 0 0 0; }
@@ -703,9 +703,11 @@ table#authortable p { padding-left: 10px; }
   body { font-size: 20pt; width: 100%; }
   body * { visibility: hidden; }
   #printMe, #printMe * { visibility: visible; font-size: 20pt; width: 100%; }
+  #printMe img { width: 300px; height: auto; float: left; margin-right: 10px; }
   .dontPrintMe, .dontPrintMe * { visibility: hidden; display: none; }
   #printMe { position: absolute; left: 0; top: 0; font-size: 20pt; width: 100%; }
-  .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; } }
+  .articleBodyText, .articleBodyText p { font-family: Arial, sans-serif; font-size: 20pt; width: 100%; }
+  .articleShares { display: none; } }
 .panel { background-color: transparent; }
 
 .bscol .tile-editorial { margin-top: 10px; }

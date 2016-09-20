@@ -157,6 +157,12 @@ a {
     font-size: 20pt;
     width:  100%;
   }
+  #printMe img {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+  }
   .dontPrintMe, .dontPrintMe * {
     visibility: hidden;
     display: none;
@@ -172,6 +178,9 @@ a {
     font-family: Arial, sans-serif;
     font-size: 20pt;
     width:  100%;
+  }
+  .articleShares {
+    display: none;
   }
 }
 .panel {
