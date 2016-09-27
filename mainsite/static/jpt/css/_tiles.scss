@@ -4,7 +4,8 @@
 @import 'vars';
 
 .tiletitlehr {
-  display:              none;
+  //display:              none;
+  border-top: 5px solid #e2e2e2;
 }
 .topictitles {
   color:                $col-copygrey;
@@ -531,6 +532,7 @@
   -webkit-background-size:cover;
   background-size:      cover;
   background-position:  center;
+  border:               1px solid #e2e2e2;
 }
 .detailImgWrap {
   height:               250px;
