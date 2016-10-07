@@ -6,6 +6,8 @@
 
     {% include 'include_scripts.html' %}
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 {% endblock web_fonts %}
 
 {% block css_base %}
@@ -371,17 +373,17 @@
 
             <!-- LOGO BAR -->
             <div id="branding" class="row">
-                    <div class="col-xs-12 col-sm-4 col-sm-offset-1 logo-wrap">
+                    <div class="col-xs-12 col-sm-3 col-sm-offset-1 logo-wrap">
 {#                        <a href="/" class="spe-logo" title="SPE Homepage"><h1 id="logo">The Society of Petroleum Engineers</h1></a>#}
                         <img src="{% static 'www/img/spe_logo_full.png' %}" class="img-responsive">
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 welcomemsg text-right">
+                    <div class="col-xs-10 col-xs-offset-0 col-sm-4 welcomemsg text-right">
                         {% if login.authenticated == True %}
                             Welcome, {{visitor.name}}<br>
                             <a class="update_profile" href="/ams/Custom/CustomerProfile.aspx">My profile</a>
                         {% endif %}
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-md-3 search">
+                    <div class="col-xs-10 col-xs-offset-0 col-sm-3 col-md-3 search">
                         <div id="search">
                             <div class="GoogleSiteSearch">
                                 <div class="form-wrapper">
