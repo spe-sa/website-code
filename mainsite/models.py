@@ -44,6 +44,8 @@ DEFAULT_TEXT_CLASS = 'tile-white'
 TEXT_CLASS = (
     ('tile-alert', 'Alert Box'),
     ('tile-blue', 'Blue Box'),
+    ('tile-greenbar', 'White Box - Green Bar'),
+    ('tile-bluebar', 'White Box - Blue Bar'),
     (DEFAULT_TEXT_CLASS, 'White Box'),
 )
 
