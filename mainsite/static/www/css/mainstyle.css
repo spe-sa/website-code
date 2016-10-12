@@ -252,7 +252,7 @@ a:hover { text-decoration: none; }
 /* Images */
 .tile { background-color: white; }
 
-.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-greenbar, .tile-alert { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; }
+.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-greenbar, .tile-alert { box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; z-index: 100; position: relative; }
 
 .tile-alert { background-color: #c63604; color: white; }
 .tile-alert p { margin: 0; }
@@ -317,9 +317,11 @@ a:hover { text-decoration: none; }
 .tile-curntIssue .pub-date { font-size: 20px; margin-bottom: 20px; }
 .tile-curntIssue .btn { background-color: #26416c; color: white; }
 
-.tiletitlehr { margin-top: 0; height: 1px; border: none; color: #26416c; background-color: #26416c; }
+.tiletitlerow { z-index: 9999; position: relative; text-align: center; }
 
-.tiletitles { color: #3d4044; font-size: 25px; border-bottom: 1px dotted #868686; padding-bottom: 10px; margin-bottom: 15px; font-weight: 700; }
+.tiletitlehr { display: none; }
+
+.tiletitles { color: white; background: #646e93; font-size: 20px; padding: 10px; margin: 0 auto -30px auto; font-weight: 700; display: inline-block; }
 
 .tileDate { font-weight: 700; margin-bottom: 10px; }
 
