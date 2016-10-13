@@ -211,9 +211,11 @@ class Issue(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
+    # sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Categories"
+        ordering = ['sort_order', 'name']
 
     def __unicode__(self):
         return self.name
@@ -221,9 +223,11 @@ class Category(models.Model):
 
 class SecondaryCategory(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category (Secondary)")
+    # sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name_plural = "Categories (Secondary)"
+        ordering = ['sort_order', 'name']
 
     def __unicode__(self):
         return self.name
