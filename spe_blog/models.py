@@ -215,7 +215,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
-        ordering = ['sort_order', 'name']
+        ordering = ['name']
 
     def __unicode__(self):
         return self.name
@@ -227,7 +227,7 @@ class SecondaryCategory(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories (Secondary)"
-        ordering = ['sort_order', 'name']
+        ordering = ['name']
 
     def __unicode__(self):
         return self.name
