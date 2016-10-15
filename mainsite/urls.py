@@ -9,6 +9,17 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import RedirectView
 
+# Dashboard
+
+from dashing.utils import router
+from dashboard.widgets import ArticleCountWidget, BriefCountWidget, TopArticlesWidget, TopBriefsWidget
+router.register(ArticleCountWidget, 'article_count')
+router.register(BriefCountWidget, 'brief_count')
+router.register(TopArticlesWidget, 'top_articles')
+router.register(TopBriefsWidget, 'top_briefs')
+
+# Admin
+
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
@@ -48,7 +59,8 @@ urlpatterns = i18n_patterns('',
     url(r'^test/sc410', 'mainsite.views.status_code_410', name='status_code_410'),
     url(r'^test/sc418', 'mainsite.views.status_code_418', name='status_code_418'),
     url(r'^test/sc500', 'mainsite.views.status_code_500', name='status_code_500'),
-
+    url(r'^dashboard/', include(router.urls)),
+    url(r'^promotion/(?P<index>\d+)/$', 'spe_promotions.views.promo_select',),
     url(r'^', include('cms.urls')),
 )
 

@@ -65,10 +65,10 @@ class Regions(models.Model):
     region_name = models.CharField(max_length=50, unique=True)
 
     def __unicode__(self):
-        return self.region_name
+        return self.region_code
 
     class Meta:
-        ordering = ['region_name']
+        ordering = ['region_code']
         verbose_name = "Region"
 
 
