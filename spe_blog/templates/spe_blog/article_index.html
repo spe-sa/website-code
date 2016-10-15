@@ -1,7 +1,7 @@
 {% extends "staff_base.html" %}
 {% load cms_tags sekizai_tags %}
 
-{% block title %}Admin: Articles{% endblock title %}
+{% block title %}Admin: {{ type|title|pluralize }}{% endblock title %}
 {% block content %}
 
     {% addtoblock "css" %}
@@ -83,7 +83,7 @@
     {% if articles %}
         {% for article in articles %}
 
-            <p><a href="{% if render_type == 'admin' %}/en/admin/spe_blog/articleeditor/{{ article.id }}/{% else %}{{ article.get_absolute_url }}{% endif %}" target="_blank">
+            <p><a href="{% if render_type == 'admin' %}/en/admin/spe_blog/{{ type }}editor/{{ article.id }}/{% else %}{{ article.get_absolute_url }}{% endif %}" target="_blank">
                 <button class="btn{% if article.published %} btn-success{% else %} btn-warning{% endif %}" type="button">
                     {{ article.publication.code }}
                 </button>&nbsp;

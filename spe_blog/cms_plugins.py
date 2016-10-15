@@ -36,6 +36,11 @@ from .models import (
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
     TopicsListSelectionForm
 
+def getPublicationCode(pub):
+    if pub:
+        return pub.code
+    return ""
+
 
 class ArticlePluginBase(CMSPluginBase):
     """
@@ -88,7 +93,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 	      and a.date <= now()
 	      order by date DESC
 	      limit 3
-	    ''', tuple([art.id, art.id, art.publication.code]))
+	    ''', tuple([art.id, art.id, getPublicationCode(art.publication)]))
         related_article_ids = cursor.fetchall()
 
         if related_article_ids:
@@ -113,7 +118,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 show_paybox = False
-            if visitor and visitor.has_subscription(instance.article.publication.code):
+            if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
                 show_paybox = False
         is_readable = art.is_readable()
         if not is_readable:
@@ -122,7 +127,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                 visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 is_readable = True
-            if visitor and visitor.has_subscription(instance.article.publication.code):
+            if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
                 is_readable = True
         is_loggedout = True
         if visitor:
@@ -207,7 +212,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
             visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 show_paybox = False
-            if visitor and visitor.has_subscription(instance.brief.publication.code):
+            if visitor and visitor.has_subscription(getPublicationCode(instance.brief.publication)):
                 show_paybox = False
         is_readable = art.is_readable()
         if not is_readable:
@@ -216,7 +221,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                 visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 is_readable = True
-            if visitor and visitor.has_subscription(instance.article.publication.code):
+            if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
                 is_readable = True
         context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
@@ -381,7 +386,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
         context.update({'backcol': instance.backcol})
         context.update({'whitetext': instance.whitetext})
         if instance.publication:
-            context.update({'pubcode': instance.publication.code})
+            context.update({'pubcode': getPublicationCode(instance.publication)})
         else:
             context.update({'pubcode': ""})
         context.update({'isbrief': True})
@@ -438,7 +443,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         context.update({'whitetext': instance.whitetext})
         context.update({'boxwidth': instance.boxwidth})
         context.update({'boxheight': instance.boxheight})
-        context.update({'pubcode': instance.publication.code})
+        context.update({'pubcode': getPublicationCode(instance.publication)})
 
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
