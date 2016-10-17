@@ -12,11 +12,13 @@ from django.views.generic import RedirectView
 # Dashboard
 
 from dashing.utils import router
-from dashboard.widgets import ArticleCountWidget, BriefCountWidget, TopArticlesWidget, TopBriefsWidget
+from dashboard.widgets import ArticleCountWidget, BriefCountWidget, TopFiveArticlesWidget, TopTwentyArticlesWidget, TopFiveBriefsWidget, TopTwentyBriefsWidget
 router.register(ArticleCountWidget, 'article_count')
 router.register(BriefCountWidget, 'brief_count')
-router.register(TopArticlesWidget, 'top_articles')
-router.register(TopBriefsWidget, 'top_briefs')
+router.register(TopFiveArticlesWidget, 'top_5_articles')
+router.register(TopTwentyArticlesWidget, 'top_20_articles')
+router.register(TopFiveBriefsWidget, 'top_5_briefs')
+router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 
 # Admin
 
@@ -59,6 +61,7 @@ urlpatterns = i18n_patterns('',
     url(r'^test/sc410', 'mainsite.views.status_code_410', name='status_code_410'),
     url(r'^test/sc418', 'mainsite.views.status_code_418', name='status_code_418'),
     url(r'^test/sc500', 'mainsite.views.status_code_500', name='status_code_500'),
+    url(r'^stats/$', 'dashboard.views.url_redirect', name="url-redirect"),
     url(r'^dashboard/', include(router.urls)),
     url(r'^promotion/(?P<index>\d+)/$', 'spe_promotions.views.promo_select',),
     url(r'^', include('cms.urls')),

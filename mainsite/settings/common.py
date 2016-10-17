@@ -605,3 +605,7 @@ CKEDITOR_SETTINGS = {
         'filebrowserBrowseUrl': '/ckeditor/browse/',
         'filebrowserUploadUrl': '',
     }, }
+
+DASHING = {
+    'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
+}

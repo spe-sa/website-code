@@ -31,8 +31,17 @@ class BriefCountWidget(NumberWidget):
         count = Brief.objects.filter(published=False).count()
         return '{} Un-Published'.format(count)
 
-class TopArticlesWidget(ListWidget):
-    title = 'Top Articles'
+class TopFiveArticlesWidget(ListWidget):
+    title = 'Top Five Articles'
+    more_info = ''
+    get_update_at  = ''
+
+    def get_data(self):
+        queryset = Article.objects.order_by('-article_hits')[:5]
+        return [{'label':x.title, 'value':x.article_hits} for x in queryset]
+
+class TopTwentyArticlesWidget(ListWidget):
+    title = 'Top Twenty Articles'
     more_info = ''
     get_update_at  = ''
 
@@ -40,12 +49,20 @@ class TopArticlesWidget(ListWidget):
         queryset = Article.objects.order_by('-article_hits')[:20]
         return [{'label':x.title, 'value':x.article_hits} for x in queryset]
 
-class TopBriefsWidget(ListWidget):
-    title = 'Top Briefs'
+class TopFiveBriefsWidget(ListWidget):
+    title = 'Top Five Briefs'
+    more_info = ''
+    get_update_at  = ''
+
+    def get_data(self):
+        queryset = Brief.objects.order_by('-article_hits')[:5]
+        return [{'label':x.title, 'value':x.article_hits} for x in queryset]
+
+class TopTwentyBriefsWidget(ListWidget):
+    title = 'Top Twenty Briefs'
     more_info = ''
     get_update_at  = ''
 
     def get_data(self):
         queryset = Brief.objects.order_by('-article_hits')[:20]
         return [{'label':x.title, 'value':x.article_hits} for x in queryset]
-
