@@ -25,8 +25,6 @@ dashboard.addWidget('article_count', 'Number', {
     interval: 6000000
 });
 
-dashboard.addWidget('clock_widget', 'Clock');
-
 dashboard.addWidget('brief_count', 'Number', {
     getData: function () {
         var self = this;
@@ -36,6 +34,8 @@ dashboard.addWidget('brief_count', 'Number', {
     },
     interval: 6000000
 });
+
+dashboard.addWidget('clock_widget', 'Clock');
 
 dashboard.addWidget('top_20_articles', 'List', {
     getData: function () {
