@@ -167,7 +167,10 @@ INSTALLED_APPS = (
     'djangocms_forms',
     'cmsplugin_bootstrap_columns',
     'spe_preferences',
-#    'django_extensions',
+    # 'django_extensions',
+    'dashing',
+    'dashboard',
+    'spe_promotions',
 )
 
 LANGUAGES = (
@@ -602,3 +605,7 @@ CKEDITOR_SETTINGS = {
         'filebrowserBrowseUrl': '/ckeditor/browse/',
         'filebrowserUploadUrl': '',
     }, }
+
+DASHING = {
+    'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
+}
