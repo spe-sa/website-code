@@ -4,6 +4,7 @@
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
+
     {% if pubcode == "TWA" %}
         {% if isbrief == True %}
             <div class="spacer10px"></div>
@@ -13,9 +14,11 @@
             </div>
         {% endif %}
     {% endif %}
+
 {% for article in articles %}
-{#    <div class="row">#}
+
         <div class="row sideListItem">
+
         {% if pubcode == "TWA" %}
             {% if isbrief %}
                 <div class="col-xs-12">
@@ -27,20 +30,23 @@
             <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
         {% else %}
             <div class="col-xs-12">
-            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
-        {% endif %}
+                <div>
 
-            <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
-        {% if pubcode == "TWA" %}
-{#            <span class="sideListAuthor">{{ article.author }}</span>#}
-        {% else %}
-            {% if article.is_readable == True %}
-                <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
             {% endif %}
-        {% endif %}
+
+                <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
+            {% if pubcode == "TWA" %}
+
+            {% else %}
+                {% if article.is_readable == True %}
+                    <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                {% endif %}
+            {% endif %}
+
+                </div>
             </div>
         </div>
-{#    </div>#}
 
 {% empty %}
     <p class="well">{% trans "No editorial available" %}</p>

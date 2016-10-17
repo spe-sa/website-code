@@ -7,7 +7,7 @@
   background-color:     $col-white;
 }
 
-.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-greenbar, .tile-alert {
+.tile, .tile-blue, .tile-lightblue, .tile-white, .tile-greenbar, .tile-alert, .tile-editorial {
   box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
@@ -59,13 +59,14 @@
   margin-bottom:        20px;
   box-shadow:           0 1px 2px $col-boxshadow;
 }
+
+
 .tile-editorial {
-  background-color:     $col_black;
-  color:                $col-white;
-  padding:              15px;
-  height:               400px;
-  margin-bottom:        15px;
-  overflow:             hidden;
+  background-color:     $col-black;
+  //padding:              15px;
+  //margin-bottom:        15px;
+  //overflow:             hidden;
+  overflow-y:           auto;
 
   .title1, .title2, .excerpt, .authorBio {
     padding:            0;
@@ -94,10 +95,53 @@
   .authorBio {
     font-size:          10px;
   }
+
+}
+.tile-editorial-fixed {
+  height:               400px;
+}
+.tile-editorial-txtwht {
+  color:                $col-white;
   a {
     color:              $col-white;
   }
-
+}
+.tile-editorial-txtblck {
+  color:                $col-black;
+  a {
+    color:              $col-black;
+  }
+  .sideListDate {
+    color:              $col-red;
+  }
+}
+//.sideListTitle {
+//  font-size:            14px;
+//  //font-weight:          $font-bold;
+//  //line-height:          18px;
+//
+//  a {
+//    color:              $col-darkgrey;
+//    margin-top: 20px;
+//    margin-left: 10px;
+//    margin-right: 10px;
+//    margin-bottom: 20px;
+//    //margin:               10px 0 10px 0;
+//    //padding:              10px 0 10px 0;
+//  }
+//
+//  a:hover {
+//    color:              $col-speblue2;
+//  }
+//}
+.sideListDate, .sideListDateTWA {
+  color:                $col-speblue2;
+  font-weight:          $font-light;
+  font-size:            12px;
+  padding:              5px 0 0 0;
+}
+.pipe {
+  display: none;
 }
 .tile-greenbar {
     background-color:   $col-white;
@@ -265,9 +309,21 @@
   font-weight:          $font-bold;
   display:              inline-block;
 }
+.boxtitles {
+  color:                $col-darkgrey;
+  font-size:            25px;
+  font-weight:          $font-bold;
+  padding-bottom:       15px;
+  margin-bottom:        15px;
+  border-bottom:        1px dotted $col-darkgrey;
+}
+
 .tileDate {
   font-weight:          $font-bold;
   margin-bottom:        10px;
+}
+.tileImgBack .tileDate {
+  display:              none;
 }
 .tileText {
   color:                $col-black;

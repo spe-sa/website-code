@@ -359,9 +359,9 @@ table th, table td { padding: 5px; }
 /* Images */
 .tiletitlehr { margin-top: 0; height: 5px; border: none; color: #0f1c97; background-color: #0f1c97; }
 
-.tiletitles, .topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
+.tiletitles, .topictitles, .boxtitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
 
-.tiletitles { font-size: 25px; }
+.tiletitles, .boxtitles { font-size: 25px; }
 
 .topictitles { font-size: 30px; }
 
@@ -384,7 +384,7 @@ table th, table td { padding: 5px; }
 .tile-lightblue a:hover { color: white; }
 
 .tileImgBack { background-position: center; -webkit-background-size: cover; background-size: cover; }
-.tileImgBack .tiletitles { font-weight: 700; }
+.tileImgBack .tiletitles, .tileImgBack .boxtitles { font-weight: 700; }
 .tileImgBack .tileDate { color: #26416c; }
 .tileImgBack a { color: #26416c; }
 
