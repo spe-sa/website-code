@@ -68,3 +68,26 @@ a {
   font-size:          12px;
   letter-spacing:     2px;
 }
+.tile-editorial {
+  .row {
+    margin:             10px 0;
+    padding-bottom:     10px;
+    border-bottom: 1px solid #f1f2f7;
+  }
+}
+.sideListTitle {
+  font-size:            14px;
+  //font-weight:          $font-bold;
+  //line-height:          18px;
+
+  a {
+    color:              $col-darkgrey;
+    margin:             20px 0;
+    //margin:               10px 0 10px 0;
+    //padding:              10px 0 10px 0;
+  }
+
+  a:hover {
+    color:              $col-speblue2;
+  }
+}

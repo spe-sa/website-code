@@ -434,9 +434,9 @@ table#authortable p { padding-left: 10px; }
 
 .topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
 
-.tiletitles { color: #32bbbc; padding: 0 10px 10px 10px; margin-bottom: 15px; }
+.tiletitles, .boxtitles { color: #32bbbc; padding: 0 10px 10px 10px; margin-bottom: 15px; }
 
-.tiletitles { font-size: 30px; }
+.tiletitles, .boxtitles { font-size: 30px; }
 
 .topictitles { font-size: 30px; }
 
@@ -459,7 +459,7 @@ table#authortable p { padding-left: 10px; }
 .tile-lightblue a:hover { color: white; }
 
 .tileImgBack { background-position: center; -webkit-background-size: cover; background-size: cover; }
-.tileImgBack .tiletitles { font-weight: 700; }
+.tileImgBack .tiletitles, .tileImgBack .boxtitles { font-weight: 700; }
 .tileImgBack .tileDate { color: #26416c; }
 .tileImgBack a { color: #26416c; }
 

@@ -12,14 +12,14 @@
   padding-bottom:       10px;
   margin-bottom:        15px;
 }
-.tiletitles {
+.tiletitles, .boxtitles {
   color:                $col-twablue;
   //border-bottom:        1px dotted $col-basegrey;
   //padding-bottom:       10px;
   padding:              0 10px 10px 10px;
   margin-bottom:        15px;
 }
-.tiletitles {
+.tiletitles, .boxtitles {
   font-size:            30px;
 }
 .topictitles {
@@ -76,7 +76,7 @@
   -webkit-background-size:  cover;
   background-size:          cover;
 
-  .tiletitles {
+  .tiletitles, .boxtitles {
     font-weight:        $font-bold;
   }
   .tileDate {
