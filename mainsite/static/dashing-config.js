@@ -4,22 +4,10 @@ var myDashboardSet = new DashboardSet({
     rollingChoices: true,
 });
 
-myDashboardSet.addAction('Go to Google', function() { window.location.href = 'https://google.com/';
+myDashboardSet.addAction('Go to SPE.org', function() { window.location.href = 'https://www.spe.org/';
 })
 
 dashboard = myDashboardSet.addDashboard('main');
-
-dashboard.addWidget('top_5_articles', 'List', {
-    row: '1',
-    col: '3',
-    getData: function () {
-        var self = this;
-        $.get('widgets/top_5_articles/', function(scope) {
-            $.extend(self.scope, scope);
-        });
-    },
-    interval: 6000000
-});
 
 dashboard.addWidget('clock_widget', 'Clock');
 
@@ -33,22 +21,20 @@ dashboard.addWidget('article_count', 'Number', {
     interval: 6000000
 });
 
-dashboard.addWidget('brief_count', 'Number', {
+dashboard.addWidget('top_20_articles', 'List', {
     getData: function () {
         var self = this;
-        $.get('widgets/brief_count/', function(scope) {
+        $.get('widgets/top_20_articles/', function(scope) {
             $.extend(self.scope, scope);
         });
     },
     interval: 6000000
 });
 
-dashboard.addWidget('top_5_briefs', 'List', {
-    row: '1',
-    col: '3',
+dashboard.addWidget('brief_count', 'Number', {
     getData: function () {
         var self = this;
-        $.get('widgets/top_5_briefs/', function(scope) {
+        $.get('widgets/brief_count/', function(scope) {
             $.extend(self.scope, scope);
         });
     },
