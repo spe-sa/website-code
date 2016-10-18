@@ -1,7 +1,9 @@
 import datetime
 from dashing.widgets import NumberWidget, ListWidget
+from django.db.models import Sum
 
 from spe_blog.models import Article, Brief
+from spe_promotions.models import Promotion
 
 class ArticleCountWidget(NumberWidget):
     title = 'Articles'
@@ -30,6 +32,24 @@ class BriefCountWidget(NumberWidget):
     def get_more_info(self):
         count = Brief.objects.filter(published=False).count()
         return '{} Un-Published'.format(count)
+
+class PromotionCountWidget(NumberWidget):
+    title = 'Active Promotions'
+
+    def get_value(self):
+        today = datetime.date.today()
+        return Promotion.objects.filter(start__lte=today, end__gte=today).count()
+
+    def get_detail(self):
+        today = datetime.date.today()
+        clicks = Promotion.objects.filter(start__lte=today, end__gte=today).aggregate(sum=Sum('hits'))['sum']
+        return '{} Clicks'.format(clicks)
+
+    def get_more_info(self):
+        today = datetime.date.today()
+        impressions = Promotion.objects.filter(start__lte=today, end__gte=today).aggregate(sum=Sum('impressions'))['sum']
+        return '{} Impressions'.format(impressions)
+
 
 class TopFiveArticlesWidget(ListWidget):
     title = 'Top Five Articles'

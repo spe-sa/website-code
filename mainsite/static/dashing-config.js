@@ -35,7 +35,15 @@ dashboard.addWidget('brief_count', 'Number', {
     interval: 6000000
 });
 
-dashboard.addWidget('clock_widget', 'Clock');
+dashboard.addWidget('promotion_count', 'Number', {
+    getData: function () {
+        var self = this;
+        $.get('widgets/promotion_count/', function(scope) {
+            $.extend(self.scope, scope);
+        });
+    },
+    interval: 6000000
+});
 
 dashboard.addWidget('top_20_articles', 'List', {
     getData: function () {
