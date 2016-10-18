@@ -30,6 +30,7 @@ class ShowPromotionListingPlugin(CMSPluginBase):
 
         for x in objects:
             x.url = "/promotion/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
         
