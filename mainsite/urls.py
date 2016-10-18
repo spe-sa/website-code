@@ -9,17 +9,6 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import RedirectView
 
-# Dashboard
-
-from dashing.utils import router
-from dashboard.widgets import ArticleCountWidget, BriefCountWidget, TopFiveArticlesWidget, TopTwentyArticlesWidget, TopFiveBriefsWidget, TopTwentyBriefsWidget
-router.register(ArticleCountWidget, 'article_count')
-router.register(BriefCountWidget, 'brief_count')
-router.register(TopFiveArticlesWidget, 'top_5_articles')
-router.register(TopTwentyArticlesWidget, 'top_20_articles')
-router.register(TopFiveBriefsWidget, 'top_5_briefs')
-router.register(TopTwentyBriefsWidget, 'top_20_briefs')
-
 # Admin
 
 admin.autodiscover()
