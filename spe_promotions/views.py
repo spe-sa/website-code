@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import redirect
-from .models import Promotion
+from .models import Promotion, SimpleEventPromotion
 
 def promo_select(request, index):
     try:
@@ -16,3 +16,15 @@ def promo_select(request, index):
     if object.click_page:
         url = object.click_page
     return redirect(url)
+
+def event_select(request, index):
+    try:
+        object = SimpleEventPromotion.objects.get(pk=index)
+    except SimpleEventPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+

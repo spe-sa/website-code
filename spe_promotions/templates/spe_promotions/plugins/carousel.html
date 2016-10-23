@@ -1,0 +1,45 @@
+{% load cms_tags sekizai_tags %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+  {% for promo in promos %}
+
+      {% if promo.picture and promo.picture.url %}
+          {% if forloop.first %}
+              <li data-target="#myCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
+          {% else %}
+              <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
+          {% endif %}
+      {% endif %}
+  {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+      {% for promo in promos %}
+          {% if promo.picture and promo.picture.url %}
+              {% if forloop.first %}
+                  <div class="item active" style="background-image: url({{ promo.picture.url }})">
+                      <a href="{{ promo.url }}">
+                          <div class="carousel-caption">
+                              <h3>{{ promo.event }}</h3>
+                              <h4>{{ promo.teaser | safe }}</h4>
+                          </div>
+                      </a>
+                  </div>
+              {% else %}
+                  <div class="item" style="background-image: url({{ promo.picture.url }})">
+                      <a href="{{ promo.url }}">
+                          <div class="carousel-caption">
+                              <h3>{{ promo.title }}</h3>
+                              <h4>{{ promo.teaser | safe }}</h4>
+                          </div>
+                      </a>
+                  </div>
+              {% endif %}
+          {% endif %}
+
+      {% endfor %}
+  </div>
+</div>

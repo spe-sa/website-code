@@ -65,6 +65,7 @@ urlpatterns = i18n_patterns('',
     # url(r'^test/sc500', 'mainsite.views.status_code_500', name='status_code_500'),
     # url(r'^dashboard/', include(router.urls)),
     # url(r'^stats/$', 'dashboard.views.url_redirect', name="url-redirect"),
+    url(r'^promotion/event/(?P<index>\d+)/$', 'spe_promotions.views.event_select',),
     url(r'^promotion/(?P<index>\d+)/$', 'spe_promotions.views.promo_select',),
     url(r'^', include('cms.urls')),
 )

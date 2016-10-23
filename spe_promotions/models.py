@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from cms.models.fields import PageField
 from cms.models import CMSPlugin
 from filer.fields.image import FilerImageField
@@ -19,20 +20,10 @@ PROMOTION_TYPE = (
     (DEFAULT_PROMOTION_TYPE, 'Generic'),
 )
 
-DEFAULT_PLUGIN_TEMPLATE = 'spe_blog/plugins/image_left.html'
+DEFAULT_PLUGIN_TEMPLATE = 'spe_promotions/plugins/carousel.html'
 PLUGIN_TEMPLATES = (
-    (DEFAULT_PLUGIN_TEMPLATE, 'Image on left'),
-    ('spe_blog/plugins/overlay.html', 'Image with caption overlay'),
-    ('spe_blog/plugins/picture_with_text_below.html', 'Image with text below'),
-    ('spe_blog/plugins/picture_with_text_below_full.html', 'Image with text below full width'),
-    ('spe_blog/plugins/person_of_interest.html', 'Persons of Interest'),
-    ('spe_blog/plugins/carousel.html', 'Carousel'),
-    ('spe_blog/plugins/side_list.html', 'Editorial Sidebar Article List'),
-    ('spe_blog/plugins/side_feature.html', 'Editorial Sidebar'),
-    ('spe_blog/plugins/article_editorial.html', 'Editorial w/ Author'),
-    ('spe_blog/plugins/twa_articlebox.html', 'TWA Article Box'),
-    ('spe_blog/plugins/twa_featured.html', 'TWA Featured Article Box'),
-    # ('spe_blog/plugins/side_list.html', 'TWA Article List'),
+    (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
+    ('spe_promotions/plugins/image_left.html', 'Image Left')
 )
 
 
@@ -83,3 +74,78 @@ class PromotionListingPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.disciplines = old_instance.disciplines.all()
         self.regions = old_instance.regions.all()
+
+class SimpleEventPromotion(models.Model):
+    event = models.CharField(max_length=250)
+    teaser = RichTextUploadingField(
+        max_length=300,
+    )
+    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_promotion_picture")
+    hits = models.PositiveIntegerField(default=0, editable=False)
+    impressions = models.PositiveIntegerField(default=0, editable=False)
+    last_impression = models.DateField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    latitude = models.FloatField(validators = [MinValueValidator(-90.0), MaxValueValidator(90.0)])
+    longitude = models.FloatField(validators = [MinValueValidator(-180.0), MaxValueValidator(180.0)])
+    start = models.DateField(verbose_name='Start Date')
+    end = models.DateField(verbose_name='End Date')
+    click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True)
+    url = models.URLField(blank=True, null=True, editable=False)
+
+    class Meta:
+        ordering = ['-end', 'event']
+        get_latest_by = ['end']
+
+    def __unicode__(self):
+        return self.event
+
+class SimpleEventPromotionListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    radius = models.FloatField(validators = [MinValueValidator(0.1)])
+
+    def __unicode__(self):
+        buf = str(self.count) + " - " 
+        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        buf += " within a radius of " + str(self.radius)
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.disciplines = old_instance.disciplines.all()
+
+class EventPromotionNearLocationListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    latitude = models.FloatField(validators = [MinValueValidator(-90.0), MaxValueValidator(90.0)])
+    longitude = models.FloatField(validators = [MinValueValidator(-180.0), MaxValueValidator(180.0)])
+    radius = models.FloatField(validators = [MinValueValidator(0.1)])
+
+    def __unicode__(self):
+        buf = str(self.count) + " events - near (" + str(latitude) + "," + str(longitude) + ")"
+        buf += " within a radius of " + str(self.radius)
+        return buf
+
+class EventPromotionNearUserListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    radius = models.FloatField(validators = [MinValueValidator(0.1)])
+
+    def __unicode__(self):
+        buf = str(self.count) + " - " 
+        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        buf += " within a radius of " + str(self.radius)
+        return buf
+
+class EventPromotionByDisciplineListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+
+    def __unicode__(self):
+        buf = str(self.count) + " - " 
+        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.disciplines = old_instance.disciplines.all()
