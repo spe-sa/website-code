@@ -123,7 +123,7 @@ class EventPromotionNearLocationListingPlugin(CMSPlugin):
     radius = models.FloatField(validators = [MinValueValidator(0.1)])
 
     def __unicode__(self):
-        buf = str(self.count) + " events - near (" + str(latitude) + "," + str(longitude) + ")"
+        buf = str(self.count) + " events - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
         buf += " within a radius of " + str(self.radius)
         return buf
 

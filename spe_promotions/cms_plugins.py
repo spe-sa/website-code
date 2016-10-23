@@ -47,9 +47,9 @@ class ShowPromotionListingPlugin(CMSPluginBase):
 
         for x in objects:
             dlat = math.radians(x.latitude - latitude)
-            dlon = math.radians(x.logitude - longitude)
-            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
-                * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
+            dlon = math.radians(x.longitude - longitude)
+            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitude)) \
+                * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = 6371 * c
            
@@ -87,9 +87,9 @@ class ShowEventNearLocationPromotionListing(CMSPluginBase):
 
         for x in objects:
             dlat = math.radians(x.latitude - instance.latitude)
-            dlon = math.radians(x.logitude - instance.longitude)
-            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
-                * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
+            dlon = math.radians(x.longitude - instance.longitude)
+            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(instance.latitude)) \
+                * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = 6371 * c
            
@@ -139,9 +139,9 @@ class ShowEventNearUserPromotionListing(CMSPluginBase):
 
         for x in objects:
             dlat = math.radians(x.latitude - latitude)
-            dlon = math.radians(x.logitude - longitude)
-            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
-                * math.cos(math.radians(lat2)) * math.sin(dlon/2) * math.sin(dlon/2)
+            dlon = math.radians(x.longitude - longitude)
+            a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitude)) \
+                * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = 6371 * c
            
