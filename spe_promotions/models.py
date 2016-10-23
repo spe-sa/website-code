@@ -23,7 +23,8 @@ PROMOTION_TYPE = (
 DEFAULT_PLUGIN_TEMPLATE = 'spe_promotions/plugins/carousel.html'
 PLUGIN_TEMPLATES = (
     (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
-    ('spe_promotions/plugins/image_left.html', 'Image Left')
+    ('spe_promotions/plugins/image_left.html', 'Image Left'),
+    ('spe_promotions/plugins/overlay.html', 'Text Overlay')
 )
 
 

@@ -1,0 +1,16 @@
+{% for promo in promos %}
+    {% if promo.picture and promo.picture.url %}
+        <article class="tile whiteback featured-story">
+            <a href="{{ promo.url }}">
+            <div class="story-wrap" style="background-image:url({{ promo.picture.url }});">
+                <div class="story-text">
+                    <h2>{{ promo.event }}</h2>
+                    <p>{{ promo.teaser | safe }}</p>
+                </div>
+            </div>
+            </a>
+        </article>
+    {% endif %}
+{% empty %}
+    No Events Found
+{% endfor %}
