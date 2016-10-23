@@ -53,7 +53,7 @@ class ShowPromotionListingPlugin(CMSPluginBase):
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = 6371 * c
            
-            if d <= instance.radium:
+            if d <= instance.radius:
                 new_objects.append(x)
 
         objects = new_objects[:instance.count]
@@ -145,7 +145,7 @@ class ShowEventNearUserPromotionListing(CMSPluginBase):
             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
             d = 6371 * c
            
-            if d <= instance.radium:
+            if d <= instance.radius:
                 new_objects.append(x)
 
         objects = new_objects[:instance.count]

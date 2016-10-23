@@ -133,9 +133,7 @@ class EventPromotionNearUserListingPlugin(CMSPlugin):
     radius = models.FloatField(validators = [MinValueValidator(0.1)])
 
     def __unicode__(self):
-        buf = str(self.count) + " - " 
-        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
-        buf += " within a radius of " + str(self.radius)
+        buf = str(self.count) + " - within a radius of " + str(self.radius)
         return buf
 
 class EventPromotionByDisciplineListingPlugin(CMSPlugin):
