@@ -35,6 +35,7 @@
 .megarow {
     padding: 40px 30px 30px 30px;
 
+
     .nav-col {
         border-right: 1px solid $col-sprlghtgry;
         min-height: 220px;
@@ -141,6 +142,9 @@
     color: $col-speblue;
     background-color: $col-sprlghtgry;
 }
+.navbar-default .navbar-nav > .open > a:visited {
+    color: $col-white;
+}
 .clear {
     clear: both;
     display: block;
@@ -178,6 +182,7 @@
     .dropdown-menu {
         left: auto;
         background-color:$col-white;
+        z-index: 9999;
     }
 
     // Content with padding

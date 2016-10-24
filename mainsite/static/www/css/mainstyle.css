@@ -59,13 +59,15 @@ a:hover { text-decoration: none; }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover { color: #26416c; background-color: #e7e7e7; }
 
+.navbar-default .navbar-nav > .open > a:visited { color: white; }
+
 .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
 
 .yamm .nav, .yamm .collapse, .yamm .dropup, .yamm .dropdown { position: static; }
 .yamm ul.nav li.dropdown:hover > ul.dropdown-menu { display: block; }
 .yamm .container { position: relative; width: auto; max-width: 1170px; min-height: 54px; }
 .yamm .navbar-collapse, .yamm .nav { min-height: 54px; }
-.yamm .dropdown-menu { left: auto; background-color: white; }
+.yamm .dropdown-menu { left: auto; background-color: white; z-index: 9999; }
 .yamm .yamm-content { padding: 20px 30px; }
 .yamm .dropdown.yamm-fw .dropdown-menu { left: 0; right: 0; }
 
@@ -133,13 +135,13 @@ a:hover { text-decoration: none; }
 /* *************************************** */
 #branding { min-height: 100px; background-color: white; }
 
-.logo-wrap { padding: 20px 0; }
+.logo-wrap { padding: 20px 0 0 0; }
 
 .spe-logo { display: block; margin: 21px 0 0 10px; }
 
 #logo { text-indent: -9999px; background-position: 0 0; }
 
-.welcomemsg { padding: 35px 30px 30px 0; font-size: .8em; text-align: right; line-height: 1; font-weight: 600; }
+.welcomemsg { padding: 35px 30px 0 0; font-size: .8em; text-align: right; line-height: 1; font-weight: 600; }
 
 /* Search */
 #search { float: right; margin: 33px 0 30px 0; }
@@ -160,6 +162,8 @@ a:hover { text-decoration: none; }
 #search ::-moz-placeholder { color: #e0e4eb; }
 
 #search :-ms-input-placeholder { color: #e0e4eb; }
+
+.navbar-toggle { border: none; }
 
 /* *************************************** */
 /* *************************************** */
@@ -329,7 +333,7 @@ a:hover { text-decoration: none; }
 .tile-curntIssue .pub-date { font-size: 20px; margin-bottom: 20px; }
 .tile-curntIssue .btn { background-color: #26416c; color: white; }
 
-.tiletitlerow { z-index: 9999; position: relative; text-align: center; }
+.tiletitlerow { z-index: 5000; position: relative; text-align: center; }
 
 .tiletitlehr { display: none; }
 
