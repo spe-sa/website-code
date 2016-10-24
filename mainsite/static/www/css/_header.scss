@@ -147,7 +147,7 @@
   background-color:$col-white;
 }
 .logo-wrap {
-  padding:20px 0;
+  padding:20px 0 0 0;
 }
 .spe-logo { display:block;margin:21px 0 0 10px; }
 #logo {
@@ -157,7 +157,7 @@
   //width:413px;
 }
 .welcomemsg {
-  padding:35px 30px 30px 0;
+  padding:35px 30px 0 0;
   font-size: .8em;
   text-align: right;
   line-height: 1;
@@ -173,5 +173,9 @@
 #search :-moz-placeholder { color: $col-lightgrey; }
 #search ::-moz-placeholder { color: $col-lightgrey; }
 #search :-ms-input-placeholder { color: $col-lightgrey; }
+
+.navbar-toggle {
+    border:none;
+}
 /* *************************************** */
 /* *************************************** */
