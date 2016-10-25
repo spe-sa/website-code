@@ -26,12 +26,11 @@ DATABASES = {
     'default':
         {
             'ENGINE': 'django.db.backends.mysql',
-            'OPTIONS': {
-                'read_default_file': '/Applications/MAMP/tmp/mysql/my.cnf',
-            },
+            'HOST': '127.0.0.1',
             'NAME': 'django',
             'USER': 'root',
             'PASSWORD': 'root',
+            'PORT': 3306
         }
 }
 
