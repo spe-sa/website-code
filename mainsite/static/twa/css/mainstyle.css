@@ -13,9 +13,9 @@ body { font-family: "proxima-nova", sans-serif; font-size: 14px !important; }
 
 h1, h2, h3, h4 { font-family: "Roboto Slab", serif; font-weight: 700; }
 
-h3 { font-size: 20px; }
+h3 { font-size: 20px; margin-top: 0; }
 
-h2 { font-size: 16px; }
+h2 { font-size: 16px; margin-top: 10px; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
 
@@ -434,7 +434,7 @@ table#authortable p { padding-left: 10px; }
 
 .topictitles { color: #3d4044; border-bottom: 1px dotted grey; padding-bottom: 10px; margin-bottom: 15px; }
 
-.tiletitles, .boxtitles { color: #32bbbc; padding: 0 10px 10px 10px; margin-bottom: 15px; }
+.tiletitles, .boxtitles { color: #32bbbc; padding: 0 10px 0 10px; margin-bottom: 15px; }
 
 .tiletitles, .boxtitles { font-size: 30px; }
 
@@ -463,7 +463,7 @@ table#authortable p { padding-left: 10px; }
 .tileImgBack .tileDate { color: #26416c; }
 .tileImgBack a { color: #26416c; }
 
-.whiteback, .tile-white { background-color: white; }
+.whiteback, .tile-white { background-color: white; padding: 0 10px; }
 
 .link-box, .tile-links { border-bottom: 1px solid #b4b4b9; background-color: white; padding: 15px; }
 .link-box .section-heading, .tile-links .section-heading { font-family: "Roboto Slab", serif; font-size: 30px; font-weight: 700; color: #32bbbc; margin-bottom: 15px; }
