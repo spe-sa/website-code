@@ -26,8 +26,8 @@ router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
-    url(r'/ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    # url(r'/ckeditor/', include('ckeditor_uploader.urls')),
+    # url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # ran into a problem where the ckeditor is not at the root
     # ex: /en/admin/spe_blog/article/add/ckeditor/upload/?CKEditor=id_introduction&CKEd...
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
