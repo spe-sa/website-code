@@ -176,7 +176,7 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
         today = datetime.date.today()
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
         
-        objects = objects.filter(disciplines__in=instance.disciplines.all())[:instance.count]
+        objects = objects.filter(disciplines__in=instance.disciplines.all()).distinct()[:instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
