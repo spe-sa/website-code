@@ -1,0 +1,13 @@
+{% load cms_tags %}
+
+<li>
+        {% for plugin in instance.child_plugin_instances %}
+            {% if component_href %}
+            <a href="{{ component_href }}">
+            {% endif %}
+            {% render_plugin plugin %}
+            {% if component_href %}
+            </a>
+            {% endif %}
+        {% endfor %}
+</li>
