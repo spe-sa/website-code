@@ -23,7 +23,8 @@ h2 { font-size: 16px; }
 
 .container-fluid { padding: 0; }
 
-a:hover { text-decoration: none; }
+a { color: #365d98; }
+a:hover { text-decoration: none; color: grey; }
 
 .dummyClass { font-size: 10px; }
 
@@ -317,9 +318,9 @@ a:hover { text-decoration: none; }
 
 .editorialcol { padding: 10px; }
 
-.areaContent { padding-right: 15px; }
+.areaContent { padding-right: 15px; padding-left: 10px; }
 
-.areaRightSide { padding-left: 15px; }
+.areaRightSide { padding-left: 15px; padding-right: 10px; }
 
 .issuebar { cursor: pointer; background-color: #e4e1d8; }
 .issuebar:hover { background-color: #b4b4b9; }
@@ -374,7 +375,7 @@ table th, table td { padding: 5px; }
 
 .tiletitles { color: #2a2a2a; padding: 0 10px 10px 10px; margin-bottom: 15px; }
 
-.tiletitles { font-size: 30px; }
+.tiletitles { font-size: 25px; }
 
 .topictitles { font-size: 30px; }
 
