@@ -14,9 +14,7 @@
 }
 .tiletitles, .boxtitles {
   color:                $col-twablue;
-  //border-bottom:        1px dotted $col-basegrey;
-  //padding-bottom:       10px;
-  padding:              0 10px 10px 10px;
+  padding:              0 10px 0 10px;
   margin-bottom:        15px;
 }
 .tiletitles, .boxtitles {
@@ -88,6 +86,7 @@
 }
 .whiteback, .tile-white {
   background-color:     $col-white;
+  padding:              0 10px;
 }
 .link-box, .tile-links {
   border-bottom:        1px solid $col-boxshadow;

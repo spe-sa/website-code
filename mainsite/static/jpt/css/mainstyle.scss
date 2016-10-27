@@ -36,8 +36,10 @@ h2 {
   padding:                0;
 }
 a {
+  color:                  $col-speblue2;
   &:hover {
     text-decoration:      none;
+    color:                $col-basegrey;
   }
 }
 .dummyClass {
