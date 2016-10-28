@@ -152,8 +152,8 @@ class VisitorPropertySegmentPlugin(SegmentPluginBase):
                 return False
             if testString == None or testString == '':
                 return False
-            # NOTE: with the time -> '%d %b %Y %I:%M%p'
-            testValue = datetime.strptime(testString, '%d %b %Y').date()
+            # Glenda would like YYY-MM-DD since that is how she sees it in django
+            testValue = datetime.strptime(testString, '%Y-%m-%d').date()
             thisValue = visitorValue
             if instance.operator == '=':
                 return thisValue == testValue

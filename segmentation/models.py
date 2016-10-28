@@ -280,7 +280,7 @@ class VisitorPropertySegmentPluginModel(SegmentBasePluginModel):
                                    )
     visitor_value = models.CharField(_('value to compare'),
                                      blank=False,
-                                     help_text=_('Date format: 1 Jun 2005'),
+                                     help_text=_('Date format: 2005-12-31 (year-month-day)'),
                                      max_length=500,
                                      )
     data_type = models.CharField(
