@@ -370,6 +370,9 @@ class AdSpeedZonePlugin(CMSPlugin):
 
 class TitleBarPlugin(CMSPlugin):
     title = models.CharField(max_length=100)
+    # ADDED
+    backcol = ColorField("Background Color", blank=True, null=True)
+    textcol = ColorField("Text Color", blank=True, null=True)
 
     def __unicode__(self):
         return self.title
