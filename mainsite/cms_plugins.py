@@ -40,6 +40,8 @@ class ShowTitlePlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context.update({'title': instance.title})
+        context.update({'backcol': instance.backcol})
+        context.update({'textcol': instance.textcol})
         return context
 
 
