@@ -1,0 +1,24 @@
+{% load cms_tags sekizai_tags %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+  <ol class="carousel-indicators">
+    {% for promo in promos %}
+      <li {% if forloop.first %}class=active{% else %}class=""{% endif %} data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}"></li>
+    {% endfor %}
+  </ol>
+  <div class="carousel-inner">
+    {% for promo in promos %}
+      <div class="item {% if forloop.first %}active{% endif %}">
+        <a href="{{ promo.url }}">
+        <img src="{{ promo.picture.url }}" style="background-image">
+        </a>
+        <div class="container">
+          <div class="carousel-caption">
+             <h4>{{ promo.event }}</h4>
+             <h5>{{ promo.teaser | safe }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

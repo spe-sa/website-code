@@ -10,6 +10,22 @@ from django.utils.translation import ugettext_lazy as _, string_concat
 
 from cms.models import CMSPlugin
 
+DEFAULT_DATA_TYPE = 'string'
+DATA_TYPES = (
+    ("string", 'String'),
+    ("date", 'Date'),
+    ("int", 'Int')
+)
+DEFAULT_OPERATOR = '='
+OPERATORS = (
+    ("=", '='),
+    (">", '>'),
+    (">=", '>='),
+    ("<", '<'),
+    ("<=", '<='),
+    ("!=", '!=')
+)
+
 
 #
 # NOTE: The SegmentLimitPluginModel does NOT subclass SegmentBasePluginModel
@@ -250,6 +266,40 @@ class VisitorSegmentPluginModel(SegmentBasePluginModel):
     def configuration_string(self):
         def wrapper():
             return _('“{key}” equals “{value}”').format(key=self.visitor_key, value=self.visitor_value)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+class VisitorPropertySegmentPluginModel(SegmentBasePluginModel):
+    visitor_key = models.CharField(_('name of customer attribute'),
+                                   blank=False,
+                                   help_text=_('Name of customer attribute to check.'),
+                                   max_length=500,
+                                   )
+    visitor_value = models.CharField(_('value to compare'),
+                                     blank=False,
+                                     help_text=_('Date format: 2005-12-31 (year-month-day)'),
+                                     max_length=500,
+                                     )
+    data_type = models.CharField(
+        max_length=20,
+        choices=DATA_TYPES,
+        default=DEFAULT_DATA_TYPE,
+        verbose_name="Data type to use for comparison"
+    )
+    operator = models.CharField(
+        max_length=20,
+        choices=OPERATORS,
+        default=DEFAULT_OPERATOR,
+        verbose_name="Type of comparison"
+    )
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('“{key}” "{operator}" “{value}”').format(key=self.visitor_key, operator=self.operator, value=self.visitor_value)
 
         return lazy(
             wrapper,

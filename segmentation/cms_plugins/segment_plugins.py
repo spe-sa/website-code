@@ -2,7 +2,8 @@
 
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
-
+from datetime import datetime, date
+from django.utils.dateparse import parse_date
 from cms.plugin_pool import plugin_pool
 
 from .segment_plugin_base import SegmentPluginBase
@@ -19,7 +20,7 @@ from ..models import (
     VariableSegmentPluginModel,
     VisitorSegmentPluginModel,
     VisitorClassificationSegmentPluginModel,
-
+    VisitorPropertySegmentPluginModel,
 )
 
 from mainsite.context_processors.spe_context import (
@@ -113,6 +114,89 @@ class VisitorSegmentPlugin(SegmentPluginBase):
             is_true = repr(value) == instance.visitor_value
         return is_true
 
+class VisitorPropertySegmentPlugin(SegmentPluginBase):
+    """
+    This is a segmentation plugin that renders output on the condition that a
+    variable with ``variable_key`` is present and has the value ``variable_value``.
+    """
+
+    model = VisitorPropertySegmentPluginModel
+    name = _('Segment by customer property (date,int)')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        if not visitor:
+            return False
+        visitorValue = getattr(visitor, instance.visitor_key, None)
+        testString = str(instance.visitor_value)
+        if instance.data_type == 'string':
+            thisValue = str(visitorValue)
+            testValue = testString
+            if instance.operator == '=':
+                return thisValue == testValue
+            elif instance.operator == '>':
+                return thisValue > testValue
+            elif instance.operator == '>=':
+                return thisValue >= testValue
+            elif instance.operator == '<':
+                return thisValue < testValue
+            elif instance.operator == '<=':
+                return thisValue <= testValue
+            elif instance.operator == '!=':
+                return thisValue != testValue
+            else:
+                return False
+        elif instance.data_type == 'date':
+            if visitorValue == None:
+                return False
+            if testString == None or testString == '':
+                return False
+            # Glenda would like YYY-MM-DD since that is how she sees it in django
+            testValue = datetime.strptime(testString, '%Y-%m-%d').date()
+            thisValue = visitorValue
+            if instance.operator == '=':
+                return thisValue == testValue
+            elif instance.operator == '>':
+                return thisValue > testValue
+            elif instance.operator == '>=':
+                return thisValue >= testValue
+            elif instance.operator == '<':
+                return thisValue < testValue
+            elif instance.operator == '<=':
+                return thisValue <= testValue
+            elif instance.operator == '!=':
+                return thisValue != testValue
+            else:
+                return False
+
+        elif instance.data_type == 'int':
+            thisValue = visitorValue
+            if visitorValue == None:
+                return False
+            if testString == None or testString == '':
+                return False
+            testValue = int(testString)
+            if instance.operator == '=':
+                return thisValue == testValue
+            elif instance.operator == '>':
+                return thisValue > testValue
+            elif instance.operator == '>=':
+                return thisValue >= testValue
+            elif instance.operator == '<':
+                return thisValue < testValue
+            elif instance.operator == '<=':
+                return thisValue <= testValue
+            elif instance.operator == '!=':
+                return thisValue != testValue
+            else:
+                return False
+
+        else:
+            return False
+
+
+
 
 class VisitorClassificationSegmentPlugin(SegmentPluginBase):
     """
@@ -202,6 +286,7 @@ plugin_pool.register_plugin(AuthenticatedSegmentPlugin)
 plugin_pool.register_plugin(CookieSegmentPlugin)
 plugin_pool.register_plugin(VariableSegmentPlugin)
 plugin_pool.register_plugin(VisitorSegmentPlugin)
+plugin_pool.register_plugin(VisitorPropertySegmentPlugin)
 plugin_pool.register_plugin(VisitorClassificationSegmentPlugin)
 plugin_pool.register_plugin(FallbackSegmentPlugin)
 plugin_pool.register_plugin(DisciplineSegmentPlugin)

@@ -1,0 +1,10 @@
+{% load cms_tags %}
+
+<div class="my-slider">
+    <ul>
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+    </ul>
+</div>
+

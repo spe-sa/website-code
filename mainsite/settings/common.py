@@ -171,6 +171,7 @@ INSTALLED_APPS = (
     'dashing',
     'dashboard',
     'spe_promotions',
+    'carousel'
 )
 
 LANGUAGES = (
@@ -266,7 +267,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowTopicsListingPlugin',
                     'ShowTagsDetailPlugin',
                     'ShowTagTitlePlugin',
-                    'ShowTopicTitlePlugin'
+                    'ShowTopicTitlePlugin',
                     # snippets
                     'SmartSnippetPlugin',
                     # events
@@ -276,8 +277,56 @@ CMS_PLACEHOLDER_CONF = {
                     'SegmentLimitPlugin',
                     'BootStrapContainerPlugin',
                     'BootstrapRowPlugin',
+                    'CarouselPlugin'
                     ],
         'child_classes': {
+            'CarouselComponentPlugin': [
+                'ShowAdSpeedZonePlugin',
+                'ShowTitlePlugin',
+                'ShowTileImgBack',
+                'ShowTextPlugin',
+                # filer plugins
+                'FilerFilePlugin',
+                'FilerFolderPlugin',
+                'FilerImagePlugin',
+                'FilerVideoPlugin',
+                # Generic plugins
+                'GoogleMapPlugin',
+                # 'InheritPagePlaceholderPlugin',
+                'LinkPlugin',
+                # 'StylePlugin',
+                # links plugin
+                # 'SpeLinkPluginPublisher',
+                # multi-column
+                'MultiColumnPlugin',
+                # forms
+                'FormPlugin',
+                # blog
+                'ShowArticleDetailPlugin',
+                'ShowArticlesPlugin',
+                'ShowArticlesListingPlugin',
+                'ShowBriefDetailPlugin',
+                'ShowBriefPlugin',
+                'ShowBriefListingPlugin',
+                # 'ShowEditorialPlugin',
+                # 'ShowIssuesByPublicationPlugin',
+                # 'ShowIssuesByYearPlugin',
+                # 'ShowMarketoFormPlugin',
+                # 'ShowTopicsListPlugin',
+                # 'ShowTopicsListingPlugin',
+                # 'ShowTagsDetailPlugin',
+                # 'ShowTagTitlePlugin',
+                # 'ShowTopicTitlePlugin'
+                # snippets
+                #'SmartSnippetPlugin',
+                # events
+                # 'ShowEventsByCurrentLocationPluginPlugin',
+                # 'PollPlugin',
+                # segmentation
+                # 'SegmentLimitPlugin',
+                'BootStrapContainerPlugin',
+                'BootstrapRowPlugin',
+            ],
             'SegmentLimitPlugin': [
                 'ShowTextPlugin',
                 'ShowAdSpeedZonePlugin',
@@ -314,7 +363,7 @@ CMS_PLACEHOLDER_CONF = {
                 'ShowTopicsListingPlugin',
                 'ShowTagsDetailPlugin',
                 'ShowTagTitlePlugin',
-                'ShowTopicTitlePlugin'
+                'ShowTopicTitlePlugin',
                 # snippets
                 'SmartSnippetPlugin',
                 # events
@@ -325,6 +374,7 @@ CMS_PLACEHOLDER_CONF = {
                 'CookieSegmentPlugin',
                 'VariableSegmentPlugin',
                 'VisitorSegmentPlugin',
+                'VisitorPropertySegmentPlugin',
                 'VisitorClassificationSegmentPlugin',
                 'FallbackSegmentPlugin',
                 'DisciplineSegmentPlugin',
@@ -531,7 +581,7 @@ CKEDITOR_CONFIGS = {
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
             ['CreateDiv', 'Blockquote', 'HorizontalRule'],
             ['Link', 'Unlink'],
-            ['Image'],
+            ['Image', 'Youtube'],
             ['Source', 'Preview'],
             ['Maximize'],
         ],
@@ -550,6 +600,7 @@ CKEDITOR_CONFIGS = {
                 'blockquote',
                 'horizontalrule',
                 'image2',
+                'youtube',
             ]),
         'removePlugins': 'stylesheetparser',
         'skin': 'moono',
@@ -579,7 +630,7 @@ CKEDITOR_SETTINGS = {
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
             ['CreateDiv', 'Blockquote', 'HorizontalRule'],
             ['Link', 'Unlink'],
-            ['Image'],
+            ['Image', 'Youtube'],
             ['Source', 'Preview'],
             ['Maximize'],
         ],
@@ -598,6 +649,7 @@ CKEDITOR_SETTINGS = {
                 'blockquote',
                 'horizontalrule',
                 'image2',
+                'youtube',
             ]),
         'removePlugins': 'stylesheetparser',
         'skin': 'moono',
