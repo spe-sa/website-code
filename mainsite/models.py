@@ -60,6 +60,25 @@ class ColorField(models.CharField):
         return super(ColorField, self).formfield(**kwargs)
 
 
+class Web_Region(models.Model):
+    region_code = models.CharField(max_length=15, unique=True)
+    region_name = models.CharField(max_length=50, unique=True)
+    is_visible = models.PositiveIntegerField(default=1)
+
+
+class Web_Region_Country(models.Model):
+    region = models.ForeignKey(Web_Region, null=True, on_delete=models.SET_NULL)
+    country_UN = models.CharField("Country Code", max_length=25)
+
+    def __unicode__(self):
+        return self.region + " : " +  self.country_UN
+
+
+    class Meta:
+        verbose_name = "Web Region Country"
+        verbose_name_plural = "Web Region Countries"
+
+
 class Regions(models.Model):
     region_code = models.CharField(max_length=15, unique=True)
     region_name = models.CharField(max_length=50, unique=True)
