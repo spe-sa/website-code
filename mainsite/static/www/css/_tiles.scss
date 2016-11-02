@@ -374,14 +374,16 @@
 .poipic {
   min-height:           125px;
 }
+
 #myCarousel {
+  padding-bottom: 15px;
+
   .carousel-indicators {
-    bottom:             0;
+    bottom:             15px;
   }
 
   .carousel-inner {
     height:                 400px;
-    //border:               1px solid hotpink;
 
     .item {
       height:               400px;

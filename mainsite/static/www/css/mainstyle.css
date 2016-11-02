@@ -366,7 +366,8 @@ a:hover { text-decoration: none; }
 
 .poipic { min-height: 125px; }
 
-#myCarousel .carousel-indicators { bottom: 0; }
+#myCarousel { padding-bottom: 15px; }
+#myCarousel .carousel-indicators { bottom: 15px; }
 #myCarousel .carousel-inner { height: 400px; }
 #myCarousel .carousel-inner .item { height: 400px; background-size: cover; background-position: center; }
 #myCarousel .carousel-inner .item img { width: 100%; height: auto; }
