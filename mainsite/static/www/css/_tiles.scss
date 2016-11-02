@@ -376,23 +376,28 @@
 }
 #myCarousel {
   .carousel-indicators {
-    bottom: 0;
+    bottom:             0;
   }
 
   .carousel-inner {
-    height:             360px;
+    height:                 400px;
+    //border:               1px solid hotpink;
 
     .item {
+      height:               400px;
+      background-size:      cover;
+      background-position:  center;
+
       img {
-        width:          100%;
-        height:         auto;
+        width:              100%;
+        height:             auto;
       }
       .carousel-caption {
-        background:     $img-back-black-50 repeat top left fixed;
-        width:          100%;
-        top: 200px;
-        left: 0;
-        padding-bottom: 30px;
+        background:         $img-back-black-50 repeat top left fixed;
+        width:              100%;
+        bottom:             0;
+        left:               0;
+        padding-bottom:     30px;
       }
     }
   }
