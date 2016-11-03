@@ -88,7 +88,7 @@ def set_default_values(request):
         'variables': variables,
         'cookies': request.COOKIES,
         'login': login,
-        'customer': customer,
+        'visitor': customer,
     }
 
 def sanitize(value):
@@ -109,8 +109,10 @@ def sanitize(value):
 # - as a parameter
 # NOTE: first one found wins unless debug=true then
 # - as a parameter overwrites the others
-def get_context_variable(request, variable_name, default_value=None):
+def get_context_variable(request, variable_name, default_value=None, ignoreDebug = False):
     debug = getattr(settings, "DEBUG", True)
+    if ignoreDebug == True:
+        debug = True
     header_name = variable_name.upper()
     value = request.META.get(header_name, None)
     if value is None:
@@ -170,22 +172,43 @@ def get_context_variables(request):
 
 
 def get_visitor(request):
+    debug = getattr(settings, "DEBUG", True)
     cid = get_context_variable(request, "cid")
     if not cid:
         cid = get_context_variable(request, "sm_constitid")
     # if our customerid changed then reset the login and customer cache
     visitor = request.session.get('session_visitor')
-    if visitor and visitor.id and unicode(visitor.id) != cid:
-        request.session['session_visitor'] = None
-        visitor = None
-    if not visitor:
-        # read the customer from db and cache it up
+    # sas 2016-01-03: adding snippit to look for any parameters if we are staff on every request.
+    #   this will allow testing in prod exactly like qa and dev but only for staff members
+    dba_id = None
+    # if we are production and staff then try to load the visitor again ignoring debug flag (don't save back to session)
+    if debug == False:
+        if visitor and visitor.id and visitor.is_staff():
+            dba_id = get_context_variable(request, "cid", None, True)
+        if not dba_id:
+            dba_id = get_context_variable(request, "sm_constitid", None, True)
+    if dba_id and dba_id != cid and debug==True:
         try:
-            visitor = Customer.objects.get(pk=cid)
-            # visitor.set_achievement_token()
-            request.session['session_visitor'] = visitor
+            visitor = Customer.objects.get(pk=dba_id)
         except Customer.DoesNotExist:
+            log = logging.getLogger('website')
+            log.debug("spe_context: Attempted to get Customer for pk=" + dba_id + " but couldn't find one...")
             visitor = None
+    # block to reset visitor ends...
+    else:
+        if visitor and visitor.id and unicode(visitor.id) != cid:
+            request.session['session_visitor'] = None
+            visitor = None
+        if not visitor:
+            # read the customer from db and cache it up
+            try:
+                visitor = Customer.objects.get(pk=cid)
+                # visitor.set_achievement_token()
+                request.session['session_visitor'] = visitor
+            except Customer.DoesNotExist:
+                log = logging.getLogger('website')
+                log.debug("spe_context: Attempted to get Customer for pk=" + cid + " but couldn't find one...")
+                visitor = None
 
     #logging.error('customer - ' + str(visitor))
     # if visitor:

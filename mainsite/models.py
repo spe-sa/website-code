@@ -283,6 +283,14 @@ class Customer(models.Model):
             code=subscription_code).count() >= 1
 
     # derived from other stuff make def for each
+    def greeting(self):
+        if self.nickname:
+            return self.nickname
+        if self.first_name:
+            return self.first_name
+        if self.name:
+            return self.name
+        return "Guest"
     def is_officer(self):
         return self.has_classification("OFFICER")
     def has_committee(self):
