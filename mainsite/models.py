@@ -179,7 +179,8 @@ class CustomerClassification(models.Model):
     category = models.CharField(max_length=25, blank=True, null=True)
 
     def __unicode__(self):
-        return self.description
+        return str(self.description)
+        # return self.description is not None and self.description or ''
 
     class Meta:
         ordering = ['sort_order', 'description']
