@@ -187,12 +187,12 @@ def get_visitor(request):
             dba_id = get_context_variable(request, "cid", None, True)
         if not dba_id:
             dba_id = get_context_variable(request, "sm_constitid", None, True)
-    if dba_id and dba_id != cid and debug==True:
+    if dba_id and dba_id != cid and debug==False:
         try:
             visitor = Customer.objects.get(pk=dba_id)
         except Customer.DoesNotExist:
             log = logging.getLogger('website')
-            log.debug("spe_context: Attempted to get Customer for pk=" + dba_id + " but couldn't find one...")
+            log.debug("spe_context: Attempted to get Customer for pk=" + str(dba_id) + " but couldn't find one...")
             visitor = None
     # block to reset visitor ends...
     else:
@@ -207,7 +207,7 @@ def get_visitor(request):
                 request.session['session_visitor'] = visitor
             except Customer.DoesNotExist:
                 log = logging.getLogger('website')
-                log.debug("spe_context: Attempted to get Customer for pk=" + cid + " but couldn't find one...")
+                log.debug("spe_context: Attempted to get Customer for pk=" + str(cid) + " but couldn't find one...")
                 visitor = None
 
     #logging.error('customer - ' + str(visitor))
