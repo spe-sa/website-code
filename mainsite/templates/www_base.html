@@ -376,7 +376,7 @@
 
             {% if login.authenticated == True %}
                 <div class="col-xs-10 col-xs-offset-0 col-sm-4 welcomemsg text-right">
-                    Welcome, {{visitor.name}}<br><br>
+                    Welcome, {{visitor.greeting}}<br><br>
                     <a class="update_profile" href="/ams/Custom/CustomerProfile.aspx">My profile</a>
                 </div>
             {% else %}

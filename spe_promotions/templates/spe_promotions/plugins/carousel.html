@@ -20,7 +20,7 @@
       {% for promo in promos %}
           {% if promo.picture and promo.picture.url %}
               {% if forloop.first %}
-                  <div class="item active" style="background-image: url({{ promo.picture.url }})">
+                  <div class="item active" style="background-image:url({{ promo.picture.url }});">
                       <a href="{{ promo.url }}">
                           <div class="carousel-caption">
                               <h3>{{ promo.event }}</h3>
@@ -29,10 +29,10 @@
                       </a>
                   </div>
               {% else %}
-                  <div class="item" style="background-image: url({{ promo.picture.url }})">
+                  <div class="item" style="background-image:url({{ promo.picture.url }});">
                       <a href="{{ promo.url }}">
                           <div class="carousel-caption">
-                              <h3>{{ promo.title }}</h3>
+                              <h3>{{ promo.event }}</h3>
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
                       </a>

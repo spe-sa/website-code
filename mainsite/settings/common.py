@@ -171,7 +171,8 @@ INSTALLED_APPS = (
     'dashing',
     'dashboard',
     'spe_promotions',
-    'carousel'
+    'carousel',
+    'helloworld'
 )
 
 LANGUAGES = (

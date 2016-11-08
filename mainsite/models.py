@@ -60,6 +60,25 @@ class ColorField(models.CharField):
         return super(ColorField, self).formfield(**kwargs)
 
 
+class Web_Region(models.Model):
+    region_code = models.CharField(max_length=15, unique=True)
+    region_name = models.CharField(max_length=50, unique=True)
+    is_visible = models.PositiveIntegerField(default=1)
+
+
+class Web_Region_Country(models.Model):
+    region = models.ForeignKey(Web_Region, null=True, on_delete=models.SET_NULL)
+    country_UN = models.CharField("Country Code", max_length=25)
+
+    def __unicode__(self):
+        return self.region + " : " +  self.country_UN
+
+
+    class Meta:
+        verbose_name = "Web Region Country"
+        verbose_name_plural = "Web Region Countries"
+
+
 class Regions(models.Model):
     region_code = models.CharField(max_length=15, unique=True)
     region_name = models.CharField(max_length=50, unique=True)
@@ -160,7 +179,8 @@ class CustomerClassification(models.Model):
     category = models.CharField(max_length=25, blank=True, null=True)
 
     def __unicode__(self):
-        return self.description
+        return str(self.description)
+        # return self.description is not None and self.description or ''
 
     class Meta:
         ordering = ['sort_order', 'description']
@@ -263,6 +283,14 @@ class Customer(models.Model):
             code=subscription_code).count() >= 1
 
     # derived from other stuff make def for each
+    def greeting(self):
+        if self.nickname:
+            return self.nickname
+        if self.first_name:
+            return self.first_name
+        if self.name:
+            return self.name
+        return "Guest"
     def is_officer(self):
         return self.has_classification("OFFICER")
     def has_committee(self):
