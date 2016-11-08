@@ -48,8 +48,6 @@ urlpatterns = i18n_patterns('',
     url(r'^forms/', include('djangocms_forms.urls')),
     url(r'^filer/', include('filer.urls')),
     url(r'^preferences/', include('spe_preferences.urls')),
-    # helloworld test app
-    url(r'^helloworld/', include('helloworld.urls')),
 
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     # ex: /ogf/  -> /ogf/ogf-main-page/

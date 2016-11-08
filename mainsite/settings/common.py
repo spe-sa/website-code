@@ -172,7 +172,7 @@ INSTALLED_APPS = (
     'dashboard',
     'spe_promotions',
     'carousel',
-    'helloworld'
+    # 'helloworld'
 )
 
 LANGUAGES = (
