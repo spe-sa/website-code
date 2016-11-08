@@ -59,6 +59,7 @@ a:hover { text-decoration: none; color: grey; }
 
 #menubar { background-color: #f2efea; padding-bottom: 20px; }
 #menubar #mainLogo { padding-top: 20px; }
+#menubar #mainLogo img { max-width: 200px; }
 #menubar .pubMenu { font-family: "Rajdhani", sans-serif; list-style-type: none; margin: 0 0 20px 0; padding: 50px 0 0 0; font-size: 18px; float: right; }
 #menubar .pubMenu li { float: left; padding: 0 0 0 30px; }
 #menubar .pubMenu li a { display: block; color: #2a2a2a; text-align: center; text-decoration: none; font-weight: 700; }
