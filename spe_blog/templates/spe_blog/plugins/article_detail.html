@@ -57,7 +57,13 @@
             <h4>Topics</h4>
             <ul>
             {% for topic in article.topics.all %}
+                {% if article.publication.code == 'OGF' %}
                     <li><a href="/en/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+                {% elif article.publication.code == 'JPT' %}
+                    <li><a href="/en/jpt/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+                {% else %}
+                    <li><a href="/en/ogf/topics/?topic={{ topic.id }}">{{ publication.code }} - {{ topic }}</a></li>
+                {% endif %}
             {% endfor %}
             </ul>
         </div>
