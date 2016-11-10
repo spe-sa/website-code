@@ -39,11 +39,6 @@ ehthumbs.db
 Thumbs.db
 
 *.db
-
-*/migrations/*
-
 *.scssc
-
 *.ipynb
-
 *.codekit
