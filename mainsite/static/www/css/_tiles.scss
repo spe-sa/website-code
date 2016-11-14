@@ -25,7 +25,7 @@
 }
 .tile-blue {
   background-color:     $col-speblue;
-  color:                $col-textblue;
+  color:                $col-boxshadow;
 
   a {
     color:              $col-textblue;
@@ -115,25 +115,6 @@
     color:              $col-red;
   }
 }
-//.sideListTitle {
-//  font-size:            14px;
-//  //font-weight:          $font-bold;
-//  //line-height:          18px;
-//
-//  a {
-//    color:              $col-darkgrey;
-//    margin-top: 20px;
-//    margin-left: 10px;
-//    margin-right: 10px;
-//    margin-bottom: 20px;
-//    //margin:               10px 0 10px 0;
-//    //padding:              10px 0 10px 0;
-//  }
-//
-//  a:hover {
-//    color:              $col-speblue2;
-//  }
-//}
 .sideListDate, .sideListDateTWA {
   color:                $col-speblue2;
   font-weight:          $font-light;
@@ -293,11 +274,6 @@
 }
 .tiletitlehr {
   display:              none;
-  //margin-top:           0;
-  //height:               1px;
-  //border:               none;
-  //color:                $col-speblue;
-  //background-color:     $col-speblue;
 }
 .tiletitles {
   color:                $col-white;
@@ -305,7 +281,6 @@
   font-size:            20px;
   padding:              10px;
   margin:               0 auto -30px auto;
-  //margin-bottom:        -30px;
   font-weight:          $font-bold;
   display:              inline-block;
 }
@@ -532,16 +507,3 @@
     margin:             6px 0 0 0;
   }
 }
-//// background: #000 url(image.gif) no-repeat top left fixed;
-//.demoback {
-//  background-image: url($img-);
-//  background-repeat: no-repeat;
-//  background-position: right top;
-//  background-size: 100% 100%;
-//  margin-right: 200px;
-//}
-//.demoback2 {
-//  background: url("img_tree.png") no-repeat right top;
-//  background-size: 100% 100%;
-//  margin-right: 200px;
-//}
