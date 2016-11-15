@@ -38,6 +38,8 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/article_editorial.html', 'Editorial w/ Author'),
     ('spe_blog/plugins/twa_articlebox.html', 'TWA Article Box'),
     ('spe_blog/plugins/twa_featured.html', 'TWA Featured Article Box'),
+    ('spe_blog/plugins/tech_focus_main.html', 'Tech Focus Main'),
+    ('spe_blog/plugins/tech_focus_related.html', 'Tech Focus Related'),
     # ('spe_blog/plugins/side_list.html', 'TWA Article List'),
 )
 
@@ -211,6 +213,7 @@ class Issue(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category")
+
     # sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -223,6 +226,7 @@ class Category(models.Model):
 
 class SecondaryCategory(models.Model):
     name = models.CharField(max_length=100, verbose_name="Category (Secondary)")
+
     # sort_order = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -242,7 +246,8 @@ class Article(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Category (Secondary) [TWA ONLY!]")
+    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True,
+                                           verbose_name="Category (Secondary) [TWA ONLY!]")
     # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
@@ -284,6 +289,8 @@ class Article(models.Model):
     #                                           verbose_name=u'Author Picture Caption')
     author_picture_attribution = models.CharField(max_length=255, blank=True, null=True,
                                                   verbose_name=u'Author Picture Attribution')
+    author_name = models.CharField(max_length=500, blank=True, null=True)
+    author_title = models.CharField(max_length=500, blank=True, null=True)
     author_bio = RichTextField(
         max_length=500,
         help_text=u'Author Bio', blank=True, null=True
@@ -351,7 +358,8 @@ class Brief(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Category (Secondary)")
+    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True,
+                                           verbose_name="Category (Secondary)")
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
                             help_text='SEO Friendly name that is unique for use in URL', )
@@ -576,6 +584,7 @@ class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     backcol = ColorField("Background Color (for editorials only.)", blank=True, null=True)
+    # backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
@@ -591,7 +600,6 @@ class ArticlesListingPlugin(CMSPlugin):
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
     whitetext = models.BooleanField("White Text", default=True)
     boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)

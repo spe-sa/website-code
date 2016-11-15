@@ -35,6 +35,8 @@ class ArticleAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': (
                 'editorial_title',
+                'author_name',
+                'author_title',
                 'author_picture',
                 # 'author_picture_alternate',
                 # 'author_picture_attribution',
@@ -83,6 +85,8 @@ class ArticleEditorAdmin(ArticleAdmin):
             'classes': ('collapse',),
             'fields': (
                 'editorial_title',
+                'author_name',
+                'author_title',
                 'author_picture',
                 # 'author_picture_alternate',
                 # 'author_picture_attribution',

@@ -704,3 +704,27 @@
   color:                white;
   padding:              5px;
 }
+.techauthbox {
+  //white-space: nowrap;
+}
+.auth-pic, .auth-name-title {
+  border:               1px solid hotpink;
+  display:              inline-block;
+  vertical-align:       top;
+}
+.auth-pic {
+  width:                95px;
+  height:               105px;
+  background:           no-repeat center;
+  background-size:      cover;
+  margin-right:         10px;
+}
+.auth-name-title {
+  margin:               0;
+  max-width:            200px;
+  //white-space:          normal;
+
+  h2, p {
+    //white-space:        normal;
+  }
+}
