@@ -4,7 +4,8 @@ from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
-    Topics, TopicsPlugin, TopicsListPlugin
+    Topics, TopicsPlugin, TopicsListPlugin, BriefListingPlugin, Web_Region, Category, SecondaryCategory, \
+    ArticlesListingPlugin
 
 
 class ArticleSelectionForm(ModelForm):
@@ -16,6 +17,22 @@ class ArticleSelectionForm(ModelForm):
         exclude = []
         fields = ['template', 'order_by', 'articles', 'all_url', 'all_text', 'backcol', 'fixedheight', 'whitetext',
                   'boxwidth', 'boxheight', ]
+
+
+class ArticlesListSelectionForm(ModelForm):
+    categories = ModelMultipleChoiceField(Category.objects.all(),
+                                       widget=FilteredSelectMultiple("categories", False, ))
+
+    secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
+                                       widget=FilteredSelectMultiple("secondary_categories", False, ))
+
+    class Meta:
+        model = ArticlesListingPlugin
+        exclude = []
+        fields = ['template', 'cnt', 'order_by', 'starting_with', 'publication', 'print_volume', 'print_issue',
+                  'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol',
+                  'whitetext', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']
+
 
 
 class EditorialSelectionForm(ModelForm):
@@ -55,10 +72,16 @@ class TopicsListSelectionForm(ModelForm):
         fields = ['template', 'publication', 'topics', ]
 
 
-class OldTopicsListSelectionForm(ModelForm):
-    topics = ModelMultipleChoiceField(Topics.objects.all(),
-                                      widget=FilteredSelectMultiple("briefs", False, ))
+class BriefsListSelectionForm(ModelForm):
+    regions = ModelMultipleChoiceField(Web_Region.objects.filter(is_visible__gte=1),
+                                      widget=FilteredSelectMultiple("regions", False, ))
+
+    categories = ModelMultipleChoiceField(Category.objects.all(),
+                                       widget=FilteredSelectMultiple("categories", False, ))
+
+    secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
+                                       widget=FilteredSelectMultiple("secondary_categories", False, ))
 
     class Meta:
-        model = TopicsListPlugin
-        fields = ['publication', 'topics', ]
+        model = BriefListingPlugin
+        exclude = []

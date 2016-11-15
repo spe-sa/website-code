@@ -34,7 +34,7 @@ from .models import (
     TopicsListPlugin, TopicsPlugin, Topics
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm
+    TopicsListSelectionForm, BriefsListSelectionForm, ArticlesListSelectionForm
 
 def getPublicationCode(pub):
     if pub:
@@ -360,6 +360,7 @@ class ShowEditorialPlugin(ArticlePluginBase):
 class ShowBriefListingPlugin(BriefPluginBase):
     model = BriefListingPlugin
     name = _("Brief Listing")
+    form = BriefsListSelectionForm
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')
@@ -373,6 +374,9 @@ class ShowBriefListingPlugin(BriefPluginBase):
 
         if instance.secondary_categories.all():
             qs = qs.filter(secondary_category__in=instance.secondary_categories.all())
+
+        if instance.regions.all():
+            qs = qs.filter(region__in=instance.regions.all())
 
         if instance.print_volume:
             qs = qs.filter(print_volume=instance.print_volume)
@@ -400,6 +404,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
 class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
     name = _("Articles Listing")
+    form = ArticlesListSelectionForm
 
     def render(self, context, instance, placeholder):
         request = context.get('request')

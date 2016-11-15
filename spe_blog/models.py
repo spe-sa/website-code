@@ -13,7 +13,7 @@ from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
 
 from mainsite.models import Tier1Discipline
-from mainsite.models import Topics
+from mainsite.models import Topics, Web_Region
 # from datetime import datetime
 from mainsite.widgets import ColorPickerWidget
 
@@ -149,6 +149,21 @@ class TagsPage(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=100,
+                            help_text='SEO Friendly name that is unique for use in URL', )
+    teaser = models.CharField(max_length=300)
+    author = models.CharField(max_length=500, blank=True, null=True)
+    article_text = RichTextUploadingField(
+        max_length=60000,
+        help_text=u'Full text of the article.'
+    )
+    publication_date = models.DateField(default=timezone.now)
+    categories = TaggableManager(blank=True)
+    published = models.BooleanField(default=False, verbose_name=u'Publish')
 
 
 class Publication(models.Model):
@@ -371,6 +386,7 @@ class Brief(models.Model):
     date = models.DateField(verbose_name='Publication Date', default=timezone.now)
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for brief', related_name="brief_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
+    region = models.ForeignKey(Web_Region, on_delete=models.PROTECT, blank=True, null=True)
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
@@ -473,9 +489,9 @@ class ArticlesPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only)", blank=True, null=True, default='#ffffff')
     fixedheight = models.BooleanField("Fixed Height", default=True)
-    whitetext = models.BooleanField("White Text", default=True)
+    whitetext = models.BooleanField("White Text", default=False)
     boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
     boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
@@ -505,8 +521,8 @@ class BriefPlugin(CMSPlugin):
     # todo - change charfield to our URLField that takes relative paths
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color", blank=True, null=True)
-    whitetext = models.BooleanField("White Text", default=True)
+    backcol = ColorField("Background Color", blank=True, null=True, default='#ffffff')
+    whitetext = models.BooleanField("White Text", default=False)
 
     def __unicode__(self):
         buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
@@ -571,7 +587,7 @@ class EditorialPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=EDITORIAL_TEMPLATES, default=DEFAULT_EDITORIAL_TEMPLATE)
     editorial = models.ManyToManyField(Editorial)
     lnk = models.URLField("Link URL", blank=True, null=True)
-    backcol = ColorField("Background Color", blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True, default='#ffffff')
 
     def __unicode__(self):
         return "Editorial Plugin"
@@ -583,7 +599,7 @@ class EditorialPlugin(CMSPlugin):
 class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-    backcol = ColorField("Background Color (for editorials only.)", blank=True, null=True)
+    backcol = ColorField("Background Color (for editorials only.)", blank=True, null=True, default='#ffffff')
     # backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
@@ -601,7 +617,7 @@ class ArticlesListingPlugin(CMSPlugin):
     all_url = PageField(verbose_name="URL for article listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
     fixedheight = models.BooleanField("Fixed Height", default=True)
-    whitetext = models.BooleanField("White Text", default=True)
+    whitetext = models.BooleanField("White Text", default=False)
     boxwidth = models.CharField("TWA Article Box Width", max_length=10, choices=BOX_WIDTH, default=DEFAULT_BOX_WIDTH)
     boxheight = models.PositiveIntegerField("TWA Article Box Height", choices=BOX_HEIGHT, default=DEFAULT_BOX_HEIGHT)
 
@@ -636,11 +652,12 @@ class BriefListingPlugin(CMSPlugin):
     categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
     topic = models.ForeignKey(Topics, blank=True, null=True, on_delete=models.SET_NULL)
+    regions = models.ManyToManyField(Web_Region, blank=True)
     # if user enters url and text then we display the show all link with these values
     all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
-    backcol = ColorField("Background Color", blank=True, null=True)
-    whitetext = models.BooleanField("White Text", default=True)
+    backcol = ColorField("Background Color", blank=True, null=True, default="#ffffff")
+    whitetext = models.BooleanField("White Text", default=False)
 
     def __unicode__(self):
         dictionary = dict(BRIEF_TEMPLATES)
