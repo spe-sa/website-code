@@ -65,6 +65,17 @@ class Web_Region(models.Model):
     region_name = models.CharField(max_length=50, unique=True)
     is_visible = models.PositiveIntegerField(default=1)
 
+    def __unicode__(self):
+        buf = ""
+        if self.region_name:
+            buf += self.region_name
+        else:
+            buf += ""
+        return buf
+
+    class Meta:
+        ordering = ['region_name']
+
 
 class Web_Region_Country(models.Model):
     region = models.ForeignKey(Web_Region, null=True, on_delete=models.SET_NULL)
