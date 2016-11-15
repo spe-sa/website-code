@@ -19,6 +19,8 @@ h2 { font-size: 16px; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
 
+.horizontal-bar { width: 100%; border-bottom: 2px dotted #b4b4b9; margin: 10px 0; padding-right: 20px; }
+
 .row { margin: 0; }
 
 .container-fluid { padding: 0; }
@@ -578,11 +580,22 @@ table th, table td { padding: 5px; }
 
 .categoryTitle { background-color: #e51837; font-family: "rooney-sans", sans-serif; color: white; padding: 5px; }
 
-.auth-pic, .auth-name-title { border: 1px solid hotpink; display: inline-block; vertical-align: top; }
+/* TECH FOCUS */
+.tile-techFocus { padding: 0 10px 10px 0; }
+.tile-techFocus .techauthbox { background-color: #f4f4f4; padding: 5px; }
+.tile-techFocus .techauthbox .techauthtable { padding: 0; margin: 0; }
+.tile-techFocus .techauthbox .techauthtable .techauththumb { padding: 0; width: 95px; }
+.tile-techFocus .techauthbox .techauthtable .techauthtext { padding: 0 0 0 10px; }
+.tile-techFocus .techauthbox .techauthtable .techauthtext h2 { margin: 0 0 5px 0; font-size: 20px; font-family: "proxima-nova", sans-serif !important; }
+.tile-techFocus .techauth-story-text a { color: #2a2a2a; }
+.tile-techFocus .techauth-story-text a:hover { color: #2a2a2a; }
 
-.auth-pic { width: 95px; height: 105px; background: no-repeat center; background-size: cover; margin-right: 10px; }
-
-.auth-name-title { margin: 0; max-width: 200px; }
+.tile-tech-related { margin: 0 0 0 0; padding: 0 10px 0 0; }
+.tile-tech-related .techListItem { padding: 0 0 15px 0; }
+.tile-tech-related .techListItem .techListTitle { font-weight: 700; }
+.tile-tech-related .techListItem .techListTitle a { color: #2a2a2a; }
+.tile-tech-related .techListItem .techListTitle a:hover { color: #e51837; }
+.tile-tech-related .techListItem .techListDate { color: #e51837; }
 
 /* =================================================================== */
 /* AD ZONES

@@ -101,6 +101,7 @@ class ShowTileImgBack(CMSPluginBase):
         context.update({'date': instance.date})
         return context
 
+
 class ShowMarketoFormPlugin(CMSPluginBase):
     model = MarketoFormPlugin
     allow_children = False
@@ -117,6 +118,20 @@ class ShowMarketoFormPlugin(CMSPluginBase):
         return context
 
 
+class ShowHorizontalBar(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = _('Components')
+    name = _('Horizontal Bar')
+    text_enabled = False
+    render_template = 'plugins/horizontal_bar.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instance': instance})
+        return context
 
 plugin_pool.register_plugin(ShowMarketoFormPlugin)
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
@@ -124,3 +139,4 @@ plugin_pool.register_plugin(ShowTitlePlugin)
 plugin_pool.register_plugin(ShowTextPlugin)
 # plugin_pool.register_plugin(ShowTextWithClassPlugin)
 plugin_pool.register_plugin(ShowTileImgBack)
+plugin_pool.register_plugin(ShowHorizontalBar)

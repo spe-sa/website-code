@@ -30,6 +30,12 @@ h2 {
   -moz-border-radius:     0 !important;
   border-radius:          0 !important;
 }
+.horizontal-bar {
+  width:                  100%;
+  border-bottom:          2px solid $col-boxshadow;
+  margin:                 10px 0;
+  padding-right:          20px;
+}
 .row {
   //margin:0 !important;
   margin:                 0;

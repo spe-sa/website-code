@@ -278,6 +278,7 @@ CMS_PLACEHOLDER_CONF = {
                     'SegmentLimitPlugin',
                     'BootStrapContainerPlugin',
                     'BootstrapRowPlugin',
+                    'ShowHorizontalBar',
                     'CarouselPlugin'
                     ],
         'child_classes': {

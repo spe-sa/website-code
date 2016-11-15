@@ -19,6 +19,8 @@ h2 { font-size: 16px; margin-top: 10px; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
 
+.horizontal-bar { width: 100%; border-bottom: 2px solid #b4b4b9; margin: 10px 0; padding-right: 20px; }
+
 .row { margin: 0; }
 
 .container-fluid { padding: 0; }
