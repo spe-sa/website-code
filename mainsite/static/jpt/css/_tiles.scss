@@ -704,27 +704,70 @@
   color:                white;
   padding:              5px;
 }
-.techauthbox {
-  //white-space: nowrap;
-}
-.auth-pic, .auth-name-title {
-  border:               1px solid hotpink;
-  display:              inline-block;
-  vertical-align:       top;
-}
-.auth-pic {
-  width:                95px;
-  height:               105px;
-  background:           no-repeat center;
-  background-size:      cover;
-  margin-right:         10px;
-}
-.auth-name-title {
-  margin:               0;
-  max-width:            200px;
-  //white-space:          normal;
 
-  h2, p {
-    //white-space:        normal;
+/* TECH FOCUS */
+.tile-techFocus {
+  padding:              0 10px 10px 0;
+
+  .techauthbox {
+    background-color:   $col-lightgrey2;
+    padding:            5px;
+
+    .techauthtable {
+      padding:          0;
+      margin:           0;
+
+      .techauththumb {
+        padding:        0;
+        width:          95px;
+      }
+      .techauthtext {
+        padding:        0 0 0 10px;
+
+        h2 {
+          margin:       0 0 5px 0;
+          font-size:    20px;
+          font-family:  $font-main !important;
+        }
+      }
+    }
+  }
+
+  .techauth-story-text {
+    //border-bottom:        1px dotted $col-boxshadow;
+
+    a {
+      color:              $col-black;
+
+      &:hover {
+        color:            $col-black;
+      }
+    }
+  }
+
+}
+
+.tile-tech-related {
+  margin:               0 0 0 0;
+  padding:              0 10px 0 0;
+  //border-bottom:        2px solid $col-boxshadow;
+
+  .techListItem {
+    padding:            0 0 15px 0;
+
+    .techListTitle {
+      font-weight:      $font-bold;
+
+      a {
+        color:          $col-black;
+
+        &:hover {
+          color:        $col-red;
+        }
+      }
+    }
+    .techListDate {
+      color:            $col-red;
+    }
   }
 }

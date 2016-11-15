@@ -178,13 +178,15 @@
   .story-wrap {
 
     .pub-date {
-      color:            $col-red;
+      color:            $col-speblue2;
       display:          block;
       text-transform:   uppercase;
       font-size:        12px;
       font-weight:      700;
       letter-spacing:   1px;
+      padding-bottom:   10px;
     }
+
     h3 {
       color:            $col-black;
       font-weight:      700;
@@ -381,7 +383,6 @@
 }
 
 .eventsNearYou {
-
 
   .locCurrent {
     color:              $col-darkgrey;

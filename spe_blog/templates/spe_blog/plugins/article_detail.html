@@ -26,11 +26,11 @@
     </div>
 {% else %}
     <div class="col-sm-12 articleTitleBox">
-        <hr class="tiletitlehr">
-        <h2 class="tiletitles">{{ article.title }}</h2>
         {% if article.publication.code == "JPT" %}
             <span class="categoryTitle">{{ article.category|removepub }}</span>
         {% endif %}
+        <hr class="tiletitlehr">
+        <h2 class="tiletitles">{{ article.title }}</h2>
     </div>
     <div class="row">
         <div class="col-sm-12 tiletitlehr"></div>
@@ -169,8 +169,6 @@
         $( document ).ready(function() {
 
             $(".articleBodyText img").addClass("img-responsive");
-
-{#            $( document ).prop('title', '{{ article.title }}');#}
 
         });
     </script>

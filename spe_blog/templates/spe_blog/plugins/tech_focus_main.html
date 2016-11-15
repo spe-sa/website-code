@@ -3,25 +3,35 @@
 <div class="row padZero margZero techFocusRow">
 
 {% for article in articles %}
-    <article class="col-sm-12 tile-textbelow story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}">
-
-        <div class="story-wrap">
+    <article class="col-sm-12 tile-techFocus">
 
             <div class="techauthbox">
-                <div class="auth-pic" style="background-image: url('{{ article.author_picture.url }}');"></div>
-                <div class="auth-name-title">
-                    <h2>{{ article.author_name }}</h2>
-                    <p>{{  article.author_title }}</p>
-                </div>
+
+                <table class="techauthtable" width="100%">
+                    <tr>
+                        <td valign="top" class="techauththumb">
+                            <img src="{{ article.author_picture.url }}" class="img-responsive" />
+                        </td>
+                        <td valign="top" class="techauthtext">
+                            {% if article.author_name %}
+                                <h2>{{ article.author_name }}</h2>
+                                <p>{{  article.author_title }}</p>
+                            {% else %}
+                                <p>{{ article.author }}</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+
             </div>
 
-            <div class="story-text">
+            <div class="techauth-story-text">
                 <a href="{{ article.get_absolute_url }}">
-                    <span class="pub-date">{{ article.date|date:"d F Y" }} - MAIN
-                        {% if pubcode == "OGF" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
-                            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-                        {% endif %}
-                        </span>
+{#                    <span class="pub-date">{{ article.date|date:"d F Y" }}#}
+{#                        {% if pubcode == "OGF" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
+{#                            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
+{#                        {% endif %}#}
+{#                        </span>#}
                     <h3>{{ article.title }}</h3>
                     {% if article.sponsored %}
                     <p><span class="sponsored">SPONSORED</span></p>
@@ -30,9 +40,8 @@
                 </a>
             </div>
 
-        </div><!-- end story-wrap -->
-
     </article>
+
 {% empty %}
     <p class="well">{% trans "No items available" %}</p>
 {% endfor %}
