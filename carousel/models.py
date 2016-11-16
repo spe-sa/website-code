@@ -47,6 +47,13 @@ class CarouselComponentModel(CMSPlugin):
                               help_text=_("optional: link to page when carousel item is clicked."))
 
     @property
+    def component_href(self):
+        if self.link_to:
+            return self.link_to
+        else:
+            return "#"
+
+    @property
     def show_component(self):
         """
         Return if this item should be shown based on dates given
