@@ -7,12 +7,9 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 
-from cms.models import CMSPlugin
+from cms.models import CMSPlugin, Model
 
 
-#
-# NOTE: The SegmentLimitPluginModel does NOT subclass SegmentBasePluginModel
-#
 @python_2_unicode_compatible
 class CarouselModel(CMSPlugin):
     #
@@ -45,13 +42,13 @@ class CarouselComponentModel(CMSPlugin):
     stop_display = models.DateField(blank=True, null=True)
     link_to = models.URLField(max_length=128, blank=True, null=True,
                               help_text=_("optional: link to page when carousel item is clicked."))
+    is_tracking = models.BooleanField(_("Tracking"), default=True, help_text=_("optional: toggle click through and impression tracking."))
 
     @property
     def component_href(self):
-        if self.link_to:
-            return self.link_to
-        else:
-            return "#"
+        if self.is_tracking:
+            return "/carousel/clicked/" + str(self.id)
+        return "#"
 
     @property
     def show_component(self):
@@ -84,3 +81,34 @@ class CarouselComponentModel(CMSPlugin):
         else:
             buf += "Forever"
         return buf
+
+
+# NOTE: I am adding these since they are in the requirements, however, I think this might be better done from apache logs
+#   which would require
+# @python_2_unicode_compatible
+# class CarouselClickThroughTracking(Model):
+#
+#     vid = models.CharField(blank=True, null=True, help_text=_('visitor information cookie value'), max_length=128,)
+#     referrer = models.CharField(blank=True, null=True, max_length=1024)
+#     ip = models.CharField(blank=True, null=True, max_length=18)
+#     date_clicked = models.DateTimeField(editable=False, default=timezone.now)
+#
+#     def __str__(self):
+#         if self.vid:
+#             return self.vid + ": " + _(self.date_clicked)
+#         else:
+#             return _(self.date_clicked)
+#
+#
+# class CarouselImpressionTracking(Model):
+#
+#     vid = models.CharField(blank=True, null=True, help_text=_('visitor information cookie value'), max_length=128,)
+#     referrer = models.CharField(blank=True, null=True, max_length=1024)
+#     ip = models.CharField(blank=True, null=True, max_length=18)
+#     date_viewed = models.DateTimeField(editable=False, default=timezone.now)
+#
+#     def __str__(self):
+#         if self.vid:
+#             return self.vid + ": " + _(self.date_viewed)
+#         else:
+#             return _(self.date_viewed)
