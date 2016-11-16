@@ -118,7 +118,7 @@ class BriefAdmin(admin.ModelAdmin):
         (None, {
             'fields': (
                 'publication', 'print_volume', 'print_issue', 'category', 'secondary_category' , 'title', 'slug',
-                'author', 'article_text', 'date', 'topics', 'tags'
+                'author', 'article_text', 'date', 'topics', 'regions', 'tags'
             ),
         }),
         (_('Image'), {
@@ -152,7 +152,7 @@ class BriefEditorAdmin(BriefAdmin):
         (None, {
             'fields': (
                 'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
-                'author', 'article_text', 'date', 'topics', 'tags'
+                'author', 'article_text', 'date', 'topics', 'regions', 'tags'
             ),
         }),
         (_('Image'), {
