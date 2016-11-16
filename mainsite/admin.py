@@ -24,10 +24,14 @@ class CustomerAdmin(admin.ModelAdmin):
     # inlines = [CustomerSubscriptionInline, CustomerClassificationInline, CustomerAchievementsInline, ]
     filter_horizontal = ('subscriptions', 'classifications', )
 
+
+class CustomerClassificationAdmin(admin.ModelAdmin):
+    search_fields = ('code', 'description')
+
 admin.site.register(Customer, CustomerAdmin)
 # admin.site.register(Customer)
 admin.site.register(CustomerSubscription)
-admin.site.register(CustomerClassification)
+admin.site.register(CustomerClassification, CustomerClassificationAdmin)
 # admin.site.register(CustomerAchievement)
 admin.site.register(Tier1Discipline)
 admin.site.register(Topics)
