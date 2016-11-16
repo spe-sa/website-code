@@ -7,9 +7,28 @@
 
     <script src="{% static 'cookiebar/jquery.cookiebar.js' %}"></script>
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'cookiebar/jquery.cookiebar.css' %}" />
+
+    <!-- Unslider Carousel call -->
+    <script src="{% static 'js/unslider.js' %}"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/unslider.css' %}" />
     <script type="text/javascript">
       $(document).ready(function(){
-         $.cookieBar();
+
+          // initialize the cookiebar
+          $.cookieBar();
+
+          // Inside the carousel, remove the DIV tag that djangocms wraps each plugin with
+          $(".my-slider ul div.cms-plugin").contents().unwrap();
+
+          // initialize the carousel
+          $('.my-slider').unslider({
+              fluid:    true,
+              dots:     true,
+              arrows:   true,
+              pause:    true,
+              infinite: true,
+              nav:      true
+         });
       });
     </script>
 
