@@ -672,6 +672,8 @@ class BriefListingPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.categories = old_instance.categories.all()
+        self.secondary_categories = old_instance.secondary_categories.all()
+        self.regions = old_instance.regions.all()
 
 
 class IssuesByPublicationPlugin(CMSPlugin):
