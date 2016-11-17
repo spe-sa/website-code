@@ -23,7 +23,7 @@
 			var doReturn = false;
 		}
 		var defaults = {
-			message: 'We use cookies to track usage and preferences.', //Message displayed on bar
+			message: 'We use cookies to track usage and preferences.<a href=\"http://www.spe.org/about/cookiepolicy.php\" target=\"_blank\" class=\"learnLink\">Learn More</a>', //Message displayed on bar
 			acceptButton: true, //Set to true to show accept/enable button
 			acceptText: 'I Understand', //Text on accept/enable button
 			acceptFunction: function(cookieValue){if(cookieValue!='enabled' && cookieValue!='accepted') window.location = window.location.href;}, //Function to run after accept

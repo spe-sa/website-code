@@ -12,5 +12,5 @@
 .unslider-arrow { position: absolute; left: 20px; cursor: pointer; }
 .unslider-arrow.next { left: auto; right: 20px; }
 
-.unslider { border: 1px solid hotpink; height: 300px; overflow: hidden; margin-bottom: 15px; }
+.unslider { border: 1px solid hotpink; overflow: hidden; margin-bottom: 15px; }
 .unslider-arrow { top: 150px; z-index: 9999; }
