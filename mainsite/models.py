@@ -264,9 +264,9 @@ class Customer(models.Model):
     expected_grad_date = models.DateField(blank=True, null=True)
 
     primary_discipline = models.ForeignKey(Tier1Discipline, related_name="primary_customers", on_delete=models.SET_NULL,
-                                           blank=True, null=True)
+                                           blank=True, null=True, limit_choices_to={'active': True})
     secondary_discipline = models.ForeignKey(Tier1Discipline, related_name="secondary_customers",
-                                             on_delete=models.SET_NULL, blank=True, null=True)
+                                             on_delete=models.SET_NULL, blank=True, null=True, limit_choices_to={'active': True})
     subscriptions = models.ManyToManyField(CustomerSubscription, through='CustomerSubscriptionJoin',
                                            related_name="customers", blank=True)
     # classifications are internal classification to perform logic off of

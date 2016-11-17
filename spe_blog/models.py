@@ -284,7 +284,7 @@ class Article(models.Model):
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
 
@@ -609,7 +609,7 @@ class ArticlesListingPlugin(CMSPlugin):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
-    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL)
+    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL, limit_choices_to={'active': True})
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)

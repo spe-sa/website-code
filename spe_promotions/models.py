@@ -43,7 +43,7 @@ class Promotion(models.Model):
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
     promotion_type = models.CharField(max_length=40, verbose_name="Promotion Type", choices=PROMOTION_TYPE, default=DEFAULT_PROMOTION_TYPE)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     regions = models.ManyToManyField(Regions, blank=True)
     start = models.DateField(verbose_name='Start Date')
     end = models.DateField(verbose_name='End Date')
@@ -64,7 +64,7 @@ class PromotionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     promotion_type = models.CharField(max_length=40, verbose_name="Promotion Type", choices=PROMOTION_TYPE, default=DEFAULT_PROMOTION_TYPE)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     regions = models.ManyToManyField(Regions, blank=True)
 
     def __unicode__(self):
@@ -86,7 +86,7 @@ class SimpleEventPromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     latitude = models.FloatField(validators = [MinValueValidator(-90.0), MaxValueValidator(90.0)])
     longitude = models.FloatField(validators = [MinValueValidator(-180.0), MaxValueValidator(180.0)])
     start = models.DateField(verbose_name='Start Date')
@@ -104,7 +104,7 @@ class SimpleEventPromotion(models.Model):
 class SimpleEventPromotionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     radius = models.FloatField(validators = [MinValueValidator(0.1)])
 
     def __unicode__(self):
@@ -140,7 +140,7 @@ class EventPromotionNearUserListingPlugin(CMSPlugin):
 class EventPromotionByDisciplineListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
 
     def __unicode__(self):
         buf = str(self.count) + " - " 
