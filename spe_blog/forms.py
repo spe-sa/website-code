@@ -21,7 +21,7 @@ class ArticleSelectionForm(ModelForm):
 
 class ArticlesListSelectionForm(ModelForm):
     categories = ModelMultipleChoiceField(Category.objects.all(),
-                                       widget=FilteredSelectMultiple("categories", False, ))
+                                       widget=FilteredSelectMultiple("categories", False, ), required=False)
 
     secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
                                        widget=FilteredSelectMultiple("secondary_categories", False, ), required=False)
@@ -77,7 +77,7 @@ class BriefsListSelectionForm(ModelForm):
                                       widget=FilteredSelectMultiple("regions", False, ), required=False)
 
     categories = ModelMultipleChoiceField(Category.objects.all(),
-                                       widget=FilteredSelectMultiple("categories", False, ))
+                                       widget=FilteredSelectMultiple("categories", False, ), required=False)
 
     secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
                                        widget=FilteredSelectMultiple("secondary_categories", False, ), required=False)
