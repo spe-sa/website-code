@@ -1,6 +1,12 @@
 {% load cms_tags %}
 
-<div class="my-slider">
+<style>
+    .invisible {
+        visibility: hidden;
+    }
+</style>
+
+<div class="my-slider invisible">
     <ul>
     {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}

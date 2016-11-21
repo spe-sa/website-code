@@ -108,7 +108,7 @@
                 font-size: 12px;
                 font-weight: 700;
                 line-height: 30px;
-                color: $col-steelgrey;
+                color: $col-lightgrey;
                 padding: 0 14px;
                 margin: 0 8px 0 0;
 
@@ -120,6 +120,10 @@
             margin-left: -14px;
         }
     }
+
+    //#global-nav {
+    //    padding: 0;
+    //}
 }
 #translate-widget {
     float: right;
@@ -147,7 +151,11 @@
   background-color:$col-white;
 }
 .logo-wrap {
-  padding:20px 0 0 0;
+    padding:20px 0 0 20px;
+    //margin-left: 20px;
+    //img {
+    //    max-width: 335px;
+    //}
 }
 .spe-logo { display:block;margin:21px 0 0 10px; }
 #logo {

@@ -417,7 +417,7 @@ table th, table td { padding: 5px; }
 .link-box ul li a, .tile-links ul li a { color: #365d98; }
 .link-box ul li a:hover, .tile-links ul li a:hover { color: #ff8400; outline: 0; text-decoration: underline; }
 
-.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #ff8400; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #e51837; display: block; text-transform: uppercase; font-size: 12px; font-weight: 400; letter-spacing: 1px; }
 .story .story-wrap h3, .tile-textbelow .story-wrap h3 { color: #2a2a2a; font-weight: 700; line-height: 1.1; margin-bottom: 8px; margin-top: 0; letter-spacing: -0.02em; }
 .story .story-wrap p, .tile-textbelow .story-wrap p { color: #3d4044; }
 

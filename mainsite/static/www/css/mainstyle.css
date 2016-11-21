@@ -117,7 +117,7 @@ a:hover { text-decoration: none; }
 .global-nav { min-height: 31px; border-bottom: 1px solid #0C090A; background-color: #1c1d22; margin: 0; }
 .global-nav ul { margin: 0; padding: 0 0 0 15px; list-style: none; }
 .global-nav ul li { float: left; white-space: nowrap; margin: 0; line-height: 18px; }
-.global-nav ul li a { display: block; text-decoration: none; font-size: 12px; font-weight: 700; line-height: 30px; color: #9c9fac; padding: 0 14px; margin: 0 8px 0 0; }
+.global-nav ul li a { display: block; text-decoration: none; font-size: 12px; font-weight: 700; line-height: 30px; color: #e0e4eb; padding: 0 14px; margin: 0 8px 0 0; }
 .global-nav ul li a:hover { color: white; background-color: #0C090A; }
 .global-nav ul li:first-child a { margin-left: -14px; }
 
@@ -135,7 +135,7 @@ a:hover { text-decoration: none; }
 /* *************************************** */
 #branding { min-height: 100px; background-color: white; }
 
-.logo-wrap { padding: 20px 0 0 0; }
+.logo-wrap { padding: 20px 0 0 20px; }
 
 .spe-logo { display: block; margin: 21px 0 0 10px; }
 
@@ -261,7 +261,7 @@ a:hover { text-decoration: none; }
 .tile-alert { background-color: #c63604; color: white; }
 .tile-alert p { margin: 0; }
 
-.tile-blue { background-color: #26416c; color: #b4b4b9; }
+.tile-blue { background-color: #26416c; color: white; }
 .tile-blue a { color: #a3bce4; }
 .tile-blue a:hover { color: white; }
 
@@ -425,3 +425,5 @@ a:hover { text-decoration: none; }
 .sideListTitle { font-size: 14px; }
 .sideListTitle a { margin: 20px 0; }
 .sideListTitle a:hover { color: #365d98; }
+
+.logo-wrap img { max-width: 335px; }

@@ -6,13 +6,18 @@
  *   CSS and include that instead to use some of that
  *   hardware-accelerated goodness.
  */
- 
-//  Unslider 2 has navigation styles pre-designed. You can turn it off here.
-$unslider-dot-navigation: false;
-$unslider-dot-colour: hotpink;
 
+// Overall Border
+$unslider-border: false;
+//  Unslider 2 has navigation styles pre-designed. You can turn it off here.
+$unslider-dot-navigation: true;
+//$unslider-dot-colour: hotpink;
+$unslider-dot-colour: #26416c;
 //  Unslider 2 has navigation styles pre-designed. You can turn it off here.
 $unslider-transition-function: cubic-bezier(.42,0,.58,1);
 
 // Set a namespace for Unslider
 $unslider-namespace: 'unslider';
+
+
+$col-boxshadow:   #b4b4b9;
