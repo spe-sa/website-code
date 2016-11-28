@@ -137,6 +137,9 @@
         color: $col-speblue;
         background-color: $col-sprlghtgry;
     }
+    &:visited {
+        color: $col-white;
+    }
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
     color: $col-speblue;

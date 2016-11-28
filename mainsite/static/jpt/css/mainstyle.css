@@ -417,7 +417,7 @@ table th, table td { padding: 5px; }
 .link-box ul li a, .tile-links ul li a { color: #365d98; }
 .link-box ul li a:hover, .tile-links ul li a:hover { color: #ff8400; outline: 0; text-decoration: underline; }
 
-.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #ff8400; display: block; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.story .story-wrap .pub-date, .tile-textbelow .story-wrap .pub-date { color: #e51837; display: block; text-transform: uppercase; font-size: 12px; font-weight: 400; letter-spacing: 1px; }
 .story .story-wrap h3, .tile-textbelow .story-wrap h3 { color: #2a2a2a; font-weight: 700; line-height: 1.1; margin-bottom: 8px; margin-top: 0; letter-spacing: -0.02em; }
 .story .story-wrap p, .tile-textbelow .story-wrap p { color: #3d4044; }
 
@@ -439,8 +439,8 @@ table th, table td { padding: 5px; }
 
 .whitefadebottom { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAUCAYAAAC07qxWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDAyRDY5NkYwNEE5MTFFNjk3MUFFQzRDNzdBRTk5NDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDAyRDY5NzAwNEE5MTFFNjk3MUFFQzRDNzdBRTk5NDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEMDJENjk2RDA0QTkxMUU2OTcxQUVDNEM3N0FFOTk0NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEMDJENjk2RTA0QTkxMUU2OTcxQUVDNEM3N0FFOTk0NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Plk+uiMAAACGSURBVHjajJJRDoAgDENZ4odGQbn/YaskQkbdhCX7YHnQtUEAhJlanl6fxgy4ESjvWfS8gqJAWOcCRlLh19uLHii8Y+ShZ+Yy9uJCAdOsmezkqOORKs0mzBxPJcVAF0+mvWBIh2omOK5hxTPMMTlyH+njx61Y4FB6d1x34dcf7jlul28BBgCkyyVA7WrWsAAAAABJRU5ErkJggg==) repeat-x bottom left; height: 20px; width: 100%; position: absolute; bottom: 19px; }
 
-.sideListBoxTitle { padding: 0 0 10px 0; margin-bottom: 10px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAALCAYAAACJQCjbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDplMmRhMDQ3Yy00NWJkLTRlYjMtODg4ZS1lNTc4MzFjMDkxMjAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTIwQTI3N0E1NzMwMTFFNjlCNEVBOTU5RDYzODgwMzgiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTIwQTI3Nzk1NzMwMTFFNjlCNEVBOTU5RDYzODgwMzgiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDplMmRhMDQ3Yy00NWJkLTRlYjMtODg4ZS1lNTc4MzFjMDkxMjAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ZTJkYTA0N2MtNDViZC00ZWIzLTg4OGUtZTU3ODMxYzA5MTIwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+9I9rIgAAAJZJREFUeNrU18ENgCAMBVDqNroGDGOcgBVcQB0G1tA5nKDCAoraw/8/abg0JOWlB0RVHWqGnNdyjMbXzrv3EXXmzmFnKrVZYhwhROSBoUHK46khCjwGw4ZYoVBgUIAYoNBg0ID8QKHCoAL5gEKHQQfyAoUSgxKkAYUWgxbkBoUao0aQf+oi8tjTp1SbllJnKwbyzJcAAwBfaERxGjVoVAAAAABJRU5ErkJggg==) no-repeat bottom left; }
-.sideListBoxTitle .boxTitleText { background-color: #32bbbc; color: white; padding: 10px; font-weight: 700; font-size: 20px; }
+.sideListBoxTitle { padding: 0 0 10px 0; margin-bottom: 10px; }
+.sideListBoxTitle .boxTitleText { color: white; padding: 10px; font-weight: 700; font-size: 20px; }
 
 .sideListNum { float: left; padding: 0 20px 0 0; height: 100%; color: #ff8400; font-size: 30px; font-weight: 700; font-family: "proxima-nova", sans-serif; }
 
@@ -450,7 +450,7 @@ table th, table td { padding: 5px; }
 
 .sideListItem-borwht { border-bottom: 1px solid white; }
 
-.sideListTitle { font-size: 15px; font-weight: 700; font-family: "rooney-sans", sans-serif; margin-top: 5px; padding: 5px 0 0 10px; line-height: 1em; }
+.sideListTitle { font-size: 15px; font-weight: 700; font-family: "rooney-sans", sans-serif; margin-top: 5px; line-height: 1em; }
 .sideListTitle a:hover { color: #2d9e9f; }
 
 .sideListTitleTWA { font-size: 15px; font-weight: 700; font-family: "rooney-sans", sans-serif; margin-top: 5px; padding: 5px 0 0 0; line-height: 1em; }

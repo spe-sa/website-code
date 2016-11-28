@@ -21,10 +21,8 @@
           $(".my-slider ul div.cms-plugin").contents().unwrap();
 
           // initialize the carousel
-          $('.my-slider').unslider({
-              fluid:    true,
-              dots:     true,
-              arrows:   true,
+          $('.my-slider').removeClass("invisible").unslider({
+              arrows:   false,
               pause:    true,
               infinite: true,
               nav:      true

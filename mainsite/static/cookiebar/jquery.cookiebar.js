@@ -23,7 +23,7 @@
 			var doReturn = false;
 		}
 		var defaults = {
-			message: 'We use cookies to track usage and preferences.', //Message displayed on bar
+			message: 'SPE.org uses cookies to deliver the best possible experience. By continuing to use this site you consent to the use of cookies.<a href=\"http://www.spe.org/about/cookiepolicy.php\" target=\"_blank\" class=\"learnLink\">Learn More »</a>', //Message displayed on bar
 			acceptButton: true, //Set to true to show accept/enable button
 			acceptText: 'I Understand', //Text on accept/enable button
 			acceptFunction: function(cookieValue){if(cookieValue!='enabled' && cookieValue!='accepted') window.location = window.location.href;}, //Function to run after accept

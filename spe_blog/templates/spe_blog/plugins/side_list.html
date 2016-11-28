@@ -12,6 +12,16 @@
                 <span class="boxTitleText col-xs-12">What's Trending Now</span>
             </div>
         {% endif %}
+    {% elif pubcode == "JPT" %}
+        {% if boxtitle != "" %}
+            <div class="col-xs-12 sideListBoxTitle">
+                <span class="boxTitleText col-xs-12" style="background-color:#e51837;">{{ boxtitle }}</span>
+            </div>
+{#        {% else %}#}
+{#            <div class="col-xs-12 sideListBoxTitle">#}
+{#                <span class="boxTitleText col-xs-12" style="background-color:#e51837;">Trending</span>#}
+{#            </div>#}
+        {% endif %}
     {% endif %}
 {% for article in articles %}
 {#    <div class="row">#}
