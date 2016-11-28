@@ -21,18 +21,18 @@ class ArticleSelectionForm(ModelForm):
 
 class ArticlesListSelectionForm(ModelForm):
     categories = ModelMultipleChoiceField(Category.objects.all(),
-                                       widget=FilteredSelectMultiple("categories", False, ), required=False)
+                                          widget=FilteredSelectMultiple("categories", False, ), required=False)
 
     secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
-                                       widget=FilteredSelectMultiple("secondary_categories", False, ), required=False)
+                                                    widget=FilteredSelectMultiple("secondary_categories", False, ),
+                                                    required=False)
 
     class Meta:
         model = ArticlesListingPlugin
         exclude = []
         fields = ['template', 'cnt', 'order_by', 'starting_with', 'publication', 'print_volume', 'print_issue',
                   'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol',
-                  'whitetext', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']
-
+                  'whitetext', 'boxtitle', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']
 
 
 class EditorialSelectionForm(ModelForm):
@@ -74,13 +74,14 @@ class TopicsListSelectionForm(ModelForm):
 
 class BriefsListSelectionForm(ModelForm):
     regions = ModelMultipleChoiceField(Web_Region.objects.filter(is_visible__gte=1),
-                                      widget=FilteredSelectMultiple("regions", False, ), required=False)
+                                       widget=FilteredSelectMultiple("regions", False, ), required=False)
 
     categories = ModelMultipleChoiceField(Category.objects.all(),
-                                       widget=FilteredSelectMultiple("categories", False, ), required=False)
+                                          widget=FilteredSelectMultiple("categories", False, ), required=False)
 
     secondary_categories = ModelMultipleChoiceField(SecondaryCategory.objects.all(),
-                                       widget=FilteredSelectMultiple("secondary_categories", False, ), required=False)
+                                                    widget=FilteredSelectMultiple("secondary_categories", False, ),
+                                                    required=False)
 
     class Meta:
         model = BriefListingPlugin

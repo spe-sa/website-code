@@ -241,10 +241,10 @@
 .sideListBoxTitle {
   padding:              0 0 10px 0;
   margin-bottom:        10px;
-  background:           $img-twa-downarrow no-repeat bottom left;
+  //background:           $img-twa-downarrow no-repeat bottom left;
 
   .boxTitleText {
-    background-color:     $col-twablue;
+    //background-color:     $col-twablue;
     color:                white;
     padding:              10px;
     font-weight:          $font-bold;
@@ -276,7 +276,7 @@
   font-weight:          $font-bold;
   font-family:          $font-tiletitle;
   margin-top:           5px;
-  padding:              5px 0 0 10px;
+  //padding:              5px 0 0 10px;
   line-height:          1em;
 
   a:hover {

@@ -389,6 +389,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
         context.update({'whitetext': instance.whitetext})
+        context.update({'boxtitle': instance.boxtitle})
         if instance.publication:
             context.update({'pubcode': getPublicationCode(instance.publication)})
         else:
@@ -448,6 +449,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         context.update({'whitetext': instance.whitetext})
         context.update({'boxwidth': instance.boxwidth})
         context.update({'boxheight': instance.boxheight})
+        context.update({'boxtitle': instance.boxtitle})
         context.update({'pubcode': getPublicationCode(instance.publication)})
 
         if instance.all_url:
