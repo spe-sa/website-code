@@ -43,6 +43,8 @@ class CarouselComponentModel(CMSPlugin):
     link_to = models.URLField(max_length=128, blank=True, null=True,
                               help_text=_("optional: link to page when carousel item is clicked."))
     is_tracking = models.BooleanField(_("Tracking"), default=True, help_text=_("optional: toggle click through and impression tracking."))
+    clicks = models.PositiveIntegerField(default=0)
+    impressions = models.PositiveIntegerField(default=0)
 
     @property
     def component_href(self):

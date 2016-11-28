@@ -38,15 +38,22 @@ class CarouselComponentPlugin(CMSPluginBase):
     # ]
 
     def render(self, context, instance, placeholder):
+        ip = context['request'].META.get('HTTP_X_REAL_IP', None)
+        editing = False
+        if context['request'].toolbar and context['request'].toolbar.edit_mode != None:
+            editing = context['request'].toolbar.edit_mode
+
+        if instance.is_tracking and instance.show_component and editing == False:
+            instance.impressions += 1
+            instance.save()
         component_href = ""
-        component_href_start = ""
-        component_href_end = ""
         if instance.link_to:
             component_href = instance.link_to
-            component_href_start = "<a href='" + instance.link_to + "'>"
-            component_href_end = "</a>"
-        context.update({'component_href': component_href, 'component_href_start': component_href_start, 'component_href_end': component_href_end})
+        context.update({'component_href': component_href})
         context = super(CarouselComponentPlugin, self).render(context, instance, placeholder)
+        if not instance.show_component:
+            instance.deferred = True
+            instance.save()
         return context
 
 
