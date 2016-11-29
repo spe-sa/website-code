@@ -7,12 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('spe_blog', '0007_auto_20161128_0827'),
+        ('spe_blog', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='articleslistingplugin',
+            model_name='brieflistingplugin',
+            name='boxtitle',
+            field=models.CharField(max_length=50, null=True, verbose_name=b'Box Title', blank=True),
+        ),
+        migrations.AddField(
+            model_name='briefplugin',
             name='boxtitle',
             field=models.CharField(max_length=50, null=True, verbose_name=b'Box Title', blank=True),
         ),

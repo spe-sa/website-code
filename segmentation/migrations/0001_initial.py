@@ -129,6 +129,21 @@ class Migration(migrations.Migration):
             bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
+            name='VisitorPropertySegmentPluginModel',
+            fields=[
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('label', models.CharField(default='', max_length=128, verbose_name='label', blank=True)),
+                ('visitor_key', models.CharField(help_text='Name of customer attribute to check.', max_length=500, verbose_name='name of customer attribute')),
+                ('visitor_value', models.CharField(help_text='Date format: 2005-12-31 (year-month-day)', max_length=500, verbose_name='value to compare')),
+                ('data_type', models.CharField(default='string', max_length=20, verbose_name='Data type to use for comparison', choices=[('string', 'String'), ('date', 'Date'), ('int', 'Int')])),
+                ('operator', models.CharField(default='=', max_length=20, verbose_name='Type of comparison', choices=[('=', '='), ('>', '>'), ('>=', '>='), ('<', '<'), ('<=', '<='), ('!=', '!=')])),
+            ],
+            options={
+                'abstract': False,
+            },
+            bases=('cms.cmsplugin',),
+        ),
+        migrations.CreateModel(
             name='VisitorSegmentPluginModel',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),

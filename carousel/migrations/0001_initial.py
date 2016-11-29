@@ -19,6 +19,9 @@ class Migration(migrations.Migration):
                 ('start_display', models.DateField(default=django.utils.timezone.now, null=True, blank=True)),
                 ('stop_display', models.DateField(null=True, blank=True)),
                 ('link_to', models.URLField(help_text='optional: link to page when carousel item is clicked.', max_length=128, null=True, blank=True)),
+                ('is_tracking', models.BooleanField(default=True, help_text='optional: toggle click through and impression tracking.', verbose_name='Tracking')),
+                ('clicks', models.PositiveIntegerField(default=0)),
+                ('impressions', models.PositiveIntegerField(default=0)),
             ],
             options={
                 'abstract': False,

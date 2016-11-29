@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
+import mainsite.models
 import filer.fields.image
 import ckeditor_uploader.fields
 
@@ -201,6 +202,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
                 ('title', models.CharField(max_length=100)),
+                ('backcol', mainsite.models.ColorField(max_length=10, null=True, verbose_name=b'Background Color', blank=True)),
+                ('textcol', mainsite.models.ColorField(max_length=10, null=True, verbose_name=b'Text Color', blank=True)),
             ],
             options={
                 'abstract': False,
@@ -218,6 +221,30 @@ class Migration(migrations.Migration):
             options={
                 'ordering': ['name'],
                 'verbose_name': 'Topic',
+            },
+        ),
+        migrations.CreateModel(
+            name='Web_Region',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('region_code', models.CharField(unique=True, max_length=15)),
+                ('region_name', models.CharField(unique=True, max_length=50)),
+                ('is_visible', models.PositiveIntegerField(default=1)),
+            ],
+            options={
+                'ordering': ['region_name'],
+            },
+        ),
+        migrations.CreateModel(
+            name='Web_Region_Country',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('country_UN', models.CharField(max_length=25, verbose_name=b'Country Code')),
+                ('region', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, to='mainsite.Web_Region', null=True)),
+            ],
+            options={
+                'verbose_name': 'Web Region Country',
+                'verbose_name_plural': 'Web Region Countries',
             },
         ),
         migrations.AddField(
