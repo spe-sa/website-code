@@ -1,0 +1,231 @@
+{% extends "staff_base.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}Image Manager{% endblock title %}
+
+{% block content %}
+    {# adding page level css adjustments #}
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    <div class="container">
+
+    <section id="file_upload_section" class="hidden">
+        <!-- TODO: change this to be a dialog -->
+        <h1>Test File Upload</h1>
+
+    </section>
+
+    <section id="toolbar_section">
+        <div id="toolbar">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class=btn-group role=group aria-label="Default button group">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addDirModal">
+                            Create Directory
+                        </button>
+                        <button type=button class="btn btn-default" data-toggle="modal" data-target="#addFilesModal">
+                            Upload Files
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4 align-right">
+                    <form id="browseDir" action="http://localhost:8000/en/spe_filer/{{ qs }}" method="post">
+                        {% csrf_token %}
+                        <label name="search_recursive">
+                            <input id="search_recursive" type="checkbox" name="recursive" value="1" />Recursive
+                        </label>
+                        <label name="Search">
+                        <input type="text" name="search" data-bind="textInput: search">
+                        </label>
+                        <label name="Path">
+                        <input id="path" type="hidden" name="path" data-bind="textInput: path">
+                        </label>
+{#                        <input type="text" name="ck" value="{{ ck }}">#}
+{#                        <input type="text" name="ck_type" value="{{ ck_type }}">#}
+{#                        <input type="text" name="ck_fn_no" value="{{ ck_fn_no }}">#}
+                        <input type="submit" name="searchbtn" value="Search">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ol id="breadcrumb" class="breadcrumb">
+                    {% for bc in breadcrumbs %}
+                        <li><a href="#" data-bind="click: submitSelection.bind($data, 'd', '{{ bc.buildpath }}', '{{ bc.name }}', '', false)">{{ bc.name }}</a></li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col-sm-6">
+            <section id="file_section">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Listing</h2>
+                            <p>
+                            {% for f in fs %}
+                                <a href="#" data-bind="click: submitSelection.bind($data, '{{ f.type }}', '',  '{{ f.name }}', '{{ f.url }}', true)"><span class="title {{ f.type }}">{{ f.name }}</span></a><br>
+                            {% endfor %}
+                            </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-6">
+            <section id="preview_section">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="caption" class="caption-container">
+                            <div class="caption">
+                                <div class="submit-row">
+                                    <input id="img-send" href="#" class="default embed" type="submit" name="_embed" value="Embed {{ file_type }}" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <img id="img-preview" src="#" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal Create Directory -->
+    <div class="modal fade" id="addDirModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Create Directory</h4>
+          </div>
+          <div class="modal-body">
+            <form id="addDirForm" action="http://localhost:8000/en/spe_filer/add_dir/" method="post">
+                {% csrf_token %}
+                <input type="text" name="path" value="{{ path }}">
+                <input type="text" name="qs" value="{{ qs }}">
+                <label name="new_dir">New Directory
+                    <input id="new_dir" type="text" name="new_dir" value="" />
+                </label>
+                <button id="myFormSubmit" type="submit">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Upload Files -->
+    <div class="modal fade" id="addFilesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Add Files</h4>
+          </div>
+          <div class="modal-body">
+            <form id="addFilesForm" enctype="multipart/form-data" action="http://localhost:8000/en/spe_filer/upload/" method="post">
+                {% csrf_token %}
+                <input type="text" name="path" value="{{ path }}">
+                <input type="text" name="qs" value="{{ qs }}">
+                <input type="file" name="myfiles" multiple>
+                <input type="submit" name="upload" value="Upload">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    {# knockout js for bindings and client side display #}
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            // helper functions
+            function getUrlParam(paramName) {
+                var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+                var match = window.location.search.match(reParam) ;
+                return (match && match.length > 1) ? match[1] : '' ;
+            }
+
+            function BrowseViewModel() {
+                this.search = ko.observable('{{ search }}');
+                this.path = '{{ path }}';
+                if (this.path == '')
+                    this.path = '/';
+                this.resetBrowse = function() { this.search(null) };
+
+                this.submitSelection = function(type, path, name, url, is_relative) {
+                    var newPath = this.path;
+                    if (path)
+                        newPath = path;
+                    // if they click a file lets make the callback call with the full path and name of file.
+                    if (type === 'f') {
+                        // set preview pane instead
+                        $('#img-preview').attr('src', url);
+                        $('#img-send').attr('href', url);
+                        $('#img-send').prop('disabled', false);
+                    }
+                    else {
+                        // set the path to the item we clicked
+                        // NOTE: if a breadcrumb the path will always be passed if listing will always be empty
+                        if (name != 'root' && is_relative) {
+                            if (newPath != '/')
+                                newPath += '/';
+                            newPath += name;
+                        }
+                        console.log('path: ' + newPath);
+                        console.log('type: ' + type);
+                        console.log('name: ' + name);
+                        $('#path').val(newPath);
+                        $('#browseDir').submit();
+                    }
+                };
+            }
+            // activates knockout.js
+            ko.applyBindings(new BrowseViewModel());
+
+            {# jquery ready function for page level jquery stuff #}
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("Page Level Javascript Ran!");
+                $('.embed').live('click', function() {
+                    var funcNum = getUrlParam('CKEditorFuncNum');
+                    var fileUrl = $(this).attr('href');
+                    window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+                    window.close();
+                });
+
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+
+{% endblock content %}

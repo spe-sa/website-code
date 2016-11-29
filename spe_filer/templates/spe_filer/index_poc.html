@@ -1,0 +1,101 @@
+{% extends "staff_base.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}Image Manager{% endblock title %}
+
+{% block content %}
+    {# adding page level css adjustments #}
+    {% addtoblock "css" %}
+        <style>
+            section.search_section {
+                margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+                background-color: #ffffff;
+                border: 1px solid #777;
+                color: #777;
+            }
+            legend {
+                color: #777;
+                padding-left: 20px; padding-right: 20px;
+            }
+        </style>
+    {%  endaddtoblock %}
+
+    <h1>Test File Upload</h1>
+
+    <form enctype="multipart/form-data" action="http://localhost:8000/en/spe_filer/upload/" method="post">
+        {% csrf_token %}
+        <input type="file" name="myfiles" multiple>
+        <input type="submit" name="upload" value="Upload">
+    </form>
+
+    {% for bc in breadcrumbs %}
+        &nbsp;/&nbsp;<a href="#" data-bind="click: submitSelection.bind($data, 'd', '{{ bc.buildpath }}', '{{ bc.name }}', false)">{{ bc.name }}</a>
+    {% endfor %}
+    <h2>Listing</h2>
+        <form id="browseDir" action="http://localhost:8000/en/spe_filer/" method="post">
+            {% csrf_token %}
+            <label name="Search">
+            <input type="text" name="search" data-bind="textInput: search">
+            </label><br>
+            <label name="Path">
+            <input id="path" name="path" data-bind="textInput: path">
+            </label><br>
+            <input type="submit" name="searchbtn" value="Search">
+
+        </form>
+        <p>
+        {% for f in fs %}
+            <a href="#" data-bind="click: submitSelection.bind($data, '{{ f.type }}', '',  '{{ f.name }}', true)"><span class="title {{ f.type }}">{{ f.name }}: {{ f.url }}</span></a><br>
+        {% endfor %}
+        </p>
+
+    {# knockout js for bindings and client side display #}
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            function BrowseViewModel() {
+                this.search = ko.observable('{{ search }}');
+                this.path = '{{ path }}';
+                if (this.path == '')
+                    this.path = '/';
+                this.resetBrowse = function() { this.search(null) };
+
+                this.submitSelection = function(type, path, name, is_relative) {
+                    var newPath = this.path;
+                    if (path)
+                        newPath = path;
+                    // if they click a file lets make the callback call with the full path and name of file.
+                    if (type === 'f') {
+                        alert('would make callback now.  Chose: ' + newPath + name);
+                    }
+                    else {
+                        // set the path to the item we clicked
+                        // NOTE: if a breadcrumb the path will always be passed if listing will always be empty
+                        if (name != 'root' && is_relative) {
+                            if (newPath != '/')
+                                newPath += '/';
+                            newPath += name;
+                        }
+                        console.log('path: ' + newPath);
+                        console.log('type: ' + type);
+                        console.log('name: ' + name);
+                        $('#path').val(newPath);
+                        $('#browseDir').submit();
+                    }
+                };
+            }
+            // activates knockout.js
+            ko.applyBindings(new BrowseViewModel());
+
+            {# jquery ready function for page level jquery stuff #}
+            $( document ).ready(function() {
+
+                // Add JQuery Here
+                console.log("Page Level Javascript Ran!");
+
+            });
+        </script>
+    {%  endaddtoblock %}
+
+
+{% endblock content %}
