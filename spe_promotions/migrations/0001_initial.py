@@ -34,32 +34,6 @@ class Migration(migrations.Migration):
             bases=('cms.cmsplugin',),
         ),
         migrations.CreateModel(
-            name='EventPromotionByRegionListingPlugin',
-            fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_promotions/plugins/carousel.html', max_length=255, choices=[(b'spe_promotions/plugins/carousel.html', b'Carousel'), (b'spe_promotions/plugins/image_left.html', b'Image Left'), (b'spe_promotions/plugins/overlay.html', b'Text Overlay'), (b'spe_promotions/plugins/jb_carousel.html', b'JB Carousel')])),
-                ('count', models.PositiveIntegerField(default=5, verbose_name='Number of Promotions')),
-                ('regions', models.ManyToManyField(to='mainsite.Web_Region', blank=True)),
-            ],
-            options={
-                'abstract': False,
-            },
-            bases=('cms.cmsplugin',),
-        ),
-        migrations.CreateModel(
-            name='EventPromotionByTopicListingPlugin',
-            fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('template', models.CharField(default=b'spe_promotions/plugins/carousel.html', max_length=255, choices=[(b'spe_promotions/plugins/carousel.html', b'Carousel'), (b'spe_promotions/plugins/image_left.html', b'Image Left'), (b'spe_promotions/plugins/overlay.html', b'Text Overlay'), (b'spe_promotions/plugins/jb_carousel.html', b'JB Carousel')])),
-                ('count', models.PositiveIntegerField(default=5, verbose_name='Number of Promotions')),
-                ('topics', models.ManyToManyField(to='mainsite.Topics', blank=True)),
-            ],
-            options={
-                'abstract': False,
-            },
-            bases=('cms.cmsplugin',),
-        ),
-        migrations.CreateModel(
             name='EventPromotionNearLocationListingPlugin',
             fields=[
                 ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
@@ -135,23 +109,18 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('event', models.CharField(max_length=250)),
-                ('event_date', models.DateField(verbose_name=b'Event Date')),
-                ('event_location', models.CharField(max_length=50)),
                 ('teaser', ckeditor_uploader.fields.RichTextUploadingField(max_length=300)),
                 ('hits', models.PositiveIntegerField(default=0, editable=False)),
                 ('impressions', models.PositiveIntegerField(default=0, editable=False)),
                 ('last_impression', models.DateTimeField(default=datetime.date(2016, 10, 30), editable=False)),
-                ('latitude', models.FloatField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(-90.0), django.core.validators.MaxValueValidator(90.0)])),
-                ('longitude', models.FloatField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(-180.0), django.core.validators.MaxValueValidator(180.0)])),
-                ('start', models.DateField(verbose_name=b'Display Start Date')),
-                ('end', models.DateField(verbose_name=b'Display End Date')),
-                ('sponsored', models.BooleanField(default=False)),
+                ('latitude', models.FloatField(validators=[django.core.validators.MinValueValidator(-90.0), django.core.validators.MaxValueValidator(90.0)])),
+                ('longitude', models.FloatField(validators=[django.core.validators.MinValueValidator(-180.0), django.core.validators.MaxValueValidator(180.0)])),
+                ('start', models.DateField(verbose_name=b'Start Date')),
+                ('end', models.DateField(verbose_name=b'End Date')),
                 ('click_url', models.URLField(null=True, verbose_name='Click Through External URL', blank=True)),
                 ('url', models.URLField(null=True, editable=False, blank=True)),
                 ('disciplines', models.ManyToManyField(to='mainsite.Tier1Discipline', blank=True)),
                 ('picture', filer.fields.image.FilerImageField(related_name='simple_promotion_picture', verbose_name='Picture for event promotion', to='filer.Image')),
-                ('regions', models.ManyToManyField(to='mainsite.Web_Region', blank=True)),
-                ('topics', models.ManyToManyField(to='mainsite.Topics', verbose_name=b'Topics of Interest', blank=True)),
             ],
             options={
                 'ordering': ['-end', 'event'],
