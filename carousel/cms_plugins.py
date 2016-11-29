@@ -52,8 +52,7 @@ class CarouselComponentPlugin(CMSPluginBase):
         context.update({'component_href': component_href})
         context = super(CarouselComponentPlugin, self).render(context, instance, placeholder)
         if not instance.show_component:
-            instance.deferred = True
-            instance.save()
+            self.render_plugin = False
         return context
 
 
