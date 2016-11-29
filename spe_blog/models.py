@@ -524,6 +524,7 @@ class BriefPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
     backcol = ColorField("Background Color", blank=True, null=True, default='#ffffff')
     whitetext = models.BooleanField("White Text", default=False)
+    boxtitle = models.CharField("Box Title", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
@@ -660,6 +661,7 @@ class BriefListingPlugin(CMSPlugin):
     all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
     backcol = ColorField("Background Color", blank=True, null=True, default="#ffffff")
     whitetext = models.BooleanField("White Text", default=False)
+    boxtitle = models.CharField("Box Title", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         dictionary = dict(BRIEF_TEMPLATES)
