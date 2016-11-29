@@ -8,7 +8,7 @@ from cms.models import CMSPlugin
 from filer.fields.image import FilerImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-from mainsite.models import Regions, Tier1Discipline
+from mainsite.models import Regions, Tier1Discipline, Web_Region, Topics
 from spe_blog.models import Article
 
 DEFAULT_PROMOTION_TYPE = 'generic'
@@ -79,6 +79,8 @@ class PromotionListingPlugin(CMSPlugin):
 
 class SimpleEventPromotion(models.Model):
     event = models.CharField(max_length=250)
+    event_date = models.DateField(verbose_name='Event Date')
+    event_location = models.CharField(max_length=50)
     teaser = RichTextUploadingField(
         max_length=300,
     )
@@ -87,10 +89,13 @@ class SimpleEventPromotion(models.Model):
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
-    latitude = models.FloatField(validators = [MinValueValidator(-90.0), MaxValueValidator(90.0)])
-    longitude = models.FloatField(validators = [MinValueValidator(-180.0), MaxValueValidator(180.0)])
-    start = models.DateField(verbose_name='Start Date')
-    end = models.DateField(verbose_name='End Date')
+    latitude = models.FloatField(validators = [MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True)
+    longitude = models.FloatField(validators = [MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True)
+    regions = models.ManyToManyField(Web_Region, blank=True)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+    start = models.DateField(verbose_name='Display Start Date')
+    end = models.DateField(verbose_name='Display End Date')
+    sponsored = models.BooleanField(default=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True)
     url = models.URLField(blank=True, null=True, editable=False)
 
@@ -149,3 +154,29 @@ class EventPromotionByDisciplineListingPlugin(CMSPlugin):
 
     def copy_relations(self, old_instance):
         self.disciplines = old_instance.disciplines.all()
+
+class EventPromotionByTopicListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    topics = models.ManyToManyField(Topics, blank=True, limit_choices_to={'active': True})
+
+    def __unicode__(self):
+        buf = str(self.count) + " - "
+        buf += " (topics: %s)" % ', '.join([a.code for a in self.topics.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.topics = old_instance.topics.all()
+
+class EventPromotionByRegionListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    regions = models.ManyToManyField(Web_Region, blank=True, limit_choices_to={'is_visible': True})
+
+    def __unicode__(self):
+        buf = str(self.count) + " - "
+        buf += " (regions: %s)" % ', '.join([a.code for a in self.regions.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.regions = old_instance.regions.all()

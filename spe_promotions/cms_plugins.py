@@ -12,7 +12,7 @@ from mainsite.context_processors import spe_context
 
 from .models import Promotion, PromotionListingPlugin
 from .models import SimpleEventPromotion, SimpleEventPromotionListingPlugin
-from .models import EventPromotionNearLocationListingPlugin, EventPromotionNearUserListingPlugin, EventPromotionByDisciplineListingPlugin
+from .models import EventPromotionNearLocationListingPlugin, EventPromotionNearUserListingPlugin, EventPromotionByDisciplineListingPlugin, EventPromotionByTopicListingPlugin, EventPromotionByRegionListingPlugin
 
 class ShowPromotionListingPlugin(CMSPluginBase):
     class Meta:
@@ -188,7 +188,65 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+class ShowEventsByTopicListingPlugin(CMSPluginBase):
+        class Meta:
+            abstract = True
+
+        allow_children = False
+        cache = False
+        module = ('Advertising')
+        render_template = 'spe_blog/plugins/image_left.html'
+        text_enabled = False
+        model = EventPromotionByTopicListingPlugin
+        name = ("Event Promotion by Topics Listing")
+
+        def render(self, context, instance, placeholder):
+            today = datetime.date.today()
+            objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+
+            objects = objects.filter(topics__in=instance.topics.all()).distinct()[:instance.count]
+
+            for x in objects:
+                x.url = "/promotion/event/" + str(x.id) + "/"
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
+
+            context.update({'promos': objects})
+            self.render_template = instance.template
+            return context
+
+
+class ShowEventsByRegionListingPlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = ('Advertising')
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = EventPromotionByRegionListingPlugin
+    name = ("Event Promotion by Region Listing")
+
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+
+        objects = objects.filter(regions__in=instance.regions.all()).distinct()[:instance.count]
+
+        for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
+
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
 
 plugin_pool.register_plugin(ShowEventNearLocationPromotionListing)
 plugin_pool.register_plugin(ShowEventNearUserPromotionListing)
 plugin_pool.register_plugin(ShowEventsByDisciplineListingPlugin)
+plugin_pool.register_plugin(ShowEventsByTopicListingPlugin)
+plugin_pool.register_plugin(ShowEventsByRegionListingPlugin)
