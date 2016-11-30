@@ -1,6 +1,8 @@
 from django.http import Http404
 from django.shortcuts import redirect
-from .models import Promotion, SimpleEventPromotion
+# from .models import Promotion, SimpleEventPromotion
+from .models import SimpleEventPromotion
+
 
 def promo_select(request, index):
     try:

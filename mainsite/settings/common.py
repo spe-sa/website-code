@@ -280,11 +280,14 @@ CMS_PLACEHOLDER_CONF = {
                     'BootstrapRowPlugin',
                     'ShowHorizontalBar',
                     'CarouselPlugin',
+                    # spe_promotions
                     'ShowEventNearLocationPromotionListing',
                     'ShowEventNearUserPromotionListing',
                     'ShowEventsByDisciplineListingPlugin',
                     'ShowEventsByTopicListingPlugin',
-                    'ShowEventsByRegionListingPlugin'
+                    'ShowEventsByRegionListingPlugin',
+                    'ShowEventsListingPlugin',
+                    'ShowEventInUserRegionPromotionListing',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

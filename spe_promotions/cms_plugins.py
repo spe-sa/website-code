@@ -10,16 +10,26 @@ from cms.plugin_pool import plugin_pool
 from django.contrib.gis.geoip import GeoIP
 from mainsite.context_processors import spe_context
 
-from .models import Promotion, PromotionListingPlugin
+#from .models import Promotion, PromotionListingPlugin
 from .models import SimpleEventPromotion, SimpleEventPromotionListingPlugin
-from .models import EventPromotionNearLocationListingPlugin, EventPromotionNearUserListingPlugin, EventPromotionByDisciplineListingPlugin, EventPromotionByTopicListingPlugin, EventPromotionByRegionListingPlugin
+from .models import (
+    EventPromotionNearLocationListingPlugin,
+    EventPromotionNearUserListingPlugin,
+    EventPromotionByDisciplineListingPlugin,
+    EventPromotionByTopicListingPlugin,
+    EventPromotionByRegionListingPlugin,
+    EventPromotionSelectionPlugin,
+    EventPromotionInUserRegionListingPlugin,
+)
+from mainsite.models import Web_Region_Country
+
 
 class ShowPromotionListingPlugin(CMSPluginBase):
     class Meta:
         abstract = True
     allow_children = False
     cache = False
-    module = ('Advertising')
+    module = ('Event Promotions')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = SimpleEventPromotionListingPlugin
@@ -74,7 +84,7 @@ class ShowEventNearLocationPromotionListing(CMSPluginBase):
         abstract = True
     allow_children = False
     cache = False
-    module = ('Advertising')
+    module = ('Event Promotions')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionNearLocationListingPlugin
@@ -114,7 +124,7 @@ class ShowEventNearUserPromotionListing(CMSPluginBase):
         abstract = True
     allow_children = False
     cache = False
-    module = ('Advertising')
+    module = ('Event Promotions')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionNearUserListingPlugin
@@ -166,7 +176,7 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
         abstract = True
     allow_children = False
     cache = False
-    module = ('Advertising')
+    module = ('Event Promotions')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionByDisciplineListingPlugin
@@ -194,7 +204,7 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
 
         allow_children = False
         cache = False
-        module = ('Advertising')
+        module = ('Event Promotions')
         render_template = 'spe_blog/plugins/image_left.html'
         text_enabled = False
         model = EventPromotionByTopicListingPlugin
@@ -223,7 +233,7 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Advertising')
+    module = ('Event Promotions')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionByRegionListingPlugin
@@ -245,8 +255,80 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+
+class ShowEventsListingPlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = ('Event Promotions')
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = EventPromotionSelectionPlugin
+    name = ("Selected Event Promotion Listing")
+
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, id__in=instance.promotions.all()).order_by('last_impression').distinct()
+
+        for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
+
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
+
+
+class ShowEventInUserRegionPromotionListing(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = ('Event Promotions')
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = EventPromotionInUserRegionListingPlugin
+    name = ("Events In User Region Promotion Listing")
+
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+
+        request = context['request']
+        g = GeoIP()
+        # ip = context['request'].META.get('REMOTE_ADDR', None)
+        ip = context['request'].META.get('HTTP_X_REAL_IP', None)
+        country = 'USA'
+        if not ip:
+            ip = '192.152.183.80'
+        if ip:
+            loc = g.city(ip)
+            if loc:
+                country = loc['country_code3']
+
+        region = Web_Region_Country.objects.get(country_UN=country).region
+
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region).order_by('last_impression')[:instance.count]
+
+        for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
+
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
+
+
 plugin_pool.register_plugin(ShowEventNearLocationPromotionListing)
 plugin_pool.register_plugin(ShowEventNearUserPromotionListing)
 plugin_pool.register_plugin(ShowEventsByDisciplineListingPlugin)
 plugin_pool.register_plugin(ShowEventsByTopicListingPlugin)
 plugin_pool.register_plugin(ShowEventsByRegionListingPlugin)
+plugin_pool.register_plugin(ShowEventsListingPlugin)
+plugin_pool.register_plugin(ShowEventInUserRegionPromotionListing)

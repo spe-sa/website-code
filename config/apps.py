@@ -46,3 +46,4 @@ class SpeLinkConfig(AppConfig):
 class SpePollConfig(AppConfig):
     name = 'spe_polls'
     verbose_name = "Polls"
+
