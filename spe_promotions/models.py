@@ -66,18 +66,18 @@ class PromotionListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     promotion_type = models.CharField(max_length=40, verbose_name="Promotion Type", choices=PROMOTION_TYPE,
                                       default=DEFAULT_PROMOTION_TYPE)
-   disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
-   regions = models.ManyToManyField(Regions, blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
+    regions = models.ManyToManyField(Regions, blank=True)
 
-   def __unicode__(self):
-       buf = str(self.count) + " - " + self.promotion_type
-       buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
-       buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
-       return buf
+    def __unicode__(self):
+        buf = str(self.count) + " - " + self.promotion_type
+        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
+        return buf
 
-   def copy_relations(self, old_instance):
-       self.disciplines = old_instance.disciplines.all()
-       self.regions = old_instance.regions.all()
+    def copy_relations(self, old_instance):
+        self.disciplines = old_instance.disciplines.all()
+        self.regions = old_instance.regions.all()
 
 
 class SimpleEventPromotion(models.Model):
