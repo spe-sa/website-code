@@ -1,0 +1,32 @@
+{% load i18n cms_tags sekizai_tags %}
+
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
+{% for article in posts %}
+    <div class="row sideListItem">
+    {% if pubcode == "TWA" %}
+        <div class="col-xs-11">
+        <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
+    {% else %}
+        <div class="col-xs-12">
+        <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
+    {% endif %}
+
+        <span class="sideListDateTWA">{{ article.publication_date|date:"d F Y" }}</span>
+        </div>
+    </div>
+{% empty %}
+    <p class="well">{% trans "No editorial available" %}</p>
+{% endfor %}
+
+</div>
+
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}
