@@ -449,7 +449,7 @@ class TextPlugin(CMSPlugin):
 
 
 class TileImgBack(CMSPlugin):
-    ttl = models.CharField(max_length=250, verbose_name="Title")
+    ttl = models.CharField(blank=True, max_length=250, verbose_name="Title")
     txt = RichTextUploadingField(
         max_length=2000,
         help_text=u'Text Area'
@@ -470,7 +470,7 @@ class TileImgBack(CMSPlugin):
             replacements = getattr(settings, "HOST_REPLACEMENTS", None)
             if replacements:
                 for replace_host, new_host in replacements:
-                    if (url.find(replace_host) > -1):
+                    if url.find(replace_host) > -1:
                         url = url.replace(replace_host, new_host)
         return url
 
