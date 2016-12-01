@@ -66,9 +66,11 @@ BRIEF_TEMPLATES = (
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
     ('spe_blog/plugins/brief_accordion.html', 'POI Accordion Listing'),
     ('spe_blog/plugins/side_list.html', 'Brief List'),
+    ('spe_blog/plugins/brief_list_pics.html', 'Brief List with Images'),
     ('spe_blog/plugins/best_shot_1.html', 'Best Shot 1 Col'),
     ('spe_blog/plugins/best_shot_2.html', 'Best Shot 2 Col'),
     ('spe_blog/plugins/best_shot.html', 'Best Shot 3 Col'),
+    ('spe_blog/plugins/brief_interest_widepics.html', 'Brief of interest listing Wide Pics'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
