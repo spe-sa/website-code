@@ -464,6 +464,8 @@ table th, table td { padding: 5px; }
 .tile-poi .poiblurb h3 { font-size: 15px; font-weight: 700; margin: 0; }
 .tile-poi .poiblurb p { font-size: 12px; }
 
+.listpic { padding: 0; }
+
 #myCarousel .carousel-indicators { bottom: 0; }
 #myCarousel .carousel-inner { height: 400px; }
 #myCarousel .carousel-inner .item { height: 400px; background-size: cover; background-position: center; }
@@ -488,7 +490,7 @@ table th, table td { padding: 5px; }
 .becomeMember a { color: #fffb22; font-weight: 700; }
 .becomeMember a:hover { color: #2a2a2a; }
 
-.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic { overflow: hidden; -webkit-background-size: cover; background-size: cover; background-position: center; }
+.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic, .listpic { overflow: hidden; -webkit-background-size: cover; background-size: cover; background-position: center; }
 
 .detailImgWrap { height: 250px; margin-bottom: 5px; }
 
