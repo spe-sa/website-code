@@ -97,8 +97,8 @@
             {% if show_paybox %}
                 <div class="col-sm-12 becomeMember text-center">
                     <p>You have access to this full article to experience the outstanding content<br>
-                        that is available to OGF subscribers and SPE members.</p>
-                    <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a><br>
+                        that is available to {{ article.publication.code }} subscribers and SPE members.</p>
+                    <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to {{ article.publication.code }}</a><br>
                     in order to gain full access to all that OGF has to offer.</p>
             </div>
             {% endif %}
