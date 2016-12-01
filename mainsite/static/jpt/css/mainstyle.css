@@ -225,7 +225,7 @@ a:hover { text-decoration: none; color: grey; }
 
 .articleDetail .articleTitle { padding-bottom: 20px; }
 .articleDetail .articleAuthorBox, .articleDetail .articleShares { min-height: 35px; padding-right: 0; padding-left: 0; }
-.articleDetail .articleAuthorBox { font-size: 14px; padding-top: 10px; margin-bottom: 10px; }
+.articleDetail .articleAuthorBox { font-size: 14px; font-weight: 700; padding-top: 10px; margin-bottom: 10px; }
 .articleDetail .sponsored { margin: 0 0 15px 0 !important; }
 
 .ratingStars { color: #ffa42d; white-space: nowrap; }
@@ -252,7 +252,9 @@ a:hover { text-decoration: none; color: grey; }
 .article-topics ul li a, .article-tags ul li a { padding: 5px; }
 .article-topics ul li a:hover, .article-tags ul li a:hover { background-color: grey; color: white; }
 
-.articleDate { white-space: nowrap; color: grey; font-weight: 300; }
+.articleDate { white-space: nowrap; font-weight: 700; }
+
+.articleVolumeIssue { float: right; font-weight: 700; }
 
 .techFocusBox, .columnBox { padding: 0 10px 0 0; }
 
@@ -440,7 +442,7 @@ table th, table td { padding: 5px; }
 .whitefadebottom { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAUCAYAAAC07qxWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDAyRDY5NkYwNEE5MTFFNjk3MUFFQzRDNzdBRTk5NDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDAyRDY5NzAwNEE5MTFFNjk3MUFFQzRDNzdBRTk5NDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpEMDJENjk2RDA0QTkxMUU2OTcxQUVDNEM3N0FFOTk0NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpEMDJENjk2RTA0QTkxMUU2OTcxQUVDNEM3N0FFOTk0NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Plk+uiMAAACGSURBVHjajJJRDoAgDENZ4odGQbn/YaskQkbdhCX7YHnQtUEAhJlanl6fxgy4ESjvWfS8gqJAWOcCRlLh19uLHii8Y+ShZ+Yy9uJCAdOsmezkqOORKs0mzBxPJcVAF0+mvWBIh2omOK5hxTPMMTlyH+njx61Y4FB6d1x34dcf7jlul28BBgCkyyVA7WrWsAAAAABJRU5ErkJggg==) repeat-x bottom left; height: 20px; width: 100%; position: absolute; bottom: 19px; }
 
 .sideListBoxTitle { padding: 0 0 10px 0; margin-bottom: 10px; }
-.sideListBoxTitle .boxTitleText { color: white; padding: 10px; font-weight: 700; font-size: 20px; }
+.sideListBoxTitle .boxTitleText { font-family: "rooney-sans", sans-serif; color: white; padding: 10px; font-weight: 700; font-size: 20px; }
 
 .sideListNum { float: left; padding: 0 20px 0 0; height: 100%; color: #ff8400; font-size: 30px; font-weight: 700; font-family: "proxima-nova", sans-serif; }
 
