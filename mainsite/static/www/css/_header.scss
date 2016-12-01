@@ -4,7 +4,6 @@
 @import 'vars';
 
 #spe-header {
-    //min-height: 190px;
     border-bottom: 4px solid $col-lightgrey;
 }
 #logo, #global-nav li a.loginLink span, #search .GoogleSiteSearch #gssSubmitButton, .link-icon, #social-media-links li a, #mobile-nav .clickToggle span {
@@ -149,30 +148,30 @@
 #branding {
   min-height:100px;
   background-color:$col-white;
+  padding: 0 15px;
 }
 .logo-wrap {
     padding:20px 0 0 20px;
-    //margin-left: 20px;
-    //img {
-    //    max-width: 335px;
-    //}
 }
 .spe-logo { display:block;margin:21px 0 0 10px; }
 #logo {
   text-indent:-9999px;
   background-position: 0 0;
-  //height:57px;
-  //width:413px;
 }
 .welcomemsg {
-  padding:35px 30px 0 0;
+  float: right;
+  padding:35px 20px 0 0;
   font-size: .8em;
   text-align: right;
-  line-height: 1;
+  line-height: 1.5em;
   font-weight: 600;
 }
+
 /* Search */
-#search { float:right;margin:33px 0 30px 0; }
+#search {
+  float: right;
+  margin:     33px 0 30px 0;
+}
 #search select { display:none; } /* Not displaying select box in header search. Is displayed on SRP. */
 #search .searchForm { width:235px;height:32px;margin:0;border-radius:5px;background-color:$col-lightgrey; }
 #search .GoogleSiteSearch #gssTextInput { float:left;font-size:14px;border:none;-webkit-appearance:none;background:none;width:197px;margin:7px 0 0 0;height:20px;outline:none; }
