@@ -25,31 +25,38 @@
     {% endif %}
 {% for article in articles %}
 {#    <div class="row">#}
-        <div class="row sideListItem">
+<div class="row sideListItem">
+
+    {% if article.picture and article.picture.url %}
+        <div class="col-xs-3 listpic" style="background-image: url({{ article.picture.url }})"></div>
+    {% else %}
+        <div class="col-xs-3 listpic"></div>
+    {% endif %}
+
         {% if pubcode == "TWA" %}
             {% if isbrief %}
-                <div class="col-xs-12">
+                <div class="col-xs-9">
             {% else %}
                 <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>
-                <div class="col-xs-11">
+                <div class="col-xs-8">
             {% endif %}
 
-            <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
-        {% else %}
-            <div class="col-xs-12">
-            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
-        {% endif %}
+    <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
+{% else %}
+    <div class="col-xs-9">
+    <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
+{% endif %}
 
-            <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
-        {% if pubcode == "TWA" %}
+    <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
+{% if pubcode == "TWA" %}
 {#            <span class="sideListAuthor">{{ article.author }}</span>#}
-        {% else %}
-            {% if article.is_readable == True %}
-                <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-            {% endif %}
-        {% endif %}
-            </div>
-        </div>
+{% else %}
+    {% if article.is_readable == True %}
+        <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+    {% endif %}
+{% endif %}
+    </div>
+</div>
 {#    </div>#}
 
 {% empty %}

@@ -337,6 +337,9 @@
     }
   }
 }
+.listpic {
+  padding: 0;
+}
 #myCarousel {
   .carousel-indicators {
     bottom:             0;
@@ -438,7 +441,7 @@
     }
   }
 }
-.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic {
+.detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic, .listpic {
   overflow:             hidden;
   -webkit-background-size:cover;
   background-size:      cover;
