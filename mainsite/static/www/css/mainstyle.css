@@ -134,7 +134,7 @@ a:hover { text-decoration: none; }
 /* *************************************** */
 /* LOGO + SEARCH (White Bar) */
 /* *************************************** */
-#branding { min-height: 100px; background-color: white; }
+#branding { min-height: 100px; background-color: white; padding: 0 15px; }
 
 .logo-wrap { padding: 20px 0 0 20px; }
 
@@ -142,7 +142,7 @@ a:hover { text-decoration: none; }
 
 #logo { text-indent: -9999px; background-position: 0 0; }
 
-.welcomemsg { padding: 35px 30px 0 0; font-size: .8em; text-align: right; line-height: 1; font-weight: 600; }
+.welcomemsg { float: right; padding: 35px 20px 0 0; font-size: .8em; text-align: right; line-height: 1.5em; font-weight: 600; }
 
 /* Search */
 #search { float: right; margin: 33px 0 30px 0; }
