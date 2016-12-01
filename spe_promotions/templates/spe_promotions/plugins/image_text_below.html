@@ -6,11 +6,11 @@
     <a href="{{ promo.url }}">
         <div class="story-wrap row">
             {% if promo.picture and promo.picture.url %}
-                <figure class="thumb col-sm-6">
+                <figure class="thumb col-sm-12 fullThumb">
 {#                    <div class="img-wrap"><img src="{{ promo.picture.url }}" class="img-responsive"/></div>#}
                     <div class="img-wrap detailImgWrapLeft" style="background-image: url({{ promo.picture.url }})"></div>
                 </figure>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
             {% else %}
                 <div class="col-sm-12">
             {% endif %}
