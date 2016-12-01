@@ -306,12 +306,13 @@
   }
   .articleAuthorBox, .articleShares {
     min-height:         35px;
-    //margin-bottom:      15px;
     padding-right:      0;
     padding-left:       0;
   }
   .articleAuthorBox {
+    //white-space:        nowrap;
     font-size:          14px;
+    font-weight:        $font-bold;
     padding-top:        10px;
     margin-bottom:      10px;
   }
@@ -397,8 +398,11 @@
 }
 .articleDate {
   white-space:            nowrap;
-  color:                  $col-basegrey;
-    font-weight:          $font-light;
+  font-weight:            $font-bold;
+}
+.articleVolumeIssue {
+  float:                  right;
+  font-weight:            $font-bold;
 }
 //.boxTitle {
 //  margin:               0;

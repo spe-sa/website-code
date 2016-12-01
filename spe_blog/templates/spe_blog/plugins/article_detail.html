@@ -20,7 +20,7 @@
             {% if article.author %}{{ article.author }}{% endif %}
         </div>
 
-        <div class="col-md-4 articleShares text-center dontPrintMe">
+        <div class="col-md-3 articleShares text-center dontPrintMe">
             {% include 'include_article_shares.html' %}
         </div>
     </div>
@@ -28,6 +28,11 @@
     <div class="col-sm-12 articleTitleBox">
         {% if article.publication.code == "JPT" %}
             <span class="categoryTitle">{{ article.category|removepub }}</span>
+        {% endif %}
+        {% if article.publication.code == "JPT" or article.publication.code == "OGF" %}
+            {% if article.print_volume != null and article.print_issue != null %}
+                <span class="articleVolumeIssue">Volume: {{ article.print_volume }} | Issue: {{ article.print_issue }}</span>
+            {% endif %}
         {% endif %}
         <hr class="tiletitlehr">
         <h2 class="tiletitles">{{ article.title }}</h2>
