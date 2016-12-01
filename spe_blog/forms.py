@@ -5,7 +5,16 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, BriefPlugin, \
     Topics, TopicsPlugin, TopicsListPlugin, BriefListingPlugin, Web_Region, Category, SecondaryCategory, \
-    ArticlesListingPlugin
+    ArticlesListingPlugin, Blog, BlogPluginModel
+
+
+class BlogSelectionForm(ModelForm):
+    posts = ModelMultipleChoiceField(Blog.objects.filter(published=True).order_by('-publication_date'),
+                                        widget=FilteredSelectMultiple("posts", False, ))
+
+    class Meta:
+        model = BlogPluginModel
+        exclude = []
 
 
 class ArticleSelectionForm(ModelForm):

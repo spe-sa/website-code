@@ -5,8 +5,13 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Article, Category, SecondaryCategory, Publication, Issue, Editorial
-from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsPage
+from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsPage, Blog
 # from mainsite.models import Tier1Discipline
+
+
+class BlogAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'title')
+    prepopulated_fields = {"slug": ("title",)}
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -184,6 +189,7 @@ class BriefEditorAdmin(BriefAdmin):
 
 
 admin.site.register(Article, ArticleAdmin)
+admin.site.register(Blog, BlogAdmin)
 admin.site.register(ArticleEditor, ArticleEditorAdmin)
 admin.site.register(Brief, BriefAdmin)
 admin.site.register(BriefEditor, BriefEditorAdmin)

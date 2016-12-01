@@ -16,6 +16,9 @@ from mainsite.models import Tier1Discipline
 from mainsite.models import Topics, Web_Region
 # from datetime import datetime
 from mainsite.widgets import ColorPickerWidget
+from django.conf import settings
+import os
+
 
 # import sys
 
@@ -59,6 +62,20 @@ ISSUECOVER_TEMPLATES = (
 DEFAULT_EDITORIAL_TEMPLATE = 'spe_blog/plugins/editorial.html'
 EDITORIAL_TEMPLATES = (
     (DEFAULT_EDITORIAL_TEMPLATE, 'Editorial'),
+)
+
+DEFAULT_LOOK_AND_FEEL = "WWW"
+LOOK_AND_FEEL_SELECTIONS = (
+    ("WWW", "Website"),
+    ("JPT", "Jounal of Petroleum Technology"),
+    ("OGF", "Oil and Gas Facilities"),
+    ("TWA", "The Way Ahead"),
+    ("HSE", "HSE Now")
+)
+
+DEFAULT_BLOG_TEMPLATE = 'spe_blog/plugins/blog_posts.html'
+BLOG_TEMPLATES = (
+    (DEFAULT_BLOG_TEMPLATE, 'Default Blog Post'),
 )
 
 DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
@@ -155,17 +172,61 @@ class TagsPage(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=100,
-                            help_text='SEO Friendly name that is unique for use in URL', )
+    slug = models.SlugField(max_length=250,
+                            help_text='SEO Friendly name that is unique for use in URL', unique=True)
     teaser = models.CharField(max_length=300)
     author = models.CharField(max_length=500, blank=True, null=True)
     article_text = RichTextUploadingField(
-        max_length=60000,
-        help_text=u'Full text of the article.'
+        max_length=20000,
+        help_text=u'Full text of the blog post.'
     )
     publication_date = models.DateField(default=timezone.now)
-    categories = TaggableManager(blank=True)
+    tags = TaggableManager(blank=True, help_text="USE LOWER CASE ONLY! Ex: 'name with space', normal1, normal2 normal3")
     published = models.BooleanField(default=False, verbose_name=u'Publish')
+
+    class Meta:
+        ordering = ['-publication_date', 'title']
+
+    def __unicode__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        # get the settings url given or default to something reasonable
+        url = getattr(settings, "BLOG_DETAIL_URL", "/blog_detail")
+        url = os.path.join(os.path.sep, url, self.slug)
+        return url
+
+
+class BlogPluginModel(CMSPlugin):
+    look_and_feel =  models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
+    template = models.CharField(max_length=255, choices=BLOG_TEMPLATES, default=DEFAULT_BLOG_TEMPLATE)
+    posts = models.ManyToManyField(Blog)
+
+    def __unicode__(self):
+        dictionary = dict(BLOG_TEMPLATES)
+        buf = u" (%s)" % ', '.join([blog.slug for blog in self.posts.all()])
+        buf += " using " + dictionary[self.template]
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.posts = old_instance.posts.all()
+
+
+class BlogListingPluginModel(CMSPlugin):
+    look_and_feel =  models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
+    template = models.CharField(max_length=255, choices=BLOG_TEMPLATES, default=DEFAULT_BLOG_TEMPLATE)
+    cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Blog Posts')
+    starting_with = models.PositiveIntegerField(default=1)
+    tag_filter = models.CharField(max_length=255, blank=True, null=True, help_text="Ex: ( Q(tags__name__icontains='jpt') | Q(tags__name__icontains='twa') ) & ~Q(tags__name__icontains='home')")
+
+    def __unicode__(self):
+        dictionary = dict(BLOG_TEMPLATES)
+        buf = "(" + str(self.starting_with) + " - " + str(
+            self.cnt + self.starting_with - 1) + ")"
+        if (self.tag_filter):
+            buf += " filtered to [" + self.tag_filter + "]"
+        buf += " using " + dictionary[self.template]
+        return buf
 
 
 class Publication(models.Model):
