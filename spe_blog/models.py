@@ -194,7 +194,7 @@ class Blog(models.Model):
 
     def get_absolute_url(self):
         # get the settings url given or default to something reasonable
-        url = getattr(settings, "BLOG_DETAIL_URL", "/blog_detail")
+        url = getattr(settings, "BLOG_DETAIL_URL", "/blog-detail")
         url = os.path.join(os.path.sep, url)
         url += "?id=" + self.slug
         return url

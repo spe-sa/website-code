@@ -652,6 +652,7 @@ class ShowIssueCoverPlugin(CMSPluginBase):
 
 plugin_pool.register_plugin(BlogPlugin)
 plugin_pool.register_plugin(BlogListingPlugin)
+plugin_pool.register_plugin(BlogDetailPlugin)
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)
