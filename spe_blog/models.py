@@ -188,12 +188,15 @@ class Blog(models.Model):
         ordering = ['-publication_date', 'title']
 
     def __unicode__(self):
-        return self.title
+        buf = self.title
+        buf += "  ( " + ", ".join([str(i) for i in self.tags.names()]) + " )"
+        return buf
 
     def get_absolute_url(self):
         # get the settings url given or default to something reasonable
-        url = getattr(settings, "BLOG_DETAIL_URL", "/blog_detail")
-        url = os.path.join(os.path.sep, url, self.slug)
+        url = getattr(settings, "BLOG_DETAIL_URL", "/blog-detail")
+        url = os.path.join(os.path.sep, url)
+        url += "?id=" + self.slug
         return url
 
 

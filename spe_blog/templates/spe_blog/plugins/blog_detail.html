@@ -1,0 +1,28 @@
+{% load cms_tags sekizai_tags tz %}
+
+{% addtoblock "title2" %}{{ blog.title }}{% endaddtoblock %}
+{{ laf }}
+{{ slug }}
+    <div class="row articleDetail" id="printMe">
+        <div class="col-sm-12 articleTitleBox">
+{#            <h2 class="articleTitle">{{ blog.title }}</h2>#}
+            <hr class="tiletitlehr">
+            <h2 class="tiletitles">{{ blog.title }}</h2>
+            <div class="col-sm-12 tiletitlehr"></div>
+            <div class="col-sm-8 articleAuthorBox">
+                {% if blog.author %}{{ blog.author }} | {% endif %}{{ blog.date|date:"d F Y" }}
+            </div>
+            <div class="col-sm-4 articleShares text-right">
+                {% include 'include_article_shares.html' %}
+            </div>
+        </div>
+
+        <div class="col-sm-12 articleBodyText">
+
+                {{ blog.article_text | safe }}
+
+        </div>
+        <div class="col-sm-12 articleShares text-left">
+            {% include 'include_article_shares.html' %}
+        </div>
+    </div>
