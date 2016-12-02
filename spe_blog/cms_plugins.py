@@ -55,6 +55,25 @@ class BlogPluginBase(CMSPluginBase):
     render_template = 'spe_blog/plugins/blog_posts.html'
 
 
+class BlogDetailPlugin(BlogPluginBase):
+    name = _("Blog Details")
+    module = _('Article Page Components')
+
+    def render(self, context, instance, placeholder):
+        now = timezone.now()
+        request = context.get('request')
+        # get our slug if one was passed.  if not set to None
+        slug = get_context_variable(request, "id")
+        # get our look and feel if passed, otherwise default to WWW
+        laf = get_context_variable(request, "laf", "WWW")
+        blog = get_object_or_404(Blog, slug=slug)
+        context.update({'blog': blog})
+        context.update({'slug': slug})
+        context.update({'laf': laf})
+        self.render_template = 'spe_blog/plugins/blog_detail.html'
+        return context
+
+
 class BlogPlugin(BlogPluginBase):
     model = BlogPluginModel
     name = _('Selected Blog Posts')
@@ -72,9 +91,23 @@ class BlogListingPlugin(BlogPluginBase):
     name = _('Blog Post Listing')
 
     def render(self, context, instance, placeholder):
-        queryset = Blog.objects.filter(published=True).order_by('-publication_date')[
-                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        queryset = Blog.objects.filter(published=True)
+        error = None
+        if instance.tag_filter:
+            try:
+                queryset = queryset.filter(eval(instance.tag_filter))
+            except SyntaxError as err:
+                if err.msg:
+                    error = err.msg
+            except Exception as ex:
+                if ex.message:
+                    error = ex.message
+        # queryset = queryset.filter(Q(tags__name__icontains='www'))
+        queryset = queryset.order_by('-publication_date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'posts': queryset})
+        context.update({'laf': instance.look_and_feel})
+        if (error):
+            context.update({'error': error})
         self.render_template = instance.template
         return context
 
