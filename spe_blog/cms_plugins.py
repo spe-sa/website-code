@@ -31,15 +31,52 @@ from .models import (
     BreadCrumbPlugin,
     # Publication,
     IssuesByYearPlugin, IssueCoverPlugin,
-    TopicsListPlugin, TopicsPlugin, Topics
+    TopicsListPlugin, TopicsPlugin, Topics,
+    BlogPluginModel, BlogListingPluginModel, Blog
 )
 from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm, BriefsListSelectionForm, ArticlesListSelectionForm
+    TopicsListSelectionForm, BriefsListSelectionForm, ArticlesListSelectionForm, BlogSelectionForm
+
 
 def getPublicationCode(pub):
     if pub:
         return pub.code
     return ""
+
+
+class BlogPluginBase(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = _('Article')
+    text_enabled = False
+    render_template = 'spe_blog/plugins/blog_posts.html'
+
+
+class BlogPlugin(BlogPluginBase):
+    model = BlogPluginModel
+    name = _('Selected Blog Posts')
+    form = BlogSelectionForm
+
+    def render(self, context, instance, placeholder):
+        queryset = Blog.objects.filter(published=True).filter(id__in=instance.posts.all())
+        context.update({'posts': queryset})
+        self.render_template = instance.template
+        return context
+
+
+class BlogListingPlugin(BlogPluginBase):
+    model = BlogListingPluginModel
+    name = _('Blog Post Listing')
+
+    def render(self, context, instance, placeholder):
+        queryset = Blog.objects.filter(published=True).order_by('-publication_date')[
+                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        context.update({'posts': queryset})
+        self.render_template = instance.template
+        return context
 
 
 class ArticlePluginBase(CMSPluginBase):
@@ -131,7 +168,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
                 is_readable = True
         is_loggedout = True
         if visitor:
-            is_loggedout=False
+            is_loggedout = False
         context.update({'is_loggedout': is_loggedout})
         context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
@@ -199,7 +236,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                     except:
                         raise Http404("Article not found")
         visitor = None
-        
+
         # adding back in the incrementing for most popular
         art.article_hits += 1
         art.article_last_viewed = timezone.now()
@@ -580,7 +617,8 @@ class ShowIssueCoverPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
-
+plugin_pool.register_plugin(BlogPlugin)
+plugin_pool.register_plugin(BlogListingPlugin)
 plugin_pool.register_plugin(ShowArticleDetailPlugin)
 plugin_pool.register_plugin(ShowArticlesPlugin)
 plugin_pool.register_plugin(ShowArticlesListingPlugin)

@@ -288,6 +288,8 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowEventsByRegionListingPlugin',
                     'ShowEventsListingPlugin',
                     'ShowEventInUserRegionPromotionListing',
+                    'BlogPlugin',
+                    'BlogListingPlugin'
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
