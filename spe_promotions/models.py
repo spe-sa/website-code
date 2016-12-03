@@ -20,6 +20,7 @@ PROMOTION_TYPE = (
     (DEFAULT_PROMOTION_TYPE, 'Generic'),
 )
 
+
 DEFAULT_PLUGIN_TEMPLATE = 'spe_promotions/plugins/carousel.html'
 PLUGIN_TEMPLATES = (
     (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
@@ -27,6 +28,15 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/image_text_below.html', 'Image Top, Text Below'),
     ('spe_promotions/plugins/overlay.html', 'Text Overlay'),
     ('spe_promotions/plugins/jb_carousel.html', 'JB Carousel')
+)
+
+
+DEFAULT_DISPLAY_TYPE = 'discipline'
+DISPLAY_TYPE = (
+    (DEFAULT_DISPLAY_TYPE, 'Events in Discipline Regardless of Region'),
+    ('region', 'Regional Events Only'),
+    ('disinreg', 'Events in Discipline in Region Only'),
+    ('displusreg', 'Events in Discipline Supplemented by Regional Events')
 )
 
 
@@ -112,6 +122,36 @@ class SimpleEventPromotion(models.Model):
         return self.event
 
 
+class SimpleEventNonMemberMessage(models.Model):
+    promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Non-Member or Member Who Has Not Logged In')
+
+    class Meta:
+        verbose_name = 'Promotion for Non-Member or Member Not Logged In'
+
+    def __unicode__(self):
+        return self.promotion.event
+
+
+class SimpleEventMemberMissingDisciplineMessage(models.Model):
+    promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Member with no Primary Discipline')
+
+    class Meta:
+        verbose_name = 'Promotion for Member with No Primary Discipline'
+
+    def __unicode__(self):
+        return self.promotion.event
+
+
+class SimpleEventMemberMissingRegionMessage(models.Model):
+    promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Member with no Region')
+
+    class Meta:
+        verbose_name = 'Promotion for Member with No Address'
+
+    def __unicode__(self):
+        return self.promotion.event
+
+
 class SimpleEventPromotionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
@@ -119,7 +159,9 @@ class SimpleEventPromotionListingPlugin(CMSPlugin):
     radius = models.FloatField(validators=[MinValueValidator(0.1)])
 
     def __unicode__(self):
-        buf = str(self.count) + " - "
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
         buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
         buf += " within a radius of " + str(self.radius)
         return buf
@@ -136,7 +178,9 @@ class EventPromotionNearLocationListingPlugin(CMSPlugin):
     radius = models.FloatField(validators=[MinValueValidator(0.1)])
 
     def __unicode__(self):
-        buf = str(self.count) + " events - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
         buf += " within a radius of " + str(self.radius)
         return buf
 
@@ -147,7 +191,9 @@ class EventPromotionNearUserListingPlugin(CMSPlugin):
     radius = models.FloatField(validators=[MinValueValidator(0.1)])
 
     def __unicode__(self):
-        buf = str(self.count) + " - within a radius of " + str(self.radius)
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - within a radius of " + str(self.radius)
         return buf
 
 
@@ -157,7 +203,9 @@ class EventPromotionByDisciplineListingPlugin(CMSPlugin):
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
 
     def __unicode__(self):
-        buf = str(self.count) + " - "
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
         buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
         return buf
 
@@ -171,7 +219,9 @@ class EventPromotionByTopicListingPlugin(CMSPlugin):
     topics = models.ManyToManyField(Topics, blank=True, limit_choices_to={'active': True})
 
     def __unicode__(self):
-        buf = str(self.count) + " - "
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
         buf += " (topics: %s)" % ', '.join([a.name for a in self.topics.all()])
         return buf
 
@@ -185,7 +235,9 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
     regions = models.ManyToManyField(Web_Region, blank=True, limit_choices_to={'is_visible': True})
 
     def __unicode__(self):
-        buf = str(self.count) + " - "
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
         buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
         return buf
 
@@ -198,7 +250,8 @@ class EventPromotionSelectionPlugin(CMSPlugin):
     promotions = models.ManyToManyField(SimpleEventPromotion)
 
     def __unicode__(self):
-        buf = ' - '
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
         buf += "%s, " % ', '.join([a.event for a in self.promotions.all()])
         return buf
 
@@ -211,5 +264,22 @@ class EventPromotionInUserRegionListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
 
     def __unicode__(self):
-        buf = str(self.count)
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count)
+        return buf
+
+
+class EventForMemberListingPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    show = models.CharField(max_length=255, choices=DISPLAY_TYPE, default=DEFAULT_DISPLAY_TYPE)
+    use_browsing_location = models.BooleanField(default=True, verbose_name='Use Browsing Location if Not Logged In')
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
+        dictionary = dict(DISPLAY_TYPE)
+        buf += dictionary[self.show]
         return buf
