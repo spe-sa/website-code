@@ -355,8 +355,17 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         request = context.get('request')
         visitor = get_visitor(request)
 
+        # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        #objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        no_discipline_promotions = SimpleEventMemberMissingDisciplineMessage.objects.all()
+        ids_to_exclude = [o for o in no_discipline_promotions]
+        no_region_promotions = SimpleEventMemberMissingRegionMessage.objects.all()
+        ids_to_exclude = ids_to_exclude + [o for o in no_region_promotions]
+        non_member_promotions = SimpleEventNonMemberMessage.objects.all()
+        ids_to_exclude = ids_to_exclude + [o for o in non_member_promotions]
+        exclude_id = [x.promotion.id for x in ids_to_exclude]
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(id__in=exclude_id).order_by('last_impression')
 
         if visitor:
             # The Member is Logged In
