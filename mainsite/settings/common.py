@@ -288,6 +288,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowEventsByRegionListingPlugin',
                     'ShowEventsListingPlugin',
                     'ShowEventInUserRegionPromotionListing',
+                    'ShowEventsForMemberPlugin',
                     'BlogPlugin',
                     'BlogListingPlugin',
                     'BlogDetailPlugin'
