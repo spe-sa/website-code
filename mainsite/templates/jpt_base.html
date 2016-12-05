@@ -1,4 +1,4 @@
-{% extends "html5_bootstrap.html" %}
+{% extends "generic_base.html" %}
 {% load cms_tags sekizai_tags %}
 {% load menu_tags %}
 
@@ -16,170 +16,23 @@
 {% endblock web_fonts %}
 
 {% block css_base %}
-    {% load staticfiles %}
-    <!-- CSS_BASE -->
-    <link rel="stylesheet" type="text/css" media="all" href="{% static 'jpt/css/mainstyle.css' %}" />
+    {% with css_template="include_jpt_css.html" %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock css_base %}
 
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
 
 {% block content_header %}
-    <!-- HEADER Begin -->
-        <div class="row adZone1" id="adZone1">
-            <div class="col-md-12 text-center" id="adLeaderboard">
-                {% placeholder "ad zone 1" %}
-            </div>
-        </div>
-
-        <!-- topbar -->
-{#        {% include 'include_topbar.html' %}#}
-        <div class="row dontPrintMe" id="topbar">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-6 col-lg-4 col-lg-offset-1 topbarcol">
-                        <ul class="topbarmenuleft">
-                            <li><a href="http://www.spe.org/">SPE</a></li>
-                            <li><a href="http://www.spe.org/jpt/">JPT</a></li>
-                            <li><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></li>
-                            <li><a href="http://www.spe.org/hsenow/">HSE Now</a></li>
-                            <li><a href="http://www.spe.org/twa/">The Way Ahead</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 text-right topbarcol">
-                        <ul class="topbarmenuright">
-                            <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
-                            <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2 text-center topbarcol" id="signin">
-                        {% if login.url %}
-                        <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row dontPrintMe" id="menubar">
-            <div class="container-fluid">
-                <div class="row logoRow">
-                    <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2 col-lg-offset-1" id="mainLogo">
-                        <a href="/jpt/jpt-main-page/"><img src="{% static 'jpt/img/JPT_wText_Vertical.svg' %}" class="img-responsive"></a>
-                    </div>
-                    <div class="col-md-10 col-lg-8 text-right">
-                        <ul class="pubMenu">
-                            {% show_menu 1 100 0 1 %}
-                            <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
-            <div class="col-sm-12 text-right">
-                <form class="form-inline">
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    <!-- HEADER END -->
-
+    {% with header_template="include_jpt_header.html" %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock content_header %}
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}
 
 {% block content_footer %}
-    <!-- FOOTER Begin -->
-    <div class="footerUpper row dontPrintMe">
-        <div class="container">
-            <div class="row">
-                <div class="footerULeft col-md-3">
-                    <img src="{% static 'jpt/img/JPT_wText_Horizontal.svg' %}" class="footerLogo">
-                    <ul class="footerSocial">
-                        <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
-                        <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
-                    </ul>
-                    <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers, All Rights Reserved.</p>
-                </div>
-                <div class="footerURight col-md-9">
-{#                    <div class="col-md-2 col-md-offset-1">#}
-{#                        <h3>MAIN</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/careers/">Careers</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/technology/">Technology</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/business/">Business</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/spe">SPE</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives/">Archives</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3">#}
-{#                        <h3>DEPARTMENTS</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/academia/">Academia</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/business-benchmarks/">Business Benchmarks</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/discover-career/">Discover A Career</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/forum/">Forum</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/hr-discussion/">HR Discussion</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/pillars-industry/">Pillars of Industry</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/soft-skills/">Soft Skills</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3">#}
-{#                        <h3>&nbsp;</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/spe/">SPE Newsfeed</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/student-focus/">Student Focus</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/tech-topics/">Technical Topics</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/twa-crowdsourcing/">TWA Crowdsourcing</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/interview/">TWA Interview</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/your-best-shot/">Your Best Shot</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/yp-newsflash/">YP Newsflash</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/yps-guide-to/">YP's Guide To...</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-2">#}
-{#                        <h3>UTILITY</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives//twa/about-twa/">About</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives//twa/twa-editorial-board/">TWA Editorial Board</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/contact/">Contact</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/advertise/">Advertise</a></p>#}
-{#                    </div>#}
-                    <div class="col-md-2 col-md-offset-3">
-{#                        <h3>SPE</h3>#}
-                        <p><a href="http://www.spe.org/">SPE</a></p>
-                        <p><a href="http://www.spe.org/jpt/">JPT</a></p>
-                        <p><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></p>
-                        <p><a href="http://www.spe.org/publications/journals.php">Journals</a></p>
-                        <p><a href="http://www.spe.org/hsenow/">HSE Now</a></p>
-                        <p><a href="https://www.spe.org/en/twa/twa-main-page/">The Way Ahead</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footerLower dontPrintMe">
-        <div class="container">
-            <div class="row">
-                <a href="http://www.spe.org/"><img src="{% static 'ogf/img/spe-logo-icon.svg' %}"/></a>
-                <ul class="footerSPEMenu">
-            <li><a href="http://www.spe.org/members/">MEMBERSHIP</a></li>
-            <li><a href="http://www.spe.org/events/about-events.php">EVENTS</a></li>
-            <li><a href="http://www.spe.org/publications/">PUBLICATIONS</a></li>
-            <li><a href="http://www.spe.org/training/">TRAINING</a></li>
-            <li><a href="http://www.spe.org/industry/">RESOURCES</a></li>
-        </ul>
-            </div>
-        </div>
-    </div>
-    <!-- FOOTER END -->
-        <!-- div id="testmessage">REPLACE THIS</div -->
-
-    {% include 'include_hide_ads.html' %}
-
-
+    {% with footer_template="include_jpt_footer.html" %}
+        {{ block.super }}
+    {% endwith %}
 {% endblock content_footer %}
