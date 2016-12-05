@@ -530,6 +530,8 @@ table th, table td { padding: 5px; }
 
 .covercredit { margin: 10px 0 0 0; font-size: 10px; }
 
+.bloglist .sideListTitle { font-weight: 700; }
+
 /* =================================================================== */
 /* AD ZONES
 ====================================================================== */

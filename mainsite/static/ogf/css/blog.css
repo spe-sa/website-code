@@ -1,3 +1,5 @@
-/* OGF Blog */
-.blogDetail { border: 1px solid orangered; }
-.blogDetail .demoBlock { border: 1px solid royalblue; }
+/* WWW Blog */
+.blogDetail { background-color: white; box-shadow: 0 1px 2px #b4b4b9; margin-bottom: 20px; padding: 15px; min-width: 150px; z-index: 100; position: relative; }
+.blogDetail .blogTitleBox .blogAuthorBox { margin-bottom: 20px; }
+.blogDetail .articleShares { margin-bottom: 20px; }
+.blogDetail .demoBlock { border: 1px solid orangered; opacity: .25; padding: 10px; }

@@ -2,33 +2,37 @@
 
 {% addtoblock "title2" %}{{ blog.title }}{% endaddtoblock %}
 
+{% block css_base %}
+    {% load staticfiles %}
+    <!-- CSS_BASE JD ADDENDUM -->
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'jpt/css/mainstyle.css' %}" />
+{% endblock css_base %}
+
 <link href="{% static '' %}{% if laf %}{{ laf }}/{% else %}www/{% endif %}css/blog.css" type="text/css" rel="stylesheet" />
 
 <div class="row blogDetail" id="printMe">
     <div class="col-sm-12 blogTitleBox">
 
         <div class="blogTitles"><h2>{{ blog.title }}</h2></div>
-
+        <hr>
         <div class="blogAuthorBox">
             <span class="blogAuthor">{% if blog.author %}{{ blog.author }}{% endif %}</span><span class="blogDate">{% if blog.publication_date %} | {{ blog.publication_date|date:"d F Y" }}{% endif %}</span>
         </div>
-
-{#        <div class="col-sm-4 articleShares text-right">#}
-{#            Shares 1: {% include 'include_article_shares.html' %}#}
-{#        </div>#}
-
+        <hr>
     </div>
 
     <div class="col-sm-12 blogBodyText">
             {{ blog.article_text | safe }}
     </div>
 
+    <div class="col-sm-12 articleShares text-left">
+        {% include 'include_article_shares.html' %}
+    </div>
+
     <div class="col-sm-12 demoBlock">
-        <p>Laf: {{ laf }}</p>
+        <p>Default LAF: {{ laf }}</p>
+        <p>Laf: {% if laf %}{{ laf }}/{% else %}www{% endif %}</p>
         <p>Slug: {{ slug }}</p>
         <p><a href="{% static '' %}{% if laf %}{{ laf }}/{% else %}www/{% endif %}css/blog.css">{% static '' %}{% if laf %}{{ laf }}/{% endif %}css/blog.css</a></p>
     </div>
-{#    <div class="col-sm-12 articleShares text-left">#}
-{#        Shares 2: {% include 'include_article_shares.html' %}#}
-{#    </div>#}
 </div><!-- blogDetail END -->

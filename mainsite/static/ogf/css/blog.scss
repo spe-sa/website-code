@@ -1,6 +1,13 @@
-/* OGF Blog */
+/* WWW Blog */
 .blogDetail {
-  border:     1px solid orangered;
+  //border:     1px solid hotpink;
+  background-color: white;
+  box-shadow:           0 1px 2px #b4b4b9;
+  margin-bottom:        20px;
+  padding:              15px;
+  min-width:            150px;
+  z-index:              100;
+  position:             relative;
 
   .blogTitleBox {
 
@@ -12,6 +19,7 @@
     }
 
     .blogAuthorBox {
+      margin-bottom:  20px;
 
       .blogAuthor {
 
@@ -26,7 +34,12 @@
     }
 
   }
+  .articleShares {
+    margin-bottom:      20px;
+  }
   .demoBlock {
-    border:     1px solid royalblue;
+    border:     1px solid orangered;
+    opacity:    .25;
+    padding:    10px;
   }
 }

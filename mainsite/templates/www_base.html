@@ -1,5 +1,5 @@
 {% extends "html5_bootstrap.html" %}
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags staticfiles %}
 {% load menu_tags %}
 
 {% block web_fonts %}
@@ -7,12 +7,13 @@
     {% include 'include_scripts.html' %}
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700" rel="stylesheet">
+{#    <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">#}
 
 {% endblock web_fonts %}
 
 {% block css_base %}
-    {% load staticfiles %}
-    <!-- CSS_BASE -->
+{#    {% load  %}#}
+    <!-- CSS_BASE WWW -->
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/translateelement.css' %}" /><!-- GOOGLE TRANSLATE WIDGET -->
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/mainstyle.css' %}" />
 {% endblock css_base %}
