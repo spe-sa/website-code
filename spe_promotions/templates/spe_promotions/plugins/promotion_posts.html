@@ -10,7 +10,10 @@
         <div class="row sideListItem">
             <a href="{{ promo.url}}&laf={{ laf }}">
             <div class="col-xs-12">
-                <span class="sideListTitle">{{ promo.event|truncatewords:10 }}</span><br>
+                <span class="sideListTitle"><strong>{{ promo.event|truncatewords:10 }}</strong></span><br>
+                {% if promo.sponsored %}
+                    <p class="sponsored" style="margin:5px 0;">SPONSORED</p>
+                {% endif %}
                 <span class="sideListDateTWA">{{ promo.event_date }}</span>
                 <span class="sideListDateTWA">{{ promo.event_location }}</span>
             </div>
