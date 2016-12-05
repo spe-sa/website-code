@@ -15,6 +15,9 @@
                 <div class="col-sm-12">
             {% endif %}
                 <h3>{{ promo.event }}</h3>
+            {% if promo.sponsored %}
+                <p class="sponsored">SPONSORED</p>
+            {% endif %}
                 <p>{{ promo.teaser | safe }}</p>
             </div>
         </div>

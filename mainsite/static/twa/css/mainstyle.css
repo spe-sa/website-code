@@ -638,6 +638,8 @@ table#authortable p { padding-left: 10px; }
 
 .categoryTitle { background-color: #32bbbc; font-family: "Roboto Slab", serif; color: white; padding: 5px; }
 
+.bloglist .sideListTitle { font-weight: 700; }
+
 /* =================================================================== */
 /* AD ZONES
 ====================================================================== */

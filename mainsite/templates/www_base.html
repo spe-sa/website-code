@@ -1,2 +1,11 @@
 {% extends "generic_base.html" %}
+{% load cms_tags sekizai_tags staticfiles %}
 
+{% block web_fonts %}
+
+    {% include 'include_scripts.html' %}
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700" rel="stylesheet">
+{#    <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">#}
+
+{% endblock web_fonts %}

@@ -533,7 +533,7 @@
   -webkit-background-size:cover;
   background-size:      cover;
   background-position:  center;
-  border:               1px solid #e2e2e2;
+  //border:               1px solid #e2e2e2;
 }
 .detailImgWrap {
   height:               250px;
@@ -770,5 +770,11 @@
     .techListDate {
       color:            $col-red;
     }
+  }
+}
+.bloglist {
+  .sideListTitle {
+    //font-size:    20px;
+    font-weight:  $font-bold;
   }
 }

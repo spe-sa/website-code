@@ -24,6 +24,9 @@
                       <a href="{{ promo.url }}">
                           <div class="carousel-caption">
                               <h3>{{ promo.event }}</h3>
+            {% if promo.sponsored %}
+                <p class="sponsored">SPONSORED</p>
+            {% endif %}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
                       </a>
@@ -33,6 +36,9 @@
                       <a href="{{ promo.url }}">
                           <div class="carousel-caption">
                               <h3>{{ promo.event }}</h3>
+            {% if promo.sponsored %}
+                <p class="sponsored">SPONSORED</p>
+            {% endif %}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
                       </a>

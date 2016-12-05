@@ -82,7 +82,7 @@ class Web_Region_Country(models.Model):
     country_UN = models.CharField("Country Code", max_length=25)
 
     def __unicode__(self):
-        return self.region + " : " +  self.country_UN
+        return self.country_UN
 
 
     class Meta:

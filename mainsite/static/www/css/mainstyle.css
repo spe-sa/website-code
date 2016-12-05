@@ -407,6 +407,8 @@ a:hover { text-decoration: none; }
 
 .fullThumb { margin-bottom: 15px; }
 
+.bloglist .sideListTitle { font-weight: 700; }
+
 /* *************************************** */
 /* *************************************** */
 .redText { color: red; }
@@ -421,7 +423,7 @@ a:hover { text-decoration: none; }
 
 .margZero { margin: 0; }
 
-.sponsored { padding: 3px 3px 3px 5px; background-color: #FDD017; color: #0C090A; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
+.sponsored { padding: 5px 10px; background-color: #9fcf67; color: #0C090A; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
 
 .tile-editorial .row { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px solid #f1f2f7; }
 

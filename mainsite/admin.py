@@ -6,6 +6,7 @@ from .models import CustomerSubscription, CustomerClassification, Customer  # Cu
 from .models import Tier1Discipline
 from .models import Countries
 from .models import Regions
+from .models import Web_Region, Web_Region_Country
 
 
 # class CustomerSubscriptionInline(admin.StackedInline):
@@ -20,9 +21,10 @@ from .models import Regions
 #     model = Customer.achievements.through
 #
 #
+
 class CustomerAdmin(admin.ModelAdmin):
-    # inlines = [CustomerSubscriptionInline, CustomerClassificationInline, CustomerAchievementsInline, ]
-    filter_horizontal = ('subscriptions', 'classifications', )
+    search_fields = ('id', 'last_name', 'first_name',)
+    filter_horizontal = ('subscriptions', 'classifications',)
 
 
 class CustomerClassificationAdmin(admin.ModelAdmin):
@@ -37,3 +39,5 @@ admin.site.register(Tier1Discipline)
 admin.site.register(Topics)
 admin.site.register(Countries)
 admin.site.register(Regions)
+admin.site.register(Web_Region)
+admin.site.register(Web_Region_Country)
