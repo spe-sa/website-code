@@ -419,7 +419,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 else:
                     # Member - No Region Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                         id__in=non_member_promotions.values(
+                                                                         id__in=noregion_promotions.values(
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
@@ -429,7 +429,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         else:
             # Non-Member or Member Not Logged In
             prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                 id__in=no_region_promotions.values(
+                                                                 id__in=non_member_promotions.values(
                                                                      'promotion')).order_by('last_impression')[
                              :1]
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
