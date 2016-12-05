@@ -1,18 +1,10 @@
 {% extends "generic_base.html" %}
-{% load cms_tags sekizai_tags %}
-{% load menu_tags %}
-
-{% block web_fonts %}
-
-    {% include 'include_scripts.html' %}
-
-    {{ block.super }}
-    <script src="https://use.typekit.net/xwk3nys.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-{% endblock web_fonts %}
 
 {% block css_base %}
+    {%
+        if  laf.toLowerCase()=='jpt':
+
+    %}
     {% with css_template="include_ogf_css.html" %}
         {{ block.super }}
     {% endwith %}
@@ -33,6 +25,3 @@
         {{ block.super }}
     {% endwith %}
 {% endblock content_footer %}
-
-
-

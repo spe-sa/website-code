@@ -1,0 +1,22 @@
+{% extends "html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags staticfiles %}
+
+{% block web_fonts %}
+
+    {% include 'include_scripts.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700" rel="stylesheet">
+
+{% endblock web_fonts %}
+
+{% block css_base %}
+    {% include css_template|default:"include_www_css.html" %}
+{% endblock css_base %}
+
+{% block content_header %}
+    {% include header_template|default:"include_www_header.html" %}
+{% endblock content_header %}
+
+{% block content_footer %}
+    {% include footer_template|default:"include_www_footer.html" %}
+{% endblock content_footer %}
