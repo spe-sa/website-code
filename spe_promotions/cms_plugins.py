@@ -331,10 +331,6 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
         today = datetime.date.today()
 
         region = GetRegion(context)
-        try:
-            region = Web_Region_Country.objects.get(country_UN=country).region
-        except Web_Region_Country.DoesNotExist:
-            region = 'USA'
 
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region).order_by('last_impression')[:instance.count]
 
@@ -419,7 +415,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 else:
                     # Member - No Region Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                         id__in=noregion_promotions.values(
+                                                                         id__in=no_region_promotions.values(
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
