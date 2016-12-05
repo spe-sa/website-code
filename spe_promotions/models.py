@@ -10,6 +10,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 from mainsite.models import Regions, Tier1Discipline, Web_Region, Topics
 from spe_blog.models import Article
+from spe_events.models import EventType
 
 DEFAULT_PROMOTION_TYPE = 'generic'
 PROMOTION_TYPE = (
@@ -101,6 +102,7 @@ class SimpleEventPromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True})
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True)
     longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
@@ -118,7 +120,7 @@ class SimpleEventPromotion(models.Model):
         get_latest_by = ['end']
 
     def __unicode__(self):
-        return self.event
+        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
 
 
 class SimpleEventNonMemberMessage(models.Model):
@@ -155,14 +157,14 @@ class SimpleEventPromotionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
-    radius = models.FloatField(validators=[MinValueValidator(0.1)])
+    radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = dictionary[self.template] + " - "
         buf += str(self.count) + " - "
         buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
-        buf += " within a radius of " + str(self.radius)
+        buf += " within a radius of " + str(self.radius) + " km"
         return buf
 
     def copy_relations(self, old_instance):
@@ -174,13 +176,13 @@ class EventPromotionNearLocationListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)])
     longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)])
-    radius = models.FloatField(validators=[MinValueValidator(0.1)])
+    radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
-        buf += " within a radius of " + str(self.radius)
+        buf += " within a radius of " + str(self.radius) + " km"
         return buf
 
 
