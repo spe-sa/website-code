@@ -1,0 +1,50 @@
+{% load cms_tags sekizai_tags staticfiles menu_tags %}
+    <!-- HEADER Begin -->
+        <div class="row adZone1" id="adZone1">
+            <div class="col-md-12 text-center" id="adLeaderboard">
+                {% placeholder "ad zone 1" %}
+            </div>
+        </div>
+
+        <!-- topbar -->
+        {% include 'include_topbar.html' %}
+
+        <div class="row dontPrintMe" id="menubar">
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-offset-1" id="mainLogo">
+                <a href="/en/ogf/ogf-main-page/"><img src="{% static 'ogf/img/ogf-logo-horizontal.svg' %}" class="img-responsive"></a>
+            </div>
+            <div class="col-md-8 col-lg-7 text-right">
+                <ul class="pubMenu">
+                    {% show_menu 1 100 0 1 %}
+                    <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
+            <div class="col-sm-12 text-right">
+                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">
+                    <div class="input-group">
+                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
+                        <input type="hidden" id="gssscope" name="scope" value="ogf"/>
+                        <!-- sas comment -->
+                        <span class="input-group-btn">
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+{#    {% addtoblock "js" %}#}
+{#        <script type="text/javascript" charset="utf-8">#}
+{#            $( document ).ready(function() {#}
+{##}
+{#                // Add JQuery Here#}
+{#                console.log("JD WUZ HEER!");#}
+{##}
+{#            });#}
+{#        </script>#}
+{#    {%  endaddtoblock %}#}
+    <!-- HEADER END -->
