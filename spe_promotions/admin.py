@@ -15,6 +15,7 @@ from .models import (
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    exclude = ['latitude', 'longitude']
 
 
 class NonMemberMessageAdmin(admin.ModelAdmin):
