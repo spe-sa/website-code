@@ -12,6 +12,11 @@ from .models import (
     SimpleEventMemberMissingRegionMessage,
 )
 
+
+class SimpleEventPromotionAdmin(admin.ModelAdmin):
+    search_fields = ('event', 'start', 'end')
+
+
 class NonMemberMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', )
 
@@ -23,7 +28,7 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
 
 
 # admin.site.register(Promotion)
-admin.site.register(SimpleEventPromotion)
+admin.site.register(SimpleEventPromotion, SimpleEventPromotionAdmin)
 admin.site.register(SimpleEventNonMemberMessage, NonMemberMessageAdmin)
 admin.site.register(SimpleEventMemberMissingDisciplineMessage, MemberNoDisciplineMessageAdmin)
 admin.site.register(SimpleEventMemberMissingRegionMessage, MemberNoRegionMessageAdmin)

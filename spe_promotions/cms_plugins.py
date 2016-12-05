@@ -26,6 +26,7 @@ from .models import (
     SimpleEventMemberMissingDisciplineMessage,
     SimpleEventMemberMissingRegionMessage,
 )
+from .forms import SimplePromotionsSelectionForm
 from mainsite.models import Web_Region_Country
 
 from mainsite.context_processors.spe_context import (
@@ -276,6 +277,7 @@ class ShowEventsListingPlugin(CMSPluginBase):
     text_enabled = False
     model = EventPromotionSelectionPlugin
     name = ("Event Promotion Listing - Selected Events")
+    form = SimplePromotionsSelectionForm
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
@@ -338,6 +340,26 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+def GetRegion(context):
+    # Use USA as the Default Region Because of Event Volume
+    g = GeoIP()
+    # ip = context['request'].META.get('REMOTE_ADDR', None)
+    ip = context['request'].META.get('HTTP_X_REAL_IP', None)
+    # Default to US because of Event Volume
+    country = 'USA'
+    if not ip:
+        # Set Default IP to SPE if no IP Available in Request
+        ip = '192.152.183.80'
+    if ip:
+        loc = g.city(ip)
+        if loc:
+            country = loc['country_code3']
+    try:
+        region = Web_Region_Country.objects.get(country_UN=country).region
+    except Web_Region_Country.DoesNotExist:
+        region = 'USA'
+    return region
+
 
 class ShowEventsForMemberPlugin(CMSPluginBase):
     class Meta:
@@ -349,7 +371,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventForMemberListingPlugin
-    name = ("Event Promotion Listing for Member")
+    name = ("Personalized Event Promotion Listing")
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
@@ -382,25 +404,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                      :1]
                     # if use_browsing_location over ride objects to be objects in region
                     if instance.use_browsing_location:
-                        request = context['request']
-                        g = GeoIP()
-                        # ip = context['request'].META.get('REMOTE_ADDR', None)
-                        ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-                        if not ip:
-                            # Set Default IP to SPE if no IP Available in Request
-                            ip = '192.152.183.80'
-                        if ip:
-                            loc = g.city(ip)
-                            if loc:
-                                country = loc['country_code3']
-                            else:
-                                country = 'USA'
-
-                        try:
-                            region = Web_Region_Country.objects.get(country_UN=country).region
-                        except Web_Region_Country.DoesNotExist:
-                            region = 'USA'
-
+                        region = GetRegion(context)
                         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
                                                                       regions=region).order_by('last_impression')
 
@@ -422,24 +426,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
-                    request = context['request']
-                    g = GeoIP()
-                    # ip = context['request'].META.get('REMOTE_ADDR', None)
-                    ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-                    if not ip:
-                        # Set Default IP to SPE if no IP Available in Request
-                        ip = '192.152.183.80'
-                    if ip:
-                        loc = g.city(ip)
-                        if loc:
-                            country = loc['country_code3']
-                        else:
-                            country = 'USA'
-
-                    try:
-                        region = Web_Region_Country.objects.get(country_UN=country).region
-                    except Web_Region_Country.DoesNotExist:
-                        region = 'USA'
+                    region = GetRegion(context)
 
                     objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
                                                                   regions=region).order_by('last_impression')
@@ -452,25 +439,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
 
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
             if instance.use_browsing_location:
-                request = context['request']
-                g = GeoIP()
-                # ip = context['request'].META.get('REMOTE_ADDR', None)
-                ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-                if not ip:
-                    # Set Default IP to SPE if no IP Available in Request
-                    ip = '192.152.183.80'
-                if ip:
-                    loc = g.city(ip)
-                    if loc:
-                        country = loc['country_code3']
-                    else:
-                        country = 'USA'
-
-                try:
-                    region = Web_Region_Country.objects.get(country_UN=country).region
-                except Web_Region_Country.DoesNotExist:
-                    region = 'USA'
-
+                region = GetRegion(context)
                 objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
                                                               regions=region).order_by('last_impression')
 
