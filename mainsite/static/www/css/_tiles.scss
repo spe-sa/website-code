@@ -368,8 +368,9 @@
       background-position:  center;
 
       img {
-        width:              100%;
+        //width:              100%;
         height:             auto;
+        margin:             10px 0;
       }
       .carousel-caption {
         background:         $img-back-black-50 repeat top left fixed;
