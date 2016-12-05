@@ -1,0 +1,34 @@
+{% load i18n cms_tags sekizai_tags %}
+
+{% if error %}
+    <div class="tile-editorial tile-editorial-txtblck row" style="background-color:white">
+    {{ error }}
+    </div>
+{% else %}
+    <div class="tile-editorial tile-editorial-txtblck row" style="background-color:white">
+    {% for promo in promos %}
+        <div class="row sideListItem">
+            <a href="{{ promo.url}}&laf={{ laf }}">
+            <div class="col-xs-12">
+                <span class="sideListTitle">{{ promo.event|truncatewords:10 }}</span><br>
+                <span class="sideListDateTWA">{{ promo.event_date }}</span>
+                <span class="sideListDateTWA">{{ promo.event_location }}</span>
+            </div>
+            </a>
+        </div>
+    {% empty %}
+        <p class="well">{% trans "No editorial available" %}</p>
+    {% endfor %}
+
+    </div>
+{% endif %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}

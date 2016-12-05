@@ -28,6 +28,7 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/image_left.html', 'Image Left'),
     ('spe_promotions/plugins/image_text_below.html', 'Image Top, Text Below'),
     ('spe_promotions/plugins/overlay.html', 'Text Overlay'),
+    ('spe_promotions/plugins/promotion_posts.html', 'Listing'),
 )
 
 
