@@ -28,6 +28,7 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/image_left.html', 'Image Left'),
     ('spe_promotions/plugins/image_text_below.html', 'Image Top, Text Below'),
     ('spe_promotions/plugins/overlay.html', 'Text Overlay'),
+    ('spe_promotions/plugins/promotion_posts.html', 'Listing'),
 )
 
 
@@ -35,8 +36,8 @@ DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
     (DEFAULT_DISPLAY_TYPE, 'Events in Discipline Regardless of Region'),
     ('region', 'Regional Events Only'),
-    ('disinreg', 'Events in Discipline in Region Only'),
-    ('displusreg', 'Events in Discipline Supplemented by Regional Events')
+    # ('disinreg', 'Events in Discipline in Region Only'),
+    # ('displusreg', 'Events in Discipline Supplemented by Regional Events')
 )
 
 
@@ -153,97 +154,107 @@ class SimpleEventMemberMissingRegionMessage(models.Model):
         return self.promotion.event
 
 
-class SimpleEventPromotionListingPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
-    radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
-
-    def __unicode__(self):
-        dictionary = dict(PLUGIN_TEMPLATES)
-        buf = dictionary[self.template] + " - "
-        buf += str(self.count) + " - "
-        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
-        buf += " within a radius of " + str(self.radius) + " km"
-        return buf
-
-    def copy_relations(self, old_instance):
-        self.disciplines = old_instance.disciplines.all()
-
-
-class EventPromotionNearLocationListingPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)])
-    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)])
-    radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
-
-    def __unicode__(self):
-        dictionary = dict(PLUGIN_TEMPLATES)
-        buf = " - " + dictionary[self.template] + " - "
-        buf += str(self.count) + " - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
-        buf += " within a radius of " + str(self.radius) + " km"
-        return buf
+# class SimpleEventPromotionListingPlugin(CMSPlugin):
+#     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+#     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+#     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
+#     radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
+#
+#     def __unicode__(self):
+#         dictionary = dict(PLUGIN_TEMPLATES)
+#         buf = dictionary[self.template] + " - "
+#         buf += str(self.count) + " - "
+#         buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+#         buf += " within a radius of " + str(self.radius) + " km"
+#         return buf
+#
+#     def copy_relations(self, old_instance):
+#         self.disciplines = old_instance.disciplines.all()
 
 
-class EventPromotionNearUserListingPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    radius = models.FloatField(validators=[MinValueValidator(0.1)])
+# class EventPromotionNearLocationListingPlugin(CMSPlugin):
+#     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+#     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+#     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)])
+#     longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)])
+#     radius = models.FloatField(validators=[MinValueValidator(0.1)], verbose_name='Radius in km')
+#
+#     def __unicode__(self):
+#         dictionary = dict(PLUGIN_TEMPLATES)
+#         buf = " - " + dictionary[self.template] + " - "
+#         buf += str(self.count) + " - near (" + str(self.latitude) + "," + str(self.longitude) + ")"
+#         buf += " within a radius of " + str(self.radius) + " km"
+#         return buf
 
-    def __unicode__(self):
-        dictionary = dict(PLUGIN_TEMPLATES)
-        buf = " - " + dictionary[self.template] + " - "
-        buf += str(self.count) + " - within a radius of " + str(self.radius)
-        return buf
+
+# class EventPromotionNearUserListingPlugin(CMSPlugin):
+#     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+#     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+#     radius = models.FloatField(validators=[MinValueValidator(0.1)])
+#
+#     def __unicode__(self):
+#         dictionary = dict(PLUGIN_TEMPLATES)
+#         buf = " - " + dictionary[self.template] + " - "
+#         buf += str(self.count) + " - within a radius of " + str(self.radius)
+#         return buf
 
 
 class EventPromotionByDisciplineListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
         buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
         self.disciplines = old_instance.disciplines.all()
+        self.event_type = old_instance.event_type.all()
 
 
 class EventPromotionByTopicListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     topics = models.ManyToManyField(Topics, blank=True, limit_choices_to={'active': True})
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
         buf += " (topics: %s)" % ', '.join([a.name for a in self.topics.all()])
+        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
         self.topics = old_instance.topics.all()
+        self.event_type = old_instance.event_type.all()
 
 
 class EventPromotionByRegionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     regions = models.ManyToManyField(Web_Region, blank=True, limit_choices_to={'is_visible': True})
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
         buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
+        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
         self.regions = old_instance.regions.all()
+        self.event_type = old_instance.event_type.all()
 
 
 class EventPromotionSelectionPlugin(CMSPlugin):
@@ -275,7 +286,6 @@ class EventForMemberListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     show = models.CharField(max_length=255, choices=DISPLAY_TYPE, default=DEFAULT_DISPLAY_TYPE)
-    use_browsing_location = models.BooleanField(default=True, verbose_name='Use Browsing Location if Not Logged In')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
