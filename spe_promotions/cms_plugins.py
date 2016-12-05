@@ -386,8 +386,9 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     objects = objects.filter(disciplines=visitor.primary_discipline)
                     # If a Secondary Discipline is Available Append Events for that Discipline
                     if visitor.secondary_discipline:
-                        objects = list(chain(objects, append_objects.filter(disciplines=visitor.secondary_discipline)))
-                    objects = objects.distinct()
+                        for x in append_objects.filter(disciplines=visitor.secondary_discipline):
+                            if x not in objects:
+                                objects.append(x)
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
@@ -405,7 +406,6 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         region = GetRegion(context)
                     objects = objects.filter(regions=region)
                     objects = list(chain(prepend_object, objects))
-                    objects = objects.distinct()
 
             if instance.show == 'region':
                 # Member - Region Available
