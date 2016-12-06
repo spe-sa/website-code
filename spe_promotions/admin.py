@@ -21,8 +21,10 @@ class SimpleEventPromotionAdmin(admin.ModelAdmin):
 class NonMemberMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
 
+
 class MemberNoDisciplineMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+
 
 class MemberNoRegionMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')

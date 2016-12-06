@@ -102,7 +102,7 @@ class SimpleEventPromotion(models.Model):
     picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_promotion_picture")
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
-    last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
+    last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
     event_type = models.ForeignKey(EventType, limit_choices_to={'active': True})
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True)
