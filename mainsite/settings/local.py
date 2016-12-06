@@ -16,7 +16,6 @@ HOST_REPLACEMENTS = (
 # Overriding the templates in development to include a test page
 CMS_TEMPLATES += (
     ('test.html', 'Test Page'),
-    ('generic_page.html', 'Generic Page'),
 )
 
 # make all loggers use the console.
