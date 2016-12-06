@@ -200,6 +200,11 @@ def get_visitor(request):
             request.session['session_visitor'] = None
             visitor = None
         if not visitor:
+            # if there isn't a cid then there is no reason to try and load a customer.  just blank the session and return none
+            if cid == None or cid == "":
+                request.session['session_visitor'] = None
+                return None
+
             # read the customer from db and cache it up
             try:
                 visitor = Customer.objects.get(pk=cid)
