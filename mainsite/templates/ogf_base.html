@@ -4,8 +4,6 @@
 
 {% block web_fonts %}
 
-    {% include 'include_scripts.html' %}
-
     {{ block.super }}
     <script src="https://use.typekit.net/xwk3nys.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -21,6 +19,13 @@
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
 
 {% block content_header %}
+    <div class="row adZone1" id="adZone1">
+        <div class="col-md-12 text-center" id="adLeaderboard">
+            {% placeholder "ad zone 1" %}
+        </div>
+    </div>
+
+
     {% with header_template="include_ogf_header.html" %}
         {{ block.super }}
     {% endwith %}
