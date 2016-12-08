@@ -39,6 +39,10 @@ ehthumbs.db
 Thumbs.db
 
 *.db
+
+*/.idea/*
+*/migrations/*
+
 *.scssc
 *.ipynb
 *.codekit
