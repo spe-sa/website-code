@@ -248,8 +248,8 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
-        buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
-        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
+        buf += " (regions: %s)" % ', '.join([a.region_name for a in self.regions.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
