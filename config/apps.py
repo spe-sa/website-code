@@ -3,6 +3,7 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
+
 class MainsiteConfig(AppConfig):
     name = 'mainsite'
     verbose_name = "Utility Common Lists and Information"
@@ -21,11 +22,6 @@ class FilerPluginConfig(AppConfig):
 class RequestConfig(AppConfig):
     name = 'request'
     verbose_name = "Utility Request Configurations"
-
-
-class SmartsnippetConfig(AppConfig):
-    name = 'smartsnippets'
-    verbose_name = "Utility SmartSnippet Configurations"
 
 
 class SpeBlogConfig(AppConfig):

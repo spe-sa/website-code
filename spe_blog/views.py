@@ -4,6 +4,7 @@ from django.db.models import Q
 # import sys
 
 from .models import Article, Brief, Issue, Publication
+from mainsite.models import Web_Region
 
 
 def article_index(request):
@@ -117,6 +118,9 @@ def brief_index(request):
     except Exception:
         search_id = 0
 
+    search_region = request.POST.get('region', None)
+    if (search_region == None):
+        search_region = request.GET.get("region", None)
     published = request.POST.get("published", None)
     if (published == None):
         published = request.GET.get("published", None)
@@ -152,6 +156,8 @@ def brief_index(request):
     if (issue):
         articles = articles.filter(print_issue__exact=issue)
         filter = build_filter(filter, " issue=" + issue)
+    if (search_region):
+       articles = articles.filter(region__region_name__iexact = search_region)
     if (published != None):
         articles = articles.filter(published__exact=published)
         filter = build_filter(filter, " only published")
@@ -167,6 +173,8 @@ def brief_index(request):
 
     # get a list of publication codes to send to build the drop down from
     pub_list = Publication.objects.values_list('code', flat=True)
+    # get a list of regions to send to build the drop down from
+    region_list = Web_Region.objects.values_list('region_name', flat=True)
 
     context = {'articles': articles,
                'pub_list': pub_list,
@@ -179,9 +187,11 @@ def brief_index(request):
                'render_type': render_type,
                'filter': filter,
                'show_details': show_details,
-               'type': 'brief'
+               'type': 'brief',
+               'region_list': region_list,
+               'region_selected': search_region
                }
-    return render(request, 'spe_blog/article_index.html', context)
+    return render(request, 'spe_blog/brief_index.html', context)
 
 
 def article_detail(request, article_id):
