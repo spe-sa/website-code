@@ -36,8 +36,6 @@ DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
     (DEFAULT_DISPLAY_TYPE, 'Events in Discipline Regardless of Region'),
     ('region', 'Regional Events Only'),
-    # ('disinreg', 'Events in Discipline in Region Only'),
-    # ('displusreg', 'Events in Discipline Supplemented by Regional Events')
 )
 
 
@@ -274,18 +272,26 @@ class EventPromotionSelectionPlugin(CMSPlugin):
 class EventPromotionInUserRegionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
-        buf += str(self.count)
+        buf += str(self.count) + " - "
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
+
+    def copy_relations(self, old_instance):
+        self.event_type = old_instance.event_type.all()
 
 
 class EventForMemberListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     show = models.CharField(max_length=255, choices=DISPLAY_TYPE, default=DEFAULT_DISPLAY_TYPE)
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -293,4 +299,8 @@ class EventForMemberListingPlugin(CMSPlugin):
         buf += str(self.count) + " - "
         dictionary = dict(DISPLAY_TYPE)
         buf += dictionary[self.show]
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
+
+    def copy_relations(self, old_instance):
+        self.event_type = old_instance.event_type.all()

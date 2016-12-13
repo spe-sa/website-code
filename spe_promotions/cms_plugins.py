@@ -23,6 +23,7 @@ from .models import (
     SimpleEventMemberMissingDisciplineMessage,
     SimpleEventMemberMissingRegionMessage,
 )
+from spe_events.models import EventType
 
 
 # class ShowPromotionListingPlugin(CMSPluginBase):
@@ -330,8 +331,8 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
 
         region = GetRegion(context)
 
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region).order_by(
-            'last_impression')[:instance.count]
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region,
+            event_type=instance.event_type.all()).order_by('last_impression')[:instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
@@ -379,10 +380,10 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
             if instance.show == 'discipline':
                 if visitor.primary_discipline:
                     # Member - Primary Discipline Available
-                    objects = objects.filter(disciplines=visitor.primary_discipline)
+                    objects = objects.filter(disciplines=visitor.primary_discipline, event_type=instance.event_type.all())
                     # If a Secondary Discipline is Available Append Events for that Discipline
                     if visitor.secondary_discipline:
-                        for x in append_objects.filter(disciplines=visitor.secondary_discipline):
+                        for x in append_objects.filter(disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()):
                             if x not in objects:
                                 objects.append(x)
                 else:
@@ -400,7 +401,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                             region = 'USA'
                     else:
                         region = GetRegion(context)
-                    objects = objects.filter(regions=region)
+                    objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
 
             if instance.show == 'region':
@@ -411,7 +412,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         region = Web_Region_Country.objects.get(country_UN=visitor.country).region
                     except Web_Region_Country.DoesNotExist:
                         region = 'USA'
-                    objects = objects.filter(regions=region).distinct()
+                    objects = objects.filter(regions=region, event_type=instance.event_type.all()).distinct()
                 else:
                     # Member - No Region Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
@@ -420,7 +421,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                      :1]
                     # always use browsing user's location
                     region = GetRegion(context)
-                    objects = objects.filter(regions=region)
+                    objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
             # Non-Member or Member Not Logged In
@@ -430,7 +431,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                              :1]
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
             region = GetRegion(context)
-            objects = objects.filter(regions=region)
+            objects = objects.filter(regions=region, event_type=instance.event_type.all())
             objects = list(chain(prepend_object, objects))
 
         objects = objects[:instance.count]
