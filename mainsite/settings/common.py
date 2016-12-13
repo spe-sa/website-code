@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'config.apps.MainsiteConfig',
     'segmentation',
     # 'smartsnippets',
-    # 'config.apps.SmartsnippetConfig',
+    'config.apps.SmartsnippetConfig',
     'taggit',
     # 'spe_links',
     'config.apps.SpeLinkConfig',
