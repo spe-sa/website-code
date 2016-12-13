@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.db.models import Q
+import datetime
 # import sys
 
 from .models import Article, Brief, Issue, Publication
@@ -247,11 +248,15 @@ def issue(request, publication_code):
 
     return render(request, 'spe_blog/issues.html', context)
 
-# def issue(request, publication_code):
-#     issues = Issue.objects.filter(publication__code=publication_code.upper()).order_by('-date')
-#     pub = get_object_or_404(Publication, code=publication_code.upper())
-#     years = Issue.objects.filter(publication__code=publication_code.upper()).distinct('date.year').order_by('-date')
-#     context = {'issues': issues, 'publication_code': publication_code, 'show_subscribe_url': pub.subscription_url,
-#                'years': years}
-#
-#     return render(request, 'spe_blog/issues.html', context)
+def brief_regional(request):
+    today = datetime.datetime.now()
+    articles = Brief.objects.filter(region__isnull=False)
+    # articles = articles.filter(date__year=today.year, date__month=today.month)
+    # for filtering to last month
+    last_month = today.month - 1 if today.month > 1 else 12
+    last_month_year = today.year if today.month > last_month else today.year - 1
+    articles = articles.filter(date__year=last_month_year, date__month=last_month)
+
+    articles = articles.order_by('region', '-date')[:25]
+    context = {'articles': articles,}
+    return render(request, 'spe_blog/regional_briefs.html', context)
