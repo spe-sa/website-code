@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'config.apps.MainsiteConfig',
     'segmentation',
     # 'smartsnippets',
-    'config.apps.SmartsnippetConfig',
+    # 'config.apps.SmartsnippetConfig',
     'taggit',
     # 'spe_links',
     'config.apps.SpeLinkConfig',
@@ -226,6 +226,7 @@ CMS_TEMPLATES = (
     ('hse_subpage.html', 'HSE SubPage'),
     ('twa_home.html', 'TWA Homepage'),
     ('twa_subpage.html', 'TWA SubPage'),
+    ('generic_page.html', 'Generic Page'),
     # ('twa_detailpage.html', 'TWA Detail Page'),
 )
 

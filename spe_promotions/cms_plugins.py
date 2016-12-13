@@ -1,17 +1,14 @@
 import datetime
-# from cms.models import CMSPlugin
-import math
-import requests
-import json
 from itertools import chain
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-
 from django.contrib.gis.geoip import GeoIP
-from mainsite.context_processors import spe_context
 
-#from .models import Promotion, PromotionListingPlugin
+from mainsite.context_processors.spe_context import (
+    get_visitor, )
+from mainsite.models import Web_Region_Country
+from .forms import SimplePromotionsSelectionForm
 from .models import (
     SimpleEventPromotion,
     # EventPromotionNearLocationListingPlugin,
@@ -26,12 +23,6 @@ from .models import (
     SimpleEventMemberMissingDisciplineMessage,
     SimpleEventMemberMissingRegionMessage,
 )
-from .forms import SimplePromotionsSelectionForm
-from mainsite.models import Web_Region_Country
-
-from mainsite.context_processors.spe_context import (
-    get_context_variable,
-    get_visitor,)
 
 
 # class ShowPromotionListingPlugin(CMSPluginBase):
@@ -184,6 +175,7 @@ from mainsite.context_processors.spe_context import (
 class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
     class Meta:
         abstract = True
+
     allow_children = False
     cache = False
     module = ('Event Promotions')
@@ -195,46 +187,49 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-        
-        objects = objects.filter(disciplines__in=instance.disciplines.all(), event_type=instance.event_type.all()).distinct()[:instance.count]
+
+        objects = objects.filter(disciplines__in=instance.disciplines.all(),
+                                 event_type=instance.event_type.all()).distinct()[:instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
-        
+
         context.update({'promos': objects})
         self.render_template = instance.template
         return context
 
+
 class ShowEventsByTopicListingPlugin(CMSPluginBase):
-        class Meta:
-            abstract = True
+    class Meta:
+        abstract = True
 
-        allow_children = False
-        cache = False
-        module = ('Event Promotions')
-        render_template = 'spe_blog/plugins/image_left.html'
-        text_enabled = False
-        model = EventPromotionByTopicListingPlugin
-        name = ("Event Promotion Listing by Topics")
+    allow_children = False
+    cache = False
+    module = ('Event Promotions')
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = EventPromotionByTopicListingPlugin
+    name = ("Event Promotion Listing by Topics")
 
-        def render(self, context, instance, placeholder):
-            today = datetime.date.today()
-            objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
 
-            objects = objects.filter(topics__in=instance.topics.all(), event_type=instance.event_type.all()).distinct()[:instance.count]
+        objects = objects.filter(topics__in=instance.topics.all(), event_type=instance.event_type.all()).distinct()[
+                  :instance.count]
 
-            for x in objects:
-                x.url = "/promotion/event/" + str(x.id) + "/"
-                x.last_impression = datetime.datetime.now()
-                x.impressions += 1
-                x.save()
+        for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
 
-            context.update({'promos': objects})
-            self.render_template = instance.template
-            return context
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
 
 
 class ShowEventsByRegionListingPlugin(CMSPluginBase):
@@ -253,7 +248,8 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
         today = datetime.date.today()
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
 
-        objects = objects.filter(regions__in=instance.regions.all(), event_type=instance.event_type.all()).distinct()[:instance.count]
+        objects = objects.filter(regions__in=instance.regions.all(), event_type=instance.event_type.all()).distinct()[
+                  :instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
@@ -281,7 +277,9 @@ class ShowEventsListingPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, id__in=instance.promotions.all()).order_by('last_impression').distinct()
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
+                                                      id__in=instance.promotions.all()).order_by(
+            'last_impression').distinct()
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
@@ -331,12 +329,9 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
         today = datetime.date.today()
 
         region = GetRegion(context)
-        try:
-            region = Web_Region_Country.objects.get(country_UN=country).region
-        except Web_Region_Country.DoesNotExist:
-            region = 'USA'
 
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region).order_by('last_impression')[:instance.count]
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region).order_by(
+            'last_impression')[:instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
@@ -367,7 +362,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
 
         # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
-        #objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
         no_discipline_promotions = SimpleEventMemberMissingDisciplineMessage.objects.all()
         ids_to_exclude = [o for o in no_discipline_promotions]
         no_region_promotions = SimpleEventMemberMissingRegionMessage.objects.all()
@@ -375,7 +370,8 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         non_member_promotions = SimpleEventNonMemberMessage.objects.all()
         ids_to_exclude = ids_to_exclude + [o for o in non_member_promotions]
         exclude_id = [x.promotion.id for x in ids_to_exclude]
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(id__in=exclude_id).order_by('last_impression')
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
+            id__in=exclude_id).order_by('last_impression')
         append_objects = objects
 
         if visitor:
@@ -386,8 +382,9 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     objects = objects.filter(disciplines=visitor.primary_discipline)
                     # If a Secondary Discipline is Available Append Events for that Discipline
                     if visitor.secondary_discipline:
-                        objects = list(chain(objects, append_objects.filter(disciplines=visitor.secondary_discipline)))
-                    objects = objects.distinct()
+                        for x in append_objects.filter(disciplines=visitor.secondary_discipline):
+                            if x not in objects:
+                                objects.append(x)
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
@@ -405,7 +402,6 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         region = GetRegion(context)
                     objects = objects.filter(regions=region)
                     objects = list(chain(prepend_object, objects))
-                    objects = objects.distinct()
 
             if instance.show == 'region':
                 # Member - Region Available
@@ -419,7 +415,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 else:
                     # Member - No Region Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                         id__in=noregion_promotions.values(
+                                                                         id__in=no_region_promotions.values(
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location

@@ -1,0 +1,99 @@
+{% load cms_tags sekizai_tags staticfiles menu_tags %}
+    <!-- HEADER Begin -->
+        <!-- topbar -->
+{#        {% include 'include_topbar.html' %}#}
+        <div class="row dontPrintMe" id="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 topbarcol">
+                        <ul class="topbarmenuleft">
+                            <li><a href="http://www.spe.org/">SPE</a></li>
+                            <li><a href="http://www.spe.org/jpt/">JPT</a></li>
+                            <li><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></li>
+                            <li><a href="http://www.spe.org/hsenow/">HSE Now</a></li>
+                            <li><a href="https://www.spe.org/en/twa/">The Way Ahead</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 text-right topbarcol">
+                        <ul class="topbarmenuright">
+                            <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/SPEtweets" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2 text-center topbarcol" id="signin">
+                        {% if login.url %}
+                        <li><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row dontPrintMe" id="menubar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3" id="mainLogo">
+                        <a href="https://www.spe.org/en/twa/twa-main-page/"><img src="{% static 'twa/img/twa_logo.svg' %}" class="img-responsive"></a>
+                    </div>
+                    <div class="col-md-9 text-right">
+                        <ul class="pubMenu">
+                            {% show_menu 1 100 0 1 %}
+                            <li class="searchIcon"><a role="button" data-toggle="collapse" href="#collapseSearch" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
+            <div class="col-sm-12 text-right">
+                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">
+                    <div class="input-group">
+                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
+                        <input type="hidden" id="gssscope" name="scope" value="twa"/>
+                        <!-- sas comment -->
+                        <span class="input-group-btn">
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container menu2cont">
+            <div class="container menu2">
+                <div class="row">
+                    <nav class="col-xs-12 navbar yamm navbar-default text-right" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li><a href="https://www.spe.org/en/twa/about-twa/">About TWA</a></li>
+                            <li><a href="https://www.spe.org/en/twa/twa-editorial-board/">TWA Editorial Board</a></li>
+                            <li><a href="https://www.spe.org/en/twa/contact/">Contact TWA</a></li>
+                            <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Departments</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="https://www.spe.org/en/twa/academia/">Academia</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/business-benchmarks/">Business Benchmarks</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/discover-career/">Discover a Career</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/forum/">Forum</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/hr-discussion/">HR Discussion</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/pillars-industry/">Pillars of Industry</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/soft-skills/">Soft Skills</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/spe/">SPE Newsfeed</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/student-focus/">Student Focus</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/tech-topics/">Technical Topics</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/twa-crowdsourcing/">TWA Crowdsourcing</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/interview/">TWA Interview</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/your-best-shot/">Your Best Shot</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/yp-newsflash/">YP Newsflash</a></li>
+                                    <li><a href="https://www.spe.org/en/twa/yps-guide-to/">YP's Guide to...</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    <!-- HEADER END -->

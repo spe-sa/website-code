@@ -102,7 +102,7 @@ class SimpleEventPromotion(models.Model):
     picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_promotion_picture")
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
-    last_impression = models.DateTimeField(default=datetime.date.today() + datetime.timedelta(-30), editable=False)
+    last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
     event_type = models.ForeignKey(EventType, limit_choices_to={'active': True})
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True)
@@ -248,8 +248,8 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
-        buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
-        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
+        buf += " (regions: %s)" % ', '.join([a.region_name for a in self.regions.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
