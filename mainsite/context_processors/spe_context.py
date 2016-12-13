@@ -117,6 +117,7 @@ def get_context_variable(request, variable_name, default_value=None, forceDebug 
     debug = forceDebug
     if debug == None:
         debug = getattr(settings, "DEBUG", True)
+    default_ip = getattr(settings, "DEFAULT_IP", '192.152.183.80')
     header_name = variable_name.upper()
     value = request.META.get(header_name, None)
     if value is None:
@@ -147,7 +148,7 @@ def get_context_variable(request, variable_name, default_value=None, forceDebug 
             value = request.META.get('REMOTE_ADDR', None)
     # finally before returning if private set to spe public address
     if variable_name.lower() == 'cip' and _is_private_ip(value):
-        value = '192.152.183.80'
+        value = default_ip
 
     if value is None:
         value = default_value
@@ -169,6 +170,7 @@ def get_context_variables(request):
                      "MEDIA_URL": get_context_variable(request, "MEDIA_URL"),
                      "STATIC_ROOT": get_context_variable(request, "STATIC_ROOT"),
                      "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
+                     "DEFAULT_IP": get_context_variable(request, "DEFAULT_IP"),
                      "vid": get_context_variable(request, "vid"),
                      "cip": get_ip(request)
                      }

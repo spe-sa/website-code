@@ -676,3 +676,5 @@ CKEDITOR_SETTINGS = {
 DASHING = {
     'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
 }
+
+DEFAULT_IP = '192.152.183.80'
