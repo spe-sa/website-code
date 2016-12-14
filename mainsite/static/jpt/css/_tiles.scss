@@ -515,11 +515,11 @@
 }
 
 .becomeMember {
-  background-color:     $col-red;
+  background-color:     $col-boxshadow;
   color:                $col-white;
-  padding:              15px;
-  margin:               15px 0;
-  font-size:            20px;
+  padding:              5px 5px 0 5px;
+  margin:               10px 0;
+  font-size:            14px;
   a {
     color:              $col-yellow;
     font-weight:        $font-bold;
@@ -529,10 +529,10 @@
   }
 }
 .detailImgWrap, .detailImgWrapFull, .detailImgWrapLeft, .detailImgWrapSide, .poipic, .bestshotpic {
-  overflow:             hidden;
-  -webkit-background-size:cover;
-  background-size:      cover;
-  background-position:  center;
+  overflow:                 hidden;
+  -webkit-background-size:  cover;
+  background-size:          cover;
+  background-position:      center;
   //border:               1px solid #e2e2e2;
 }
 .detailImgWrap {

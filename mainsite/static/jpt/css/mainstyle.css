@@ -228,6 +228,10 @@ a:hover { text-decoration: none; color: grey; }
 .articleDetail .articleAuthorBox { font-size: 14px; font-weight: 700; padding-top: 10px; margin-bottom: 10px; }
 .articleDetail .sponsored { margin: 0 0 15px 0 !important; }
 
+.subInfoBox { padding: 10px 0; border-top: 1px dotted #57575a; border-bottom: 1px dotted #57575a; }
+.subInfoBox p { padding: 0; margin: 0; }
+.subInfoBox .reTitle { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+
 .ratingStars { color: #ffa42d; white-space: nowrap; }
 
 .authorName { color: #2d9e9f; font-weight: 700; }
@@ -237,15 +241,20 @@ a:hover { text-decoration: none; color: grey; }
 .articleTitleBox { padding-left: 0; padding-right: 0; }
 
 .articlePicture { margin-bottom: 20px; padding-left: 0; padding-right: 0; }
+.articlePicture img { max-width: 500px; margin: 0 auto; }
 
-.articleBodyText img { margin: 0 10px 0 10px; }
+.articleBodyText img { margin: 0 auto; min-width: 100px; height: auto; }
 
 .articleShares { font-size: 18px; }
 .articleShares .fa-facebook-square, .articleShares .fa-twitter-square, .articleShares .fa-linkedin-square, .articleShares .fa-envelope-square, .articleShares .fa-plus-square, .articleShares .fa-print { color: #e51837; cursor: pointer; padding: 3px; }
 .articleShares .fa-facebook-square:hover, .articleShares .fa-twitter-square:hover, .articleShares .fa-linkedin-square:hover, .articleShares .fa-envelope-square:hover, .articleShares .fa-plus-square:hover, .articleShares .fa-print:hover { color: white; background-color: #b4b4b9; }
 
+.topicTitle { font-weight: 700; }
+
+.topicItem { padding-right: 5px; }
+
 .article-topics, .article-tags { background-color: #f2efea; padding: 10px; font-size: 12px; margin-bottom: 15px; }
-.article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; border-bottom: 1px dotted grey; }
+.article-topics h4, .article-tags h4 { margin: 0 0 5px 0; padding-bottom: 5px; }
 .article-topics ul, .article-tags ul { list-style: none; padding: 0; margin: 0; }
 .article-topics ul li, .article-tags ul li { display: inline-block; list-style-position: inside; margin: 0 15px 0 0; padding: 0; }
 .article-topics ul li:hover, .article-tags ul li:hover { background-color: grey; color: white; }
@@ -523,7 +532,7 @@ table th, table td { padding: 5px; }
 .tile-poll a:hover { color: white; }
 .tile-poll .votes { color: white; font-weight: 700; }
 
-.becomeMember { background-color: #e51837; color: white; padding: 15px; margin: 15px 0; font-size: 20px; }
+.becomeMember { background-color: #b4b4b9; color: white; padding: 5px 5px 0 5px; margin: 10px 0; font-size: 14px; }
 .becomeMember a { color: #fffb22; font-weight: 700; }
 .becomeMember a:hover { color: #2a2a2a; }
 
@@ -674,3 +683,5 @@ table th, table td { padding: 5px; }
 .panel { background-color: transparent; }
 
 .bscol .tile-editorial { margin-top: 10px; }
+
+.padR10, #padR10 { padding-right: 10px; }

@@ -21,11 +21,11 @@
           {% if promo.picture and promo.picture.url %}
               {% if forloop.first %}
                   <div class="item active" style="background-image:url({{ promo.picture.url }});">
-                      <a href="{{ promo.url }}">
+                      <a href="{{ promo.url }}" target="_blank">
                           <div class="carousel-caption">
                               <h3>{{ promo.event }}</h3>
             {% if promo.sponsored %}
-                <p class="sponsored">SPONSORED</p>
+                <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
@@ -37,7 +37,7 @@
                           <div class="carousel-caption">
                               <h3>{{ promo.event }}</h3>
             {% if promo.sponsored %}
-                <p class="sponsored">SPONSORED</p>
+                <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
