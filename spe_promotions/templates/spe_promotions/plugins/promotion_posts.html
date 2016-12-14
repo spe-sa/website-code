@@ -8,11 +8,11 @@
     <div class="tile-editorial tile-editorial-txtblck row" style="background-color:white">
     {% for promo in promos %}
         <div class="row sideListItem">
-            <a href="{{ promo.url}}&laf={{ laf }}">
+            <a href="{{ promo.url}}">
             <div class="col-xs-12">
                 <span class="sideListTitle"><strong>{{ promo.event|truncatewords:10 }}</strong></span><br>
                 {% if promo.sponsored %}
-                    <p class="sponsored" style="margin:5px 0;">SPONSORED</p>
+                    <p class="sponsored" style="margin:5px 0;">SPONSORED CONTENT</p>
                 {% endif %}
                 <span class="sideListDateTWA">{{ promo.event_date }}</span>
                 <span class="sideListDateTWA">{{ promo.event_location }}</span>
