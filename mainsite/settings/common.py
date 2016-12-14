@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'config.apps.MainsiteConfig',
     'segmentation',
     # 'smartsnippets',
-    # 'config.apps.SmartsnippetConfig',
+    'config.apps.SmartsnippetConfig',
     'taggit',
     # 'spe_links',
     'config.apps.SpeLinkConfig',
@@ -676,3 +676,5 @@ CKEDITOR_SETTINGS = {
 DASHING = {
     'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
 }
+
+DEFAULT_IP = '192.152.183.80'

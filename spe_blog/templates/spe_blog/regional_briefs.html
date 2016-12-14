@@ -1,0 +1,83 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags var_tags %}
+
+{% block content %}
+
+    {% addtoblock "css" %}
+        <style>
+/* http://techneblog.com/article/creating-responsive-multiple-column-list */
+h2{
+    font-size: 1.5em; /* 25px/16px */
+}
+#content
+{
+    font-size: .75em; /* 12/16 */
+    width: 71.875%; /* 650/960 */
+    max-width: 960px;
+    text-align: left;
+    margin: 0px auto; /*auto centers the container */
+    padding: 3.84615384615385%; /* 25/650 */
+}
+/*CSS3 multiple columns.*/
+/* Get em size for colums: 184/16 */
+.columns
+{
+    -moz-column-width: 21.5em; /* Firefox */
+    -webkit-column-width: 21.5em; /* webkit, Safari, Chrome */
+    column-width: 21.5em;
+}
+/*remove standard list and bullet formatting from ul*/
+.columns ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+/* correct webkit/chrome uneven margin on the first column*/
+.columns ul li:first-child
+{
+    margin-top:0px;
+}        </style>
+    {%  endaddtoblock %}
+
+<div id="content" class="tile-editorial tile-editorial-txtblck row" style="background-color:white; margin-left:10px;padding-left: 10px;">
+        <div class="columns">
+        <ul>
+
+    {% set_var "" as rendered_group_name %}
+    {% for article in articles %}
+
+        {% if rendered_group_name != article.region.region_name %}
+            <h2>{{ article.region.region_name }}</h2>
+            {% set_var "{{article.region.region_name}}" as rendered_group_name %}
+        {% endif %}
+
+            <li>
+                <div>
+                    <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
+                    <span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
+                    {% if article.is_readable == True %}
+                        <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
+                    {% endif %}
+                </div>
+            </li>
+
+    {% empty %}
+        <p class="well">"No articles available"</p>
+    {% endfor %}
+
+        </ul>
+        </div>
+</div>
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}
+
+{% endblock content %}
