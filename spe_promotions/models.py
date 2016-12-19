@@ -81,7 +81,7 @@ class PromotionListingPlugin(CMSPlugin):
 
     def __unicode__(self):
         buf = str(self.count) + " - " + self.promotion_type
-        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
+        buf += " (disciplines: %s)" % ', '.join([a.name for a in self.disciplines.all()])
         buf += " (regions: %s)" % ', '.join([a.region_code for a in self.regions.all()])
         return buf
 
@@ -93,6 +93,7 @@ class PromotionListingPlugin(CMSPlugin):
 class SimpleEventPromotion(models.Model):
     event = models.CharField(max_length=250)
     event_date = models.DateField(verbose_name='Event Date')
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True)
     event_location = models.CharField(max_length=50)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -207,8 +208,8 @@ class EventPromotionByDisciplineListingPlugin(CMSPlugin):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
-        buf += " (disciplines: %s)" % ', '.join([a.code for a in self.disciplines.all()])
-        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
+        buf += " (disciplines: %s)" % ', '.join([a.name for a in self.disciplines.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
@@ -227,7 +228,7 @@ class EventPromotionByTopicListingPlugin(CMSPlugin):
         buf = " - " + dictionary[self.template] + " - "
         buf += str(self.count) + " - "
         buf += " (topics: %s)" % ', '.join([a.name for a in self.topics.all()])
-        buf += " (event type: %s)" % ', '.join([a.code for a in self.event_type.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
         return buf
 
     def copy_relations(self, old_instance):
@@ -303,4 +304,27 @@ class EventForMemberListingPlugin(CMSPlugin):
         return buf
 
     def copy_relations(self, old_instance):
+        self.event_type = old_instance.event_type.all()
+
+
+class UpcomingEventPromotionPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    disciplines = models.ManyToManyField(Tier1Discipline, limit_choices_to={'active': True})
+    regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': True})
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
+        buf += " (disciplines: %s)" % ', '.join([a.name for a in self.disciplines.all()])
+        buf += " (regions: %s)" % ', '.join([a.region_name for a in self.regions.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.disciplines = old_instance.disciplines.all()
+        self.regions = old_instance.regions.all()
         self.event_type = old_instance.event_type.all()
