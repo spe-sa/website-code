@@ -463,7 +463,7 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today)
 
         objects = objects.filter(disciplines__in=instance.disciplines.all(),
-                                 event_type=instance.event_type.all(),
+                                 event_type__in=instance.event_type.all(),
                                  regions__in=instance.regions.all(),
                                  event_date__gte=datetime.date.today()).order_by('event_date').distinct()[
                   :instance.count]

@@ -310,8 +310,8 @@ class EventForMemberListingPlugin(CMSPlugin):
 class UpcomingEventPromotionPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-    disciplines = models.ManyToManyField(Tier1Discipline, limit_choices_to={'active': True})
-    regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': True})
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
+    regions = models.ManyToManyField(Web_Region, blank=True, limit_choices_to={'is_visible': True})
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
 
 
