@@ -19,7 +19,7 @@ from .models import (
     EventPromotionSelectionPlugin,
     EventPromotionInUserRegionListingPlugin,
     EventForMemberListingPlugin,
-    # UpcomingEventPromotionPlugin,
+    UpcomingEventPromotionPlugin,
     SimpleEventNonMemberMessage,
     SimpleEventMemberMissingDisciplineMessage,
     SimpleEventMemberMissingRegionMessage,
@@ -446,37 +446,37 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
-# class ShowUpcomingEventsListingPlugin(CMSPluginBase):
-#     class Meta:
-#         abstract = True
-#
-#     allow_children = False
-#     cache = False
-#     module = ('Event Promotions')
-#     render_template = 'spe_blog/plugins/image_left.html'
-#     text_enabled = False
-#     model = UpcomingEventPromotionPlugin
-#     name = ("List Upcoming Events")
-#
-#     def render(self, context, instance, placeholder):
-#         today = datetime.date.today()
-#         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today)
-#
-#         objects = objects.filter(disciplines__in=instance.disciplines.all(),
-#                                  event_type__in=instance.event_type.all(),
-#                                  regions__in=instance.regions.all(),
-#                                  event_date__gte=datetime.date.today()).order_by('event_date').distinct()[
-#                   :instance.count]
-#
-#         for x in objects:
-#             x.url = "/promotion/event/" + str(x.id) + "/"
-#             x.last_impression = datetime.datetime.now()
-#             x.impressions += 1
-#             x.save()
-#
-#         context.update({'promos': objects})
-#         self.render_template = instance.template
-#         return context
+class ShowUpcomingEventsListingPlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = ('Event Promotions')
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = UpcomingEventPromotionPlugin
+    name = ("List Upcoming Events")
+
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today)
+
+        objects = objects.filter(disciplines__in=instance.disciplines.all(),
+                                 event_type__in=instance.event_type.all(),
+                                 regions__in=instance.regions.all(),
+                                 event_date__gte=datetime.date.today()).order_by('event_date').distinct()[
+                  :instance.count]
+
+        for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
+
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
 
 
 # plugin_pool.register_plugin(ShowEventNearLocationPromotionListing)
@@ -487,5 +487,5 @@ plugin_pool.register_plugin(ShowEventsByRegionListingPlugin)
 plugin_pool.register_plugin(ShowEventsListingPlugin)
 plugin_pool.register_plugin(ShowEventInUserRegionPromotionListing)
 plugin_pool.register_plugin(ShowEventsForMemberPlugin)
-# plugin_pool.register_plugin(ShowUpcomingEventsListingPlugin)
+plugin_pool.register_plugin(ShowUpcomingEventsListingPlugin)
 

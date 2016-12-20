@@ -307,24 +307,24 @@ class EventForMemberListingPlugin(CMSPlugin):
         self.event_type = old_instance.event_type.all()
 
 
-# class UpcomingEventPromotionPlugin(CMSPlugin):
-#     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
-#     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
-#     disciplines = models.ManyToManyField(Tier1Discipline, limit_choices_to={'active': True})
-#     regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': True})
-#     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
-#
-#
-#     def __unicode__(self):
-#         dictionary = dict(PLUGIN_TEMPLATES)
-#         buf = " - " + dictionary[self.template] + " - "
-#         buf += str(self.count) + " - "
-#         buf += " (disciplines: %s)" % ', '.join([a.name for a in self.disciplines.all()])
-#         buf += " (regions: %s)" % ', '.join([a.region_name for a in self.regions.all()])
-#         buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
-#         return buf
-#
-#     def copy_relations(self, old_instance):
-#         self.disciplines = old_instance.disciplines.all()
-#         self.regions = old_instance.regions.all()
-#         self.event_type = old_instance.event_type.all()
+class UpcomingEventPromotionPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
+    count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
+    disciplines = models.ManyToManyField(Tier1Discipline, limit_choices_to={'active': True}, db_constraint=False)
+    regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': True})
+    event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+
+
+    def __unicode__(self):
+        dictionary = dict(PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += str(self.count) + " - "
+        buf += " (disciplines: %s)" % ', '.join([a.name for a in self.disciplines.all()])
+        buf += " (regions: %s)" % ', '.join([a.region_name for a in self.regions.all()])
+        buf += " (event type: %s)" % ', '.join([a.name for a in self.event_type.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.disciplines = old_instance.disciplines.all()
+        self.regions = old_instance.regions.all()
+        self.event_type = old_instance.event_type.all()
