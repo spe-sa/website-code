@@ -35,15 +35,15 @@
 
         {% if pubcode == "TWA" %}
             {% if isbrief %}
-                <div class="col-xs-9">
+                <div class="col-xs-9 sideListRight">
             {% else %}
                 <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>
-                <div class="col-xs-8">
+                <div class="col-xs-8 sideListRight">
             {% endif %}
 
     <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
 {% else %}
-    <div class="col-xs-9">
+    <div class="col-xs-9 sideListRight">
     <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
 {% endif %}
 

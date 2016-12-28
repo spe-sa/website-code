@@ -116,10 +116,17 @@
   }
 }
 .sideListDate, .sideListDateTWA {
-  color:                $col-speblue2;
-  font-weight:          $font-light;
-  font-size:            12px;
+  //color:                $col-speblue2;
+  //font-weight:          $font-regular;
+  //font-size:            12px;
   padding:              5px 0 0 0;
+      color:            $col-speblue2;
+      display:          block;
+      text-transform:   uppercase;
+      font-size:        10px;
+      font-weight:      700;
+      letter-spacing:   1px;
+      //padding-bottom:   10px;
 }
 .pipe {
   display: none;
