@@ -250,13 +250,24 @@ def issue(request, publication_code):
 
 def brief_regional(request):
     today = datetime.datetime.now()
+    # we have worked it out where we will be passing the vol and issue to further filter from in the link
+    vol = request.POST.get("vol", None)
+    if (vol == None):
+        vol = request.GET.get("vol", None)
+    issue = request.POST.get("issue", None)
+    if (issue == None):
+        issue = request.GET.get("issue", None)
+
     articles = Brief.objects.filter(region__isnull=False)
     # articles = articles.filter(date__year=today.year, date__month=today.month)
     # for filtering to last month
     last_month = today.month - 1 if today.month > 1 else 12
     last_month_year = today.year if today.month > last_month else today.year - 1
     articles = articles.filter(date__year=last_month_year, date__month=last_month)
-
+    if vol:
+        articles = articles.filter(print_volume=vol)
+    if issue:
+        articles = articles.filter(print_issue=issue)
     articles = articles.order_by('region', '-date')[:25]
     context = {'articles': articles,}
     return render(request, 'spe_blog/regional_briefs.html', context)
