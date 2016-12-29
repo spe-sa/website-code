@@ -1,0 +1,58 @@
+{% extends "www_3col.html" %}
+{% load cms_tags sekizai_tags %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block content %}
+
+    <h3>Testing the context</h3>
+    <hr>
+    <h4>variables</h4>
+    {% for key, value in variables.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+
+    <h4>cookies</h4>
+    {% for key, value in cookies.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+
+
+    <h4>login</h4>
+    {% for key, value in login.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+    {#    authenticated: {{ login.authenticated }}<br>#}
+    {#    command: {{ login.command }}<br>#}
+    {#    label: {{ login.label }}<br>#}
+    {#    url: {{ login.url }}<br>#}
+    {#    target: {{ login.target_url }}#}
+
+    <h4>visitor</h4>
+    {% for key, value in visitor.items %}
+        {{ key }}:&nbsp;{{ value }}<br>
+    {% endfor %}
+
+    <h4>Active Users:</h4>
+    {% load request_tag %}
+    {% active_users in 10 minutes as user_list %}
+    {% for user in user_list %}
+        {{ user.username }}
+    {% endfor %}
+
+    {% placeholder "content" %}
+
+    {% addtoblock "js" %}
+        <script type="text/javascript" charset="utf-8">
+            $(function() {
+
+                // Add JQuery Here
+                console.log("Page Level Javascript Ran!");
+
+
+            });
+        </script>
+    {%  endaddtoblock %}
+    SAS WAS HERE!  AGAIN!
+
+{% endblock content %}

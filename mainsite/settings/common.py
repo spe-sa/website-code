@@ -108,6 +108,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
     'mainsite.middleware.visitor.VisitorMiddleware',
+    'devpages.middleware.devpages.DevpagesFallbackMiddleware',
     'request.middleware.RequestMiddleware',
 )
 
@@ -173,6 +174,7 @@ INSTALLED_APPS = (
     'spe_promotions',
     'carousel',
     # 'helloworld'
+    'devpages',
 )
 
 LANGUAGES = (
