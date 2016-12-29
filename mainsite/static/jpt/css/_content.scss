@@ -312,9 +312,16 @@
   .articleAuthorBox {
     //white-space:        nowrap;
     font-size:          14px;
-    font-weight:        $font-bold;
+    //font-weight:        $font-bold;
     padding-top:        10px;
     margin-bottom:      10px;
+
+    td {
+      vertical-align: top;
+    }
+    img {
+      padding-top: 5px;
+    }
   }
   .sponsored {
     margin:             0 0 15px 0 !important;
@@ -358,7 +365,7 @@
   padding-right:        0;
 
   img {
-    max-width:          500px;
+    //max-width:          500px;
     margin:             0 auto;
   }
 }
@@ -366,8 +373,8 @@
   img {
     //margin:             0 10px 0 10px;
     margin:             0 auto;
-    min-width:          100px;
-    height:             auto;
+    //min-width:          100px;
+    //height:             auto;
   }
 }
 .articleShares {

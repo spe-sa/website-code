@@ -142,7 +142,7 @@
       display:          block;
       text-transform:   uppercase;
       font-size:        12px;
-      font-weight:      400;
+      font-weight:      $font-bold;
       letter-spacing:   1px;
     }
     h3 {
@@ -159,7 +159,7 @@
   }
 }
 .poi-date {
-  color:            $col-orange;
+  color:            $col-red;
   display:          block;
   text-transform:   uppercase;
   font-size:        10px !important;
@@ -296,16 +296,28 @@
     color:              $col-bluehover;
   }
 }
+.listpic {
+  //min-width:          100px;
+  padding-bottom:     33%;
+  background-size:    cover;
+  background-position: center;
+}
+.sideListRight {
+  //border:               1px solid hotpink;
+  padding:              0 0 0 5px;
+}
 .sideListDate {
   color:                $col-twablue;
-  font-weight:          $font-light;
+  font-weight:          $font-bold;
   padding:              0 0 0 10px;
 }
 .sideListDateTWA {
-  color:                $col-orange;
-  font-weight:          $font-light;
+  color:                $col-red;
+  font-weight:          $font-bold;
+  font-size:            12px;
   padding:              0 0 0 0;
 }
+
 .sideListLock {
   //display:              none;
   color:                $col-red;
@@ -616,12 +628,12 @@
   }
 }
 .brief-date {
-  color:            $col-orange;
+  color:            $col-red;
   display:          block;
   text-transform:   uppercase;
-  font-size:        10px !important;
-  font-weight:      700;
+  font-size:        12px !important;
   letter-spacing:   1px;
+  font-weight:      $font-bold;
 }
 .briefofinterest {
   margin-bottom:    10px;
@@ -769,6 +781,7 @@
     }
     .techListDate {
       color:            $col-red;
+      font-weight:      $font-bold;
     }
   }
 }

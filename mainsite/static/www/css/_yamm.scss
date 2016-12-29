@@ -17,7 +17,8 @@
 }
 .navbar {
 //    border:3px solid orange;
-    min-height: 54px;
+    min-height: 53px;
+//  height: 30px;
     border-top: 1px solid $col-speblue2;
     background-color: $col-speblue;
     margin: 0;
@@ -33,7 +34,8 @@
     border:none;
 }
 .megarow {
-    padding: 40px 30px 30px 30px;
+  padding: 20px 30px 30px 30px;
+  border:none;
 
 
     .nav-col {
@@ -78,15 +80,16 @@
         }
 
         a {
-            margin-bottom: 1.5em;
+            margin-bottom: 0.5em;
             display: block;
             text-decoration: none;
 
             .link-title {
                 display: inline-block;
                 padding-top:6px;
-                font-size: 15px;
-                line-height: 1;
+                font-size: 18px;
+                //height: 38px;
+                //padding: 12px 0 0 0;
                 font-weight: 700;
                 color: $col-black;
                 letter-spacing: -0.02em;
@@ -98,7 +101,7 @@
         }
     }
     .navcolborder {
-        border-bottom: 1px solid $col-sprlghtgry;
+        //border-bottom: 1px solid $col-sprlghtgry;
         margin-bottom: 20px;
     }
     .last {
@@ -128,17 +131,20 @@
     text-align: left;
 }
 .navbar-default .navbar-nav > li > a {
-    min-height:53px;
+    min-height:55px;
     color:$col-white;
     font-weight: 600;
     font-size: 18px;
+    margin-bottom: 0;
+        //background-color: $col-white;
 
-    &:hover {
-        color: $col-speblue;
-        background-color: $col-sprlghtgry;
-    }
     &:visited {
         color: $col-white;
+    }
+    &:hover {
+        color: $col-speblue;
+        background-color: $col-white;
+        //border-bottom: 3px solid hotpink;
     }
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
@@ -185,12 +191,12 @@
     .dropdown-menu {
         left: auto;
         background-color:$col-white;
-        z-index: 9999;
+        z-index: 99999;
     }
 
     // Content with padding
     .yamm-content {
-        padding: 20px 30px;
+        //padding: 20px 30px;
     }
 
     // Fullwidth menu
@@ -201,6 +207,9 @@
 }
 .navbar-nav .open .dropdown-menu {
     background-color:$col-white;
+}
+.dropdown-menu {
+  border: none;
 }
 /* YAMM MENU END */
 /* *************************************** */
