@@ -92,8 +92,8 @@ class PromotionListingPlugin(CMSPlugin):
 
 class SimpleEventPromotion(models.Model):
     event = models.CharField(max_length=250)
-    event_start_date = models.DateTimeField(blank=True, null=True)
-    event_end_date = models.DateTimeField(blank=True, null=True)
+    event_start_date = models.DateTimeField()
+    event_end_date = models.DateTimeField()
     event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50)
     teaser = RichTextUploadingField(
