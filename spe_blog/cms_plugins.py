@@ -91,7 +91,7 @@ class BlogListingPlugin(BlogPluginBase):
     name = _('Blog Post Listing')
 
     def render(self, context, instance, placeholder):
-        queryset = Blog.objects.filter(published=True)
+        queryset = Blog.objects.filter(published=True).filter(publication_date__lte=datetime.now())
         error = None
         if instance.tag_filter:
             try:
