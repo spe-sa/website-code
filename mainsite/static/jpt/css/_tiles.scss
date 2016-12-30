@@ -211,7 +211,7 @@
     position:           relative;
 
     .story-text {
-      padding:          200px 15px 15px 15px;
+      padding:          15px 15px 15px 15px;
       background:       $img-twa-feature repeat-x top right;
       background-size:  contain;
       position:         absolute;
@@ -230,6 +230,10 @@
 .story-text {
       //height:           175px;
       overflow:         hidden;
+}
+.storyTextContent {
+  position:             absolute;
+  bottom:               0;
 }
 .whitefadebottom {
   background:           $img-whitefade repeat-x bottom left;
