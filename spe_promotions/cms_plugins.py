@@ -4,7 +4,6 @@ from itertools import chain
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.contrib.gis.geoip import GeoIP
-from django.db.models import Q
 
 from mainsite.context_processors.spe_context import (
     get_visitor, )
@@ -25,7 +24,9 @@ from .models import (
     SimpleEventMemberMissingDisciplineMessage,
     SimpleEventMemberMissingRegionMessage,
 )
-from spe_events.models import EventType
+
+
+# from spe_events.models import EventType
 
 
 # class ShowPromotionListingPlugin(CMSPluginBase):
@@ -181,11 +182,11 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionByDisciplineListingPlugin
-    name = ("Event Promotion Listing by Discipline")
+    name = "Event Promotion Listing by Discipline"
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
@@ -211,11 +212,11 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionByTopicListingPlugin
-    name = ("Event Promotion Listing by Topics")
+    name = "Event Promotion Listing by Topics"
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
@@ -241,11 +242,11 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionByRegionListingPlugin
-    name = ("Event Promotion Listing by Region")
+    name = "Event Promotion Listing by Region"
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
@@ -271,11 +272,11 @@ class ShowEventsListingPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionSelectionPlugin
-    name = ("Event Promotion Listing - Selected Events")
+    name = "Event Promotion Listing - Selected Events"
     form = SimplePromotionsSelectionForm
 
     def render(self, context, instance, placeholder):
@@ -295,7 +296,7 @@ class ShowEventsListingPlugin(CMSPluginBase):
         return context
 
 
-def GetRegion(context):
+def getRegion(context):
     # Use USA as the Default Region Because of Event Volume
     g = GeoIP()
     # ip = context['request'].META.get('REMOTE_ADDR', None)
@@ -322,19 +323,20 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventPromotionInUserRegionListingPlugin
-    name = ("Event Promotion Listing by Region Browsed From")
+    name = "Event Promotion Listing by Region Browsed From"
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
 
-        region = GetRegion(context)
+        region = getRegion(context)
 
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region,
-            event_type=instance.event_type.all()).order_by('last_impression')[:instance.count]
+                                                      event_type=instance.event_type.all()).order_by('last_impression')[
+                  :instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
@@ -353,11 +355,11 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = EventForMemberListingPlugin
-    name = ("Personalized Event Promotion Listing")
+    name = "Personalized Event Promotion Listing"
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
@@ -369,37 +371,40 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         no_discipline_promotions = SimpleEventMemberMissingDisciplineMessage.objects.all()
         ids_to_exclude = [o for o in no_discipline_promotions]
         no_region_promotions = SimpleEventMemberMissingRegionMessage.objects.all()
-        ids_to_exclude = ids_to_exclude + [o for o in no_region_promotions]
+        ids_to_exclude += [o for o in no_region_promotions]
         non_member_promotions = SimpleEventNonMemberMessage.objects.all()
-        ids_to_exclude = ids_to_exclude + [o for o in non_member_promotions]
+        ids_to_exclude += [o for o in non_member_promotions]
         exclude_id = [x.promotion.id for x in ids_to_exclude]
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
             id__in=exclude_id).order_by('last_impression')
-        append_objects = objects
+        # append_objects = objects
 
         if visitor:
             # The Member is Logged In
             if instance.show == 'discipline':
                 if visitor.primary_discipline:
-                    # sas 30-dec-2016: append doesn't work on querysets; going to try to filter differently instead using Q() filters
-                    #   since they support OR logic instead of trying to append like they are a list
+                    # sas 30-dec-2016: append doesn't work on querysets; going to try to filter differently using __in
+                    #  instead
                     if visitor.secondary_discipline:
                         # filter to either discipline and the type
-                        objects = objects.filter(disciplines__in=[visitor.primary_discipline, visitor.primary_discipline], event_type=instance.event_type.all())
-
+                        objects = objects.filter(
+                            disciplines__in=[visitor.primary_discipline, visitor.primary_discipline],
+                            event_type=instance.event_type.all())
                     else:
+                        # filter only to the primary discipline and type
                         objects = objects.filter(disciplines=visitor.primary_discipline,
                                                  event_type=instance.event_type.all())
-                        # filter only to the primary discipline and type
-                    # ---- ORIGINAL CODE --------
-                    # # Member - Primary Discipline Available
-                    # objects = objects.filter(disciplines=visitor.primary_discipline, event_type=instance.event_type.all())
-                    # # If a Secondary Discipline is Available Append Events for that Discipline
-                    # if visitor.secondary_discipline:
-                    #     for x in append_objects.filter(disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()):
-                    #         if x not in objects:
-                    #             objects.append(x)
-                    # ---- ORIGINAL CODE --------
+                        # ---- ORIGINAL CODE --------
+                        # # Member - Primary Discipline Available
+                        # objects = objects.filter(disciplines=visitor.primary_discipline, event_type=
+                        # instance.event_type.all())
+                        # # If a Secondary Discipline is Available Append Events for that Discipline
+                        # if visitor.secondary_discipline:
+                        #     for x in append_objects.filter(disciplines=visitor.secondary_discipline, event_type=
+                        # instance.event_type.all()):
+                        #         if x not in objects:
+                        #             objects.append(x)
+                        # ---- ORIGINAL CODE --------
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
@@ -414,7 +419,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         except Web_Region_Country.DoesNotExist:
                             region = 'USA'
                     else:
-                        region = GetRegion(context)
+                        region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
 
@@ -434,7 +439,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
-                    region = GetRegion(context)
+                    region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
@@ -444,7 +449,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                      'promotion')).order_by('last_impression')[
                              :1]
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
-            region = GetRegion(context)
+            region = getRegion(context)
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
             objects = list(chain(prepend_object, objects))
 
@@ -459,17 +464,18 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         self.render_template = instance.template
         return context
 
+
 class ShowUpcomingEventsListingPlugin(CMSPluginBase):
     class Meta:
         abstract = True
 
     allow_children = False
     cache = False
-    module = ('Event Promotions')
+    module = 'Event Promotions'
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
     model = UpcomingEventPromotionPlugin
-    name = ("List Upcoming Events")
+    name = "List Upcoming Events"
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
@@ -501,4 +507,3 @@ plugin_pool.register_plugin(ShowEventsListingPlugin)
 plugin_pool.register_plugin(ShowEventInUserRegionPromotionListing)
 plugin_pool.register_plugin(ShowEventsForMemberPlugin)
 plugin_pool.register_plugin(ShowUpcomingEventsListingPlugin)
-
