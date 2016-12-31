@@ -34,8 +34,8 @@ PLUGIN_TEMPLATES = (
 
 DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
-    (DEFAULT_DISPLAY_TYPE, 'Events in Discipline Regardless of Region'),
-    ('region', 'Regional Events Only'),
+    (DEFAULT_DISPLAY_TYPE, 'Events in Discipline'),
+    ('region', 'Events in Region'),
 )
 
 
