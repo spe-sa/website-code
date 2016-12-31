@@ -465,13 +465,11 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today)
-
-        objects = objects.filter(disciplines__in=instance.disciplines.all(),
-                                 event_type__in=instance.event_type.all(),
-                                 regions__in=instance.regions.all(),
-                                 event_date__gte=datetime.date.today()).order_by('event_date').distinct()[
-                  :instance.count]
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
+                                                      disciplines__in=instance.disciplines.all(),
+                                                      event_type__in=instance.event_type.all(),
+                                                      regions__in=instance.regions.all(),
+                                                      event_start_date__gte=today).order_by('event_start_date').distinct()[:instance.count]
 
         for x in objects:
             x.url = "/promotion/event/" + str(x.id) + "/"
