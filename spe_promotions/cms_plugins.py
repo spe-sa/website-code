@@ -383,28 +383,14 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
             # The Member is Logged In
             if instance.show == 'discipline':
                 if visitor.primary_discipline:
-                    # sas 30-dec-2016: append doesn't work on querysets; going to try to filter differently using __in
-                    #  instead
+                    # Member - Primary Discipline Available
+                    objects = objects.filter(disciplines=visitor.primary_discipline,
+                                             event_type=instance.event_type.all())
+                    # If a Secondary Discipline is Available Append Events for that Discipline
                     if visitor.secondary_discipline:
-                        # filter to either discipline and the type
-                        objects = objects.filter(
-                            disciplines__in=[visitor.primary_discipline, visitor.primary_discipline],
-                            event_type=instance.event_type.all())
-                    else:
-                        # filter only to the primary discipline and type
-                        objects = objects.filter(disciplines=visitor.primary_discipline,
-                                                 event_type=instance.event_type.all())
-                        # ---- ORIGINAL CODE --------
-                        # # Member - Primary Discipline Available
-                        # objects = objects.filter(disciplines=visitor.primary_discipline, event_type=
-                        # instance.event_type.all())
-                        # # If a Secondary Discipline is Available Append Events for that Discipline
-                        # if visitor.secondary_discipline:
-                        #     for x in append_objects.filter(disciplines=visitor.secondary_discipline, event_type=
-                        # instance.event_type.all()):
-                        #         if x not in objects:
-                        #             objects.append(x)
-                        # ---- ORIGINAL CODE --------
+                        append_objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
+                            disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).exclude(id__in=exclude_id).order_by('last_impression')
+                        objects = list(chain(objects, append_objects))
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
