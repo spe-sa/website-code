@@ -81,6 +81,7 @@ BLOG_TEMPLATES = (
 DEFAULT_BRIEF_TEMPLATE = 'spe_blog/plugins/brief_interest.html'
 BRIEF_TEMPLATES = (
     ('spe_blog/plugins/brief_index.html', 'Index listing'),
+    ('spe_blog/plugins/brief_index1c.html', 'Index listing One Column'),
     ('spe_blog/plugins/brief_accordion.html', 'POI Accordion Listing'),
     ('spe_blog/plugins/side_list.html', 'Brief List'),
     ('spe_blog/plugins/brief_list_pics.html', 'Brief List with Images'),

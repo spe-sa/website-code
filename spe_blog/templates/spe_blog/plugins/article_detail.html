@@ -105,10 +105,10 @@
 
             {% if show_paybox %}
                 <div class="col-sm-12 becomeMember text-center">
-                    <p>You have access to this full article to experience the outstanding content<br>
-                        that is available to SPE members and {{ article.publication.code }} subscribers.</p>
-                    <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to {{ article.publication.code }}</a><br>
-                    in order to gain full access to all that {{ article.publication.code }} has to offer.</p>
+                    <p>You have access to this full article to experience the outstanding content available to SPE members and {{ article.publication.code }} subscribers.</p>
+{#                    <p>Please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to {{ article.publication.code }}</a><br>#}
+{#                    in order to gain full access to all that {{ article.publication.code }} has to offer.</p>#}
+                    <p>To ensure continued access to {{ article.publication.code }}'s content, please <a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, <a href="http://www.spe.org/join/">JOIN SPE</a>, or <a href="{{ article.publication.subscription_url }}">Subscribe to {{ article.publication.code }}</a></p>
             </div>
             {% endif %}
 
