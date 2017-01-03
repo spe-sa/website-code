@@ -482,3 +482,18 @@ class MarketoFormPlugin(CMSPlugin):
 
     def __unicode__(self):
         return "Marketo Form: " + str(self.marketo_form)
+
+
+class TimeZone(models.Model):
+    code = models.CharField(max_length=12)
+    description = models.CharField(max_length=120, blank=True, null=True)
+    gmt_offset = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        buff = str(self.code) + ": " + str(self.description)
+        if self.display_postfix:
+            buff += ' [' + str(self.gmt_offset) + "]"
+        # return self.description is not None and self.description or ''
+
+    class Meta:
+        ordering = ['code']
