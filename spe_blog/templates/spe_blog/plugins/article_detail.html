@@ -78,7 +78,8 @@
     {% endif %}
 
 {% if article.picture and article.picture.url %}
-    <div class="col-sm-6 col-sm-offset-3 articlePicture">
+{#    <div class="col-sm-6 col-sm-offset-3 articlePicture">#}
+    <div class="col-sm-12 articlePicture">
         <img src="{{article.picture.url}}" alt="{{article.alternate}}" class="img-responsive">
         {% if article.picture_attribution %}
             <div class="imgattrib">{{ article.picture_attribution }}</div>
