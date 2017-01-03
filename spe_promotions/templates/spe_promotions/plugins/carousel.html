@@ -27,6 +27,13 @@
             {% if promo.sponsored %}
                 <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
+                                <p class="sideListDateTWA" style="color:#FDD017">
+                                    {% if promo.event_text_date %}
+                                        {{ promo.event_text_date }}
+                                    {% else %}
+                                        {{ promo.event_start_date|date:"d F Y" }}
+                                    {% endif %} - {{ promo.event_location }}</p>
+                {#                <span class="sideListDateTWA"></span>#}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
                       </a>
@@ -43,7 +50,7 @@
                           </div>
                       </a>
                   </div>
-              {% endif %}
+              {% endif %}{# forloop first #}
           {% endif %}
 
       {% endfor %}

@@ -18,6 +18,13 @@
             {% if promo.sponsored %}
                 <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
+                <p class="sideListDateTWA">
+                    {% if promo.event_text_date %}
+                        {{ promo.event_text_date }}
+                    {% else %}
+                        {{ promo.event_start_date|date:"d F Y" }}
+                    {% endif %} - {{ promo.event_location }}</p>
+                <p>{{ promo.teaser | safe }}</p>
                 <p>{{ promo.teaser | safe }}</p>
             </div>
         </div>
