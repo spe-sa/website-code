@@ -120,9 +120,9 @@
 
             {{ article.introduction | safe }}...
 
-            <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and OGF subscribers.<br>
+            <div class="col-sm-12 becomeMember text-center">This article is reserved for SPE members and {{ article.publication.code }} subscribers.<br>
                 If you would like to continue reading,<br>
-                please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to OGF</a>
+                please {% if is_loggedout %}<a href="{{ login.url }}" class="loginLink">{{ login.label }}</a>, {% endif %}<a href="http://www.spe.org/join/">JOIN SPE</a> or <a href="{{ article.publication.subscription_url }}">Subscribe to {{ article.publication.code }}</a>
             </div>
 
 
