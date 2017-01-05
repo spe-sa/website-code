@@ -1,4 +1,6 @@
 from django.contrib.gis.geoip import GeoIP
+from mainsite.models import Web_Region_Country
+
 
 def getRegion(context):
     # Use USA as the Default Region Because of Event Volume

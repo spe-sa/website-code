@@ -21,11 +21,17 @@ from ..models import (
     VisitorSegmentPluginModel,
     VisitorClassificationSegmentPluginModel,
     VisitorPropertySegmentPluginModel,
+    VisitorDisciplineSegmentPluginModel,
+    VisitorRegionSegmentPluginModel,
+
 )
 
 from mainsite.context_processors.spe_context import (
     get_context_variable,
     get_visitor,)
+
+from mainsite.common import getRegion
+from mainsite.models import Web_Region_Country
 
 
 class FallbackSegmentPlugin(SegmentPluginBase):
@@ -282,6 +288,44 @@ class CountrySegmentPlugin(SegmentPluginBase):
             code = 'XB'
         return code == instance.country_code
 
+class VisitorDisciplineSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the discipline of the visitor.
+    """
+
+    model = VisitorDisciplineSegmentPluginModel
+    name = _('John-segment by discipline')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        return instance.discipline == visitor.primary_discipline
+
+
+class VisitorRegionSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the region of the visitor.
+    """
+
+    model = VisitorRegionSegmentPluginModel
+    name = _('John-segment by region')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+
+        if visitor.country:
+            # Member - Region Available
+            try:
+                region = Web_Region_Country.objects.get(country_UN=visitor.country).region
+            except Web_Region_Country.DoesNotExist:
+                region = 'USA'
+        else:
+            region = getRegion(context)
+        return instance.region == region
+
+
+
 plugin_pool.register_plugin(AuthenticatedSegmentPlugin)
 plugin_pool.register_plugin(CookieSegmentPlugin)
 plugin_pool.register_plugin(VariableSegmentPlugin)
@@ -292,3 +336,5 @@ plugin_pool.register_plugin(FallbackSegmentPlugin)
 plugin_pool.register_plugin(DisciplineSegmentPlugin)
 plugin_pool.register_plugin(CountrySegmentPlugin)
 plugin_pool.register_plugin(SwitchSegmentPlugin)
+plugin_pool.register_plugin(VisitorDisciplineSegmentPlugin)
+plugin_pool.register_plugin(VisitorRegionSegmentPlugin)

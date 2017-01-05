@@ -293,7 +293,9 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowUpcomingEventsListingPlugin',
                     'BlogPlugin',
                     'BlogListingPlugin',
-                    'BlogDetailPlugin'
+                    'BlogDetailPlugin',
+                    'VisitorDisciplineSegmentPlugin',
+                    'VisitorRegionSegmentPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
@@ -396,6 +398,8 @@ CMS_PLACEHOLDER_CONF = {
                 'DisciplineSegmentPlugin',
                 'CountrySegmentPlugin',
                 'BootstrapColumnPlugin',
+                'VisitorDisciplineSegmentPlugin',
+                'VisitorRegionSegmentPlugin',
             ],
         },
         'plugin_modules': {

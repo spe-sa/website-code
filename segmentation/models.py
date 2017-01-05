@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _, string_concat
 
 from cms.models import CMSPlugin
 
+from mainsite.models import Regions, Tier1Discipline, Web_Region
+
 DEFAULT_DATA_TYPE = 'string'
 DATA_TYPES = (
     ("string", 'String'),
@@ -339,6 +341,42 @@ class AuthenticatedSegmentPluginModel(SegmentBasePluginModel):
     @property
     def configuration_string(self):
         return _('is Authenticated')
+
+
+class VisitorDisciplineSegmentPluginModel(SegmentBasePluginModel):
+    discipline = models.ForeignKey(Tier1Discipline, limit_choices_to={'active': True})
+
+    def __unicode__(self):
+        buf = " (discipline: " + self.discipline.name + ")"
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Discipline equals “{value}”').format(value=self.discipline)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
+class VisitorRegionSegmentPluginModel(SegmentBasePluginModel):
+    region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True})
+
+    def __unicode__(self):
+        buf = " (regions: " + self.region.region_name + ")"
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Region equals “{value}”').format(value=self.region)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
 
 
 class DisciplineSegmentPluginModel(SegmentBasePluginModel):
