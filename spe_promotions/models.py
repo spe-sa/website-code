@@ -122,7 +122,7 @@ class SimpleEventPromotion(models.Model):
         get_latest_by = ['end']
 
     def __unicode__(self):
-        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
+        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event_type.name + " - " + self.event
 
 
 class SimpleEventNonMemberMessage(models.Model):

@@ -6,7 +6,7 @@ from .models import SimpleEventPromotion, EventPromotionSelectionPlugin
 
 class SimplePromotionsSelectionForm(ModelForm):
     promotions = ModelMultipleChoiceField(SimpleEventPromotion.objects.all().order_by('-start', '-end'),
-                                      widget=FilteredSelectMultiple("briefs", False, ))
+                                      widget=FilteredSelectMultiple("promotions", False, ))
 
     class Meta:
         model = EventPromotionSelectionPlugin
