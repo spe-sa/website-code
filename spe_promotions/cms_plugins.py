@@ -6,8 +6,11 @@ from cms.plugin_pool import plugin_pool
 from django.contrib.gis.geoip import GeoIP
 
 from mainsite.context_processors.spe_context import (
-    get_visitor, )
+    get_visitor,
+)
 from mainsite.models import Web_Region_Country
+from mainsite.common import getRegion
+
 from .forms import SimplePromotionsSelectionForm
 from .models import (
     SimpleEventPromotion,
@@ -296,27 +299,6 @@ class ShowEventsListingPlugin(CMSPluginBase):
         return context
 
 
-def getRegion(context):
-    # Use USA as the Default Region Because of Event Volume
-    g = GeoIP()
-    # ip = context['request'].META.get('REMOTE_ADDR', None)
-    ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-    # Default to US because of Event Volume
-    country = 'USA'
-    if not ip:
-        # Set Default IP to SPE if no IP Available in Request
-        ip = '192.152.183.80'
-    if ip:
-        loc = g.city(ip)
-        if loc:
-            country = loc['country_code3']
-    try:
-        region = Web_Region_Country.objects.get(country_UN=country).region
-    except Web_Region_Country.DoesNotExist:
-        region = 'USA'
-    return region
-
-
 class ShowEventInUserRegionPromotionListing(CMSPluginBase):
     class Meta:
         abstract = True
@@ -405,7 +387,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         except Web_Region_Country.DoesNotExist:
                             region = 'USA'
                     else:
-                        region = getRegion(context)
+                        region = getRegion(context, 'USA')
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
 
@@ -435,7 +417,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                      'promotion')).order_by('last_impression')[
                              :1]
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
-            region = getRegion(context)
+            region = getRegion(context, 'USA')
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
             objects = list(chain(prepend_object, objects))
 
