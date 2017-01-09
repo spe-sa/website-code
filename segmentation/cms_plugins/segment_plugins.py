@@ -300,8 +300,10 @@ class VisitorDisciplineSegmentPlugin(SegmentPluginBase):
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
         visitor = get_visitor(request)
-        return instance.discipline == visitor.primary_discipline
-
+        if visitor:
+            return instance.discipline == visitor.primary_discipline
+        else:
+            return False
 
 class VisitorRegionSegmentPlugin(SegmentPluginBase):
     """
@@ -315,14 +317,14 @@ class VisitorRegionSegmentPlugin(SegmentPluginBase):
         request = context.get('request')
         visitor = get_visitor(request)
 
-        if visitor.country:
-            # Member - Region Available
-            try:
-                region = Web_Region_Country.objects.get(country_UN=visitor.country).region
-            except Web_Region_Country.DoesNotExist:
-                region = 'USA'
-        else:
-            region = getRegion(context,'USA')
+        region = getRegion(context, 'USA')
+        if visitor:
+            if visitor.country:
+                # Member - Region Available
+                try:
+                    region = Web_Region_Country.objects.get(country_UN=visitor.country).region
+                except Web_Region_Country.DoesNotExist:
+                    region = 'USA'
         return instance.region == region
 
 
