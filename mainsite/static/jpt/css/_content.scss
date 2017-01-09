@@ -366,9 +366,10 @@
 
   img {
     //max-width:          500px;
-    margin:             0 auto;
+    //margin:             0 auto;
   }
 }
+
 .articleBodyText {
   img {
     //margin:             0 10px 0 10px;
@@ -638,7 +639,7 @@
 }
 
 .featurecol, .areaContent, .areaRightSide {
-  padding:              0;
+  padding:              0 0 10px 0;
 }
 .editorialcol {
   padding:              0 10px 10px 10px;
