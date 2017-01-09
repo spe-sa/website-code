@@ -23,6 +23,7 @@ from ..models import (
     VisitorPropertySegmentPluginModel,
     VisitorDisciplineSegmentPluginModel,
     VisitorRegionSegmentPluginModel,
+    VisitorIPtoRegionSegmentPluginModel,
 
 )
 
@@ -321,7 +322,21 @@ class VisitorRegionSegmentPlugin(SegmentPluginBase):
             except Web_Region_Country.DoesNotExist:
                 region = 'USA'
         else:
-            region = getRegion(context)
+            region = getRegion(context,'USA')
+        return instance.region == region
+
+
+class VisitorIPtoRegionSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the region of the visitor as determined by IP.
+    """
+
+    model = VisitorIPtoRegionSegmentPluginModel
+    name = _('John-segment by region determined by IP')
+
+    def is_context_appropriate(self, context, instance):
+        region = getRegion(context, instance.fallback_region)
+
         return instance.region == region
 
 
@@ -338,3 +353,5 @@ plugin_pool.register_plugin(CountrySegmentPlugin)
 plugin_pool.register_plugin(SwitchSegmentPlugin)
 plugin_pool.register_plugin(VisitorDisciplineSegmentPlugin)
 plugin_pool.register_plugin(VisitorRegionSegmentPlugin)
+plugin_pool.register_plugin(VisitorIPtoRegionSegmentPlugin)
+

@@ -365,7 +365,27 @@ class VisitorRegionSegmentPluginModel(SegmentBasePluginModel):
     region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True})
 
     def __unicode__(self):
-        buf = " (regions: " + self.region.region_name + ")"
+        buf = " (region: " + self.region.region_name + ")"
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Region equals “{value}”').format(value=self.region)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
+class VisitorIPtoRegionSegmentPluginModel(SegmentBasePluginModel):
+    region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True})
+    fallback_region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True}, verbose_name='Fallback Region if IP Unusable', related_name='fallback')
+
+    def __unicode__(self):
+        buf = " (region: " + self.region.region_name + ")"
+        buf += " (fallback region for unusable IP: " + self.fallback_region.region_name + ")"
         return buf
 
     @property

@@ -400,6 +400,7 @@ CMS_PLACEHOLDER_CONF = {
                 'BootstrapColumnPlugin',
                 'VisitorDisciplineSegmentPlugin',
                 'VisitorRegionSegmentPlugin',
+                'VisitorIPtoRegionSegmentPlugin',
             ],
         },
         'plugin_modules': {
