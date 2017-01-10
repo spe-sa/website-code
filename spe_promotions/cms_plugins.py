@@ -314,7 +314,7 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
 
-        region = getRegion(context)
+        region = getRegion(context, 'USA')
 
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region,
                                                       event_type=instance.event_type.all()).order_by('last_impression')[
@@ -407,7 +407,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
-                    region = getRegion(context)
+                    region = getRegion(context, 'USA')
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
