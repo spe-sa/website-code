@@ -1,9 +1,9 @@
 {% load cms_tags sekizai_tags staticfiles %}
     <!-- FOOTER Begin -->
     <div class="footerUpper row dontPrintMe">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="footerULeft col-md-3">
+                <div class="footerULeft col-md-2">
                     <img src="{% static 'jpt/img/JPT_wText_Horizontal.svg' %}" class="footerLogo">
                     <ul class="footerSocial">
                         <li><a href="https://www.facebook.com/spemembers" target="_blank"><i class="fa fa-facebook"></i></a></li>
@@ -11,47 +11,44 @@
                         <li><a href="https://www.linkedin.com/groups/57660/profile"><i class="fa fa-linkedin" target="_blank"></i></a></li>
                         <li><a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-play" target="_blank"></i></a></li>
                     </ul>
-                    <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers, All Rights Reserved.</p>
+                    <p class="copyright">&copy;2003-2016 Society of Petroleum Engineers<br>All Rights Reserved.</p>
                 </div>
-                <div class="footerURight col-md-9">
-{#                    <div class="col-md-2 col-md-offset-1">#}
-{#                        <h3>MAIN</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/careers/">Careers</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/technology/">Technology</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/business/">Business</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/spe">SPE</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives/">Archives</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3">#}
-{#                        <h3>DEPARTMENTS</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/academia/">Academia</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/business-benchmarks/">Business Benchmarks</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/discover-career/">Discover A Career</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/forum/">Forum</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/hr-discussion/">HR Discussion</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/pillars-industry/">Pillars of Industry</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/soft-skills/">Soft Skills</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-3">#}
-{#                        <h3>&nbsp;</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/spe/">SPE Newsfeed</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/student-focus/">Student Focus</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/tech-topics/">Technical Topics</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/twa-crowdsourcing/">TWA Crowdsourcing</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/interview/">TWA Interview</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/your-best-shot/">Your Best Shot</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/yp-newsflash/">YP Newsflash</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/yps-guide-to/">YP's Guide To...</a></p>#}
-{#                    </div>#}
-{#                    <div class="col-md-2">#}
-{#                        <h3>UTILITY</h3>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives//twa/about-twa/">About</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/archives//twa/twa-editorial-board/">TWA Editorial Board</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/contact/">Contact</a></p>#}
-{#                        <p><a href="https://www.spe.org/en/twa/advertise/">Advertise</a></p>#}
-{#                    </div>#}
-                    <div class="col-md-2 col-md-offset-3">
-{#                        <h3>SPE</h3>#}
+                <div class="footerURight col-md-10">
+                    <div class="col-md-2 col-md-offset-1">
+{#                    <div class="col-md-2 padL10">#}
+                        <h3>MAIN</h3>
+                        <p><a href="https://www.spe.org/en/jpt/topics/">Topics</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/technology/">Technology</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/monthly-features/">Features</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/technical-papers/">Papers</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/archive/">Archive</a></p>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>DEPARTMENTS</h3>
+                        <p><a href="https://www.spe.org/en/jpt/guest-editorial/">Guest Editorial</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/management/">Managment</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/ep-notes/">E&P Notes</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/conference-coverage/">Conference Coverage</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/people/">People</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/technology-applications/">Technology Applications</a></p>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>&nbsp;</h3>
+                        <p><a href="https://www.spe.org/en/jpt/talent-technology/">Talent & Technology</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/beyond-headlines/">Beyond the Headlines</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/presidents-column/">President's Column</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/editor-comments/">Comments</a></p>
+                        <p><a href="https://www.spe.org/en/jpt/spe-member-news/">SPE News</a></p>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>UTILITY</h3>
+                        <p><a href="https://www.spe.org/en/jpt/about-jpt/">About</a></p>
+                        <p><a href="http://www.spe.org/contact/">Contact</a></p>
+                        <p><a href="http://www.spe.org/publications/subscribe.php">Subscribe</a></p>
+                        <p><a href="">Advertise</a></p>
+                    </div>
+                    <div class="col-md-2">
+                        <h3>SPE</h3>
                         <p><a href="http://www.spe.org/">SPE</a></p>
                         <p><a href="http://www.spe.org/jpt/">JPT</a></p>
                         <p><a href="https://www.spe.org/en/ogf/ogf-main-page/">OGF</a></p>
