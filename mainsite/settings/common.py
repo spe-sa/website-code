@@ -401,6 +401,7 @@ CMS_PLACEHOLDER_CONF = {
                 'VisitorDisciplineSegmentPlugin',
                 'VisitorRegionSegmentPlugin',
                 'VisitorIPtoRegionSegmentPlugin',
+                'DateTimeSegmentPlugin',
             ],
         },
         'plugin_modules': {

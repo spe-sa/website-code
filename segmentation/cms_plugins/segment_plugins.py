@@ -2,7 +2,8 @@
 
 from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
-from datetime import datetime, date
+
+from django.utils import timezone
 from django.utils.dateparse import parse_date
 from cms.plugin_pool import plugin_pool
 
@@ -24,6 +25,7 @@ from ..models import (
     VisitorDisciplineSegmentPluginModel,
     VisitorRegionSegmentPluginModel,
     VisitorIPtoRegionSegmentPluginModel,
+    DateTimeSegmentPluginModel,
 
 )
 
@@ -242,7 +244,7 @@ class DisciplineSegmentPlugin(SegmentPluginBase):
     """
 
     model = DisciplineSegmentPluginModel
-    name = _('Segment by discipline')
+    name = _('Old - DO NOT USE -Segment by discipline')
 
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
@@ -260,7 +262,7 @@ class CountrySegmentPlugin(SegmentPluginBase):
     """
 
     model = CountrySegmentPluginModel
-    name = _('Segment by country')
+    name = _('Old - DO NOT USE -Segment by country')
 
     #
     # If django-easy-select2 is installed, we can greatly enhance the
@@ -295,7 +297,7 @@ class VisitorDisciplineSegmentPlugin(SegmentPluginBase):
     """
 
     model = VisitorDisciplineSegmentPluginModel
-    name = _('John-segment by discipline')
+    name = _('Segment by visitor discipline')
 
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
@@ -311,7 +313,7 @@ class VisitorRegionSegmentPlugin(SegmentPluginBase):
     """
 
     model = VisitorRegionSegmentPluginModel
-    name = _('John-segment by region')
+    name = _('Segment by visitor region')
 
     def is_context_appropriate(self, context, instance):
         request = context.get('request')
@@ -334,13 +336,28 @@ class VisitorIPtoRegionSegmentPlugin(SegmentPluginBase):
     """
 
     model = VisitorIPtoRegionSegmentPluginModel
-    name = _('John-segment by region determined by IP')
+    name = _('Segment by region determined by IP')
 
     def is_context_appropriate(self, context, instance):
         region = getRegion(context, instance.fallback_region)
 
         return instance.region == region
 
+
+class DateTimeSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the region of the visitor as determined by IP.
+    """
+
+    model = DateTimeSegmentPluginModel
+    name = _('Segment by Start and End Times')
+
+    def is_context_appropriate(self, context, instance):
+        today = timezone.now()
+        if instance.start <= today <= instance.end:
+            return True
+        else:
+            return False
 
 
 plugin_pool.register_plugin(AuthenticatedSegmentPlugin)
@@ -356,4 +373,4 @@ plugin_pool.register_plugin(SwitchSegmentPlugin)
 plugin_pool.register_plugin(VisitorDisciplineSegmentPlugin)
 plugin_pool.register_plugin(VisitorRegionSegmentPlugin)
 plugin_pool.register_plugin(VisitorIPtoRegionSegmentPlugin)
-
+plugin_pool.register_plugin(DateTimeSegmentPlugin)

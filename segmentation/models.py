@@ -399,6 +399,25 @@ class VisitorIPtoRegionSegmentPluginModel(SegmentBasePluginModel):
         )()
 
 
+class DateTimeSegmentPluginModel(SegmentBasePluginModel):
+    start = models.DateTimeField()
+    end = models.DateTimeField()
+
+    def __unicode__(self):
+        buf = " (start: " + self.start.strftime('%Y-%m-%d %H:%M') + ")"
+        buf += " (end: " + self.end.strftime('%Y-%m-%d %H:%M') + ")"
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Time in range “{:%Y-%m-%d %H:%M} - {:%Y-%m-%d %H:%M}”').format(self.start, self.end)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
 class DisciplineSegmentPluginModel(SegmentBasePluginModel):
     DISCIPLINES = (
         ('D&C', 'Drilling and Completions'),
