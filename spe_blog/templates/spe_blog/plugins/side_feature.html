@@ -5,7 +5,7 @@
 {#    in this template, only pull the first article in the list   #}
     {% if forloop.first %}
         <a href={{ article.get_absolute_url}}>
-        <div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
+        <div class="tile-editorial editorial-padding {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
 
             {# if there is a featured picture for the article, show it #}
             {% if article.picture and article.picture.url %}
@@ -20,7 +20,7 @@
             {% endif %}
             </div>
         {% else %}
-            <p style="padding:0 0 0 10px;"><span>{{ article.date|date:"d F Y" }}</span> <span class="authorNameBox">{{ article.author }}</span></p>
+            <p><span>{{ article.date|date:"d F Y" }}</span>{% if article.author %} | <span class="authorNameBox">{{ article.author }}</span>{% endif %}</p>
         {% endif %}
             {# if the article has a author pic AND bio, then show that, otherwise show the article intro paragraph #}
             {% if article.author_picture and article.author_bio %}

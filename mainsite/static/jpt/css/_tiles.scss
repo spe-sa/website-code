@@ -225,8 +225,8 @@
         font-size:      20px;
       }
       p {
-        font-weight:    600;
-        font-size:      18px;
+        font-weight:    400;
+        font-size:      16px;
       }
     }
   }
@@ -282,14 +282,14 @@
   border-bottom:        1px solid $col-white;
 }
 .sideListTitle {
-  font-size:            15px;
+  font-size:            18px;
   font-weight:          $font-bold;
   font-family:          $font-tiletitle;
   margin-top:           5px;
   //padding:              5px 0 0 10px;
   line-height:          1em;
-  padding-left:         10px;
-  padding-bottom:       5px;
+  //padding-left:         10px;
+  padding-bottom:       10px;
 
   a:hover {
     color:              $col-bluehover;
@@ -339,11 +339,11 @@
   margin-bottom:        10px;
 }
 .sideListIntro {
-  padding:              10px 0 0 10px;
+  //padding:              10px 0 0 10px;
 }
 .tile-editorial {
   background-color:     $col-black;
-  //padding:              15px;
+  //padding:              5px;
   //margin-bottom:        15px;
   //overflow:             hidden;
   overflow-y:           auto;
@@ -394,6 +394,9 @@
   .sideListDate {
     color:              $col-red;
   }
+}
+.editorial-padding {
+  padding:            5px;
 }
 .tile-textbelow {
   //padding-bottom:       20px;
@@ -474,7 +477,14 @@
         //top:            200px;
         bottom:         0;
         left:           0;
+        padding-left:   10px;
+        padding-right:  10px;
         padding-bottom: 30px;
+
+        h4 {
+          font-size:    16px;
+          font-weight:  400;
+        }
       }
     }
   }
@@ -573,6 +583,7 @@
 .detailImgWrapSide {
   height:               150px;
   margin-bottom:        5px;
+  padding:              3px;
 }
 .poipic {
   min-height:           125px;
@@ -812,7 +823,7 @@
 }
 .bloglist {
   .sideListTitle {
-    //font-size:    20px;
+    font-size:    18px;
     font-weight:  $font-bold;
   }
 }

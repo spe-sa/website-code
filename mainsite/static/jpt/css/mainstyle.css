@@ -528,7 +528,7 @@ a {
   font-weight: 700; }
 
 .authorNameBox {
-  color: #00ACED; }
+  color: #ffa42d; }
 
 .articleTitleBox {
   padding-left: 0;
@@ -1022,8 +1022,8 @@ table {
         font-weight: 600;
         font-size: 20px; }
       .featured-story .story-wrap .story-text p {
-        font-weight: 600;
-        font-size: 18px; }
+        font-weight: 400;
+        font-size: 16px; }
 
 .story-text {
   overflow: hidden; }
@@ -1068,13 +1068,12 @@ table {
   border-bottom: 1px solid white; }
 
 .sideListTitle {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   font-family: "rooney-sans", sans-serif;
   margin-top: 5px;
   line-height: 1em;
-  padding-left: 10px;
-  padding-bottom: 5px; }
+  padding-bottom: 10px; }
   .sideListTitle a:hover {
     color: #2d9e9f; }
 
@@ -1115,9 +1114,6 @@ table {
   border-bottom: 1px dotted white;
   margin-bottom: 10px; }
 
-.sideListIntro {
-  padding: 10px 0 0 10px; }
-
 .tile-editorial {
   background-color: #2a2a2a;
   overflow-y: auto; }
@@ -1156,6 +1152,9 @@ table {
     color: #2a2a2a; }
   .tile-editorial-txtblck .sideListDate {
     color: #e51837; }
+
+.editorial-padding {
+  padding: 5px; }
 
 .tile-textbelow {
   padding: 0 15px 20px 0; }
@@ -1212,7 +1211,12 @@ table {
       width: 100%;
       bottom: 0;
       left: 0;
+      padding-left: 10px;
+      padding-right: 10px;
       padding-bottom: 30px; }
+      #myCarousel .carousel-inner .item .carousel-caption h4 {
+        font-size: 16px;
+        font-weight: 400; }
 
 .eventsNearYou .locCurrent {
   color: #424143;
@@ -1285,7 +1289,8 @@ table {
 
 .detailImgWrapSide {
   height: 150px;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  padding: 3px; }
 
 .poipic {
   min-height: 125px; }
@@ -1451,6 +1456,7 @@ table {
       font-weight: 700; }
 
 .bloglist .sideListTitle {
+  font-size: 18px;
   font-weight: 700; }
 
 /* =================================================================== */
