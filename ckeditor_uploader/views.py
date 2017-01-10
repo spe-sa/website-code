@@ -264,22 +264,22 @@ def browse(request):
     for img in img_files:
         if i >= 25:
             break
-        if file_type == 'Image':
-            if img.get('is_image') == True:
-                # only move over images
-                logger.debug("moving image: %s [%s]", img.get('src', ''), img.get('modified', ''))
-                i = i + 1
-                show_files.append(img)
-            else:
-                logger.debug("file [%s] is not an image skipping...", img.get('src', ''))
-        else: # file type is File
-            if img.get('is_image') == False:
+        # if file_type == 'Image':
+        #     if img.get('is_image') == True:
+        #         # only move over images
+        #         logger.debug("moving image: %s [%s]", img.get('src', ''), img.get('modified', ''))
+        #         i = i + 1
+        #         show_files.append(img)
+        #     else:
+        #         logger.debug("file [%s] is not an image skipping...", img.get('src', ''))
+        # else: # file type is File
+        #     if img.get('is_image') == False:
                 # only move over files that are not images
-                logger.debug("moving file: %s [%s]", img.get('src', ''), img.get('modified', ''))
-                i = i + 1
-                show_files.append(img)
-            else:
-                logger.debug("file [%s] is an image skipping...", img.get('src', ''))
+        logger.debug("moving file: %s [%s]", img.get('src', ''), img.get('modified', ''))
+        i = i + 1
+        show_files.append(img)
+            # else:
+            #     logger.debug("file [%s] is an image skipping...", img.get('src', ''))
 
     logger.debug("moved %s files", i)
 
