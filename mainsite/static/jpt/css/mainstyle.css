@@ -540,7 +540,7 @@ a {
   padding-right: 0; }
 
 .articleBodyText img {
-  margin: 0 auto; }
+  margin: 0 10px 0 10px; }
 
 .articleShares {
   font-size: 18px; }
