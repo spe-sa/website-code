@@ -346,7 +346,8 @@ class ShowTopicsListPlugin(TopicsPluginBase):
           where t.topicslistplugin_id = %s
           and p.cmsplugin_ptr_id is not null
           and at.topics_id is not null
-          and a.publication_id = p.publication_id;
+          and a.publication_id = p.publication_id
+          and a.published = 1;
         ''', [instance.pk])
         used_topic_ids = cursor.fetchall()
 
