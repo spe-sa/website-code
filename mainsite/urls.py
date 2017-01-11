@@ -54,6 +54,7 @@ urlpatterns = i18n_patterns('',
     # ex: /ogf/  -> /ogf/ogf-main-page/
     url(r'^ogf/$', RedirectView.as_view(url='ogf-main-page/', permanent=True), name='ogf-main-page'),
     url(r'^twa/$', RedirectView.as_view(url='twa-main-page/', permanent=True), name='twa-main-page'),
+    url(r'^jpt/$', RedirectView.as_view(url='jpt-main-page/', permanent=True), name='jpt-main-page'),
     url(r'^ogf/ogf-main-page/googleaa5ff496c6812444.html', 'mainsite.views.register_ogf', name='google-registration-ogf'),
 
     url(r'^favicon\.ico', 'mainsite.views.status_code_418', name='status_code_418'),
