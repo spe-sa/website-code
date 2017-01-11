@@ -16,5 +16,5 @@ def getRegion(context, fallback_region):
             try:
                 region = Web_Region_Country.objects.get(country_UN=country).region
             except Web_Region_Country.DoesNotExist:
-                region = fallback_region
+                Web_Region_Country.objects.get(country_UN=fallback_region).region
     return region
