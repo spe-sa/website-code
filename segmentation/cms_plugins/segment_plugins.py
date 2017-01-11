@@ -322,7 +322,7 @@ class VisitorRegionSegmentPlugin(SegmentPluginBase):
         request = context.get('request')
         visitor = get_visitor(request)
 
-        region = getRegion(context, 'USA')
+        region = getRegion(context)
         if visitor:
             if visitor.country:
                 # Member - Region Available

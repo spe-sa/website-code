@@ -314,7 +314,7 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
 
-        region = getRegion(context, Web_Region_Country.objects.get(country_UN='USA'))
+        region = getRegion(context)
 
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today, regions=region,
                                                       event_type=instance.event_type.all()).order_by('last_impression')[
@@ -387,7 +387,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         except Web_Region_Country.DoesNotExist:
                             region = Web_Region_Country.objects.get(country_UN='USA').region
                     else:
-                        region = getRegion(context, Web_Region_Country.objects.get(country_UN='USA'))
+                        region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
 
@@ -407,7 +407,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                              'promotion')).order_by('last_impression')[
                                      :1]
                     # always use browsing user's location
-                    region = getRegion(context, Web_Region_Country.objects.get(country_UN='USA'))
+                    region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
@@ -417,7 +417,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                                                                      'promotion')).order_by('last_impression')[
                              :1]
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
-            region = getRegion(context, Web_Region_Country.objects.get(country_UN='USA'))
+            region = getRegion(context)
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
             objects = list(chain(prepend_object, objects))
 

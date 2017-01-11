@@ -422,11 +422,9 @@ class VisitorMembershipYearPaidSegmentPluginModel(SegmentBasePluginModel):
 
 class VisitorIPtoRegionSegmentPluginModel(SegmentBasePluginModel):
     region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True})
-    fallback_region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True}, verbose_name='Fallback Region if IP Unusable', related_name='fallback')
 
     def __unicode__(self):
         buf = " (region: " + self.region.region_name + ")"
-        buf += " (fallback region for unusable IP: " + self.fallback_region.region_name + ")"
         return buf
 
     @property
