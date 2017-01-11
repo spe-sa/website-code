@@ -10,7 +10,7 @@
         <div class="row sideListItem">
             <a href="{{ promo.url}}">
             <div class="col-xs-12">
-                <span class="sideListTitle"><strong>{{ promo.event|truncatewords:10 }}</strong></span><br>
+                <span class="sideListTitle">{{ promo.event|truncatewords:10 }}</span><br>
                 {% if promo.sponsored %}
                     <p class="sponsored" style="margin:5px 0;">SPONSORED CONTENT</p>
                 {% endif %}
@@ -20,7 +20,6 @@
                     {% else %}
                         {{ promo.event_start_date|date:"d F Y" }}
                     {% endif %} - {{ promo.event_location }}</span>
-{#                <span class="sideListDateTWA"></span>#}
             </div>
             </a>
         </div>

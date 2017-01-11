@@ -956,7 +956,7 @@ a:hover {
   margin-bottom: 15px; }
 
 .bloglist .sideListTitle {
-  font-weight: 700; }
+  font-weight: 400; }
 
 /* *************************************** */
 /* *************************************** */
@@ -992,7 +992,8 @@ a:hover {
   border-bottom: 1px solid #f1f2f7; }
 
 .sideListTitle {
-  font-size: 14px; }
+  font-size: 14px;
+  font-weight: 400; }
   .sideListTitle a {
     margin: 20px 0; }
   .sideListTitle a:hover {
