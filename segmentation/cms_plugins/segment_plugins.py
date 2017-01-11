@@ -342,7 +342,7 @@ class VisitorIPtoRegionSegmentPlugin(SegmentPluginBase):
     name = _('Segment by region determined by IP')
 
     def is_context_appropriate(self, context, instance):
-        region = getRegion(context, instance.fallback_region)
+        region = getRegion(context)
 
         return instance.region == region
 
