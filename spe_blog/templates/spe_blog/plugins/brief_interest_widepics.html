@@ -13,7 +13,8 @@
     <a href="{{ article.get_absolute_url }}">
         <div class="story-wrap row">
         {% if article.picture and article.picture.url %}
-            <div class="col-xs-5 poipic" style="background-image: url({{ article.picture.url }})"></div>
+{#            <div class="col-xs-5 poipic" style="background-image: url({{ article.picture.url }})"></div>#}
+            <div class="col-xs-5"><img src="{{ article.picture.url }}" class="img-responsive poipicimg"/> </div>
         {% else %}
             <div class="col-xs-5 poipic"></div>
         {% endif %}

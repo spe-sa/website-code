@@ -592,10 +592,15 @@
   padding:              3px;
 }
 .poipic {
-  min-height:           125px;
+  //min-height:           125px;
+  //min-width:            125px;
+  //width: 100%;
+  //padding-bottom: 100%;
   //margin-right:         15px;
 }
+.poipicimg {
 
+}
 .forms {
   border-top:           5px solid $col-hrblue;
   margin-top:           0;
