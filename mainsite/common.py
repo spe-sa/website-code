@@ -8,7 +8,7 @@ def getRegion(context, fallback_region):
     # ip = context['request'].META.get('REMOTE_ADDR', None)
     # ip = context['request'].META.get('HTTP_X_REAL_IP', None)
     ip = get_ip(context['request'])
-    region = fallback_region
+    region = Web_Region_Country.objects.get(country_UN=fallback_region).region
     if ip:
         loc = g.city(ip)
         if loc:
