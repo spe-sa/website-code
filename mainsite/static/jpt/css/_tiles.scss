@@ -361,7 +361,7 @@
     font-weight:        $font-bold;
   }
   .excerpt {
-    font-size:          12px;
+    font-size:          15px;
   }
   .dottedspacer {
     margin-bottom:      10px;
@@ -373,7 +373,7 @@
     margin:             0;
   }
   .authorBio {
-    font-size:          10px;
+    font-size:          12px;
   }
 
 }
@@ -398,6 +398,10 @@
 .editorial-padding {
   padding:            5px;
 }
+.editorial-contentbox {
+  padding:            0 10px 0 10px;
+}
+
 .tile-textbelow {
   //padding-bottom:       20px;
   padding:              0 15px 20px 0;

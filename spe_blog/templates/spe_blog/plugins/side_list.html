@@ -1,6 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
-<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}; {% if isbrief == True %}margin-left:10px;padding-left: 10px;{% endif %}">
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }};">
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
@@ -13,7 +13,7 @@
             </div>
         {% endif %}
     {% elif pubcode == "JPT" %}
-        {% if boxtitle != null %}
+        {% if boxtitle %}
             <div class="col-xs-12 sideListBoxTitle">
                 <span class="boxTitleText col-xs-12" style="background-color:#e51837;">{{ boxtitle }} </span>
             </div>
