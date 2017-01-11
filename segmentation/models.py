@@ -379,6 +379,47 @@ class VisitorRegionSegmentPluginModel(SegmentBasePluginModel):
         )()
 
 
+class VisitorMembershipPaidSegmentPluginModel(SegmentBasePluginModel):
+    PAYMENT_STATUS = (
+        ('Paid', "Paid Member"),
+        ('Unpaid', "Unpaid Member"),
+    )
+    membership_status = models.CharField(max_length=7, choices=PAYMENT_STATUS)
+
+    def __unicode__(self):
+        dictionary = dict(PAYMENT_STATUS)
+        buf = " - " + dictionary[self.membership_status]
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Paid Status equals “{value}”').format(value=self.membership_status)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
+class VisitorMembershipYearPaidSegmentPluginModel(SegmentBasePluginModel):
+    paid_through_date = models.DateField(verbose_name='Paid through')
+
+    def __unicode__(self):
+        buf = " - " + str(self.paid_through_date)
+        return buf
+
+    @property
+    def configuration_string(self):
+        def wrapper():
+            return _('Paid through “{value}”').format(value=self.paid_through_date)
+
+        return lazy(
+            wrapper,
+            six.text_type
+        )()
+
+
 class VisitorIPtoRegionSegmentPluginModel(SegmentBasePluginModel):
     region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True})
     fallback_region = models.ForeignKey(Web_Region, limit_choices_to={'is_visible': True}, verbose_name='Fallback Region if IP Unusable', related_name='fallback')

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+from datetime import datetime
+
 from django.utils.translation import ugettext_lazy as _
 
 from django.utils import timezone
@@ -26,7 +28,8 @@ from ..models import (
     VisitorRegionSegmentPluginModel,
     VisitorIPtoRegionSegmentPluginModel,
     DateTimeSegmentPluginModel,
-
+    VisitorMembershipPaidSegmentPluginModel,
+    VisitorMembershipYearPaidSegmentPluginModel,
 )
 
 from mainsite.context_processors.spe_context import (
@@ -346,7 +349,7 @@ class VisitorIPtoRegionSegmentPlugin(SegmentPluginBase):
 
 class DateTimeSegmentPlugin(SegmentPluginBase):
     """
-    This plugin allows segmentation based on the region of the visitor as determined by IP.
+    This plugin allows segmentation based on the date.
     """
 
     model = DateTimeSegmentPluginModel
@@ -356,6 +359,41 @@ class DateTimeSegmentPlugin(SegmentPluginBase):
         today = timezone.now()
         if instance.start <= today <= instance.end:
             return True
+        else:
+            return False
+
+
+class VisitorMembershipPaidSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the paid and unpaid status.
+    """
+
+    model = VisitorMembershipPaidSegmentPluginModel
+    name = _('Segment by visitor paid and unpaid status')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        dictionary = dict(PAYMENT_STATUS)
+        if visitor:
+            return dictionary[instance.membership_status] == visitor.membership_status
+        else:
+            return False
+
+
+class VisitorMembershipYearPaidSegmentPlugin(SegmentPluginBase):
+    """
+    This plugin allows segmentation based on the date through which membership is paid.
+    """
+
+    model = VisitorMembershipYearPaidSegmentPluginModel
+    name = _('Segment by visitor paid through date')
+
+    def is_context_appropriate(self, context, instance):
+        request = context.get('request')
+        visitor = get_visitor(request)
+        if visitor:
+            return instance.paid_through_date <= visitor.paid_through_date
         else:
             return False
 
@@ -374,3 +412,5 @@ plugin_pool.register_plugin(VisitorDisciplineSegmentPlugin)
 plugin_pool.register_plugin(VisitorRegionSegmentPlugin)
 plugin_pool.register_plugin(VisitorIPtoRegionSegmentPlugin)
 plugin_pool.register_plugin(DateTimeSegmentPlugin)
+plugin_pool.register_plugin(VisitorMembershipPaidSegmentPlugin)
+plugin_pool.register_plugin(VisitorMembershipYearPaidSegmentPlugin)

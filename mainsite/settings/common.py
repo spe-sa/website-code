@@ -294,8 +294,6 @@ CMS_PLACEHOLDER_CONF = {
                     'BlogPlugin',
                     'BlogListingPlugin',
                     'BlogDetailPlugin',
-                    'VisitorDisciplineSegmentPlugin',
-                    'VisitorRegionSegmentPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
@@ -400,6 +398,8 @@ CMS_PLACEHOLDER_CONF = {
                 'BootstrapColumnPlugin',
                 'VisitorDisciplineSegmentPlugin',
                 'VisitorRegionSegmentPlugin',
+                'VisitorDisciplineSegmentPlugin',
+                'VisitorMembershipYearPaidSegmentPlugin',
                 'VisitorIPtoRegionSegmentPlugin',
                 'DateTimeSegmentPlugin',
             ],
