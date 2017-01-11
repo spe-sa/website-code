@@ -28,6 +28,10 @@ OPERATORS = (
     ("!=", '!=')
 )
 
+PAYMENT_STATUS = (
+    ('Paid', "Paid Member"),
+    ('Unpaid', "Unpaid Member"),
+)
 
 #
 # NOTE: The SegmentLimitPluginModel does NOT subclass SegmentBasePluginModel
@@ -380,10 +384,6 @@ class VisitorRegionSegmentPluginModel(SegmentBasePluginModel):
 
 
 class VisitorMembershipPaidSegmentPluginModel(SegmentBasePluginModel):
-    PAYMENT_STATUS = (
-        ('Paid', "Paid Member"),
-        ('Unpaid', "Unpaid Member"),
-    )
     membership_status = models.CharField(max_length=7, choices=PAYMENT_STATUS)
 
     def __unicode__(self):

@@ -399,9 +399,11 @@ CMS_PLACEHOLDER_CONF = {
                 'VisitorDisciplineSegmentPlugin',
                 'VisitorRegionSegmentPlugin',
                 'VisitorDisciplineSegmentPlugin',
+                'VisitorMembershipPaidSegmentPlugin',
                 'VisitorMembershipYearPaidSegmentPlugin',
                 'VisitorIPtoRegionSegmentPlugin',
                 'DateTimeSegmentPlugin',
+
             ],
         },
         'plugin_modules': {
