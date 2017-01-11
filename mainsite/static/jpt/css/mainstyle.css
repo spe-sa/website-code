@@ -1067,15 +1067,18 @@ table {
 .sideListItem-borwht {
   border-bottom: 1px solid white; }
 
-.sideListTitle {
+.sideListTitle, .sideListTitle2 {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "rooney-sans", sans-serif;
   margin-top: 5px;
   line-height: 1em;
   padding-bottom: 10px; }
-  .sideListTitle a:hover {
+  .sideListTitle a:hover, .sideListTitle2 a:hover {
     color: #2d9e9f; }
+
+.sideListTitle2 {
+  font-size: 15px; }
 
 .sideListTitleTWA {
   font-size: 15px;
@@ -1101,7 +1104,7 @@ table {
   padding: 0 0 0 10px; }
 
 .sideListDateTWA {
-  color: #e51837;
+  color: #b4b4b9;
   font-weight: 700;
   font-size: 12px;
   padding: 0 0 0 0; }

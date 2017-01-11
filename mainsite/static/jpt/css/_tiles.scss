@@ -281,9 +281,9 @@
 .sideListItem-borwht {
   border-bottom:        1px solid $col-white;
 }
-.sideListTitle {
+.sideListTitle, .sideListTitle2 {
   font-size:            18px;
-  font-weight:          $font-bold;
+  font-weight:          $font-regular;
   font-family:          $font-tiletitle;
   margin-top:           5px;
   //padding:              5px 0 0 10px;
@@ -294,6 +294,9 @@
   a:hover {
     color:              $col-bluehover;
   }
+}
+.sideListTitle2 {
+  font-size:            15px;
 }
 .sideListTitleTWA {
   font-size:            15px;
@@ -323,12 +326,11 @@
   padding:              0 0 0 10px;
 }
 .sideListDateTWA {
-  color:                $col-red;
+  color:                $col-boxshadow;
   font-weight:          $font-bold;
   font-size:            12px;
   padding:              0 0 0 0;
 }
-
 .sideListLock {
   //display:              none;
   color:                $col-red;

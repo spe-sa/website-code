@@ -37,7 +37,7 @@
             <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
         {% else %}
             <div class="col-xs-12">
-            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
+            <span class="sideListTitle2"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
         {% endif %}
 
             <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
