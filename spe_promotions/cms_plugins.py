@@ -385,7 +385,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         try:
                             region = Web_Region_Country.objects.get(country_UN=visitor.country).region
                         except Web_Region_Country.DoesNotExist:
-                            region = 'USA'
+                            region = Web_Region_Country.objects.get(country_UN='USA').region
                     else:
                         region = getRegion(context, 'USA')
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
@@ -398,7 +398,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     try:
                         region = Web_Region_Country.objects.get(country_UN=visitor.country).region
                     except Web_Region_Country.DoesNotExist:
-                        region = 'USA'
+                        region = Web_Region_Country.objects.get(country_UN='USA').region
                     objects = objects.filter(regions=region, event_type=instance.event_type.all()).distinct()
                 else:
                     # Member - No Region Available

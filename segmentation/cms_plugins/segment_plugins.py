@@ -329,7 +329,7 @@ class VisitorRegionSegmentPlugin(SegmentPluginBase):
                 try:
                     region = Web_Region_Country.objects.get(country_UN=visitor.country).region
                 except Web_Region_Country.DoesNotExist:
-                    region = 'USA'
+                    region = Web_Region_Country.objects.get(country_UN='USA').region
         return instance.region == region
 
 
