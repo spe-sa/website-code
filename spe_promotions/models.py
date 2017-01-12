@@ -118,7 +118,7 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     teaser = RichTextUploadingField(
         max_length=300,
     )
-    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_nonmember_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_nodiscipline_promotion")
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
@@ -151,7 +151,7 @@ class SimpleEventNoAddressPromotion(models.Model):
     teaser = RichTextUploadingField(
         max_length=300,
     )
-    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_nonmember_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_noaddress_promotion")
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
