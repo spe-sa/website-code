@@ -1631,3 +1631,6 @@ table {
 .padB10, #padB10 {
   padding-right: 10px;
   padding-left: 10px; }
+
+.see-all {
+  color: #26416c !important; }
