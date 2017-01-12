@@ -28,7 +28,8 @@
                 <div class="col-xs-4 authorImg"><img class="img-responsive" src={{article.author_picture.url}}></div>
                 <div class="col-xs-8 authorBio">{{ article.author_bio | safe }}</div>
             {% else %}
-                <div class="col-xs-12 sideListIntro">{{ article.introduction|slice:":250" | safe }}...</div>
+{#                <div class="col-xs-12 sideListIntro">{{ article.introduction|slice:":250" | safe }}...</div>#}
+                <div class="col-xs-12 sideListIntro teaser">{{ article.teaser|slice:":250" | safe }}...</div>
             {% endif %}
 
         </div>
