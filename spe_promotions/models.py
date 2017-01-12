@@ -79,7 +79,7 @@ class SimpleEventNonMemberPromotion(models.Model):
     event = models.CharField(max_length=250)
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
     event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
@@ -112,7 +112,7 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     event = models.CharField(max_length=250)
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
     event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
@@ -145,7 +145,7 @@ class SimpleEventNoAddressPromotion(models.Model):
     event = models.CharField(max_length=250)
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
     event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(

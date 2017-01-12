@@ -3,7 +3,6 @@ from itertools import chain
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.contrib.gis.geoip import GeoIP
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
@@ -227,10 +226,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                         objects = list(chain(objects, append_objects))
                 else:
                     # Member - No Primary Discipline Available
-                    prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                         id__in=no_discipline_promotions.values(
-                                                                             'promotion')).order_by('last_impression')[
-                                     :1]
+                    prepend_object = no_discipline_promotions
                     # Drop Back to Member Location then Browser Location (if selected)
                     if visitor.country:
                         # Member - Region Available
@@ -254,20 +250,14 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     objects = objects.filter(regions=region, event_type=instance.event_type.all()).distinct()
                 else:
                     # Member - No Region Available
-                    prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                         id__in=no_region_promotions.values(
-                                                                             'promotion')).order_by('last_impression')[
-                                     :1]
+                    prepend_object = no_region_promotions
                     # always use browsing user's location
                     region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
             # Non-Member or Member Not Logged In
-            prepend_object = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                                 id__in=non_member_promotions.values(
-                                                                     'promotion')).order_by('last_impression')[
-                             :1]
+            prepend_object = non_member_promotions
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
             region = getRegion(context)
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
