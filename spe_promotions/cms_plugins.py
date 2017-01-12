@@ -14,8 +14,9 @@ from mainsite.common import getRegion
 from .forms import SimplePromotionsSelectionForm
 from .models import (
     SimpleEventPromotion,
-    # EventPromotionNearLocationListingPlugin,
-    # EventPromotionNearUserListingPlugin,
+    SimpleEventNonMemberPromotion,
+    SimpleEventNoDisciplinePromotion,
+    SimpleEventNoAddressPromotion,
     EventPromotionByDisciplineListingPlugin,
     EventPromotionByTopicListingPlugin,
     EventPromotionByRegionListingPlugin,
@@ -23,161 +24,11 @@ from .models import (
     EventPromotionInUserRegionListingPlugin,
     EventForMemberListingPlugin,
     UpcomingEventPromotionPlugin,
-    SimpleEventNonMemberMessage,
-    SimpleEventMemberMissingDisciplineMessage,
-    SimpleEventMemberMissingRegionMessage,
+    # SimpleEventNonMemberMessage,
+    # SimpleEventMemberMissingDisciplineMessage,
+    # SimpleEventMemberMissingRegionMessage,
 )
 
-
-# from spe_events.models import EventType
-
-
-# class ShowPromotionListingPlugin(CMSPluginBase):
-#     class Meta:
-#         abstract = True
-#     allow_children = False
-#     cache = False
-#     module = ('Event Promotions')
-#     render_template = 'spe_blog/plugins/image_left.html'
-#     text_enabled = False
-#     model = SimpleEventPromotionListingPlugin
-#     name = ("Promotion Listing")
-#
-#     def render(self, context, instance, placeholder):
-#         today = datetime.date.today()
-#         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-#
-#         if instance.disciplines.all():
-#             objects = objects.filter(disciplines__in=instance.disciplines.all())
-#
-#         request = context['request']
-#         g = GeoIP()
-#         # ip = context['request'].META.get('REMOTE_ADDR', None)
-#         ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-#         if not ip:
-#             ip = '192.152.183.80'
-#         if ip:
-#             loc = g.city(ip)
-#             if loc:
-#                 latitude = loc['latitude']
-#                 longitude = loc['longitude']
-#
-#         new_objects = []
-#
-#         for x in objects:
-#             dlat = math.radians(x.latitude - latitude)
-#             dlon = math.radians(x.longitude - longitude)
-#             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitude)) \
-#                 * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
-#             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-#             d = 6371 * c
-#
-#             if d <= instance.radius:
-#                 new_objects.append(x)
-#
-#         objects = new_objects[:instance.count]
-#
-#         for x in objects:
-#             x.url = "/promotion/event/" + str(x.id) + "/"
-#             x.last_impression = datetime.datetime.now()
-#             x.impressions += 1
-#             x.save()
-#
-#         context.update({'promos': objects})
-#         self.render_template = instance.template
-#         return context
-
-# class ShowEventNearLocationPromotionListing(CMSPluginBase):
-#     class Meta:
-#         abstract = True
-#     allow_children = False
-#     cache = False
-#     module = ('Event Promotions')
-#     render_template = 'spe_blog/plugins/image_left.html'
-#     text_enabled = False
-#     model = EventPromotionNearLocationListingPlugin
-#     name = ("Event Promotion Listing Within Radius of Latitude and Longitude")
-#
-#     def render(self, context, instance, placeholder):
-#         today = datetime.date.today()
-#         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-#
-#         new_objects = []
-#
-#         for x in objects:
-#             dlat = math.radians(x.latitude - instance.latitude)
-#             dlon = math.radians(x.longitude - instance.longitude)
-#             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(instance.latitude)) \
-#                 * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
-#             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-#             d = 6371 * c
-#
-#             if d <= instance.radius:
-#                 new_objects.append(x)
-#
-#         objects = new_objects[:instance.count]
-#
-#         for x in objects:
-#             x.url = "/promotion/event/" + str(x.id) + "/"
-#             x.last_impression = datetime.datetime.now()
-#             x.impressions += 1
-#             x.save()
-#
-#         context.update({'promos': objects})
-#         self.render_template = instance.template
-#         return context
-
-# class ShowEventNearUserPromotionListing(CMSPluginBase):
-#     class Meta:
-#         abstract = True
-#     allow_children = False
-#     cache = False
-#     module = ('Event Promotions')
-#     render_template = 'spe_blog/plugins/image_left.html'
-#     text_enabled = False
-#     model = EventPromotionNearUserListingPlugin
-#     name = ("Event Promotion Listing Within Radius of Browsed From Location")
-#
-#     def render(self, context, instance, placeholder):
-#         today = datetime.date.today()
-#         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-#
-#         request = context['request']
-#         g = GeoIP()
-#         # ip = context['request'].META.get('REMOTE_ADDR', None)
-#         ip = context['request'].META.get('HTTP_X_REAL_IP', None)
-#         if not ip:
-#             ip = '192.152.183.80'
-#         if ip:
-#             loc = g.city(ip)
-#             if loc:
-#                 latitude = loc['latitude']
-#                 longitude = loc['longitude']
-#
-#         new_objects = []
-#
-#         for x in objects:
-#             dlat = math.radians(x.latitude - latitude)
-#             dlon = math.radians(x.longitude - longitude)
-#             a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(latitude)) \
-#                 * math.cos(math.radians(x.latitude)) * math.sin(dlon/2) * math.sin(dlon/2)
-#             c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-#             d = 6371 * c
-#
-#             if d <= instance.radius:
-#                 new_objects.append(x)
-#
-#         objects = new_objects[:instance.count]
-#
-#         for x in objects:
-#             x.url = "/promotion/event/" + str(x.id) + "/"
-#             x.last_impression = datetime.datetime.now()
-#             x.impressions += 1
-#             x.save()
-#
-#         context.update({'promos': objects})
-#         self.render_template = instance.template
-#         return context
 
 class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
     class Meta:
@@ -350,15 +201,16 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
         # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-        no_discipline_promotions = SimpleEventMemberMissingDisciplineMessage.objects.all()
-        ids_to_exclude = [o for o in no_discipline_promotions]
-        no_region_promotions = SimpleEventMemberMissingRegionMessage.objects.all()
-        ids_to_exclude += [o for o in no_region_promotions]
-        non_member_promotions = SimpleEventNonMemberMessage.objects.all()
-        ids_to_exclude += [o for o in non_member_promotions]
-        exclude_id = [x.promotion.id for x in ids_to_exclude]
-        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
-            id__in=exclude_id).order_by('last_impression')
+        no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        # ids_to_exclude = [o for o in no_discipline_promotions]
+        no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        # ids_to_exclude += [o for o in no_region_promotions]
+        non_member_promotions = SimpleEventNonMemberPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        # ids_to_exclude += [o for o in non_member_promotions]
+        # exclude_id = [x.promotion.id for x in ids_to_exclude]
+        # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
+        #     id__in=exclude_id).order_by('last_impression')
+        objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
         # append_objects = objects
 
         if visitor:
@@ -371,7 +223,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     # If a Secondary Discipline is Available Append Events for that Discipline
                     if visitor.secondary_discipline:
                         append_objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                            disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).exclude(id__in=exclude_id).order_by('last_impression')
+                            disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).order_by('last_impression')
                         objects = list(chain(objects, append_objects))
                 else:
                     # Member - No Primary Discipline Available
@@ -464,8 +316,6 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
         return context
 
 
-# plugin_pool.register_plugin(ShowEventNearLocationPromotionListing)
-# plugin_pool.register_plugin(ShowEventNearUserPromotionListing)
 plugin_pool.register_plugin(ShowEventsByDisciplineListingPlugin)
 plugin_pool.register_plugin(ShowEventsByTopicListingPlugin)
 plugin_pool.register_plugin(ShowEventsByRegionListingPlugin)

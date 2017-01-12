@@ -7,9 +7,9 @@ from django.utils.translation import ugettext_lazy as _
 # from .models import Promotion, SimpleEventPromotion
 from .models import (
     SimpleEventPromotion,
-    SimpleEventNonMemberMessage,
-    SimpleEventMemberMissingDisciplineMessage,
-    SimpleEventMemberMissingRegionMessage,
+    SimpleEventNonMemberPromotion,
+    SimpleEventNoDisciplinePromotion,
+    SimpleEventNoAddressPromotion,
 )
 
 
@@ -32,6 +32,6 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
 
 # admin.site.register(Promotion)
 admin.site.register(SimpleEventPromotion, SimpleEventPromotionAdmin)
-admin.site.register(SimpleEventNonMemberMessage, NonMemberMessageAdmin)
-admin.site.register(SimpleEventMemberMissingDisciplineMessage, MemberNoDisciplineMessageAdmin)
-admin.site.register(SimpleEventMemberMissingRegionMessage, MemberNoRegionMessageAdmin)
+admin.site.register(SimpleEventNonMemberPromotion, NonMemberMessageAdmin)
+admin.site.register(SimpleEventNoDisciplinePromotion, MemberNoDisciplineMessageAdmin)
+admin.site.register(SimpleEventNoAddressPromotion, MemberNoRegionMessageAdmin)
