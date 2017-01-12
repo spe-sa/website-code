@@ -74,7 +74,7 @@ class SimpleEventPromotion(models.Model):
 
 
 class SimpleEventNonMemberPromotion(models.Model):
-    event = models.CharField(max_length=250)
+    event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
@@ -107,7 +107,7 @@ class SimpleEventNonMemberPromotion(models.Model):
 
 
 class SimpleEventNoDisciplinePromotion(models.Model):
-    event = models.CharField(max_length=250)
+    event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
@@ -133,14 +133,14 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     url = models.URLField(blank=True, null=True, editable=False)
 
     class Meta:
-        verbose_name = 'Promotion for Non-Member or Member Not Logged In'
+        verbose_name = 'Promotion for Missing Discipline'
 
     def __unicode__(self):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
 
 
 class SimpleEventNoAddressPromotion(models.Model):
-    event = models.CharField(max_length=250)
+    event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
@@ -166,7 +166,7 @@ class SimpleEventNoAddressPromotion(models.Model):
     url = models.URLField(blank=True, null=True, editable=False)
 
     class Meta:
-        verbose_name = 'Promotion for Non-Member or Member Not Logged In'
+        verbose_name = 'Promotion for Missing Address'
 
     def __unicode__(self):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
