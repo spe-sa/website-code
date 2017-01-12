@@ -1,8 +1,6 @@
 import datetime
 
 from django.db import models
-from django.utils import timezone
-from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from cms.models import CMSPlugin

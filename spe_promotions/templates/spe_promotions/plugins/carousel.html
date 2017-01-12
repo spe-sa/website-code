@@ -31,8 +31,14 @@
                                     {% if promo.event_text_date %}
                                         {{ promo.event_text_date }}
                                     {% else %}
-                                        {{ promo.event_start_date|date:"d F Y" }}
-                                    {% endif %} - {{ promo.event_location }}</p>
+                                        {% if promo.event_start_date %}
+                                            {{ promo.event_start_date|date:"d F Y" }}
+                                        {% endif %}
+                                    {% endif %} -
+                                    {% if promo.event_location %}
+                                        {{ promo.event_location }}
+                                    {% endif %}
+                                </p>
                 {#                <span class="sideListDateTWA"></span>#}
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
@@ -50,7 +56,7 @@
                                     {% if promo.event_text_date %}
                                         {{ promo.event_text_date }}
                                     {% else %}
-                                        {{ promo.event_start_date|date:"d F Y" }}
+                                            {{ promo.event_start_date|date:"d F Y" }}
                                     {% endif %} - {{ promo.event_location }}</p>
                               <h4>{{ promo.teaser | safe }}</h4>
                           </div>
