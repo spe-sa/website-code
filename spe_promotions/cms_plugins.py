@@ -201,11 +201,11 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
         # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-        no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
         # ids_to_exclude = [o for o in no_discipline_promotions]
-        no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
         # ids_to_exclude += [o for o in no_region_promotions]
-        non_member_promotions = SimpleEventNonMemberPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+        non_member_promotions = SimpleEventNonMemberPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
         # ids_to_exclude += [o for o in non_member_promotions]
         # exclude_id = [x.promotion.id for x in ids_to_exclude]
         # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
