@@ -101,17 +101,17 @@
 {% endif %}
 
     <div class="col-sm-12 articleBodyText">
-{% if article.publication.code != 'JPT' %}
-    {% if article.tags.count >= 1 %}
-        <div class="col-sm-12 article-tags dontPrintMe">
-            <ul>
-            {% for tag in article.tags.all %}
-                    <li><a href="{{ article.publication.tags_url.url.get_absolute_url }}?tag={{ tag.id }}"><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}</a></li>
-            {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-{% endif %}
+{#{% if article.publication.code != 'JPT' %}#}
+{#    {% if article.tags.count >= 1 %}#}
+{#        <div class="col-sm-12 article-tags dontPrintMe">#}
+{#            <ul>#}
+{#            {% for tag in article.tags.all %}#}
+{#                    <li><a href="{{ article.publication.tags_url.url.get_absolute_url }}?tag={{ tag.id }}"><i class="fa fa-tags" aria-hidden="true"></i> {{ tag }}</a></li>#}
+{#            {% endfor %}#}
+{#            </ul>#}
+{#        </div>#}
+{#    {% endif %}#}
+{#{% endif %}#}
         {% if is_readable == True %}
 
             {% if show_paybox %}
