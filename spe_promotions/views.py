@@ -1,23 +1,13 @@
 from django.http import Http404
 from django.shortcuts import redirect
-# from .models import Promotion, SimpleEventPromotion
-from .models import SimpleEventPromotion
 
+from .models import (
+    SimpleEventPromotion,
+    SimpleEventNoDisciplinePromotion,
+    SimpleEventNoAddressPromotion,
+    SimpleEventNonMemberPromotion,
+)
 
-def promo_select(request, index):
-    try:
-        object = Promotion.objects.get(pk=index)
-    except Promotion.DoesNotExist:
-        raise Http404("Promotion does not exist")
-    object.hits += 1
-    object.save()
-    if object.article:
-        print "needs handling"
-    if object.click_url:
-        url = object.click_url
-    if object.click_page:
-        url = object.click_page
-    return redirect(url)
 
 def event_select(request, index):
     try:
@@ -30,3 +20,38 @@ def event_select(request, index):
         url = object.click_url
     return redirect(url)
 
+
+def no_discipline(request, index):
+    try:
+        object = SimpleEventNoDisciplinePromotion.objects.get(pk=index)
+    except SimpleEventNoDisciplinePromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+def no_region(request, index):
+    try:
+        object = SimpleEventNoAddressPromotion.objects.get(pk=index)
+    except SimpleEventNoAddressPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+def non_member(request, index):
+    try:
+        object = SimpleEventNonMemberPromotion.objects.get(pk=index)
+    except SimpleEventNonMemberPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)

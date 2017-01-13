@@ -68,7 +68,9 @@ urlpatterns = i18n_patterns('',
     # url(r'^dashboard/', include(router.urls)),
     # url(r'^stats/$', 'dashboard.views.url_redirect', name="url-redirect"),
     url(r'^promotion/event/(?P<index>\d+)/$', 'spe_promotions.views.event_select',),
-    url(r'^promotion/(?P<index>\d+)/$', 'spe_promotions.views.promo_select',),
+    url(r'^promotion/no_discipline/(?P<index>\d+)/$', 'spe_promotions.views.no_discipline',),
+    url(r'^promotion/no_region/(?P<index>\d+)/$', 'spe_promotions.views.no_region', ),
+    url(r'^promotion/non_member/(?P<index>\d+)/$', 'spe_promotions.views.non_member', ),
 
     url(r'^', include('cms.urls')),
 )

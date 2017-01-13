@@ -201,10 +201,13 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         today = datetime.date.today()
         # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
         no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        no_discipline = False
         # ids_to_exclude = [o for o in no_discipline_promotions]
         no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        no_region = False
         # ids_to_exclude += [o for o in no_region_promotions]
         non_member_promotions = SimpleEventNonMemberPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        non_member = False
         # ids_to_exclude += [o for o in non_member_promotions]
         # exclude_id = [x.promotion.id for x in ids_to_exclude]
         # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
@@ -227,6 +230,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = no_discipline_promotions
+                    no_discipline = True
                     # Drop Back to Member Location then Browser Location (if selected)
                     if visitor.country:
                         # Member - Region Available
@@ -251,6 +255,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 else:
                     # Member - No Region Available
                     prepend_object = no_region_promotions
+                    no_region = True
                     # always use browsing user's location
                     region = getRegion(context)
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
@@ -258,14 +263,26 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         else:
             # Non-Member or Member Not Logged In
             prepend_object = non_member_promotions
+            non_member = True
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
             region = getRegion(context)
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
             objects = list(chain(prepend_object, objects))
 
         objects = objects[:instance.count]
+        i = 0
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            if i == 0:
+                if no_discipline:
+                    x.url = "/promotion/no_discipline/" + str(x.id) + "/"
+                elif no_region:
+                    x.url = "/promotion/no_region/" + str(x.id) + "/"
+                elif non_member:
+                    x.url = "/promotion/non_member/" + str(x.id) + "/"
+                else:
+                    x.url = "/promotion/event/" + str(x.id) + "/"
+            else:
+                x.url = "/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
