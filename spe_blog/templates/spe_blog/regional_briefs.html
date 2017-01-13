@@ -3,72 +3,86 @@
 
 {% block content %}
 
-    {% addtoblock "css" %}
-        <style>
-/* http://techneblog.com/article/creating-responsive-multiple-column-list */
-h2{
-    font-size: 1.5em; /* 25px/16px */
-}
-#content
-{
-    font-size: .75em; /* 12/16 */
-    width: 71.875%; /* 650/960 */
-    max-width: 960px;
-    text-align: left;
-    margin: 0 auto; /*auto centers the container */
-    padding: 3.84615384615385%; /* 25/650 */
-}
-/*CSS3 multiple columns.*/
-/* Get em size for colums: 184/16 */
-.columns
-{
-    -moz-column-width: 21.5em; /* Firefox */
-    -webkit-column-width: 21.5em; /* webkit, Safari, Chrome */
-    column-width: 21.5em;
-}
-/*remove standard list and bullet formatting from ul*/
-.columns ul
-{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-/* correct webkit/chrome uneven margin on the first column*/
-.columns ul li:first-child
-{
-    margin-top:0px;
-}        </style>
-    {%  endaddtoblock %}
+{% addtoblock "css" %}
+<style>
+        /* http://techneblog.com/article/creating-responsive-multiple-column-list */
 
-<div id="content" class="tile-editorial tile-editorial-txtblck row" style="background-color:white; margin-left:10px;padding-left: 10px;">
-        <div class="columns">
-        <ul>
+        #content
+        {
+            font-size: .75em; /* 12/16 */
+            max-width: 960px;
+            text-align: left;
+            margin: 0 auto; /*auto centers the container */
+            padding: 3.84615384615385%; /* 25/650 */
+        }
+        /*CSS3 multiple columns.*/
+        /* Get em size for colums: 184/16 */
+        .columns
+        {
+            -moz-column-width: 21.5em; /* Firefox */
+            -webkit-column-width: 21.5em; /* webkit, Safari, Chrome */
+            column-width: 21.5em;
+        }
+        /*remove standard list and bullet formatting from ul*/
+        .columns h2 {
+            border-top: 1px solid lightgrey;
+            padding-top: 10px;
+            margin-top: 0;
+        }
+        .columns ul
+        {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        /* correct webkit/chrome uneven margin on the first column*/
+        .columns ul li:first-child
+        {
+            margin-top:0px;
+        }
+        .regionalBrText strong:first-child {
+            font-size:  1.5em;
+            font-weight:  700;
+            padding-right:  5px;
+            color:  #ff8400;
+        }
 
-    {% set_var "" as rendered_group_name %}
-    {% for article in articles %}
+</style>
+{%  endaddtoblock %}
 
-        {% if rendered_group_name != article.region.region_name %}
-            <h2>{{ article.region.region_name }}</h2>
-            {% set_var "{{article.region.region_name}}" as rendered_group_name %}
-        {% endif %}
+<div class="container">
+    <div id="content" class="tile-editorial tile-editorial-txtblck row" style="background-color:white; margin-left:10px;padding-left: 10px;">
+            <div class="columns">
+            <ul>
 
-            <li>
-                <div>
-                    <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
-                    <span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
-                    {% if article.is_readable == True %}
-                        <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-                    {% endif %}
-                </div>
-            </li>
+        {% set_var "" as rendered_group_name %}
+        {% for article in articles %}
 
-    {% empty %}
-        <p class="well">"No articles available"</p>
-    {% endfor %}
+            {% if rendered_group_name != article.region.region_name %}
+                <h2>{{ article.region.region_name }}</h2>
+                {% set_var "{{article.region.region_name}}" as rendered_group_name %}
+            {% endif %}
 
-        </ul>
-        </div>
-</div>
+                <li>
+                    <div>
+{#                        <span class="regionalBrTitle"><h3><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></h3></span>#}
+    {#                    <span class="sideListDate">{{ article.date|date:"d F Y" }}</span>#}
+    {#                    {% if article.is_readable == True %}#}
+    {#                        <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
+    {#                    {% endif %}#}
+                        <span class="regionalBrText">{{ article.article_text|safe }}</span>
+                    </div>
+                </li>
+
+        {% empty %}
+            <p class="well">"No articles available"</p>
+        {% endfor %}
+
+            </ul>
+            </div>
+    </div><!
+</div><!-- Container -->
+
 
 {% addtoblock "js" %}
     <script type="text/javascript" charset="utf-8">
