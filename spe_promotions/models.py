@@ -96,7 +96,7 @@ class SimpleEventNonMemberPromotion(models.Model):
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True, editable=False)
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/join/")
     url = models.URLField(blank=True, null=True, editable=False)
 
     class Meta:
@@ -129,7 +129,7 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True, editable=False)
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
     url = models.URLField(blank=True, null=True, editable=False)
 
     class Meta:
@@ -162,7 +162,7 @@ class SimpleEventNoAddressPromotion(models.Model):
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True, editable=False)
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
     url = models.URLField(blank=True, null=True, editable=False)
 
     class Meta:
