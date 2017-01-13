@@ -8,6 +8,7 @@ from mainsite.context_processors.spe_context import (
 
 from .models import (
     SimpleEventPromotion,
+    SimpleEventNotLoggedInPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
     SimpleEventNonMemberPromotion,
@@ -88,6 +89,29 @@ def non_member(request, index):
     try:
         object = SimpleEventNonMemberPromotion.objects.get(pk=index)
     except SimpleEventNonMemberPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    record = PromotionsEventClicks()
+    record.promotion_title = object.event
+    record.promotion_type = object.promotion_type
+    record.promotion_id = index
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+def not_logged_in(request, index):
+    try:
+        object = SimpleEventNotLoggedInPromotion.objects.get(pk=index)
+    except SimpleEventNotLoggedInPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     object.hits += 1
     object.save()

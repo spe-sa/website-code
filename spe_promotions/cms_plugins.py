@@ -13,7 +13,7 @@ from mainsite.common import getRegion
 from .forms import SimplePromotionsSelectionForm
 from .models import (
     SimpleEventPromotion,
-    SimpleEventNonMemberPromotion,
+    SimpleEventNotLoggedInPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
     EventPromotionByDisciplineListingPlugin,
@@ -199,21 +199,17 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
 
         # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
-        # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
+
         no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
         no_discipline = False
-        # ids_to_exclude = [o for o in no_discipline_promotions]
+
         no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
         no_region = False
-        # ids_to_exclude += [o for o in no_region_promotions]
-        non_member_promotions = SimpleEventNonMemberPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
-        non_member = False
-        # ids_to_exclude += [o for o in non_member_promotions]
-        # exclude_id = [x.promotion.id for x in ids_to_exclude]
-        # objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).exclude(
-        #     id__in=exclude_id).order_by('last_impression')
+
+        not_logged_in_promotions = SimpleEventNotLoggedInPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        not_logged_in = False
+
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
-        # append_objects = objects
 
         if visitor:
             # The Member is Logged In
@@ -261,9 +257,9 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     objects = objects.filter(regions=region, event_type=instance.event_type.all())
                     objects = list(chain(prepend_object, objects))
         else:
-            # Non-Member or Member Not Logged In
-            prepend_object = non_member_promotions
-            non_member = True
+            # Member Not Logged In
+            prepend_object = not_logged_in_promotions
+            not_logged_in = True
             # If Browsing Location Selected for Non-Member or Member Not Logged In, Create New Promotions List
             region = getRegion(context)
             objects = objects.filter(regions=region, event_type=instance.event_type.all())
@@ -278,8 +274,8 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     x.url = "/promotion/no_discipline/" + str(x.id) + "/"
                 elif no_region:
                     x.url = "/promotion/no_region/" + str(x.id) + "/"
-                elif non_member:
-                    x.url = "/promotion/non_member/" + str(x.id) + "/"
+                elif not_logged_in:
+                    x.url = "/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
             x.last_impression = datetime.datetime.now()
             x.impressions += 1

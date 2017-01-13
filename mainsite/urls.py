@@ -71,6 +71,7 @@ urlpatterns = i18n_patterns('',
     url(r'^promotion/no_discipline/(?P<index>\d+)/$', 'spe_promotions.views.no_discipline',),
     url(r'^promotion/no_region/(?P<index>\d+)/$', 'spe_promotions.views.no_region', ),
     url(r'^promotion/non_member/(?P<index>\d+)/$', 'spe_promotions.views.non_member', ),
+    url(r'^promotion/not_logged_in/(?P<index>\d+)/$', 'spe_promotions.views.not_logged_in', ),
 
     url(r'^', include('cms.urls')),
 )

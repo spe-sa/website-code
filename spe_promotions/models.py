@@ -74,6 +74,41 @@ class SimpleEventPromotion(models.Model):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event_type.name + " - " + self.event
 
 
+class SimpleEventNotLoggedInPromotion(models.Model):
+    event = models.CharField(max_length=250, verbose_name='Title')
+    event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
+    event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
+    teaser = RichTextUploadingField(
+        max_length=300,
+    )
+    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="simple_notloggedin_promotion")
+    hits = models.PositiveIntegerField(default=0, editable=False)
+    impressions = models.PositiveIntegerField(default=0, editable=False)
+    last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True, db_constraint=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False, db_constraint=False)
+    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True, editable=False)
+    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True, editable=False)
+    regions = models.ManyToManyField(Web_Region, blank=True, editable=False, db_constraint=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False, db_constraint=False)
+    start = models.DateField(verbose_name='Display Start Date')
+    end = models.DateField(verbose_name='Display End Date')
+    sponsored = models.BooleanField(default=False, editable=False)
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/appssecured/login/servlet/LoginServlet")
+    url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=25, default="Web-Not Logged In", editable=False)
+
+    class Meta:
+        verbose_name = 'Promotion for Not Logged In'
+        verbose_name_plural = 'Promotions for Not Logged In'
+
+    def __unicode__(self):
+        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
+
+
 class SimpleEventNonMemberPromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
@@ -102,7 +137,7 @@ class SimpleEventNonMemberPromotion(models.Model):
     promotion_type = models.CharField(max_length=30, default="Membership-Non Member", editable=False)
 
     class Meta:
-        verbose_name = 'Promotion for Non-Member or Member Not Logged In'
+        verbose_name = 'Promotion for Non-Member'
 
     def __unicode__(self):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
@@ -131,7 +166,7 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/member/access/TechnicalDisciplines")
     url = models.URLField(blank=True, null=True, editable=False)
     promotion_type = models.CharField(max_length=30, default="Membership-No Discipline", editable=False)
 
@@ -165,7 +200,7 @@ class SimpleEventNoAddressPromotion(models.Model):
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
+    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/member/access/Address")
     url = models.URLField(blank=True, null=True, editable=False)
     promotion_type = models.CharField(max_length=25, default="Membership-No Address", editable=False)
 
@@ -182,7 +217,7 @@ class PromotionsEventClicks(models.Model):
     promotion_id = models.PositiveIntegerField()
     time = models.DateTimeField()
     ip = models.CharField(max_length=17)
-    customer_id = models.ForeignKey(Customer, related_name="browsing_customer", blank=True, null=True)
+    customer_id = models.CharField(max_length=12, blank=True, null=True)
 
     def __unicode__(self):
         return self.promotion_title
