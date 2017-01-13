@@ -272,6 +272,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         objects = objects[:instance.count]
         i = 0
         for x in objects:
+            x.url = "/promotion/event/" + str(x.id) + "/"
             if i == 0:
                 if no_discipline:
                     x.url = "/promotion/no_discipline/" + str(x.id) + "/"
@@ -279,10 +280,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     x.url = "/promotion/no_region/" + str(x.id) + "/"
                 elif non_member:
                     x.url = "/promotion/non_member/" + str(x.id) + "/"
-                else:
-                    x.url = "/promotion/event/" + str(x.id) + "/"
-            else:
-                x.url = "/promotion/event/" + str(x.id) + "/"
+            i += 1
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()

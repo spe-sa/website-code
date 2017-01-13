@@ -7,7 +7,7 @@ from cms.models import CMSPlugin
 from filer.fields.image import FilerImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-from mainsite.models import Regions, Tier1Discipline, Web_Region, Topics, TimeZone
+from mainsite.models import Regions, Tier1Discipline, Web_Region, Topics, TimeZone, Customer
 from spe_blog.models import Article
 from spe_events.models import EventType
 
@@ -64,6 +64,7 @@ class SimpleEventPromotion(models.Model):
     sponsored = models.BooleanField(default=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True)
     url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=25, default="Event", editable=False)
 
     class Meta:
         ordering = ['-end', 'event']
@@ -98,6 +99,7 @@ class SimpleEventNonMemberPromotion(models.Model):
     sponsored = models.BooleanField(default=False, editable=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/join/")
     url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=30, default="Membership-Non Member", editable=False)
 
     class Meta:
         verbose_name = 'Promotion for Non-Member or Member Not Logged In'
@@ -131,6 +133,7 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     sponsored = models.BooleanField(default=False, editable=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
     url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=30, default="Membership-No Discipline", editable=False)
 
     class Meta:
         verbose_name = 'Promotion for Missing Discipline'
@@ -164,12 +167,26 @@ class SimpleEventNoAddressPromotion(models.Model):
     sponsored = models.BooleanField(default=False, editable=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', default="http://www.spe.org/members/update/")
     url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=25, default="Membership-No Address", editable=False)
 
     class Meta:
         verbose_name = 'Promotion for Missing Address'
 
     def __unicode__(self):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
+
+
+class PromotionsEventClicks(models.Model):
+    promotion_title = models.CharField(max_length=250, verbose_name='Title')
+    promotion_type = models.CharField(max_length=25)
+    promotion_id = models.PositiveIntegerField()
+    time = models.DateTimeField()
+    ip = models.CharField(max_length=17)
+    customer_id = models.ForeignKey(Customer, related_name="browsing_customer", blank=True, null=True)
+
+    def __unicode__(self):
+        return self.promotion_title
+
 
 # class SimpleEventNonMemberMessage(models.Model):
 #     promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Non-Member or Member Who Has Not Logged In')

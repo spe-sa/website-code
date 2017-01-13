@@ -10,6 +10,7 @@ from .models import (
     SimpleEventNonMemberPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
+    PromotionsEventClicks,
 )
 
 
@@ -35,3 +36,6 @@ admin.site.register(SimpleEventPromotion, SimpleEventPromotionAdmin)
 admin.site.register(SimpleEventNonMemberPromotion, NonMemberMessageAdmin)
 admin.site.register(SimpleEventNoDisciplinePromotion, MemberNoDisciplineMessageAdmin)
 admin.site.register(SimpleEventNoAddressPromotion, MemberNoRegionMessageAdmin)
+
+admin.site.register(PromotionsEventClicks)
+
