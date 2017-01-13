@@ -15,9 +15,9 @@
 
         {% if current_page.parent|tostring == "OGF" %}
             <div class="col-xs-12 padZero"><span class="sideListDate">{{ article.date|date:"d F Y" }}</span>
-            {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
-                | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-            {% endif %}
+{#            {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
+{#                | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
+{#            {% endif %}#}
             </div>
         {% else %}
             <p><span>{{ article.date|date:"d F Y" }}</span>{% if article.author %} | <span class="authorNameBox">{{ article.author }}</span>{% endif %}</p>

@@ -10,11 +10,11 @@
                     <span class="techListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
 
                     <span class="techListDate">{{ article.date|date:"d F Y" }}</span>
-                    {% if article.is_readable == True %}
-                        <span class="pipe">| </span><span class="sideListLock"><i class="fa fa-unlock"></i></span>
-                    {% else %}
-                        <span class="pipe">| </span><span class="sideListLock"><i class="fa fa-lock"></i></span>
-                    {% endif %}
+{#                    {% if article.is_readable == True %}#}
+{#                        <span class="pipe">| </span><span class="sideListLock"><i class="fa fa-unlock"></i></span>#}
+{#                    {% else %}#}
+{#                        <span class="pipe">| </span><span class="sideListLock"><i class="fa fa-lock"></i></span>#}
+{#                    {% endif %}#}
                 </div>
             </div>
 

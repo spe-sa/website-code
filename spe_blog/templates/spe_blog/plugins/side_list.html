@@ -41,13 +41,13 @@
         {% endif %}
 
             <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
-        {% if pubcode == "TWA" %}
+{#        {% if pubcode == "TWA" %}#}
 {#            <span class="sideListAuthor">{{ article.author }}</span>#}
-        {% else %}
-            {% if article.is_readable == True %}
-                <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>
-            {% endif %}
-        {% endif %}
+{#        {% else %}#}
+{#            {% if article.is_readable == True %}#}
+{#                <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
+{#            {% endif %}#}
+{#        {% endif %}#}
             </div>
         </div>
 {#    </div>#}
