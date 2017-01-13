@@ -72,6 +72,7 @@ urlpatterns = i18n_patterns('',
     url(r'^promotion/no_region/(?P<index>\d+)/$', 'spe_promotions.views.no_region', ),
     url(r'^promotion/non_member/(?P<index>\d+)/$', 'spe_promotions.views.non_member', ),
     url(r'^promotion/not_logged_in/(?P<index>\d+)/$', 'spe_promotions.views.not_logged_in', ),
+    url(r'^promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
 
     url(r'^', include('cms.urls')),
 )

@@ -11,6 +11,7 @@ from .models import (
     SimpleEventNonMemberPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
+    PromotionsEventClicks,
 )
 
 
@@ -33,11 +34,29 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
 
 
-# admin.site.register(Promotion)
+class ReadOnlyAdmin(admin.ModelAdmin):
+    readonly_fields = []
+
+    def get_readonly_fields(self, request, obj=None):
+        return list(self.readonly_fields) + \
+               [field.name for field in obj._meta.fields]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+# Create a read only view of Promotion Clicks
+class PromotionsEventClicksAdmin(ReadOnlyAdmin):
+    pass
+
+
 admin.site.register(SimpleEventPromotion, SimpleEventPromotionAdmin)
 admin.site.register(SimpleEventNotLoggedInPromotion, NotLoggedInMessageAdmin)
 admin.site.register(SimpleEventNonMemberPromotion, NonMemberMessageAdmin)
 admin.site.register(SimpleEventNoDisciplinePromotion, MemberNoDisciplineMessageAdmin)
 admin.site.register(SimpleEventNoAddressPromotion, MemberNoRegionMessageAdmin)
 
-
+admin.site.register(PromotionsEventClicks, PromotionsEventClicksAdmin)

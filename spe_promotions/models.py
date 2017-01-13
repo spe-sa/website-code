@@ -219,6 +219,10 @@ class PromotionsEventClicks(models.Model):
     ip = models.CharField(max_length=17)
     customer_id = models.CharField(max_length=12, blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Promotion Clicks'
+        verbose_name_plural = 'Promotions Clicks'
+
     def __unicode__(self):
         return self.promotion_title
 

@@ -1,6 +1,8 @@
 from django.http import Http404
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.http import HttpResponse
+import csv
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
@@ -129,3 +131,15 @@ def not_logged_in(request, index):
     if object.click_url:
         url = object.click_url
     return redirect(url)
+
+
+def export_excel(request):
+    clicks = PromotionsEventClicks.objects.all()
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Count', 'Title', 'Type', 'id', 'Time', 'IP', 'Customer Number'])
+    for click in clicks:
+        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip, click.customer_id])
+    return response
