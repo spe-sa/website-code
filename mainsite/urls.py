@@ -36,6 +36,7 @@ urlpatterns = i18n_patterns('',
     # NOTE: for more specific staff stuff put first; blog will catch anything else /staff.
     # ex url(r'^staff/filer/', include('spe_filer.urls_internal')),
     url(r'^staff/dashboard/', include(router.urls)),
+    url(r'^staff/promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
     url(r'^staff/', include('spe_blog.urls_internal')),
     url(r'^spe_links/', include('spe_links.urls')),
     url(r'^briefs/', include('spe_blog.urls_brief')),
@@ -72,7 +73,6 @@ urlpatterns = i18n_patterns('',
     url(r'^promotion/no_region/(?P<index>\d+)/$', 'spe_promotions.views.no_region', ),
     url(r'^promotion/non_member/(?P<index>\d+)/$', 'spe_promotions.views.non_member', ),
     url(r'^promotion/not_logged_in/(?P<index>\d+)/$', 'spe_promotions.views.not_logged_in', ),
-    url(r'^promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
 
     url(r'^', include('cms.urls')),
 )
