@@ -34,9 +34,9 @@
                                         {% if promo.event_start_date %}
                                             {{ promo.event_start_date|date:"d F Y" }}
                                         {% endif %}
-                                    {% endif %} -
+                                    {% endif %}
                                     {% if promo.event_location %}
-                                        {{ promo.event_location }}
+                                        - {{ promo.event_location }}
                                     {% endif %}
                                 </p>
                 {#                <span class="sideListDateTWA"></span>#}
