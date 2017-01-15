@@ -2,11 +2,15 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.utils import timezone
 from django.http import HttpResponse
+from django.contrib.gis.geoip import GeoIP
+
 import csv
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
 )
+
+from mainsite.models import Customer
 
 from .models import (
     SimpleEventPromotion,
@@ -142,4 +146,42 @@ def export_excel(request):
     writer.writerow(['Count', 'Title', 'Type', 'id', 'Time', 'IP', 'Customer Number'])
     for click in clicks:
         writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip, click.customer_id])
+    return response
+
+
+def export_detail_excel(request):
+    clicks = PromotionsEventClicks.objects.all()
+    g = GeoIP()
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Count', 'Title', 'Type', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    for click in clicks:
+        # If IP is not internal use same logic as plugins to find regions shown
+        ip_country = "unknown"
+        ip_region = "USA"
+        if click.ip != 'internal':
+            loc = g.city(click.ip)
+            if loc:
+                ip_country = loc['country_code3']
+                try:
+                    ip_region = Web_Region_Country.objects.get(country_UN=country).region
+                except Web_Region_Country.DoesNotExist:
+                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+        cust_discipline = "unknown"
+        cust_country = "unknown"
+        if click.customer_id:
+            try:
+                cust = Customer.objects.get(pk=click.customer_id)
+                cust_discipline = cust.primary_discipline
+                if cust_discipline == "Null":
+                    cust_discipline = "unknown"
+                cust_country = cust.country
+                if cust_country == "Null":
+                    cust_country = "unknown"
+            except:
+                cust_discipline = "unknown"
+                cust_country = "unknown"
+        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
     return response

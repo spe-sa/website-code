@@ -37,6 +37,8 @@ urlpatterns = i18n_patterns('',
     # ex url(r'^staff/filer/', include('spe_filer.urls_internal')),
     url(r'^staff/dashboard/', include(router.urls)),
     url(r'^staff/promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
+    url(r'^staff/promotions/export_details/', 'spe_promotions.views.export_detail_excel', ),
+
     url(r'^staff/', include('spe_blog.urls_internal')),
     url(r'^spe_links/', include('spe_links.urls')),
     url(r'^briefs/', include('spe_blog.urls_brief')),
