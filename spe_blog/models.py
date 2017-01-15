@@ -810,3 +810,28 @@ class TagsDetailPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]  # + " - "
         # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
+
+class ArticleViews(models.Model):
+    article = models.PositiveIntegerField()
+    time = models.DateTimeField()
+    ip = models.CharField(max_length=17)
+    customer_id = models.CharField(max_length=12, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Article View'
+
+    def __unicode__(self):
+        return self.article
+
+
+class BriefViews(models.Model):
+    article = models.PositiveIntegerField()
+    time = models.DateTimeField()
+    ip = models.CharField(max_length=17)
+    customer_id = models.CharField(max_length=12, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Brief View'
+
+    def __unicode__(self):
+        return self.article

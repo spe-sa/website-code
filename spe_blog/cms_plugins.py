@@ -24,8 +24,8 @@ from mainsite.context_processors.spe_context import (
     get_visitor,)
 
 from .models import (
-    Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin,
-    Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, TagsDetailPlugin,
+    Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin, ArticleViews,
+    Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, BriefViews, TagsDetailPlugin,
     Issue, IssuesByPublicationPlugin,
     Editorial, EditorialPlugin,
     BreadCrumbPlugin,
@@ -180,6 +180,16 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         art.article_last_viewed = timezone.now()
         art.save()
 
+        record = ArticleViews()
+        record.article = art.id
+        record.time = timezone.now()
+        ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
+        record.ip = ip
+        visitor = get_visitor(context['request'])
+        if visitor:
+            record.customer_id = visitor.id
+        record.save()
+
         show_paybox = art.show_paybox()
         visitor = None
         if show_paybox:
@@ -274,6 +284,16 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         art.article_hits += 1
         art.article_last_viewed = timezone.now()
         art.save()
+
+        record = BriefViews()
+        record.article = art.id
+        record.time = timezone.now()
+        ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
+        record.ip = ip
+        visitor = get_visitor(context['request'])
+        if visitor:
+            record.customer_id = visitor.id
+        record.save()
 
         show_paybox = art.show_paybox()
         if show_paybox:
