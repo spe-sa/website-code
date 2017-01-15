@@ -49,7 +49,7 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
                                  event_type=instance.event_type.all()).distinct()[:instance.count]
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
@@ -79,7 +79,7 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
                   :instance.count]
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
@@ -109,7 +109,7 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
                   :instance.count]
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
@@ -139,7 +139,7 @@ class ShowEventsListingPlugin(CMSPluginBase):
             'last_impression').distinct()
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
@@ -171,7 +171,7 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
                   :instance.count]
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
@@ -268,14 +268,14 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         objects = objects[:instance.count]
         i = 0
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             if i == 0:
                 if no_discipline:
-                    x.url = "/promotion/no_discipline/" + str(x.id) + "/"
+                    x.url = "/en/promotion/no_discipline/" + str(x.id) + "/"
                 elif no_region:
-                    x.url = "/promotion/no_region/" + str(x.id) + "/"
+                    x.url = "/en/promotion/no_region/" + str(x.id) + "/"
                 elif not_logged_in:
-                    x.url = "/promotion/not_logged_in/" + str(x.id) + "/"
+                    x.url = "/en/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
@@ -307,7 +307,7 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
                                                       event_start_date__gte=today).order_by('event_start_date').distinct()[:instance.count]
 
         for x in objects:
-            x.url = "/promotion/event/" + str(x.id) + "/"
+            x.url = "/en/promotion/event/" + str(x.id) + "/"
             x.last_impression = datetime.datetime.now()
             x.impressions += 1
             x.save()
