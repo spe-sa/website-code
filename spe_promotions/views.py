@@ -10,7 +10,7 @@ from mainsite.context_processors.spe_context import (
     get_visitor,
 )
 
-from mainsite.models import Customer
+from mainsite.models import Customer, Web_Region_Country
 
 from .models import (
     SimpleEventPromotion,
@@ -166,7 +166,7 @@ def export_detail_excel(request):
             if loc:
                 ip_country = loc['country_code3']
                 try:
-                    ip_region = Web_Region_Country.objects.get(country_UN=country).region
+                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
                 except Web_Region_Country.DoesNotExist:
                     ip_region = Web_Region_Country.objects.get(country_UN='USA').region
         cust_discipline = "unknown"
@@ -175,11 +175,7 @@ def export_detail_excel(request):
             try:
                 cust = Customer.objects.get(pk=click.customer_id)
                 cust_discipline = cust.primary_discipline
-                if cust_discipline == "Null":
-                    cust_discipline = "unknown"
                 cust_country = cust.country
-                if cust_country == "Null":
-                    cust_country = "unknown"
             except:
                 cust_discipline = "unknown"
                 cust_country = "unknown"
