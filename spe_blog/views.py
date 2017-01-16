@@ -12,7 +12,7 @@ import string
 # import sys
 
 from .models import Article, Brief, Issue, Publication, ArticleViews, BriefViews
-from mainsite.models import Customer, Web_Region, Web_Region_Country
+from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
 
 
 def article_index(request):
@@ -358,4 +358,18 @@ def export_brief_detail_excel(request):
             writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
         except:
             writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+    return response
+
+
+def export_article_disciplines_excel(request):
+    articles = Article.objects.all().order_by('id')
+    printable = set(string.printable)
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="article_disciplines.csv"'
+    writer = csv.writer(response)
+    disciplines = Tier1Discipline.objects.all()
+    writer.writerow(['id', 'Publication', 'Title'] + map(lambda x: x.name, disciplines.all()))
+    for article in articles:
+        title = filter(lambda x: x in printable, article.title)
+        writer.writerow([article.id, article.publication.name, title] + map(lambda x: x in article.disciplines.all(), disciplines.all()))
     return response
