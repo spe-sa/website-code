@@ -65,6 +65,11 @@ class ArticleEditor(Article):
         verbose_name_plural = "articles (editor view)"
 
 
+def make_published(modeladmin, request, queryset):
+    queryset.update(published=True)
+make_published.short_description = "Mark selected as published"
+
+
 class ArticleEditorAdmin(ArticleAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
@@ -112,6 +117,7 @@ class ArticleEditorAdmin(ArticleAdmin):
             ),
         }),
     )
+    actions = [make_published]
 
 
 class BriefAdmin(admin.ModelAdmin):
@@ -180,6 +186,7 @@ class BriefEditorAdmin(BriefAdmin):
             ),
         }),
     )
+    actions = [make_published]
 
 
 # def get_form(self, request, obj=None, **kwargs):
