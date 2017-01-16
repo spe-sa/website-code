@@ -286,7 +286,7 @@ def export_article_detail_excel(request):
     g = GeoIP()
     printable = set(string.printable)
     response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+    response['Content-Disposition'] = 'attachment; filename="articles_tracking.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
@@ -326,7 +326,7 @@ def export_brief_detail_excel(request):
     g = GeoIP()
     printable = set(string.printable)
     response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+    response['Content-Disposition'] = 'attachment; filename="briefs_tracking.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
