@@ -38,6 +38,8 @@ urlpatterns = i18n_patterns('',
     url(r'^staff/dashboard/', include(router.urls)),
     url(r'^staff/promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
     url(r'^staff/promotions/export_details/', 'spe_promotions.views.export_detail_excel', ),
+    url(r'^staff/articles/export_details/', 'spe_blog.views.export_article_detail_excel', ),
+    url(r'^staff/briefs/export_details/', 'spe_blog.views.export_brief_detail_excel', ),
 
     url(r'^staff/', include('spe_blog.urls_internal')),
     url(r'^spe_links/', include('spe_links.urls')),

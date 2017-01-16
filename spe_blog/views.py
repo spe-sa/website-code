@@ -1,11 +1,18 @@
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.db.models import Q
+from django.http import HttpResponse
+
+from django.contrib.gis.geoip import GeoIP
+
+import csv
+import string
+
 # import datetime
 # import sys
 
-from .models import Article, Brief, Issue, Publication
-from mainsite.models import Web_Region
+from .models import Article, Brief, Issue, Publication, ArticleViews, BriefViews
+from mainsite.models import Customer, Web_Region, Web_Region_Country
 
 
 def article_index(request):
@@ -272,3 +279,83 @@ def brief_regional(request):
     articles = articles.order_by('region', '-date')[:25]
     context = {'articles': articles,}
     return render(request, 'spe_blog/regional_briefs.html', context)
+
+
+def export_article_detail_excel(request):
+    clicks = ArticleViews.objects.all()
+    g = GeoIP()
+    printable = set(string.printable)
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    for click in clicks:
+        # If IP is not internal use same logic as plugins to find regions shown
+        ip_country = "unknown"
+        ip_region = "USA"
+        if click.ip != 'internal':
+            loc = g.city(click.ip)
+            if loc:
+                ip_country = loc['country_code3']
+                try:
+                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
+                except Web_Region_Country.DoesNotExist:
+                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+        cust_discipline = 'unknown'
+        cust_country = 'unknown'
+        if click.customer_id:
+            try:
+                cust = Customer.objects.get(pk=click.customer_id)
+                cust_discipline = cust.primary_discipline
+                cust_country = cust.country
+            except:
+                cust_discipline = 'unknown'
+                cust_country = 'unknown'
+        art = Article.objects.get(pk=str(click.article))
+        title = filter(lambda x: x in printable, art.title)
+        try:
+            writer.writerow([click.pk, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+        except:
+            writer.writerow([click.pk, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+    return response
+
+
+def export_brief_detail_excel(request):
+    clicks = BriefViews.objects.all()
+    g = GeoIP()
+    printable = set(string.printable)
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    for click in clicks:
+        # If IP is not internal use same logic as plugins to find regions shown
+        ip_country = "unknown"
+        ip_region = "USA"
+        if click.ip != 'internal':
+            loc = g.city(click.ip)
+            if loc:
+                ip_country = loc['country_code3']
+                try:
+                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
+                except Web_Region_Country.DoesNotExist:
+                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+        cust_discipline = 'unknown'
+        cust_country = 'unknown'
+        if click.customer_id:
+            try:
+                cust = Customer.objects.get(pk=click.customer_id)
+                cust_discipline = cust.primary_discipline
+                cust_country = cust.country
+            except:
+                cust_discipline = 'unknown'
+                cust_country = 'unknown'
+        art = Brief.objects.get(pk=str(click.article))
+        title = filter(lambda x: x in printable, art.title)
+        try:
+            writer.writerow([click.pk, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+        except:
+            writer.writerow([click.pk, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+    return response
