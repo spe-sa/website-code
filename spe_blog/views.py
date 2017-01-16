@@ -289,7 +289,7 @@ def export_article_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="articles_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
@@ -315,9 +315,9 @@ def export_article_detail_excel(request):
         art = Article.objects.get(pk=str(click.article))
         title = filter(lambda x: x in printable, art.title)
         try:
-            writer.writerow([click.pk, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
     return response
 
 
@@ -329,7 +329,7 @@ def export_brief_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="briefs_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
@@ -355,7 +355,7 @@ def export_brief_detail_excel(request):
         art = Brief.objects.get(pk=str(click.article))
         title = filter(lambda x: x in printable, art.title)
         try:
-            writer.writerow([click.pk, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
     return response
