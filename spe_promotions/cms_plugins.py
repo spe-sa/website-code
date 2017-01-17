@@ -215,14 +215,30 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
             # The Member is Logged In
             if instance.show == 'discipline':
                 if visitor.primary_discipline:
-                    # Member - Primary Discipline Available
-                    objects = objects.filter(disciplines=visitor.primary_discipline,
+                    if visitor.primary_discipline.active:
+                        # Member - Primary Discipline Available
+                        objects = objects.filter(disciplines=visitor.primary_discipline,
                                              event_type=instance.event_type.all())
-                    # If a Secondary Discipline is Available Append Events for that Discipline
-                    if visitor.secondary_discipline:
-                        append_objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                            disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).order_by('last_impression')
-                        objects = list(chain(objects, append_objects))
+                        # If a Secondary Discipline is Available Append Events for that Discipline
+                        if visitor.secondary_discipline:
+                            append_objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
+                                disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).order_by('last_impression')
+                            objects = list(chain(objects, append_objects))
+                    else:
+                        # Member - Primary Discipline is Obsolete
+                        prepend_object = no_discipline_promotions
+                        no_discipline = True
+                        # Drop Back to Member Location then Browser Location (if selected)
+                        if visitor.country:
+                            # Member - Region Available
+                            try:
+                                region = Web_Region_Country.objects.get(country_UN=visitor.country).region
+                            except Web_Region_Country.DoesNotExist:
+                                region = Web_Region_Country.objects.get(country_UN='USA').region
+                        else:
+                            region = getRegion(context)
+                        objects = objects.filter(regions=region, event_type=instance.event_type.all())
+                        objects = list(chain(prepend_object, objects))
                 else:
                     # Member - No Primary Discipline Available
                     prepend_object = no_discipline_promotions
