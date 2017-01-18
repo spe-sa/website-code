@@ -175,11 +175,14 @@ def export_detail_excel(request):
     writer = csv.writer(response)
     writer.writerow(['Count', 'Title', 'Type', 'id', 'Sub Type', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
-        try:
-            object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
-            promotion_sub_type = object.event_type
-        except:
-            promotion_sub_type = 'unknown'
+        if click.promotion_type == "Event":
+            try:
+                object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
+                promotion_sub_type = object.event_type
+            except:
+                promotion_sub_type = 'unknown'
+        else:
+            promotion_sub_type = 'no subtype'
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"

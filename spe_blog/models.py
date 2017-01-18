@@ -863,7 +863,7 @@ class ArticleViews(models.Model):
         verbose_name = 'Article View'
 
     def __unicode__(self):
-        return self.article
+        return str(self.article)
 
 
 class BriefViews(models.Model):
@@ -877,4 +877,4 @@ class BriefViews(models.Model):
         verbose_name = 'Brief View'
 
     def __unicode__(self):
-        return self.article
+        return str(self.article)
