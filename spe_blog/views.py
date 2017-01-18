@@ -340,7 +340,7 @@ def export_article_detail_excel(request):
             except:
                 cust_discipline = 'unknown'
                 cust_country = 'unknown'
-        art = Article.objects.get(pk=str(click.article))
+        art = Article.objects.get(pk=click.article)
         title = filter(lambda x: x in printable, art.title)
         try:
             writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
@@ -380,7 +380,7 @@ def export_brief_detail_excel(request):
             except:
                 cust_discipline = 'unknown'
                 cust_country = 'unknown'
-        art = Brief.objects.get(pk=str(click.article))
+        art = Brief.objects.get(pk=click.article)
         title = filter(lambda x: x in printable, art.title)
         try:
             writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
