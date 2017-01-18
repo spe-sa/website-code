@@ -1,0 +1,92 @@
+{% load i18n cms_tags sekizai_tags bleachall %}
+
+<div class="panel-group greyback briefofinterest" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+
+
+        {% for article in articles %}
+
+            {% ifchanged article.date.month %}
+                {# PRIMARY YEAR BOX #}
+                {% if forloop.first %}
+
+                    <div class="row issuebar" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ article.date.month }}" aria-expanded="true" aria-controls="collapse{{ article.date.month }}">
+{#                    <hr class="tiletitlehr">#}
+                        <h2 class="tiletitlesPOI">{{ article.date|date:"F Y" }}
+                            <div class="plusSymbol"><i class="fa fa-plus"></i></div>
+                            <div class="minusSymbol"><i class="fa fa-minus"></i></div>
+                        </h2>
+
+                </div>
+                <div id="collapse{{ article.date.month }}" class="panel-collapse collapse in row">
+
+                {% else %}
+                    {# SECONDARY YEAR BOX #}
+                    </div>
+                    <div class="row issuebar collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ article.date.month }}" aria-expanded="true" aria-controls="collapse{{ article.date.month }}">
+{#                        <hr class="tiletitlehr">#}
+                        <h2 class="tiletitlesPOI">{{ article.date|date:"F Y" }}
+                            <div class="plusSymbol"><i class="fa fa-plus"></i></div>
+                            <div class="minusSymbol"><i class="fa fa-minus"></i></div>
+                        </h2>
+
+                    </div>
+                    <div id="collapse{{ article.date.month }}" class="panel-collapse collapse row">
+                {% endif %}
+
+            {% endifchanged %}
+            
+            <article class="tile-poi col-sm-6 {% if not article.published %}unpublished{% endif %}{% if article.future %} future{% endif %}">
+                <a href="{{ article.get_absolute_url }}">
+                    <div class="story-wrap row">
+
+                    {% if article.picture and article.picture.url %}
+                        <div class="col-sm-3 poipic" style="background-image: url({{ article.picture.url }})"></div>
+                    {% else %}
+                        <div class="col-sm-3 poipic"></div>
+                    {% endif %}
+
+                        <div class="col-sm-9 poiblurb">
+                            <h3>{{ article.title }}</h3>
+                            {% if article.date %}
+                                <p class="poi-date">{{ article.date|date:"F Y" }}</p>
+                            {% endif %}
+                            {% if article.article_text %}
+                                <p>{{ article.article_text | bleachall | slice:":100" | safe }}... </p>
+                                <span class="more"> ...Read More</span>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </a>
+            </article>
+
+
+        {% endfor %}{# END for issue in issues #}
+
+        </div>
+    </div>
+</div>
+
+{% if show_all_url and show_all_text %}
+            <div class="row"><div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+{% endif %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+
+            //$('.briefofinterest').first().hide();
+            //$('.briefofinterest').first().css("display","none");
+{#            $('.briefofinterest').first().remove();#}
+
+            var poipicwidth = $('.poipic').width();
+            $('.poipic').height(poipicwidth * 1.2);
+
+            $( window ).resize(function() {
+                poipicwidth = $('.poipic').width();
+                $('.poipic').height(poipicwidth * 1.2);
+            });
+        });
+    </script>
+{%  endaddtoblock %}

@@ -92,6 +92,20 @@ BRIEF_TEMPLATES = (
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
+DEFAULT_ARTICLE_AND_BRIEF_TEMPLATE = 'spe_blog/plugins/articles_and_briefs/brief_interest.html'
+ARTICLE_AND_BRIEF_TEMPLATES = (
+    ('spe_blog/plugins/articles_and_briefs/brief_index.html', 'Index listing'),
+    ('spe_blog/plugins/articles_and_briefs/brief_index1c.html', 'Index listing One Column'),
+    ('spe_blog/plugins/articles_and_briefs/brief_accordion.html', 'POI Accordion Listing'),
+    ('spe_blog/plugins/articles_and_briefs/side_list.html', 'Brief List'),
+    ('spe_blog/plugins/articles_and_briefs/brief_list_pics.html', 'Brief List with Images'),
+    ('spe_blog/plugins/articles_and_briefs/best_shot_1.html', 'Best Shot 1 Col'),
+    ('spe_blog/plugins/articles_and_briefs/best_shot_2.html', 'Best Shot 2 Col'),
+    ('spe_blog/plugins/articles_and_briefs/best_shot.html', 'Best Shot 3 Col'),
+    ('spe_blog/plugins/articles_and_briefs/brief_interest_widepics.html', 'Brief of interest listing Wide Pics'),
+    (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
+)
+
 DEFAULT_TOPIC_TEMPLATE = 'spe_blog/plugins/topics_list_3col.html'
 TOPIC_TEMPLATES = (
     ('spe_blog/plugins/topics_list_1col.html', 'Topic List 1 Column'),
@@ -602,7 +616,7 @@ class BriefPlugin(CMSPlugin):
 
 
 class ArticleAndBriefMixPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
+    template = models.CharField(max_length=255, choices=ARTICLE_AND_BRIEF_TEMPLATES, default=DEFAULT_ARTICLE_AND_BRIEF_TEMPLATE)
     articles = models.ManyToManyField(Article)
     briefs = models.ManyToManyField(Brief)
     order_by = models.CharField(

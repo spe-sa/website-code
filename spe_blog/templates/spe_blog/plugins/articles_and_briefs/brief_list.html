@@ -1,0 +1,56 @@
+{% load i18n cms_tags sekizai_tags %}
+
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
+{#    <p>Back Color: {{ backcol }}</p>#}
+{#    <p>White Text: {{ whitetext }}</p>#}
+{#    <p>Publication: {{ pubcode }}</p>#}
+{#    {% if pubcode == "TWA" %}#}
+{#        <div class="col-xs-12 sideListBoxTitle">#}
+{#            <span class="boxTitleText col-xs-12">Most Read</span>#}
+{#        </div>#}
+{#    {% endif %}#}
+{% for article in articles %}
+{#    <div class="row">#}
+        <div class="row sideListItem">
+        {% if pubcode == "TWA" %}
+{#            <span class="col-xs-1 sideListNum">{{ forloop.counter }}</span>#}
+            <div class="col-xs-11">
+            <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
+        {% else %}
+            <div class="col-xs-12">
+            <span class="sideListTitle"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
+        {% endif %}
+
+            <span class="sideListDateTWA">{{ article.date|date:"d F Y" }}</span>
+{#        {% if pubcode == "TWA" %}#}
+{#            <span class="sideListAuthor">{{ article.author }}</span>#}
+{#        {% else %}#}
+{#            {% if article.is_readable == True %}#}
+{#                | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
+{#            {% endif %}#}
+{#        {% endif %}#}
+            </div>
+        </div>
+{#    </div>#}
+
+{% empty %}
+    <p class="well">{% trans "No editorial available" %}</p>
+{% endfor %}
+<!-- SHOW ALL BEGIN -->
+{% if show_all_url and show_all_text %}
+            <div class="row"><div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+{% endif %}
+<!-- SHOW ALL END -->
+
+</div>
+
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}
