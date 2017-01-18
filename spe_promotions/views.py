@@ -36,6 +36,9 @@ def event_select(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
     visitor = get_visitor(request)
     if visitor:
         record.customer_id = visitor.id
@@ -59,6 +62,9 @@ def no_discipline(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
     visitor = get_visitor(request)
     if visitor:
         record.customer_id = visitor.id
@@ -82,6 +88,9 @@ def no_region(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
     visitor = get_visitor(request)
     if visitor:
         record.customer_id = visitor.id
@@ -105,7 +114,12 @@ def non_member(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
     visitor = get_visitor(request)
+    if 'cookie_name' in request.COOKIES:
+        value = request.COOKIES['cookie_name']
     if visitor:
         record.customer_id = visitor.id
     record.save()
@@ -128,6 +142,9 @@ def not_logged_in(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
     visitor = get_visitor(request)
     if visitor:
         record.customer_id = visitor.id
@@ -156,8 +173,13 @@ def export_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Title', 'Type', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Title', 'Type', 'id', 'Sub Type', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
+        try:
+            object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
+            promotion_sub_type = object.event_type
+        except:
+            promotion_sub_type = 'unknown'
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"
@@ -179,5 +201,5 @@ def export_detail_excel(request):
             except:
                 cust_discipline = "unknown"
                 cust_country = "unknown"
-        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response

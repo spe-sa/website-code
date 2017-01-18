@@ -196,6 +196,8 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         record.time = timezone.now()
         ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
+        vid = context['request'].COOKIES.get('vid', 'not set')
+        record.vid = vid
         visitor = get_visitor(context['request'])
         if visitor:
             record.customer_id = visitor.id
@@ -301,6 +303,8 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         record.time = timezone.now()
         ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
+        vid = context['request'].COOKIES.get('vid', 'not set')
+        record.vid = vid
         visitor = get_visitor(context['request'])
         if visitor:
             record.customer_id = visitor.id

@@ -14,6 +14,10 @@ import string
 from .models import Article, Brief, Issue, Publication, ArticleViews, BriefViews
 from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
 
+from mainsite.context_processors.spe_context import (
+    get_context_variable,
+    get_visitor,)
+
 
 def article_index(request):
     # get parameters if we posted/ if not get them from GET in case we refresh the page
@@ -207,6 +211,18 @@ def article_detail(request, article_id):
     q.article_hits += 1
     q.article_last_viewed = timezone.now()
     q.save()
+    record = ArticleViews()
+    record.article = q.id
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
     i = Issue.objects.filter(publication=q.publication).order_by('-date')[:1]
     t = q.publication.code + "_base.html"
     t = t.lower()
@@ -225,6 +241,18 @@ def brief_detail(request, brief_id):
     q.article_hits += 1
     q.article_last_viewed = timezone.now()
     q.save()
+    record = BriefViews()
+    record.article = q.id
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
     i = Issue.objects.filter(publication=q.publication).order_by('-date')[:1]
     t = q.publication.code + "_base.html"
     t = t.lower()
@@ -289,7 +317,7 @@ def export_article_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="articles_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
@@ -315,9 +343,9 @@ def export_article_detail_excel(request):
         art = Article.objects.get(pk=str(click.article))
         title = filter(lambda x: x in printable, art.title)
         try:
-            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 
@@ -329,7 +357,7 @@ def export_brief_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="briefs_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
@@ -355,9 +383,9 @@ def export_brief_detail_excel(request):
         art = Brief.objects.get(pk=str(click.article))
         title = filter(lambda x: x in printable, art.title)
         try:
-            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.customer_id, cust_discipline, cust_country])
+            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 

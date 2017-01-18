@@ -217,6 +217,7 @@ class PromotionsEventClicks(models.Model):
     promotion_id = models.PositiveIntegerField()
     time = models.DateTimeField()
     ip = models.CharField(max_length=17)
+    vid = models.CharField(max_length=60, default='unknown')
     customer_id = models.CharField(max_length=12, blank=True, null=True)
 
     class Meta:
