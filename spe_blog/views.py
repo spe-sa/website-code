@@ -340,8 +340,11 @@ def export_article_detail_excel(request):
             except:
                 cust_discipline = 'unknown'
                 cust_country = 'unknown'
-        art = Article.objects.get(pk=click.article)
-        title = filter(lambda x: x in printable, art.title)
+        try:
+            art = Article.objects.get(pk=click.article)
+            title = filter(lambda x: x in printable, art.title)
+        except:
+            title = 'article deleted'
         try:
             writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
@@ -380,8 +383,11 @@ def export_brief_detail_excel(request):
             except:
                 cust_discipline = 'unknown'
                 cust_country = 'unknown'
-        art = Brief.objects.get(pk=click.article)
-        title = filter(lambda x: x in printable, art.title)
+        try:
+            art = Brief.objects.get(pk=click.article)
+            title = filter(lambda x: x in printable, art.title)
+        except:
+            title = 'article deleted'
         try:
             writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
