@@ -261,6 +261,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowBriefDetailPlugin',
                     'ShowBriefPlugin',
                     'ShowBriefListingPlugin',
+                    'ShowArticleAndBriefPlugin',
                     # 'ShowEditorialPlugin',
                     'ShowIssuesByPublicationPlugin',
                     'ShowIssuesByYearPlugin',

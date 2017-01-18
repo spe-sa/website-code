@@ -601,6 +601,33 @@ class BriefPlugin(CMSPlugin):
         self.briefs = old_instance.briefs.all()
 
 
+class ArticleAndBriefMixPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=BRIEF_TEMPLATES, default=DEFAULT_BRIEF_TEMPLATE)
+    articles = models.ManyToManyField(Article)
+    briefs = models.ManyToManyField(Brief)
+    order_by = models.CharField(
+        max_length=20,
+        choices=ORDER_BY,
+        default=DEFAULT_ORDER_BY,
+        verbose_name="Otherwise order by"
+    )
+    # if user enters url and text then we display the show all link with these values
+    # todo - change charfield to our URLField that takes relative paths
+    all_url = PageField(verbose_name="URL for briefs listing page", blank=True, null=True, on_delete=models.SET_NULL)
+    all_text = models.CharField("Show All Text", max_length=50, blank=True, null=True)
+    backcol = ColorField("Background Color", blank=True, null=True, default='#ffffff')
+    whitetext = models.BooleanField("White Text", default=False)
+    boxtitle = models.CharField("Box Title", max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.articles.all()]) + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.articles = old_instance.articles.all()
+        self.briefs = old_instance.briefs.all()
+
+
 class ArticleDetailPlugin(CMSPlugin):
     allow_url_to_override_selection = models.BooleanField(default=False)
     article = models.ForeignKey(Article, verbose_name="Selected article (default)", on_delete=models.PROTECT)

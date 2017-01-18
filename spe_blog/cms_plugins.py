@@ -3,6 +3,8 @@
 # import json
 import re
 import urlparse
+from itertools import chain
+from operator import attrgetter
 
 from cms.models import CMSPlugin
 from django.shortcuts import get_object_or_404
@@ -26,6 +28,7 @@ from mainsite.context_processors.spe_context import (
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin, ArticleViews,
     Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, BriefViews, TagsDetailPlugin,
+    ArticleAndBriefMixPlugin,
     Issue, IssuesByPublicationPlugin,
     Editorial, EditorialPlugin,
     BreadCrumbPlugin,
@@ -34,9 +37,17 @@ from .models import (
     TopicsListPlugin, TopicsPlugin, Topics,
     BlogPluginModel, BlogListingPluginModel, Blog
 )
-from .forms import ArticleSelectionForm, BriefSelectionForm, EditorialSelectionForm, \
-    TopicsListSelectionForm, BriefsListSelectionForm, ArticlesListSelectionForm, BlogSelectionForm
 
+from .forms import (
+    ArticleSelectionForm,
+    BriefSelectionForm,
+    ArticleAndBriefSelectionForm,
+    EditorialSelectionForm,
+    TopicsListSelectionForm,
+    BriefsListSelectionForm,
+    ArticlesListSelectionForm,
+    BlogSelectionForm
+)
 
 def getPublicationCode(pub):
     if pub:
@@ -329,6 +340,40 @@ class ShowBriefPlugin(BriefPluginBase):
     def render(self, context, instance, placeholder):
         queryset = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(instance.order_by)
         context.update({'articles': queryset})
+        if instance.all_url:
+            context.update({'show_all_url': instance.all_url.get_absolute_url()})
+            context.update({'show_all_text': instance.all_text})
+        self.render_template = instance.template
+        return context
+
+
+class ArticleAndBriefPluginBase(CMSPluginBase):
+    """
+    Abstract base class to be used for all Brief plugins.
+    """
+
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = _('Article')
+    render_template = 'spe_blog/plugins/brief_interest.html'
+    text_enabled = False
+
+class ShowArticleAndBriefPlugin(ArticleAndBriefPluginBase):
+    model = ArticleAndBriefMixPlugin
+    name = _("Selected Mixed Articles and Briefs ")
+    form = ArticleAndBriefSelectionForm
+
+    def render(self, context, instance, placeholder):
+        queryset1 = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(instance.order_by)
+        queryset2 = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(instance.order_by)
+        result_list = sorted(
+            chain(queryset1, queryset2),
+            key=attrgetter(instance.order_by[1:]),
+            reverse=True)
+        context.update({'articles': result_list})
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
@@ -680,6 +725,7 @@ plugin_pool.register_plugin(ShowArticlesListingPlugin)
 plugin_pool.register_plugin(ShowBriefDetailPlugin)
 plugin_pool.register_plugin(ShowBriefPlugin)
 plugin_pool.register_plugin(ShowBriefListingPlugin)
+plugin_pool.register_plugin(ShowArticleAndBriefPlugin)
 plugin_pool.register_plugin(ShowTagsDetailPlugin)
 plugin_pool.register_plugin(ShowIssuesByPublicationPlugin)
 plugin_pool.register_plugin(ShowIssueCoverPlugin)

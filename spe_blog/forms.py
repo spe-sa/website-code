@@ -62,6 +62,18 @@ class BriefSelectionForm(ModelForm):
         fields = ['template', 'order_by', 'briefs', 'backcol', 'whitetext', ]
 
 
+class ArticleAndBriefSelectionForm(ModelForm):
+    articles = ModelMultipleChoiceField(Article.objects.all().order_by('-date'),
+                                        widget=FilteredSelectMultiple("articles", False, ))
+    briefs = ModelMultipleChoiceField(Brief.objects.all().order_by('-date'),
+                                      widget=FilteredSelectMultiple("briefs", False, ))
+
+    class Meta:
+        model = BriefPlugin
+        fields = ['template', 'order_by', 'articles', 'briefs', 'backcol', 'whitetext', ]
+
+
+
 class TopicsSelectionForm(ModelForm):
     topics = ModelMultipleChoiceField(Topics.objects.all(),
                                       widget=FilteredSelectMultiple("topics", False, ))
