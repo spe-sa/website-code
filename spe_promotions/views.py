@@ -216,7 +216,7 @@ def export_impressions_excel(request):
     printable = set(string.printable)
 
     response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
-    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+    response['Content-Disposition'] = 'attachment; filename="promotion_impressions.csv"'
     writer = csv.writer(response)
 
     promotions = SimpleEventPromotion.objects.all().order_by('event')
