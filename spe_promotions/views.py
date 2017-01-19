@@ -179,7 +179,7 @@ def export_detail_excel(request):
             try:
                 object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
                 promotion_sub_type = object.event_type
-                event_location = map(lambda x: x.region_name + "/", object.regions.all())
+                event_location = map(lambda x: x.region_name, object.regions.all())
             except:
                 promotion_sub_type = 'unknown'
                 event_location = 'unknown'
