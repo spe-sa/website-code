@@ -173,16 +173,19 @@ def export_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Title', 'Type', 'id', 'Sub Type', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Title', 'Type', 'id', 'Sub Type', 'Event Location', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         if click.promotion_type == "Event":
             try:
                 object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
                 promotion_sub_type = object.event_type
+                event_location = map(lambda x: x.region_name + "/", object.regions.all())
             except:
                 promotion_sub_type = 'unknown'
+                event_location = 'unknown'
         else:
             promotion_sub_type = 'no subtype'
+            event_location = 'web'
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"
@@ -204,5 +207,5 @@ def export_detail_excel(request):
             except:
                 cust_discipline = "unknown"
                 cust_country = "unknown"
-        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type, event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
