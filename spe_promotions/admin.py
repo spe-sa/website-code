@@ -19,8 +19,10 @@ class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
     exclude = ['latitude', 'longitude']
 
+
 class NotLoggedInMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+
 
 class NonMemberMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')

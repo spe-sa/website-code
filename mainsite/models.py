@@ -490,10 +490,8 @@ class TimeZone(models.Model):
     gmt_offset = models.IntegerField(default=0)
 
     def __unicode__(self):
-        buff = str(self.code) + ": " + str(self.description)
-        if self.display_postfix:
-            buff += ' [' + str(self.gmt_offset) + "]"
-        # return self.description is not None and self.description or ''
+        buff = str(self.code) + ": " + str(self.description) + ' [' + str(self.gmt_offset) + "]"
+        return buff
 
     class Meta:
         ordering = ['code']

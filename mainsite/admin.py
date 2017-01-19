@@ -7,6 +7,7 @@ from .models import Tier1Discipline
 from .models import Countries
 from .models import Regions
 from .models import Web_Region, Web_Region_Country
+from .models import TimeZone
 
 
 # class CustomerSubscriptionInline(admin.StackedInline):
@@ -36,6 +37,7 @@ admin.site.register(CustomerSubscription)
 admin.site.register(CustomerClassification, CustomerClassificationAdmin)
 # admin.site.register(CustomerAchievement)
 admin.site.register(Tier1Discipline)
+admin.site.register(TimeZone)
 admin.site.register(Topics)
 admin.site.register(Countries)
 admin.site.register(Regions)
