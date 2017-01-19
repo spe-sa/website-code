@@ -227,6 +227,7 @@ CMS_TEMPLATES = (
     ('twa_home.html', 'TWA Homepage'),
     ('twa_subpage.html', 'TWA SubPage'),
     ('generic_page.html', 'Generic Page'),
+    ('print_base.html', 'Print Page'),
     # ('twa_detailpage.html', 'TWA Detail Page'),
 )
 
