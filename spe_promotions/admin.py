@@ -11,13 +11,19 @@ from .models import (
     SimpleEventNonMemberPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
-    PromotionsEventClicks,
 )
 
+
+def blank_timezone(modeladmin, request, queryset):
+    for x in queryset.all():
+        x.event_tz = None
+        x.save()
+blank_timezone.short_description = "Blank Time Zones"
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
     exclude = ['latitude', 'longitude']
+    actions = [blank_timezone, ]
 
 
 class NotLoggedInMessageAdmin(admin.ModelAdmin):
@@ -60,5 +66,3 @@ admin.site.register(SimpleEventNotLoggedInPromotion, NotLoggedInMessageAdmin)
 admin.site.register(SimpleEventNonMemberPromotion, NonMemberMessageAdmin)
 admin.site.register(SimpleEventNoDisciplinePromotion, MemberNoDisciplineMessageAdmin)
 admin.site.register(SimpleEventNoAddressPromotion, MemberNoRegionMessageAdmin)
-
-# admin.site.register(PromotionsEventClicks, PromotionsEventClicksAdmin)

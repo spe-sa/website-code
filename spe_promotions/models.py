@@ -73,6 +73,11 @@ class SimpleEventPromotion(models.Model):
     def __unicode__(self):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event_type.name + " - " + self.event
 
+    def blank_timezone(self):
+        self.event_tz = None
+        self.save()
+        return True
+
 
 class SimpleEventNotLoggedInPromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
