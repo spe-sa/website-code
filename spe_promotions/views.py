@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.contrib.gis.geoip import GeoIP
 
 import csv
+import string
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
@@ -208,4 +209,21 @@ def export_detail_excel(request):
                 cust_discipline = "unknown"
                 cust_country = "unknown"
         writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type, event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+    return response
+
+
+def export_impressions_excel(request):
+    printable = set(string.printable)
+
+    response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
+    writer = csv.writer(response)
+
+    promotions = SimpleEventPromotion.objects.all().order_by('event')
+    writer.writerow(['id', 'Title', 'Type', 'Regions Shown', 'Disciplines Shown', 'Campaign Start', 'Campaign End', 'Impressions', 'Last Impression', 'Click Thrus'])
+    for promotion in promotions:
+        title = filter(lambda x: x in printable, promotion.event)
+        event_regions = map(lambda x: x.region_name, promotion.regions.all())
+        event_disciplines = map(lambda x: x.name, promotion.disciplines.all())
+        writer.writerow([promotion.pk, title, promotion.event_type, event_regions, event_disciplines, promotion.start, promotion.end, promotion.impressions, promotion.last_impression, promotion.hits])
     return response
