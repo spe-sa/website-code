@@ -10,7 +10,7 @@
             {% endif %}
                     <p class="sideListDateTWA" style="color:#FDD017">
                     {% if promo.event_text_date %}
-                        {{ promo.event_text_date }}
+                        {{ promo.event_text_date }} {{ promo.event_text_after }}
                     {% else %}
                         {{ promo.event_start_date|date:"d F Y" }}
                     {% endif %} - {{ promo.event_location }}</p>
