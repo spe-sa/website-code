@@ -10,4 +10,4 @@ class SimplePromotionsSelectionForm(ModelForm):
 
     class Meta:
         model = EventPromotionSelectionPlugin
-        fields = ['template', 'promotions', ]
+        fields = ['template', 'promotions', 'more_text', 'more_url',]

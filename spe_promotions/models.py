@@ -269,6 +269,8 @@ class EventPromotionByDisciplineListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -288,6 +290,8 @@ class EventPromotionByTopicListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     topics = models.ManyToManyField(Topics, blank=True, limit_choices_to={'active': True})
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -307,6 +311,8 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     regions = models.ManyToManyField(Web_Region, blank=True, limit_choices_to={'is_visible': True})
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
 
     def __unicode__(self):
@@ -325,6 +331,8 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
 class EventPromotionSelectionPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     promotions = models.ManyToManyField(SimpleEventPromotion)
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -340,6 +348,8 @@ class EventPromotionInUserRegionListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
 
     def __unicode__(self):
@@ -358,6 +368,8 @@ class EventForMemberListingPlugin(CMSPlugin):
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
     show = models.CharField(max_length=255, choices=DISPLAY_TYPE, default=DEFAULT_DISPLAY_TYPE)
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
 
     def __unicode__(self):
@@ -379,6 +391,8 @@ class UpcomingEventPromotionPlugin(CMSPlugin):
     disciplines = models.ManyToManyField(Tier1Discipline, limit_choices_to={'active': True}, db_constraint=False)
     regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': True})
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
 
     def __unicode__(self):
