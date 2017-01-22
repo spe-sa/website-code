@@ -163,7 +163,9 @@ def export_excel(request):
     writer = csv.writer(response)
     writer.writerow(['Count', 'Title', 'Type', 'id', 'Time', 'IP', 'Customer Number'])
     for click in clicks:
-        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip, click.customer_id])
+        writer.writerow(
+            [click.pk, click.promotion_title, click.promotion_type, click.promotion_id, click.time, click.ip,
+             click.customer_id])
     return response
 
 
@@ -174,7 +176,9 @@ def export_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="promotion_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Title', 'Type', 'id', 'Sub Type', 'Event Location', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(
+        ['Count', 'Title', 'Type', 'id', 'Sub Type', 'Event Location', 'Time', 'IP', 'Country', 'Region Shown', 'vid',
+         'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         if click.promotion_type == "Event":
             try:
@@ -208,7 +212,9 @@ def export_detail_excel(request):
             except:
                 cust_discipline = "unknown"
                 cust_country = "unknown"
-        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type, event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
+                         event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id,
+                         cust_discipline, cust_country])
     return response
 
 
@@ -220,10 +226,13 @@ def export_summary_excel(request):
     writer = csv.writer(response)
 
     promotions = SimpleEventPromotion.objects.all().order_by('event')
-    writer.writerow(['id', 'Title', 'Type', 'Regions Shown', 'Disciplines Shown', 'Campaign Start', 'Campaign End', 'Impressions', 'Last Impression', 'Click Thrus'])
+    writer.writerow(
+        ['id', 'Title', 'Type', 'Regions Shown', 'Disciplines Shown', 'Campaign Start', 'Campaign End', 'Impressions',
+         'Last Impression', 'Click Thrus'])
     for promotion in promotions:
         title = filter(lambda x: x in printable, promotion.event)
         event_regions = map(lambda x: x.region_name, promotion.regions.all())
         event_disciplines = map(lambda x: x.name, promotion.disciplines.all())
-        writer.writerow([promotion.pk, title, promotion.event_type, event_regions, event_disciplines, promotion.start, promotion.end, promotion.impressions, promotion.last_impression, promotion.hits])
+        writer.writerow([promotion.pk, title, promotion.event_type, event_regions, event_disciplines, promotion.start,
+                         promotion.end, promotion.impressions, promotion.last_impression, promotion.hits])
     return response

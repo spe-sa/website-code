@@ -18,7 +18,10 @@ def blank_timezone(modeladmin, request, queryset):
     for x in queryset.all():
         x.event_tz = None
         x.save()
+
+
 blank_timezone.short_description = "Blank Time Zones"
+
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')

@@ -20,7 +20,6 @@ PROMOTION_TYPE = (
     (DEFAULT_PROMOTION_TYPE, 'Generic'),
 )
 
-
 DEFAULT_PLUGIN_TEMPLATE = 'spe_promotions/plugins/carousel.html'
 PLUGIN_TEMPLATES = (
     (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
@@ -29,7 +28,6 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/overlay.html', 'Text Overlay'),
     ('spe_promotions/plugins/promotion_posts.html', 'Listing'),
 )
-
 
 DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
@@ -43,8 +41,10 @@ class SimpleEventPromotion(models.Model):
     event_start_date = models.DateTimeField()
     event_end_date = models.DateTimeField()
     event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)', default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+                                        default="")
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+                                       blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -72,7 +72,8 @@ class SimpleEventPromotion(models.Model):
         get_latest_by = ['end']
 
     def __unicode__(self):
-        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event_type.name + " - " + self.event
+        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime(
+            '%Y-%m-%d') + ") - " + self.event_type.name + " - " + self.event
 
     def blank_timezone(self):
         self.event_tz = None
@@ -84,9 +85,12 @@ class SimpleEventNotLoggedInPromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)', default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False,
+                                 db_constraint=False)
+    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+                                        default="")
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+                                       blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -95,16 +99,22 @@ class SimpleEventNotLoggedInPromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
-    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True, db_constraint=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False, db_constraint=False)
-    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True, editable=False)
-    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True, editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True,
+                                   db_constraint=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False,
+                                         db_constraint=False)
+    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True,
+                                 editable=False)
+    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
+                                  null=True, editable=False)
     regions = models.ManyToManyField(Web_Region, blank=True, editable=False, db_constraint=False)
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False, db_constraint=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False,
+                                    db_constraint=False)
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/appssecured/login/servlet/LoginServlet")
+    click_url = models.URLField(verbose_name=u'Click Through External URL',
+                                default="https://www.spe.org/appssecured/login/servlet/LoginServlet")
     url = models.URLField(blank=True, null=True, editable=False)
     promotion_type = models.CharField(max_length=25, default="Web-Not Logged In", editable=False)
 
@@ -120,9 +130,12 @@ class SimpleEventNonMemberPromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)', default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False,
+                                 db_constraint=False)
+    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+                                        default="")
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+                                       blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -131,12 +144,17 @@ class SimpleEventNonMemberPromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
-    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True, db_constraint=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False, db_constraint=False)
-    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True, editable=False)
-    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True, editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True,
+                                   db_constraint=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False,
+                                         db_constraint=False)
+    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True,
+                                 editable=False)
+    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
+                                  null=True, editable=False)
     regions = models.ManyToManyField(Web_Region, blank=True, editable=False, db_constraint=False)
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False, db_constraint=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False,
+                                    db_constraint=False)
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
@@ -155,9 +173,12 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)', default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False,
+                                 db_constraint=False)
+    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+                                        default="")
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+                                       blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -166,16 +187,22 @@ class SimpleEventNoDisciplinePromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
-    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True, db_constraint=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False, db_constraint=False)
-    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True, editable=False)
-    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True, editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True,
+                                   db_constraint=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False,
+                                         db_constraint=False)
+    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True,
+                                 editable=False)
+    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
+                                  null=True, editable=False)
     regions = models.ManyToManyField(Web_Region, blank=True, editable=False, db_constraint=False)
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False, db_constraint=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False,
+                                    db_constraint=False)
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/member/access/TechnicalDisciplines")
+    click_url = models.URLField(verbose_name=u'Click Through External URL',
+                                default="https://www.spe.org/member/access/TechnicalDisciplines")
     url = models.URLField(blank=True, null=True, editable=False)
     promotion_type = models.CharField(max_length=30, default="Membership-No Discipline", editable=False)
 
@@ -190,9 +217,12 @@ class SimpleEventNoAddressPromotion(models.Model):
     event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
     event_end_date = models.DateTimeField(editable=False, blank=True, null=True)
-    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False, db_constraint=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)', default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)", blank=True, null=True, editable=False)
+    event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False,
+                                 db_constraint=False)
+    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+                                        default="")
+    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+                                       blank=True, null=True, editable=False)
     event_location = models.CharField(max_length=50, editable=False, blank=True, null=True)
     teaser = RichTextUploadingField(
         max_length=300,
@@ -201,16 +231,22 @@ class SimpleEventNoAddressPromotion(models.Model):
     hits = models.PositiveIntegerField(default=0, editable=False)
     impressions = models.PositiveIntegerField(default=0, editable=False)
     last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
-    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True, db_constraint=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False, db_constraint=False)
-    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True, editable=False)
-    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True, null=True, editable=False)
+    event_type = models.ForeignKey(EventType, limit_choices_to={'active': True}, editable=False, blank=True, null=True,
+                                   db_constraint=False)
+    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True}, editable=False,
+                                         db_constraint=False)
+    latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True,
+                                 editable=False)
+    longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
+                                  null=True, editable=False)
     regions = models.ManyToManyField(Web_Region, blank=True, editable=False, db_constraint=False)
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False, db_constraint=False)
+    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True, editable=False,
+                                    db_constraint=False)
     start = models.DateField(verbose_name='Display Start Date')
     end = models.DateField(verbose_name='Display End Date')
     sponsored = models.BooleanField(default=False, editable=False)
-    click_url = models.URLField(verbose_name=u'Click Through External URL', default="https://www.spe.org/member/access/Address")
+    click_url = models.URLField(verbose_name=u'Click Through External URL',
+                                default="https://www.spe.org/member/access/Address")
     url = models.URLField(blank=True, null=True, editable=False)
     promotion_type = models.CharField(max_length=25, default="Membership-No Address", editable=False)
 
@@ -318,7 +354,6 @@ class EventPromotionByRegionListingPlugin(CMSPlugin):
     more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
     more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
-
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
@@ -355,7 +390,6 @@ class EventPromotionInUserRegionListingPlugin(CMSPlugin):
     more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
     more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
 
-
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
         buf = " - " + dictionary[self.template] + " - "
@@ -374,7 +408,6 @@ class EventForMemberListingPlugin(CMSPlugin):
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
     more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
     more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
-
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)
@@ -397,7 +430,6 @@ class UpcomingEventPromotionPlugin(CMSPlugin):
     event_type = models.ManyToManyField(EventType, limit_choices_to={'active': True})
     more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
     more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
-
 
     def __unicode__(self):
         dictionary = dict(PLUGIN_TEMPLATES)

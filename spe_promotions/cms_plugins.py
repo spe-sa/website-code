@@ -200,13 +200,18 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         # Get default list of active promotions sorted by round robin placement and exclude special promotions
         today = datetime.date.today()
 
-        no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        no_discipline_promotions = SimpleEventNoDisciplinePromotion.objects.filter(start__lte=today,
+                                                                                   end__gte=today).order_by(
+            'last_impression')[:1]
         no_discipline = False
 
-        no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        no_region_promotions = SimpleEventNoAddressPromotion.objects.filter(start__lte=today, end__gte=today).order_by(
+            'last_impression')[:1]
         no_region = False
 
-        not_logged_in_promotions = SimpleEventNotLoggedInPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')[:1]
+        not_logged_in_promotions = SimpleEventNotLoggedInPromotion.objects.filter(start__lte=today,
+                                                                                  end__gte=today).order_by(
+            'last_impression')[:1]
         not_logged_in = False
 
         objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today).order_by('last_impression')
@@ -218,11 +223,13 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     if visitor.primary_discipline.active:
                         # Member - Primary Discipline Available
                         objects = objects.filter(disciplines=visitor.primary_discipline,
-                                             event_type=instance.event_type.all())
+                                                 event_type=instance.event_type.all())
                         # If a Secondary Discipline is Available Append Events for that Discipline
                         if visitor.secondary_discipline:
                             append_objects = SimpleEventPromotion.objects.filter(start__lte=today, end__gte=today,
-                                disciplines=visitor.secondary_discipline, event_type=instance.event_type.all()).order_by('last_impression')
+                                                                                 disciplines=visitor.secondary_discipline,
+                                                                                 event_type=instance.event_type.all()).order_by(
+                                'last_impression')
                             objects = list(chain(objects, append_objects))
                     else:
                         # Member - Primary Discipline is Obsolete
@@ -320,7 +327,8 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
                                                       disciplines__in=instance.disciplines.all(),
                                                       event_type__in=instance.event_type.all(),
                                                       regions__in=instance.regions.all(),
-                                                      event_start_date__gte=today).order_by('event_start_date').distinct()[:instance.count]
+                                                      event_start_date__gte=today).order_by(
+            'event_start_date').distinct()[:instance.count]
 
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
