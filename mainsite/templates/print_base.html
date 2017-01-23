@@ -48,30 +48,20 @@
         </span>
         </div>
     </div>
+
     <![endif]-->
-
-    {# Add the page wrapper beginning here #}
-{#    {% block wrap_begin %}{% endblock wrap_begin %}#}
-
-    {# adding block content_header to base cms template for overriding #}
-{#    {% block content_header %}{% endblock content_header %}#}
-
-    {# adding block cms_content to base cms template for overriding #}
     {% block cms_content %}
         {% placeholder "content" %}
     {% endblock %}
-
-    {# adding block content_footer to base cms template for overriding #}
-{#    {% block content_footer %}{% endblock content_footer %}#}
-
-    {# Add the page wrapper ending here #}
-{#    {% block wrap_end %}{% endblock wrap_end %}#}
 
     <!-- JS BLOCK -->
     {# adding block js_inline to base cms template for overriding #}
     {% render_block "js" %}
 
-    {#    misc adds to bottom#}
-{#    {% block last_instructions %}{% endblock last_instructions %}#}
+    <script type="text/javascript" charset="utf-8">
+        window.onload = function () {
+            window.print();
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<a href="https://twitter.com/home?status={{ request.build_absolute_uri }}{{ object.get_absolute_url }}" target="_blank">
+    <i class="fa fa-twitter-square"></i>
+</a>
+
+<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
+    <i class="fa fa-facebook-square"></i>
+</a>
+
+<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}{{ object.get_absolute_url }}&title={{ title }}&summary=&source=">
+    <i class="fa fa-linkedin-square"></i>
+</a>
+
+<a href="mailto:?&subject=Thought you'd be interested&body=I%20thought%20you'd%20like%20this,%20as%20I%20found%20it%20very%20interesting.%0A%0A{{ request.build_absolute_uri }}{{ object.get_absolute_url }}">
+    <i class="fa fa-envelope-square"></i>
+</a>
+
+{#<a href="javascript:window.print()">#}
+{#    <i class="fa fa-print" aria-hidden="true"></i>#}
+{#</a>#}
+
+<a href="/print-article/?art={{ article.id }}" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>

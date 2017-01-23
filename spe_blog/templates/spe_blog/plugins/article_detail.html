@@ -43,6 +43,8 @@
         </div>
         <div class="col-md-4 articleShares text-right dontPrintMe">
             {% include 'include_article_shares.html' %}
+{#            #{{ request.build_absolute_uri }}<br>#}
+{#            {{ article.id }}#}
         </div>
         <div class="col-xs-12 dottedSpacer"></div>
     </div>
@@ -203,6 +205,22 @@
 
             $(".articleBodyText img").addClass("img-responsive");
             $(".articleAuthorBox img").removeClass("img-responsive");
+
+
+            $(window).keydown(function (e){
+{#            if((e.ctrlKey || e.metaKey) && (e.key == "p" || e.charCode == 16 || e.charCode == 112 || e.keyCode == 80 || e.keyCode == 23) ) {#}
+                if ((e.metaKey || e.ctrlKey) && e.keyCode == 80) { /*ctrl+p or command+p*/
+{#                    yourFunction();#}
+                    e.preventDefault();
+{#                    alert("No Printing for CHU!!!");#}
+                    // similar behavior as an HTTP redirect
+{#                    window.location.replace("http://stackoverflow.com");#}
+
+                    // similar behavior as clicking on a link
+                    window.location.href = "/print-article/?art={{ article.id }}";
+                    return false;
+                }
+            });
 
         });
     </script>

@@ -12,7 +12,7 @@
                 {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
             </div>
             <div class="col-sm-4 articleShares text-right">
-                {% include 'include_article_shares.html' %}
+                {% include 'include_brief_shares.html' %}
             </div>
         </div>
 
@@ -52,6 +52,21 @@
         
         </div>
         <div class="col-sm-12 articleShares text-left">
-            {% include 'include_article_shares.html' %}
+            {% include 'include_brief_shares.html' %}
         </div>
     </div>
+
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+
+            $(window).keydown(function (e){
+{#            if((e.ctrlKey || e.metaKey) && (e.key == "p" || e.charCode == 16 || e.charCode == 112 || e.keyCode == 80 || e.keyCode == 23) ) {#}
+                if ((e.metaKey || e.ctrlKey) && e.keyCode == 80) { /*ctrl+p or command+p*/
+                    e.preventDefault();
+                    window.location.href = "/print-brief/?art={{ article.id }}";
+                    return false;
+                }
+            });
+
+        });
+    </script>

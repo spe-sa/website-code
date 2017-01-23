@@ -26,9 +26,11 @@
                     <i class="fa fa-envelope-square"></i>
                 </a>
 
-                <a href="javascript:window.print()">
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                </a>
+{#                <a href="javascript:window.print()">#}
+{#                    <i class="fa fa-print" aria-hidden="true"></i>#}
+{#                </a>#}
+
+                <a href="/print-article/?art={{ article.id }}" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
 
 
 {#            {% endwith %}#}
