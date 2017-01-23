@@ -2,6 +2,10 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
 
+{#    <p>DATE_FORMAT: {% now "DATE_FORMAT" %}</p>#}
+{#    <p>DATETIME_FORMAT: {% now "DATETIME_FORMAT" %}</p>#}
+{#    <p>DATETIME_FORMAT: {% now "jS F Y H:i" %}</p>#}
+{#    <p>DATETIME_FORMAT: {% now "M" %}</p>#}
 
         {% for issue in issues %}
 
@@ -35,13 +39,29 @@
 
             {% endifchanged %}
 
-            <div class="col-sm-4 issueItem text-center">
-                <a href="{{ issue.get_absolute_url }}" class="issueLink">
-                    <img src="{{ issue.cover.url }}" class="img-responsive">
-                    <p class="issueDate">{{ issue.date|date:"F Y" }}</p>
-                    <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
-                </a>
-            </div>
+            {% now "n" as currentMonth %}
+            {% now "Y" as currentYear %}
+
+            {% if issue.date|date:"Y" == currentYear and issue.date|date:"n" <= currentMonth %}
+                <div class="col-sm-4 issueItem text-center">
+                    <a href="{{ issue.get_absolute_url }}" class="issueLink">
+                        <img src="{{ issue.cover.url }}" class="img-responsive">
+                        <p class="issueDate">{{ issue.date|date:"F Y" }}</p>
+                        <p class="issueDate">{{ issue.date|date:"n Y" }}</p>
+                        <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
+                    </a>
+                </div>
+            {% elif issue.date|date:"Y" < currentYear %}
+                <div class="col-sm-4 issueItem text-center">
+                    <a href="{{ issue.get_absolute_url }}" class="issueLink">
+                        <img src="{{ issue.cover.url }}" class="img-responsive">
+                        <p class="issueDate">{{ issue.date|date:"F Y" }}</p>
+                        <p class="issueDate">{{ issue.date|date:"n Y" }}</p>
+                        <p class="issueVolNum">Volume {{ issue.print_volume }} | Number {{ issue.print_issue }}</p>
+                    </a>
+                </div>
+            {% endif %}
+
 
 
         {% endfor %}{# END for issue in issues #}
