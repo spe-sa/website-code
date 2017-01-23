@@ -63,7 +63,7 @@
 {#            if((e.ctrlKey || e.metaKey) && (e.key == "p" || e.charCode == 16 || e.charCode == 112 || e.keyCode == 80 || e.keyCode == 23) ) {#}
                 if ((e.metaKey || e.ctrlKey) && e.keyCode == 80) { /*ctrl+p or command+p*/
                     e.preventDefault();
-                    window.location.href = "/print-brief/?art={{ article.id }}";
+                    window.location.href = "https://www.spe.org/en/print-brief/?art={{ article.id }}";
                     return false;
                 }
             });
