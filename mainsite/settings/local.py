@@ -18,6 +18,17 @@ CMS_TEMPLATES += (
     ('test.html', 'Test Page'),
 )
 
+# Add Profiling for Local Instances
+MIDDLEWARE_CLASSES += (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
+
+INTERNAL_IPS = ('127.0.0.1',)
+
+
 # make all loggers use the console.
 for logger in LOGGING['loggers']:
     LOGGING['loggers'][logger]['handlers'] = ['console']
