@@ -49,7 +49,7 @@ DATABASES = {
 # Profiler
 
 MIDDLEWARE_CLASSES += (
-    'mainsite.middleware.middleware.ProfileMiddleware',
+    'mainsite.middleware.profile_middleware.ProfileMiddleware',
 )
 
 # DATABASES = {
