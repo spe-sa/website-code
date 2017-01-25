@@ -45,6 +45,13 @@ DATABASES = {
         }
 }
 
+
+# Profiler
+
+MIDDLEWARE_CLASSES += (
+    'mainsite.middleware.middleware.ProfileMiddleware',
+)
+
 # DATABASES = {
 #     'default': {
 #         'CONN_MAX_AGE': 0,
