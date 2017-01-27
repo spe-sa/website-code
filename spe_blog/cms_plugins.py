@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.db.models import Q
 from datetime import datetime
+from datetime import timedelta
 
 # from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
@@ -506,7 +507,8 @@ class ShowBriefListingPlugin(BriefPluginBase):
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')
-        qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now())
+        cutoff = datetime.now() - timedelta(days=instance.in_last)
+        qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
 
         if instance.publication:
             qs = qs.filter(publication=instance.publication)
@@ -551,6 +553,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
+        cutoff = datetime.now() - timedelta(days=instance.in_last)
+
         # NOTE: change this to be set in the context globally and stored server side
         ducode = None
         dcode = None
@@ -560,7 +564,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
             dcode = instance.discipline.code
         context.update({'ducode': ducode, 'dcode': dcode})
         # NOTE: todo - create an in clause filter with each code if there are any
-        qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
+        qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
 
         if instance.publication:
             qs = qs.filter(publication=instance.publication)

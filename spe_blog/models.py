@@ -364,7 +364,7 @@ class Article(models.Model):
     picture_caption = models.CharField(max_length=1000, blank=True, null=True, verbose_name=u'Picture caption')
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
-    article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
+    article_last_viewed = models.DateTimeField(default=timezone.now, editable=False)
     disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
@@ -469,7 +469,7 @@ class Brief(models.Model):
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     region = models.ForeignKey(Web_Region, on_delete=models.PROTECT, blank=True, null=True)
     article_hits = models.PositiveIntegerField(default=0, editable=False)
-    article_last_viewed = models.DateTimeField(blank=True, null=True, editable=False)
+    article_last_viewed = models.DateTimeField(default=timezone.now, editable=False)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
     tags = TaggableManager(verbose_name="Tags", through=Brief_Tagged, blank=True)
@@ -714,6 +714,7 @@ class ArticlesListingPlugin(CMSPlugin):
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
+    in_last = models.PositiveIntegerField(default=30, verbose_name='Read in last (days)')
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
@@ -755,6 +756,7 @@ class BriefListingPlugin(CMSPlugin):
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Briefs')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
+    in_last = models.PositiveIntegerField(default=30, verbose_name='Read in last (days)')
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
