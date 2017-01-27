@@ -7,6 +7,7 @@ DEBUG = True
 ENVIRONMENT = "DEV"
 WS_EVENTS_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3'
 WS_EVENTS_GENERIC_URL = 'http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList4'
+HIDE_ADSPEED = True
 
 # tuple for old host to new host for this environment
 HOST_REPLACEMENTS = (

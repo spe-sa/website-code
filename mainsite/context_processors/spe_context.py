@@ -163,6 +163,7 @@ def get_context_variables(request):
     if not variables:
         variables = {"ENVIRONMENT": get_context_variable(request, "ENVIRONMENT", "localhost"),
                      "DEBUG": get_context_variable(request, "DEBUG", True),
+                     "HIDE_ADSPEED": get_context_variable(request, "HIDE_ADSPEED", False),
                      "DATA_DIR": get_context_variable(request, "DATA_DIR"),
                      "BASE_DIR": get_context_variable(request, "BASE_DIR"),
                      "PROJECT_DIR": get_context_variable(request, "PROJECT_DIR"),
