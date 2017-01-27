@@ -381,6 +381,8 @@ class ShowArticleAndBriefPlugin(ArticleAndBriefPluginBase):
         if instance.all_url:
             context.update({'show_all_url': instance.all_url.get_absolute_url()})
             context.update({'show_all_text': instance.all_text})
+        context.update({'backcol': instance.backcol})
+        context.update({'whitetext': instance.whitetext})
         self.render_template = instance.template
         return context
 

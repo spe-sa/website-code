@@ -1,14 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
 <div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }}">
-{#    <p>Back Color: {{ backcol }}</p>#}
-{#    <p>White Text: {{ whitetext }}</p>#}
-{#    <p>Publication: {{ pubcode }}</p>#}
-{#    {% if pubcode == "TWA" %}#}
-{#        <div class="col-xs-12 sideListBoxTitle">#}
-{#            <span class="boxTitleText col-xs-12">Most Read</span>#}
-{#        </div>#}
-{#    {% endif %}#}
 {% for article in articles %}
 {#    <div class="row">#}
         <div class="row sideListItem">
