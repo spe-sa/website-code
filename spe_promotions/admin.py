@@ -11,6 +11,7 @@ from .models import (
     SimpleEventNonMemberPromotion,
     SimpleEventNoDisciplinePromotion,
     SimpleEventNoAddressPromotion,
+    SimpleMembershipPromotion,
 )
 
 
@@ -45,6 +46,10 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
 
 
+class SimpleMembershipPromotionAdmin(admin.ModelAdmin):
+    search_fields = ('title', 'start', 'end')
+
+
 # class ReadOnlyAdmin(admin.ModelAdmin):
 #     readonly_fields = []
 #
@@ -69,3 +74,4 @@ admin.site.register(SimpleEventNotLoggedInPromotion, NotLoggedInMessageAdmin)
 admin.site.register(SimpleEventNonMemberPromotion, NonMemberMessageAdmin)
 admin.site.register(SimpleEventNoDisciplinePromotion, MemberNoDisciplineMessageAdmin)
 admin.site.register(SimpleEventNoAddressPromotion, MemberNoRegionMessageAdmin)
+admin.site.register(SimpleMembershipPromotion, SimpleMembershipPromotionAdmin)

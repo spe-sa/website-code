@@ -29,6 +29,13 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/promotion_posts.html', 'Listing'),
 )
 
+
+DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE = 'spe_promotions/plugins/membership_carousel.html'
+MEMBERSHIP_PLUGIN_TEMPLATES = (
+    (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
+)
+
+
 DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
     (DEFAULT_DISPLAY_TYPE, 'Events in Discipline'),
@@ -274,36 +281,6 @@ class PromotionsEventClicks(models.Model):
         return self.promotion_title
 
 
-# class SimpleEventNonMemberMessage(models.Model):
-#     promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Non-Member or Member Who Has Not Logged In')
-#
-#     class Meta:
-#         verbose_name = 'Promotion for Non-Member or Member Not Logged In'
-#
-#     def __unicode__(self):
-#         return self.promotion.event
-
-
-# class SimpleEventMemberMissingDisciplineMessage(models.Model):
-#     promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Member with no Primary Discipline')
-#
-#     class Meta:
-#         verbose_name = 'Promotion for Member with No Primary Discipline'
-#
-#     def __unicode__(self):
-#         return self.promotion.event
-
-
-# class SimpleEventMemberMissingRegionMessage(models.Model):
-#     promotion = models.ForeignKey(SimpleEventPromotion, verbose_name='Promotion for Member with no Region')
-#
-#     class Meta:
-#         verbose_name = 'Promotion for Member with No Address'
-#
-#     def __unicode__(self):
-#         return self.promotion.event
-
-
 class EventPromotionByDisciplineListingPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     count = models.PositiveIntegerField(default=5, verbose_name=u'Number of Promotions')
@@ -444,3 +421,61 @@ class UpcomingEventPromotionPlugin(CMSPlugin):
         self.disciplines = old_instance.disciplines.all()
         self.regions = old_instance.regions.all()
         self.event_type = old_instance.event_type.all()
+
+
+class SimpleMembershipPromotion(models.Model):
+    title = models.CharField(max_length=250)
+    teaser = RichTextUploadingField(
+        max_length=300,
+    )
+    picture = FilerImageField(verbose_name=u'Picture for event promotion', related_name="membership_promotion_picture")
+    hits = models.PositiveIntegerField(default=0, editable=False)
+    impressions = models.PositiveIntegerField(default=0, editable=False)
+    last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
+    regions = models.ManyToManyField(Web_Region, blank=True)
+    start = models.DateField(verbose_name='Display Start Date')
+    end = models.DateField(verbose_name='Display End Date')
+    click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True)
+    url = models.URLField(blank=True, null=True, editable=False)
+    promotion_type = models.CharField(max_length=25, default="General Membership", editable=False)
+
+    class Meta:
+        ordering = ['-end', 'title']
+        get_latest_by = ['end']
+
+    def __unicode__(self):
+        return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime(
+            '%Y-%m-%d') + ") - " + self.title
+
+
+class MembershipPromotionsClicks(models.Model):
+    promotion_title = models.CharField(max_length=250, verbose_name='Title')
+    promotion_type = models.CharField(max_length=25)
+    promotion_id = models.PositiveIntegerField()
+    time = models.DateTimeField()
+    ip = models.CharField(max_length=17)
+    vid = models.CharField(max_length=60, default='unknown')
+    customer_id = models.CharField(max_length=12, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Promotion Clicks'
+        verbose_name_plural = 'Promotions Clicks'
+
+    def __unicode__(self):
+        return self.promotion_title
+
+
+class MembershipPromotionSelectionPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=MEMBERSHIP_PLUGIN_TEMPLATES, default=DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE)
+    promotions = models.ManyToManyField(SimpleMembershipPromotion)
+    more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
+    more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
+
+    def __unicode__(self):
+        dictionary = dict(MEMBERSHIP_PLUGIN_TEMPLATES)
+        buf = " - " + dictionary[self.template] + " - "
+        buf += "%s, " % ', '.join([a.title for a in self.promotions.all()])
+        return buf
+
+    def copy_relations(self, old_instance):
+        self.promotions = old_instance.promotions.all()

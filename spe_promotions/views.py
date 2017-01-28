@@ -20,6 +20,8 @@ from .models import (
     SimpleEventNoAddressPromotion,
     SimpleEventNonMemberPromotion,
     PromotionsEventClicks,
+    SimpleMembershipPromotion,
+    MembershipPromotionsClicks,
 )
 
 
@@ -154,6 +156,87 @@ def not_logged_in(request, index):
         url = object.click_url
     return redirect(url)
 
+
+def membership_select(request, index):
+    try:
+        object = SimpleMembershipPromotion.objects.get(pk=index)
+    except SimpleMembershipPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    record = MembershipPromotionsClicks()
+    record.promotion_title = object.title
+    record.promotion_type = object.promotion_type
+    record.promotion_id = index
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+def membership_no_discipline(request, index):
+    try:
+        object = SimpleEventNoDisciplinePromotion.objects.get(pk=index)
+    except SimpleEventNoDisciplinePromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    record = MembershipPromotionsClicks()
+    record.promotion_title = object.title
+    record.promotion_type = object.promotion_type
+    record.promotion_id = index
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+def membership_no_region(request, index):
+    try:
+        object = SimpleEventNoAddressPromotion.objects.get(pk=index)
+    except SimpleEventNoAddressPromotion.DoesNotExist:
+        raise Http404("Promotion does not exist")
+    object.hits += 1
+    object.save()
+    record = MembershipPromotionsClicks()
+    record.promotion_title = object.title
+    record.promotion_type = object.promotion_type
+    record.promotion_id = index
+    record.time = timezone.now()
+    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+    record.ip = ip
+    if 'vid' in request.COOKIES:
+        vid = request.COOKIES['vid']
+    record.vid = vid
+    visitor = get_visitor(request)
+    if visitor:
+        record.customer_id = visitor.id
+    record.save()
+    if object.click_url:
+        url = object.click_url
+    return redirect(url)
+
+
+
+# Data Exports
 
 def export_excel(request):
     clicks = PromotionsEventClicks.objects.all()

@@ -10,7 +10,7 @@ from mainsite.context_processors.spe_context import (
 from mainsite.models import Web_Region_Country
 from mainsite.common import getRegion
 
-from .forms import SimplePromotionsSelectionForm
+from .forms import SimplePromotionsSelectionForm, SimpleMembershipPromotionSelectionForm
 from .models import (
     SimpleEventPromotion,
     SimpleEventNotLoggedInPromotion,
@@ -23,9 +23,8 @@ from .models import (
     EventPromotionInUserRegionListingPlugin,
     EventForMemberListingPlugin,
     UpcomingEventPromotionPlugin,
-    # SimpleEventNonMemberMessage,
-    # SimpleEventMemberMissingDisciplineMessage,
-    # SimpleEventMemberMissingRegionMessage,
+    SimpleMembershipPromotion,
+    MembershipPromotionSelectionPlugin,
 )
 
 
@@ -341,6 +340,36 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
         return context
 
 
+class ShowMembershipListingPlugin(CMSPluginBase):
+    class Meta:
+        abstract = True
+
+    allow_children = False
+    cache = False
+    module = 'Membership Promotions'
+    render_template = 'spe_blog/plugins/image_left.html'
+    text_enabled = False
+    model = MembershipPromotionSelectionPlugin
+    name = "Membership Promotion Listing - Selected Promotions"
+    form = SimpleMembershipPromotionSelectionForm
+
+    def render(self, context, instance, placeholder):
+        today = datetime.date.today()
+        objects = SimpleMembershipPromotion.objects.filter(start__lte=today, end__gte=today,
+                                                      id__in=instance.promotions.all()).order_by(
+            'last_impression').distinct()
+
+        for x in objects:
+            x.url = "/en/promotion/membership/" + str(x.id) + "/"
+            x.last_impression = datetime.datetime.now()
+            x.impressions += 1
+            x.save()
+
+        context.update({'promos': objects})
+        self.render_template = instance.template
+        return context
+
+
 plugin_pool.register_plugin(ShowEventsByDisciplineListingPlugin)
 plugin_pool.register_plugin(ShowEventsByTopicListingPlugin)
 plugin_pool.register_plugin(ShowEventsByRegionListingPlugin)
@@ -348,3 +377,4 @@ plugin_pool.register_plugin(ShowEventsListingPlugin)
 plugin_pool.register_plugin(ShowEventInUserRegionPromotionListing)
 plugin_pool.register_plugin(ShowEventsForMemberPlugin)
 plugin_pool.register_plugin(ShowUpcomingEventsListingPlugin)
+plugin_pool.register_plugin(ShowMembershipListingPlugin)
