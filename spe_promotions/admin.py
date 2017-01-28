@@ -27,6 +27,7 @@ blank_timezone.short_description = "Blank Time Zones"
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
     exclude = ['latitude', 'longitude']
+    readonly_fields = ['hits', 'impressions', 'last_impression']
     actions = [blank_timezone, ]
 
 
@@ -48,6 +49,8 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
 
 class SimpleMembershipPromotionAdmin(admin.ModelAdmin):
     search_fields = ('title', 'start', 'end')
+    readonly_fields = ['hits', 'impressions', 'last_impression']
+
 
 
 # class ReadOnlyAdmin(admin.ModelAdmin):

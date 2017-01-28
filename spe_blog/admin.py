@@ -18,6 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
+    readonly_fields = ['article_hits', 'article_last_viewed',]
     filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
@@ -54,6 +55,12 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': (
                 'free',
                 ('free_start', 'free_stop'),
+            ),
+        }),
+        (_('Tracking'), {
+            'classes': ('collapse',),
+            'fields': (
+                ('article_hits', 'article_last_viewed'),
             ),
         }),
     )
@@ -111,6 +118,12 @@ class ArticleEditorAdmin(ArticleAdmin):
                 ('free_start', 'free_stop'),
             ),
         }),
+        (_('Tracking'), {
+            'classes': ('collapse',),
+            'fields': (
+                ('article_hits', 'article_last_viewed'),
+            ),
+        }),
         (None, {
             'fields': (
                 'published',
@@ -124,6 +137,7 @@ class BriefAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
+    readonly_fields = ['article_hits', 'article_last_viewed',]
     filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
@@ -144,6 +158,12 @@ class BriefAdmin(admin.ModelAdmin):
             'fields': (
                 'free',
                 ('free_start', 'free_stop'),
+            ),
+        }),
+        (_('Tracking'), {
+            'classes': ('collapse',),
+            'fields': (
+                ('article_hits', 'article_last_viewed'),
             ),
         }),
     )
@@ -178,6 +198,12 @@ class BriefEditorAdmin(BriefAdmin):
             'fields': (
                 'free',
                 ('free_start', 'free_stop'),
+            ),
+        }),
+        (_('Tracking'), {
+            'classes': ('collapse',),
+            'fields': (
+                ('article_hits', 'article_last_viewed'),
             ),
         }),
         (None, {
