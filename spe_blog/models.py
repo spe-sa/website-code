@@ -89,6 +89,7 @@ BRIEF_TEMPLATES = (
     ('spe_blog/plugins/best_shot_2.html', 'Best Shot 2 Col'),
     ('spe_blog/plugins/best_shot.html', 'Best Shot 3 Col'),
     ('spe_blog/plugins/brief_interest_widepics.html', 'Brief of interest listing Wide Pics'),
+    ('spe_blog/plugins/brief_interest_wide_single.html', 'Brief of interest listing Wide Pics - Single Column'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 
