@@ -473,7 +473,8 @@ class MembershipPromotionSelectionPlugin(CMSPlugin):
 
     def __unicode__(self):
         dictionary = dict(MEMBERSHIP_PLUGIN_TEMPLATES)
-        buf = " - " + dictionary[self.template] + " - "
+        if self.template:
+            buf = " - " + dictionary[self.template] + " - "
         buf += "%s, " % ', '.join([a.title for a in self.promotions.all()])
         return buf
 
