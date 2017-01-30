@@ -88,7 +88,7 @@ a:hover {
           text-decoration: none;
           margin-bottom: 0; }
           .megarow .nav-col ul li a:hover {
-            color: #105cd0; }
+            color: #337ab7; }
       .megarow .nav-col ul .heading {
         line-height: 18px;
         font-size: 15px;
@@ -111,7 +111,7 @@ a:hover {
         color: #0C090A;
         letter-spacing: -0.02em; }
         .megarow .nav-col a .link-title:hover {
-          color: #105cd0; }
+          color: #337ab7; }
   .megarow .navcolborder {
     margin-bottom: 20px; }
   .megarow .last {
@@ -923,7 +923,7 @@ a:hover {
   .briefListItem a {
     color: #0C090A; }
     .briefListItem a:hover {
-      color: #105cd0;
+      color: #337ab7;
       text-decoration: none; }
   .briefListItem h4 {
     font-size: 18px;
@@ -1029,6 +1029,11 @@ h4 {
   font-weight: 700;
   color: #26416c; }
   .see-all:hover {
-    color: #26416c; }
+    color: #9c9fac; }
   .see-all i {
     margin-left: 25px; }
+
+.sideListTitle2 a {
+  color: #337ab7 !important; }
+  .sideListTitle2 a:hover {
+    color: #9c9fac !important; }

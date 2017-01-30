@@ -118,10 +118,18 @@ h4 {
   color:              $col-speblue;
 
   &:hover {
-    color:            $col-speblue;
+    color:            $col-steelgrey;
   }
 
   i {
     margin-left:      25px;
+  }
+}
+.sideListTitle2 a {
+  color:              $col-hoverblue !important;
+
+  &:hover {
+    color:            $col-steelgrey !important;
+    //background-color: $col-lightgrey;
   }
 }
