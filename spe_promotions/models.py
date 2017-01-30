@@ -32,7 +32,7 @@ PLUGIN_TEMPLATES = (
 
 DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE = 'spe_promotions/plugins/membership_carousel.html'
 MEMBERSHIP_PLUGIN_TEMPLATES = (
-    (DEFAULT_PLUGIN_TEMPLATE, 'Carousel'),
+    (DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE, 'Carousel'),
 )
 
 
