@@ -70,7 +70,7 @@ class ArticleAndBriefSelectionForm(ModelForm):
 
     class Meta:
         model = BriefPlugin
-        fields = ['template', 'order_by', 'articles', 'briefs', 'backcol', 'whitetext', ]
+        fields = ['template', 'order_by', 'articles', 'briefs', 'backcol', 'whitetext', 'all_text', 'all_url']
 
 
 
