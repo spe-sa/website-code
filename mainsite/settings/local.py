@@ -27,7 +27,7 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.7',)
 
 
 # make all loggers use the console.
