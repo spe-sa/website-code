@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags %}
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   {% for promo in promos %}
@@ -40,7 +40,7 @@
                                     {% endif %}
                                 </p>
                 {#                <span class="sideListDateTWA"></span>#}
-                              <h4>{{ promo.teaser | safe }}</h4>
+                              <p>{{ promo.teaser | safe }}</p>
                           </div>
                       </a>
                   </div>
@@ -58,7 +58,7 @@
                                     {% else %}
                                             {{ promo.event_start_date|date:"d F Y" }}
                                     {% endif %} - {{ promo.event_location }}</p>
-                              <h4>{{ promo.teaser | safe }}</h4>
+                              <p>{{ promo.teaser | safe }}</p>
                           </div>
                       </a>
                   </div>

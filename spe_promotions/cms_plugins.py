@@ -54,6 +54,8 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        context.update({'show_all_text': more_text})
+        context.update({'show_all_url': more_url})
         self.render_template = instance.template
         return context
 
