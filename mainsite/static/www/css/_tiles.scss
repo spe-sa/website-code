@@ -526,3 +526,11 @@
     font-weight:  $font-regular;
   }
 }
+
+.promolink {
+  color:          $col-black;
+
+  &:hover {
+    color:        $col-speblue;
+  }
+}

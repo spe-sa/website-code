@@ -54,8 +54,9 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
-        context.update({'show_all_text': more_text})
-        context.update({'show_all_url': more_url})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 
@@ -86,6 +87,9 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 
@@ -116,6 +120,9 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 
@@ -146,6 +153,9 @@ class ShowEventsListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 
@@ -338,6 +348,9 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 

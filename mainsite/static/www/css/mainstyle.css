@@ -958,6 +958,11 @@ a:hover {
 .bloglist .sideListTitle {
   font-weight: 400; }
 
+.promolink {
+  color: #0C090A; }
+  .promolink:hover {
+    color: #26416c; }
+
 /* *************************************** */
 /* *************************************** */
 .redText {
@@ -1013,3 +1018,17 @@ h3 {
 h4 {
   font-size: 16px;
   font-weight: 700; }
+
+.see-all-div {
+  margin: 15px 0;
+  padding: 10px 0 0 10px;
+  border-top: 1px solid #9c9fac; }
+
+.see-all {
+  font-size: 15px;
+  font-weight: 700;
+  color: #26416c; }
+  .see-all:hover {
+    color: #26416c; }
+  .see-all i {
+    margin-left: 25px; }
