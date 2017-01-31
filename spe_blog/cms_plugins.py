@@ -617,7 +617,7 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     # render_plugin = False
 
     def render(self, context, instance, placeholder):
-        queryset = Issue.objects.filter(publication=instance.publication).order_by('-date')[
+        queryset = Issue.objects.filter(publication=instance.publication).filter(date__lte=datetime.now()).order_by('-date')[
                    instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'publication': instance.publication})
         context.update({'issues': queryset})

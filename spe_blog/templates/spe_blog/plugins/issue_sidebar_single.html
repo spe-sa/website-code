@@ -1,25 +1,26 @@
 {% load i18n %}
 
-{% if issue %}
-
-    <article class="tile-curntIssue row">
-    <a href="{{ issue.get_absolute_url }}">
-        <div class="col-xs-5 issueThumb">
-            <img src="{{ issue.cover.url }}" class="img-responsive"/>
-        </div>
-    </a>
-        <div class="col-xs-7 padZero">
-            <div class="pub-date">{{ issue.date|date:"F Y" }}</div>
-            <div class="volume">Volume: {{ issue.print_volume }}</div>
-            <div class="number">Issue: {{ issue.print_issue }}</div>
-            {% if show_subscribe_url %}
-            <div class="subscribe-div">
-                <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-block">Subscribe</button></a>
+{#{% if issue %}#}
+    {% if now < issue.date %}
+        <article class="tile-curntIssue row">
+        <a href="{{ issue.get_absolute_url }}">
+            <div class="col-xs-5 issueThumb">
+                <img src="{{ issue.cover.url }}" class="img-responsive"/>
             </div>
-            {% endif %}
-        </div>
-    </article>
+        </a>
+            <div class="col-xs-7 padZero">
+                <div class="pub-date">{{ issue.date|date:"F Y" }}</div>
+                <div class="volume">Volume: {{ issue.print_volume }}</div>
+                <div class="number">Issue: {{ issue.print_issue }}</div>
+                {% if show_subscribe_url %}
+                <div class="subscribe-div">
+                    <a href="{{ show_subscribe_url }}"><button type="button" class="btn btn-block">Subscribe</button></a>
+                </div>
+                {% endif %}
+            </div>
+        </article>
 
-{% else %}
-    <p class="well">{% trans "No issues selected" %}</p>
-{% endif %}
+    {% else %}
+        <p class="well">{% trans "No issues selected" %}</p>
+    {% endif %}
+{#{% endif %}#}
