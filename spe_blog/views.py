@@ -7,6 +7,7 @@ from django.contrib.gis.geoip import GeoIP
 
 import csv
 import string
+import socket
 
 # import datetime
 # import sys
@@ -16,7 +17,7 @@ from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Disci
 
 from mainsite.context_processors.spe_context import (
     get_context_variable,
-    get_visitor,)
+    get_visitor, )
 
 
 def article_index(request):
@@ -104,6 +105,7 @@ def article_index(request):
                }
     return render(request, 'spe_blog/article_index.html', context)
 
+
 def build_filter(current_filter, append_string):
     if (len(current_filter) > 0):
         current_filter += " and"
@@ -169,7 +171,7 @@ def brief_index(request):
         articles = articles.filter(print_issue__exact=issue)
         filter = build_filter(filter, " issue=" + issue)
     if (search_region):
-       articles = articles.filter(region__region_name__iexact = search_region)
+        articles = articles.filter(region__region_name__iexact=search_region)
     if (published != None):
         articles = articles.filter(published__exact=published)
         filter = build_filter(filter, " only published")
@@ -283,6 +285,7 @@ def issue(request, publication_code):
 
     return render(request, 'spe_blog/issues.html', context)
 
+
 def brief_regional(request):
     # today = datetime.datetime.now()
     # we have worked it out where we will be passing the vol and issue to further filter from in the link
@@ -305,7 +308,7 @@ def brief_regional(request):
     if issue:
         articles = articles.filter(print_issue=issue)
     articles = articles.order_by('region', '-date')[:25]
-    context = {'articles': articles,}
+    context = {'articles': articles, }
     return render(request, 'spe_blog/regional_briefs.html', context)
 
 
@@ -317,11 +320,16 @@ def export_article_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="articles_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Host', 'Country', 'Region Shown', 'vid',
+                     'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"
+        try:
+            host = socket.gethostbyaddr(click.ip)[0]
+        except:
+            host = "unknown"
         if click.ip != 'internal':
             loc = g.city(click.ip)
             if loc:
@@ -346,9 +354,13 @@ def export_article_detail_excel(request):
         except:
             title = 'article deleted'
         try:
-            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            writer.writerow(
+                [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
+                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            writer.writerow(
+                [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
+                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 
@@ -360,11 +372,16 @@ def export_brief_detail_excel(request):
     response['Content-Disposition'] = 'attachment; filename="briefs_tracking.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Country', 'Region Shown', 'vid', 'Customer Number', 'Discipline', 'Country'])
+    writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Host', 'Country', 'Region Shown', 'vid',
+                     'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"
+        try:
+            host = socket.gethostbyaddr(click.ip)[0]
+        except:
+            host = "unknown"
         if click.ip != 'internal':
             loc = g.city(click.ip)
             if loc:
@@ -389,9 +406,13 @@ def export_brief_detail_excel(request):
         except:
             title = 'article deleted'
         try:
-            writer.writerow([click.pk, art.publication.name, title, click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            writer.writerow(
+                [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
+                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
         except:
-            writer.writerow([click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            writer.writerow(
+                [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
+                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 
@@ -405,5 +426,6 @@ def export_article_disciplines_excel(request):
     writer.writerow(['id', 'Publication', 'Title'] + map(lambda x: x.name, disciplines.all()))
     for article in articles:
         title = filter(lambda x: x in printable, article.title)
-        writer.writerow([article.id, article.publication.name, title] + map(lambda x: x in article.disciplines.all(), disciplines.all()))
+        writer.writerow([article.id, article.publication.name, title] + map(lambda x: x in article.disciplines.all(),
+                                                                            disciplines.all()))
     return response

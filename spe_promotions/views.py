@@ -6,6 +6,7 @@ from django.contrib.gis.geoip import GeoIP
 
 import csv
 import string
+import socket
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
@@ -260,7 +261,7 @@ def export_detail_excel(request):
 
     writer = csv.writer(response)
     writer.writerow(
-        ['Count', 'Title', 'Type', 'id', 'Sub Type', 'Event Location', 'Time', 'IP', 'Country', 'Region Shown', 'vid',
+        ['Count', 'Time', 'Title', 'Type', 'id', 'Sub Type', 'Event Location', 'Time', 'IP', 'Host', 'Country', 'Region Shown', 'vid',
          'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         if click.promotion_type == "Event":
@@ -277,6 +278,10 @@ def export_detail_excel(request):
         # If IP is not internal use same logic as plugins to find regions shown
         ip_country = "unknown"
         ip_region = "USA"
+        try:
+            host = socket.gethostbyaddr(click.ip)[0]
+        except:
+            host = "unknown"
         if click.ip != 'internal':
             loc = g.city(click.ip)
             if loc:
@@ -296,7 +301,7 @@ def export_detail_excel(request):
                 cust_discipline = "unknown"
                 cust_country = "unknown"
         writer.writerow([click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
-                         event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id,
+                         event_location, click.time, click.ip, host, ip_country, ip_region, click.vid, click.customer_id,
                          cust_discipline, cust_country])
     return response
 
