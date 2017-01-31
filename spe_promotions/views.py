@@ -295,7 +295,7 @@ def export_detail_excel(request):
             except:
                 cust_discipline = "unknown"
                 cust_country = "unknown"
-        writer.writerow([click.pk, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
+        writer.writerow([click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
                          event_location, click.time, click.ip, ip_country, ip_region, click.vid, click.customer_id,
                          cust_discipline, cust_country])
     return response
