@@ -138,18 +138,26 @@ h4 {
 }
 .morepromo {
   background-color:   $col-white;
-  padding:            0;
-  margin:             0;
+  padding:            0 !important;
+  margin:             0 !important;
+
+  .row {
+    padding:            0;
+    margin:             0;
+  }
+}
+.see-all-div-carosel {
+  padding:            10px;
 }
 .see-all-div-promo {
-  //margin:             -15px 0 0 0;
-  padding:            10px;
-  //border-top:         1px solid $col-steelgrey;
+  padding:            0 10px 10px 10px;
 }
 .see-all-promo {
   font-size:          15px;
   font-weight:        $font-bold;
   color:              $col-speblue;
+  //margin:             10px 0 0 0;
+  //padding:            10px 0 0 0;
 
   &:hover {
     color:            $col-steelgrey;
