@@ -159,25 +159,26 @@ def get_context_variables(request):
     # get the environment and debug variables from the config file
     #  NOTE: add to server side variables and check for future requests
     # try and read the dictionary value from the session; if not found then create it and put it in this session
-    variables = None  # request.session.get('session_variables')
-    if not variables:
-        variables = {"ENVIRONMENT": get_context_variable(request, "ENVIRONMENT", "localhost"),
-                     "DEBUG": get_context_variable(request, "DEBUG", True),
-                     "HIDE_ADSPEED": get_context_variable(request, "HIDE_ADSPEED", False),
-                     "DATA_DIR": get_context_variable(request, "DATA_DIR"),
-                     "BASE_DIR": get_context_variable(request, "BASE_DIR"),
-                     "PROJECT_DIR": get_context_variable(request, "PROJECT_DIR"),
-                     "STATIC_URL": get_context_variable(request, "STATIC_URL"),
-                     "MEDIA_URL": get_context_variable(request, "MEDIA_URL"),
-                     "STATIC_ROOT": get_context_variable(request, "STATIC_ROOT"),
-                     "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
-                     "DEFAULT_IP": get_context_variable(request, "DEFAULT_IP"),
-                     "vid": get_context_variable(request, "vid"),
-                     "cip": get_ip(request)
-                     }
+    # variables = None  # request.session.get('session_variables')
+    # if not variables:
+
+    variables = {"ENVIRONMENT": get_context_variable(request, "ENVIRONMENT", "localhost"),
+                 "DEBUG": get_context_variable(request, "DEBUG", True),
+                 "HIDE_ADSPEED": get_context_variable(request, "HIDE_ADSPEED", False),
+                 "DATA_DIR": get_context_variable(request, "DATA_DIR"),
+                 "BASE_DIR": get_context_variable(request, "BASE_DIR"),
+                 "PROJECT_DIR": get_context_variable(request, "PROJECT_DIR"),
+                 "STATIC_URL": get_context_variable(request, "STATIC_URL"),
+                 "MEDIA_URL": get_context_variable(request, "MEDIA_URL"),
+                 "STATIC_ROOT": get_context_variable(request, "STATIC_ROOT"),
+                 "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
+                 "DEFAULT_IP": get_context_variable(request, "DEFAULT_IP"),
+                 "vid": get_context_variable(request, "vid"),
+                 "cip": get_ip(request)
+                 }
         # TODO: add more expected variables here as needed from the settings files
 
-        request.session['session_variables'] = variables
+        # request.session['session_variables'] = variables
     # load in any variables we don't already have but are parameters
     # if dev then replace with parameters to make it easier to debug
     for key, value in request.GET.items():
@@ -203,7 +204,9 @@ def get_visitor(request):
     if not cid:
         cid = get_context_variable(request, "sm_constitid")
     # if our customerid changed then reset the login and customer cache
-    visitor = request.session.get('session_visitor')
+    visitor = None
+    # visitor = request.session.get('session_visitor')
+
     # sas 2016-01-03: adding snippit to look for any parameters if we are staff on every request.
     #   this will allow testing in prod exactly like qa and dev but only for staff members
     dba_id = None
@@ -227,19 +230,19 @@ def get_visitor(request):
     # block to reset visitor ends...
     else:
         if visitor and visitor.id and unicode(visitor.id) != cid:
-            request.session['session_visitor'] = None
+            # request.session['session_visitor'] = None
             visitor = None
         if not visitor:
             # if there isn't a cid then there is no reason to try and load a customer.  just blank the session and return none
             if cid == None or cid == "":
-                request.session['session_visitor'] = None
+                # request.session['session_visitor'] = None
                 return None
 
             # read the customer from db and cache it up
             try:
                 visitor = Customer.objects.get(pk=cid)
                 # visitor.set_achievement_token()
-                request.session['session_visitor'] = visitor
+                # request.session['session_visitor'] = visitor
             except Customer.DoesNotExist:
                 log = logging.getLogger('website')
                 log.debug("spe_context: Attempted to get Customer for pk=" + str(cid) + " but couldn't find one...")
