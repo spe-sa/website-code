@@ -126,7 +126,7 @@ h4 {
 .see-all {
   font-size:          15px;
   font-weight:        $font-bold;
-  color:              $col-speblue;
+  color:              $col-speblue2 !important;
 
   &:hover {
     color:            $col-steelgrey;
@@ -137,7 +137,6 @@ h4 {
   }
 }
 .morepromo {
-  background-color:   $col-white;
   padding:            0 !important;
   margin:             0 !important;
 
@@ -147,7 +146,9 @@ h4 {
   }
 }
 .see-all-div-carosel {
+  background-color:   $col-white;
   padding:            10px;
+  margin-bottom:      10px;
 }
 .see-all-div-promo {
   padding:            0 10px 10px 10px;

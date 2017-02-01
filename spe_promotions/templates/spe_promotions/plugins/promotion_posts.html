@@ -1,11 +1,11 @@
 {% load i18n cms_tags sekizai_tags %}
 
 {% if error %}
-    <div class="tile-editorial tile-editorial-txtblck row" style="background-color:white">
+    <div class="tile-editorial row" style="background-color:white">
     {{ error }}
     </div>
 {% else %}
-    <div class="tile-editorial tile-editorial-txtblck row" style="background-color:white">
+    <div class="tile-editorial row" style="background-color:white">
     {% for promo in promos %}
         <div class="row sideListItem">
             <a href="{{ promo.url}}">
