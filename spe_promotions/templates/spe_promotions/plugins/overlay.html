@@ -20,6 +20,9 @@
             </a>
         </article>
     {% endif %}
+    {% if more_url and more_text %}
+        <div class="row"><div class="col-xs-12 see-all-div-promo"><a class="see-all" id="features" href="{{ more_url }}">{{ more_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+    {% endif %}
 {% empty %}
     No Events Found
 {% endfor %}

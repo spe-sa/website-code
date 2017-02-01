@@ -104,8 +104,6 @@
   padding:              0 15px;
 }
 
-
-
 /* ********************************** */
 /* ROW WITH SIDE BAR */
 .sideBarRow {
@@ -125,7 +123,6 @@
   padding:              0 10px 0 0;
   margin:               0 0 0 0;
 }
-
 .formBox {
   background-color:     $col-lightgrey2;
   padding:              20px;
@@ -542,10 +539,6 @@
   }
 }
 
-
-
-
-
 /* ********************************** */
 /* IMAGES */
 .imgCaption {
@@ -582,8 +575,6 @@
   height:               auto;
 }
 
-
-
 .quote {
   color:                $col-red;
 
@@ -599,7 +590,6 @@
   list-style-type:      none;
   padding:              0;
   font-size:            12px;
-  //font-weight:$font-bold;
 
   li {
     float:              left;
@@ -705,7 +695,6 @@
   border-bottom:      1px dotted $col-black;
   margin:               0 0 15px 0;
 }
-
 .inLineBox {
   background-color:     $col-lightgrey;
   padding:              15px;
@@ -719,7 +708,6 @@
     font-weight:        $font-bold;
   }
 }
-
 table {
   margin:               0 10px 10px 0;
   border-color:         $col-lightgrey;
@@ -740,6 +728,7 @@ table {
     padding:            5px;
   }
 }
+
 .topicListBox, .topicListColumnL, .topicListColumnR, .topicListColumnOne {
   padding:              0 !important;
 }
@@ -748,8 +737,6 @@ table {
   border-top:           5px solid $col-red;
 
   .topicListItem {
-    //border-bottom:      1px dotted $col-boxshadow;
-    //border-right:       1px dotted $col-boxshadow;
     border:             1px dotted $col-boxshadow;
     padding:            5px;
 
@@ -769,5 +756,3 @@ table {
   display:            inline-block;
   width:              32%;
 }
-
-

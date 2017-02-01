@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags %}
 
-<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
+<div id="myCarouselPromo" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   {% for promo in promos %}
@@ -67,4 +67,9 @@
 
       {% endfor %}
   </div>
+
 </div>
+
+{% if more_url and more_text %}
+    <div class="row morepromo"><div class="col-xs-12 see-all-div-promo"><a class="see-all" id="features" href="{{ more_url }}">{{ more_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+{% endif %}

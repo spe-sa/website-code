@@ -316,6 +316,9 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
             x.save()
 
         context.update({'promos': objects})
+        if instance.more_url:
+            context.update({'more_url': instance.more_url})
+            context.update({'more_text': instance.more_text})
         self.render_template = instance.template
         return context
 

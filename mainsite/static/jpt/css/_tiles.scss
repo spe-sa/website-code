@@ -598,9 +598,18 @@
   //padding-bottom: 100%;
   //margin-right:         15px;
 }
-.poipicimg {
-
+.poipicimgdiv {
+  max-width: 100%;
+  //padding: 1em;
 }
+
+.poipicimgdiv > img {
+  width: 100%;
+}
+//.poipicimg {
+//  max-width:            110px;
+//  height:               auto;
+//}
 .forms {
   border-top:           5px solid $col-hrblue;
   margin-top:           0;

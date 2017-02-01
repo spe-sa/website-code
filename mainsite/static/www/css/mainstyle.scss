@@ -107,6 +107,17 @@ h4 {
   font-size:          16px;
   font-weight:        $font-bold;
 }
+
+.sideListTitle2 a {
+  color:              $col-hoverblue !important;
+
+  &:hover {
+    color:            $col-steelgrey !important;
+    //background-color: $col-lightgrey;
+  }
+}
+
+
 .see-all-div {
   margin:             15px 0;
   padding:            10px 0 0 10px;
@@ -125,11 +136,26 @@ h4 {
     margin-left:      25px;
   }
 }
-.sideListTitle2 a {
-  color:              $col-hoverblue !important;
+.morepromo {
+  background-color:   $col-white;
+  padding:            0;
+  margin:             0;
+}
+.see-all-div-promo {
+  //margin:             -15px 0 0 0;
+  padding:            10px;
+  //border-top:         1px solid $col-steelgrey;
+}
+.see-all-promo {
+  font-size:          15px;
+  font-weight:        $font-bold;
+  color:              $col-speblue;
 
   &:hover {
-    color:            $col-steelgrey !important;
-    //background-color: $col-lightgrey;
+    color:            $col-steelgrey;
+  }
+
+  i {
+    margin-left:      25px;
   }
 }
