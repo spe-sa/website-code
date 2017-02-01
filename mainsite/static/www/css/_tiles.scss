@@ -390,9 +390,8 @@
     }
   }
 }
-#myCarouselPromo {
-  @extend #myCarousel;
-  padding-bottom: 0;
+carouselPromo {
+  padding-bottom: 0 !important;
 }
 
 .eventsNearYou {
