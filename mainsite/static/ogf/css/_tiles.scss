@@ -341,30 +341,64 @@
   padding: 0;
 }
 #myCarousel {
+  padding-bottom: 15px;
+
   .carousel-indicators {
-    bottom:             0;
+    bottom:             5px;
   }
 
   .carousel-inner {
-    height:             400px;
-    //border:             1px solid hotpink;
+    height:                 400px;
 
     .item {
-      height:             400px;
-      background-size:  cover;
-      background-position: center;
-      
+      height:               400px;
+      background-size:      cover;
+      background-position:  center;
+
       img {
-        width:          100%;
-        height:         auto;
+        //width:              100%;
+        height:             auto;
+        margin:             10px 0;
       }
       .carousel-caption {
-        background:     $img-back-black-50 repeat top left fixed;
-        width:          100%;
-        //top:            200px;
-        bottom:         0;
-        left:           0;
-        padding-bottom: 30px;
+        background:         $img-back-black-50 repeat top left fixed;
+        width:              100%;
+        bottom:             0;
+        left:               0;
+        //padding-bottom:     30px;
+        padding:            0 10px 30px 10px;
+      }
+    }
+  }
+}
+carouselPromo {
+  padding-bottom: 0 !important;
+}
+
+.eventsNearYou {
+
+  .locCurrent {
+    color:              $col-darkgrey;
+    font-size:          12px;
+    border-bottom:      1px solid $col-sprlghtgry;
+
+    .locName {
+      color:            $col-darkgrey;
+      font-weight:      $font-bold;
+    }
+  }
+  .eachEvent {
+    border-bottom:      1px solid $col-sprlghtgry;
+    padding-bottom:     5px;
+    .eventName {
+      font-weight:      $font-bold;
+    }
+    .eventDetails {
+      font-size:        12px;
+      text-align:       right;
+
+      .eventType {
+        font-weight:    $font-bold;
       }
     }
   }

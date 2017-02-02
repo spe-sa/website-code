@@ -100,16 +100,48 @@ a {
 }
 .see-all-div {
   margin:             15px 0;
-  padding:            10px 0 0 0;
-  border-top:         1px solid $col-ogfnotsolightgrey;
+  padding:            10px 0 0 10px;
+  border-top:         1px solid $col-steelgrey;
 }
 .see-all {
   font-size:          15px;
   font-weight:        $font-bold;
-  color:              $col-speblue;
+  color:              $col-speblue2 !important;
 
   &:hover {
-    color:            $col-ogfbluehover;
+    color:            $col-steelgrey;
+  }
+
+  i {
+    margin-left:      25px;
+  }
+}
+.morepromo {
+  padding:            0 !important;
+  margin:             0 !important;
+
+  .row {
+    padding:            0;
+    margin:             0;
+  }
+}
+.see-all-div-carosel {
+  background-color:   $col-white;
+  padding:            10px;
+  margin-bottom:      10px;
+}
+.see-all-div-promo {
+  padding:            0 10px 10px 10px;
+}
+.see-all-promo {
+  font-size:          15px;
+  font-weight:        $font-bold;
+  color:              $col-speblue;
+  //margin:             10px 0 0 0;
+  //padding:            10px 0 0 0;
+
+  &:hover {
+    color:            $col-steelgrey;
   }
 
   i {
