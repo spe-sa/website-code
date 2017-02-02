@@ -9,15 +9,8 @@
                 <div class="row">
             {% endif %}
 
-{#            {% if forloop.last %}#}
-{#                {% if forloop.counter|divisibleby:2 %}#}
-{#                    <div class="col-sm-6 briefListItem">#}
-{#                {% else %}#}
                     <div class="col-sm-12 briefListItem">
-{#                {% endif %}#}
-{#            {% else %}#}
-{#                <div class="col-sm-6 briefListItem">#}
-{#            {% endif %}#}
+
             <a href="{{ article.get_absolute_url }}">
                 <h4>{{ article.title }}</h4>
                 {% if article.date %}

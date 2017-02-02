@@ -104,6 +104,7 @@ ARTICLE_AND_BRIEF_TEMPLATES = (
     ('spe_blog/plugins/articles_and_briefs/best_shot_2.html', 'Best Shot 2 Col'),
     ('spe_blog/plugins/articles_and_briefs/best_shot.html', 'Best Shot 3 Col'),
     ('spe_blog/plugins/articles_and_briefs/brief_interest_widepics.html', 'Brief of interest listing Wide Pics'),
+    ('spe_blog/plugins/mix_list.html', 'Mix List'),
     (DEFAULT_BRIEF_TEMPLATE, 'Brief of interest listing'),
 )
 

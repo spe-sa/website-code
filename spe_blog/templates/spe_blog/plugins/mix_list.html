@@ -1,6 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
-<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }};">
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }};padding:10px 0 0 0;">
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
@@ -52,7 +52,7 @@
 {#    {% endif %}#}
 
     {% if show_all_url and show_all_text %}
-        <div class="row"><div class="col-xs-12 see-all-div"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+        <div class="row padZero" style="margin:0;"><div class="col-xs-12 see-all-div" style="margin:0;"><a class="see-all" id="features" href="{{ show_all_url }}">{{ show_all_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
     {% endif %}
 
 </div>
