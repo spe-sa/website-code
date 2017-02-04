@@ -357,7 +357,7 @@ class Article(models.Model):
         max_length=60000,
         help_text=u'Full text of the article.'
     )
-    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
+    date = models.DateField(db_index=True, verbose_name='Publication Date', default=timezone.now)
     #    discipline = models.CharField(max_length = 4, choices=DISCIPLINES)
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for article',
                               related_name="article_picture")
@@ -465,7 +465,7 @@ class Brief(models.Model):
         max_length=50000,
         help_text=u'Full text of the article.'
     )
-    date = models.DateField(verbose_name='Publication Date', default=timezone.now)
+    date = models.DateField(db_index=True, verbose_name='Publication Date', default=timezone.now)
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for brief', related_name="brief_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     region = models.ForeignKey(Web_Region, on_delete=models.PROTECT, blank=True, null=True)
