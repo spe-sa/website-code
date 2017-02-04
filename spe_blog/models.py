@@ -335,15 +335,15 @@ class SecondaryCategory(models.Model):
 
 
 class Article(models.Model):
-    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
-    print_volume = models.PositiveIntegerField(blank=True, null=True)
-    print_issue = models.PositiveIntegerField(blank=True, null=True)
+    publication = models.ForeignKey(Publication, db_index=True, on_delete=models.PROTECT)
+    print_volume = models.PositiveIntegerField(db_index=True, blank=True, null=True)
+    print_issue = models.PositiveIntegerField(db_index=True, blank=True, null=True)
     sponsored = models.BooleanField(default=False)
     free = models.BooleanField(default=False, verbose_name=u'Always Free')
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True,
+    category = models.ForeignKey(Category, db_index=True, on_delete=models.PROTECT, blank=True, null=True)
+    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True, null=True,
                                            verbose_name="Category (Secondary) [TWA ONLY!]")
     # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
@@ -366,15 +366,15 @@ class Article(models.Model):
     picture_attribution = models.CharField(max_length=255, blank=True, null=True, verbose_name=u'Picture attribution')
     article_hits = models.PositiveIntegerField(default=0, editable=False)
     article_last_viewed = models.DateTimeField(default=timezone.now, editable=False)
-    disciplines = models.ManyToManyField(Tier1Discipline, blank=True, limit_choices_to={'active': True})
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+    disciplines = models.ManyToManyField(Tier1Discipline, db_index=True, blank=True, limit_choices_to={'active': True})
+    topics = models.ManyToManyField(Topics, db_index=True, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
 
     tags = TaggableManager(verbose_name="Tags", through=Article_Tagged, blank=True)
     tags.rel.related_name = "+"
     auto_tags = TaggableManager(verbose_name="Auto Tags", through=Article_TaggedAuto, blank=True)
     auto_tags.rel.related_name = "+"
-    published = models.BooleanField(default=False, verbose_name=u'Publish')
+    published = models.BooleanField(db_index=True, default=False, verbose_name=u'Publish')
 
     # additional metohs for the editorials
     editorial_title = models.CharField(max_length=100, blank=True, null=True)
@@ -448,14 +448,14 @@ class Article(models.Model):
 
 
 class Brief(models.Model):
-    publication = models.ForeignKey(Publication, on_delete=models.PROTECT)
-    print_volume = models.PositiveIntegerField(blank=True, null=True)
-    print_issue = models.PositiveIntegerField(blank=True, null=True)
+    publication = models.ForeignKey(Publication, db_index=True, on_delete=models.PROTECT)
+    print_volume = models.PositiveIntegerField(db_index=True, blank=True, null=True)
+    print_issue = models.PositiveIntegerField(db_index=True, blank=True, null=True)
     free = models.BooleanField(default=True, verbose_name=u'Always Free')
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, on_delete=models.PROTECT, blank=True, null=True,
+    category = models.ForeignKey(Category, db_index=True, on_delete=models.PROTECT, blank=True, null=True)
+    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True, null=True,
                                            verbose_name="Category (Secondary)")
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
@@ -469,15 +469,15 @@ class Brief(models.Model):
     picture = FilerImageField(blank=True, null=True, verbose_name=u'Picture for brief', related_name="brief_picture")
     picture_alternate = models.CharField(max_length=50, blank=True, null=True, verbose_name=u'Picture alternate text')
     region = models.ForeignKey(Web_Region, on_delete=models.PROTECT, blank=True, null=True)
-    article_hits = models.PositiveIntegerField(default=0, editable=False)
-    article_last_viewed = models.DateTimeField(default=timezone.now, editable=False)
-    topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
+    article_hits = models.PositiveIntegerField(db_index=True, default=0, editable=False)
+    article_last_viewed = models.DateTimeField(db_index=True, default=timezone.now, editable=False)
+    topics = models.ManyToManyField(Topics, db_index=True, verbose_name="Topics of Interest", blank=True)
     # add taggit tags, auto-tags, and categories
     tags = TaggableManager(verbose_name="Tags", through=Brief_Tagged, blank=True)
     tags.rel.related_name = "+"
     auto_tags = TaggableManager(verbose_name="Auto Tags", through=Brief_TaggedAuto, blank=True)
     auto_tags.rel.related_name = "+"
-    published = models.BooleanField(default=False, verbose_name=u'Publish')
+    published = models.BooleanField(db_index=True, default=False, verbose_name=u'Publish')
 
     class Meta:
         unique_together = ('publication', 'print_volume', 'print_issue', 'slug', 'date')
