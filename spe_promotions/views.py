@@ -40,6 +40,7 @@ def event_select(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -66,6 +67,7 @@ def no_discipline(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -92,6 +94,7 @@ def no_region(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -118,6 +121,7 @@ def non_member(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -146,6 +150,7 @@ def not_logged_in(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -172,6 +177,7 @@ def membership_select(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -198,6 +204,7 @@ def membership_no_discipline(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
@@ -224,6 +231,7 @@ def membership_no_region(request, index):
     record.time = timezone.now()
     ip = request.META.get('HTTP_X_REAL_IP', 'internal')
     record.ip = ip
+    vid = 'no vid'
     if 'vid' in request.COOKIES:
         vid = request.COOKIES['vid']
     record.vid = vid
