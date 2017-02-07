@@ -1,5 +1,5 @@
 {% autoescape off %}
-    <a href="{{ link }}" target="_blank">
+    <a href="{{ link }}" target="{{ linktarget }}">
         <div class="tileImgBack" style="background-image: url('{{ image.url }}')">
             <div class="whiteFade">
                 {% if title != "" and title != null %}

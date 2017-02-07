@@ -99,6 +99,7 @@ class ShowTileImgBack(CMSPluginBase):
         context.update({'image': instance.img})
         context.update({'link': instance.get_absolute_url()})
         context.update({'date': instance.date})
+        context.update({'linktarget': instance.linktarget})
         return context
 
 

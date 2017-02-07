@@ -50,6 +50,13 @@ TEXT_CLASS = (
 )
 
 
+DEFAULT_LINK_TARGET = '_blank'
+LINK_TARGETS = (
+    ('_self', 'Same Window'),
+    (DEFAULT_LINK_TARGET, 'New Window'),
+)
+
+
 class ColorField(models.CharField):
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 10
@@ -457,6 +464,7 @@ class TileImgBack(CMSPlugin):
     lnk = models.URLField(max_length=250, verbose_name="Link")
     img = FilerImageField(blank=True, null=True, verbose_name=u'Background Image', related_name="background_picture")
     date = models.DateField(blank=True, null=True)
+    linktarget = models.CharField(max_length=255, choices=LINK_TARGETS, default=DEFAULT_LINK_TARGET)
 
     def __unicode__(self):
         lbl = " - " + strip_tags(self.txt)
