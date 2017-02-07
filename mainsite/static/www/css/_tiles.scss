@@ -359,8 +359,9 @@
   min-height:           125px;
 }
 
-#myCarousel {
+.carousel {
   padding-bottom: 15px;
+  min-height:     400px;
 
   .carousel-indicators {
     bottom:             5px;
@@ -390,7 +391,7 @@
     }
   }
 }
-carouselPromo {
+.carouselPromo {
   padding-bottom: 0 !important;
 }
 

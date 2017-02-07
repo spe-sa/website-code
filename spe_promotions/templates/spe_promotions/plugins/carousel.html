@@ -1,15 +1,17 @@
 {% load cms_tags sekizai_tags %}
 
-<div id="myCarousel" class="carousel slide carousel-fade carouselPromo" data-ride="carousel" data-interval="10000">
+{#{% random_number as my_id %}#}
+
+<div id="myCarousel{{ plugin.instance.id }}" class="carousel slide carousel-fade carouselPromo" data-ride="carousel" data-interval="10000">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   {% for promo in promos %}
 
       {% if promo.picture and promo.picture.url %}
           {% if forloop.first %}
-              <li data-target="#myCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
+              <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="0" data-interval="10000" class="active"></li>
           {% else %}
-              <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
+              <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
           {% endif %}
       {% endif %}
   {% endfor %}
