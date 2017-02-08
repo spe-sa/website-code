@@ -20,6 +20,16 @@ from mainsite.context_processors.spe_context import (
     get_visitor, )
 
 
+def article_links(request):
+    # get all the articles we want to provide links to
+    articles = Article.objects.filter(published=True)
+    briefs = Brief.objects.filter(published=True)
+    # todo: decide if we want to do any additional filtering
+    context = {'articles': articles,
+               'briefs': briefs
+               }
+    return render(request, 'spe_blog/crawler_index.html', context)
+
 def article_index(request):
     # get parameters if we posted/ if not get them from GET in case we refresh the page
     pub = request.POST.get("pub", None)
