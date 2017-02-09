@@ -30,6 +30,7 @@ def article_links(request):
                }
     return render(request, 'spe_blog/crawler_index.html', context)
 
+
 def article_index(request):
     # get parameters if we posted/ if not get them from GET in case we refresh the page
     pub = request.POST.get("pub", None)

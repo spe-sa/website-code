@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import Article, Category, SecondaryCategory, Publication, Issue, Editorial
 from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsPage, Blog
+
+
 # from mainsite.models import Tier1Discipline
 
 
@@ -18,7 +20,7 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    readonly_fields = ['article_hits', 'article_last_viewed',]
+    readonly_fields = ['article_hits', 'article_last_viewed', ]
     filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
@@ -74,6 +76,8 @@ class ArticleEditor(Article):
 
 def make_published(modeladmin, request, queryset):
     queryset.update(published=True)
+
+
 make_published.short_description = "Mark selected as published"
 
 
@@ -137,12 +141,12 @@ class BriefAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
-    readonly_fields = ['article_hits', 'article_last_viewed',]
+    readonly_fields = ['article_hits', 'article_last_viewed', ]
     filter_horizontal = ('topics',)
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category' , 'title', 'slug',
+                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
                 'author', 'article_text', 'date', 'topics', 'region', 'tags'
             ),
         }),

@@ -19,7 +19,6 @@ from mainsite.widgets import ColorPickerWidget
 from django.conf import settings
 import os
 
-
 # import sys
 
 DEFAULT_ORDER_BY = '-date'
@@ -218,7 +217,7 @@ class Blog(models.Model):
 
 
 class BlogPluginModel(CMSPlugin):
-    look_and_feel =  models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
+    look_and_feel = models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
     template = models.CharField(max_length=255, choices=BLOG_TEMPLATES, default=DEFAULT_BLOG_TEMPLATE)
     posts = models.ManyToManyField(Blog)
 
@@ -233,11 +232,12 @@ class BlogPluginModel(CMSPlugin):
 
 
 class BlogListingPluginModel(CMSPlugin):
-    look_and_feel =  models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
+    look_and_feel = models.CharField(max_length=25, choices=LOOK_AND_FEEL_SELECTIONS, default=DEFAULT_LOOK_AND_FEEL)
     template = models.CharField(max_length=255, choices=BLOG_TEMPLATES, default=DEFAULT_BLOG_TEMPLATE)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Blog Posts')
     starting_with = models.PositiveIntegerField(default=1)
-    tag_filter = models.CharField(max_length=255, blank=True, null=True, help_text="Ex: ( Q(tags__name__icontains='jpt') | Q(tags__name__icontains='twa') ) & ~Q(tags__name__icontains='home')")
+    tag_filter = models.CharField(max_length=255, blank=True, null=True,
+                                  help_text="Ex: ( Q(tags__name__icontains='jpt') | Q(tags__name__icontains='twa') ) & ~Q(tags__name__icontains='home')")
 
     def __unicode__(self):
         dictionary = dict(BLOG_TEMPLATES)
@@ -343,7 +343,8 @@ class Article(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, db_index=True, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True, null=True,
+    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True,
+                                           null=True,
                                            verbose_name="Category (Secondary) [TWA ONLY!]")
     # categories = models.ManyToManyField(Category, blank=True)
     title = models.CharField(max_length=250)
@@ -455,7 +456,8 @@ class Brief(models.Model):
     free_start = models.DateField(verbose_name='Start Date', blank=True, null=True)
     free_stop = models.DateField(verbose_name='End Date', blank=True, null=True)
     category = models.ForeignKey(Category, db_index=True, on_delete=models.PROTECT, blank=True, null=True)
-    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True, null=True,
+    secondary_category = models.ForeignKey(SecondaryCategory, db_index=True, on_delete=models.PROTECT, blank=True,
+                                           null=True,
                                            verbose_name="Category (Secondary)")
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=100,
@@ -617,7 +619,8 @@ class BriefPlugin(CMSPlugin):
 
 
 class ArticleAndBriefMixPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=ARTICLE_AND_BRIEF_TEMPLATES, default=DEFAULT_ARTICLE_AND_BRIEF_TEMPLATE)
+    template = models.CharField(max_length=255, choices=ARTICLE_AND_BRIEF_TEMPLATES,
+                                default=DEFAULT_ARTICLE_AND_BRIEF_TEMPLATE)
     articles = models.ManyToManyField(Article)
     briefs = models.ManyToManyField(Brief)
     order_by = models.CharField(
@@ -635,7 +638,8 @@ class ArticleAndBriefMixPlugin(CMSPlugin):
     boxtitle = models.CharField("Box Title", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        buf = self.get_order_by_display() + u" (%s)" % ', '.join([b.slug for b in self.articles.all()]) + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
+        buf = self.get_order_by_display() + u" (%s)" % ', '.join(
+            [b.slug for b in self.articles.all()]) + u" (%s)" % ', '.join([b.slug for b in self.briefs.all()])
         return buf
 
     def copy_relations(self, old_instance):
@@ -721,7 +725,8 @@ class ArticlesListingPlugin(CMSPlugin):
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False)
-    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL, limit_choices_to={'active': True})
+    discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL,
+                                   limit_choices_to={'active': True})
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
@@ -854,6 +859,7 @@ class TagsDetailPlugin(CMSPlugin):
         buf += " using " + dictionary[self.template]  # + " - "
         # buf += u" (%s)" % ', '.join([a.topics.name for a in self.topics.all()])
         return buf
+
 
 class ArticleViews(models.Model):
     article = models.PositiveIntegerField()

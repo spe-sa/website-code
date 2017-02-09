@@ -10,7 +10,7 @@ from .models import Article, ArticlesPlugin, Editorial, EditorialPlugin, Brief, 
 
 class BlogSelectionForm(ModelForm):
     posts = ModelMultipleChoiceField(Blog.objects.filter(published=True).order_by('-publication_date'),
-                                        widget=FilteredSelectMultiple("posts", False, ))
+                                     widget=FilteredSelectMultiple("posts", False, ))
 
     class Meta:
         model = BlogPluginModel
@@ -39,7 +39,8 @@ class ArticlesListSelectionForm(ModelForm):
     class Meta:
         model = ArticlesListingPlugin
         exclude = []
-        fields = ['template', 'cnt', 'order_by', 'starting_with', 'in_last', 'publication', 'print_volume', 'print_issue',
+        fields = ['template', 'cnt', 'order_by', 'starting_with', 'in_last', 'publication', 'print_volume',
+                  'print_issue',
                   'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol',
                   'whitetext', 'boxtitle', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']
 
@@ -71,7 +72,6 @@ class ArticleAndBriefSelectionForm(ModelForm):
     class Meta:
         model = BriefPlugin
         fields = ['template', 'order_by', 'articles', 'briefs', 'backcol', 'whitetext', 'all_text', 'all_url']
-
 
 
 class TopicsSelectionForm(ModelForm):
