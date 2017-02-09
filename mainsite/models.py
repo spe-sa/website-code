@@ -318,7 +318,8 @@ class Customer(models.Model):
     def is_staff(self):
         return self.has_classification("STAFF")
     def is_professional_member(self):
-        return self.has_classification("PROFESSIONAL") or self.has_classification("LIFE")
+        return self.membership_status == 'Paid Member'
+        # return self.has_classification("PROFESSIONAL") or self.has_classification("LIFE")
     def is_student_member(self):
         return self.has_classification("STUDENT")
 
