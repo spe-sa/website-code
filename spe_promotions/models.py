@@ -29,13 +29,11 @@ PLUGIN_TEMPLATES = (
     ('spe_promotions/plugins/promotion_posts.html', 'Listing'),
 )
 
-
 DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE = 'spe_promotions/plugins/membership_carousel.html'
 MEMBERSHIP_PLUGIN_TEMPLATES = (
     (DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE, 'Carousel'),
     (DEFAULT_PLUGIN_TEMPLATE, 'OBSOLETE-DO NOT USE-Carousel'),
 )
-
 
 DEFAULT_DISPLAY_TYPE = 'discipline'
 DISPLAY_TYPE = (
@@ -467,7 +465,8 @@ class MembershipPromotionsClicks(models.Model):
 
 
 class MembershipPromotionSelectionPlugin(CMSPlugin):
-    template = models.CharField(max_length=255, choices=MEMBERSHIP_PLUGIN_TEMPLATES, default=DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE)
+    template = models.CharField(max_length=255, choices=MEMBERSHIP_PLUGIN_TEMPLATES,
+                                default=DEFAULT_MEMBERSHIP_PLUGIN_TEMPLATE)
     promotions = models.ManyToManyField(SimpleMembershipPromotion)
     more_text = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text for more...')
     more_url = models.URLField(blank=True, null=True, verbose_name='URL for more...')
