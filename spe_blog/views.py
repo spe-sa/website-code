@@ -221,21 +221,22 @@ def brief_index(request):
 
 def article_detail(request, article_id):
     q = get_object_or_404(Article, pk=article_id)
-    q.article_hits += 1
-    q.article_last_viewed = timezone.now()
-    q.save()
-    record = ArticleViews()
-    record.article = q.id
-    record.time = timezone.now()
-    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
-    record.ip = ip
-    if 'vid' in request.COOKIES:
-        vid = request.COOKIES['vid']
-    record.vid = vid
-    visitor = get_visitor(request)
-    if visitor:
-        record.customer_id = visitor.id
-    record.save()
+    if not request.user.is_authenticated():
+        q.article_hits += 1
+        q.article_last_viewed = timezone.now()
+        q.save()
+        record = ArticleViews()
+        record.article = q.id
+        record.time = timezone.now()
+        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+        record.ip = ip
+        if 'vid' in request.COOKIES:
+            vid = request.COOKIES['vid']
+        record.vid = vid
+        visitor = get_visitor(request)
+        if visitor:
+            record.customer_id = visitor.id
+        record.save()
     i = Issue.objects.filter(publication=q.publication).order_by('-date')[:1]
     t = q.publication.code + "_base.html"
     t = t.lower()
@@ -251,21 +252,22 @@ def article_detail(request, article_id):
 
 def brief_detail(request, brief_id):
     q = get_object_or_404(Brief, pk=brief_id)
-    q.article_hits += 1
-    q.article_last_viewed = timezone.now()
-    q.save()
-    record = BriefViews()
-    record.article = q.id
-    record.time = timezone.now()
-    ip = request.META.get('HTTP_X_REAL_IP', 'internal')
-    record.ip = ip
-    if 'vid' in request.COOKIES:
-        vid = request.COOKIES['vid']
-    record.vid = vid
-    visitor = get_visitor(request)
-    if visitor:
-        record.customer_id = visitor.id
-    record.save()
+    if not request.user.is_authenticated():
+        q.article_hits += 1
+        q.article_last_viewed = timezone.now()
+        q.save()
+        record = BriefViews()
+        record.article = q.id
+        record.time = timezone.now()
+        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
+        record.ip = ip
+        if 'vid' in request.COOKIES:
+            vid = request.COOKIES['vid']
+        record.vid = vid
+        visitor = get_visitor(request)
+        if visitor:
+            record.customer_id = visitor.id
+        record.save()
     i = Issue.objects.filter(publication=q.publication).order_by('-date')[:1]
     t = q.publication.code + "_base.html"
     t = t.lower()

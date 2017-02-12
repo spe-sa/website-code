@@ -187,28 +187,28 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             related_articles = Article.objects.filter(in_filter)
             # related_articles = related_articles.filter(publication__code = art.publication.code)
 
-        # adding back in the incrementing for most popular
-        art.article_hits += 1
-        art.article_last_viewed = timezone.now()
-        art.save()
+        request = context.get('request')
+        if not request.user.is_authenticated():
+            art.article_hits += 1
+            art.article_last_viewed = timezone.now()
+            art.save()
 
-        record = ArticleViews()
-        record.article = art.id
-        record.time = timezone.now()
-        ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
-        record.ip = ip
-        vid = context['request'].COOKIES.get('vid', 'not set')
-        record.vid = vid
-        visitor = get_visitor(context['request'])
-        if visitor:
-            record.customer_id = visitor.id
-        record.save()
+            record = ArticleViews()
+            record.article = art.id
+            record.time = timezone.now()
+            ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
+            record.ip = ip
+            vid = context['request'].COOKIES.get('vid', 'not set')
+            record.vid = vid
+            visitor = get_visitor(context['request'])
+            if visitor:
+                record.customer_id = visitor.id
+            record.save()
 
         show_paybox = art.show_paybox()
         visitor = None
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
-            request = context.get('request')
             visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 show_paybox = False
@@ -217,7 +217,6 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         is_readable = art.is_readable()
         if not is_readable:
             if visitor is None:
-                request = context.get('request')
                 visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 is_readable = True
@@ -294,27 +293,27 @@ class ShowBriefDetailPlugin(BriefPluginBase):
                         raise Http404("Article not found")
         visitor = None
 
-        # adding back in the incrementing for most popular
-        art.article_hits += 1
-        art.article_last_viewed = timezone.now()
-        art.save()
+        request = context.get('request')
+        if not request.user.is_authenticated():
+            art.article_hits += 1
+            art.article_last_viewed = timezone.now()
+            art.save()
 
-        record = BriefViews()
-        record.article = art.id
-        record.time = timezone.now()
-        ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
-        record.ip = ip
-        vid = context['request'].COOKIES.get('vid', 'not set')
-        record.vid = vid
-        visitor = get_visitor(context['request'])
-        if visitor:
-            record.customer_id = visitor.id
-        record.save()
+            record = BriefViews()
+            record.article = art.id
+            record.time = timezone.now()
+            ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
+            record.ip = ip
+            vid = context['request'].COOKIES.get('vid', 'not set')
+            record.vid = vid
+            visitor = get_visitor(context['request'])
+            if visitor:
+                record.customer_id = visitor.id
+            record.save()
 
         show_paybox = art.show_paybox()
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
-            request = context.get('request')
             visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 show_paybox = False
@@ -323,7 +322,6 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         is_readable = art.is_readable()
         if not is_readable:
             if visitor is None:
-                request = context.get('request')
                 visitor = get_visitor(request)
             if visitor and visitor.is_professional_member():
                 is_readable = True

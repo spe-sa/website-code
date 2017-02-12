@@ -33,18 +33,22 @@ class SimpleEventPromotionAdmin(admin.ModelAdmin):
 
 class NotLoggedInMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class NonMemberMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class MemberNoDisciplineMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class MemberNoRegionMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class SimpleMembershipPromotionAdmin(admin.ModelAdmin):

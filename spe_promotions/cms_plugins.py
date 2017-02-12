@@ -47,11 +47,13 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
         objects = objects.filter(disciplines__in=instance.disciplines.all(),
                                  event_type=instance.event_type.all()).distinct()[:instance.count]
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -80,11 +82,13 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
         objects = objects.filter(topics__in=instance.topics.all(), event_type=instance.event_type.all()).distinct()[
                   :instance.count]
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -113,11 +117,13 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
         objects = objects.filter(regions__in=instance.regions.all(), event_type=instance.event_type.all()).distinct()[
                   :instance.count]
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -146,11 +152,13 @@ class ShowEventsListingPlugin(CMSPluginBase):
                                                       id__in=instance.promotions.all()).order_by(
             'last_impression').distinct()
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -181,11 +189,13 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
                                                       event_type=instance.event_type.all()).order_by('last_impression')[
                   :instance.count]
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         self.render_template = instance.template
@@ -301,6 +311,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
 
         objects = objects[:instance.count]
         i = 0
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if i == 0:
@@ -311,9 +322,10 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 elif not_logged_in:
                     x.url = "/en/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -344,11 +356,13 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
                                                       event_start_date__gte=today).order_by(
             'event_start_date').distinct()[:instance.count]
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         if instance.more_url:
@@ -377,11 +391,13 @@ class ShowMembershipListingPlugin(CMSPluginBase):
                                                       id__in=instance.promotions.all()).order_by(
             'last_impression').distinct()
 
+        request = context.get('request')
         for x in objects:
             x.url = "/en/promotion/membership/" + str(x.id) + "/"
-            x.last_impression = datetime.datetime.now()
-            x.impressions += 1
-            x.save()
+            if not request.user.is_authenticated():
+                x.last_impression = datetime.datetime.now()
+                x.impressions += 1
+                x.save()
 
         context.update({'promos': objects})
         self.render_template = instance.template
