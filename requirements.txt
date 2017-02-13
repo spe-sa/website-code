@@ -48,4 +48,7 @@ tzlocal==1.2.2
 Unidecode==0.4.19
 GeoIP==1.3.2
 django-debug-toolbar==1.6
+django-fsm==2.4.0
+graphviz==0.5.2
+netaddr==0.7.19
 # https://cdn.mysql.com/Downloads/Connector-Python/mysql-connector-python-2.1.3.tar.gz

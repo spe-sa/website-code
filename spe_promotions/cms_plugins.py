@@ -27,6 +27,8 @@ from .models import (
     MembershipPromotionSelectionPlugin,
 )
 
+from netaddr import IPAddress
+
 
 class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
     class Meta:
@@ -48,9 +50,10 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
                                  event_type=instance.event_type.all()).distinct()[:instance.count]
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -83,9 +86,10 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -118,9 +122,10 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -153,9 +158,10 @@ class ShowEventsListingPlugin(CMSPluginBase):
             'last_impression').distinct()
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -190,9 +196,10 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -312,6 +319,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         objects = objects[:instance.count]
         i = 0
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if i == 0:
@@ -322,7 +330,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 elif not_logged_in:
                     x.url = "/en/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -357,9 +365,10 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
             'event_start_date').distinct()[:instance.count]
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -392,9 +401,10 @@ class ShowMembershipListingPlugin(CMSPluginBase):
             'last_impression').distinct()
 
         request = context.get('request')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
         for x in objects:
             x.url = "/en/promotion/membership/" + str(x.id) + "/"
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()

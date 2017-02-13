@@ -9,6 +9,8 @@ import csv
 import string
 import socket
 
+from netaddr import IPAddress
+
 # import datetime
 # import sys
 
@@ -221,14 +223,14 @@ def brief_index(request):
 
 def article_detail(request, article_id):
     q = get_object_or_404(Article, pk=article_id)
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()
         record = ArticleViews()
         record.article = q.id
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         if 'vid' in request.COOKIES:
             vid = request.COOKIES['vid']
@@ -252,14 +254,14 @@ def article_detail(request, article_id):
 
 def brief_detail(request, brief_id):
     q = get_object_or_404(Brief, pk=brief_id)
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()
         record = BriefViews()
         record.article = q.id
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         if 'vid' in request.COOKIES:
             vid = request.COOKIES['vid']

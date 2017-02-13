@@ -25,13 +25,16 @@ from .models import (
     MembershipPromotionsClicks,
 )
 
+from netaddr import IPAddress
+
 
 def event_select(request, index):
     try:
         object = SimpleEventPromotion.objects.get(pk=index)
     except SimpleEventPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -39,7 +42,6 @@ def event_select(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -61,7 +63,8 @@ def no_discipline(request, index):
         object = SimpleEventNoDisciplinePromotion.objects.get(pk=index)
     except SimpleEventNoDisciplinePromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -69,7 +72,6 @@ def no_discipline(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -91,7 +93,8 @@ def no_region(request, index):
         object = SimpleEventNoAddressPromotion.objects.get(pk=index)
     except SimpleEventNoAddressPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -99,7 +102,6 @@ def no_region(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -121,7 +123,8 @@ def non_member(request, index):
         object = SimpleEventNonMemberPromotion.objects.get(pk=index)
     except SimpleEventNonMemberPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -129,7 +132,6 @@ def non_member(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -151,7 +153,8 @@ def not_logged_in(request, index):
         object = SimpleEventNotLoggedInPromotion.objects.get(pk=index)
     except SimpleEventNotLoggedInPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -159,7 +162,6 @@ def not_logged_in(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -181,7 +183,8 @@ def membership_select(request, index):
         object = SimpleMembershipPromotion.objects.get(pk=index)
     except SimpleMembershipPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -189,7 +192,6 @@ def membership_select(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -211,7 +213,8 @@ def membership_no_discipline(request, index):
         object = SimpleEventNoDisciplinePromotion.objects.get(pk=index)
     except SimpleEventNoDisciplinePromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -219,7 +222,6 @@ def membership_no_discipline(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:
@@ -241,7 +243,8 @@ def membership_no_region(request, index):
         object = SimpleEventNoAddressPromotion.objects.get(pk=index)
     except SimpleEventNoAddressPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    if not request.user.is_authenticated():
+    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -249,7 +252,6 @@ def membership_no_region(request, index):
         record.promotion_type = object.promotion_type
         record.promotion_id = index
         record.time = timezone.now()
-        ip = request.META.get('HTTP_X_REAL_IP', 'internal')
         record.ip = ip
         vid = 'no vid'
         if 'vid' in request.COOKIES:

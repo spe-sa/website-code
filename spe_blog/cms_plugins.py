@@ -188,7 +188,8 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             # related_articles = related_articles.filter(publication__code = art.publication.code)
 
         request = context.get('request')
-        if not request.user.is_authenticated():
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        if not request.user.is_authenticated() and not IPAddress(ip).is_private():
             art.article_hits += 1
             art.article_last_viewed = timezone.now()
             art.save()
@@ -196,7 +197,6 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             record = ArticleViews()
             record.article = art.id
             record.time = timezone.now()
-            ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
             record.ip = ip
             vid = context['request'].COOKIES.get('vid', 'not set')
             record.vid = vid
@@ -294,7 +294,9 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         visitor = None
 
         request = context.get('request')
-        if not request.user.is_authenticated():
+        # ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
+        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        if not request.user.is_authenticated() and not IPAddress(ip).is_private():
             art.article_hits += 1
             art.article_last_viewed = timezone.now()
             art.save()
@@ -302,7 +304,6 @@ class ShowBriefDetailPlugin(BriefPluginBase):
             record = BriefViews()
             record.article = art.id
             record.time = timezone.now()
-            ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
             record.ip = ip
             vid = context['request'].COOKIES.get('vid', 'not set')
             record.vid = vid
