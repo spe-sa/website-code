@@ -296,46 +296,49 @@ def export_detail_excel(request):
          'Region Shown', 'vid',
          'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
-        if click.promotion_type == "Event":
-            try:
-                object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
-                promotion_sub_type = object.event_type
-                event_location = map(lambda x: x.region_name, object.regions.all())
-            except:
-                promotion_sub_type = 'unknown'
-                event_location = 'unknown'
-        else:
-            promotion_sub_type = 'no subtype'
-            event_location = 'web'
-        # If IP is not internal use same logic as plugins to find regions shown
-        ip_country = "unknown"
-        ip_region = "USA"
-        try:
-            host = socket.gethostbyaddr(click.ip)[0]
-        except:
-            host = "unknown"
-        if click.ip != 'internal':
-            loc = g.city(click.ip)
-            if loc:
-                ip_country = loc['country_code3']
+        if click.ip == 'internal':
+            click.ip = '192.168.1.1'
+        if not IPAddress(click.ip).is_private():
+            if click.promotion_type == "Event":
                 try:
-                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
-                except Web_Region_Country.DoesNotExist:
-                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
-        cust_discipline = "unknown"
-        cust_country = "unknown"
-        if click.customer_id:
+                    object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
+                    promotion_sub_type = object.event_type
+                    event_location = map(lambda x: x.region_name, object.regions.all())
+                except:
+                    promotion_sub_type = 'unknown'
+                    event_location = 'unknown'
+            else:
+                promotion_sub_type = 'no subtype'
+                event_location = 'web'
+            # If IP is not internal use same logic as plugins to find regions shown
+            ip_country = "unknown"
+            ip_region = "USA"
             try:
-                cust = Customer.objects.get(pk=click.customer_id)
-                cust_discipline = cust.primary_discipline
-                cust_country = cust.country
+                host = socket.gethostbyaddr(click.ip)[0]
             except:
-                cust_discipline = "unknown"
-                cust_country = "unknown"
-        writer.writerow(
-            [click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
-             event_location, click.time, click.ip, host, ip_country, ip_region, click.vid, click.customer_id,
-             cust_discipline, cust_country])
+                host = "unknown"
+            if click.ip != '192.168.1.1':
+                loc = g.city(click.ip)
+                if loc:
+                    ip_country = loc['country_code3']
+                    try:
+                        ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
+                    except Web_Region_Country.DoesNotExist:
+                        ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+            cust_discipline = "unknown"
+            cust_country = "unknown"
+            if click.customer_id:
+                try:
+                    cust = Customer.objects.get(pk=click.customer_id)
+                    cust_discipline = cust.primary_discipline
+                    cust_country = cust.country
+                except:
+                    cust_discipline = "unknown"
+                    cust_country = "unknown"
+            writer.writerow(
+                [click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
+                 event_location, click.time, click.ip, host, ip_country, ip_region, click.vid, click.customer_id,
+                 cust_discipline, cust_country])
     return response
 
 

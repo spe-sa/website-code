@@ -338,44 +338,47 @@ def export_article_detail_excel(request):
     writer.writerow(['Count', 'Publication', 'Title', 'id', 'Time', 'IP', 'Host', 'Country', 'Region Shown', 'vid',
                      'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
-        # If IP is not internal use same logic as plugins to find regions shown
-        ip_country = "unknown"
-        ip_region = "USA"
-        try:
-            host = socket.gethostbyaddr(click.ip)[0]
-        except:
-            host = "unknown"
-        if click.ip != 'internal':
-            loc = g.city(click.ip)
-            if loc:
-                ip_country = loc['country_code3']
-                try:
-                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
-                except Web_Region_Country.DoesNotExist:
-                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
-        cust_discipline = 'unknown'
-        cust_country = 'unknown'
-        if click.customer_id:
+        if click.ip == 'internal':
+            click.ip = '192.168.1.1'
+        if not IPAddress(click.ip).is_private():
+            # If IP is not internal use same logic as plugins to find regions shown
+            ip_country = "unknown"
+            ip_region = "USA"
             try:
-                cust = Customer.objects.get(pk=click.customer_id)
-                cust_discipline = cust.primary_discipline
-                cust_country = cust.country
+                host = socket.gethostbyaddr(click.ip)[0]
             except:
-                cust_discipline = 'unknown'
-                cust_country = 'unknown'
-        try:
-            art = Article.objects.get(pk=click.article)
-            title = filter(lambda x: x in printable, art.title)
-        except:
-            title = 'article deleted'
-        try:
-            writer.writerow(
-                [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
-                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
-        except:
-            writer.writerow(
-                [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
-                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+                host = "unknown"
+            if click.ip != '192.168.1.1':
+                loc = g.city(click.ip)
+                if loc:
+                    ip_country = loc['country_code3']
+                    try:
+                        ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
+                    except Web_Region_Country.DoesNotExist:
+                        ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+            cust_discipline = 'unknown'
+            cust_country = 'unknown'
+            if click.customer_id:
+                try:
+                    cust = Customer.objects.get(pk=click.customer_id)
+                    cust_discipline = cust.primary_discipline
+                    cust_country = cust.country
+                except:
+                    cust_discipline = 'unknown'
+                    cust_country = 'unknown'
+            try:
+                art = Article.objects.get(pk=click.article)
+                title = filter(lambda x: x in printable, art.title)
+            except:
+                title = 'article deleted'
+            try:
+                writer.writerow(
+                    [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
+                     ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            except:
+                writer.writerow(
+                    [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
+                     ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 
@@ -391,43 +394,46 @@ def export_brief_detail_excel(request):
                      'Customer Number', 'Discipline', 'Country'])
     for click in clicks:
         # If IP is not internal use same logic as plugins to find regions shown
-        ip_country = "unknown"
-        ip_region = "USA"
-        try:
-            host = socket.gethostbyaddr(click.ip)[0]
-        except:
-            host = "unknown"
-        if click.ip != 'internal':
-            loc = g.city(click.ip)
-            if loc:
-                ip_country = loc['country_code3']
-                try:
-                    ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
-                except Web_Region_Country.DoesNotExist:
-                    ip_region = Web_Region_Country.objects.get(country_UN='USA').region
-        cust_discipline = 'unknown'
-        cust_country = 'unknown'
-        if click.customer_id:
+        if click.ip == 'internal':
+            click.ip = '192.168.1.1'
+        if not IPAddress(click.ip).is_private():
+            ip_country = "unknown"
+            ip_region = "USA"
             try:
-                cust = Customer.objects.get(pk=click.customer_id)
-                cust_discipline = cust.primary_discipline
-                cust_country = cust.country
+                host = socket.gethostbyaddr(click.ip)[0]
             except:
-                cust_discipline = 'unknown'
-                cust_country = 'unknown'
-        try:
-            art = Brief.objects.get(pk=click.article)
-            title = filter(lambda x: x in printable, art.title)
-        except:
-            title = 'article deleted'
-        try:
-            writer.writerow(
-                [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
-                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
-        except:
-            writer.writerow(
-                [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
-                 ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+                host = "unknown"
+            if click.ip != '192.168.1.1':
+                loc = g.city(click.ip)
+                if loc:
+                    ip_country = loc['country_code3']
+                    try:
+                        ip_region = Web_Region_Country.objects.get(country_UN=ip_country).region
+                    except Web_Region_Country.DoesNotExist:
+                        ip_region = Web_Region_Country.objects.get(country_UN='USA').region
+            cust_discipline = 'unknown'
+            cust_country = 'unknown'
+            if click.customer_id:
+                try:
+                    cust = Customer.objects.get(pk=click.customer_id)
+                    cust_discipline = cust.primary_discipline
+                    cust_country = cust.country
+                except:
+                    cust_discipline = 'unknown'
+                    cust_country = 'unknown'
+            try:
+                art = Brief.objects.get(pk=click.article)
+                title = filter(lambda x: x in printable, art.title)
+            except:
+                title = 'article deleted'
+            try:
+                writer.writerow(
+                    [click.pk, art.publication.name, title, click.article, click.time, click.ip, host, ip_country,
+                     ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
+            except:
+                writer.writerow(
+                    [click.pk, art.publication.name, "Bad Title", click.article, click.time, click.ip, host, ip_country,
+                     ip_region, click.vid, click.customer_id, cust_discipline, cust_country])
     return response
 
 
