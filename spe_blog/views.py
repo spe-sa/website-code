@@ -22,6 +22,9 @@ from mainsite.context_processors.spe_context import (
     get_visitor, )
 
 
+from netaddr import IPAddress
+
+
 exclude_agents = ['bot', 'spider', 'crawl', 'search']
 
 
