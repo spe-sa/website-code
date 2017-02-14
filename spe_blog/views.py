@@ -9,8 +9,6 @@ import csv
 import string
 import socket
 
-from netaddr import IPAddress
-
 # import datetime
 # import sys
 
