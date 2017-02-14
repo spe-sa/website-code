@@ -57,7 +57,7 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -95,7 +95,7 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -133,7 +133,7 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -171,7 +171,7 @@ class ShowEventsListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -211,7 +211,7 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -344,7 +344,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                     x.url = "/en/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -384,7 +384,7 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -422,7 +422,7 @@ class ShowMembershipListingPlugin(CMSPluginBase):
         for x in objects:
             x.url = "/en/promotion/membership/" + str(x.id) + "/"
             if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-                    [y in user_agent for y in exclude_agents]):
+                    [y in user_agent.lower() for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()

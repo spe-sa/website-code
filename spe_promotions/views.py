@@ -39,7 +39,7 @@ def event_select(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -71,7 +71,7 @@ def no_discipline(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -103,7 +103,7 @@ def no_region(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -135,7 +135,7 @@ def non_member(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -167,7 +167,7 @@ def not_logged_in(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -199,7 +199,7 @@ def membership_select(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -231,7 +231,7 @@ def membership_no_discipline(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -263,7 +263,7 @@ def membership_no_region(request, index):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()

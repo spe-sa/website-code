@@ -230,7 +230,7 @@ def article_detail(request, article_id):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()
@@ -263,7 +263,7 @@ def brief_detail(request, brief_id):
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-            [y in user_agent for y in exclude_agents]):
+            [y in user_agent.lower() for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()
