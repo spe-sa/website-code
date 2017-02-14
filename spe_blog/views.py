@@ -22,6 +22,9 @@ from mainsite.context_processors.spe_context import (
     get_visitor, )
 
 
+exclude_agents = ['bot', 'spider', 'crawl', 'search']
+
+
 def article_links(request):
     # get all the articles we want to provide links to
     articles = Article.objects.filter(published=True)
@@ -224,7 +227,9 @@ def brief_index(request):
 def article_detail(request, article_id):
     q = get_object_or_404(Article, pk=article_id)
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()
@@ -255,7 +260,9 @@ def article_detail(request, article_id):
 def brief_detail(request, brief_id):
     q = get_object_or_404(Brief, pk=brief_id)
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
         q.save()

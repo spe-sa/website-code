@@ -28,13 +28,18 @@ from .models import (
 from netaddr import IPAddress
 
 
+exclude_agents = ['bot', 'spider', 'crawl', 'search']
+
+
 def event_select(request, index):
     try:
         object = SimpleEventPromotion.objects.get(pk=index)
     except SimpleEventPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -64,7 +69,9 @@ def no_discipline(request, index):
     except SimpleEventNoDisciplinePromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -94,7 +101,9 @@ def no_region(request, index):
     except SimpleEventNoAddressPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -124,7 +133,9 @@ def non_member(request, index):
     except SimpleEventNonMemberPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -154,7 +165,9 @@ def not_logged_in(request, index):
     except SimpleEventNotLoggedInPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = PromotionsEventClicks()
@@ -184,7 +197,9 @@ def membership_select(request, index):
     except SimpleMembershipPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -214,7 +229,9 @@ def membership_no_discipline(request, index):
     except SimpleEventNoDisciplinePromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()
@@ -244,7 +261,9 @@ def membership_no_region(request, index):
     except SimpleEventNoAddressPromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+            [y in user_agent for y in exclude_agents]):
         object.hits += 1
         object.save()
         record = MembershipPromotionsClicks()

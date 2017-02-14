@@ -30,6 +30,9 @@ from .models import (
 from netaddr import IPAddress
 
 
+exclude_agents = ['bot', 'spider', 'crawl', 'search']
+
+
 class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
     class Meta:
         abstract = True
@@ -51,9 +54,11 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -87,9 +92,11 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -123,9 +130,11 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -159,9 +168,11 @@ class ShowEventsListingPlugin(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -197,9 +208,11 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -320,6 +333,7 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         i = 0
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
             if i == 0:
@@ -330,7 +344,8 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
                 elif not_logged_in:
                     x.url = "/en/promotion/not_logged_in/" + str(x.id) + "/"
             i += 1
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -366,9 +381,11 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
@@ -397,14 +414,16 @@ class ShowMembershipListingPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         today = datetime.date.today()
         objects = SimpleMembershipPromotion.objects.filter(start__lte=today, end__gte=today,
-                                                      id__in=instance.promotions.all()).order_by(
+                                                           id__in=instance.promotions.all()).order_by(
             'last_impression').distinct()
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/membership/" + str(x.id) + "/"
-            if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+            if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                    [y in user_agent for y in exclude_agents]):
                 x.last_impression = datetime.datetime.now()
                 x.impressions += 1
                 x.save()
