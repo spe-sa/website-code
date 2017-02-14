@@ -6,6 +6,8 @@ import urlparse
 from itertools import chain
 from operator import attrgetter
 
+from netaddr import IPAddress
+
 from cms.models import CMSPlugin
 from django.shortcuts import get_object_or_404
 from django.http import Http404
@@ -49,6 +51,10 @@ from .forms import (
     ArticlesListSelectionForm,
     BlogSelectionForm
 )
+
+
+exclude_agents = ['bot', 'spider', 'crawl', 'search']
+
 
 def getPublicationCode(pub):
     if pub:
@@ -189,7 +195,9 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
 
         request = context.get('request')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-        if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                [y in user_agent for y in exclude_agents]):
             art.article_hits += 1
             art.article_last_viewed = timezone.now()
             art.save()
@@ -296,7 +304,9 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         request = context.get('request')
         # ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
-        if not request.user.is_authenticated() and not IPAddress(ip).is_private():
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+                [y in user_agent for y in exclude_agents]):
             art.article_hits += 1
             art.article_last_viewed = timezone.now()
             art.save()

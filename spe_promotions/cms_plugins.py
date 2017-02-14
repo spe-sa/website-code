@@ -1,6 +1,8 @@
 import datetime
 from itertools import chain
 
+from netaddr import IPAddress
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
@@ -26,9 +28,6 @@ from .models import (
     SimpleMembershipPromotion,
     MembershipPromotionSelectionPlugin,
 )
-
-from netaddr import IPAddress
-
 
 exclude_agents = ['bot', 'spider', 'crawl', 'search']
 
