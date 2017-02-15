@@ -173,6 +173,7 @@ INSTALLED_APPS = (
     'spe_promotions',
     'carousel',
     # 'helloworld'
+    'django_fsm',
 )
 
 LANGUAGES = (
@@ -691,5 +692,6 @@ DASHING = {
 
 DEFAULT_IP = '192.152.183.80'
 
+# Allow deferred Publishing and Retirement of CMS Pages
 CMS_SHOW_START_DATE = True
 CMS_SHOW_END_DATE = True
