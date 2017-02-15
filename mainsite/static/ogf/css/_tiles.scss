@@ -636,3 +636,44 @@ carouselPromo {
     font-weight:  $font-bold;
   }
 }
+/* TECH FOCUS */
+.tile-techFocus {
+  padding:              0 10px 10px 0;
+
+  .techauthbox {
+    background-color:   $col-ogflightgrey;
+    padding:            5px;
+
+    .techauthtable {
+      padding:          0;
+      margin:           0;
+
+      .techauththumb {
+        padding:        0;
+        width:          95px;
+      }
+      .techauthtext {
+        padding:        0 0 0 10px;
+
+        h2 {
+          margin:       0 0 5px 0;
+          font-size:    20px;
+          font-family:  $font-main !important;
+        }
+      }
+    }
+  }
+
+  .techauth-story-text {
+    //border-bottom:        1px dotted $col-boxshadow;
+
+    a {
+      color:              $col-ogfblack;
+
+      &:hover {
+        color:            $col-ogfblack;
+      }
+    }
+  }
+
+}
