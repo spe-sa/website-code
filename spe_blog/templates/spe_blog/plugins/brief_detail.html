@@ -7,6 +7,11 @@
 {#            <h2 class="articleTitle">{{ article.title }}</h2>#}
             <hr class="tiletitlehr">
             <h2 class="tiletitles">{{ article.title }}</h2>
+    {% if article.onlineonly %}
+    <div class="col-sm-12 onlineonly text-right">
+        <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
+    </div>
+    {% endif %}
             <div class="col-sm-12 tiletitlehr"></div>
             <div class="col-sm-8 articleAuthorBox">
                 {% if article.author %}{{ article.author }} | {% endif %}{{ article.date|date:"d F Y" }}
@@ -16,7 +21,7 @@
             </div>
         </div>
 
-        {% if article.sponsored == True %}
+        {% if article.sponsored %}
             <div class="col-sm-12 sponsored">SPONSORED</div>
         {% endif %}
 

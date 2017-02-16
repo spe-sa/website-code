@@ -25,7 +25,7 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'secondary_category', 'title',
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'onlineonly', 'category', 'secondary_category', 'title',
                 'slug', 'teaser',
                 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
@@ -109,9 +109,6 @@ class ArticleEditorAdmin(ArticleAdmin):
                 'author_name',
                 'author_title',
                 'author_picture',
-                # 'author_picture_alternate',
-                # 'author_picture_attribution',
-                # 'author_picture_caption',
                 'author_bio',
             ),
         }),
@@ -146,7 +143,7 @@ class BriefAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
+                'publication', 'onlineonly', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
                 'author', 'article_text', 'date', 'topics', 'region', 'tags'
             ),
         }),

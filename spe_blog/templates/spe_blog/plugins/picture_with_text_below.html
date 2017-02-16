@@ -17,15 +17,16 @@
                     <div class="story-text">
                         <span class="pub-date">{{ article.date|date:"d F Y" }}
 
-                        {% if pubcode != "TWA" and article.is_readable == True %}{# check if the article is locked or not and indicate #}
-{#                        {% if article.is_readable == True %}{# check if the article is locked or not and indicate #}
-{#                        {% if article.free %}#}
-{#                            | <span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
-{#                        {% else %}#}
-{#                            <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is for registered users">&nbsp;<i class="fa fa-lock"></i></span>#}
+                        {% if pubcode != "TWA" and article.is_readable == True %}
                         {% endif %}
                         </span>
                         <h3>{{ article.title }}</h3>
+
+                        {% if article.onlineonly %}
+                        <div class="col-sm-12 onlineonly">
+                            <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
+                        </div>
+                        {% endif %}
 
                         {% if article.sponsored %}
                         <p><span class="sponsored">SPONSORED</span></p>

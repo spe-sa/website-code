@@ -24,6 +24,11 @@
                       <a href="{{ article.get_absolute_url }}">
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
+                                {% if article.onlineonly %}
+                                <div class="col-sm-12 onlineonly">
+                                    <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
+                                </div>
+                                {% endif %}
                               <h4>{{ article.teaser }}</h4>
                           </div>
                       </a>
@@ -33,6 +38,11 @@
                       <a href="{{ article.get_absolute_url }}">
                           <div class="carousel-caption">
                               <h3>{{ article.title }}</h3>
+                                {% if article.onlineonly %}
+                                <div class="col-sm-12 onlineonly">
+                                    <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
+                                </div>
+                                {% endif %}
                               <h4>{{ article.teaser }}</h4>
                           </div>
                       </a>

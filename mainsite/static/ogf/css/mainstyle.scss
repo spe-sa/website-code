@@ -79,6 +79,14 @@ a {
   font-size:          12px;
   letter-spacing:     2px;
 }
+.onlineonly {
+  h4 {
+    padding:          3px 10px;
+    background-color: $col-sponsoryellow;
+    color:            $col-white;
+    text-shadow:      0 1px 2px rgba(0,0,0,.6);
+  }
+}
 .cke_maximized {
   margin-top:         50px !important;
 }

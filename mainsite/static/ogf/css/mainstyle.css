@@ -604,6 +604,8 @@ carouselPromo { padding-bottom: 0 !important; }
 
 .sponsored { padding: 3px 3px 3px 5px; background-color: #fffb22; color: #2a2a2a; font-weight: 700; font-size: 12px; letter-spacing: 2px; }
 
+.onlineonly h4 { padding: 3px 10px; background-color: #ffca4c; color: white; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+
 .cke_maximized { margin-top: 50px !important; }
 
 .more { float: right; color: #2a2a2a; }
