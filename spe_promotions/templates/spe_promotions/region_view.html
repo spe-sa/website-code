@@ -11,6 +11,7 @@
 
             dataTable.addColumn({type: 'string', id: 'Region'});
             dataTable.addColumn({type: 'string', id: 'Event Type'});
+            dataTable.addColumn({ type: 'string', role: 'tooltip' });
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
 
@@ -18,7 +19,7 @@
                 {% for region, promos in regions.items %}
                     {% for key, values in promos.items %}
                         {% for value in values %}
-                            ['{{ region }}', '{{ value.event_type.name }}', new Date({{ value.start.year }}, {{ value.start.month }}, {{ value.start.day }}), new Date({{ value.end.year }}, {{ value.end.month }}, {{ value.end.day }})],
+                            ['{{ region }}', '{{ value.event_type.name }}', '{{ value.event }}', new Date({{ value.start.year }}, {{ value.start.month }}, {{ value.start.day }}), new Date({{ value.end.year }}, {{ value.end.month }}, {{ value.end.day }})],
 
                         {% endfor %}
                     {% endfor %}
