@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['timeline']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'Discipline' });
+        dataTable.addColumn({ type: 'string', id: 'Event Type' });
+        dataTable.addColumn({ type: 'string', role: 'tooltip' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+
+        dataTable.addRows([
+        {% for promo in promos %}
+            [ '{{ promo.event }}' , '{{ promo.event_type.name }}' , 'Clicks: {{ promo.hits }}', new Date({{ promo.start.year }}, {{ promo.start.month }}, {{ promo.start.day }}), new Date({{ promo.end.year }}, {{ promo.end.month }}, {{ promo.end.day }}) ],
+
+        {% endfor %} ] );
+        chart.draw(dataTable);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="timeline" style="height: 700px;"></div>
+  </body>
+</html>

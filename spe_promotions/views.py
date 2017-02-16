@@ -1,5 +1,5 @@
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.http import HttpResponse
 from django.contrib.gis.geoip import GeoIP
@@ -7,12 +7,13 @@ from django.contrib.gis.geoip import GeoIP
 import csv
 import string
 import socket
+from netaddr import IPAddress
 
 from mainsite.context_processors.spe_context import (
     get_visitor,
 )
 
-from mainsite.models import Customer, Web_Region_Country
+from mainsite.models import Customer, Web_Region_Country, Tier1Discipline
 
 from .models import (
     SimpleEventPromotion,
@@ -24,9 +25,6 @@ from .models import (
     SimpleMembershipPromotion,
     MembershipPromotionsClicks,
 )
-
-from netaddr import IPAddress
-
 
 exclude_agents = ['bot', 'spider', 'crawl', 'search']
 
@@ -355,7 +353,8 @@ def export_detail_excel(request):
                     cust_discipline = "unknown"
                     cust_country = "unknown"
             writer.writerow(
-                [click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id, promotion_sub_type,
+                [click.pk, click.time, click.promotion_title, click.promotion_type, click.promotion_id,
+                 promotion_sub_type,
                  event_location, click.time, click.ip, host, ip_country, ip_region, click.vid, click.customer_id,
                  cust_discipline, cust_country])
     return response
@@ -379,3 +378,19 @@ def export_summary_excel(request):
         writer.writerow([promotion.pk, title, promotion.event_type, event_regions, event_disciplines, promotion.start,
                          promotion.end, promotion.impressions, promotion.last_impression, promotion.hits])
     return response
+
+
+def promotion_timeline(request):
+    promotions = SimpleEventPromotion.objects.all().order_by('start')
+    context = {'promos': promotions, }
+    return render(request, 'spe_promotions/promotion_timeline.html', context)
+
+
+def promotion_by_discipline(request):
+    disciplines = Tier1Discipline.objects.filter(active=True)
+    context = {'disciplines': ''}
+    for discipline in disciplines:
+        promotions = SimpleEventPromotion.objects.filter(disciplines=discipline).order_by('start')
+        context.update({discipline: {'promos': promotions},},)
+    context = {'disciplines': context}
+    return render(request, 'spe_promotions/discipline_view.html', context)
