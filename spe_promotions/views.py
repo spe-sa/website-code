@@ -13,7 +13,7 @@ from mainsite.context_processors.spe_context import (
     get_visitor,
 )
 
-from mainsite.models import Customer, Web_Region_Country, Tier1Discipline
+from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
 
 from .models import (
     SimpleEventPromotion,
@@ -387,10 +387,20 @@ def promotion_timeline(request):
 
 
 def promotion_by_discipline(request):
-    disciplines = Tier1Discipline.objects.filter(active=True)
-    context = {'disciplines': ''}
+    disciplines = Web_Region.objects.filter(active=True)
+    context = {}
     for discipline in disciplines:
         promotions = SimpleEventPromotion.objects.filter(disciplines=discipline).order_by('start')
         context.update({discipline: {'promos': promotions},},)
     context = {'disciplines': context}
     return render(request, 'spe_promotions/discipline_view.html', context)
+
+
+def promotion_by_region(request):
+    regions = Web_Region.objects.all()
+    context = {}
+    for region in regions:
+        promotions = SimpleEventPromotion.objects.filter(regions=region).order_by('start')
+        context.update({region: {'promos': promotions},},)
+    context = {'regions': context}
+    return render(request, 'spe_promotions/region_view.html', context)
