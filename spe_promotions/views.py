@@ -387,7 +387,7 @@ def promotion_timeline(request):
 
 
 def promotion_by_discipline(request):
-    disciplines = Web_Region.objects.filter(active=True)
+    disciplines = Tier1Discipline.objects.filter(active=True)
     context = {}
     for discipline in disciplines:
         promotions = SimpleEventPromotion.objects.filter(disciplines=discipline).order_by('start')
