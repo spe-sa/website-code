@@ -22,6 +22,18 @@ router.register(TopTwentyArticlesWidget, 'top_20_articles')
 router.register(TopFiveBriefsWidget, 'top_5_briefs')
 router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 
+
+# Specialized Sitemaps
+
+from django.contrib.sitemaps.views import sitemap
+
+from spe_blog.sitemap import AllArticlesSitemap, AllBriefsSitemap
+
+sitemaps = {
+    'articles': AllArticlesSitemap,
+    'briefs': AllBriefsSitemap,
+}
+
 # Admin
 
 admin.autodiscover()
@@ -47,6 +59,7 @@ urlpatterns = i18n_patterns('',
     url(r'^staff/articles/export_details/', 'spe_blog.views.export_article_detail_excel', ),
     url(r'^staff/briefs/export_details/', 'spe_blog.views.export_brief_detail_excel', ),
     url(r'^staff/articles/export_article_disciplines/', 'spe_blog.views.export_article_disciplines_excel', ),
+    url(r'^staff/articlesandbriefs/sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     url(r'^staff/', include('spe_blog.urls_internal')),
     url(r'^spe_links/', include('spe_links.urls')),
