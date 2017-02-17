@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function, unicode_literals
 
-from cms.sitemaps import CMSSitemap
+# from cms.sitemaps import CMSSitemap
+from djangocms_page_sitemap.sitemap import ExtendedSitemap
 from django.conf import settings
 from django.conf.urls import *  # NOQA
 from django.conf.urls.i18n import i18n_patterns
@@ -30,8 +31,9 @@ urlpatterns = i18n_patterns('',
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     # ran into a problem where the ckeditor is not at the root
     # ex: /en/admin/spe_blog/article/add/ckeditor/upload/?CKEditor=id_introduction&CKEd...
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-        {'sitemaps': {'cmspages': CMSSitemap}}),
+    # url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+    #     {'sitemaps': {'cmspages': CMSSitemap}}),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': {'cmspages': ExtendedSitemap}}),
     url(r'^select2/', include('django_select2.urls')),
     # NOTE: for more specific staff stuff put first; blog will catch anything else /staff.
     # ex url(r'^staff/filer/', include('spe_filer.urls_internal')),

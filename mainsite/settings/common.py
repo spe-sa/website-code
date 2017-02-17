@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'djangocms_page_sitemap',
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'cms',
