@@ -6,7 +6,7 @@ from .models import AdSpeedZonePlugin
 from .models import TitleBarPlugin
 from .models import TextPlugin
 # from .models import TextWithClass
-from .models import TileImgBack,MarketoFormPlugin
+from .models import TileImgBack, MarketoFormPlugin, MarketoFormPluginNoThankYou
 
 
 class ShowAdSpeedZonePlugin(CMSPluginBase):
@@ -108,7 +108,7 @@ class ShowMarketoFormPlugin(CMSPluginBase):
     allow_children = False
     cache = False
     module = _('Forms')
-    name = _('Marketo Form')
+    name = _('Marketo Form with Confirmation')
     text_enabled = False
     render_template = 'plugins/marketo_form.html'
 
@@ -116,6 +116,21 @@ class ShowMarketoFormPlugin(CMSPluginBase):
         context.update({'instructions': instance.instructions})
         context.update({'marketo_form': instance.marketo_form})
         context.update({'thank_you': instance.thank_you})
+        return context
+
+
+class ShowMarketoFormWithoutThankYouPlugin(CMSPluginBase):
+    model = MarketoFormPluginNoThankYou
+    allow_children = False
+    cache = False
+    module = _('Forms')
+    name = _('Marketo Form without Confirmation')
+    text_enabled = False
+    render_template = 'plugins/marketo_form_no_thank_you.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instructions': instance.instructions})
+        context.update({'marketo_form': instance.marketo_form})
         return context
 
 
@@ -135,6 +150,7 @@ class ShowHorizontalBar(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(ShowMarketoFormPlugin)
+plugin_pool.register_plugin(ShowMarketoFormWithoutThankYouPlugin)
 plugin_pool.register_plugin(ShowAdSpeedZonePlugin)
 plugin_pool.register_plugin(ShowTitlePlugin)
 plugin_pool.register_plugin(ShowTextPlugin)

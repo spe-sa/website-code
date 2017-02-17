@@ -493,6 +493,14 @@ class MarketoFormPlugin(CMSPlugin):
         return "Marketo Form: " + str(self.marketo_form)
 
 
+class MarketoFormPluginNoThankYou(CMSPlugin):
+    instructions = models.CharField(max_length=200, verbose_name="Instructions for form")
+    marketo_form = models.PositiveIntegerField(verbose_name="Marketo form code")
+
+    def __unicode__(self):
+        return "Marketo Form with No Thank You: " + str(self.marketo_form)
+
+
 class TimeZone(models.Model):
     code = models.CharField(max_length=12)
     description = models.CharField(max_length=120, blank=True, null=True)
