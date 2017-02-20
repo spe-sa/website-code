@@ -88,7 +88,7 @@ class ArticleEditorAdmin(ArticleAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'sponsored', 'category', 'secondary_category', 'title',
+                'publication', 'print_volume', 'print_issue', 'sponsored', 'onlineonly', 'category', 'secondary_category', 'title',
                 'slug', 'teaser',
                 'author', 'introduction', 'article_text', 'date', 'disciplines', 'topics', 'tags'
             ),
@@ -183,7 +183,7 @@ class BriefEditorAdmin(BriefAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'publication', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
+                'publication', 'onlineonly', 'print_volume', 'print_issue', 'category', 'secondary_category', 'title', 'slug',
                 'author', 'article_text', 'date', 'topics', 'region', 'tags'
             ),
         }),
