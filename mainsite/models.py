@@ -343,6 +343,7 @@ class Customer(models.Model):
 class CustomerClassificationJoin(models.Model):
     customer = models.ForeignKey(Customer, related_name='classification_customer')
     classification = models.ForeignKey(CustomerClassification, related_name='classification_join')
+    type = models.CharField(max_length=100, blank=True, null=True)
     value = models.CharField(max_length=255, blank=True, null=True)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
