@@ -1,5 +1,7 @@
 {% extends "jpt_subpage.html" %}
-{% load cms_tags sekizai_tags var_tags %}
+{% load cms_tags sekizai_tags var_tags menu_tags %}
+
+
 
 {% block content %}
 
@@ -59,6 +61,7 @@
 <div class="container">
     <div id="content" class="tile-editorial tile-editorial-txtblck row" style="background-color:white; margin-left:10px;padding-left: 10px;">
             <div class="columns">
+
             <ul>
 
         {% set_var "" as rendered_group_name %}
@@ -71,11 +74,6 @@
 
                 <li>
                     <div>
-{#                        <span class="regionalBrTitle"><h3><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></h3></span>#}
-    {#                    <span class="sideListDate">{{ article.date|date:"d F Y" }}</span>#}
-    {#                    {% if article.is_readable == True %}#}
-    {#                        <span class="pipe">| </span><span class="sideListLock" data-toggle="tooltip" data-placement="bottom" title="Article is free to view">&nbsp;<i class="fa fa-unlock"></i></span>#}
-    {#                    {% endif %}#}
                         <span class="regionalBrText">{{ article.article_text|safe }}</span>
                     </div>
                 </li>
