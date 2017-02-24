@@ -460,17 +460,17 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
             if q and q[0][0] == 'topic':
                 pk = int(q[0][1])
                 if pk:
-                    art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                    art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
                         topics__pk=pk).order_by(instance.order_by)[
                             instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
                 else:
                     raise Http404("Topic not found")
             else:
-                art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
                     topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
                       instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
-            art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+            art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
                 topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'articles': art})
@@ -684,7 +684,7 @@ class ShowTagsDetailPlugin(CMSPluginBase):
         if q and q[0][0] == 'tag':
             pk = int(q[0][1])
             if pk:
-                art = Article.objects.all().filter(published=True).filter(publication=instance.publication).filter(
+                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
                     tags__pk=pk).order_by(instance.order_by)[
                       instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
             else:
