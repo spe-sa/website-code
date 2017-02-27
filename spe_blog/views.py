@@ -21,7 +21,7 @@ from mainsite.context_processors.spe_context import (
 
 from netaddr import IPAddress
 
-exclude_agents = ['bot', 'spider', 'crawl', 'search']
+exclude_agents = ['bot', 'spider', 'crawl', 'search', 'python', 'miketest', '8legs', 'ltx71', 'icevikatam', 'goldfire', 'fetch', 'archive', 'metauri', 'go-http-client', 'jetty', 'java', 'php', 'drupal', 'coldfusion', 'idg/uk', 'default', 'downnotifier', 'jakarta', 'grammarly', 'check', 'scoutjet' ]
 
 
 def article_links(request):
