@@ -728,7 +728,7 @@ class ArticlesListingPlugin(CMSPlugin):
     print_issue = models.PositiveIntegerField(blank=True, null=True)
     personalized = models.BooleanField(default=False, verbose_name='Personalize view according to user discipline')
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL,
-                                   limit_choices_to={'active': True}, verbose_name='Filter by discipline (also default if user not logged in or has no primary discipline')
+                                   limit_choices_to={'active': True}, verbose_name='Filter by discipline (also default if user not logged in or has no primary discipline)')
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
