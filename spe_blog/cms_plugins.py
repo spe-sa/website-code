@@ -517,7 +517,10 @@ class ShowBriefListingPlugin(BriefPluginBase):
     def render(self, context, instance, placeholder):
         # request = context.get('request')
         cutoff = datetime.now() - timedelta(days=instance.in_last)
-        qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+        if instance.order_by == "-article_hits":
+            qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+        else:
+            qs = Brief.objects.filter(published=True).filter(date__lte=datetime.now())
 
         if instance.publication:
             qs = qs.filter(publication=instance.publication)
@@ -562,18 +565,33 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
-        cutoff = datetime.now() - timedelta(days=instance.in_last)
+        visitor = get_visitor(request)
+
 
         # NOTE: change this to be set in the context globally and stored server side
         ducode = None
         dcode = None
         if instance.personalized:
-            ducode = request.COOKIES.get('dc')
+            if visitor:
+                # The Member is Logged In & Has Discipline
+                if visitor.primary_discipline:
+                    if visitor.primary_discipline.active:
+                        # Member - Primary Discipline Available
+                        ducode = visitor.primary_discipline
         if instance.discipline:
             dcode = instance.discipline.code
         context.update({'ducode': ducode, 'dcode': dcode})
-        # NOTE: todo - create an in clause filter with each code if there are any
-        qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+        cutoff = datetime.now() - timedelta(days=instance.in_last)
+        # if instance.this_month:
+        #     cutoff2 = datetime.now() - timedelta(days=int(datetime.now().strftime("%d")))
+        #     qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), date__gte=cutoff2, article_last_viewed__gte=cutoff)
+        # else:
+        #     qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+        if instance.order_by == "-article_hits":
+            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+        else:
+            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
+
 
         if instance.publication:
             qs = qs.filter(publication=instance.publication)

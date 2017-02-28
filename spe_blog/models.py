@@ -721,14 +721,14 @@ class ArticlesListingPlugin(CMSPlugin):
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
-    in_last = models.PositiveIntegerField(default=30, verbose_name='Read in last (days)')
+    in_last = models.PositiveIntegerField(default=30, verbose_name='Most Read in last (days)')
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
     print_issue = models.PositiveIntegerField(blank=True, null=True)
-    personalized = models.BooleanField(default=False)
+    personalized = models.BooleanField(default=False, verbose_name='Personalize view according to user discipline')
     discipline = models.ForeignKey(Tier1Discipline, blank=True, null=True, on_delete=models.SET_NULL,
-                                   limit_choices_to={'active': True})
+                                   limit_choices_to={'active': True}, verbose_name='Filter by discipline (also default if user not logged in or has no primary discipline')
     # category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.SET_NULL)
     categories = models.ManyToManyField(Category, blank=True)
     secondary_categories = models.ManyToManyField(SecondaryCategory, blank=True)
@@ -764,7 +764,7 @@ class BriefListingPlugin(CMSPlugin):
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Briefs')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
-    in_last = models.PositiveIntegerField(default=30, verbose_name='Read in last (days)')
+    in_last = models.PositiveIntegerField(default=30, verbose_name='Most Read in last (days)')
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
