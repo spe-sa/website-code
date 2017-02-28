@@ -53,6 +53,9 @@ def article_index(request):
         search_id = int(search_term)
     except Exception:
         search_id = 0
+    tagsearch_term = request.POST.get('tagsearch', None)
+    if (tagsearch_term == None):
+        tagsearch_term = request.GET.get("tagsearch", None)
 
     published = request.POST.get("published", None)
     if (published == None):
@@ -98,9 +101,14 @@ def article_index(request):
         else:
             articles = articles.filter(title__icontains=search_term)
         filter = build_filter(filter, " title or id contains '" + search_term + "'")
+    if (tagsearch_term):
+        articles = articles.filter(tags__name__icontains=tagsearch_term)
+        filter = build_filter(filter, " tag contains '" + tagsearch_term + "'")
     articles = articles[:limit_selected]
     if (search_term == None):
         search_term = ''
+    if (tagsearch_term == None):
+        tagsearch_term = ''
 
     # get a list of publication codes to send to build the drop down from
     pub_list = Publication.objects.values_list('code', flat=True)
@@ -111,6 +119,7 @@ def article_index(request):
                'vol_selected': vol,
                'issue_selected': issue,
                'search_selected': search_term,
+               'tagsearch_selected': tagsearch_term,
                'published_selected': published,
                'form_url': form_url,
                'render_type': render_type,
@@ -146,6 +155,9 @@ def brief_index(request):
         search_id = int(search_term)
     except Exception:
         search_id = 0
+    tagsearch_term = request.POST.get('tagsearch', None)
+    if (tagsearch_term == None):
+        tagsearch_term = request.GET.get("tagsearch", None)
 
     search_region = request.POST.get('region', None)
     if (search_region == None):
@@ -196,9 +208,14 @@ def brief_index(request):
         else:
             articles = articles.filter(title__icontains=search_term)
         filter = build_filter(filter, " title or id contains '" + search_term + "'")
+    if (tagsearch_term):
+        articles = articles.filter(tags__name__icontains=tagsearch_term)
+        filter = build_filter(filter, " tag contains '" + tagsearch_term + "'")
     articles = articles[:limit_selected]
     if (search_term == None):
         search_term = ''
+    if (tagsearch_term == None):
+        tagsearch_term = ''
 
     # get a list of publication codes to send to build the drop down from
     pub_list = Publication.objects.values_list('code', flat=True)
@@ -211,6 +228,7 @@ def brief_index(request):
                'vol_selected': vol,
                'issue_selected': issue,
                'search_selected': search_term,
+               'tagsearch_selected': tagsearch_term,
                'published_selected': published,
                'form_url': form_url,
                'render_type': render_type,

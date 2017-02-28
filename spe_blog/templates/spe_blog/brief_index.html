@@ -44,6 +44,9 @@
                         <label>Search
                             <input id="search" name="search" type="text" title="A search term to look for in titles." value="{{ search_selected }}">
                         </label>
+                        <label>Tag Search
+                            <input id="tagsearch" name="tagsearch" type="text" title="A search term to look for in tags." value="{{ tagsearch_selected }}">
+                        </label>
                     </div>
                     <div class="col-md-6">
                         <label>Published
@@ -61,10 +64,6 @@
                                 <option label="Detail Urls" value="detail" {%  if render_type == "detail" %} selected{% endif %}></option>
                             </select>
                         </label>
-                        <label>
-                            <input type="checkbox" name="show_details" value="True"
-                            {% if show_details %} checked{% endif %}>&nbsp;Show Details
-                        </label>
                          <label>Limit results to
                             <select id="limit_results" name="limit_results">
                                 <option label="200" value="200"
@@ -72,6 +71,10 @@
                                 <option label="500" value="500"
                                         {% if limit_selected == '500' %} selected{% endif %}></option>
                             </select>
+                        </label><br>
+                        <label>
+                            <input type="checkbox" name="show_details" value="True"
+                            {% if show_details %} checked{% endif %}>&nbsp;Show Details
                         </label>
                         <label>Region
                             <select id="region" name="region">
@@ -106,10 +109,10 @@
                     <span class="badge">{{ article.article_hits }}</span> Hits
                 </button>
                 <button class="btn" type="button">
-                    <span class="badge">{{ article.topics.count }}</span> Topics
+                    <span class="badge">{{ article.topics.count }}</span> Topics: [{{ article.topics.all|join:", " }}]
                 </button>
                 <button class="btn" type="button">
-                    <span class="badge">{{ article.tags.count }}</span> Tags
+                    <span class="badge">{{ article.tags.count }}</span> Tags: [{{ article.tags.all|join:", " }}]
                 </button>
                 {% endif %}
             </p>
