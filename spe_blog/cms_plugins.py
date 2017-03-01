@@ -198,7 +198,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-        if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+        if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
                 [y in user_agent.lower() for y in exclude_agents]):
             art.article_hits += 1
             art.article_last_viewed = timezone.now()
@@ -309,7 +309,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-        if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+        if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
                 [y in user_agent.lower() for y in exclude_agents]):
             art.article_hits += 1
             art.article_last_viewed = timezone.now()

@@ -38,7 +38,7 @@ def event_select(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -72,7 +72,7 @@ def no_discipline(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -106,7 +106,7 @@ def no_region(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -140,7 +140,7 @@ def non_member(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -174,7 +174,7 @@ def not_logged_in(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -208,7 +208,7 @@ def membership_select(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -242,7 +242,7 @@ def membership_no_discipline(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -276,7 +276,7 @@ def membership_no_region(request, index):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()

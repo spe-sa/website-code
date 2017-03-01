@@ -246,7 +246,7 @@ def article_detail(request, article_id):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
@@ -281,7 +281,7 @@ def brief_detail(request, brief_id):
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
-    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
+    if not request.user.is_authenticated() and not request.variables['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         q.article_hits += 1
         q.article_last_viewed = timezone.now()
