@@ -1,4 +1,4 @@
-from mainsite.common import get_visitor, get_context_variable, get_context_variables, sanitize, is_private_ip
+from mainsite.common import get_context_variable, sanitize, is_private_ip
 import logging
 import json
 

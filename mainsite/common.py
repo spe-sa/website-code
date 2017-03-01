@@ -1,7 +1,8 @@
 from django.contrib.gis.geoip import GeoIP
+from netaddr import IPAddress
 from mainsite.models import Web_Region_Country, Customer
 from django.conf import settings
-import logging, bleach, socket, struct
+import logging, bleach
 
 logger = logging.getLogger(__name__)
 
@@ -91,9 +92,10 @@ def get_context_variables(request):
                  "MEDIA_ROOT": get_context_variable(request, "MEDIA_ROOT"),
                  "DEFAULT_IP": get_context_variable(request, "DEFAULT_IP"),
                  "vid": get_context_variable(request, "vid"),
-                 "cip": get_ip(request)
+                 "cip": get_ip(request),
                  }
-        # TODO: add more expected variables here as needed from the settings files
+    # TODO: add more expected variables here as needed from the settings files
+    variables['is_private'] = is_private_ip(variables['cip'])
 
         # request.session['session_variables'] = variables
     # # load in any variables we don't already have but are parameters
@@ -187,45 +189,9 @@ def get_ip(request):
 # determines if the passed ip is a non-routeable address.  NOTE: currently doesn't take into account our DMZ address ranges
 #
 def is_private_ip(ip):
-    """Check if the IP belongs to private network blocks.
-    @param ip: IP address to verify.
-    @return: boolean representing whether the IP belongs or not to
-             a private network block.
-    """
-    networks = [
-        "0.0.0.0/8",
-        "10.0.0.0/8",
-        "100.64.0.0/10",
-        "127.0.0.0/8",
-        "169.254.0.0/16",
-        "172.16.0.0/12",
-        "192.0.0.0/24",
-        "192.0.2.0/24",
-        "192.88.99.0/24",
-        "192.168.0.0/16",
-        "198.18.0.0/15",
-        "198.51.100.0/24",
-        "203.0.113.0/24",
-        "240.0.0.0/4",
-        "255.255.255.255/32",
-        "224.0.0.0/4",
-    ]
-
-    for network in networks:
-        try:
-            ipaddr = struct.unpack(">I", socket.inet_aton(ip))[0]
-
-            netaddr, bits = network.split("/")
-
-            network_low = struct.unpack(">I", socket.inet_aton(netaddr))[0]
-            network_high = network_low | 1 << (32 - int(bits)) - 1
-
-            if ipaddr <= network_high and ipaddr >= network_low:
-                return True
-        except Exception,err:
-            continue
-
-    return False
+    if (ip == '127.0.0.1'):
+        return True
+    return IPAddress(ip).is_private()
 
 
 # sanitizes a value if possible
