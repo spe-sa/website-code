@@ -363,11 +363,11 @@
                                 <input type="search" name="q" id="gssTextInput" placeholder="Search">
                                 <input type="submit" value="" id="gssSubmitButton">
                             </form>
-                            {{ is_private }}
-                            {{ variables.cip }}
-                            {% if is_private == True %}
-                            <div id="beta-search">
-                                Testing
+{#                            {{ is_private }}#}
+{#                            {{ variables.cip }}#}
+                            {% if variables.is_private == True %}
+                            <div class="betaSearch" style="font-weight:bold;font-size:12px">
+                                <a href="//searchqa.spe.org"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i> Try our Beta Search</a>
                             </div>
                             {% endif %}
                         </div>

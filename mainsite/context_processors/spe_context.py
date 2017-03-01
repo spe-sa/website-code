@@ -78,20 +78,19 @@ def set_default_values(request):
                 dict_buffer['user']['memberCustomer'] = visitor_membership
     variables['gtm_dataLayer'] = json.dumps(dict_buffer)
 
-    # NOTE: cookies are not generated so just append them to the context under cookies; no session info needed
-    # logging.error('cookies - ' + str(request.COOKIES))
-    # adding private_ip so we can use it to hide stuff externally
-    var_ip = variables['cip']
-    if var_ip:
-        is_private = is_private_ip(var_ip)
-    else:
-        is_private = True
+    # # NOTE: cookies are not generated so just append them to the context under cookies; no session info needed
+    # # logging.error('cookies - ' + str(request.COOKIES))
+    # # adding private_ip so we can use it to hide stuff externally
+    # var_ip = variables['cip']
+    # if var_ip:
+    #     is_private = is_private_ip(var_ip)
+    # else:
+    #     is_private = True
 
     return {
         'variables': variables,
         'login': login,
         'visitor': customer,
-        'is_private': is_private
     }
     #
     # def sanitize(value):
