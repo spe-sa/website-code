@@ -95,7 +95,7 @@ def get_context_variables(request):
                  "cip": get_ip(request),
                  }
     # TODO: add more expected variables here as needed from the settings files
-    variables['is_private'] = is_private_ip(variables['cip'])
+    variables['is_local_ip'] = is_local_ip(variables['cip'])
 
         # request.session['session_variables'] = variables
     # # load in any variables we don't already have but are parameters
@@ -188,7 +188,7 @@ def get_ip(request):
 
 # determines if the passed ip is a non-routeable address.  NOTE: currently doesn't take into account our DMZ address ranges
 #
-def is_private_ip(ip):
+def is_local_ip(ip):
     if (ip == '127.0.0.1'):
         return True
     return IPAddress(ip).is_private()

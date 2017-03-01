@@ -7,10 +7,10 @@ from django.contrib.gis.geoip import GeoIP
 import csv
 import string
 import socket
-from netaddr import IPAddress
+# from netaddr import IPAddress
 
 from mainsite.common import (
-    get_visitor, get_ip
+    get_visitor, get_ip, is_local_ip
 )
 
 from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
@@ -37,7 +37,8 @@ def event_select(request, index):
     #        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -70,7 +71,8 @@ def no_discipline(request, index):
 #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -103,7 +105,8 @@ def no_region(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -136,7 +139,8 @@ def non_member(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -169,7 +173,8 @@ def not_logged_in(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -202,7 +207,8 @@ def membership_select(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -235,7 +241,8 @@ def membership_no_discipline(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -268,7 +275,8 @@ def membership_no_region(request, index):
     #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
-    if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
+    if not request.user.is_authenticated() and not request.variable['is_local_ip'] and not any(
             [y in user_agent.lower() for y in exclude_agents]):
         object.hits += 1
         object.save()
@@ -323,7 +331,8 @@ def export_detail_excel(request):
     for click in clicks:
         if click.ip == 'internal':
             click.ip = '192.168.1.1'
-        if not IPAddress(click.ip).is_private():
+        # if not IPAddress(click.ip).is_private():
+        if not is_local_ip(click.ip):
             if click.promotion_type == "Event":
                 try:
                     object = SimpleEventPromotion.objects.get(pk=click.promotion_id)
