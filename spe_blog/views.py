@@ -15,9 +15,9 @@ import socket
 from .models import Article, Brief, Issue, Publication, ArticleViews, BriefViews
 from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
 
-from mainsite.context_processors.spe_context import (
+from mainsite.common import (
     get_context_variable,
-    get_visitor, )
+    get_visitor, get_ip)
 
 from netaddr import IPAddress
 
@@ -243,7 +243,8 @@ def brief_index(request):
 
 def article_detail(request, article_id):
     q = get_object_or_404(Article, pk=article_id)
-    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    # ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
             [y in user_agent.lower() for y in exclude_agents]):
@@ -276,7 +277,8 @@ def article_detail(request, article_id):
 
 def brief_detail(request, brief_id):
     q = get_object_or_404(Brief, pk=brief_id)
-    ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#     ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
             [y in user_agent.lower() for y in exclude_agents]):

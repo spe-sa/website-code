@@ -24,9 +24,9 @@ from datetime import timedelta
 # from django.contrib.gis.geoip import GeoIP
 from taggit.models import Tag
 
-from mainsite.context_processors.spe_context import (
+from mainsite.common import (
     get_context_variable,
-    get_visitor,)
+    get_visitor, get_ip)
 
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin, ArticleViews,
@@ -194,7 +194,8 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
             # related_articles = related_articles.filter(publication__code = art.publication.code)
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        # ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
                 [y in user_agent.lower() for y in exclude_agents]):
@@ -303,7 +304,8 @@ class ShowBriefDetailPlugin(BriefPluginBase):
 
         request = context.get('request')
         # ip = context['request'].META.get('HTTP_X_REAL_IP', 'internal')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        # ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
                 [y in user_agent.lower() for y in exclude_agents]):

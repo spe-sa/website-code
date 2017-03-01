@@ -107,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
     'cms.middleware.language.LanguageCookieMiddleware',
+    'mainsite.middleware.visitor.CustomerMiddleware',
     'mainsite.middleware.visitor.VisitorMiddleware',
     'request.middleware.RequestMiddleware',
 )
@@ -693,6 +694,7 @@ DASHING = {
     'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
 }
 
+# check if this is still needed
 DEFAULT_IP = '192.152.183.80'
 
 # Allow deferred Publishing and Retirement of CMS Pages

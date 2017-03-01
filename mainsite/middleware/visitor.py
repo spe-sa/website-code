@@ -1,10 +1,12 @@
 from django.conf import settings
 import uuid
+from mainsite.common import get_context_variables, get_visitor
 
 FOREVER = 365 * 24 * 60 * 60 * 60 # 60 years
 TRACKING_COOKIE = "vid"
 
-
+# ensure everyone has a visitor identification cookie or create one:  at some point this should be replaced when they
+#   authenticate to get all devices the same for a person
 class VisitorMiddleware(object):
     def process_response(self, request, response):
         # determine if we have a vid cookie
@@ -16,3 +18,11 @@ class VisitorMiddleware(object):
 
 def make_uuid():
     return str(uuid.uuid4())
+
+# try loading the visitor and variables to the request object instead of context for plugins to be able to use
+# NOTE: we believe this will reduce the number of database hits for many plugins on a page
+class CustomerMiddleware(object):
+    def process_request(self, request):
+        request.variables = get_context_variables(request)
+        request.visitor = get_visitor(request)
+        return

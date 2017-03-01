@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from .forms import PublicationSubscriptionForm
 from .models import PublicationSubscription
-from mainsite.context_processors.spe_context import (
+from mainsite.common import (
     get_context_variable, )
 
 

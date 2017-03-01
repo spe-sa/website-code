@@ -9,7 +9,7 @@ from django.contrib.gis.geoip import GeoIP
 
 from .models import EventsByCurrentIPPlugin
 from .settings import EVENT_PERSONALIZATION_SERVER
-from mainsite.context_processors import spe_context
+from mainsite.common import get_context_variable
 
 
 class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
@@ -25,7 +25,7 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         request = context['request']
-        WS_EVENTS_URL = spe_context.get_context_variable(request, "WS_EVENTS_URL", "http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3")
+        WS_EVENTS_URL = get_context_variable(request, "WS_EVENTS_URL", "http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3")
         g = GeoIP()
         # ip = context['request'].META.get('REMOTE_ADDR', None)
         ip = context['request'].META.get('HTTP_X_REAL_IP', None)

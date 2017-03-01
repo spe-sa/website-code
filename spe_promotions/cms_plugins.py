@@ -6,11 +6,11 @@ from netaddr import IPAddress
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from mainsite.context_processors.spe_context import (
+from mainsite.common import (
     get_visitor,
 )
 from mainsite.models import Web_Region_Country
-from mainsite.common import getRegion
+from mainsite.common import getRegion, get_ip
 
 from .forms import SimplePromotionsSelectionForm, SimpleMembershipPromotionSelectionForm
 from .models import (
@@ -52,7 +52,8 @@ class ShowEventsByDisciplineListingPlugin(CMSPluginBase):
                                  event_type=instance.event_type.all()).distinct()[:instance.count]
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -90,7 +91,8 @@ class ShowEventsByTopicListingPlugin(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -128,7 +130,8 @@ class ShowEventsByRegionListingPlugin(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -166,7 +169,8 @@ class ShowEventsListingPlugin(CMSPluginBase):
             'last_impression').distinct()
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#         ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -206,7 +210,8 @@ class ShowEventInUserRegionPromotionListing(CMSPluginBase):
                   :instance.count]
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -331,7 +336,8 @@ class ShowEventsForMemberPlugin(CMSPluginBase):
         objects = objects[:instance.count]
         i = 0
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+#        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -379,7 +385,8 @@ class ShowUpcomingEventsListingPlugin(CMSPluginBase):
             'event_start_date').distinct()[:instance.count]
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        #        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/event/" + str(x.id) + "/"
@@ -417,7 +424,8 @@ class ShowMembershipListingPlugin(CMSPluginBase):
             'last_impression').distinct()
 
         request = context.get('request')
-        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        #        ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+        ip = get_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
         for x in objects:
             x.url = "/en/promotion/membership/" + str(x.id) + "/"

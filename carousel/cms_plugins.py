@@ -38,7 +38,7 @@ class CarouselComponentPlugin(CMSPluginBase):
     # ]
 
     def render(self, context, instance, placeholder):
-        ip = context['request'].META.get('HTTP_X_REAL_IP', None)
+        # ip = context['request'].META.get('HTTP_X_REAL_IP', None)
         editing = False
         if context['request'].toolbar and context['request'].toolbar.edit_mode != None:
             editing = context['request'].toolbar.edit_mode

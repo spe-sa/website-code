@@ -34,7 +34,7 @@ from ..models import (
 
 from ..models import PAYMENT_STATUS
 
-from mainsite.context_processors.spe_context import (
+from mainsite.common import (
     get_context_variable,
     get_visitor,)
 
