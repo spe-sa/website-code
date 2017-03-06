@@ -265,7 +265,7 @@ class Customer(models.Model):
     # membership_type = models.CharField(max_length=30)
     birth_date = models.DateField(blank=True, null=True)
     membership_status = models.CharField(max_length=50, blank=True, null=True)
-    paid_through_date = models.DateField(blank=True, null=True)
+    paid_through_date = models.DateField(db_index=True, blank=True, null=True)
     original_member_date = models.DateField(blank=True, null=True)
     continuous_member_date = models.DateField(blank=True, null=True)
     expected_grad_date = models.DateField(blank=True, null=True)
@@ -318,7 +318,7 @@ class Customer(models.Model):
     def is_staff(self):
         return self.has_classification("STAFF")
     def is_professional_member(self):
-        return (self.membership_status == 'Paid Member' and not self.is_student_member())
+        return self.membership_status == 'Paid Member' and not self.is_student_member()
         # return self.has_classification("PROFESSIONAL") or self.has_classification("LIFE")
     def is_student_member(self):
         return self.has_classification("STUDENT")
