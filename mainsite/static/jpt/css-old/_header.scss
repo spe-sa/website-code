@@ -1,0 +1,151 @@
+/* =================================================================== */
+/* OGF HEADER & MENUS
+====================================================================== */
+@import 'vars';
+
+
+
+/* ********************************** */
+/* TOP BAR BLACK */
+#topbar {
+  background-color:     $col-black;
+  //min-height:           50px;
+  color:                $col-white;
+  font-weight:          $font-bold;
+
+  .topbarcol {
+
+  }
+
+  .topbarmenuleft {
+    list-style-type:    none;
+    padding:            5px 0 0 0;
+    overflow:           hidden;
+    font-size:          14px;
+    margin-bottom:      0;
+
+    li {
+      float:            left;
+    }
+
+    li a {
+      display:          block;
+      color:            $col-menuwhite;
+      text-align:       center;
+      padding:          0 15px;
+      text-decoration:  none;
+    }
+
+    li a:hover {
+      color:            $col-red !important;
+    }
+
+  }
+
+  .topbarmenuright {
+    float:              right;
+    font-size:          20px;
+    list-style-type:    none;
+    padding:            5px 0 0 0;
+    overflow:           hidden;
+    margin-bottom:      0;
+
+    li {
+      float:            left;
+      margin-top:       -4px;
+    }
+
+    li a {
+      display:          block;
+      color:            $col-menuwhite;
+      text-align:       center;
+      padding:          0 10px;
+      text-decoration:  none;
+    }
+
+    li a:hover {
+      color:            $col-yellow;
+    }
+
+  }
+
+  #signin {
+    background-color:   $col-red;
+    height:             30px;
+    font-size:          14px;
+    text-align:         center;
+    padding:            5px 0 0 0;
+
+    a {
+      color:            $col-menuwhite;
+      text-decoration:  none;
+    }
+
+    &:hover {
+      background-color: $col-white;
+
+      a {
+        color:          $col-red;
+      }
+    }
+  }
+
+}
+
+/* ********************************** */
+/* LOGO MENU BAR GREY                 */
+.logoRow {
+  padding: 0 15px;
+}
+
+#menubar {
+  background-color:     $col-lightgrey;
+  //min-height:           125px;
+  padding-bottom:       20px;
+
+  #mainLogo {
+    padding-top:        20px;
+
+    img {
+      max-width:        200px;
+      //height:           auto;
+    }
+  }
+
+  .pubMenu {
+    font-family:        $font-titles;
+    list-style-type:    none;
+    margin:             0 0 20px 0;
+    padding:            50px 0 0 0;
+    font-size:          18px;
+    float:              right;
+
+    li {
+      float:            left;
+      padding:          0 0 0 30px;
+    }
+
+    li a {
+      display:          block;
+      color:            $col-black;
+      text-align:       center;
+      text-decoration:  none;
+      font-weight:      $font-bold;
+      //letter-spacing:   1px;
+    }
+
+    li a:hover {
+      color:            $col-red;
+    }
+  }
+}
+.searchIcon {
+  &:hover {
+    color:              $col-red;
+    cursor:             pointer;
+  }
+}
+.searchbar {
+  background-color:     $col-notsolightgrey;
+  padding:              3px 0;
+}

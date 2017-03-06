@@ -1,0 +1,149 @@
+/* ************************************ */
+/* MISC  */
+
+.spacer10px {
+  height:             10px;
+}
+
+.bigbol {
+  font-weight:        bold;
+}
+.activeLink {
+  color:              $col-yellow !important;
+}
+.red {
+  color:              $col-red !important;
+}
+.yellow {
+  color:              $col-yellow !important;
+}
+.white {
+  color:              $col-white !important;
+}
+.greyback {
+  background-color:   $col-lightgrey;
+}
+.h2MarginB {
+  margin-bottom:      20px;
+}
+.separatorDotted {
+  border-top:         $dotted;
+  margin-top:         20px;
+  padding-top:        20px;
+}
+.padZero {
+  padding:            0;
+}
+.margZero {
+  margin:             0;
+}
+.sponsored {
+  padding:            3px 3px 3px 5px;
+  background-color:   $col-yellow;
+  color:              $col-black;
+  font-weight:        $font-bold;
+  font-size:          12px;
+  letter-spacing:     2px;
+}
+.onlineonly {
+  h4 {
+    padding:          3px 10px;
+    background-color: $col-rating;
+    color:            $col-white;
+    text-shadow:      0 1px 2px rgba(0,0,0,.6);
+  }
+}
+.cke_maximized {
+  margin-top:         50px !important;
+}
+.more {
+  float:              right;
+  color:              $col-black;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+}
+.moreB {
+  color:              $col-black;
+  float:  right;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+}
+.see-all-div {
+  margin:             15px 0;
+  padding:            10px 0 0 0;
+  border-top:         1px solid $col-notsolightgrey;
+}
+.see-all {
+  font-size:          15px;
+  font-weight:        $font-bold;
+  color:              $col-speblue;
+
+  &:hover {
+    color:            $col-bluehover;
+  }
+
+  i {
+    margin-left:      25px;
+  }
+}
+
+@media print {
+  html * {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
+  }
+  body {
+    //background: white;
+    font-size: 20pt;
+    width:  100%;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #printMe, #printMe * {
+    visibility: visible;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .dontPrintMe, .dontPrintMe * {
+    visibility: hidden;
+    display: none;
+  }
+  #printMe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20pt;
+    width:  100%;
+  }
+  .articleBodyText, .articleBodyText p {
+    font-family: Arial, sans-serif;
+    font-size: 20pt;
+    width:  100%;
+  }
+}
+.panel {
+  background-color: transparent;
+}
+
+.bscol .tile-editorial {
+  margin-top: 10px;
+}
+.padR10, #padR10 {
+  padding-right:  10px;
+}
+.padL10, #padL10 {
+  padding-left:  10px;
+}
+.padB10, #padB10 {
+  padding-right:  10px;
+  padding-left:  10px;
+}
+.see-all {
+  color:  $col-speblue !important;
+}
