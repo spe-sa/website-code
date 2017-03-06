@@ -30,13 +30,7 @@
                 <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
                                 <p class="sideListDateTWA" style="color:#FDD017">
-                                    {% if promo.event_text_date %}
-                                        {{ promo.event_text_date }} {{ promo.event_text_after }}
-                                    {% else %}
-                                        {% if promo.event_start_date %}
-                                            {{ promo.event_start_date|date:"d F Y" }}
-                                        {% endif %}
-                                    {% endif %}
+                                    {{ promo.event_text_date }}
                                     {% if promo.event_location %}
                                         - {{ promo.event_location }}
                                     {% endif %}
@@ -55,11 +49,7 @@
                 <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
                               <p class="sideListDateTWA" style="color:#FDD017">
-                                    {% if promo.event_text_date %}
-                                        {{ promo.event_text_date }} {{ promo.event_text_after }}
-                                    {% else %}
-                                            {{ promo.event_start_date|date:"d F Y" }}
-                                    {% endif %} - {{ promo.event_location }}</p>
+                                {{ promo.event_text_date }} - {{ promo.event_location }}</p>
                               <p>{{ promo.teaser | safe }}</p>
                           </div>
                       </a>

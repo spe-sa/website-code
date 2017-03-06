@@ -49,7 +49,7 @@ class SimpleEventPromotionBaseModel(models.Model):
     # event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
     # event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
     #                                     default="")
-    event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
+    event_text_date = models.CharField(max_length=100, verbose_name="Display Date Text (overrides actual date)",
                                        blank=True, null=True, editable=False)
     # event_location = models.CharField(max_length=50)
     teaser = RichTextUploadingField(
@@ -82,7 +82,7 @@ class SimpleEventPromotion(SimpleEventPromotionBaseModel):
     event_start_date = models.DateTimeField()
     event_end_date = models.DateTimeField()
     event_tz = models.ForeignKey(TimeZone, blank=True, null=True, on_delete=models.SET_NULL, editable=False)
-    event_text_after = models.CharField(max_length=12, blank=True, null=True, verbose_name='Text after date (optional)',
+    event_text_after = models.CharField(max_length=20, blank=True, null=True, verbose_name='Text after date (optional)',
                                         default="")
     # event_text_date = models.CharField(max_length=25, verbose_name="Display Date Text (overrides actual date)",
     #                                    blank=True, null=True, editable=False)
