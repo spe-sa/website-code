@@ -208,3 +208,35 @@ def sanitize(value):
         return value
     except:
         return ''
+
+# def get_date_range(pStartDate, pEndDate, pTypeId, pTzCode, pTzOffset):
+#     #
+#     if pStartDate == None:
+#         return ''
+#     start_month = pStartDate.strftime("%a")
+#     start_day = '%02d' % pStartDate.day
+#     start_year = '%4d' % pStartDate.year
+#     if pEndDate == None:
+#         pEndDate = pStartDate
+#     end_month = pEndDate.strftime("%a")
+#     end_day = '%02d' % pEndDate.day
+#     end_year = '%4d' % pEndDate.year
+#     final_date = ''
+#
+#     if pTypeId == 1 or pTypeId == 6:
+#         # webinars only make sense to use the startdate with the time portions they can not rage over days
+#         final_date = start_day + " " + start_month + " " + start_year
+#         # get the time portion in the format HH:MM <tz code> ( GMT- or +<tz_offset>)
+#     else:
+#         # everything else just shows the date portions (currently) and not the time portions but can span days.
+#         # start with worse case example: 31 AUG - 2 SEP 2017
+#         final_date = start_day + " " + start_month + " - " + end_day + " " + end_month + " " + start_year
+#         # if our months are the same then compact it to just be the days changing like: 1 - 2 Aug 2017
+#         if start_month == end_month:
+#             final_date = start_day + " - " + end_day + " " + start_month + " " + start_year
+#             # one more check to consolidate the days if it is the same too: 1 Aug 2017
+#             if start_day == end_day:
+#                 final_date = start_day + " " + start_month + " " + start_year
+#
+#     return final_date
+#
