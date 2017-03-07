@@ -64,7 +64,7 @@ class SimpleEventPromotionBaseModel(models.Model):
     latitude = models.FloatField(validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)], blank=True, null=True)
     longitude = models.FloatField(validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)], blank=True,
                                   null=True)
-    regions = models.ManyToManyField(Web_Region, db_index=True, blank=True)
+    regions = models.ManyToManyField(Web_Region, limit_choices_to={'is_visible': 1}, db_index=True, blank=True)
     topics = models.ManyToManyField(Topics, verbose_name="Topics of Interest", blank=True)
     start = models.DateField(db_index=True, verbose_name='Display Start Date')
     end = models.DateField(db_index=True, verbose_name='Display End Date')
