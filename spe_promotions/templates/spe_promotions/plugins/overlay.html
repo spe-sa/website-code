@@ -9,7 +9,11 @@
                 <p class="sponsored">SPONSORED CONTENT</p>
             {% endif %}
                     <p class="sideListDateTWA" style="color:#FDD017">
-                        {{ promo.event_text_date }} - {{ promo.event_location }}</p>
+                      {{ promo.event_text_date|default:"" }}
+                      {% if promo.event_location %}
+                        - {{ promo.event_location }}
+                      {% endif %}
+                    </p>
                     <p>{{ promo.teaser | safe }}</p>
                 </div>
             </div>

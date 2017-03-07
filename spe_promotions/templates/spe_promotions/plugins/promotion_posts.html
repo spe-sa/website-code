@@ -15,7 +15,11 @@
                     <p class="sponsored" style="margin:5px 0;">SPONSORED CONTENT</p>
                 {% endif %}
                 <span class="sideListDateTWA">
-                    {{ promo.event_text_date }} - {{ promo.event_location }}</span>
+                  {{ promo.event_text_date|default:"" }}
+                  {% if promo.event_location %}
+                    - {{ promo.event_location }}
+                  {% endif %}
+                </span>
             </div>
             </a>
         </div>
