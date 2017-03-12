@@ -19,8 +19,13 @@
 {#                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>#}
 {#            </div>#}
     </div>
-{#    {{ visitor.id|default:"" }}#}
-{#    {{ variables.DEBUG }}#}
+    visitor.id: {{ visitor.id|default:"" }}<br>
+    variables.DEBUG: {{ variables.DEBUG }}<br>
+    variables.is_debug: {{ variables.is_debug }}<br>
+    variables.visitor_id: {{ variables.visitor_id }}<br>
+    variables.login_id: {{ variables.login_id }}<br>
+    variables.dba_id: {{ variables.dba_id }}<br>
+    variables.cip: {{ variables.cip }}<br>
     <!-- YAMM navbar -->
     <div class="navbar yamm navbar-default row">
       <div class="col-sm-12 col-sm-offset-0">

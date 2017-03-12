@@ -38,21 +38,19 @@ def getRegion(context):
 def get_context_variable(request, variable_name, default_value=None, forceDebug=None):
     debug = forceDebug
     value = None
-    reset = None
     if debug == None:
         debug = getattr(settings, "DEBUG", True)
-    if debug == True:
+    if debug == True and forceDebug == None:
         # if we are in debugging mode we can set to not debugging to mimic production; however, not reversed
         if 'debug' in request.POST:
             debug = to_bool(request.POST['debug'])
-            reset = debug
         if 'debug' in request.GET:
             debug = to_bool(request.GET['debug'])
-            reset = debug
 
     # reset the debug variable value if that is the variable we are looking for to take into account replacements
-    if variable_name.lower() == 'debug' and reset != None:
-        value = reset
+    if variable_name.lower() == 'debug':
+        value = debug
+
     header_name = variable_name.upper()
     if value is None:
         value = request.META.get(header_name, None)
@@ -110,6 +108,9 @@ def get_context_variables(request):
                  "DEFAULT_IP": get_context_variable(request, "DEFAULT_IP"),
                  "vid": get_context_variable(request, "vid"),
                  "cip": get_ip(request),
+                 "login_id": get_visitor_id(request),
+                 "dba_id": get_dba_id(request),
+                 "is_debug": get_context_variable(request, "DEBUG", None),
                  }
     # TODO: add more expected variables here as needed from the settings files
     variables['is_local_ip'] = is_local_ip(variables['cip'])
@@ -143,52 +144,38 @@ def get_visitor(request):
     # re-writing this part because this doesn't work in production because the proxy prevents logging in on www.
     # we need to look at visitor but aviod doing the 2 db calls like the current code does today.
     # GOAL: if no login or dba then no database calls; if login but no dba 1 db call; if dba, 2 db calls.
-
-    # first determine if we even have an override to worry about (no reason to load anything if we don't have dba stuff
-    variable_name = "cid"
-    visitor_id = None
-    dba_id = None
-    visitor = None
+    visitor_id = get_visitor_id(request)
+    dba_id = get_dba_id(request)
     is_debug = get_context_variable(request, "DEBUG", None)
-    # the only current way to dba is to pass as parameters (change this if that changes)
-    if variable_name in request.POST:
-        dba_id = request.POST[variable_name]
-    if dba_id is None and variable_name in request.GET:
-        dba_id = request.GET[variable_name]
-    if dba_id is None:
-        variable_name = "sm_constitid"
-        if variable_name in request.POST:
-            dba_id = request.POST[variable_name]
-        if dba_id is None and variable_name in request.GET:
-            dba_id = request.GET[variable_name]
-    if dba_id is not None:
-        if is_debug:
-            visitor_id = dba_id
-        # if we have a dba value then we have an override so lets determine if we should use it instead
-        # we will always apply the override if we are staff, active and authenticated to the django system
-        elif request.user and request.user.is_authenticated and request.user.is_active and request.user.is_staff:
-            visitor_id = dba_id
-
-    # if we are in production we can't login to django so we will need a visitor object to check instead
-    if not visitor_id:
-        # NOTE: false says to not perform any substitutions based on the environment (treat like prod)
-        visitor_id = get_context_variable(request, "cid", None, False)
-        if not visitor_id:
-            visitor_id = get_context_variable(request, "sm_constitid", None, False)
-
+    visitor = None
     try:
-        if visitor_id:
+        if to_bool(is_debug) and dba_id:
+            visitor = Customer.objects.get(pk=dba_id)
+        elif dba_id and request.user and request.user.is_authenticated and request.user.is_active and request.user.is_staff:
+            visitor = Customer.objects.get(pk=dba_id)
+        elif visitor_id:
             visitor = Customer.objects.get(pk=visitor_id)
             if visitor.is_staff() and dba_id and unicode(visitor.id) != dba_id:
-                visitor_id = dba_id
-                visitor = Customer.objects.get(pk=visitor_id)
+                visitor = Customer.objects.get(pk=dba_id)
     except Customer.DoesNotExist:
         log = logging.getLogger('website')
         log.debug(
-            "get_visitor: Attempted to get Customer for pk=" + unicode(visitor_id) + " but couldn't find one...")
-        visitor = None
-
+            "get_visitor: Attempted to get Customer for pk=" + unicode(visitor_id) + " or " + unicode(dba_id) + " but couldn't find one...")
     return visitor
+
+def get_visitor_id(request):
+    # NOTE: false says to not perform any substitutions based on the environment (treat like prod) unless parameter override
+    visitor_id = get_context_variable(request, "cid", None, False)
+    if not visitor_id:
+        visitor_id = get_context_variable(request, "sm_constitid", None, False)
+    return visitor_id
+
+def get_dba_id(request):
+    # NOTE: true says to not perform any substitutions based on the environment (treat like dev) unless parameter override
+    visitor_id = get_context_variable(request, "cid", None, True)
+    if not visitor_id:
+        visitor_id = get_context_variable(request, "sm_constitid", None, True)
+    return visitor_id
 
 
 # the preferable way to look up the visitors ip address.  Allows staff logged in user to override with cip variable
@@ -258,9 +245,11 @@ def sanitize(value):
 
 
 def to_bool(s):
-    if s == 'True':
+    if s == None:
+        return False
+    if s == 'True' or s == '1' or s == 1:
         return True
-    elif s == 'False':
+    elif s == 'False' or s == '0' or s == 0:
         return False
     else:
         return s
