@@ -404,7 +404,7 @@ def promotion_timeline(request):
 
 
 def promotion_by_discipline(request):
-    disciplines = Tier1Discipline.objects.filter(active=True)
+    disciplines = Tier1Discipline.objects.filter(active=True).order_by('name')
     context = {}
     for discipline in disciplines:
         promotions = SimpleEventPromotion.objects.filter(disciplines=discipline).order_by('start')
@@ -414,7 +414,7 @@ def promotion_by_discipline(request):
 
 
 def promotion_by_region(request):
-    regions = Web_Region.objects.all()
+    regions = Web_Region.objects.order_by('region_name').all()
     context = {}
     for region in regions:
         promotions = SimpleEventPromotion.objects.filter(regions=region).order_by('start')
