@@ -176,6 +176,8 @@ INSTALLED_APPS = (
     'carousel',
     # 'helloworld'
     'django_fsm',
+    # 'spe_newsletter',
+    'spe_messages',
 )
 
 LANGUAGES = (
@@ -231,6 +233,7 @@ CMS_TEMPLATES = (
     ('twa_subpage.html', 'TWA SubPage'),
     ('generic_page.html', 'Generic Page'),
     ('print_base.html', 'Print Page'),
+    ('newsletter_personalized.html', 'Newsletter - Personalized'),
     # ('twa_detailpage.html', 'TWA Detail Page'),
 )
 
@@ -301,6 +304,7 @@ CMS_PLACEHOLDER_CONF = {
                     'BlogPlugin',
                     'BlogListingPlugin',
                     'BlogDetailPlugin',
+                    'ShowMessagesToMemberPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

@@ -1,0 +1,36 @@
+{% load i18n cms_tags sekizai_tags %}
+
+{% if error %}
+    <div class="tile-editorial row" style="background-color:white">
+    {{ error }}
+    </div>
+{% else %}
+    <div class="tile-editorial row" style="background-color:white">
+    Welcome {{ member.name }}, here are your messages:
+    {% for message in messages %}
+        <div class="row sideListItem">
+            <a href="{{ promo.url}}">
+            <div class="col-xs-12">
+                <span class="sideListTitle">{{ message.title|truncatewords:12 }}</span><br>
+                <span class="sideListDateTWA">
+                  {{ message.message|default:"" }}
+                </span>
+            </div>
+            </a>
+        </div>
+
+    {% empty %}
+        <p class="well">{% trans "There are no messages for you at this time." %}</p>
+    {% endfor %}
+    </div>
+{% endif %}
+
+{% addtoblock "js" %}
+    <script type="text/javascript" charset="utf-8">
+        $( document ).ready(function() {
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
+{%  endaddtoblock %}

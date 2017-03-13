@@ -197,12 +197,12 @@ class CustomerClassification(models.Model):
     category = models.CharField(max_length=25, blank=True, null=True)
 
     def __unicode__(self):
-        return u'{d}'.format(d=self.description)
+        return u'{c} - {d}'.format(c=self.code, d=self.description)
         # return str(self.description)
         # return self.description is not None and self.description or ''
 
     class Meta:
-        ordering = ['sort_order', 'description']
+        ordering = ['sort_order', 'code', 'description']
 
 
 # {     BIZTALK SYNC FIELDS FOR CUSTOMER
