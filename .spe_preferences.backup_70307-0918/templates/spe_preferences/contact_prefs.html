@@ -1,0 +1,987 @@
+{% extends "www_base.html" %}
+{% load cms_tags sekizai_tags var_tags %}
+
+{% block title %}Contact Preferences :: SPE{% endblock title %}
+{% block content %}
+
+    {% addtoblock "css" %}
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>#}
+{#<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+
+
+        <style>
+/* #####################################################################
+   #
+   #   Project       : Modal Login with jQuery Effects
+   #   Author        : Rodrigo Amarante (rodrigockamarante)
+   #   Version       : 1.0
+   #   Created       : 07/28/2015
+   #   Last Change   : 08/02/2015
+   #
+   ##################################################################### */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#login-modal .modal-dialog {
+    width: 350px;
+}
+
+#login-modal input[type=text], input[type=password] {
+	margin-top: 10px;
+}
+
+#div-login-msg,
+#div-lost-msg,
+#div-register-msg {
+    border: 1px solid #dadfe1;
+    height: 30px;
+    line-height: 28px;
+    transition: all ease-in-out 500ms;
+}
+
+#div-login-msg.success,
+#div-lost-msg.success,
+#div-register-msg.success {
+    border: 1px solid #68c3a3;
+    background-color: #c8f7c5;
+}
+
+#div-login-msg.error,
+#div-lost-msg.error,
+#div-register-msg.error {
+    border: 1px solid #eb575b;
+    background-color: #ffcad1;
+}
+
+#icon-login-msg,
+#icon-lost-msg,
+#icon-register-msg {
+    width: 30px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    background-color: #dadfe1;
+    margin-right: 5px;
+    transition: all ease-in-out 500ms;
+}
+
+#icon-login-msg.success,
+#icon-lost-msg.success,
+#icon-register-msg.success {
+    background-color: #68c3a3 !important;
+}
+
+#icon-login-msg.error,
+#icon-lost-msg.error,
+#icon-register-msg.error {
+    background-color: #eb575b !important;
+}
+
+#img_logo {
+    max-height: 187px;
+    max-width: 96px;
+}
+/* #########################################
+   #    override the bootstrap configs     #
+   ######################################### */
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
+}
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0px;
+    outline: 0;
+}
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 0px;
+}
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
+}
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    text-align: left;
+    border-top: 0px;
+}
+.checkbox {
+    margin-bottom: 0px;
+}
+.btn {
+    border-radius: 0px;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+.btn-lg, .btn-group-lg>.btn {
+    border-radius: 0px;
+}
+.btn-link {
+    padding: 5px 10px 0px 0px;
+    color: #95a5a6;
+}
+.btn-link:hover, .btn-link:focus {
+    color: #2c3e50;
+    text-decoration: none;
+}
+.glyphicon {
+    top: 0px;
+}
+.form-control {
+  border-radius: 0px;
+}
+        </style>
+
+<style xmlns="http://www.w3.org/1999/html">
+    SECTION.search_section {
+        margin-left: 20px; margin-right: 20px; margin-bottom: 20px;
+        background-color: #ffffff;
+        border: 1px solid #777;
+        color: #777;
+    }
+    LEGEND {
+        color: #777;
+/*        padding-left: 20px; padding-right: 20px;*/
+        margin: 1.8em .18em 0 1.8em;
+    }
+    HEADER {
+        margin-top: 1.08em;
+    }
+    HEADER, #submit_button {
+        font-weight: bolder;
+    }
+    #submit_button {
+        margin: 3.6em;
+    }
+    DIV.prefs_group {
+        margin-left: 5.4em;
+    }
+    LI.user_match A {
+        display: inline-block;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        border-collapse: collapse;
+        padding: 2px 5px;
+        font-size: 126%;
+    }
+    LI.user_match:hover A {
+        background: #5bc0de;
+        color: #fff;
+    }
+    .findTitle {
+        margin-bottom:  30px;
+    }
+    #search_form label {
+        width: 100px;
+    }
+    #search_button {
+        margin-top: 30px;
+    }
+    .prefs_group {
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 10px;
+        margin-bottom:  20px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    .prefs_group_header {
+        font-size:      15px;
+        font-weight:    bold;
+        margin-bottom:  15px;
+    }
+</style>
+    {%  endaddtoblock %}
+
+    {% if  emsg  %}
+        <div class="error panel panel-danger">
+            {{ emsg }}
+        </div>
+    {%  endif %}
+
+    <div class="well">
+
+
+    {% if not login.authenticated %}
+        <div class="container">
+            <div class="row">
+                <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal"> SPE.org Login </a></p>
+            </div>
+        </div>
+
+
+        <!-- BEGIN # MODAL LOGIN -->
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" align="center">
+                        <img class="img-circle" id="img_logo" src="https://www.spe.org/img/spe_logo_187x96.png">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+
+                        <!-- Begin # Login Form -->
+                        <form id="login-form">
+                            <div class="modal-body">
+                                <div id="div-login-msg">
+                                    <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-login-msg">Type your username and password.</span>
+                                </div>
+                                <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR to test the error)" required>
+                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                </div>
+                                <div>
+                                    <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                    <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End # Login Form -->
+
+                        <!-- Begin | Lost Password Form -->
+                        <form id="lost-form" style="display:none;">
+                            <div class="modal-body">
+                                <div id="div-lost-msg">
+                                    <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-lost-msg">Type your e-mail.</span>
+                                </div>
+                                <input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR to test the error)" required>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                                </div>
+                                <div>
+                                    <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                    <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End | Lost Password Form -->
+
+                        <!-- Begin | Register Form -->
+                        <form id="register-form" style="display:none;">
+                            <div class="modal-body">
+                                <div id="div-register-msg">
+                                    <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-register-msg">Register an SPE.org account.</span>
+                                </div>
+                                <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR to test the error)" required>
+                                <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                                <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                </div>
+                                <div>
+                                    <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                    <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End | Register Form -->
+
+                    </div>
+                    <!-- End # DIV Form -->
+
+                </div>
+            </div>
+        </div>
+        <!-- END # MODAL LOGIN -->
+    {% endif %}
+
+
+        <div id="form_panel">
+        <h2 class="findTitle">How would you like for SPE to contact you?</h2>
+
+            <form id=contact_form method="POST" class="contact-form form-horizontal">{% csrf_token %}
+
+
+{#<fieldset>#}
+{##}
+{#    <h3>We want to know about your contact preferences for SPE promotional info</h3>#}
+{#    <p></p>#}
+{##}
+{#<!-- Form Name -->#}
+{#<legend>SPE General Communication Preferences</legend>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="promo_contact_via_pmail">via Postal Mail?</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="promo_contact_via_pmail_y">#}
+{#      <input type="radio" name="promo_contact_via_pmail" id="promo_contact_via_pmail_y" value="1">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="promo_contact_via_pmail_n">#}
+{#      <input type="radio" name="promo_contact_via_pmail" id="promo_contact_via_pmail_n" value="0">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="promo_contact_via_email">via Email?</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="promo_contact_via_email_y">#}
+{#      <input type="radio" name="promo_contact_via_email" id="promo_contact_via_email_y" value="1">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="promo_contact_via_email_n">#}
+{#      <input type="radio" name="promo_contact_via_email" id="promo_contact_via_email_n" value="0">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#    <h3>We want to know about your contact preferences for SPE transactional info</h3>#}
+{#    <h4>Magazine Newsletters</h4>#}
+{#    <p>SPE magazines deliver the latest technical news and information straight to your email inbox. All SPE members automatically will receive one monthly notification of the availability of the new issue of JPT. At any time, you may "opt out" of receiving any of the newsletters below by using the link at the bottom of the newsletter.</p>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="t_jpt">Journal of Petroleum Technology (every 1-2 weeks)</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="t_jpt_y">#}
+{#      <input type="radio" name="t_jpt" id="t_jpt_y" value="y">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="t_jpt_n">#}
+{#      <input type="radio" name="t_jpt" id="t_jpt_n" value="n">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="t_ogf">Oil and Gas Facilities (every 2 weeks)</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="t_ogf_y">#}
+{#      <input type="radio" name="t_ogf" id="t_ogf_y" value="y">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="t_ogf_n">#}
+{#      <input type="radio" name="t_ogf" id="t_ogf_n" value="n">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="t_hse">HSE Now (every 2 weeks)</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="t_hse_y">#}
+{#      <input type="radio" name="t_hse" id="t_hse_y" value="y">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="t_hse_n">#}
+{#      <input type="radio" name="t_hse" id="t_hse_n" value="n">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="t_twa">The Way Ahead (monthly)</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="t_twa_y">#}
+{#      <input type="radio" name="t_twa" id="t_twa_y" value="y">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="t_twa_n">#}
+{#      <input type="radio" name="t_twa" id="t_twa_n" value="n">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#    <h4>eNewsletter</h4>#}
+{#    <p>SPE has developed a tailored monthly eNewsletter to communicate with you about SPE programs and events specific to your region and technical discipline. SPE members will automatically receive this. Non-members can also elect to receive a eNewsletter. You may unsubscribe at any time.</p>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="t_rdn">SPE Region/Discipline Newsletter (monthly)</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="t_rdn_y">#}
+{#      <input type="radio" name="t_rdn" id="t_rdn_y" value="y">#}
+{#      Yes#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="t_rdn_n">#}
+{#      <input type="radio" name="t_rdn" id="t_rdn_n" value="0">#}
+{#      No#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{##}
+{#<input style="width:90%" id="email_subscription_choices" maxlength="180" name="email_subscription_choices" type="text">#}
+{##}
+{##}
+{#<!-- Button -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="go_anon">&gt;&gt;</label>#}
+{#  <div class="col-md-4">#}
+{#    <button id="go_anon" name="go_anon" class="btn btn-primary">Temporarily Save (Anonymous)</button>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Text input-->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="user_email">Email Address</label>#}
+{#  <div class="col-md-4">#}
+{#  <input id="user_email" name="user_email" type="text" placeholder="pat@domain.com" class="form-control input-md" required="">#}
+{#  <span class="help-block">the email address you used when registering on the www.SPE.org site</span>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Text input-->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="user_cid">Constituent ID#</label>#}
+{#  <div class="col-md-4">#}
+{#  <input id="user_cid" name="user_cid" type="text" placeholder="7654321" class="form-control input-md">#}
+{#  <span class="help-block">your SPE member number or customer number</span>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Text input-->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="user_n1">First Name</label>#}
+{#  <div class="col-md-4">#}
+{#  <input id="user_n1" name="user_n1" type="text" placeholder="Pat" class="form-control input-md">#}
+{#  <span class="help-block">your given name</span>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Text input-->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="user_n2">Last Name</label>#}
+{#  <div class="col-md-4">#}
+{#  <input id="user_n2" name="user_n2" type="text" placeholder="Tapper" class="form-control input-md">#}
+{#  <span class="help-block">your surname or family name</span>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Select Basic -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="user_loc">Country</label>#}
+{#  <div class="col-md-4">#}
+{#    <select id="user_loc" name="user_loc" class="form-control">#}
+{#      <option value="DZA">-- Please Select --</option>#}
+{#      <option value="BEL">Algeria</option>#}
+{#      <option value="DNK">Belgium</option>#}
+{#      <option value="FRA">Denmark</option>#}
+{#      <option value="USA">France</option>#}
+{#      <option value="">United States of America</option>#}
+{#    </select>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Button -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="go_search">&gt;&gt;</label>#}
+{#  <div class="col-md-4">#}
+{#    <button id="go_search" name="go_search" class="btn btn-primary">Search for My SPE.org Account</button>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Multiple Radios -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="q_id">Which account?</label>#}
+{#  <div class="col-md-4">#}
+{#  <div class="radio">#}
+{#    <label for="q_id-0">#}
+{#      <input type="radio" name="q_id" id="q_id-0" value="1111111" checked="checked">#}
+{#      #1111111 pat@xyz.com Pat Tapper - Vancouver, Canada#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="q_id-1">#}
+{#      <input type="radio" name="q_id" id="q_id-1" value="2222222">#}
+{#      #2222222 pat@xyz.com Pat Tapper - Oregon, USA#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="q_id-2">#}
+{#      <input type="radio" name="q_id" id="q_id-2" value="3333333">#}
+{#      #3333333 pat@xyz.com Patrick Tapper - Vancouver, Canada#}
+{#    </label>#}
+{#	</div>#}
+{#  <div class="radio">#}
+{#    <label for="q_id-3">#}
+{#      <input type="radio" name="q_id" id="q_id-3" value="not_1111111,2222222,3333333">#}
+{#      None of these are mine#}
+{#    </label>#}
+{#	</div>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#<!-- Button -->#}
+{#<div class="form-group">#}
+{#  <label class="col-md-4 control-label" for="go_save">&gt;&gt;</label>#}
+{#  <div class="col-md-4">#}
+{#    <button id="go_save" name="go_save" class="btn btn-primary">Save My Preferences</button>#}
+{#  </div>#}
+{#</div>#}
+{##}
+{#</fieldset>#}
+
+
+{#                {{ cp_form.as_p }}#}
+{#                <button id="save_button" type="submit" class="save btn btn-default">Save</button>#}
+
+
+{#<p><label for="id_promo_contact_via_pmail">Send Promotional Info via Postal Mail?</label> <select id="id_promo_contact_via_pmail" name="promo_contact_via_pmail">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+{#<p><label for="id_promo_contact_via_email">Send Promotional Info via Email?</label> <select id="id_promo_contact_via_email" name="promo_contact_via_email">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+
+<table class="table"><thead><tr><th>Yes</th><th>No</th><th>&nbsp;</th></tr></thead><tbody>
+{#<tr>#}
+{#<td><input type="radio" id="id_promo_contact_via_pmail_y" name="promo_contact_via_pmail" value="1" title="Yes" /></td>#}
+{#<td><input type="radio" id="id_promo_contact_via_pmail_n" name="promo_contact_via_pmail" value="0" title="No" /></td>#}
+{#<td>SPE may contact me via Postal Mail</td>#}
+{#</tr>#}
+<tr>
+<td><input type="radio" id="id_promo_contact_via_email_y" name="promo_contact_via_email" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_promo_contact_via_email_n" name="promo_contact_via_email" value="0" title="No" /></td>
+<td>SPE may send me promotional info via Email</td>
+</tr>
+</tbody></table>
+
+{#<p><label for="id_email_subscription_jpt">Subscribe to JPT via email?</label> <select id="id_email_subscription_jpt" name="email_subscription_jpt">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+{#<p><label for="id_email_subscription_ogf">Subscribe to OGF via email?</label> <select id="id_email_subscription_ogf" name="email_subscription_ogf">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+{#<p><label for="id_email_subscription_hse">Subscribe to HSE Now via email?</label> <select id="id_email_subscription_hse" name="email_subscription_hse">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+{#<p><label for="id_email_subscription_twa">Subscribe to TWA via email?</label> <select id="id_email_subscription_twa" name="email_subscription_twa">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+{#<p><label for="id_email_subscription_rdn">Subscribe to Region/Discipline eNewsletter via email?</label> <select id="id_email_subscription_rdn" name="email_subscription_rdn">#}
+{#<option value="" selected="selected">- Please Select -</option>#}
+{#<option value="1">Yes</option>#}
+{#<option value="0">No</option>#}
+{#</select></p>#}
+
+<table class="table"><thead><tr><th>Yes</th><th>No</th><th>Email Subscription</th></tr></thead><tbody>
+<tr>
+<td><input type="radio" id="id_email_subscription_jpt_y" name="email_subscription_jpt" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_email_subscription_jpt_n" name="email_subscription_jpt" value="0" title="No" /></td>
+<td>JPT: Journal of Petroleum Technology (every 1-2 weeks)</td>
+</tr>
+<tr>
+<td><input type="radio" id="id_email_subscription_ogf_y" name="email_subscription_ogf" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_email_subscription_ogf_n" name="email_subscription_ogf" value="0" title="No" /></td>
+<td>OGF: Oil and Gas Facilities (every 2 weeks)</td>
+</tr>
+<tr>
+<td><input type="radio" id="id_email_subscription_hse_y" name="email_subscription_hse" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_email_subscription_hse_n" name="email_subscription_hse" value="0" title="No" /></td>
+<td>HSE Now (every 2 weeks)</td>
+</tr>
+<tr>
+<td><input type="radio" id="id_email_subscription_twa_y" name="email_subscription_twa" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_email_subscription_twa_n" name="email_subscription_twa" value="0" title="No" /></td>
+<td>TWA: The Way Ahead (monthly)</td>
+</tr>
+<tr>
+<td><input type="radio" id="id_email_subscription_rdn_y" name="email_subscription_rdn" value="1" title="Yes" /></td>
+<td><input type="radio" id="id_email_subscription_rdn_n" name="email_subscription_rdn" value="0" title="No" /></td>
+<td>Subscribe to Region/Discipline eNewsletter via email?</td>
+</tr>
+</tbody></table>
+
+<p><label for="id_user_name1">First Name or Given Name:</label> <input id="id_user_name1" maxlength="36" name="user_name1" type="text"></p>
+<p><label for="id_user_name2">Last Name or Family Name:</label> <input id="id_user_name2" maxlength="36" name="user_name2" type="text"></p>
+{#<p><label for="id_user_vid_cookie">User Visitor UUID:</label> <input id="id_user_vid_cookie" maxlength="36" name="user_vid_cookie" type="text"></p>#}
+{#<p><label for="id_user_email_cookie">User Email Address (cookie):</label> <input id="id_user_email_cookie" maxlength="90" name="user_email_cookie" type="text"></p>#}
+<p><label for="id_user_email_given">User Email Address (override):</label> <input id="id_user_email_given" maxlength="90" name="user_email_given" type="text"></p>
+{#<p><label for="id_user_cid_cookie">User Constituent ID# (cookie):</label> <input id="id_user_cid_cookie" maxlength="12" name="user_cid_cookie" type="text"></p>#}
+<p><label for="id_user_cid_given">User Constituent ID# (override):</label> <input id="id_user_cid_given" maxlength="12" name="user_cid_given" type="text"></p>
+{#<p><label for="id_user_loc_cookie">User Location/Country (cookie):</label> <input id="id_user_loc_cookie" maxlength="90" name="user_loc_cookie" type="text"></p>#}
+{#<p><label for="id_user_loc_geo_ip">User Location/Country (geo-IP):</label> <input id="id_user_loc_geo_ip" maxlength="90" name="user_loc_geo_ip" type="text"></p>#}
+{#<p><label for="id_user_loc_geo_ua">User Location/Country (geo-UA):</label> <input id="id_user_loc_geo_ua" maxlength="90" name="user_loc_geo_ua" type="text"></p>#}
+<p><label for="id_user_loc_given">User Location/Country (override):</label> <input id="id_user_loc_given" maxlength="90" name="user_loc_given" type="text"></p>
+{#<p><label for="id_user_mid_given">Marketo ID# (given):</label> <input id="id_user_mid_given" maxlength="18" name="user_mid_given" type="text"></p>#}
+{#<p><label for="id_user_agent_hash">User Agent (hash):</label> <input id="id_user_agent_hash" maxlength="40" name="user_agent_hash" type="text"></p>#}
+{#<p><label for="id_user_agent_text">User Agent (full):</label> <input id="id_user_agent_text" maxlength="40" name="user_agent_text" type="text"></p>#}
+{#<p><label for="id_user_viewport_x">Viewport Width:</label> <input id="id_user_viewport_x" name="user_viewport_x" type="number"></p>#}
+{#<p><label for="id_user_viewport_y">Viewport Height:</label> <input id="id_user_viewport_y" name="user_viewport_y" type="number"></p>#}
+{#<p><label for="id_submitted_via">Submission Referral URL:</label> <input id="id_submitted_via" maxlength="180" name="submitted_via" type="url"></p>#}
+<button id="save_button" type="submit" class="save btn btn-default">Save</button>
+
+            </form>
+
+            {% if users_found.count > 1 %}
+                <div id="search_results">
+                    <h3>...or select from the following:</h3>
+                    <ul>
+                    {% for u in users_found %}
+                        <li class="user_match">
+                            <a href="{% url 'add_prefs_search' %}?user_id={{ u.id }}">
+                                <b>#<span data-field="ci">{{ u.id }}</span> &nbsp; <span data-field="ea">{{ u.email }}</span></b>
+                                &nbsp;
+                                <span data-field="n1">{{ u.first_name }}</span> <span data-field="n2">{{ u.last_name }}</span>
+                                &nbsp;
+                                <span data-field="lc">{{ u.country }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+        </div>
+
+
+        <div id="prefs_panel">
+        <h2>My Communication Preferences</h2>
+        <form id=prefs_form action="{% url 'add_prefs_insert' %}" method="POST" class="prefs_form">
+            {% csrf_token %}
+
+            {% set_var "" as rendered_supergroup_name %}
+            {% set_var "" as rendered_group_name %}
+
+            {% for pgroup in pgroups %}
+                {% if pgroup.category == 'Technical Topics of Interest' %}
+                    {% set_var 'Y' as group_is_collapsible %}
+                {% else %}
+                    {% set_var 'N' as group_is_collapsible %}
+                {% endif %}
+
+                {% if rendered_supergroup_name != pgroup.category %}
+                    {% if rendered_supergroup_name != "" %}
+    </fieldset>
+                    {% endif %}
+    <fieldset class="prefs_supergroup"><legend>{{ pgroup.category }}</legend>
+                    {% set_var "{{pgroup.category}}" as rendered_supergroup_name %}
+                {% endif %}
+
+                {% if rendered_group_name != pgroup.name %}
+      <div class="prefs_group">
+        <header class="prefs_group_header" data-group="{{ pgroup.id }}">{{ pgroup.name }}</header>
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> All </button>
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}"> None </button>
+{% if group_is_collapsible == 'Y' %}
+        <button type="button" class="btn btn-info" data-g="{{ pgroup.id }}" data-toggle="collapse" data-target="#prefs_group_{{ pgroup.id }}_details_wrapper"> Select... </button>
+{% endif %}
+        <div id="prefs_group_{{ pgroup.id }}_details_wrapper" class="prefs_group_wrapper{% if group_is_collapsible == 'Y' %} collapse{% endif %}">
+                    {% set_var "{{pgroup.name}}" as rendered_group_name %}
+                {% endif %}
+                {% for pitem in pitems %}
+                    {% if pitem.group_id == pgroup.id %}
+                    <div class="checkbox">
+                    <label for="id_g{{ pitem.group_id }}_p{{ pitem.id }}">
+                        <input type="checkbox" id="id_g{{ pitem.group_id }}_p{{ pitem.id }}" name="prefs_{{ pitem.group_id }}" value="{{ pitem.id }}" data-g="{{ pitem.group.id }}">
+                        {{ pitem.name }}
+                    </label>
+                    </div>
+                    {% endif %}
+
+                {% endfor %}
+                </div>
+        </div>
+
+            {% endfor %}
+            </fieldset>
+
+            <input id="prefs_customer_id" maxlength="12" name="customer_id" type="hidden" />
+
+            <button id="submit_button" type="submit" class="save btn btn-default"> Save Preferences </button>
+
+        </form>
+
+        </div>
+    </div>
+
+    {% addtoblock "js" %}
+<script type="text/javascript" charset="utf-8">
+
+// checkbox group helper function: check/uncheck a lot of inputs at once; enable/disable the All/None buttons
+function check_boxes_for_group(g,b) {
+    // the first parameter is required, and must be an integer: the ID# of a prefs group
+    if( typeof (g - 0) != 'number' ){
+        return false;
+    }
+    var sel = '[data-g=' + g + ']';
+    var $els = $('INPUT[type=checkbox]').filter(sel);
+    var $btn_all = $els.filter(':first').parents('DIV.prefs_group').find('BUTTON:contains(" All ")');
+    var $btn_none = $els.filter(':first').parents('DIV.prefs_group').find('BUTTON:contains(" None ")');
+    // the first parameter is optional; normally it is boolean (to check or uncheck the boxes); if omitted, it only enables/disables the All/None buttons that correspond to the specified prefs group
+    if( typeof b != 'boolean' ){
+        var count_boxes = $els.length;
+        var count_checked = $els.filter(':checked').length;
+        var count_unchecked = $els.filter(':not(:checked)').length;
+        var some_are_checked = ( count_boxes > count_unchecked );
+        var some_are_unchecked = ( count_boxes > count_checked );
+        if( some_are_checked ){
+            $btn_none.removeProp('disabled');
+        }
+        else {
+            $btn_none.prop('disabled','disabled');
+        }
+        if( some_are_unchecked ){
+            $btn_all.removeProp('disabled');
+        }
+        else {
+            $btn_all.prop('disabled','disabled');
+        }
+        return true;
+    }
+    else {
+        setTimeout(function(){
+            check_boxes_for_group(g);
+        },180);
+        if (b) {
+            $btn_all.prop('disabled','disabled');
+            $btn_none.removeProp('disabled');
+            return $els.prop('checked', 'checked');
+        }
+        else {
+            $btn_none.prop('disabled','disabled');
+            $btn_all.removeProp('disabled');
+            return $els.removeProp('checked');
+        }
+    }
+}
+
+// conditional cross-platform console log shim, with boolean for quick global disabling
+function xlog(text){
+    if( false ){
+        if( typeof console == 'object' && typeof console.log == 'function' ){
+            return console.log(text);
+        }
+        else {// looking at you, IE
+            // alert(text);
+        }
+    }
+    else return true;
+}
+
+// as soon as the DOM is ready...
+$(function() {
+
+    // alert if the communications preferences were successfully saved
+    if('{{ saved }}' == 'True'){
+        alert('Saved successfully');
+    }
+
+    // display the appropriate form content based on whether we have a single match
+    var cid = '{{ cid }}';
+    var no_single_user_match_found_yet = (cid == undefined || cid == '');
+    var cve_question_not_answered_yet = ( $('#q_cve').val()=='' );
+    var cvp_question_not_answered_yet = ( $('#q_cvp').val()=='' );
+    var jpt_question_not_answered_yet = ( $('#q_sub_jpt').val()=='' );
+    var ogf_question_not_answered_yet = ( $('#q_sub_ogf').val()=='' );
+
+    if ( no_single_user_match_found_yet ) {// we are on step 1
+        // enable the user search and hide the preference options
+        $('#search_button').attr('disabled', false);
+        $('#submit_button').attr('disabled', true);
+        $('#search_panel').show();
+        $('#prefs_panel').hide();
+    }
+    else if ( cve_question_not_answered_yet || cvp_question_not_answered_yet ) {// we are on the most important overarching questions
+        $('#sssss').show();
+        $('#hhhhh').hide();
+    }
+    else {// we are on step 2
+        // disable the user search and show the preference options
+        $('#search_button').attr('disabled', true);
+        $('#submit_button').attr('disabled', false);
+        $('#search_panel').hide();
+        $('#prefs_panel').show();
+        // stamp the constituent/customer ID# into a hidden field
+        $('#prefs_customer_id').val('{{ cid }}');
+    }
+
+    // bind the checkbox group helper function to the appropriate buttons
+    setTimeout(function(){
+        xlog('Intent: bind checkbox group helper function to the All/None buttons');
+        $('BUTTON').filter(':contains(" All ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: check all g#'+g); check_boxes_for_group(g,true); });
+        $('BUTTON').filter(':contains(" None ")').on('click',function(){ var g = $(this).data('g'); xlog('Intent: uncheck all g#'+g); check_boxes_for_group(g,false); });
+        $('BUTTON').filter(':contains(" Select... ")').one('click',function(){ $(this).fadeOut(); });
+        $('INPUT[type=checkbox][data-g]').on('click',function(){ var g = $(this).data('g'); check_boxes_for_group(g); });
+    },1800);
+
+
+});
+
+
+
+/* #####################################################################
+   #
+   #   Project       : Modal Login with jQuery Effects
+   #   Author        : Rodrigo Amarante (rodrigockamarante)
+   #   Version       : 1.0
+   #   Created       : 07/29/2015
+   #   Last Change   : 08/04/2015
+   #
+   ##################################################################### */
+
+$(function() {
+
+    var $formLogin = $('#login-form');
+    var $formLost = $('#lost-form');
+    var $formRegister = $('#register-form');
+    var $divForms = $('#div-forms');
+    var $modalAnimateTime = 300;
+    var $msgAnimateTime = 150;
+    var $msgShowTime = 2000;
+
+    $("form").submit(function () {
+        switch(this.id) {
+            case "login-form":
+                var $lg_username=$('#login_username').val();
+                var $lg_password=$('#login_password').val();
+                if ($lg_username == "ERROR") {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                } else {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                }
+                return false;
+                break;
+            case "lost-form":
+                var $ls_email=$('#lost_email').val();
+                if ($ls_email == "ERROR") {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                } else {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                }
+                return false;
+                break;
+            case "register-form":
+                var $rg_username=$('#register_username').val();
+                var $rg_email=$('#register_email').val();
+                var $rg_password=$('#register_password').val();
+                if ($rg_username == "ERROR") {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                } else {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                }
+                return false;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    });
+
+    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+    $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+    $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+    $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+
+    function modalAnimate ($oldForm, $newForm) {
+        var $oldH = $oldForm.height();
+        var $newH = $newForm.height();
+        $divForms.css("height",$oldH);
+        $oldForm.fadeToggle($modalAnimateTime, function(){
+            $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                $newForm.fadeToggle($modalAnimateTime);
+            });
+        });
+    }
+
+    function msgFade ($msgId, $msgText) {
+        $msgId.fadeOut($msgAnimateTime, function() {
+            $(this).text($msgText).fadeIn($msgAnimateTime);
+        });
+    }
+
+    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+        var $msgOld = $divTag.text();
+        msgFade($textTag, $msgText);
+        $divTag.addClass($divClass);
+        $iconTag.removeClass("glyphicon-chevron-right");
+        $iconTag.addClass($iconClass + " " + $divClass);
+        setTimeout(function() {
+            msgFade($textTag, $msgOld);
+            $divTag.removeClass($divClass);
+            $iconTag.addClass("glyphicon-chevron-right");
+            $iconTag.removeClass($iconClass + " " + $divClass);
+  		}, $msgShowTime);
+    }
+});
+
+
+</script>
+    {%  endaddtoblock %}
+
+{% endblock content %}

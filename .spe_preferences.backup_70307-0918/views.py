@@ -4,10 +4,8 @@ from django.shortcuts import render, redirect
 from .forms import PrefsUserSearchForm, ContactPrefsForm
 from .models import Preference, ContactPreference, CustomerPreference, PreferenceGroup
 from mainsite.models import Customer
-    #, Countries
 from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
-import re, time, socket, json, urllib
+import re, time, datetime, Cookie, socket, json
 
 
 # def show_cookie(c):
@@ -31,16 +29,14 @@ def myip():
 
 
 # contact
-@csrf_exempt
 def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False, user_loc=False):
-
-    # if request.COOKIES['sm_constitid']:
-    #     user_vid_cookie = request.COOKIES['vid']
-    #     user_email_cookie = request.COOKIES['email']
-    #     user_cid_cookie = request.COOKIES['sm_constitid']
-    #     user_name1_cookie = request.COOKIES['first_name']
-    #     user_name2_cookie = request.COOKIES['last_name']
-    #     user_loc_cookie = request.COOKIES['countryCode']
+    if request.COOKIES['sm_constitid']:
+        user_vid_cookie = request.COOKIES['vid']
+        user_email_cookie = request.COOKIES['email']
+        user_cid_cookie = request.COOKIES['sm_constitid']
+        user_name1_cookie = request.COOKIES['first_name']
+        user_name2_cookie = request.COOKIES['last_name']
+        user_loc_cookie = request.COOKIES['countryCode']
 
     # allow for a constituent ID# and/or an email address to be passed in, as well as cookies
     # c = constituent_id_provided
@@ -69,56 +65,22 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
     # else:
     #     l = user_loc  # provided value can override cookie
 
-    v = request.POST.get('user_vid_given', None) or request.COOKIES.get('vid', '(not logged in)')
-    e = urllib.unquote_plus(request.POST.get('user_email_given', '') or request.COOKIES.get('email', ''))
-    c = request.POST.get('user_cid_given', None) or request.COOKIES.get('sm_constitid', '')
-    l = request.POST.get('user_loc_given', None) or request.COOKIES.get('countryCode', '')
+    v = request.POST.get('user_vid', None) or request.COOKIES.get('vid', '')
+    e = re.sub('%40', '@', request.POST.get('user_email', '') or request.COOKIES.get('email', ''))
+    c = request.POST.get('user_cid', None) or request.COOKIES.get('sm_constitid', '')
+    l = request.POST.get('user_loc', None) or request.COOKIES.get('countryCode', '')
 
     users_found = None
     emsg = None
     if request.method == "POST":
-        f = ContactPrefsForm(request.POST)
-        f.when_submitted = timezone.now()
-        f.user_vid_cookie = re.sub(r'[^0-9a-f-]', '', request.COOKIES.get('vid', '(not logged in)'))
-        f.user_email_cookie = urllib.unquote_plus(request.COOKIES.get('email', '(not logged in)'))
-        f.user_cid_cookie = request.COOKIES.get('sm_constitid', '(not logged in)')
-        f.user_name1_cookie = request.COOKIES.get('first_name', '(not logged in)')
-        f.user_name2_cookie = request.COOKIES.get('last_name', '(not logged in)')
-        f.user_loc_cookie = request.COOKIES.get('countryCode', '(not logged in)')
-
-        # f.data.csrfmiddlewaretoken = request.POST.get('csrfmiddlewaretoken', '')
-        # cp_form = ContactPrefsForm(request.POST)
+        cp_form = ContactPrefsForm(request.POST)
 
         # cp_form.user_vid = v
         # cp_form.user_email = e
         # cp_form.user_cid = c
         # cp_form.user_loc = l
 
-        f.user_email_given = urllib.unquote_plus(request.POST.get('user_email_given', ''))
-        f.user_name1_given = urllib.unquote_plus(request.POST.get('user_name1_given', ''))
-        f.user_name2_given = urllib.unquote_plus(request.POST.get('user_name2_given', ''))
-        # f.user_email_cookie = urllib.unquote_plus(request.COOKIES.get('email', '(not logged in)'))
-        # f.user_name1_cookie = user_name1_cookie
-        # f.user_name2_cookie = user_name2_cookie
-        # f.user_vid_cookie = user_vid_cookie
-        # f.user_cid_cookie = user_cid_cookie
-        f.user_cid_given = urllib.unquote_plus(request.POST.get('user_cid_given', ''))
-        f.user_loc_given = urllib.unquote_plus(request.POST.get('user_loc_given', ''))
-        # f.user_loc_cookie = request.COOKIES.get('countryCode', '(not logged in)')
-
-        f.promo_contact_via_pmail = request.POST.get('promo_contact_via_pmail', None)
-        f.promo_contact_via_email = request.POST.get('promo_contact_via_email', None)
-
-        f.email_sub_jpt = request.POST.get('email_sub_jpt', None)
-        f.email_sub_ogf = request.POST.get('email_sub_ogf', None)
-        f.email_sub_hse = request.POST.get('email_sub_hse', None)
-        f.email_sub_twa = request.POST.get('email_sub_twa', None)
-        f.email_sub_rdn = request.POST.get('email_sub_rdn', None)
-
-        f.user_viewport_x = re.sub(r'[^0-9]', '', str(request.POST.get('user_viewport_x', '0')))
-        f.user_viewport_y = re.sub(r'[^0-9]', '', str(request.POST.get('user_viewport_y', '0')))
-
-        if True:  #f.is_valid():
+        if cp_form.is_valid():
             # cd = cp_form.cleaned_data
 
             # if cp_form.user_cid is not '':
@@ -140,11 +102,8 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
             # cp.when_submitted = timezone.now()
             # cp.save()
 
-            # cp_form.user_vid_cookie=re.sub(r'[^0-9a-f-]', '', user_vid_cookie)
-            # cp_form.user_email_cookie=urllib.unquote_plus(user_email_cookie)
-            # cp_form.user_cid_cookie=user_cid_cookie
-            # cp_form.user_loc_cookie=user_loc_cookie
             # cp_form.when_submitted = timezone.now()
+            # cp_form.save()
 
             if request.POST.get('promo_contact_via_pmail', None) == '1':
                 cvp = 1
@@ -152,7 +111,6 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                 cvp = 0
             else:
                 cvp = None
-            f.promo_contact_via_pmail = cvp
 
             if request.POST.get('promo_contact_via_email', None) == '1':
                 cve = 1
@@ -160,53 +118,9 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                 cve = 0
             else:
                 cve = None
-            f.promo_contact_via_email = cve
 
-            #            esubs = request.POST.get('email_subscription_choices', None)
-#            m = ContactPreference()
-#             m = ContactPreference(
-#                 user_vid_cookie=re.sub(r'[^0-9a-f-]', '', user_vid_cookie),
-#                 user_email_cookie=urllib.unquote_plus(user_email_cookie),
-#                 user_cid_cookie=user_cid_cookie,
-#                 user_loc_cookie=user_loc_cookie,
-#                 user_email_given=cp_form.user_email_given,
-#                 # user_cid_given=cp_form.user_cid_given,
-#                 # user_loc_given=cp_form.user_loc_given,
-#                 # promo_contact_via_pmail=cp_form.promo_contact_via_pmail,
-#                 # promo_contact_via_email=cp_form.promo_contact_via_email,
-#                 email_subscription_jpt=cp_form.email_subscription_jpt,
-#                 when_submitted = timezone.now()
-#             )
-#             m.save()
-#             f.save()
-
-            vc = re.sub(r'[^0-9a-f-]', '', str(request.COOKIES.get('vid', '')))
-            ec = urllib.unquote_plus(str(request.COOKIES.get('email')))
-            cc = re.sub(r'[^0-9a-fA-Z]', '', str(request.COOKIES.get('sm_constitid', '')))
-            lc = re.sub(r'[^0-9a-fA-Z\.]', '', str(request.COOKIES.get('countryCode', '')))
-            gc = urllib.unquote_plus(str(request.COOKIES.get('first_name')))
-            fc = urllib.unquote_plus(str(request.COOKIES.get('last_name')))
-            m = ContactPreference(
-                promo_contact_via_pmail=f.promo_contact_via_pmail,
-                promo_contact_via_email=f.promo_contact_via_email,
-                email_sub_jpt=f.email_sub_jpt,
-                email_sub_ogf=f.email_sub_ogf,
-                email_sub_hse=f.email_sub_hse,
-                email_sub_twa=f.email_sub_twa,
-                email_sub_rdn=f.email_sub_rdn,
-                user_email_given=f.user_email_given,
-                user_cid_given=f.user_cid_given,
-                user_loc_given=f.user_loc_given,
-                user_name1_given=f.user_name1_given,
-                user_name2_given=f.user_name2_given,
-                user_vid_cookie=vc,
-                user_email_cookie=ec,
-                user_cid_cookie=cc,
-                user_loc_cookie=lc,
-                user_name1_cookie=gc,
-                user_name2_cookie=fc,
-                when_submitted=timezone.now()
-            )
+            esubs = request.POST.get('email_subscription_choices', None)
+            m = ContactPreference(user_vid=v, user_email=e, user_cid=c, user_loc=l, promo_contact_via_pmail=cvp, promo_contact_via_email=cve, email_subscription_choices=esubs)
             m.save()
 
 
@@ -219,64 +133,19 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                     user_cid = user.id
             if not users_found:
                 request.session['emsg'] = "No Matches Found."
-        else:
-            return HttpResponse(
-                '<h1>Line 180 -- POSTed form did not validate</h1><hr />'
-                + '<h2>' + str(f.errors) + '</h2><hr />'
-                + '<h2>' + str(f.non_field_errors) + '</h2><hr />'
-                + '<h3>' + str(timezone.now()) + '</h3>'
-
-                + '<br />'
-
-                + "cvp = " + f.promo_contact_via_pmail + "<br />"
-                + "cve = " + f.promo_contact_via_email + "<br />"
-                + "jpt = " + f.email_sub_jpt + "<br />"
-                + "ogf = " + f.email_sub_ogf + "<br />"
-                + "hse = " + f.email_sub_hse + "<br />"
-                + "twa = " + f.email_sub_twa + "<br />"
-                + "rdn = " + f.email_sub_rdn + "<br />"
-
-                + '<br />'
-
-                + "Email Address (given) = " + f.user_email_given + "<br />"
-                + "Name1 (given) = " + f.user_name1_given + "<br />"
-                + "Name2 (given) = " + f.user_name2_given + "<br />"
-                + "Constituent ID# (given) = " + f.user_cid_given + "<br />"
-                + "Location (given) = " + f.user_loc_given + "<br />"
-
-                + '<br />'
-
-                + "Visitor UUID = " + f.user_vid_cookie + "<br />"
-
-                + '<br />'
-
-                + "Email Address (cookie) = " + f.user_email_cookie + "<br />"
-                + "Name1 (cookie) = " + f.user_name1_cookie + "<br />"
-                + "Name2 (cookie) = " + f.user_name2_cookie + "<br />"
-                + "Constituent ID# (cookie) = " + f.user_cid_cookie + "<br />"
-                + "Location (cookie) = " + f.user_loc_cookie + "<br />"
-
-                + '<br />'
-
-                + "Viewport X = " + f.user_viewport_x + "<br />"
-                + "Viewport Y = " + f.user_viewport_y
-
-            )
-
     elif request.method == "GET":
-        f = ContactPrefsForm(request.GET)
-#        f.user_loc_given = Countries()
+        cp_form = ContactPrefsForm(request.GET)
 
-        # cp_form.user_vid_given = user_vid_cookie
-        # cp_form.user_email_given = user_email_cookie
-        # cp_form.user_cid_given = user_cid_cookie
-        # cp_form.user_loc_given = user_loc_cookie
+        cp_form.user_vid = v
+        cp_form.user_email = e
+        cp_form.user_cid = c
+        cp_form.user_loc = l
 
 #        user_cid = request.GET.get('user_cid', '')
     else:
-        f = ContactPrefsForm()
+        cp_form = ContactPrefsForm()
 
-    context = {'f': f, 'users_found': users_found, 'emsg': emsg}
+    context = {'cp_form': cp_form, 'users_found': users_found, 'emsg': emsg}
     return render(request, 'spe_preferences/contact_prefs.html', context)
 
 
