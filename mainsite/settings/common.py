@@ -178,6 +178,7 @@ INSTALLED_APPS = (
     'django_fsm',
     # 'spe_newsletter',
     'spe_messages',
+    'spe_tabs',
 )
 
 LANGUAGES = (
@@ -306,6 +307,8 @@ CMS_PLACEHOLDER_CONF = {
                     'BlogListingPlugin',
                     'BlogDetailPlugin',
                     'ShowMessagesToMemberPlugin',
+                    'TabHeaderPlugin',
+                    'TabPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
