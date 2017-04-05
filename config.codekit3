@@ -1026,6 +1026,12 @@
 		"oAP": "\/mainsite\/settings\/common.py",
 		"oF": 0
 		},
+	"\/mainsite\/settings\/common.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/settings\/common.pyc",
+		"oF": 0
+		},
 	"\/mainsite\/settings\/dev.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -22073,6 +22079,12 @@
 		"oAP": "\/spe_blog\/templatetags\/tostring.py",
 		"oF": 0
 		},
+	"\/spe_blog\/templatetags\/tostring.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_blog\/templatetags\/tostring.pyc",
+		"oF": 0
+		},
 	"\/spe_blog\/templatetags\/var_tags.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -22977,6 +22989,54 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_promotions\/views.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/__init__.py": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_tabs\/__init__.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/__init__.pyc": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_tabs\/__init__.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/cms_plugins.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/cms_plugins.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/cms_plugins.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/cms_plugins.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/models.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/models.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/models.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/models.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/templates\/spe_tabs\/tab.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/templates\/spe_tabs\/tab.html",
+		"oF": 0
+		},
+	"\/spe_tabs\/templates\/spe_tabs\/tabheader.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/templates\/spe_tabs\/tabheader.html",
 		"oF": 0
 		},
 	"\/spe_website": {

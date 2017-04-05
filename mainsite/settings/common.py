@@ -506,7 +506,7 @@ LOGGING = {
         },
         'website': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
         'werkzeug': {
             'handlers': ['console'],
