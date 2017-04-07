@@ -14,20 +14,20 @@ class MenuItemInLine(SortableStackedInline):
 class MenuItemTabularInLine(SortableTabularInline):
     model = MenuItem
     extra =1
+    exclude = ['title', 'level', 'url', 'transition', 'order']
 
 
 class EventMenuAdmin(NonSortableParentAdmin):
-    inlines = [MenuItemInLine]
+    inlines = [MenuItemInLine, MenuItemTabularInLine]
     search_fields = ['title']
+    class Meta:
+        verbose_name_plural = "Event Menus (full view)"
 
 
-# class EventMenuCompactAdmin(NonSortableParentAdmin):
-#     inlines = [MenuItemTabularInLine]
-#     search_fields = ['title']
-
+class EventMenu2(NonSortableParentAdmin):
+    class Meta:
+        proxy = True
 
 
 admin.site.register(EventMenu, EventMenuAdmin)
-# admin.site.register(EventMenu, EventMenuCompactAdmin)
 admin.site.register(MenuItem, SortableAdmin)
-
