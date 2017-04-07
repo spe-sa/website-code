@@ -314,6 +314,7 @@ CMS_PLACEHOLDER_CONF = {
                     'TabHeaderPlugin',
                     'TabPlugin',
                     'MenuPlugin',
+                    'EventMenuPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

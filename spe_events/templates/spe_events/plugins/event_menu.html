@@ -1,0 +1,47 @@
+{% load cms_tags sekizai_tags var_tags %}
+
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+{# defines the main navigagion bar with the hamburger #}
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+</div>
+
+{% set_var "" as rendered_heading %}
+{% set_var "" as li_opened %}
+
+{# defines the stuff that will be collapsed in the hamburger (everything in this case) #}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+    {# build the submenu list from the items for a heading #}
+    {% for mi in menu_items %}
+        {% if rendered_heading != mi.heading %}
+            {% if li_opened != "" %}
+                </ul>
+            </li>
+            {% endif %}
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ mi.heading }}</a>
+                <ul class="dropdown-menu">
+            {% set_var "{{mi.heading}}" as rendered_heading %}
+            {% set_var "true" as li_opened %}
+        {% endif %}
+        {# this should always add our dropdown item #}
+        <li><a href="{{ mi.get_absolute_url }}">{{ mi.label }}</a></li>
+    {% endfor %}
+    {# if we opened up and put stuff add our last closing #}
+    {% if menu_items %}
+                </ul>
+            </li>
+    {% endif %}
+
+</ul>
+</div>
+</div>
+</nav>
