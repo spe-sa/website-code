@@ -180,7 +180,9 @@ INSTALLED_APPS = (
     'spe_messages',
     'spe_tabs',
     'adminsortable2',
-    'spe_menus',
+    'adminsortable',
+    # 'spe_menus',
+    'spe_menus2'
 )
 
 LANGUAGES = (
