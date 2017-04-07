@@ -28,8 +28,19 @@ class MenuItem(SortableMixin):
     event = models.ForeignKey(EventMenu)
     title = models.CharField('Title', null=True, blank=True, max_length=50)
     level = models.IntegerField(choices=LEVEL_CHOICES, default=1)
-    page = PageField(verbose_name="Page to link to", blank=True, null=True, on_delete=models.SET_NULL)
-    url = models.URLField(max_length=200, blank=True, null=True)
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    internal_link = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
     transition = models.PositiveIntegerField(default=0, editable=False)
 
     class Meta:
@@ -38,6 +49,14 @@ class MenuItem(SortableMixin):
 
     # ordering field
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    def get_link(self):
+        link = "#"
+        if self.internal_link:
+            link = self.internal_link.get_absolute_url()
+        elif self.external_link:
+            link = self.external_link
+        return link
 
     def __unicode__(self):
         dictionary = dict(LEVEL_CHOICES)

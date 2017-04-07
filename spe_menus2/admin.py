@@ -14,7 +14,7 @@ class MenuItemInLine(SortableStackedInline):
 class MenuItemTabularInLine(SortableTabularInline):
     model = MenuItem
     extra =1
-    exclude = ['title', 'level', 'page', 'url', 'transition', 'order']
+    exclude = ['title', 'level', 'internal_link', 'external_link', 'transition', 'order']
 
 
 class EventMenuAdmin(NonSortableParentAdmin):

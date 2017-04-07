@@ -10,10 +10,10 @@
                 </li>
             {% endif %}
             {% if item.level == 1 or item.level == 3%}
-                <li><a href="#">{{ item.title }}</a></li>
+                <li><a href="{{ item.get_link }}">{{ item.title }}</a></li>
             {% else %}
                 <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ item.title }}
+                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ item.get_link }}">{{ item.title }}
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
             {% endif %}
