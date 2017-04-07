@@ -28,7 +28,8 @@ class MenuItem(SortableMixin):
     event = models.ForeignKey(EventMenu)
     title = models.CharField('Title', null=True, blank=True, max_length=50)
     level = models.IntegerField(choices=LEVEL_CHOICES, default=1)
-    url = PageField(verbose_name="Page to link to", blank=True, null=True, on_delete=models.SET_NULL)
+    page = PageField(verbose_name="Page to link to", blank=True, null=True, on_delete=models.SET_NULL)
+    url = models.URLField(max_length=200, blank=True, null=True)
     transition = models.PositiveIntegerField(default=0, editable=False)
 
     class Meta:
