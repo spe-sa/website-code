@@ -13,7 +13,7 @@ class CustomMenuPluginInstance(CMSPluginBase):
         menu_items = CustomMenuItems.objects.filter(custom_menu=instance.custom_menu)
         previous_level = 1
         for item in menu_items:
-            if previous_level == 3 and (item.level == 1 or item.level == 2):
+            if (previous_level == 3 or previous_level == 2) and (item.level == 1 or item.level == 2):
                 item.transition = 1
             previous_level = item.level
         context.update({
