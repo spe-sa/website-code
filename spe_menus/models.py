@@ -14,24 +14,24 @@ LEVEL_CHOICES = ((1, "Top Level Item without Dropdown"),
 
 
 class CustomMenus(models.Model):
-    class Meta:
-        verbose_name_plural = 'Custom Menus'
-
     title = models.CharField('Title', null=True, blank=True, max_length=100)
     branding = models.CharField('Branding on menu', null=True, blank=True, max_length=30)
-    # external_link = models.URLField(
-    #     verbose_name=_('External link'),
-    #     blank=True,
-    #     max_length=2040,
-    #     help_text=_('Provide a valid URL to an external website.'),
-    # )
-    # internal_link = PageField(
-    #     verbose_name=_('Internal link'),
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.SET_NULL,
-    #     help_text=_('If provided, overrides the external link.'),
-    # )
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    internal_link = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
+
+    class Meta:
+        verbose_name_plural = 'Custom Menus'
 
     def get_link(self):
         link = "#"
