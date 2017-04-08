@@ -179,10 +179,10 @@ INSTALLED_APPS = (
     # 'spe_newsletter',
     'spe_messages',
     'spe_tabs',
-    'adminsortable2',
+    # 'adminsortable2',
     'adminsortable',
-    # 'spe_menus',
-    'spe_menus2'
+    # 'spe_menus_test_v1',
+    'spe_menus'
 )
 
 LANGUAGES = (
@@ -313,8 +313,8 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowMessagesToMemberPlugin',
                     'TabHeaderPlugin',
                     'TabPlugin',
-                    'MenuPlugin',
-                    'EventMenuPlugin',
+                    'CustomMenuPluginInstance',
+                    # 'EventMenuPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

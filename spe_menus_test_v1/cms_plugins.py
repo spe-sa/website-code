@@ -10,14 +10,18 @@ class MenuPlugin(CMSPluginBase):
     allow_children = True
 
     def render(self, context, instance, placeholder):
-        menu_items = MenuItem.objects.filter(event=instance.event)
+        menu_items = MenuItem.objects.all()
+        i = 0
         previous_level = 1
         for item in menu_items:
+            if item.level == 1:
+                i += 1
+            item.sequence = i
             if previous_level == 3 and (item.level == 1 or item.level == 2):
                 item.transition = 1
             previous_level = item.level
         context.update({
-            'event': instance.event.branding,
+            'event': instance.event,
             'items': menu_items,
             })
         return context
