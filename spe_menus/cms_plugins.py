@@ -18,6 +18,7 @@ class CustomMenuPluginInstance(CMSPluginBase):
             previous_level = item.level
         context.update({
             'branding': instance.custom_menu.branding,
+            'url': instance.custom_menu.get_link(),
             'items': menu_items,
             })
         return context

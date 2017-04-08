@@ -19,6 +19,27 @@ class CustomMenus(models.Model):
 
     title = models.CharField('Title', null=True, blank=True, max_length=100)
     branding = models.CharField('Branding on menu', null=True, blank=True, max_length=30)
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    internal_link = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
+
+    def get_link(self):
+        link = "#"
+        if self.internal_link:
+            link = self.internal_link.get_absolute_url()
+        elif self.external_link:
+            link = self.external_link
+        return link
 
     def __unicode__(self):
         return self.title
