@@ -181,8 +181,6 @@ INSTALLED_APPS = (
     'spe_tabs',
     # 'adminsortable2',
     'adminsortable',
-    # 'spe_menus_test_v1',
-    # 'spe_menus',
     'spe_custom_menus',
 )
 
