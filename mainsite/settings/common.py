@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     # 'adminsortable2',
     'adminsortable',
     'spe_custom_menus',
+    'spe_sponsors',
 )
 
 LANGUAGES = (
