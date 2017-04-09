@@ -8,27 +8,27 @@ from adminsortable.models import SortableMixin
 from django.utils.translation import ugettext_lazy as _
 
 
-LEVEL_CHOICES = ((1, "Top Level Item without Dropdown"),
-                 (2, "Top Level Item with Dropdown"),
-                 (3, "Dropdown Item"))
+LEVEL_CHOICES = ((1, "Top Level"),
+                 (2, "Dropdown Level"),
+                )
 
 
 class CustomMenus(models.Model):
     title = models.CharField('Title', null=True, blank=True, max_length=100)
     branding = models.CharField('Branding on menu', null=True, blank=True, max_length=30)
-    # external_link = models.URLField(
-    #     verbose_name=_('External link'),
-    #     blank=True,
-    #     max_length=2040,
-    #     help_text=_('Provide a valid URL to an external website.'),
-    # )
-    # internal_link = PageField(
-    #     verbose_name=_('Internal link'),
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.SET_NULL,
-    #     help_text=_('If provided, overrides the external link.'),
-    # )
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    internal_link = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
 
     class Meta:
         verbose_name_plural = 'Custom Menus'
@@ -62,7 +62,8 @@ class CustomMenuItems(SortableMixin):
         on_delete=models.SET_NULL,
         help_text=_('If provided, overrides the external link.'),
     )
-    transition = models.PositiveIntegerField(default=0, editable=False)
+    is_dropdown_node = models.BooleanField(default=False, editable=False)
+    is_back_up = models.BooleanField(default=False, editable=False)
 
     class Meta:
         ordering = ['order']
