@@ -8,6 +8,7 @@ class CustomMenuPluginInstance(CMSPluginBase):
     name = "Custom Menu"
     render_template = "spe_custom_menus/menu.html"
     allow_children = True
+    module = 'Components'
 
     def render(self, context, instance, placeholder):
         menu_items = CustomMenuItems.objects.filter(custom_menu=instance.custom_menu)

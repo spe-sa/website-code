@@ -6,6 +6,7 @@ from spe_tabs.models import TabHeader, Tab
 class TabHeaderPlugin(CMSPluginBase):
     model = TabHeader
     name = "Tabs Header"
+    module = 'Components'
     render_template = "spe_tabs/tabheader.html"
     allow_children = True
     child_classes = ["TabPlugin"]
@@ -20,6 +21,7 @@ class TabHeaderPlugin(CMSPluginBase):
 class TabPlugin(CMSPluginBase):
     model = Tab
     name = "Tab"
+    module = 'Components'
     render_template = "spe_tabs/tab.html"
     parent_classes = ["TabHeaderPlugin"]
     allow_children = True

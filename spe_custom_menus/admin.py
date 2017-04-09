@@ -26,4 +26,4 @@ class CustomMenuAdmin(NonSortableParentAdmin):
 
 
 admin.site.register(CustomMenus, CustomMenuAdmin)
-admin.site.register(CustomMenuItems, SortableAdmin)
+# admin.site.register(CustomMenuItems, SortableAdmin)
