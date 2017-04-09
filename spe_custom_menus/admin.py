@@ -15,7 +15,7 @@ class MenuItemTabularInLine(SortableTabularInline):
     model = CustomMenuItems
     extra = 1
     proxy = True
-    exclude = ['title', 'level', 'internal_link', 'external_link', 'is_dropdown_node', 'depth', 'escapes', 'order']
+    exclude = ['title', 'internal_link', 'external_link', 'is_dropdown_node', 'depth', 'escapes', 'order']
 
 
 class CustomMenuAdmin(NonSortableParentAdmin):
