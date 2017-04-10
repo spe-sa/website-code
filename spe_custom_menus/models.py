@@ -33,7 +33,7 @@ class CustomMenus(models.Model):
     class Meta:
         verbose_name_plural = 'Custom Menus'
 
-    def get_link(self):
+    def get_absolute_url(self):
         link = "#"
         if self.internal_link:
             link = self.internal_link.get_absolute_url()

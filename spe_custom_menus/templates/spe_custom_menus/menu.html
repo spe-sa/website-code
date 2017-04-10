@@ -14,7 +14,7 @@
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
             {% else %}
-                <li><a href="{{ item.get_link }}">{{ item.title }}</a></li>
+                <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
             {% endif %}
             {% if forloop.last %}
                 {% if item.level == 2 %}

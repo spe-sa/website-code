@@ -32,7 +32,7 @@ class CustomMenuPluginInstance(CMSPluginBase):
                 previous_is_child = 0
         context.update({
             'branding': instance.custom_menu.branding,
-            'link': instance.custom_menu.get_link(),
+            'link': instance.custom_menu.get_absolute_url(),
             'items': menu_items,
             })
         return context
