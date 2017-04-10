@@ -179,7 +179,7 @@ INSTALLED_APPS = (
     # 'spe_newsletter',
     'spe_messages',
     'spe_tabs',
-    'adminsortable2',
+    # 'adminsortable2',
     'adminsortable',
     'spe_custom_menus',
     'spe_sponsors',

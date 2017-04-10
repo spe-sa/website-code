@@ -2,9 +2,42 @@ from django.contrib.gis.geoip import GeoIP
 from netaddr import IPAddress
 from mainsite.models import Web_Region_Country, Customer
 from django.conf import settings
+from django.db.models.fields import CharField
+
 import logging, bleach
 
 logger = logging.getLogger(__name__)
+
+
+# Use these classes instead of the base CharField class in your models to get automatic upper or lower casing for free
+# Example Usage: event_code = UpperCaseCharField(max_length=25, null=True, help_text='Ex: 17ATCE', )
+class LowerCaseCharField(CharField):
+    """
+    Defines a charfield which automatically converts all inputs to
+    lowercase and saves.
+    """
+
+    def pre_save(self, model_instance, add):
+        """
+        Converts the string to lowercase before saving.
+        """
+        current_value = getattr(model_instance, self.attname)
+        setattr(model_instance, self.attname, current_value.lower())
+        return getattr(model_instance, self.attname)
+
+class UpperCaseCharField(CharField):
+    """
+    Defines a charfield which automatically converts all inputs to
+    lowercase and saves.
+    """
+
+    def pre_save(self, model_instance, add):
+        """
+        Converts the string to lowercase before saving.
+        """
+        current_value = getattr(model_instance, self.attname)
+        setattr(model_instance, self.attname, current_value.upper())
+        return getattr(model_instance, self.attname)
 
 
 def getRegion(context):
