@@ -178,6 +178,11 @@ INSTALLED_APPS = (
     'django_fsm',
     # 'spe_newsletter',
     'spe_messages',
+    'spe_tabs',
+    # 'adminsortable2',
+    'adminsortable',
+    'spe_custom_menus',
+    'spe_sponsors',
 )
 
 LANGUAGES = (
@@ -234,6 +239,7 @@ CMS_TEMPLATES = (
     ('generic_page.html', 'Generic Page'),
     ('print_base.html', 'Print Page'),
     ('newsletter_personalized.html', 'Newsletter - Personalized'),
+    ('bootstrap_full_width.html', 'Bootstrap Generic Full Width'),
     # ('twa_detailpage.html', 'TWA Detail Page'),
 )
 
@@ -305,6 +311,10 @@ CMS_PLACEHOLDER_CONF = {
                     'BlogListingPlugin',
                     'BlogDetailPlugin',
                     'ShowMessagesToMemberPlugin',
+                    'TabHeaderPlugin',
+                    'TabPlugin',
+                    'CustomMenuPluginInstance',
+                    # 'EventMenuPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
@@ -502,7 +512,7 @@ LOGGING = {
         },
         'website': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
         'werkzeug': {
             'handlers': ['console'],

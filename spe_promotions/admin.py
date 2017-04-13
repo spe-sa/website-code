@@ -25,7 +25,7 @@ blank_timezone.short_description = "Blank Time Zones"
 
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
-    search_fields = ('event', 'start', 'end')
+    search_fields = ('event', 'start', 'end', 'event_type__name')
     exclude = ['latitude', 'longitude']
     readonly_fields = ['hits', 'impressions', 'last_impression']
     actions = [blank_timezone, ]

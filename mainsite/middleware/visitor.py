@@ -1,5 +1,6 @@
 from django.conf import settings
 import uuid
+import urlparse, os
 from mainsite.common import get_context_variables, get_visitor
 
 FOREVER = 365 * 24 * 60 * 60 * 60 # 60 years
@@ -23,6 +24,13 @@ def make_uuid():
 # NOTE: we believe this will reduce the number of database hits for many plugins on a page
 class CustomerMiddleware(object):
     def process_request(self, request):
-        request.variables = get_context_variables(request)
-        request.visitor = get_visitor(request)
+
+        url = request.get_full_path()
+        path = urlparse.urlparse(url).path
+        ext = os.path.splitext(path)[1]
+        request.ext = ext
+
+        if not ext:
+            request.variables = get_context_variables(request)
+            request.visitor = get_visitor(request)
         return

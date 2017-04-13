@@ -1,9 +1,8 @@
 from django.db import models
-
 from cms.models import CMSPlugin
 
 from mainsite.models import Tier1Discipline
-
+from mainsite.common import UpperCaseCharField
 
 class EventType(models.Model):
     name = models.CharField(max_length=150, unique=True)

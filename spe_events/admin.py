@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
+# from adminsortable2.admin import SortableAdminMixin
 
-from .models import EventType
+from .models import EventType # , EventMenuModel
+
+# class SortableEventMenu(SortableAdminMixin, admin.ModelAdmin):
+#     search_fields = ['event_code', ]
 
 admin.site.register(EventType)
+# admin.site.register(EventMenuModel, SortableEventMenu)

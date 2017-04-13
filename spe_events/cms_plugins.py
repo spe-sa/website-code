@@ -7,10 +7,28 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.gis.geoip import GeoIP
 
-from .models import EventsByCurrentIPPlugin
+from .models import EventsByCurrentIPPlugin # , EventMenuPluginModel, EventMenuModel
 from .settings import EVENT_PERSONALIZATION_SERVER
 from mainsite.common import get_context_variable
 
+# class EventMenuPlugin(CMSPluginBase):
+#     model = EventMenuPluginModel
+#     allow_children = False
+#     cache = False
+#     module = _('Events')
+#     name = _('Event Menu')
+#     text_enabled = False
+#     render_template = 'spe_events/plugins/event_menu.html'
+#
+#     def render(self, context, instance, placeholder):
+#         # get the menu for this meeting code if there is any
+#         if instance.event_code:
+#             menus = EventMenuModel.objects.filter(event_code=instance.event_code).all()
+#         else:
+#             menus=None
+#         context.update({'event_code': instance.event_code,
+#                        'menu_items': menus})
+#         return context
 
 class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     model = EventsByCurrentIPPlugin
@@ -56,3 +74,4 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(ShowEventsByCurrentLocationPluginPlugin)
+# plugin_pool.register_plugin(EventMenuPlugin)

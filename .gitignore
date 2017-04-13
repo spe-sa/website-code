@@ -41,8 +41,11 @@ Thumbs.db
 *.db
 
 */.idea/*
+.idea/*
 */migrations/*
 
 *.scssc
 *.ipynb
 *.codekit
+
+*.codekit3

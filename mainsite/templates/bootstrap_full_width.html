@@ -1,0 +1,51 @@
+{% extends "html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags staticfiles %}
+
+{% block web_fonts %}
+
+    {% include 'include_scripts.html' %}
+    {{ block.super }}
+
+{% endblock web_fonts %}
+
+{% block css_base %}
+    {% include css_template|default:"include_fw_css.html" %}
+{% endblock css_base %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row fwheaderrow">
+
+{#            <div class="col-xs-12">#}
+
+                {% placeholder "header" %}
+
+{#            </div>#}
+
+        </div>
+        <div class="row fwcontent">
+
+{#            <div class="col-xs-12">#}
+
+                {% placeholder "content" %}
+
+{#            </div>#}
+
+        </div>
+
+        <div class="row fwfooter">
+
+{#            <div class="col-xs-12">#}
+
+                {% placeholder "footer" %}
+
+{#            </div>#}
+
+        </div>
+
+    </div>
+
+    {% include 'z_boostrap_size_indicator.html' %}
+
+{% endblock content %}
