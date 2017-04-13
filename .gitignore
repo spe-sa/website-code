@@ -41,6 +41,7 @@ Thumbs.db
 *.db
 
 */.idea/*
+.idea/*
 */migrations/*
 
 *.scssc
