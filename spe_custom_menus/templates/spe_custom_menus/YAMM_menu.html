@@ -1,0 +1,42 @@
+<head>
+   <link href="css/yamm.css" rel="stylesheet">
+</head>
+
+<nav class="navbar yamm navbar-default " role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ link }}">{{ branding }}</a>
+    </div>
+    <div class="nav navbar-nav">
+        {% for item in items %}
+            {% if item.is_back_up %}
+                </div></div></ul></li>
+            {% endif %}
+            {% if item.is_divider %}
+                <li role="separator" class="divider"></li>
+            {% else %}
+                {%  if item.is_dropdown_node %}
+                    <li class="dropdown yamm-fw">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ item.title }}
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <div class="yamm-content">
+                            <div class="row megarow">
+
+                {% else %}
+                    {% if item.is_dropdown_header %}
+                        <li class="dropdown-header">{{ item.title }}</li>
+                    {% else %}
+                        <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+                    {% endif %}
+                {% endif %}
+                {% if forloop.last %}
+                    {% if item.level == 2 %}
+                        </div></div></ul></li>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {%  endfor %}
+    </ul>
+  </div>
+</nav>

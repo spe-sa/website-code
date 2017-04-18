@@ -1,0 +1,36 @@
+<head>
+   <link href="css/yamm.css" rel="stylesheet">
+</head>
+
+<nav class="navbar yamm navbar-default " role="navigation">
+     <ul class="nav navbar-nav">
+       <li class="dropdown">
+         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+         <ul class="dropdown-menu">
+           <li>
+               <div class="yamm-content">
+                  <div class="row">
+<div id="accordion" class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Accordion Group Item #1</a></h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">This is collapsible menu.</div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Accordion Group Item #2</a></h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">This is collapsible menu.</div>
+        </div>
+    </div>
+</div>          </div>
+         </div>
+           </li>
+         </ul>
+       </li>
+     </ul>
+</nav>

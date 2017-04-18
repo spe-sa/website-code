@@ -8,8 +8,16 @@ from adminsortable.models import SortableMixin
 from django.utils.translation import ugettext_lazy as _
 
 
+DEFAULT_MENU_TEMPLATE = 'spe_custom_menus/bootstrap_menu.html'
+MENU_TEMPLATES = (
+    (DEFAULT_MENU_TEMPLATE, 'Bootstrap Menu'),
+    ('spe_custom_menus/YAMM_menu.html', 'YAMM Menu'),
+)
+
 LEVEL_CHOICES = ((1, "Top Level"),
                  (2, "Dropdown Level"),
+                 (3, "Dropdown Header"),
+                 (4, "Divider"),
                 )
 
 
@@ -64,6 +72,8 @@ class CustomMenuItems(SortableMixin):
     )
     is_dropdown_node = models.BooleanField(default=False, editable=False)
     is_back_up = models.BooleanField(default=False, editable=False)
+    is_dropdown_header = models.BooleanField(default=False, editable=False)
+    is_divider = models.BooleanField(default=False, editable=False)
 
     class Meta:
         ordering = ['order']
@@ -86,8 +96,10 @@ class CustomMenuItems(SortableMixin):
 
 
 class CustomMenusPlugin(CMSPlugin):
+    template = models.CharField(max_length=255, choices=MENU_TEMPLATES, default=DEFAULT_MENU_TEMPLATE)
     custom_menu = models.ForeignKey(CustomMenus)
 
     def __unicode__(self):
-        return u"{0}".format(self.custom_menu)
+        dictionary = dict(MENU_TEMPLATES)
+        return u"{0} using {1}".format(self.custom_menu, dictionary[self.template])
 
