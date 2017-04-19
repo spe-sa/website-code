@@ -168,6 +168,7 @@ class SimpleEventNotLoggedInPromotion(SimpleEventPromotionBaseModel):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
 
 
+
 class SimpleEventNonMemberPromotion(SimpleEventPromotionBaseModel):
     # event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
