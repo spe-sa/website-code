@@ -6,6 +6,7 @@ class TabHeader(CMSPlugin):
     """
     A plugin that has Tab classes as children.
     """
+
     def __unicode__(self):
         return u"{0} tabs".format(self.cmsplugin_set.all().count())
 

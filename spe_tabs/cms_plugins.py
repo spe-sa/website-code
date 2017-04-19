@@ -14,7 +14,7 @@ class TabHeaderPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context.update({
             'instance': instance,
-            })
+        })
         return context
 
 
@@ -29,7 +29,7 @@ class TabPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context.update({
             'instance': instance,
-            })
+        })
         return context
 
 
