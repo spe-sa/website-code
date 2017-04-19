@@ -50,18 +50,20 @@ urlpatterns = i18n_patterns('',
     # NOTE: for more specific staff stuff put first; blog will catch anything else /staff.
     # ex url(r'^staff/filer/', include('spe_filer.urls_internal')),
     url(r'^staff/dashboard/', include(router.urls)),
+
     url(r'^staff/promotions/export_statistics/', 'spe_promotions.views.export_excel', ),
     url(r'^staff/promotions/export_summary/', 'spe_promotions.views.export_summary_excel', ),
     url(r'^staff/promotions/export_details/', 'spe_promotions.views.export_detail_excel', ),
     url(r'^staff/promotions/timeline/', 'spe_promotions.views.promotion_timeline', ),
     url(r'^staff/promotions/discipline/', 'spe_promotions.views.promotion_by_discipline', ),
     url(r'^staff/promotions/region/', 'spe_promotions.views.promotion_by_region', ),
+    url(r'^staff/promotions/event_type/', 'spe_promotions.views.promotion_by_event_type', ),
     url(r'^staff/articles/export_details/', 'spe_blog.views.export_article_detail_excel', ),
     url(r'^staff/briefs/export_details/', 'spe_blog.views.export_brief_detail_excel', ),
     url(r'^staff/articles/export_article_disciplines/', 'spe_blog.views.export_article_disciplines_excel', ),
     url(r'^staff/articlesandbriefs/sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-
     url(r'^staff/', include('spe_blog.urls_internal')),
+
     url(r'^spe_links/', include('spe_links.urls')),
     url(r'^briefs/', include('spe_blog.urls_brief')),
     #url(r'^contact/', include('spe_contact.urls')),

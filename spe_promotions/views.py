@@ -14,6 +14,7 @@ from mainsite.common import (
 )
 
 from mainsite.models import Customer, Web_Region, Web_Region_Country, Tier1Discipline
+from spe_events.models import EventType
 
 from .models import (
     SimpleEventPromotion,
@@ -421,3 +422,13 @@ def promotion_by_region(request):
         context.update({region: {'promos': promotions},},)
     context = {'regions': context}
     return render(request, 'spe_promotions/region_view.html', context)
+
+
+def promotion_by_event_type(request):
+    types = EventType.objects.filter(active=True).order_by('name').all()
+    context = {}
+    for type in types:
+        promotions = SimpleEventPromotion.objects.filter(event_type=type).order_by('start')
+        context.update({type: {'promos': promotions},},)
+    context = {'event_types': context}
+    return render(request, 'spe_promotions/event_type_view.html', context)
