@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
-<html>
-<head>
+<html><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}This is my new project home page{% endblock title %} - {% render_block "title2" %}</title>
@@ -31,8 +30,8 @@
     {# use addtoblock "css" to add inline css to this block #}
     {% render_block "css" %}
 
-</head>
-<body class="{% block body_class %}{% endblock %}">
+</head><body class="{% block body_class %}{% endblock %}">
+
 {% render_block "google_scripts" %}
     {# adding django-cms toolbar to the top of the page if logged in #}
     {% cms_toolbar %}
@@ -73,5 +72,5 @@
 
     {#    misc adds to bottom#}
     {% block last_instructions %}{% endblock last_instructions %}
-</body>
-</html>
+
+</body></html>
