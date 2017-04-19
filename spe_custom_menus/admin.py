@@ -21,6 +21,7 @@ class MenuItemTabularInLine(SortableTabularInline):
 class CustomMenuAdmin(NonSortableParentAdmin):
     inlines = [MenuItemInLine, MenuItemTabularInLine]
     search_fields = ['title']
+
     class Meta:
         verbose_name_plural = "Custom Menus"
 
