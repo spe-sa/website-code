@@ -1,0 +1,15 @@
+{% load sekizai_tags cms_tags %}
+
+<div id="panel-plugin-{{ instance.id }}" class="panel {{ instance.custom_class }}">
+    {% if instance.heading %}
+        <div class="panel-heading">{{ instance.heading }}</div>
+    {% endif %}
+    <div class="panel-body">
+        {% for child in instance.child_plugin_instances %}
+                {% render_plugin child %}
+        {% endfor %}
+    </div>
+    {% if instance.footer %}
+        <div class="panel-footer">{{ instance.footer }}</div>
+    {% endif %}
+</div>

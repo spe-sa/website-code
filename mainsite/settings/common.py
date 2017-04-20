@@ -183,6 +183,7 @@ INSTALLED_APPS = (
     'adminsortable',
     'spe_custom_menus',
     'spe_sponsors',
+    'spe_panels',
 )
 
 LANGUAGES = (
@@ -314,6 +315,7 @@ CMS_PLACEHOLDER_CONF = {
                     'TabHeaderPlugin',
                     'TabPlugin',
                     'CustomMenuPluginInstance',
+                    'PanelPlugin',
                     # 'EventMenuPlugin',
                     ],
         'child_classes': {
