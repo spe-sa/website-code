@@ -184,6 +184,7 @@ INSTALLED_APPS = (
     'spe_custom_menus',
     'spe_sponsors',
     'spe_panels',
+    'spe_accordion',
 )
 
 LANGUAGES = (
@@ -316,7 +317,8 @@ CMS_PLACEHOLDER_CONF = {
                     'TabPlugin',
                     'CustomMenuPluginInstance',
                     'PanelPlugin',
-                    # 'EventMenuPlugin',
+                    'AccordionHeaderPlugin',
+                    'AccordionPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
