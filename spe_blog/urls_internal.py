@@ -4,6 +4,8 @@ from . import views
 
 # app_name='spe_blog'
 urlpatterns = [
+    # ex: /staff/
+    url(r'^$', views.staff_index, name='staff_index'),
     # ex: /staff/articles/
     url(r'^articles/$', views.article_index, name='article_index'),
     # ex: /staff/articles/briefs/

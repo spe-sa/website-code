@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from adminsortable.fields import SortableForeignKey
+from adminsortable.models import SortableMixin
+
 from django.utils.translation import ugettext_lazy as _
 
 # import datetime
@@ -10,6 +12,81 @@ from django.db import models
 # from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
+
+class PageLinkSet(models.Model):
+    title = models.CharField('Title', max_length=100, unique=True)
+    show_all_text = models.CharField(max_length=50, blank=True, null=True)
+    show_all_internal_link = PageField(
+        verbose_name=_('Internal Page'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
+    show_all_external_link = models.URLField(
+        verbose_name=_('External Link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+
+    class Meta:
+        verbose_name_plural = 'Set of Links'
+
+    def get_absolute_url(self):
+        link = ""
+        if self.show_all_internal_link:
+            link = self.show_all_internal_link.get_absolute_url()
+        elif self.show_all_external_link:
+            link = self.show_all_external_link
+        return link
+
+    def __unicode__(self):
+        return self.title
+
+class PageLink(SortableMixin):
+    page_set = SortableForeignKey(PageLinkSet)
+    title = models.CharField(max_length=255)
+
+    internal_page = PageField(
+        verbose_name=_('Internal page'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
+    external_page = models.URLField(
+        verbose_name=_('External url'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = 'Set of Links'
+
+    # ordering field
+    order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    def get_absolute_url(self):
+        link = "#"
+        if self.internal_page:
+            link = self.internal_page.get_absolute_url()
+        elif self.external_page:
+            link = self.external_page
+        return link
+
+    def __unicode__(self):
+        return self.title
+
+class PageLinkSetPlugin(CMSPlugin):
+    link_set = models.ForeignKey(PageLinkSet, on_delete=models.SET_NULL, null=True)
+    additional_classes = models.CharField(max_length=255, blank=True, null=True, help_text=_('class names delimited by spaces that will be appended'))
+
+    def __unicode__(self):
+        return self.link_set.title
+
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class SpeLinkCategory(models.Model):

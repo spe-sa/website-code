@@ -33,6 +33,8 @@ def article_links(request):
                }
     return render(request, 'spe_blog/crawler_index.html', context)
 
+def staff_index(request):
+    return render(request, 'spe_blog/staff_index.html')
 
 def article_index(request):
     # get parameters if we posted/ if not get them from GET in case we refresh the page

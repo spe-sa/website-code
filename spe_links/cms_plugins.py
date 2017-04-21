@@ -1,7 +1,8 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from .models import SpeLinkPluginModel, SpeLink
+from .models import SpeLinkPluginModel, SpeLink, PageLinkSetPlugin, PageLink
 from django.utils.translation import ugettext as _
+
 
 
 class SpeLinkPluginPublisher(CMSPluginBase):
@@ -19,5 +20,21 @@ class SpeLinkPluginPublisher(CMSPluginBase):
 
         return context
 
+class PageLinkSetPluginInstance(CMSPluginBase):
+    model = PageLinkSetPlugin
+    name = "SPE Set of Links"
+    render_template = "spe_links/plugins/bootstrap_links.html"
+    allow_children = True
+    module = 'Links'
 
+    def render(self, context, instance, placeholder):
+        links = PageLink.objects.filter(page_set=instance.link_set)
+        context.update({
+            'instance': instance,
+            'links': links
+        })
+        return context
+
+
+plugin_pool.register_plugin(PageLinkSetPluginInstance)
 plugin_pool.register_plugin(SpeLinkPluginPublisher)  # register the plugin

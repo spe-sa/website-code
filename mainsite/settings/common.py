@@ -322,6 +322,7 @@ CMS_PLACEHOLDER_CONF = {
                     'AccordionPlugin',
                     'SPECarouselHeaderPlugin',
                     'SPECarouselPlugin',
+                    'PageLinkSetPluginInstance'
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
