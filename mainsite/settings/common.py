@@ -185,6 +185,7 @@ INSTALLED_APPS = (
     'spe_sponsors',
     'spe_panels',
     'spe_accordion',
+    'spe_carousel',
 )
 
 LANGUAGES = (
@@ -319,6 +320,8 @@ CMS_PLACEHOLDER_CONF = {
                     'PanelPlugin',
                     'AccordionHeaderPlugin',
                     'AccordionPlugin',
+                    'SPECarouselHeaderPlugin',
+                    'SPECarouselPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
