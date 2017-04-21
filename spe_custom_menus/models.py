@@ -21,7 +21,7 @@ LEVEL_CHOICES = ((1, "Top Level"),
 
 
 class CustomMenus(models.Model):
-    title = models.CharField('Title', null=True, blank=True, max_length=100)
+    title = models.CharField('Title', unique=True, max_length=100)
     branding = models.CharField('Branding on menu', null=True, blank=True, max_length=30)
     external_link = models.URLField(
         verbose_name=_('External link'),
