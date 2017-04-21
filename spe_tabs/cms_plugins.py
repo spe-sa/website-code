@@ -15,6 +15,7 @@ class TabHeaderPlugin(CMSPluginBase):
         context.update({
             'instance': instance,
         })
+        self.render_template = instance.type
         return context
 
 
