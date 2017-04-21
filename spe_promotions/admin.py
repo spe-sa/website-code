@@ -27,6 +27,7 @@ blank_timezone.short_description = "Blank Time Zones"
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end', 'event_type__name')
+    fields = ['event', 'event_start_date', 'event_end_date', 'event_text_after', 'event_location', 'teaser', 'click_url', 'picture', 'disciplines', 'regions', 'topics', 'start', 'end', 'sponsored']
     exclude = ['latitude', 'longitude']
     readonly_fields = ['hits', 'impressions', 'last_impression']
     actions = [blank_timezone, ]
@@ -34,21 +35,25 @@ class SimpleEventPromotionAdmin(admin.ModelAdmin):
 
 class NotLoggedInMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class NonMemberMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class MemberNoDisciplineMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
 class MemberNoRegionMessageAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end')
+    fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
