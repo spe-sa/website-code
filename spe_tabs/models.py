@@ -12,7 +12,7 @@ class TabHeader(CMSPlugin):
     """
     A plugin that has Tab classes as children.
     """
-    # type = models.CharField(max_length=255, choices=TYPES, default=DEFAULT_TYPE)
+    type = models.CharField(max_length=255, choices=TYPES, default=DEFAULT_TYPE)
 
     def __unicode__(self):
         dictionary = dict(TYPES)
