@@ -16,7 +16,7 @@ class TabHeader(CMSPlugin):
 
     def __unicode__(self):
         dictionary = dict(TYPES)
-        return u"{1} - {0} tabs".format(dictionary[self.type], self.cmsplugin_set.all().count())
+        return u"{0} - {1} tabs".format(dictionary[self.type], self.cmsplugin_set.all().count())
 
 
 class Tab(CMSPlugin):
