@@ -585,14 +585,15 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         if instance.discipline:
             dcode = instance.discipline.code
         context.update({'ducode': ducode, 'dcode': dcode})
-        cutoff = datetime.now() - timedelta(days=instance.in_last)
+        cutoff_1 = datetime.now() - timedelta(days=instance.in_last)
+        cutoff_2 = datetime.now() - timedelta(days=instance.published_in_last)
         # if instance.this_month:
         #     cutoff2 = datetime.now() - timedelta(days=int(datetime.now().strftime("%d")))
         #     qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), date__gte=cutoff2, article_last_viewed__gte=cutoff)
         # else:
         #     qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
         if instance.order_by == "-article_hits":
-            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
+            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff_1, date__gte=cutoff_2)
         else:
             qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
 

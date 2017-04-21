@@ -39,7 +39,7 @@ class ArticlesListSelectionForm(ModelForm):
     class Meta:
         model = ArticlesListingPlugin
         exclude = []
-        fields = ['template', 'cnt', 'order_by', 'starting_with', 'in_last', 'publication', 'print_volume',
+        fields = ['template', 'cnt', 'order_by', 'starting_with', 'in_last', 'published_in_last', 'publication', 'print_volume',
                   'print_issue',
                   'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol',
                   'whitetext', 'boxtitle', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']

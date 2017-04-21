@@ -722,6 +722,7 @@ class ArticlesListingPlugin(CMSPlugin):
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)
     starting_with = models.PositiveIntegerField(default=1)
     in_last = models.PositiveIntegerField(default=30, verbose_name='Most Read in last (days)')
+    published_in_last = models.PositiveIntegerField(default=30, verbose_name='Published in last (days)')
     # limit to
     publication = models.ForeignKey(Publication, blank=True, null=True, on_delete=models.SET_NULL)
     print_volume = models.PositiveIntegerField(blank=True, null=True)
