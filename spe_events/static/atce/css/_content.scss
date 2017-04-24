@@ -3,3 +3,19 @@
 ====================================================================== */
 @import 'vars';
 
+.sponsorBar {
+  background-color:       $col-grey-light;
+}
+.byTheNumbersBar {
+  background-color:       $col-atce-green;
+
+  .btNumIcon {
+    font-size:            50px;
+  }
+
+  h3 {
+    font-weight:            $font-light;
+    margin-bottom:        20px;
+  }
+
+}

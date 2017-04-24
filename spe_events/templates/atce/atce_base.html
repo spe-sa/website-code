@@ -1,6 +1,12 @@
 {% extends "events_html5_bootstrap.html" %}
 {% load cms_tags sekizai_tags menu_tags staticfiles %}
 
+    {% block web_fonts %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200, 300,400,400i,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:500" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">
+    {% endblock web_fonts %}
+
     {% block css_base %}
         <link rel="stylesheet" type="text/css" media="all" href="{% static 'atce/css/mainstyle.css' %}" />
     {% endblock css_base %}
@@ -13,22 +19,44 @@
     {# adding block content_header to base cms template for overriding #}
     {% block content_header %}
         <div class="row topbar">
-            <div class="col-md-10 col-md-offset-1">Top Bar</div>
+            <div class="col-md-1 col-md-offset-1"><a href="#">SPE</a></div>
+            <div class="col-md-1"><a href="#">About</a></div>
+            <div class="col-md-8 text-right"><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></div>
         </div>
         <div class="row logobar">
-            <div class="col-md-10 col-md-offset-1">Logo Bar</div>
+            <div class="col-md-5 col-md-offset-1 visible-md visible-lg mainLogo text-left"><img src="{% static 'atce/imgs/SPE_ATCE_Logo_Horiz.svg' %}" class="mainLogoImg img-responsive"/></div>
+            <div class="col-md-5 col-md-offset-1 visible-xs visible-sm mainLogo text-center"><img src="{% static 'atce/imgs/SPE_ATCE_Logo_Horiz.svg' %}" class="mainLogoImg img-responsive" style="margin:auto;" /></div>
+            <div class="col-md-5 topAddress text-center">
+                <h3>OCTOBER 9-11</h3>
+                <p>Henry B. Gonzalez Convention Center<br>
+                San Antonio, Texas, USA</p>
+            </div>
         </div>
         <div class="row menubar">
-            <div class="col-md-10 col-md-offset-1"><h4>MENU</h4> {% placeholder "Menu" %}</div>
+            <div class="col-md-10 col-md-offset-1">{% placeholder "Menu" %}</div>
         </div>
     {% endblock content_header %}
 
     {# adding block content_footer to base cms template for overriding #}
     {% block content_footer %}
-        <div class="footerbar">
-            <div class="col-md-10 col-md-offset-1">Footer</div>
+        <div class="row footerbar">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <p>The Society of Petroleum Engineers (SPE) is a not-for-profit organization. Income from this event will be invested back into SPE to support many other Society programs. When you attend an SPE event, you help provide even more opportunities for industry professionals to enhance their technical and professional competence. Scholarships, certification, the Distinguished Lecturer program, and SPE's energy education program Energy4me are just a few examples of programs that are supported by SPE.</p>
+                <p>&nbsp;</p>
+                <h3>Get In Touch</h3>
+                <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 1.972.952.9393 &nbsp;&nbsp;&nbsp; <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:support@spe.org">support@spe.org</a></h4>
+                <h4 class="footerSocials">
+                    <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
+                </h4>
+                <span>facebook like & follow Twitter</span>
+                <p>&nbsp;</p>
+            </div>
         </div>
-        <div class="copyrightbar">
+        <div class="row copyrightbar">
             <div class="col-md-10 col-md-offset-1 text-center">
                 <p>Copyright &copy; 2017, Society of Petroleum Engineers. All rights reserved.</p>
             </div>

@@ -10,9 +10,9 @@
 /* =================================================================== */
 /* VARIABLES
 ====================================================================== */
-body { font-family: "proxima-nova", sans-serif; }
+body { font-family: "Montserrat", sans-serif; }
 
-h1, h2, h3, h4 { font-family: "proxima-nova", sans-serif; font-weight: 700; }
+h1, h2, h3, h4 { font-family: "Montserrat", sans-serif; font-weight: 700; }
 
 h1 { font-size: 30px; }
 
@@ -20,9 +20,9 @@ h2 { font-size: 25px; }
 
 h3 { font-size: 20px; }
 
-h4 { font-size: 18px; }
+h4 { font-size: 18px; font-weight: 300; }
 
-p { font-size: 15px; }
+p { font-size: 15px; font-weight: 300; }
 
 * { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important; }
 
@@ -38,11 +38,44 @@ a:hover { text-decoration: none; }
 /* =================================================================== */
 /* VARIABLES
 ====================================================================== */
+/* -------------------------------------------------------------
+  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
+
+  List of CSS3 Sass Mixins File to be @imported and @included as you need
+
+  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
+  ENDING css files
+
+  note: All CSS3 Properties are being supported by Safari 5
+  more info: http://www.findmebyip.com/litmus/#css3-properties
+
+------------------------------------------------------------- */
 .topbar { background-color: black; color: white; height: 30px; font-size: 15px; padding: 3px 0 0 0; }
 
-.logobar { height: 100px; }
+.topbar a { color: white; }
 
-.menubar { background-color: #67c18d; color: white; min-height: 60px; padding: 10px 0 0 0; }
+.topbar a:hover { background-color: white; color: black; }
+
+.logobar { min-height: 100px; }
+
+.menubar { background-color: #67c18d; color: white; min-height: 60px; padding: 0 0 0 0; }
+
+.topAddress p { font-weight: 400; }
+
+.mainLogo { padding-top: 20px; }
+
+.topAddress { color: #1c407d; }
+
+.mainLogoImg { max-width: 400px; }
+
+.navbar { margin-bottom: 0; }
+
+.navbar-nav li a { padding-top: 20px; font-size: 20px; font-weight: 300; color: white; height: 58px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
+.navbar-nav li a:hover { background-color: #74d79e; }
+
+.navbar-nav li:first-child a { padding-left: 0; }
 
 /* =================================================================== */
 /* MAIN CONTENT STYLES FOR ATCE
@@ -50,12 +83,48 @@ a:hover { text-decoration: none; }
 /* =================================================================== */
 /* VARIABLES
 ====================================================================== */
+.sponsorBar { background-color: #e1e1e1; }
+
+.byTheNumbersBar { background-color: #67c18d; }
+
+.byTheNumbersBar .btNumIcon { font-size: 50px; }
+
+.byTheNumbersBar h3 { font-weight: 300; margin-bottom: 20px; }
+
 /* =================================================================== */
 /* FOOTER STYLES FOR ATCE
 ====================================================================== */
 /* =================================================================== */
 /* VARIABLES
 ====================================================================== */
-.footerbar { height: 275px; background-color: #363636; }
+.footerbar { background-color: #363636; padding: 20px 0 0 0; color: white; }
+
+.footerbar h3 { font-family: "Ubuntu", sans-serif; letter-spacing: 3px; }
+
+.footerbar p { text-align: justify; }
+
+.footerbar h4 a { color: #67c18d; }
+
+.footerbar h4 a:hover { color: white; }
+
+.footerbar .footerSocials { font-size: 50px; }
+
+.footerbar .footerSocials a { color: #67c18d; }
+
+.footerbar .footerSocials a:hover { color: white; }
 
 .copyrightbar { height: 75px; background-color: #67c18d; padding: 25px 0 0 0; }
+
+/* -------------------------------------------------------------
+  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
+
+  List of CSS3 Sass Mixins File to be @imported and @included as you need
+
+  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
+  ENDING css files
+
+  note: All CSS3 Properties are being supported by Safari 5
+  more info: http://www.findmebyip.com/litmus/#css3-properties
+
+------------------------------------------------------------- */

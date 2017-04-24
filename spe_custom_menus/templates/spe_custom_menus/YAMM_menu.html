@@ -2,11 +2,13 @@
     <link href="css/yamm.css" rel="stylesheet">
 </head>
 
-<nav class="navbar yamm navbar-default " role="navigation">
+<nav class="navbar yamm" role="navigation">
     <div class="container-fluid">
+    {% if branding %}
         <div class="navbar-header">
             <a class="navbar-brand" href="{{ link }}">{{ branding }}</a>
         </div>
+    {% endif %}
         <div class="nav navbar-nav">
             {% for item in items %}
                 {% if item.is_back_up %}

@@ -22465,6 +22465,19 @@
 		"oS": 2,
 		"uL": 1
 		},
+	"\/spe_events\/static\/atce\/css\/_mixins.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/spe_events\/static\/atce\/css\/_mixins.css",
+		"oF": 0,
+		"oS": 2,
+		"uL": 1
+		},
 	"\/spe_events\/static\/atce\/css\/_vars.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -22500,6 +22513,26 @@
 		"oF": 0,
 		"oS": 2,
 		"uL": 1
+		},
+	"\/spe_events\/static\/atce\/imgs\/SPE_ATCE_Logo_Horiz.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_events\/static\/atce\/imgs\/SPE_ATCE_Logo_Horiz.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_events\/static\/atce\/imgs\/SPE_ATCE_Logo_Short_CMYK.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_events\/static\/atce\/imgs\/SPE_ATCE_Logo_Short_CMYK.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"\/spe_events\/templates\/atce\/atce_base.html": {
 		"ft": 8192,
@@ -23387,6 +23420,42 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_tabs\/cms_plugins.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/0001_initial.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/migrations\/0001_initial.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/0001_initial.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/migrations\/0001_initial.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/0002_tabheader_type.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/migrations\/0002_tabheader_type.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/0002_tabheader_type.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_tabs\/migrations\/0002_tabheader_type.pyc",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/__init__.py": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_tabs\/migrations\/__init__.py",
+		"oF": 0
+		},
+	"\/spe_tabs\/migrations\/__init__.pyc": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_tabs\/migrations\/__init__.pyc",
 		"oF": 0
 		},
 	"\/spe_tabs\/models.py": {

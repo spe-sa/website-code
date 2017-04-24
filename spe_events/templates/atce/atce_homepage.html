@@ -5,19 +5,40 @@
 
 {% block cms_content %}
 
-    <div class="">{% placeholder "Feature Slider" %}</div>
+    <div class="row">{% placeholder "Feature Slider" %}</div>
 
-    <div class="">{% placeholder "Content Area One" %}</div>
+    <div class="row">{% placeholder "Content Area One" %}</div>
 
-    <div class="">{% placeholder "Sponsor Band" %}</div>
+    <div class="row sponsorBar">{% placeholder "Sponsor Band" %}</div>
 
-    <div class="">{% placeholder "Content Area Two" %}</div>
+    <div class="row">{% placeholder "Content Area Two" %}</div>
 
-    <div class="">By the Numbers</div>
+    <div class="row byTheNumbersBar">
+        <div class="col-xs-12 text-center">
+            <h2>ATCE 2017 BY THE NUMBERS</h2>
+        </div>
 
-    <div class="">{% placeholder "Content Area Three" %}</div>
+        <div class="col-xs-6 col-md-3 text-center">
+            <span class="btNumIcon"><i class="fa fa-users" aria-hidden="true"></i></span>
+            <h3>Network with <strong>8,000+</strong> E&P Professionals</h3>
+        </div>
+        <div class="col-xs-6 col-md-3 text-center">
+            <span class="btNumIcon"><i class="fa fa-university" aria-hidden="true"></i></span>
+            <h3>Learn from <strong>390+</strong> Technical Presentations</h3>
+        </div>
+        <div class="col-xs-6 col-md-3 text-center">
+            <span class="btNumIcon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+            <h3>Attend <strong>80+</strong> Conference Sessions</h3>
+        </div>
+        <div class="col-xs-6 col-md-3 text-center">
+            <span class="btNumIcon"><i class="fa fa-map" aria-hidden="true"></i></span>
+            <h3>Access <strong>250+</strong> Exhibits</h3>
+        </div>
+    </div>
 
-    <div class="">MAP</div>
+    <div class="row">{% placeholder "Content Area Three" %}</div>
+
+    <div class="row">MAP</div>
 
 {% endblock cms_content %}
 

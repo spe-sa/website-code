@@ -4,8 +4,37 @@
 @import 'vars';
 
 .footerbar {
-  height:             275px;
   background-color:   $col-grey-dark;
+  padding:            20px 0 0 0;
+  color:              $col-white;
+
+  h3 {
+    font-family:      $font-titles2;
+    letter-spacing:   3px;
+  }
+
+  p {
+    text-align:       justify;
+  }
+  h4 {
+    a {
+      color:          $col-atce-green;
+
+      &:hover {
+        color:        $col-white;
+      }
+    }
+  }
+  .footerSocials {
+    font-size:        50px;
+
+    a {
+      color:          $col-atce-green;
+      &:hover {
+        color:        $col-white;
+      }
+    }
+  }
 }
 
 .copyrightbar {
@@ -13,3 +42,4 @@
   background-color:   $col-atce-green;
   padding:            25px 0 0 0;
 }
+
