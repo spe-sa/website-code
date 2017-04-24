@@ -1,0 +1,25 @@
+{% extends "atce/atce_base.html" %}
+{% load cms_tags sekizai_tags menu_tags staticfiles %}
+
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+{% block cms_content %}
+
+    <div class="">{% placeholder "Feature Slider" %}</div>
+
+    <div class="">{% placeholder "Content Area One" %}</div>
+
+    <div class="">{% placeholder "Sponsor Band" %}</div>
+
+    <div class="">{% placeholder "Content Area Two" %}</div>
+
+    <div class="">By the Numbers</div>
+
+    <div class="">{% placeholder "Content Area Three" %}</div>
+
+    <div class="">MAP</div>
+
+{% endblock cms_content %}
+
+
+

@@ -21,6 +21,7 @@
 {% block wrap_begin %}<div class="container-fluid">{% endblock wrap_begin %}
 
 {% block content_header %}
+
     <div class="row adZone1" id="adZone1">
         <div class="col-md-12 text-center" id="adLeaderboard">
             {% placeholder "ad zone 1" %}
@@ -31,6 +32,7 @@
     {% with header_template="include_twa_header.html" %}
         {{ block.super }}
     {% endwith %}
+
 {% endblock content_header %}
 
 {% block wrap_end %}</div><!-- CONTAINER END -->{% endblock wrap_end %}

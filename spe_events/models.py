@@ -11,7 +11,6 @@ class EventType(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class EventsByCurrentIPPlugin(CMSPlugin):
     number = models.PositiveIntegerField(default=1)
     disciplines = models.ManyToManyField(Tier1Discipline)
@@ -24,3 +23,14 @@ class EventsByCurrentIPPlugin(CMSPlugin):
     def copy_relations(self, old_instance):
         self.disciplines = old_instance.disciplines.all()
         self.types = old_instance.types.all()
+
+
+class EventSponsors(models.Model):
+    eventcode = models.CharField(max_length=150, unique=False)
+    sponsorname = models.CharField(max_length=150, unique=False)
+    sponsorlink = models.CharField(max_length=150, unique=False)
+    sponsorlogo = models.CharField(max_length=150, unique=False)
+    sponsororder = models.PositiveIntegerField(unique=True)
+
+    def __unicode__(self):
+        return self.sponsorname

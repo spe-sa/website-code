@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+<html><head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}This is my new project home page{% endblock title %} - {% render_block "title2" %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<link rel="shortcut icon" href="https://www.spe.org/static/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="https://www.spe.org/static/favicon.ico" type="image/x-icon">
+
+    {# Add Third-party plugins and apps here. Like JQuery & bootstrap #}
+    {% block plugs_apps %}{% endblock plugs_apps %}
+    <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
+    {# Add Third-party fonts here. Like google fonts, TypeKit, FontAwesome #}
+    {% block web_fonts %}
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,700' rel='stylesheet' type='text/css'>
+        <!-- CSS integration: font-family: 'Open Sans', sans-serif; -->
+    {% endblock web_fonts %}
+    {# Override block css_base to add main stylesheet includes based on SPEorg or indidvidual publications #}
+    {% block css_base %}{% endblock css_base %}
+    {# Override block css_site to add stylesheet includes based on unique templates #}
+    {% block css_site %}{% endblock css_site %}
+    {# Override block js_base to add main javascript includes based on SPEorg or indidvidual publications #}
+    {% block js_base %}{% endblock js_base %}
+    {#  Override block js_site to add javascript includes based on unique templates #}
+    {% block js_site %}{% endblock js_site %}
+    {# use addtoblock "css" to add inline css to this block #}
+    {% render_block "css" %}
+
+</head><body class="{% block body_class %}{% endblock %}">
+
+    {% render_block "google_scripts" %}
+    {# adding django-cms toolbar to the top of the page if logged in #}
+    {% cms_toolbar %}
+
+    <!-- OBSOLETE BROWSER NOTICE -->
+    <!--[if lt IE 8]>
+    <div id="obsolete-browser">
+        <div class="container">
+        <span>
+            <strong>SPE.org may not function properly in older versions of Internet Explorer.</strong> Go to <a href="http://browsehappy.com" target="_blank">Browse Happy</a> for information about updating your browser.
+        </span>
+        </div>
+    </div>
+    <![endif]-->
+
+    {# Add the page wrapper beginning here #}
+    {% block wrap_begin %}{% endblock wrap_begin %}
+
+    {# adding block content_header to base cms template for overriding #}
+    {% block content_header %}{% endblock content_header %}
+
+    {# adding block cms_content to base cms template for overriding #}
+    {% block cms_content %}
+        <div class="container-liquid {% block container_class %}page-content background{% endblock %}">
+            {% block content %}<i class="fa fa-meh-o"></i><span class="glyphicon glyphicon-picture" aria-hidden="true"></span>{% endblock content %}
+        </div>
+    {% endblock %}
+
+    {# adding block content_footer to base cms template for overriding #}
+    {% block content_footer %}{% endblock content_footer %}
+
+    {# Add the page wrapper ending here #}
+    {% block wrap_end %}{% endblock wrap_end %}
+
+    <!-- JS BLOCK -->
+    {# adding block js_inline to base cms template for overriding #}
+    {% render_block "js" %}
+
+    {#    misc adds to bottom#}
+    {% block last_instructions %}{% endblock last_instructions %}
+
+</body></html>

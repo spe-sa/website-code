@@ -1,0 +1,41 @@
+{% extends "events_html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags menu_tags staticfiles %}
+
+    {% block css_base %}
+        <link rel="stylesheet" type="text/css" media="all" href="{% static 'atce/css/mainstyle.css' %}" />
+    {% endblock css_base %}
+
+    {# Add the page wrapper beginning here #}
+    {% block wrap_begin %}
+        <div class="container-fluid">
+    {% endblock wrap_begin %}
+
+    {# adding block content_header to base cms template for overriding #}
+    {% block content_header %}
+        <div class="row topbar">
+            <div class="col-md-10 col-md-offset-1">Top Bar</div>
+        </div>
+        <div class="row logobar">
+            <div class="col-md-10 col-md-offset-1">Logo Bar</div>
+        </div>
+        <div class="row menubar">
+            <div class="col-md-10 col-md-offset-1"><h4>MENU</h4> {% placeholder "Menu" %}</div>
+        </div>
+    {% endblock content_header %}
+
+    {# adding block content_footer to base cms template for overriding #}
+    {% block content_footer %}
+        <div class="footerbar">
+            <div class="col-md-10 col-md-offset-1">Footer</div>
+        </div>
+        <div class="copyrightbar">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <p>Copyright &copy; 2017, Society of Petroleum Engineers. All rights reserved.</p>
+            </div>
+        </div>
+    {% endblock content_footer %}
+
+    {# Add the page wrapper beginning here #}
+    {% block wrap_end %}
+        </div><!-- end Container -->
+    {% endblock wrap_end %}

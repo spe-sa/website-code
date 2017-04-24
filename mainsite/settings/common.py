@@ -243,7 +243,7 @@ CMS_TEMPLATES = (
     ('print_base.html', 'Print Page'),
     ('newsletter_personalized.html', 'Newsletter - Personalized'),
     ('bootstrap_full_width.html', 'Bootstrap Generic Full Width'),
-    # ('twa_detailpage.html', 'TWA Detail Page'),
+    ('atce/atce_homepage.html', 'ATCE Homepage'),
 )
 
 CMS_PERMISSION = True

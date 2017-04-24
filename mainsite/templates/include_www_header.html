@@ -19,6 +19,7 @@
 {#                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>#}
 {#            </div>#}
     </div>
+
 {#    visitor.id: {{ visitor.id|default:"" }}<br>#}
 {#    variables.DEBUG: {{ variables.DEBUG }}<br>#}
 {#    variables.is_debug: {{ variables.is_debug }}<br>#}
@@ -26,6 +27,7 @@
 {#    variables.login_id: {{ variables.login_id }}<br>#}
 {#    variables.dba_id: {{ variables.dba_id }}<br>#}
 {#    variables.cip: {{ variables.cip }}<br>#}
+
     <!-- YAMM navbar -->
     <div class="navbar yamm navbar-default row">
       <div class="col-sm-12 col-sm-offset-0">
@@ -33,6 +35,7 @@
           <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 <!--                  <a href="#" class="navbar-brand">Yamm Megamenu</a>-->
         </div>
+
         <div id="navbar-collapse-1" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 
@@ -179,7 +182,9 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-12 visible-xs navcolborder"></div>
-                                <div class="nav-col col-sm-6 col-md-3">
+
+
+                                <div class="nav-col col-sm-6 col-md-{{ colspacing }}">
                                     <ul>
                                         <li class="heading">MORE PUBLICATIONS</li>
                                         <li><a href="https://www.spe.org/en/twa/">The Way Ahead</a></li>
@@ -357,6 +362,7 @@
 
     <!-- LOGO BAR -->
     <div id="branding" class="row">
+
             <div class="col-xs-8 col-xs-offset-1 col-sm-4 col-sm-offset-0 logo-wrap">
 {#                        <a href="/" class="spe-logo" title="SPE Homepage"><h1 id="logo">The Society of Petroleum Engineers</h1></a>#}
                 <img src="{% static 'www/img/spe_logo_full.png' %}" class="img-responsive">
@@ -391,5 +397,6 @@
                     </div>
                 {% endif %}
             </div>
+
     </div>
 </header><!-- #spe-header -->

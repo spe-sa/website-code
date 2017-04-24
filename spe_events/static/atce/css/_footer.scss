@@ -1,0 +1,15 @@
+/* =================================================================== */
+/* FOOTER STYLES FOR ATCE
+====================================================================== */
+@import 'vars';
+
+.footerbar {
+  height:             275px;
+  background-color:   $col-grey-dark;
+}
+
+.copyrightbar {
+  height:             75px;
+  background-color:   $col-atce-green;
+  padding:            25px 0 0 0;
+}

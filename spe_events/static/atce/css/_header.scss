@@ -1,0 +1,21 @@
+/* =================================================================== */
+/* ATCE HEADER & MENUS
+====================================================================== */
+@import 'vars';
+
+.topbar {
+  background-color:   $col-black;
+  color:              $col-white;
+  height:             30px;
+  font-size:          $psize;
+  padding:            3px 0 0 0;
+}
+.logobar {
+  height:             100px;
+}
+.menubar {
+  background-color:   $col-atce-green;
+  color:              $col-white;
+  min-height:         60px;
+  padding:            10px 0 0 0;
+}
