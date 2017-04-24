@@ -166,6 +166,7 @@ INSTALLED_APPS = (
     'config.apps.RequestConfig',
     # 'spe_events',
     'config.apps.SpeEventConfig',
+
     'djangocms_forms',
     'cmsplugin_bootstrap_columns',
     'spe_preferences',
@@ -174,17 +175,14 @@ INSTALLED_APPS = (
     'dashboard',
     'spe_promotions',
     'carousel',
-    # 'helloworld'
     'django_fsm',
-    # 'spe_newsletter',
     'spe_messages',
     'spe_tabs',
-    # 'adminsortable2',
     'adminsortable',
     'spe_custom_menus',
     'spe_sponsors',
     'spe_panels',
-    'spe_accordion',
+    # 'spe_accordion',
     'spe_carousel',
 )
 
