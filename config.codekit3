@@ -21359,22 +21359,10 @@
 		"oAP": "\/smartsnippets\/widgets_pool.pyc",
 		"oF": 0
 		},
-	"\/spe_accordion\/__init__.py": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/spe_accordion\/__init__.py",
-		"oF": 0
-		},
 	"\/spe_accordion\/__init__.pyc": {
 		"ft": 8192,
 		"oA": 1,
 		"oAP": "\/spe_accordion\/__init__.pyc",
-		"oF": 0
-		},
-	"\/spe_accordion\/cms_plugins.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_accordion\/cms_plugins.py",
 		"oF": 0
 		},
 	"\/spe_accordion\/cms_plugins.pyc": {
@@ -21383,28 +21371,10 @@
 		"oAP": "\/spe_accordion\/cms_plugins.pyc",
 		"oF": 0
 		},
-	"\/spe_accordion\/models.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_accordion\/models.py",
-		"oF": 0
-		},
 	"\/spe_accordion\/models.pyc": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_accordion\/models.pyc",
-		"oF": 0
-		},
-	"\/spe_accordion\/templates\/spe_accordion\/accordion.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_accordion\/templates\/spe_accordion\/accordion.html",
-		"oF": 0
-		},
-	"\/spe_accordion\/templates\/spe_accordion\/accordionheader.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_accordion\/templates\/spe_accordion\/accordionheader.html",
 		"oF": 0
 		},
 	"\/spe_blog\/__init__.py": {
