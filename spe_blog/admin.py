@@ -18,6 +18,7 @@ class BlogAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
+    list_filter = ('publication__code', 'date',)
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     readonly_fields = ['article_hits', 'article_last_viewed', ]
@@ -85,7 +86,7 @@ class ArticleEditorAdmin(ArticleAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
-    list_filter = ('published', 'date', )
+    list_filter = ('publication__code', 'published', 'date', )
     fieldsets = (
         (None, {
             'fields': (
@@ -137,6 +138,7 @@ class ArticleEditorAdmin(ArticleAdmin):
 
 class BriefAdmin(admin.ModelAdmin):
     search_fields = ('id', 'title')
+    list_filter = ('publication__code', 'date',)
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     readonly_fields = ['article_hits', 'article_last_viewed', ]
@@ -181,7 +183,7 @@ class BriefEditorAdmin(BriefAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
-    list_filter = ('published', 'date', )
+    list_filter = ('publication__code', 'published', 'date', )
     fieldsets = (
         (None, {
             'fields': (
