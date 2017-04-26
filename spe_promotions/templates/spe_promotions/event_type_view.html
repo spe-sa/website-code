@@ -19,7 +19,7 @@
                 {% for event_type, promos in event_types.items %}
                     {% for key, values in promos.items %}
                         {% for value in values %}
-                            ['{{ event_type.name }}', '{{ value.event_location }}', '{{ value.event }}', new Date({{ value.start.year }}, {{ value.start.month }}, {{ value.start.day }}), new Date({{ value.end.year }}, {{ value.end.month }}, {{ value.end.day }})],
+                            ['{{ event_type.name }}', '{{ value.event }}', '{{ value.event_location }}', new Date({{ value.start.year }}, {{ value.start.month }}, {{ value.start.day }}), new Date({{ value.end.year }}, {{ value.end.month }}, {{ value.end.day }})],
                         {% endfor %}
                     {% endfor %}
                 {% endfor %} ]);
