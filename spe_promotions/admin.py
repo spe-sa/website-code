@@ -25,9 +25,18 @@ def blank_timezone(modeladmin, request, queryset):
 blank_timezone.short_description = "Blank Time Zones"
 
 
+def custom_titled_filter(title):
+    class Wrapper(admin.FieldListFilter):
+        def __new__(cls, *args, **kwargs):
+            instance = admin.FieldListFilter.create(*args, **kwargs)
+            instance.title = title
+            return instance
+    return Wrapper
+
+
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end', 'event_type__name')
-    list_filter = ('event_type__name', 'regions__region_name' )
+    list_filter = (('event_type__name', custom_titled_filter('Event Type')), ('disciplines__name', custom_titled_filter('Discipline')), ('regions__region_name', custom_titled_filter('Region')), )
     fields = ['event', 'event_start_date', 'event_end_date', 'event_text_after', 'event_location', 'teaser', 'click_url', 'picture', 'disciplines', 'regions', 'topics', 'start', 'end', 'sponsored']
     exclude = ['latitude', 'longitude']
     readonly_fields = ['hits', 'impressions', 'last_impression']
