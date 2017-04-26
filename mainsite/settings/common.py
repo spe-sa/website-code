@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'admin_shortcuts',
     'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.sitemaps',
@@ -177,13 +178,14 @@ INSTALLED_APPS = (
     'carousel',
     'django_fsm',
     'spe_messages',
-    'spe_tabs',
+    # 'spe_tabs',
     'adminsortable',
     'spe_custom_menus',
     'spe_sponsors',
-    'spe_panels',
-    # 'spe_accordion',
-    'spe_carousel',
+    # 'spe_panels',
+    # 'spe_carousel',
+    # 'spe_themes',
+    'spe_ui_components',
 )
 
 LANGUAGES = (
@@ -320,7 +322,8 @@ CMS_PLACEHOLDER_CONF = {
                     'AccordionPlugin',
                     'SPECarouselHeaderPlugin',
                     'SPECarouselPlugin',
-                    'PageLinkSetPluginInstance'
+                    'PageLinkSetPluginInstance',
+                    'StylePlugin'
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
@@ -720,3 +723,96 @@ DEFAULT_IP = '192.152.183.80'
 # Allow deferred Publishing and Retirement of CMS Pages
 CMS_SHOW_START_DATE = True
 CMS_SHOW_END_DATE = True
+
+
+ADMIN_SHORTCUTS = [
+    {
+        'title': 'Channel',
+        'shortcuts': [
+            {
+                'url': '/',
+                'open_new_window': True,
+                'title': 'WWW',
+            },
+            {
+                'url': '/jpt/jpt-main-page',
+                'open_new_window': True,
+                'title': 'JPT',
+
+            },
+            {
+                'url': '/ogf/ogf-main-page',
+                'open_new_window': True,
+                'title': 'OGF',
+
+            },
+            {
+                'url': '/twa/twa-main-page',
+                'open_new_window': True,
+                'title': 'TWA',
+            },
+        ]
+    },
+    {
+        'title': 'Content',
+        'shortcuts': [
+            {
+                'url_name': 'admin:spe_blog_articleeditor_changelist',
+                'open_new_window': True,
+                'title': 'Articles',
+                'count_new': 'spe_blog.utils.count_articles',
+            },
+            {
+                'url_name': 'admin:spe_blog_briefeditor_changelist',
+                'open_new_window': True,
+                'title': 'Briefs',
+                'count_new': 'spe_blog.utils.count_briefs',
+            },
+        ]
+    },
+    {
+        'title': 'Promotions',
+        'shortcuts': [
+            {
+                'url_name': 'admin:spe_promotions_simpleeventpromotion_changelist',
+                'open_new_window': True,
+                'title': 'Promotions',
+            },
+            {
+                'url': '/staff/promotions/timeline',
+                'open_new_window': True,
+                'title': 'Timeline',
+            },
+            {
+                'url': '/staff/promotions/discipline',
+                'open_new_window': True,
+                'title': 'Discipline',
+            },
+            {
+                'url': '/staff/promotions/region',
+                'open_new_window': True,
+                'title': 'Region',
+            },
+            {
+                'url': '/staff/promotions/event_type',
+                'open_new_window': True,
+                'title': 'Event Type',
+            },
+        ]
+    },
+]
+
+ADMIN_SHORTCUTS_CLASS_MAPPINGS = [
+    ['ogf', 'home'],
+    ['jpt', 'home'],
+    ['twa', 'home'],
+    ['timeline', 'clock'],
+    ['discipline', 'clock'],
+    ['region', 'clock'],
+    ['event_type', 'clock'],
+]
+
+ADMIN_SHORTCUTS_SETTINGS = {
+    'hide_app_list': False,
+    'open_new_window': False,
+}

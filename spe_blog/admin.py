@@ -85,6 +85,7 @@ class ArticleEditorAdmin(ArticleAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
+    list_filter = ('published', 'date', )
     fieldsets = (
         (None, {
             'fields': (
@@ -180,6 +181,7 @@ class BriefEditorAdmin(BriefAdmin):
     prepopulated_fields = {"slug": ("title",)}
     exclude = ['auto_tags']
     filter_horizontal = ('topics',)
+    list_filter = ('published', 'date', )
     fieldsets = (
         (None, {
             'fields': (
