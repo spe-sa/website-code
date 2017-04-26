@@ -241,7 +241,6 @@ CMS_TEMPLATES = (
     ('twa_subpage.html', 'TWA SubPage'),
     ('generic_page.html', 'Generic Page'),
     ('print_base.html', 'Print Page'),
-    ('newsletter_personalized.html', 'Newsletter - Personalized'),
     ('bootstrap_full_width.html', 'Bootstrap Generic Full Width'),
     ('atce/atce_homepage.html', 'ATCE Homepage'),
 )
