@@ -757,15 +757,34 @@ ADMIN_SHORTCUTS = [
         'shortcuts': [
             {
                 'url_name': 'admin:spe_blog_articleeditor_changelist',
+                'url_extra': '?published__exact=0',
                 'open_new_window': True,
-                'title': 'Articles',
+                'title': 'Unpublished Articles',
                 'count_new': 'spe_blog.utils.count_articles',
             },
             {
                 'url_name': 'admin:spe_blog_briefeditor_changelist',
+                'url_extra': '?published__exact=0',
                 'open_new_window': True,
-                'title': 'Briefs',
+                'title': 'Unpublished Briefs',
                 'count_new': 'spe_blog.utils.count_briefs',
+            },
+            {
+                'url_name': 'admin:spe_blog_articleeditor_changelist',
+                'url_extra': '?publication__code=JPT',
+                'open_new_window': True,
+                'title': 'JPT Articles',
+            },
+            {
+                'url_name': 'admin:spe_blog_articleeditor_changelist',
+                'url_extra': '?publication__code=OGF',
+                'open_new_window': True,
+                'title': 'OGF Articles',
+            },            {
+                'url_name': 'admin:spe_blog_articleeditor_changelist',
+                'url_extra': '?publication__code=TWA',
+                'open_new_window': True,
+                'title': 'TWA Articles',
             },
         ]
     },
