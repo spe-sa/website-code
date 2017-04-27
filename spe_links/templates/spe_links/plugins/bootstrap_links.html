@@ -6,8 +6,8 @@
             <li><a href="{{ link.get_absolute_url }}"><span class="title">{{ link.title }}</span></a></li>
         {% endfor %}
 		</ul>
-        {% if instance.link_set and instance.link_set.get_absolute_url and instance.link_set.show_all_text %}
-		    <a class="see-all" href="{{ instance.link_set.get_absolute_url }}">All {{ instance.link_set.show_all_text }}<span></span></a>
-        {% endif %}
+{#        {% if instance.link_set and instance.link_set.get_absolute_url and instance.link_set.show_all_text %}#}
+{#		    <a class="see-all" href="{{ instance.link_set.get_absolute_url }}">All {{ instance.link_set.show_all_text }}<span></span></a>#}
+{#        {% endif %}#}
     </div>
 {% endif %}

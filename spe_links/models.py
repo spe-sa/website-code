@@ -14,32 +14,32 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.conf import settings
 
 class PageLinkSet(models.Model):
-    title = models.CharField('Title', max_length=100, unique=True)
-    show_all_text = models.CharField(max_length=50, blank=True, null=True)
-    show_all_internal_link = PageField(
-        verbose_name=_('Internal Page'),
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text=_('If provided, overrides the external link.'),
-    )
-    show_all_external_link = models.URLField(
-        verbose_name=_('External Link'),
-        blank=True,
-        max_length=2040,
-        help_text=_('Provide a valid URL to an external website.'),
-    )
+    title = models.CharField('List Name', max_length=100, unique=True)
+    # show_all_text = models.CharField(max_length=50, blank=True, null=True)
+    # show_all_internal_link = PageField(
+    #     verbose_name=_('Internal Page'),
+    #     blank=True,
+    #     null=True,
+    #     on_delete=models.SET_NULL,
+    #     help_text=_('If provided, overrides the external link.'),
+    # )
+    # show_all_external_link = models.URLField(
+    #     verbose_name=_('External Link'),
+    #     blank=True,
+    #     max_length=2040,
+    #     help_text=_('Provide a valid URL to an external website.'),
+    # )
 
     class Meta:
         verbose_name_plural = 'Set of Links'
 
-    def get_absolute_url(self):
-        link = ""
-        if self.show_all_internal_link:
-            link = self.show_all_internal_link.get_absolute_url()
-        elif self.show_all_external_link:
-            link = self.show_all_external_link
-        return link
+    # def get_absolute_url(self):
+    #     link = ""
+    #     if self.show_all_internal_link:
+    #         link = self.show_all_internal_link.get_absolute_url()
+    #     elif self.show_all_external_link:
+    #         link = self.show_all_external_link
+    #     return link
 
     def __unicode__(self):
         return self.title
