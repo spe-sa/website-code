@@ -322,7 +322,8 @@ CMS_PLACEHOLDER_CONF = {
                     'SPECarouselHeaderPlugin',
                     'SPECarouselPlugin',
                     'PageLinkSetPluginInstance',
-                    'StylePlugin'
+                    'StylePlugin',
+                    'JumbotronPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
@@ -799,7 +800,7 @@ ADMIN_SHORTCUTS = [
             {
                 'url': '/staff/promotions/search/',
                 'open_new_window': True,
-                'title': 'Test Filter',
+                'title': 'Test Filters',
             },
             {
                 'url': '/staff/promotions/timeline',

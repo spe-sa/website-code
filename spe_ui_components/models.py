@@ -10,7 +10,7 @@ TYPES = (
 
 class CarouselHeader(CMSPlugin):
     """
-    A plugin that has Tab classes as children.
+    A plugin that has Carousel classes as children.
     """
 
     def __unicode__(self):
@@ -19,7 +19,7 @@ class CarouselHeader(CMSPlugin):
 
 class Carousel(CMSPlugin):
     """
-    An individual Tab for the TabHeader plugin.
+    An individual Carousel for the CarouselHeader plugin.
     """
     title = models.CharField(max_length=64)
 
@@ -27,9 +27,18 @@ class Carousel(CMSPlugin):
         return u"{0}".format(self.title)
 
 
+class Jumbotron(CMSPlugin):
+    """
+     An individual Jumbotron plugin.
+    """
+
+    def __unicode__(self):
+        return u"Jumbotron"
+
+
 class Panel(CMSPlugin):
     """
-    An individual Tab for the TabHeader plugin.
+    An individual Panel plugin.
     """
     title = models.CharField(max_length=64)
     heading = models.CharField(max_length=64, blank=True, null=True,)

@@ -2,8 +2,23 @@ from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 
 from .models import CarouselHeader, Carousel
+from .models import Jumbotron
 from .models import Panel
 from .models import TabHeader, Tab
+
+
+class JumbotronPlugin(CMSPluginBase):
+    model = Jumbotron
+    name = "Jumbotron"
+    module = 'Components'
+    render_template = "jumbotron/jumbotron.html"
+    allow_children = True
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
 
 
 class PanelPlugin(CMSPluginBase):
@@ -81,6 +96,7 @@ class TabPlugin(CMSPluginBase):
         return context
 
 
+plugin_pool.register_plugin(JumbotronPlugin)
 plugin_pool.register_plugin(PanelPlugin)
 plugin_pool.register_plugin(SPECarouselPlugin)
 plugin_pool.register_plugin(SPECarouselHeaderPlugin)
