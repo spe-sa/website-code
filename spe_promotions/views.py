@@ -26,6 +26,8 @@ from .models import (
     SimpleMembershipPromotion,
     MembershipPromotionsClicks,
 )
+from .filters import SimplePromotionFilter
+
 
 exclude_agents = ['bot', 'spider', 'crawl', 'search']
 
@@ -432,3 +434,9 @@ def promotion_by_event_type(request):
         context.update({type: {'promos': promotions},},)
     context = {'event_types': context}
     return render(request, 'spe_promotions/event_type_view.html', context)
+
+
+def filter_simple_promotions(request):
+    promotion_list = SimpleEventPromotion.objects.all()
+    promotion_filter = SimplePromotionFilter(request.GET, queryset=promotion_list)
+    return render(request, 'spe_promotions/promotion_list.html', {'filter': promotion_filter})

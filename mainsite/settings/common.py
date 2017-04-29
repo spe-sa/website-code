@@ -167,7 +167,6 @@ INSTALLED_APPS = (
     'config.apps.RequestConfig',
     # 'spe_events',
     'config.apps.SpeEventConfig',
-
     'djangocms_forms',
     'cmsplugin_bootstrap_columns',
     'spe_preferences',
@@ -186,6 +185,7 @@ INSTALLED_APPS = (
     # 'spe_carousel',
     # 'spe_themes',
     'spe_ui_components',
+    # 'model_report',
 )
 
 LANGUAGES = (
@@ -795,6 +795,11 @@ ADMIN_SHORTCUTS = [
                 'url_name': 'admin:spe_promotions_simpleeventpromotion_changelist',
                 'open_new_window': True,
                 'title': 'Promotions',
+            },
+            {
+                'url': '/staff/promotions/search/',
+                'open_new_window': True,
+                'title': 'Test Filter',
             },
             {
                 'url': '/staff/promotions/timeline',

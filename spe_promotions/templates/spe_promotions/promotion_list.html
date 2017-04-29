@@ -1,0 +1,57 @@
+{% extends "staff_base.html" %}
+
+{% block content %}
+  <form method="get">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            {% for field in filter.form %}
+                {% if forloop.counter == 1 %}
+                    <div class="row">
+                {% endif %}
+                {% if forloop.counter == 3 %}
+                    </div>
+                    <div class="row"><p> </p></div>
+                    <div class="row">
+                {% endif %}
+                {% if forloop.counter < 3 %}
+                    <div class="col-md-6">
+                {% elif forloop.counter == 3%}
+                    <div class="col-md-3">
+                {% elif forloop.counter == 4 %}
+                    <div class="col-md-5">
+                {% else %}
+                    <div class="col-md-4">
+                {% endif %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <p></p><button class="btn btn-lg" type="submit">FILTER</button></p>
+    </div>
+  </form>
+  <ul>
+  <table style="width:100%">
+  <tr>
+    <th>Number</th>
+    <th>Event Type</th>
+    <th>Title</th>
+  </tr>
+  {% for promotion in filter.qs %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ promotion.event_type.name }}</td>
+        <td>{{ promotion.event }}</td>
+      </tr>
+  {% endfor %}
+  </table>
+  </ul>
+{% endblock %}

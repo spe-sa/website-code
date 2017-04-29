@@ -23,6 +23,12 @@ router.register(TopFiveBriefsWidget, 'top_5_briefs')
 router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 
 
+# Model Reports
+
+from model_report import report
+report.autodiscover()
+
+
 # Specialized Sitemaps
 
 from django.contrib.sitemaps.views import sitemap
@@ -58,10 +64,12 @@ urlpatterns = i18n_patterns('',
     url(r'^staff/promotions/discipline/', 'spe_promotions.views.promotion_by_discipline', ),
     url(r'^staff/promotions/region/', 'spe_promotions.views.promotion_by_region', ),
     url(r'^staff/promotions/event_type/', 'spe_promotions.views.promotion_by_event_type', ),
+    url(r'^staff/promotions/search/', 'spe_promotions.views.filter_simple_promotions', ),
     url(r'^staff/articles/export_details/', 'spe_blog.views.export_article_detail_excel', ),
     url(r'^staff/briefs/export_details/', 'spe_blog.views.export_brief_detail_excel', ),
     url(r'^staff/articles/export_article_disciplines/', 'spe_blog.views.export_article_disciplines_excel', ),
     url(r'^staff/articlesandbriefs/sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^staff/report/', include('model_report.urls'), ),
     url(r'^staff/', include('spe_blog.urls_internal')),
 
     url(r'^spe_links/', include('spe_links.urls')),

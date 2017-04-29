@@ -2,9 +2,8 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-# from django.utils.translation import ugettext_lazy as _
 
-# from .models import Promotion, SimpleEventPromotion
+# from django.utils.translation import ugettext_lazy as _
 
 from .models import (
     SimpleEventPromotion,
@@ -36,7 +35,7 @@ def custom_titled_filter(title):
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end', 'event_type__name')
-    list_filter = (('event_type__name', custom_titled_filter('Event Type')), ('disciplines__name', custom_titled_filter('Discipline')), ('regions__region_name', custom_titled_filter('Region')), )
+    list_filter = (('event_type__name', custom_titled_filter('Event Type')), ('disciplines__name', custom_titled_filter('Disciplines')), ('regions__region_name', custom_titled_filter('Region')), )
     fields = ['event', 'event_start_date', 'event_end_date', 'event_text_after', 'event_location', 'teaser', 'click_url', 'picture', 'disciplines', 'regions', 'topics', 'start', 'end', 'sponsored']
     exclude = ['latitude', 'longitude']
     readonly_fields = ['hits', 'impressions', 'last_impression']
