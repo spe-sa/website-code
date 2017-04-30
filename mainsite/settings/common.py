@@ -800,7 +800,7 @@ ADMIN_SHORTCUTS = [
             {
                 'url': '/staff/promotions/search/',
                 'open_new_window': True,
-                'title': 'Test Filters',
+                'title': 'Test',
             },
             {
                 'url': '/staff/promotions/timeline',
