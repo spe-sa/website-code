@@ -23,10 +23,10 @@ router.register(TopFiveBriefsWidget, 'top_5_briefs')
 router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 
 
-# Model Reports
-
-from model_report import report
-report.autodiscover()
+# # Model Reports
+#
+# from model_report import report
+# report.autodiscover()
 
 
 # Specialized Sitemaps
