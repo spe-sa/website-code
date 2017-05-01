@@ -26,7 +26,7 @@ from .models import (
     SimpleMembershipPromotion,
     MembershipPromotionsClicks,
 )
-from .filters import SimplePromotionFilter
+from .filters import SimplePromotionFilter, SimpleMembershipFilter
 
 exclude_agents = ['bot', 'spider', 'crawl', 'search']
 
@@ -439,3 +439,9 @@ def filter_simple_promotions(request):
     promotion_list = SimpleEventPromotion.objects.all()
     promotion_filter = SimplePromotionFilter(request.GET, queryset=promotion_list)
     return render(request, 'spe_promotions/promotion_list.html', {'filter': promotion_filter})
+
+
+def filter_simple_membership(request):
+    membership_list = SimpleMembershipPromotion.objects.all()
+    membership_filter = SimpleMembershipFilter(request.GET, queryset=membership_list)
+    return render(request, 'spe_promotions/membership_list.html', {'filter': membership_filter})

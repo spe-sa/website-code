@@ -32,3 +32,22 @@ class SimplePromotionFilter(django_filters.FilterSet):
             'disciplines',
             'regions',
         ]
+
+
+class SimpleMembershipFilter(django_filters.FilterSet):
+    start = django_filters.DateFilter(
+        widget=forms.TextInput(attrs={'class': 'datepicker', 'placeholder': 'YYYY-MM-DD'}), lookup_expr='lte',
+        label='Start of test date range (blank for no filtering)', )
+    end = django_filters.DateFilter(widget=forms.TextInput(attrs={'class': 'datepicker', 'placeholder': 'YYYY-MM-DD'}),
+                                    lookup_expr='gte', label='End of test date range (blank for no filtering)', )
+    regions = django_filters.ModelMultipleChoiceFilter(queryset=Web_Region.objects.filter(is_visible=True),
+                                                       widget=forms.CheckboxSelectMultiple, lookup_expr='in',
+                                                       label='Regions (all blank for no filtering)', )
+
+    class Meta:
+        model = SimpleEventPromotion
+        fields = [
+            'start',
+            'end',
+            'regions',
+        ]
