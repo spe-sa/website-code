@@ -11,7 +11,7 @@
 
             dataTable.addColumn({type: 'string', id: 'Event Type'});
             dataTable.addColumn({type: 'string', id: 'Location'});
-            dataTable.addColumn({ type: 'string', role: 'tooltip' });
+            dataTable.addColumn({type: 'string', role: 'tooltip'});
             dataTable.addColumn({type: 'date', id: 'Start'});
             dataTable.addColumn({type: 'date', id: 'End'});
 
@@ -26,7 +26,7 @@
             var options = {
                 timeline: {colorByRowLabel: true},
                 backgroundColor: '#ffd',
-                timeline: { groupByRowLabel: false }
+                timeline: {groupByRowLabel: false}
             };
             chart.draw(dataTable, options);
         }

@@ -30,13 +30,17 @@ def custom_titled_filter(title):
             instance = admin.FieldListFilter.create(*args, **kwargs)
             instance.title = title
             return instance
+
     return Wrapper
 
 
 class SimpleEventPromotionAdmin(admin.ModelAdmin):
     search_fields = ('event', 'start', 'end', 'event_type__name')
-    list_filter = (('event_type__name', custom_titled_filter('Event Type')), ('disciplines__name', custom_titled_filter('Disciplines')), ('regions__region_name', custom_titled_filter('Region')), )
-    fields = ['event', 'event_start_date', 'event_end_date', 'event_text_after', 'event_location', 'teaser', 'click_url', 'picture', 'disciplines', 'regions', 'topics', 'start', 'end', 'sponsored']
+    list_filter = (('event_type__name', custom_titled_filter('Event Type')),
+                   ('disciplines__name', custom_titled_filter('Disciplines')),
+                   ('regions__region_name', custom_titled_filter('Region')),)
+    fields = ['event', 'event_start_date', 'event_end_date', 'event_text_after', 'event_location', 'teaser',
+              'click_url', 'picture', 'disciplines', 'regions', 'topics', 'start', 'end', 'sponsored']
     exclude = ['latitude', 'longitude']
     readonly_fields = ['hits', 'impressions', 'last_impression']
     actions = [blank_timezone, ]
@@ -69,7 +73,6 @@ class MemberNoRegionMessageAdmin(admin.ModelAdmin):
 class SimpleMembershipPromotionAdmin(admin.ModelAdmin):
     search_fields = ('title', 'start', 'end')
     readonly_fields = ['hits', 'impressions', 'last_impression']
-
 
 
 # class ReadOnlyAdmin(admin.ModelAdmin):

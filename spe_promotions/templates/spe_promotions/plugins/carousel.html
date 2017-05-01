@@ -2,70 +2,77 @@
 
 {#{% random_number as my_id %}#}
 
-<div id="myCarousel{{ plugin.instance.id }}" class="carousel slide carousel-fade carouselPromo" data-ride="carousel" data-interval="10000">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-  {% for promo in promos %}
+<div id="myCarousel{{ plugin.instance.id }}" class="carousel slide carousel-fade carouselPromo" data-ride="carousel"
+     data-interval="10000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {% for promo in promos %}
 
-      {% if promo.picture and promo.picture.url %}
-          {% if forloop.first %}
-              <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="0" data-interval="10000" class="active"></li>
-          {% else %}
-              <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
-          {% endif %}
-      {% endif %}
-  {% endfor %}
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-      {% for promo in promos %}
-          {% if promo.picture and promo.picture.url %}
-              {% if forloop.first %}
-                  <div class="item active" style="background-image:url({{ promo.picture.url }});">
-                      <a href="{{ promo.url }}" target="_blank">
-                          <div class="carousel-caption">
-                              <h3>{{ promo.event }}</h3>
-            {% if promo.sponsored %}
-                <p class="sponsored">SPONSORED CONTENT</p>
+            {% if promo.picture and promo.picture.url %}
+                {% if forloop.first %}
+                    <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="0" data-interval="10000"
+                        class="active"></li>
+                {% else %}
+                    <li data-target="#myCarousel{{ plugin.instance.id }}" data-slide-to="{{ forloop.counter0 }}"
+                        data-interval="10000"></li>
+                {% endif %}
             {% endif %}
+        {% endfor %}
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        {% for promo in promos %}
+            {% if promo.picture and promo.picture.url %}
+                {% if forloop.first %}
+                    <div class="item active" style="background-image:url({{ promo.picture.url }});">
+                        <a href="{{ promo.url }}" target="_blank">
+                            <div class="carousel-caption">
+                                <h3>{{ promo.event }}</h3>
+                                {% if promo.sponsored %}
+                                    <p class="sponsored">SPONSORED CONTENT</p>
+                                {% endif %}
                                 <p class="sideListDateTWA" style="color:#FDD017">
                                     {{ promo.event_text_date|default:"" }}
                                     {% if promo.event_location %}
                                         - {{ promo.event_location }}
                                     {% endif %}
                                 </p>
-                {#                <span class="sideListDateTWA"></span>#}
-                              <p>{{ promo.teaser | safe }}</p>
-                          </div>
-                      </a>
-                  </div>
-              {% else %}
-                  <div class="item" style="background-image:url({{ promo.picture.url }});">
-                      <a href="{{ promo.url }}">
-                          <div class="carousel-caption">
-                              <h3>{{ promo.event }}</h3>
-            {% if promo.sponsored %}
-                <p class="sponsored">SPONSORED CONTENT</p>
+                                {#                <span class="sideListDateTWA"></span>#}
+                                <p>{{ promo.teaser | safe }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="item" style="background-image:url({{ promo.picture.url }});">
+                        <a href="{{ promo.url }}">
+                            <div class="carousel-caption">
+                                <h3>{{ promo.event }}</h3>
+                                {% if promo.sponsored %}
+                                    <p class="sponsored">SPONSORED CONTENT</p>
+                                {% endif %}
+                                <p class="sideListDateTWA" style="color:#FDD017">
+                                    {{ promo.event_text_date|default:"" }}
+                                    {% if promo.event_location %}
+                                        - {{ promo.event_location }}
+                                    {% endif %}
+                                </p>
+                                <p>{{ promo.teaser | safe }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}{# forloop first #}
             {% endif %}
-                              <p class="sideListDateTWA" style="color:#FDD017">
-                                  {{ promo.event_text_date|default:"" }}
-                                  {% if promo.event_location %}
-                                    - {{ promo.event_location }}
-                                  {% endif %}
-                              </p>
-                              <p>{{ promo.teaser | safe }}</p>
-                          </div>
-                      </a>
-                  </div>
-              {% endif %}{# forloop first #}
-          {% endif %}
 
-      {% endfor %}
-  </div>
+        {% endfor %}
+    </div>
 
 </div>
 
 {% if more_url and more_text %}
-    <div class="row morepromo"><div class="col-xs-12 see-all-div-carosel"><a class="see-all-promo" id="features" href="{{ more_url }}">{{ more_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+    <div class="row morepromo">
+        <div class="col-xs-12 see-all-div-carosel"><a class="see-all-promo" id="features"
+                                                      href="{{ more_url }}">{{ more_text }}<span></span><i
+                class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div>
+    </div>
 {% endif %}

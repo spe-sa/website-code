@@ -2,43 +2,47 @@
 
 {% if error %}
     <div class="tile-editorial row" style="background-color:white">
-    {{ error }}
+        {{ error }}
     </div>
 {% else %}
     <div class="tile-editorial row" style="background-color:white">
-    {% for promo in promos %}
-        <div class="row sideListItem">
-            <a href="{{ promo.url}}">
-            <div class="col-xs-12">
-                <span class="sideListTitle">{{ promo.event|truncatewords:12 }}</span><br>
-                {% if promo.sponsored %}
-                    <p class="sponsored" style="margin:5px 0;">SPONSORED CONTENT</p>
-                {% endif %}
-                <span class="sideListDateTWA">
+        {% for promo in promos %}
+            <div class="row sideListItem">
+                <a href="{{ promo.url }}">
+                    <div class="col-xs-12">
+                        <span class="sideListTitle">{{ promo.event|truncatewords:12 }}</span><br>
+                        {% if promo.sponsored %}
+                            <p class="sponsored" style="margin:5px 0;">SPONSORED CONTENT</p>
+                        {% endif %}
+                        <span class="sideListDateTWA">
                   {{ promo.event_text_date|default:"" }}
-                  {% if promo.event_location %}
-                    - {{ promo.event_location }}
-                  {% endif %}
+                            {% if promo.event_location %}
+                                - {{ promo.event_location }}
+                            {% endif %}
                 </span>
+                    </div>
+                </a>
             </div>
-            </a>
-        </div>
 
-    {% empty %}
-        <p class="well">{% trans "No items available" %}</p>
-    {% endfor %}
+        {% empty %}
+            <p class="well">{% trans "No items available" %}</p>
+        {% endfor %}
         {% if more_url and more_text %}
-                    <div class="morepromo row"><div class="col-xs-12 see-all-div-promo"><a class="see-all" id="features" href="{{ more_url }}">{{ more_text }}<span></span><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div></div>
+            <div class="morepromo row">
+                <div class="col-xs-12 see-all-div-promo"><a class="see-all" id="features"
+                                                            href="{{ more_url }}">{{ more_text }}<span></span><i
+                        class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></div>
+            </div>
         {% endif %}
     </div>
 {% endif %}
 
 {% addtoblock "js" %}
     <script type="text/javascript" charset="utf-8">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(function () {
-              $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="tooltip"]').tooltip()
             })
         });
     </script>
-{%  endaddtoblock %}
+{% endaddtoblock %}

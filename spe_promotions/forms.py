@@ -1,7 +1,8 @@
 from django.forms import ModelForm, ModelMultipleChoiceField
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
-from .models import SimpleEventPromotion, EventPromotionSelectionPlugin, SimpleMembershipPromotion, MembershipPromotionSelectionPlugin
+from .models import SimpleEventPromotion, EventPromotionSelectionPlugin, SimpleMembershipPromotion, \
+    MembershipPromotionSelectionPlugin
 
 
 class SimplePromotionsSelectionForm(ModelForm):
@@ -20,4 +21,3 @@ class SimpleMembershipPromotionSelectionForm(ModelForm):
     class Meta:
         model = MembershipPromotionSelectionPlugin
         fields = ['template', 'promotions', 'more_text', 'more_url', ]
-

@@ -71,6 +71,7 @@ class SimpleEventPromotionBaseModel(models.Model):
     sponsored = models.BooleanField(default=False)
     click_url = models.URLField(verbose_name=u'Click Through External URL', blank=True, null=True)
     url = models.URLField(blank=True, null=True, editable=False)
+
     # promotion_type = models.CharField(max_length=25, default="Event", editable=False)
 
     class Meta:
@@ -137,7 +138,8 @@ class SimpleEventNotLoggedInPromotion(SimpleEventPromotionBaseModel):
     # teaser = RichTextUploadingField(
     #     max_length=300,
     # )
-    picture = FilerImageField(verbose_name=u'Picture for not logged in promotion', related_name="simple_notloggedin_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for not logged in promotion',
+                              related_name="simple_notloggedin_promotion")
     # hits = models.PositiveIntegerField(default=0, editable=False)
     # impressions = models.PositiveIntegerField(default=0, editable=False)
     # last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
@@ -168,7 +170,6 @@ class SimpleEventNotLoggedInPromotion(SimpleEventPromotionBaseModel):
         return "(" + self.start.strftime('%Y-%m-%d') + " - " + self.end.strftime('%Y-%m-%d') + ") - " + self.event
 
 
-
 class SimpleEventNonMemberPromotion(SimpleEventPromotionBaseModel):
     # event = models.CharField(max_length=250, verbose_name='Title')
     event_start_date = models.DateTimeField(editable=False, blank=True, null=True)
@@ -183,7 +184,8 @@ class SimpleEventNonMemberPromotion(SimpleEventPromotionBaseModel):
     # teaser = RichTextUploadingField(
     #     max_length=300,
     # )
-    picture = FilerImageField(verbose_name=u'Picture for non member promotion', related_name="simple_nonmember_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for non member promotion',
+                              related_name="simple_nonmember_promotion")
     # hits = models.PositiveIntegerField(default=0, editable=False)
     # impressions = models.PositiveIntegerField(default=0, editable=False)
     # last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
@@ -227,7 +229,8 @@ class SimpleEventNoDisciplinePromotion(SimpleEventPromotionBaseModel):
     # teaser = RichTextUploadingField(
     #     max_length=300,
     # )
-    picture = FilerImageField(verbose_name=u'Picture for no discipline promotion', related_name="simple_nodiscipline_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for no discipline promotion',
+                              related_name="simple_nodiscipline_promotion")
     # hits = models.PositiveIntegerField(default=0, editable=False)
     # impressions = models.PositiveIntegerField(default=0, editable=False)
     # last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
@@ -272,7 +275,8 @@ class SimpleEventNoAddressPromotion(SimpleEventPromotionBaseModel):
     # teaser = RichTextUploadingField(
     #     max_length=300,
     # )
-    picture = FilerImageField(verbose_name=u'Picture for no address promotion', related_name="simple_noaddress_promotion")
+    picture = FilerImageField(verbose_name=u'Picture for no address promotion',
+                              related_name="simple_noaddress_promotion")
     # hits = models.PositiveIntegerField(default=0, editable=False)
     # impressions = models.PositiveIntegerField(default=0, editable=False)
     # last_impression = models.DateTimeField(default=datetime.date(2000, 1, 1), editable=False)
