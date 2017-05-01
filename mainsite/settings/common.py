@@ -177,13 +177,9 @@ INSTALLED_APPS = (
     'carousel',
     'django_fsm',
     'spe_messages',
-    # 'spe_tabs',
     'adminsortable',
     'spe_custom_menus',
     'spe_sponsors',
-    # 'spe_panels',
-    # 'spe_carousel',
-    # 'spe_themes',
     'spe_ui_components',
     # 'model_report',
 )
