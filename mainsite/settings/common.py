@@ -364,7 +364,7 @@ CMS_PLACEHOLDER_CONF = {
                 # 'ShowTagTitlePlugin',
                 # 'ShowTopicTitlePlugin'
                 # snippets
-                #'SmartSnippetPlugin',
+                # 'SmartSnippetPlugin',
                 # events
                 # 'ShowEventsByCurrentLocationPluginPlugin',
                 # 'PollPlugin',
@@ -724,7 +724,6 @@ DEFAULT_IP = '192.152.183.80'
 CMS_SHOW_START_DATE = True
 CMS_SHOW_END_DATE = True
 
-
 ADMIN_SHORTCUTS = [
     {
         'title': 'Channel',
@@ -781,7 +780,7 @@ ADMIN_SHORTCUTS = [
                 'url_extra': '?publication__code=OGF',
                 'open_new_window': True,
                 'title': 'OGF Articles',
-            },            {
+            }, {
                 'url_name': 'admin:spe_blog_articleeditor_changelist',
                 'url_extra': '?publication__code=TWA',
                 'open_new_window': True,
@@ -830,10 +829,11 @@ ADMIN_SHORTCUTS_CLASS_MAPPINGS = [
     ['ogf', 'home'],
     ['jpt', 'home'],
     ['twa', 'home'],
+    ['search', 'ok'],
     ['timeline', 'clock'],
-    ['discipline', 'clock'],
-    ['region', 'clock'],
-    ['event_type', 'clock'],
+    ['discipline', 'user'],
+    ['region', 'pin'],
+    ['event_type', 'date'],
 ]
 
 ADMIN_SHORTCUTS_SETTINGS = {
