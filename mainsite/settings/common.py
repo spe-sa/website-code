@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'spe_sponsors',
     'spe_ui_components',
     # 'model_report',
+    'spe_custom_agenda',
 )
 
 LANGUAGES = (
@@ -320,6 +321,7 @@ CMS_PLACEHOLDER_CONF = {
                     'PageLinkSetPluginInstance',
                     'StylePlugin',
                     'JumbotronPlugin',
+                    'CustomAgendaPluginInstance'
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
