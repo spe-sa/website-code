@@ -29,6 +29,15 @@ router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 # report.autodiscover()
 
 
+# TastyPIE APIs
+
+from tastypie.api import Api
+from spe_promotions.api import PromotionsEventClicksResource, MembershipPromotionsClicksResource
+
+api = Api(api_name='clicks')
+api.register(PromotionsEventClicksResource())
+api.register(MembershipPromotionsClicksResource())
+
 # Specialized Sitemaps
 
 from django.contrib.sitemaps.views import sitemap
@@ -71,6 +80,7 @@ urlpatterns = i18n_patterns('',
     url(r'^staff/articles/export_article_disciplines/', 'spe_blog.views.export_article_disciplines_excel', ),
     url(r'^staff/articlesandbriefs/sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # url(r'^staff/report/', include('model_report.urls'), ),
+    url(r'^staff/api/', include(api.urls)),
     url(r'^staff/', include('spe_blog.urls_internal')),
 
     url(r'^spe_links/', include('spe_links.urls')),

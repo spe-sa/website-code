@@ -183,6 +183,7 @@ INSTALLED_APPS = (
     'spe_ui_components',
     # 'model_report',
     'spe_custom_agenda',
+    'tastypie',
 )
 
 LANGUAGES = (
