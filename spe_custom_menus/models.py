@@ -21,16 +21,16 @@ LEVEL_CHOICES = ((1, "Top Level"),
 
 
 class CustomMenus(models.Model):
-    title = models.CharField('Title', unique=True, max_length=100)
+    title = models.CharField('Menu name', unique=True, max_length=100)
     branding = models.CharField('Branding on menu', null=True, blank=True, max_length=30)
     external_link = models.URLField(
-        verbose_name=_('External link'),
+        verbose_name=_('Brand External link'),
         blank=True,
         max_length=2040,
         help_text=_('Provide a valid URL to an external website.'),
     )
     internal_link = PageField(
-        verbose_name=_('Internal link'),
+        verbose_name=_('Brand Internal link'),
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -96,7 +96,7 @@ class CustomMenuItems(SortableMixin):
 
 class CustomMenusPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=MENU_TEMPLATES, default=DEFAULT_MENU_TEMPLATE)
-    custom_menu = models.ForeignKey(CustomMenus)
+    custom_menu = models.ForeignKey(CustomMenus, help_text="Select a menu you created in Admin or use '+' to add a new menu")
 
     def __unicode__(self):
         dictionary = dict(MENU_TEMPLATES)
