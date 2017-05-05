@@ -83,7 +83,7 @@ class CustomAgendaItems(models.Model):
 
 class CustomAgendaPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=AGENDA_TEMPLATES, default=DEFAULT_AGENDA_TEMPLATE)
-    custom_agenda = models.ForeignKey(CustomAgenda)
+    custom_agenda = models.ForeignKey(CustomAgenda, help_text="Select an agenda you created in Admin or use '+' to add a new agenda")
 
     def __unicode__(self):
         dictionary = dict(AGENDA_TEMPLATES)
