@@ -32,11 +32,12 @@ router.register(TopTwentyBriefsWidget, 'top_20_briefs')
 # TastyPIE APIs
 
 from tastypie.api import Api
-from spe_promotions.api import PromotionsEventClicksResource, MembershipPromotionsClicksResource
+from spe_promotions.api import MembershipPromotionsClicksResource, PromotionsEventClicksResource, SimpleEventPromotionResource
 
-api = Api(api_name='clicks')
-api.register(PromotionsEventClicksResource())
+api = Api(api_name='reports')
 api.register(MembershipPromotionsClicksResource())
+api.register(PromotionsEventClicksResource())
+api.register(SimpleEventPromotionResource())
 
 # Specialized Sitemaps
 

@@ -31,7 +31,7 @@
     </style>
 </head>
 
-<div class="container fluid">
+<div class="table-responsive">
 
 <h2>{{ title }}</h2>
     <hr />
@@ -43,6 +43,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Event</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,11 @@
                         <td class="agenda-events">
                             <div class="agenda-event">
                                 {{ item.title }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class=""agenda-event">
+                                {{ item.session_description | safe}}
                             </div>
                         </td>
                     </tr>

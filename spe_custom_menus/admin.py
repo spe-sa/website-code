@@ -8,12 +8,25 @@ from adminsortable.admin import SortableTabularInline
 
 class MenuItemInLine(SortableStackedInline):
     model = CustomMenuItems
-    extra = 1
+    extra = 0
+    fieldsets = (
+        ('Detail', {
+            'classes': ('collapse',),
+            'fields': (
+                'title',
+                'level',
+                'internal_link',
+                'external_link',
+            ),
+        }),
+    )
+    exclude = ['is_dropdown_node', 'depth', 'escapes', 'order']
+
 
 
 class MenuItemTabularInLine(SortableTabularInline):
     model = CustomMenuItems
-    extra = 1
+    extra = 0
     proxy = True
     exclude = ['title', 'internal_link', 'external_link', 'is_dropdown_node', 'depth', 'escapes', 'order']
 

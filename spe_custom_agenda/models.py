@@ -1,5 +1,7 @@
 from django.db import models
 from cms.models import CMSPlugin
+from ckeditor_uploader.fields import RichTextUploadingField
+
 from cms.models.fields import PageField
 
 from django.utils.translation import ugettext_lazy as _
@@ -49,6 +51,12 @@ class CustomAgendaItems(models.Model):
     start_date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    session_description = RichTextUploadingField(
+        max_length=3000,
+        blank=True,
+        null=True,
+        verbose_name=u'Description of session:'
+    )
     # external_link = models.URLField(
     #     verbose_name=_('External link'),
     #     blank=True,
@@ -88,4 +96,3 @@ class CustomAgendaPlugin(CMSPlugin):
     def __unicode__(self):
         dictionary = dict(AGENDA_TEMPLATES)
         return u"{0} using {1}".format(self.custom_agenda, dictionary[self.template])
-
