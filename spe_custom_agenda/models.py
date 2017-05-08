@@ -10,7 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 DEFAULT_AGENDA_TEMPLATE = 'cms_plugins/agenda.html'
 AGENDA_TEMPLATES = (
     (DEFAULT_AGENDA_TEMPLATE, 'Regular Schedule'),
-    ('cms_plugins/accordion_agenda.html', 'Accordion Schedule'),
+    ('cms_plugins/accordion_agenda.html', 'Accordion Schedule by Date'),
+    ('cms_plugins/accordion_by_session.html', 'Accordion Schedule by Session')
 )
 
 
@@ -51,6 +52,7 @@ class CustomAgendaItems(models.Model):
     start_date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    location = models.CharField('Session Title', max_length=80)
     session_description = RichTextUploadingField(
         max_length=3000,
         blank=True,
