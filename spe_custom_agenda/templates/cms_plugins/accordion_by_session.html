@@ -2,9 +2,10 @@
 <html>
 <head>
 <style>
+
+{{ button_colors }}
+
 button.accordion {
-    background-color: #eee;
-    color: #444;
     cursor: pointer;
     padding: 18px;
     border: none;
@@ -60,7 +61,7 @@ h5.time {
                     {{ item.start_time | date:"H:i" }} - {{ item.end_time | date:"H:i" }}
             </h5>
             <h5>
-            <button class="accordion col-md-9">
+            <button class="accordion col-md-9 {{ item.session_type.slug }}">
                 <span class="col-md-5 text-left">{{ item.title }}</span>
                 <span class="col-md-4 text-right">{{ item.location }}</span>
             </button>

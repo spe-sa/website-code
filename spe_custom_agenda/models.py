@@ -1,7 +1,9 @@
-import datetime
 from django.db import models
 from cms.models import CMSPlugin
 from ckeditor_uploader.fields import RichTextUploadingField
+from colorfield.fields import ColorField
+from django.template.defaultfilters import slugify
+
 
 from cms.models.fields import PageField
 
@@ -15,6 +17,22 @@ AGENDA_TEMPLATES = (
     ('cms_plugins/accordion_by_session.html', 'Accordion Schedule by Session')
 )
 
+
+class SessionTypes(models.Model):
+    session_type = models.CharField('Session Type', unique=True, max_length=100)
+    slug = models.SlugField(editable=False)
+    text_color = ColorField(verbose_name='Text Color', default='#444')
+    bkg_color = ColorField(verbose_name='Background Color', default='#eee')
+
+    class Meta:
+        verbose_name = 'Session Type'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.session_type)
+        super(SessionTypes, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return self.session_type
 
 class CustomAgenda(models.Model):
     title = models.CharField('Meeting Title', unique=True, max_length=100)
@@ -54,6 +72,7 @@ class CustomAgendaItems(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     location = models.CharField('Session Location', max_length=80)
+    session_type = models.ForeignKey(SessionTypes)
     session_description = RichTextUploadingField(
         max_length=3000,
         blank=True,

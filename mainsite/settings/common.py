@@ -184,6 +184,7 @@ INSTALLED_APPS = (
     # 'model_report',
     'spe_custom_agenda',
     'tastypie',
+    'colorfield',
 )
 
 LANGUAGES = (

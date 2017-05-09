@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from models import CustomAgenda, CustomAgendaItems
+from models import CustomAgenda, CustomAgendaItems, SessionTypes
 
 
 class AgendaItemInLine(admin.StackedInline):
@@ -15,6 +15,7 @@ class AgendaItemInLine(admin.StackedInline):
                 'start_time',
                 'end_time',
                 'location',
+                'session_type',
                 'session_description',
             ),
         }),
@@ -30,3 +31,4 @@ class CustomAgendaAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CustomAgenda, CustomAgendaAdmin)
+admin.site.register(SessionTypes)
