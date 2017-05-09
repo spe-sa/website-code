@@ -1,17 +1,46 @@
-<!-- This is the JumboSlider template. -->
+<!-- JumboSlider Template for Image Items Plugin. -->
+{% load cms_tags sekizai_tags %}
+<div class="col-xs-12 padZero">
+    <div id="jumboCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          {% for item in items %}
+              {% if item.image and item.image.url and item.isvisible %}
+                  {% if forloop.first %}
+                      <li data-target="#jumboCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
+                  {% else %}
+                      <li data-target="#jumboCarousel" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+        </ol>
 
-{% for item in items %}
-    <p>
-    {{ item.order }}<br>
-    {{ item.item_list }}<br>
-    {{ item.image }}<br>
-    {{ item.title }}<br>
-    {{ item.text }}<br>
-    {{ item.external_link }}<br>
-    {{ item.internal_link }}<br>
-    {{ item.isvisible }}<br>
-    {{ item.issponsor }}<br>
-    {{ item.sponsorlevele }}<br>
-    {{ item.sponsoredevents }}<br>
-    </p>
-{% endfor %}
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          {% for item in items %}
+              {% if item.image and item.image.url and item.isvisible %}
+                  {% if forloop.first %}
+                      <div class="item active" style="background-image: url({{ item.image.url }})">
+                          <a href="{{ item.get_absolute_url }}">
+                              <div class="carousel-caption">
+                                  <h3>{{ item.title }}</h3>
+                                  <h4>{{ item.text | safe }}</h4>
+                              </div>
+                          </a>
+                      </div>
+                  {% else %}
+                      <div class="item" style="background-image: url({{ item.image.url }})">
+                          <a href="{{ item.get_absolute_url }}">
+                              <div class="carousel-caption">
+                                  <h3>{{ item.title }}</h3>
+                                  <h4>{{ item.text | safe }}</h4>
+                              </div>
+                          </a>
+                      </div>
+                  {% endif %}
+              {% endif %}
+
+          {% endfor %}
+        </div>
+    </div>
+</div>

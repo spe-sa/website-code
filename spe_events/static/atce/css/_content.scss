@@ -54,3 +54,26 @@
   }
 }
 
+$jumboSliderHeight:       500px;
+#jumboCarousel {
+  //height:               $jumboSliderHeight;
+  .carousel-inner {
+    //height:               $jumboSliderHeight;
+
+    .item {
+      height:               $jumboSliderHeight;
+      background-position:  center;
+      background-size:      cover;
+    }
+
+    .carousel-caption {
+      background-image:     $img-back-black-70;
+      width:                100%;
+      bottom:               0;
+      left:                 0;
+      padding-left:         10px;
+      padding-right:        10px;
+      padding-bottom:       50px;
+    }
+  }
+}

@@ -103,7 +103,7 @@ class ImageItems(SortableMixin):
     # ordering field
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
-    def get_link(self):
+    def get_absolute_url(self):
         link = "#"
         if self.internal_link:
             link = self.internal_link.get_absolute_url()
@@ -118,7 +118,7 @@ class ImageItems(SortableMixin):
 class ImageItemsPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=IMAGE_ITEM_TEMPLATES, default=DEFAULT_IMAGE_ITEM_TEMPLATE)
     item_list = models.ForeignKey(ImageItemList,
-                                    help_text="Select an image list you created in Admin or use '+' to add a new menu")
+                                  help_text="Select an image list you created in Admin or use '+' to add a new menu")
 
     def __unicode__(self):
         dictionary = dict(IMAGE_ITEM_TEMPLATES)

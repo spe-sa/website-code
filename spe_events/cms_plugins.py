@@ -63,28 +63,6 @@ class ImageItemPluginInstance(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         image_items = ImageItems.objects.filter(item_list=instance.item_list)
-        # previous_is_child = 0
-        # for item in reversed(image_items):
-        #     item.is_dropdown_node = previous_is_child
-        #     if item.level == 2 or item.level == 3:
-        #         previous_is_child = 1
-        #         item.is_dropdown_node = 0
-        #     else:
-        #         previous_is_child = 0
-        # previous_is_child = 0
-        # for item in image_items:
-        #     if item.level == 3:
-        #         item.is_dropdown_header = True
-        #     if item.level == 4:
-        #         item.is_divider = True
-        #     if previous_is_child and item.level == 1:
-        #         item.is_back_up = 1
-        #     else:
-        #         item.is_back_up = 0
-        #     if item.level == 2 or item.level == 3:
-        #         previous_is_child = 1
-        #     else:
-        #         previous_is_child = 0
         context.update({
             'event_id': instance.item_list.event_id,
             'items': image_items,

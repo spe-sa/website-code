@@ -22013,6 +22013,12 @@
 		"oAP": "\/spe_blog\/templatetags\/tostring.py",
 		"oF": 0
 		},
+	"\/spe_blog\/templatetags\/tostring.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_blog\/templatetags\/tostring.pyc",
+		"oF": 0
+		},
 	"\/spe_blog\/templatetags\/var_tags.py": {
 		"ft": 8192,
 		"oA": 2,
