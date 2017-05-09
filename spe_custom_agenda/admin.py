@@ -14,6 +14,7 @@ class AgendaItemInLine(admin.StackedInline):
                 'start_date',
                 'start_time',
                 'end_time',
+                'location',
                 'session_description',
             ),
         }),

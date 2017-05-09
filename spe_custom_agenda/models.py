@@ -53,7 +53,7 @@ class CustomAgendaItems(models.Model):
     start_date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    location = models.CharField('Session Title', max_length=80)
+    location = models.CharField('Session Location', max_length=80)
     session_description = RichTextUploadingField(
         max_length=3000,
         blank=True,
