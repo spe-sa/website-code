@@ -7,28 +7,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.gis.geoip import GeoIP
 
-from .models import EventsByCurrentIPPlugin # , EventMenuPluginModel, EventMenuModel
+from .models import EventsByCurrentIPPlugin, ImageItems, ImageItemsPlugin
 from .settings import EVENT_PERSONALIZATION_SERVER
 from mainsite.common import get_context_variable
 
-# class EventMenuPlugin(CMSPluginBase):
-#     model = EventMenuPluginModel
-#     allow_children = False
-#     cache = False
-#     module = _('Events')
-#     name = _('Event Menu')
-#     text_enabled = False
-#     render_template = 'spe_events/plugins/event_menu.html'
-#
-#     def render(self, context, instance, placeholder):
-#         # get the menu for this meeting code if there is any
-#         if instance.event_code:
-#             menus = EventMenuModel.objects.filter(event_code=instance.event_code).all()
-#         else:
-#             menus=None
-#         context.update({'event_code': instance.event_code,
-#                        'menu_items': menus})
-#         return context
 
 class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     model = EventsByCurrentIPPlugin
@@ -39,11 +21,10 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
     text_enabled = False
     render_template = 'spe_events/plugins/location.html'
 
-    # render_plugin = False
-
     def render(self, context, instance, placeholder):
         request = context['request']
-        WS_EVENTS_URL = get_context_variable(request, "WS_EVENTS_URL", "http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3")
+        WS_EVENTS_URL = get_context_variable(request, "WS_EVENTS_URL",
+                                             "http://iisdev1/iappsint/p13ndemo/api/I2KTaxonomy/GetEventList3")
         g = GeoIP()
         # ip = context['request'].META.get('REMOTE_ADDR', None)
         ip = context['request'].META.get('HTTP_X_REAL_IP', None)
@@ -73,5 +54,44 @@ class ShowEventsByCurrentLocationPluginPlugin(CMSPluginBase):
         return context
 
 
+class ImageItemPluginInstance(CMSPluginBase):
+    model = ImageItemsPlugin
+    name = "Image Items"
+    render_template = "spe_events/plugins/image_items/ii_boxes.html"
+    allow_children = True
+    module = 'Events'
+
+    def render(self, context, instance, placeholder):
+        image_items = ImageItems.objects.filter(item_list=instance.item_list)
+        # previous_is_child = 0
+        # for item in reversed(image_items):
+        #     item.is_dropdown_node = previous_is_child
+        #     if item.level == 2 or item.level == 3:
+        #         previous_is_child = 1
+        #         item.is_dropdown_node = 0
+        #     else:
+        #         previous_is_child = 0
+        # previous_is_child = 0
+        # for item in image_items:
+        #     if item.level == 3:
+        #         item.is_dropdown_header = True
+        #     if item.level == 4:
+        #         item.is_divider = True
+        #     if previous_is_child and item.level == 1:
+        #         item.is_back_up = 1
+        #     else:
+        #         item.is_back_up = 0
+        #     if item.level == 2 or item.level == 3:
+        #         previous_is_child = 1
+        #     else:
+        #         previous_is_child = 0
+        context.update({
+            'event_id': instance.item_list.event_id,
+            'items': image_items,
+        })
+        self.render_template = instance.template
+        return context
+
+
 plugin_pool.register_plugin(ShowEventsByCurrentLocationPluginPlugin)
-# plugin_pool.register_plugin(EventMenuPlugin)
+plugin_pool.register_plugin(ImageItemPluginInstance)

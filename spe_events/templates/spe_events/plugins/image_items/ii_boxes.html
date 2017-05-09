@@ -1,0 +1,17 @@
+<!-- This is the BOXES template. -->
+
+{% for item in items %}
+    <p>
+    {{ item.order }}<br>
+    {{ item.item_list }}<br>
+    {{ item.image }}<br>
+    {{ item.title }}<br>
+    {{ item.text }}<br>
+    {{ item.external_link }}<br>
+    {{ item.internal_link }}<br>
+    {{ item.isvisible }}<br>
+    {{ item.issponsor }}<br>
+    {{ item.sponsorlevele }}<br>
+    {{ item.sponsoredevents }}<br>
+    </p>
+{% endfor %}

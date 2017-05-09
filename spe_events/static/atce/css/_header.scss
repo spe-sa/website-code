@@ -9,7 +9,7 @@
   color:              $col-white;
   height:             30px;
   font-size:          $psize;
-  padding:            3px 0 0 0;
+  padding:            3px 15px 0 15px;
 
   a {
     color:            $col-white;
@@ -22,12 +22,14 @@
 }
 .logobar {
   min-height:         100px;
+  padding-left:       15px;
+  padding-right:      15px;
 }
 .menubar {
   background-color:   $col-atce-green;
   color:              $col-white;
   min-height:         60px;
-  padding:            0 0 0 0;
+  padding:            0 15px 0 15px;
 }
 .topAddress {
   p {

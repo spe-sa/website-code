@@ -9,7 +9,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family:            $font-titles;
-  font-weight:            $font-bold;
+  font-weight:            $font-regular;
 }
 
 h1 {
@@ -23,6 +23,14 @@ h3 {
 }
 h4 {
   font-size:              $h4size;
+  font-weight:            $font-regular;
+}
+h5 {
+  font-size:              $h5size;
+  font-weight:            $font-light;
+}
+h6 {
+  font-size:              $h6size;
   font-weight:            $font-light;
 }
 p {
