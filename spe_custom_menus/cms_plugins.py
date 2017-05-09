@@ -38,6 +38,7 @@ class CustomMenuPluginInstance(CMSPluginBase):
             'branding': instance.custom_menu.branding,
             'link': instance.custom_menu.get_absolute_url(),
             'items': menu_items,
+            'instance': instance,
         })
         self.render_template = instance.template
         return context

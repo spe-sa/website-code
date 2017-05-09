@@ -37,6 +37,7 @@ class CustomAgendaPluginInstance(CMSPluginBase):
             session_css += "button." + session_type.slug + "{background-color:" + session_type.bkg_color + ";color:" + session_type.text_color + ";} "
         context.update({
             'button_colors': session_css,
+            'instance': instance,
         })
         self.render_template = instance.template
         return context
