@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from cms.models import CMSPlugin
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -88,7 +89,7 @@ class CustomAgendaItems(models.Model):
     #     return link
 
     def __unicode__(self):
-        return self.title
+        return u"{0} ({1} - {2}) - {3}".format(self.start_date.strftime('%a %Y-%m-%d'), self.start_time.strftime('%H:%M'), self.end_time.strftime('%H:%M'), self.title)
 
 
 class CustomAgendaPlugin(CMSPlugin):
