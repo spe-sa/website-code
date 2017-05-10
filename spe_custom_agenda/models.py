@@ -5,11 +5,6 @@ from colorfield.fields import ColorField
 from django.template.defaultfilters import slugify
 
 
-from cms.models.fields import PageField
-
-from django.utils.translation import ugettext_lazy as _
-
-
 DEFAULT_AGENDA_TEMPLATE = 'cms_plugins/agenda.html'
 AGENDA_TEMPLATES = (
     (DEFAULT_AGENDA_TEMPLATE, 'Regular Schedule'),
@@ -35,30 +30,9 @@ class SessionTypes(models.Model):
 
 class CustomAgenda(models.Model):
     title = models.CharField('Meeting Title', unique=True, max_length=100)
-    # external_link = models.URLField(
-    #     verbose_name=_('External link'),
-    #     blank=True,
-    #     max_length=2040,
-    #     help_text=_('Provide a valid URL to an external website.'),
-    # )
-    # internal_link = PageField(
-    #     verbose_name=_('Internal link'),
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.SET_NULL,
-    #     help_text=_('If provided, overrides the external link.'),
-    # )
 
     class Meta:
         verbose_name = 'Custom Agenda'
-
-    # def get_absolute_url(self):
-    #     link = "#"
-    #     if self.internal_link:
-    #         link = self.internal_link.get_absolute_url()
-    #     elif self.external_link:
-    #         link = self.external_link
-    #     return link
 
     def __unicode__(self):
         return self.title
@@ -78,33 +52,12 @@ class CustomAgendaItems(models.Model):
         null=True,
         verbose_name=u'Description of session:'
     )
-    # external_link = models.URLField(
-    #     verbose_name=_('External link'),
-    #     blank=True,
-    #     max_length=2040,
-    #     help_text=_('Provide a valid URL to an external website.'),
-    # )
-    # internal_link = PageField(
-    #     verbose_name=_('Internal link'),
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.SET_NULL,
-    #     help_text=_('If provided, overrides the external link.'),
-    # )
     is_new_day = models.BooleanField(default=False, editable=False)
     rowspan = models.PositiveIntegerField(default=1, editable=False)
 
     class Meta:
         ordering = ['start_date', 'start_time', 'end_time']
         verbose_name_plural = 'Custom Agenda Items'
-
-    # def get_absolute_url(self):
-    #     link = "#"
-    #     if self.internal_link:
-    #         link = self.internal_link.get_absolute_url()
-    #     elif self.external_link:
-    #         link = self.external_link
-    #     return link
 
     def __unicode__(self):
         return u"{0} ({1} - {2}) - {3}".format(self.start_date.strftime('%a %Y-%m-%d'), self.start_time.strftime('%H:%M'), self.end_time.strftime('%H:%M'), self.title)

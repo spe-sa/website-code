@@ -323,7 +323,11 @@ CMS_PLACEHOLDER_CONF = {
                     'PageLinkSetPluginInstance',
                     'StylePlugin',
                     'JumbotronPlugin',
-                    'CustomAgendaPluginInstance'
+                    'CustomAgendaPluginInstance',
+                    'ModalPlugin',
+                    'ModalBodyPlugin',
+                    'ModalFooterPlugin',
+                    'ModalHeaderPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

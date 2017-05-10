@@ -1,0 +1,7 @@
+{% load sekizai_tags cms_tags %}
+
+<div class="modal-footer">
+    {% for child in instance.child_plugin_instances %}
+        {% render_plugin child %}
+    {% endfor %}
+</div>

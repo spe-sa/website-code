@@ -36,6 +36,44 @@ class Jumbotron(CMSPlugin):
         return u"Jumbotron"
 
 
+class Modal(CMSPlugin):
+    """
+    A plugin that has Modal classes as children.
+    """
+    label = models.CharField('Modal Button Label', max_length=35)
+
+    def __unicode__(self):
+        return u"{0} modal items".format(self.cmsplugin_set.all().count())
+
+
+class ModalBody(CMSPlugin):
+    """
+    A Modal plugin.
+    """
+
+
+    def __unicode__(self):
+        return u"{0} modal body items".format(self.cmsplugin_set.all().count())
+
+
+class ModalFooter(CMSPlugin):
+    """
+    A Modal Footer plugin.
+    """
+
+    def __unicode__(self):
+        return u"{0} - {1} modal footer items".format(self.label, self.cmsplugin_set.all().count())
+
+
+class ModalHeader(CMSPlugin):
+    """
+    A Modal Header plugin.
+    """
+
+    def __unicode__(self):
+        return u"{0} modal header items".format(self.cmsplugin_set.all().count())
+
+
 class Panel(CMSPlugin):
     """
     An individual Panel plugin.

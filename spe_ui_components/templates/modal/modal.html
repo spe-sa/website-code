@@ -1,0 +1,15 @@
+{% load sekizai_tags cms_tags %}
+
+<button type="button" class="btn btn-primary btn-lg text-center center-block" data-toggle="modal" data-target="#panel-modal-{{ instance.id }}">
+  {{ instance.label }}
+</button>
+
+<div id="panel-modal-{{ instance.id }}" class="modal fade" tabindex="-1" role="dialog"">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        {% for child in instance.child_plugin_instances %}
+                {% render_plugin child %}
+        {% endfor %}
+    </div>
+  </div>
+</div>

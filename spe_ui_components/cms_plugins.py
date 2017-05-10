@@ -3,6 +3,7 @@ from cms.plugin_base import CMSPluginBase
 
 from .models import CarouselHeader, Carousel
 from .models import Jumbotron
+from .models import Modal, ModalBody, ModalFooter, ModalHeader
 from .models import Panel
 from .models import TabHeader, Tab
 
@@ -12,6 +13,65 @@ class JumbotronPlugin(CMSPluginBase):
     name = "Jumbotron"
     module = 'Components'
     render_template = "jumbotron/jumbotron.html"
+    allow_children = True
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+
+class ModalPlugin(CMSPluginBase):
+    model = Modal
+    name = "Modal"
+    module = 'Components'
+    render_template = "modal/modal.html"
+    allow_children = True
+    child_classes = ["ModalBodyPlugin", "ModalFooterPlugin", "ModalHeaderPlugin",]
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+
+class ModalBodyPlugin(CMSPluginBase):
+    model = ModalBody
+    name = "Modal Body"
+    module = 'Components'
+    render_template = "modal/modal_body.html"
+    parent_classes = ["ModalPlugin"]
+    allow_children = True
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+
+class ModalFooterPlugin(CMSPluginBase):
+    model = ModalFooter
+    name = "Modal Footer"
+    module = 'Components'
+    render_template = "modal/modal_footer.html"
+    parent_classes = ["ModalPlugin"]
+    allow_children = True
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+class ModalHeaderPlugin(CMSPluginBase):
+    model = ModalHeader
+    name = "Modal Header"
+    module = 'Components'
+    render_template = "modal/modal_header.html"
+    parent_classes = ["ModalPlugin"]
     allow_children = True
 
     def render(self, context, instance, placeholder):
@@ -97,6 +157,10 @@ class TabPlugin(CMSPluginBase):
 
 
 plugin_pool.register_plugin(JumbotronPlugin)
+plugin_pool.register_plugin(ModalPlugin)
+plugin_pool.register_plugin(ModalBodyPlugin)
+plugin_pool.register_plugin(ModalFooterPlugin)
+plugin_pool.register_plugin(ModalHeaderPlugin)
 plugin_pool.register_plugin(PanelPlugin)
 plugin_pool.register_plugin(SPECarouselPlugin)
 plugin_pool.register_plugin(SPECarouselHeaderPlugin)
