@@ -328,6 +328,9 @@ CMS_PLACEHOLDER_CONF = {
                     'ModalBodyPlugin',
                     'ModalFooterPlugin',
                     'ModalHeaderPlugin',
+                    'ContainerPlugin',
+                    'CustomColumnPlugin',
+                    'CustomRowPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [
