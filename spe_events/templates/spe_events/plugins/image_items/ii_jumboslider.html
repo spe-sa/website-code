@@ -20,7 +20,8 @@
           {% for item in items %}
               {% if item.image and item.image.url and item.isvisible %}
                   {% if forloop.first %}
-                      <div class="item active" style="background-image: url({{ item.image.url }})">
+                      <div class="item active" style="background-image: url({{ item.image.url }});
+                              background-position:{{ item.imageposition }}; background-size: cover;">
                           <a href="{{ item.get_absolute_url }}">
                               <div class="carousel-caption">
                                   <h3>{{ item.title }}</h3>
@@ -29,7 +30,8 @@
                           </a>
                       </div>
                   {% else %}
-                      <div class="item" style="background-image: url({{ item.image.url }})">
+                      <div class="item" style="background-image: url({{ item.image.url }});
+                              background-position:{{ item.imageposition }}; background-size: cover;">
                           <a href="{{ item.get_absolute_url }}">
                               <div class="carousel-caption">
                                   <h3>{{ item.title }}</h3>

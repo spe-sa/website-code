@@ -127,7 +127,7 @@ class ImageItems(SortableMixin):
 
     def __unicode__(self):
         dictionary = dict(IMAGE_POSITIONS)
-        return self.title + " - " + dictionary[self.imageposition]
+        return " - " + self.title + " - "
 
 
 class ImageItemsPlugin(CMSPlugin):

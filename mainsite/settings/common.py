@@ -59,9 +59,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'website_static')
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 STATICFILES_DIRS = (
-
+    # os.path.join(PROJECT_PATH, ""),
+    os.path.join(BASE_DIR, 'website/spe_events', 'static'),
 )
 
 SITE_ID = 1

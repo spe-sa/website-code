@@ -59,7 +59,7 @@ class ImageItemPluginInstance(CMSPluginBase):
     name = "Image Items"
     render_template = "spe_events/plugins/image_items/ii_boxes.html"
     allow_children = True
-    module = 'Events'
+    module = 'Components'
 
     def render(self, context, instance, placeholder):
         image_items = ImageItems.objects.filter(item_list=instance.item_list)

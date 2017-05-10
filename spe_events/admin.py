@@ -43,6 +43,11 @@ class CustomImageItemAdmin(NonSortableParentAdmin):
     class Meta:
         verbose_name_plural = "Image Item List"
 
+    class Media:
+        css = {
+            'all': ('admin/css/base.css',)
+        }
+
 
 admin.site.register(EventType)
 admin.site.register(ImageItemList, CustomImageItemAdmin)

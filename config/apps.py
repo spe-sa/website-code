@@ -36,7 +36,7 @@ class SpeBlogConfig(AppConfig):
 
 class SpeEventConfig(AppConfig):
     name = 'spe_events'
-    verbose_name = "Utility Event Lists"
+    verbose_name = "SPE Events"
 
 
 class SpeLinkConfig(AppConfig):

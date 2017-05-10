@@ -62,8 +62,8 @@ $jumboSliderHeight:       500px;
 
     .item {
       height:               $jumboSliderHeight;
-      background-position:  center;
-      background-size:      cover;
+      //background-position:  center;
+      //background-size:      cover;
     }
 
     .carousel-caption {
@@ -76,4 +76,14 @@ $jumboSliderHeight:       500px;
       padding-bottom:       50px;
     }
   }
+}
+
+.jumbotron {
+  height: 400px;
+  margin: 0;
+
+  //.jumbolink {
+  //  height: 100%;
+  //  width:  100%;
+  //}
 }
