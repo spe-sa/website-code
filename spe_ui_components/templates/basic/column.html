@@ -2,7 +2,9 @@
 
 <style>
     .style-{{ instance.id }} {
-  background-color: {{ instance.bkg_color }};
+    {% if not instance.transparent %}
+        background-color: {{ instance.bkg_color }};
+    {% endif %}
 }
 </style>
 

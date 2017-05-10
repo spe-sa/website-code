@@ -27,7 +27,7 @@ class CustomRowPlugin(CMSPluginBase):
     child_classes = ['CustomColumnPlugin']
     model = CustomRow
     module = "Components"
-    name = "Row"
+    name = "Bootstrap Row"
     render_template = "basic/row.html"
 
     def render(self, context, instance, placeholder):
@@ -39,7 +39,7 @@ class CustomColumnPlugin(CMSPluginBase):
     allow_children = True
     fieldsets = (
         (None, {
-            'fields': ('bkg_color', 'element_style', 'element_id',
+            'fields': ('bkg_color', 'transparent', 'element_style', 'element_id',
                        'mobile_device_width', 'small_device_width',
                        'medium_device_width', 'large_device_width')
         }),
@@ -66,7 +66,7 @@ class CustomColumnPlugin(CMSPluginBase):
     )
     model = CustomColumn
     module = "Components"
-    name = "Column"
+    name = "Bootstrap Column"
     render_template = "basic/column.html"
     require_parent = True
     # parent_classes = ['CustomRowPlugin', 'CustomColumnPlugin']
