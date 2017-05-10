@@ -14,6 +14,7 @@ class ImageItemInLine(SortableStackedInline):
             'fields': (
                 'title',
                 'image',
+                'imageposition',
                 'text',
                 'external_link',
                 'internal_link',
@@ -31,7 +32,7 @@ class ImageItemTabularInLine(SortableTabularInline):
     model = ImageItems
     extra = 0
     proxy = True
-    exclude = ['title', 'image', 'text', 'external_link', 'internal_link', 'issponsor', 'sponsorlevel',
+    exclude = ['title', 'image', 'imageposition', 'text', 'external_link', 'internal_link', 'issponsor', 'sponsorlevel',
                'sponsoredevents', 'order']
 
 

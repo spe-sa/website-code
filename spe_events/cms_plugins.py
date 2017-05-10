@@ -66,6 +66,7 @@ class ImageItemPluginInstance(CMSPluginBase):
         context.update({
             'event_id': instance.item_list.event_id,
             'items': image_items,
+            'instance': instance,
         })
         self.render_template = instance.template
         return context

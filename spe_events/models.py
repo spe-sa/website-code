@@ -24,6 +24,19 @@ IMAGE_ITEM_TEMPLATES = (
     ('spe_events/plugins/image_items/ii_sponsor_panels.html', 'Sponsors - Panels'),
 )
 
+DEFAULT_IMAGE_POSITION = 'center center'
+IMAGE_POSITIONS = (
+    ('left top', 'Left-Top'),
+    ('left center', 'Left-Center'),
+    ('left bottom', 'Left-Bottom'),
+    ('center top', 'Center-Top'),
+    (DEFAULT_IMAGE_POSITION, 'Center-Center'),
+    ('center bottom', 'Center-Bottom'),
+    ('right top', 'Right-Top'),
+    ('right center', 'Right-Center'),
+    ('right bottom', 'Right-Bottom'),
+)
+
 
 class EventType(models.Model):
     name = models.CharField(max_length=150, unique=True)
@@ -73,6 +86,7 @@ class ImageItems(SortableMixin):
     item_list = SortableForeignKey(ImageItemList, verbose_name='Item List')
     image = FilerImageField(blank=True, null=True, verbose_name=u'Image for This Item',
                             related_name="item_image")
+    imageposition = models.CharField(max_length=255, choices=IMAGE_POSITIONS, default=DEFAULT_IMAGE_POSITION)
     title = models.CharField(max_length=150, unique=False)
     text = RichTextUploadingField(
         max_length=60000,
@@ -112,7 +126,8 @@ class ImageItems(SortableMixin):
         return link
 
     def __unicode__(self):
-        return self.title
+        dictionary = dict(IMAGE_POSITIONS)
+        return self.title + " - " + dictionary[self.imageposition]
 
 
 class ImageItemsPlugin(CMSPlugin):
