@@ -176,7 +176,7 @@ INSTALLED_APPS = (
     'dashing',
     'dashboard',
     'spe_promotions',
-    'carousel',
+    # 'carousel',
     'django_fsm',
     'spe_messages',
     'adminsortable',

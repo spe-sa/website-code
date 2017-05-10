@@ -38,6 +38,11 @@ class CustomMenuAdmin(NonSortableParentAdmin):
     class Meta:
         verbose_name_plural = "Custom Menus"
 
+    class Media:
+        css = {
+            'all': ('admin/css/base.css',)
+        }
+
 
 admin.site.register(CustomMenus, CustomMenuAdmin)
 # admin.site.register(CustomMenuItems, SortableAdmin)

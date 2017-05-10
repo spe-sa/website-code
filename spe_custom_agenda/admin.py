@@ -29,6 +29,11 @@ class CustomAgendaAdmin(admin.ModelAdmin):
     class Meta:
         verbose_name_plural = "Custom Menus"
 
+    class Media:
+        css = {
+            'all': ('admin/css/base.css',)
+        }
+
 
 admin.site.register(CustomAgenda, CustomAgendaAdmin)
 admin.site.register(SessionTypes)
