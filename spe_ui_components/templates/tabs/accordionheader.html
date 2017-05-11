@@ -5,14 +5,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion-plugin-{{ instance.id }}" href="#collapse-{{ accordion.id }}">{{ accordion.title }}</a>
+                    <a data-toggle="collapse" data-parent="#accordion-plugin-{{ instance.id }}"
+                       href="#collapse-{{ accordion.id }}">{{ accordion.title }}</a>
                 </h4>
             </div>
         </div>
         <div id="collapse-{{ accordion.id }}" class="panel-collapse collapse">
-          <div class="panel-body">
-              {% render_plugin accordion %}
-          </div>
+            <div class="panel-body">
+                {% render_plugin accordion %}
+            </div>
         </div>
     {% endfor %}
 </div>

@@ -14,8 +14,10 @@ class CustomAgendaPluginInstance(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         timezone.deactivate()
-        agenda_items = CustomAgendaItems.objects.filter(custom_agenda=instance.custom_agenda).order_by('start_date', 'start_time', 'end_time')
-        previous_day = datetime.date(1970,1,1)
+        agenda_items = CustomAgendaItems.objects.filter(custom_agenda=instance.custom_agenda).order_by('start_date',
+                                                                                                       'start_time',
+                                                                                                       'end_time')
+        previous_day = datetime.date(1970, 1, 1)
         for item in agenda_items:
             if item.start_date != previous_day:
                 item.is_new_day = True

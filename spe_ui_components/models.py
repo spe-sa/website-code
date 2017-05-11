@@ -3,7 +3,6 @@ from cms.models import CMSPlugin
 from cms.models.fields import PlaceholderField
 from colorfield.fields import ColorField
 
-
 DEFAULT_TYPE = 'tabs/tabheader.html'
 TYPES = (
     (DEFAULT_TYPE, 'Tabs'),
@@ -379,7 +378,6 @@ class ModalBody(CMSPlugin):
     A Modal plugin.
     """
 
-
     def __unicode__(self):
         return u"{0} modal body items".format(self.cmsplugin_set.all().count())
 
@@ -407,10 +405,9 @@ class Panel(CMSPlugin):
     An individual Panel plugin.
     """
     title = models.CharField(max_length=64)
-    heading = models.CharField(max_length=64, blank=True, null=True,)
-    footer = models.CharField(max_length=64, blank=True, null=True,)
+    heading = models.CharField(max_length=64, blank=True, null=True, )
+    footer = models.CharField(max_length=64, blank=True, null=True, )
     custom_class = models.CharField(max_length=64, blank=True, null=True, default='panel-default')
-
 
     def __unicode__(self):
         return u"{0}".format(self.title)

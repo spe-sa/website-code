@@ -6,7 +6,7 @@
     {% endif %}
     <div class="panel-body">
         {% for child in instance.child_plugin_instances %}
-                {% render_plugin child %}
+            {% render_plugin child %}
         {% endfor %}
     </div>
     {% if instance.footer %}

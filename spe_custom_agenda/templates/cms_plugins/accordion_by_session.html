@@ -1,66 +1,66 @@
 {% load sekizai_tags cms_tags %}
 <html>
 <head>
-<style>
+    <style>
 
-{{ button_colors }}
+        {{ button_colors }}
 
-button.accordion {
-    cursor: pointer;
-    padding: 18px;
-    border: none;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
+        button.accordion {
+            cursor: pointer;
+            padding: 18px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
 
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
+        button.accordion.active, button.accordion:hover {
+            background-color: #ddd;
+        }
 
-button.accordion:after {
-    content: '\002B';
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
+        button.accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
 
-button.accordion.active:after {
-    content: "\2212";
-}
+        button.accordion.active:after {
+            content: "\2212";
+        }
 
-div.panel {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    float: right;
-}
+        div.panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            float: right;
+        }
 
-h5.time {
-    vertical-align:middle;
-    padding: 18px;
-    border: none;
-    outline: none;
-    font-size: 15px;
-}
-</style>
+        h5.time {
+            vertical-align: middle;
+            padding: 18px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>{{ title }}</h2>
-    <hr />
-    {% for item in items %}
-        {% if item.is_new_day %}
-            <h3>{{ item.start_date | date:"l" }}, {{ item.start_date | date:"F" }} {{ item.start_date | date:"d" }}</h3>
-        {% endif %}
-        <row class="col-md-12">
-            <h5 class="col-md-3 time">
-                    {{ item.start_time | date:"H:i" }} - {{ item.end_time | date:"H:i" }}
-            </h5>
-            <h5>
+<h2>{{ title }}</h2>
+<hr/>
+{% for item in items %}
+    {% if item.is_new_day %}
+        <h3>{{ item.start_date | date:"l" }}, {{ item.start_date | date:"F" }} {{ item.start_date | date:"d" }}</h3>
+    {% endif %}
+    <row class="col-md-12">
+        <h5 class="col-md-3 time">
+            {{ item.start_time | date:"H:i" }} - {{ item.end_time | date:"H:i" }}
+        </h5>
+        <h5>
             <button class="accordion col-md-9 {{ item.session_type.slug }}">
                 <span class="col-md-5 text-left">{{ item.title }}</span>
                 <span class="col-md-4 text-right">{{ item.location }}</span>
@@ -70,26 +70,26 @@ h5.time {
                     {{ item.session_description | safe }}
                 </p>
             </div>
-            </h5>
-        </row>
-        <p></p>
-    {% endfor %}
+        </h5>
+    </row>
+    <p></p>
+{% endfor %}
 
 <script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+    var acc = document.getElementsByClassName("accordion");
+    var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        }
     }
-  }
-}
 </script>
 </body>
 </html>

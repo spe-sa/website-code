@@ -69,6 +69,7 @@ class CustomColumnPlugin(CMSPluginBase):
     name = "Bootstrap Column"
     render_template = "basic/column.html"
     require_parent = True
+
     # parent_classes = ['CustomRowPlugin', 'CustomColumnPlugin']
 
     def render(self, context, instance, placeholder):
@@ -97,7 +98,7 @@ class ModalPlugin(CMSPluginBase):
     module = 'Components'
     render_template = "modal/modal.html"
     allow_children = True
-    child_classes = ["ModalBodyPlugin", "ModalFooterPlugin", "ModalHeaderPlugin",]
+    child_classes = ["ModalBodyPlugin", "ModalFooterPlugin", "ModalHeaderPlugin", ]
 
     def render(self, context, instance, placeholder):
         context.update({
@@ -134,6 +135,7 @@ class ModalFooterPlugin(CMSPluginBase):
             'instance': instance,
         })
         return context
+
 
 class ModalHeaderPlugin(CMSPluginBase):
     model = ModalHeader

@@ -96,7 +96,8 @@ class CustomMenuItems(SortableMixin):
 
 class CustomMenusPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=MENU_TEMPLATES, default=DEFAULT_MENU_TEMPLATE)
-    custom_menu = models.ForeignKey(CustomMenus, help_text="Select a menu you created in Admin or use '+' to add a new menu")
+    custom_menu = models.ForeignKey(CustomMenus,
+                                    help_text="Select a menu you created in Admin or use '+' to add a new menu")
 
     def __unicode__(self):
         dictionary = dict(MENU_TEMPLATES)

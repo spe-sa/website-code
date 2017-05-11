@@ -23,7 +23,6 @@ class MenuItemInLine(SortableStackedInline):
     exclude = ['is_dropdown_node', 'depth', 'escapes', 'order']
 
 
-
 class MenuItemTabularInLine(SortableTabularInline):
     model = CustomMenuItems
     extra = 0

@@ -4,7 +4,6 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from colorfield.fields import ColorField
 from django.template.defaultfilters import slugify
 
-
 DEFAULT_AGENDA_TEMPLATE = 'cms_plugins/agenda.html'
 AGENDA_TEMPLATES = (
     (DEFAULT_AGENDA_TEMPLATE, 'Regular Schedule'),
@@ -27,6 +26,7 @@ class SessionTypes(models.Model):
 
     def __unicode__(self):
         return self.session_type
+
 
 class CustomAgenda(models.Model):
     title = models.CharField('Meeting Title', unique=True, max_length=100)
@@ -60,12 +60,15 @@ class CustomAgendaItems(models.Model):
         verbose_name_plural = 'Custom Agenda Items'
 
     def __unicode__(self):
-        return u"{0} ({1} - {2}) - {3}".format(self.start_date.strftime('%a %Y-%m-%d'), self.start_time.strftime('%H:%M'), self.end_time.strftime('%H:%M'), self.title)
+        return u"{0} ({1} - {2}) - {3}".format(self.start_date.strftime('%a %Y-%m-%d'),
+                                               self.start_time.strftime('%H:%M'), self.end_time.strftime('%H:%M'),
+                                               self.title)
 
 
 class CustomAgendaPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=AGENDA_TEMPLATES, default=DEFAULT_AGENDA_TEMPLATE)
-    custom_agenda = models.ForeignKey(CustomAgenda, help_text="Select an agenda you created in Admin or use '+' to add a new agenda")
+    custom_agenda = models.ForeignKey(CustomAgenda,
+                                      help_text="Select an agenda you created in Admin or use '+' to add a new agenda")
 
     def __unicode__(self):
         dictionary = dict(AGENDA_TEMPLATES)

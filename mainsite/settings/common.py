@@ -443,7 +443,6 @@ CMS_PLACEHOLDER_CONF = {
                 'VisitorMembershipYearPaidSegmentPlugin',
                 'VisitorIPtoRegionSegmentPlugin',
                 'DateTimeSegmentPlugin',
-
             ],
         },
         'plugin_modules': {

@@ -2,13 +2,14 @@
 
 <style>
     .style-{{ instance.id }} {
-      {% if not instance.transparent %}
+    {% if not instance.transparent %}
         background-color: {{ instance.bkg_color }};
-      {% endif %}
-}
+    {% endif %}
+    }
 </style>
 
-<div class="row {{instance.classes}} style-{{ instance.id }}" id="{{instance.element_id}}" styles="{{instance.element_style}}">
+<div class="row {{ instance.classes }} style-{{ instance.id }}" id="{{ instance.element_id }}"
+     styles="{{ instance.element_style }}">
     {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}
     {% endfor %}
