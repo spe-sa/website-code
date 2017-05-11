@@ -47,7 +47,7 @@ class CustomColumn(CMSPlugin):
     )
 
     bkg_color = ColorField(verbose_name='Background Color')
-    transparent = models.BooleanField(default=False, help_text='Transparent overrides selected color')
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     mobile_device_width = models.CharField(max_length=255,
                                            choices=device_count_range,
                                            help_text="""The column width on
@@ -309,7 +309,7 @@ class CustomColumn(CMSPlugin):
 
 class CustomRow(CMSPlugin):
     bkg_color = ColorField(verbose_name='Background Color')
-    transparent = models.BooleanField(default=False, help_text='Transparent overrides selected color')
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
                                help_text="""Classes to be applied to this
                                element""", verbose_name="Element Classes")
@@ -328,7 +328,7 @@ class CustomRow(CMSPlugin):
 
 class Container(CMSPlugin):
     bkg_color = ColorField(verbose_name='Background Color')
-    transparent = models.BooleanField(default=False, help_text='Transparent overrides selected color')
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
                                help_text="""Classes to be applied to this
                                element""", verbose_name="Element Classes")

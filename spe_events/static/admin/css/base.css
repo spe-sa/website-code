@@ -986,3 +986,6 @@ table#change-history tbody th {
 .inline_label {
     font-size:  18px !important;
 }
+fieldset.collapsed h2 {
+    background: #417690 !important;
+}

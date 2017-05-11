@@ -225,7 +225,7 @@ fieldset.collapsed {
 }
 
 fieldset.collapsed h2 {
-    background: #f8f8f8;
+    background: steelblue;
     color: #666;
 }
 
@@ -236,7 +236,7 @@ fieldset .collapse-toggle {
 fieldset.collapsed .collapse-toggle {
     background: transparent;
     display: inline;
-    color: #447e9b;
+    color: lightsteelblue;
 }
 
 /* MONOSPACE TEXTAREAS */

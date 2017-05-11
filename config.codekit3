@@ -22247,6 +22247,565 @@
 		"oAP": "\/spe_custom_agenda\/models.pyc",
 		"oF": 0
 		},
+	"\/spe_custom_agenda\/static\/admin\/css\/base-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/base-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/base.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/base-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/changelists.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/changelists-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/dashboard.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/dashboard-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/fonts.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/fonts-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/forms.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/forms-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/login.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/login-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/rtl.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/rtl-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/css\/widgets.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/css\/widgets-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/fonts\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/fonts\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/fonts\/README.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/fonts\/README.txt",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Bold-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Bold-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Light-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Light-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Regular-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/fonts\/Roboto-Regular-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/calendar-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/calendar-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/gis\/move_vertex_off.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/gis\/move_vertex_off.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/gis\/move_vertex_on.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/gis\/move_vertex_on.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-addlink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-addlink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-alert.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-alert.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-calendar.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-calendar.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-changelink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-changelink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-clock.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-clock.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-deletelink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-deletelink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-no.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-no.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-unknown-alt.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-unknown-alt.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-unknown.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-unknown.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/icon-yes.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/icon-yes.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/inline-delete.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/inline-delete.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/LICENSE": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/LICENSE",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/README.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/README.txt",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/search.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/search.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/selector-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/selector-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/sorting-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/sorting-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/tooltag-add.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/tooltag-add.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/img\/tooltag-arrowright.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/img\/tooltag-arrowright.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/actions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/actions-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/actions.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/actions.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/admin\/DateTimeShortcuts.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/admin\/DateTimeShortcuts-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/admin\/RelatedObjectLookups.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/admin\/RelatedObjectLookups-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/calendar.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/calendar-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/cancel.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/cancel-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/change_form.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/change_form-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/collapse.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/collapse-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/collapse.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/collapse.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/core.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/core-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/inlines.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/inlines-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/inlines.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/inlines.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/jquery.init.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/jquery.init-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/popup_response.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/popup_response-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/prepopulate.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/prepopulate-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/prepopulate.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/prepopulate.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/prepopulate_init.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/prepopulate_init-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/SelectBox.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/SelectBox-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/SelectFilter2.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/SelectFilter2-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/timeparse.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/timeparse-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/urlify.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/urlify-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/jquery.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/jquery-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/jquery.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/jquery.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/LICENSE-JQUERY.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/jquery\/LICENSE-JQUERY.txt",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/LICENSE-XREGEXP.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/LICENSE-XREGEXP.txt",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/xregexp.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/xregexp-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/xregexp.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_agenda\/static\/admin\/js\/vendor\/xregexp\/xregexp.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/spe_custom_agenda\/templates\/cms_plugins\/accordion_by_session.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -22330,6 +22889,565 @@
 		"oA": 2,
 		"oAP": "\/spe_custom_menus\/models.pyc",
 		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/base-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/base-min-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/base.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/base-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/changelists.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/changelists-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/dashboard.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/dashboard-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/fonts.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/fonts-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/forms.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/forms-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/login.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/login-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/rtl.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/rtl-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/css\/widgets.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/css\/widgets-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/fonts\/LICENSE.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/fonts\/LICENSE.txt",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/fonts\/README.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/fonts\/README.txt",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Bold-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Bold-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Light-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Light-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Regular-webfont.woff": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/fonts\/Roboto-Regular-webfont.woff",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/calendar-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/calendar-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/gis\/move_vertex_off.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/gis\/move_vertex_off.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/gis\/move_vertex_on.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/gis\/move_vertex_on.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-addlink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-addlink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-alert.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-alert.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-calendar.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-calendar.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-changelink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-changelink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-clock.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-clock.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-deletelink.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-deletelink.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-no.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-no.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-unknown-alt.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-unknown-alt.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-unknown.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-unknown.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/icon-yes.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/icon-yes.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/inline-delete.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/inline-delete.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/LICENSE": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/LICENSE",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/README.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/README.txt",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/search.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/search.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/selector-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/selector-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/sorting-icons.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/sorting-icons.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/tooltag-add.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/tooltag-add.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/img\/tooltag-arrowright.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/img\/tooltag-arrowright.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/actions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/actions-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/actions.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/actions.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/admin\/DateTimeShortcuts.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/admin\/DateTimeShortcuts-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/admin\/RelatedObjectLookups.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/admin\/RelatedObjectLookups-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/calendar.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/calendar-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/cancel.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/cancel-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/change_form.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/change_form-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/collapse.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/collapse-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/collapse.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/collapse.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/core.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/core-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/inlines.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/inlines-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/inlines.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/inlines.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/jquery.init.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/jquery.init-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/popup_response.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/popup_response-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/prepopulate.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/prepopulate-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/prepopulate.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/prepopulate.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/prepopulate_init.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/prepopulate_init-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/SelectBox.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/SelectBox-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/SelectFilter2.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/SelectFilter2-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/timeparse.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/timeparse-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/urlify.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/urlify-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/jquery.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/jquery-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/jquery.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/jquery.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/LICENSE-JQUERY.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/jquery\/LICENSE-JQUERY.txt",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/LICENSE-XREGEXP.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/LICENSE-XREGEXP.txt",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/xregexp.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/xregexp-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/xregexp.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/spe_custom_menus\/static\/admin\/js\/vendor\/xregexp\/xregexp.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
 		},
 	"\/spe_custom_menus\/static\/css\/yamm.css": {
 		"aP": 1,
@@ -22545,6 +23663,30 @@
 		"oAP": "\/spe_events\/migrations\/0013_auto_20170510_1415.pyc",
 		"oF": 0
 		},
+	"\/spe_events\/migrations\/0014_auto_20170511_0857.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0014_auto_20170511_0857.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0014_auto_20170511_0857.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0014_auto_20170511_0857.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0015_auto_20170511_1143.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0015_auto_20170511_1143.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0015_auto_20170511_1143.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0015_auto_20170511_1143.pyc",
+		"oF": 0
+		},
 	"\/spe_events\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -22628,6 +23770,16 @@
 		"ma": 0,
 		"oA": 0,
 		"oAP": "\/spe_events\/static\/admin\/css\/fonts-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/spe_events\/static\/admin\/css\/forms-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_events\/static\/admin\/css\/forms-min-min.css",
 		"oF": 0,
 		"oS": 0
 		},
@@ -23346,10 +24498,22 @@
 		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_sponsor_panels.html",
 		"oF": 0
 		},
+	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_text_below.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_text_below.html",
+		"oF": 0
+		},
 	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_video.html": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_video.html",
+		"oF": 0
+		},
+	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_z_elements.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_z_elements.html",
 		"oF": 0
 		},
 	"\/spe_events\/templates\/spe_events\/plugins\/location.html": {
@@ -24226,6 +25390,18 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_ui_components\/migrations\/0003_container_customcolumn_customrow.pyc",
+		"oF": 0
+		},
+	"\/spe_ui_components\/migrations\/0004_auto_20170511_1015.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/migrations\/0004_auto_20170511_1015.py",
+		"oF": 0
+		},
+	"\/spe_ui_components\/migrations\/0004_auto_20170511_1015.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/migrations\/0004_auto_20170511_1015.pyc",
 		"oF": 0
 		},
 	"\/spe_ui_components\/migrations\/__init__.py": {

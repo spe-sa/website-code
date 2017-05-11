@@ -31,6 +31,14 @@
        -o-#{$property}: #{$value};
           #{$property}: #{$value};
 }
+@mixin css3-prefix-important($property, $value) {
+  -webkit-#{$property}: #{$value} !important;
+   -khtml-#{$property}: #{$value} !important;
+     -moz-#{$property}: #{$value} !important;
+      -ms-#{$property}: #{$value} !important;
+       -o-#{$property}: #{$value} !important;
+          #{$property}: #{$value} !important;
+}
 
 
 /// Background Gradient
@@ -110,7 +118,7 @@
 /// @require {mixin} css3-prefix
 
 @mixin border-radius($radius: 5px) {
-    @include css3-prefix('border-radius', $radius);
+    @include css3-prefix-important('border-radius', $radius);
 }
 
 

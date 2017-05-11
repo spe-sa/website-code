@@ -1,0 +1,23 @@
+<!-- This is the BOXES template. -->
+{{ instance.pluginheight }}px<br>
+
+{% for item in items %}
+
+    <p>
+        {{ items.count }}<br>
+        {{ forloop.counter }}<br>
+        {{ instance.id }}<br>
+        {{ item.order }}<br>
+        {{ item.item_list }}<br>
+        {{ item.image.url }}<br>
+        {{ item.imageposition }}<br>
+        {{ item.title }}<br>
+        {{ item.text }}<br>
+        {{ item.get_absolute_url }}<br>
+        {{ item.isvisible }}<br>
+        {{ item.issponsor }}<br>
+        {{ item.sponsorlevele }}<br>
+        {{ item.sponsoredevents }}<br>
+    </p>
+
+{% endfor %}

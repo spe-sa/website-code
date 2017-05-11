@@ -1,6 +1,9 @@
 /* =================================================================== */
 /* BASE HTML
 ====================================================================== */
+
+//background: url(/folder/image.png) no-repeat center center / cover;
+
 @import 'vars';
 
 body {
@@ -39,9 +42,9 @@ p {
 }
 
 * {
-  -webkit-border-radius:  0 !important;
-  -moz-border-radius:     0 !important;
-  border-radius:          0 !important;
+  -webkit-border-radius:  0;
+  -moz-border-radius:     0;
+  border-radius:          0;
 }
 
 .row {
@@ -61,3 +64,4 @@ a {
 .padZero {
   padding:                0;
 }
+
