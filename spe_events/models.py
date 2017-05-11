@@ -132,6 +132,7 @@ class ImageItems(SortableMixin):
 
 class ImageItemsPlugin(CMSPlugin):
     template = models.CharField(max_length=255, choices=IMAGE_ITEM_TEMPLATES, default=DEFAULT_IMAGE_ITEM_TEMPLATE)
+    pluginheight = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Height in pixels.',)
     item_list = models.ForeignKey(ImageItemList,
                                   help_text="Select an image list you created in Admin or use '+' to add a new menu")
 

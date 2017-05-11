@@ -3,7 +3,8 @@
 
 {% for item in items %}
     {% if item.image and item.image.url and item.isvisible %}
-        <a href="{{ item.get_absolute_url }}"><div class="col-xs-12 padZero jumbotron" style="background-image: url({{ item.image.url }});
-                background-position:{{ item.imageposition }}; background-size: cover;"></div></a>
+        <a href="{{ item.get_absolute_url }}"><div class="col-xs-12 padZero jumbotron" style="
+                background-image: url({{ item.image.url }}); background-position:{{ item.imageposition }};
+                background-size: cover; height: {{ instance.pluginheight }}px;"></div></a>
     {% endif %}
 {% endfor %}

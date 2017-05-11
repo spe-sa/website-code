@@ -369,6 +369,12 @@
 		"oAP": "\/config\/apps.py",
 		"oF": 0
 		},
+	"\/config\/apps.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/config\/apps.pyc",
+		"oF": 0
+		},
 	"\/count_fix_articles.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -900,6 +906,18 @@
 		"oAP": "\/mainsite\/migrations\/0001_initial.pyc",
 		"oF": 0
 		},
+	"\/mainsite\/migrations\/0002_auto_20170510_1336.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/migrations\/0002_auto_20170510_1336.py",
+		"oF": 0
+		},
+	"\/mainsite\/migrations\/0002_auto_20170510_1336.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/migrations\/0002_auto_20170510_1336.pyc",
+		"oF": 0
+		},
 	"\/mainsite\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -940,6 +958,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/mainsite\/settings\/common.py",
+		"oF": 0
+		},
+	"\/mainsite\/settings\/common.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/settings\/common.pyc",
 		"oF": 0
 		},
 	"\/mainsite\/settings\/dev.py": {
@@ -22347,10 +22371,22 @@
 		"oAP": "\/spe_events\/admin.py",
 		"oF": 0
 		},
+	"\/spe_events\/admin.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/admin.pyc",
+		"oF": 0
+		},
 	"\/spe_events\/cms_plugins.py": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/cms_plugins.py",
+		"oF": 0
+		},
+	"\/spe_events\/cms_plugins.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/cms_plugins.pyc",
 		"oF": 0
 		},
 	"\/spe_events\/migrations\/0001_initial.py": {
@@ -22461,6 +22497,54 @@
 		"oAP": "\/spe_events\/migrations\/0009_auto_20170510_0903.pyc",
 		"oF": 0
 		},
+	"\/spe_events\/migrations\/0010_imageitemsplugin_pluginheight.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0010_imageitemsplugin_pluginheight.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0010_imageitemsplugin_pluginheight.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0010_imageitemsplugin_pluginheight.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0011_remove_imageitemsplugin_pluginheight.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0011_remove_imageitemsplugin_pluginheight.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0011_remove_imageitemsplugin_pluginheight.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0011_remove_imageitemsplugin_pluginheight.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0012_imageitemsplugin_pluginheight.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0012_imageitemsplugin_pluginheight.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0012_imageitemsplugin_pluginheight.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0012_imageitemsplugin_pluginheight.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0013_auto_20170510_1415.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0013_auto_20170510_1415.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0013_auto_20170510_1415.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0013_auto_20170510_1415.pyc",
+		"oF": 0
+		},
 	"\/spe_events\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -22479,6 +22563,12 @@
 		"oAP": "\/spe_events\/models.py",
 		"oF": 0
 		},
+	"\/spe_events\/models.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/models.pyc",
+		"oF": 0
+		},
 	"\/spe_events\/settings.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -22490,6 +22580,16 @@
 		"oA": 2,
 		"oAP": "\/spe_events\/settings.pyc",
 		"oF": 0
+		},
+	"\/spe_events\/static\/admin\/css\/base-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/spe_events\/static\/admin\/css\/base-min-min.css",
+		"oF": 0,
+		"oS": 0
 		},
 	"\/spe_events\/static\/admin\/css\/base.css": {
 		"aP": 1,
@@ -24116,6 +24216,18 @@
 		"oAP": "\/spe_ui_components\/migrations\/0002_modal_modalbody_modalfooter_modalheader.pyc",
 		"oF": 0
 		},
+	"\/spe_ui_components\/migrations\/0003_container_customcolumn_customrow.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/migrations\/0003_container_customcolumn_customrow.py",
+		"oF": 0
+		},
+	"\/spe_ui_components\/migrations\/0003_container_customcolumn_customrow.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/migrations\/0003_container_customcolumn_customrow.pyc",
+		"oF": 0
+		},
 	"\/spe_ui_components\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -24138,6 +24250,24 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_ui_components\/models.pyc",
+		"oF": 0
+		},
+	"\/spe_ui_components\/templates\/basic\/column.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/templates\/basic\/column.html",
+		"oF": 0
+		},
+	"\/spe_ui_components\/templates\/basic\/container.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/templates\/basic\/container.html",
+		"oF": 0
+		},
+	"\/spe_ui_components\/templates\/basic\/row.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_ui_components\/templates\/basic\/row.html",
 		"oF": 0
 		},
 	"\/spe_ui_components\/templates\/carousel\/carousel.html": {
