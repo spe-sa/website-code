@@ -187,6 +187,7 @@ INSTALLED_APPS = (
     'spe_custom_agenda',
     'tastypie',
     'colorfield',
+    'spe_custom_scrollspy',
 )
 
 LANGUAGES = (
@@ -333,6 +334,8 @@ CMS_PLACEHOLDER_CONF = {
                     'ContainerPlugin',
                     'CustomColumnPlugin',
                     'CustomRowPlugin',
+                    'ScrollSpyHeaderPlugin',
+                    'ScrollSpyPlugin',
                     ],
         'child_classes': {
             'CarouselComponentPlugin': [

@@ -1,0 +1,50 @@
+{% load sekizai_tags cms_tags %}
+
+<style>
+    body .nav-list>.active>a{
+      background-color:#DDBFF5;
+    }
+    body .nav-list>.active>a:hover {
+      background:#A146C2;
+    }
+    body .nav a:hover{
+      color:#DDBFF5;
+      background-color: #F7EDFA;
+    }
+    #side-nav-{{ instance.id }} {
+      position: relative;
+      overflow: hidden;
+    }
+    #side-nav-{{ instance.id }}:before,
+    #side-nav-{{ instance.id }}:after {
+      content: ' ';
+      display: table;
+    }
+    #side-nav-{{ instance.id }}:after {
+      clear: both;
+    }
+</style>
+
+<body data-spy="scroll" data-target="#side-nav-{{ instance.id }}" data-offset-top=""0">
+    <div class="pre-scrollable" id="scrollspy-{{ instance.id }}">
+        <div class="row">
+            <div id="side-nav-{{ instance.id }}">
+                <ul class="nav nav-list affix">
+                    <li class="nav-header"><a href="#start-{{ instance.id }}">{{ instance.title }}</a></li>
+                    {% for scrollspy in instance.child_plugin_instances %}
+                        <li><a href="#section-{{ scrollspy.id }}">{{ scrollspy.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-offset-3 col-md-9 content">
+                <div id="start-{{ instance.id }}">
+                    {% for scrollspy in instance.child_plugin_instances %}
+                        <section id="section-{{ scrollspy.id }}">
+                            {% render_plugin scrollspy %}
+                        </section>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>​
