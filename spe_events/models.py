@@ -19,8 +19,9 @@ IMAGE_ITEM_TEMPLATES = (
     ('spe_events/plugins/image_items/ii_jumboslider.html', 'Jumbo Slider'),
     ('spe_events/plugins/image_items/ii_mini_slider.html', 'Mini Slider'),
     ('spe_events/plugins/image_items/ii_text_below.html', 'Text Below'),
+    ('spe_events/plugins/image_items/ii_itemThumb.html', 'Single Image'),
     ('spe_events/plugins/image_items/ii_speakers.html', 'Speakers'),
-    ('spe_events/plugins/image_items/ii_video.html', 'Video Thumbnail'),
+    ('spe_events/plugins/image_items/ii_video.html', 'Video Item'),
     ('spe_events/plugins/image_items/ii_sponsor_conveyor.html', 'Sponsors - Conveyor'),
     ('spe_events/plugins/image_items/ii_sponsor_panels.html', 'Sponsors - Panels'),
 )

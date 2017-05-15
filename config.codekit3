@@ -23471,6 +23471,78 @@
 		"oAP": "\/spe_custom_menus\/templates\/spe_custom_menus\/YAMM_menu.html",
 		"oF": 0
 		},
+	"\/spe_custom_scrollspy\/__init__.py": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_custom_scrollspy\/__init__.py",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/__init__.pyc": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_custom_scrollspy\/__init__.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/cms_plugins.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/cms_plugins.py",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/cms_plugins.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/cms_plugins.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/migrations\/0001_initial.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/migrations\/0001_initial.py",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/migrations\/0001_initial.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/migrations\/0001_initial.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/migrations\/__init__.py": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_custom_scrollspy\/migrations\/__init__.py",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/migrations\/__init__.pyc": {
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/spe_custom_scrollspy\/migrations\/__init__.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/models.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/models.py",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/models.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/models.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/templates\/scrollspy\/scrollspy.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/templates\/scrollspy\/scrollspy.html",
+		"oF": 0
+		},
+	"\/spe_custom_scrollspy\/templates\/scrollspy\/scrollspyheader.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_scrollspy\/templates\/scrollspy\/scrollspyheader.html",
+		"oF": 0
+		},
 	"\/spe_events\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -23685,6 +23757,30 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/migrations\/0015_auto_20170511_1143.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0016_auto_20170515_0805.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0016_auto_20170515_0805.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0016_auto_20170515_0805.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0016_auto_20170515_0805.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0017_auto_20170515_0808.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0017_auto_20170515_0808.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0017_auto_20170515_0808.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0017_auto_20170515_0808.pyc",
 		"oF": 0
 		},
 	"\/spe_events\/migrations\/__init__.py": {
@@ -24460,6 +24556,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_boxes.html",
+		"oF": 0
+		},
+	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_ItemThumb.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_ItemThumb.html",
 		"oF": 0
 		},
 	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_jumboslider.html": {

@@ -74,7 +74,7 @@ a:hover { text-decoration: none; }
 
 .mainLogo { padding-top: 20px; }
 
-.topAddress { color: #1c407d; }
+.topAddress { color: #1c407d; margin-top: 20px; }
 
 .mainLogoImg { max-width: 400px; }
 
@@ -156,6 +156,10 @@ a:hover { text-decoration: none; }
 .speakertext { margin: auto; }
 
 .speakertitle { font-family: "Montserrat", sans-serif; font-size: 18px; }
+
+.sponsorCoveyor { padding: 20px 0; }
+
+.singleImage { -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; }
 
 /* =================================================================== */
 /* FOOTER STYLES FOR ATCE

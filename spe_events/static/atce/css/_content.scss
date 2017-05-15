@@ -166,3 +166,11 @@ $itemboxpadding:  20px;
   font-family:            $font-titles;
   font-size:              $h4size;
 }
+
+.sponsorCoveyor {
+  padding:                20px 0;
+}
+
+.singleImage {
+  @include border-radius(5px);
+}
