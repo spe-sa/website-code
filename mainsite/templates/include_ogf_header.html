@@ -28,6 +28,48 @@
                         </span>
                     </div>
                 </form>
+
+{#                            {{ variables.is_local_ip }}#}
+{#                            {{ variables.cip }}#}
+
+                            {% if variables.is_local_ip == True %}
+                            <div class="gse-search" style="width: 350px">
+                                <!-- These styles fix CSE and Bootstrap 3 conflict -->
+                                <style type="text/css">
+                                    .gsc-adBlock {
+                                        opacity: 0.5;
+                                    }
+                                    .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
+                                    {
+                                        -webkit-box-sizing: content-box;
+                                        -moz-box-sizing: content-box;
+                                        box-sizing: content-box;
+                                    }
+                                    input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
+                                    {
+                                        box-sizing: content-box;
+                                        line-height: normal;
+                                    }
+                                    .gsc-control-cse {
+                                        padding: 0;
+                                    }
+                                </style>
+                                <script>
+                                    (function() {
+                                        var cx = '012047942974714092081:p4lfuksd0j4';
+                                        {#  var cx = '007919311804914109615:_7f3pu6glfg'; #}
+                                        var gcse = document.createElement('script');
+                                        gcse.type = 'text/javascript';
+                                        gcse.async = true;
+                                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                        var s = document.getElementsByTagName('script')[0];
+                                        s.parentNode.insertBefore(gcse, s);
+                                    })();
+                                </script>
+                                <gcse:search></gcse:search>
+                            </div>
+                            {% endif %}
+
             </div>
         </div>
 
