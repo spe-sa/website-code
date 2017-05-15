@@ -188,6 +188,8 @@ INSTALLED_APPS = (
     'tastypie',
     'colorfield',
     'spe_custom_scrollspy',
+    # 'statsy',
+    'controlcenter',
 )
 
 LANGUAGES = (
@@ -803,3 +805,10 @@ ADMIN_SHORTCUTS_SETTINGS = {
     'hide_app_list': False,
     'open_new_window': False,
 }
+
+
+# Admin Dashboard
+
+CONTROLCENTER_DASHBOARDS = (
+    'mainsite.dashboards.MyDashboard',
+)
