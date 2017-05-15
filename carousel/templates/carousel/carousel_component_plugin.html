@@ -1,9 +1,0 @@
-{% load cms_tags %}
-
-<li>
-    {% for plugin in instance.child_plugin_instances %}
-        <a href="{{ instance.component_href }}">
-            {% render_plugin plugin %}
-        </a>
-    {% endfor %}
-</li>
