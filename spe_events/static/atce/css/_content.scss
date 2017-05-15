@@ -56,8 +56,10 @@
   }
 }
 .sponsorBar {
-  background-color:       $col-grey-light;
+  //background-color:       $col-grey-light;
   padding:                20px 0;
+  border-top: 2px solid $col-grey-light;
+  border-bottom: 2px solid $col-grey-light;
 }
 .byTheNumbersBar {
   background-color:       $col-atce-green;

@@ -119,7 +119,7 @@ a:hover { text-decoration: none; }
 
 .panel-tabs .tab-content { padding: 20px 10px 0 10px; }
 
-.sponsorBar { background-color: #e1e1e1; padding: 20px 0; }
+.sponsorBar { padding: 20px 0; border-top: 2px solid #e1e1e1; border-bottom: 2px solid #e1e1e1; }
 
 .byTheNumbersBar { background-color: #67c18d; }
 
