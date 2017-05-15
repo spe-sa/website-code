@@ -299,7 +299,6 @@ CMS_PLACEHOLDER_CONF = {
                     'BootStrapContainerPlugin',
                     'BootstrapRowPlugin',
                     'ShowHorizontalBar',
-                    'CarouselPlugin',
                     # spe_promotions
                     'ShowEventNearLocationPromotionListing',
                     'ShowEventNearUserPromotionListing',
@@ -338,53 +337,6 @@ CMS_PLACEHOLDER_CONF = {
                     'ScrollSpyPlugin',
                     ],
         'child_classes': {
-            'CarouselComponentPlugin': [
-                'ShowAdSpeedZonePlugin',
-                'ShowTitlePlugin',
-                'ShowTileImgBack',
-                'ShowTextPlugin',
-                # filer plugins
-                'FilerFilePlugin',
-                'FilerFolderPlugin',
-                'FilerImagePlugin',
-                'FilerVideoPlugin',
-                # Generic plugins
-                'GoogleMapPlugin',
-                # 'InheritPagePlaceholderPlugin',
-                'LinkPlugin',
-                # 'StylePlugin',
-                # links plugin
-                # 'SpeLinkPluginPublisher',
-                # multi-column
-                'MultiColumnPlugin',
-                # forms
-                'FormPlugin',
-                # blog
-                'ShowArticleDetailPlugin',
-                'ShowArticlesPlugin',
-                'ShowArticlesListingPlugin',
-                'ShowBriefDetailPlugin',
-                'ShowBriefPlugin',
-                'ShowBriefListingPlugin',
-                # 'ShowEditorialPlugin',
-                # 'ShowIssuesByPublicationPlugin',
-                # 'ShowIssuesByYearPlugin',
-                # 'ShowMarketoFormPlugin',
-                # 'ShowTopicsListPlugin',
-                # 'ShowTopicsListingPlugin',
-                # 'ShowTagsDetailPlugin',
-                # 'ShowTagTitlePlugin',
-                # 'ShowTopicTitlePlugin'
-                # snippets
-                # 'SmartSnippetPlugin',
-                # events
-                # 'ShowEventsByCurrentLocationPluginPlugin',
-                # 'PollPlugin',
-                # segmentation
-                # 'SegmentLimitPlugin',
-                'BootStrapContainerPlugin',
-                'BootstrapRowPlugin',
-            ],
             'SegmentLimitPlugin': [
                 'ShowTextPlugin',
                 'ShowAdSpeedZonePlugin',
