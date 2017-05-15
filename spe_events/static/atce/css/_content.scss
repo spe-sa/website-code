@@ -104,6 +104,9 @@ $jumboSliderHeight:       500px;
     }
   }
 }
+.carousel-indicators {
+  bottom:                 0;
+}
 
 #registercol {
   height:                 100px;
@@ -173,4 +176,8 @@ $itemboxpadding:  20px;
 
 .singleImage {
   @include border-radius(5px);
+}
+
+.byTheNumbersRow {
+  padding:                20px 0;
 }

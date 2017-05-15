@@ -1,19 +1,24 @@
 <!-- This is the Text Below template. -->
+{# {{ instance.pluginheight }}px#}
 
-{{ instance.pluginheight }}px<br>
-{% for item in items %}
-    <p>
-        {{ instance.id }}<br>
-        {{ item.order }}<br>
-        {{ item.item_list }}<br>
-        {{ item.image.url }}<br>
-        {{ item.imageposition }}<br>
-        {{ item.title }}<br>
-        {{ item.text }}<br>
-        {{ item.get_absolute_url }}<br>
-        {{ item.isvisible }}<br>
-        {{ item.issponsor }}<br>
-        {{ item.sponsorlevele }}<br>
-        {{ item.sponsoredevents }}<br>
-    </p>
-{% endfor %}
+<div class="row">
+    {% for item in items %}
+        {% if item.isvisible %}
+            <div class="{% if items.count >= 4 %}
+                    col-xs-6 col-sm-6 col-md-3 col-lg-3
+                {% elif items.count == 3 %}
+                    col-xs-6 col-sm-6 col-md-4 col-lg-4
+                {% elif items.count == 2 %}
+                    col-xs-6 col-sm-6 col-md-6 col-lg-6
+                {% elif items.count == 1 %}
+                    col-xs-12
+                {% endif %} " style="height: {{ instance.pluginheight }}px">
+                <div class="speakerimage" style="background: url({{ item.image.url }}) no-repeat {{ item.imageposition }} / cover;"></div>
+                <div class="speakertext">
+                    <div class="speakertitle text-center">{{ item.title }}</div>
+                    <div class="text-center">{{ item.text | safe }}</div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

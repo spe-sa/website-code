@@ -14,7 +14,7 @@
 /* Images */
 body { font-family: "Montserrat", sans-serif; }
 
-h1, h2, h3, h4, h5, h6 { font-family: "Montserrat", sans-serif; font-weight: 400; margin: 0; }
+h1, h2, h3, h4, h5, h6 { font-family: "Montserrat", sans-serif; font-weight: 400; margin: 0 0 10px 0; }
 
 h1 { font-size: 30px; }
 
@@ -135,6 +135,8 @@ a:hover { text-decoration: none; }
 
 .miniCarousel .carousel-inner .item { -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; }
 
+.carousel-indicators { bottom: 0; }
+
 #registercol { height: 100px; padding: 25px 0; }
 
 #registercol button { background: #67c18d; color: white; padding: 10px 20px; border-collapse: separate; border: 0 solid #67c18d; -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
@@ -160,6 +162,8 @@ a:hover { text-decoration: none; }
 .sponsorCoveyor { padding: 20px 0; }
 
 .singleImage { -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; }
+
+.byTheNumbersRow { padding: 20px 0; }
 
 /* =================================================================== */
 /* FOOTER STYLES FOR ATCE
