@@ -15,22 +15,10 @@
 		"oAP": "\/.gitignore",
 		"oF": 0
 		},
-	"\/carousel\/__init__.py": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/carousel\/__init__.py",
-		"oF": 0
-		},
 	"\/carousel\/__init__.pyc": {
 		"ft": 8192,
 		"oA": 1,
 		"oAP": "\/carousel\/__init__.pyc",
-		"oF": 0
-		},
-	"\/carousel\/cms_plugins.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/carousel\/cms_plugins.py",
 		"oF": 0
 		},
 	"\/carousel\/cms_plugins.pyc": {
@@ -51,22 +39,10 @@
 		"oAP": "\/carousel\/migrations\/0001_initial.pyc",
 		"oF": 0
 		},
-	"\/carousel\/migrations\/__init__.py": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/carousel\/migrations\/__init__.py",
-		"oF": 0
-		},
 	"\/carousel\/migrations\/__init__.pyc": {
 		"ft": 8192,
 		"oA": 1,
 		"oAP": "\/carousel\/migrations\/__init__.pyc",
-		"oF": 0
-		},
-	"\/carousel\/models.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/carousel\/models.py",
 		"oF": 0
 		},
 	"\/carousel\/models.pyc": {
@@ -75,34 +51,10 @@
 		"oAP": "\/carousel\/models.pyc",
 		"oF": 0
 		},
-	"\/carousel\/templates\/carousel\/carousel_component_plugin.html": {
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/carousel\/templates\/carousel\/carousel_component_plugin.html",
-		"oF": 0
-		},
-	"\/carousel\/templates\/carousel\/carousel_plugin.html": {
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/carousel\/templates\/carousel\/carousel_plugin.html",
-		"oF": 0
-		},
-	"\/carousel\/urls.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/carousel\/urls.py",
-		"oF": 0
-		},
 	"\/carousel\/urls.pyc": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/carousel\/urls.pyc",
-		"oF": 0
-		},
-	"\/carousel\/views.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/carousel\/views.py",
 		"oF": 0
 		},
 	"\/carousel\/views.pyc": {
