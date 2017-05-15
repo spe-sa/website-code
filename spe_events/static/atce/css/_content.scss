@@ -7,6 +7,22 @@
 /* =================================================================== */
 /* PANELS */
 
+.tiletitlerow {
+  h2 {
+    margin:               20px 0;
+  }
+}
+.tiletitlehr {
+  display:                none;
+}
+.tiletitles {
+  text-align:             center;
+}
+
+.spacerRow {
+  height: 30px;
+}
+
 .panel-intro {
   border:                 0;
   .panel-body {
@@ -56,7 +72,7 @@
 }
 
 $jumboSliderHeight:       500px;
-#jumboCarousel {
+.jumboCarousel {
   .carousel-inner {
 
     .item {
@@ -78,6 +94,15 @@ $jumboSliderHeight:       500px;
 .jumbotron {
   margin:                 0;
     @include border-radius(0);
+}
+
+.miniCarousel {
+  .carousel-inner {
+
+    .item {
+      @include border-radius(5px);
+    }
+  }
 }
 
 #registercol {
@@ -121,4 +146,23 @@ $itemboxpadding:  20px;
       padding:      0;
     }
   }
+}
+.speakerRow {
+  padding: 20px 0;
+}
+.speakerimage {
+  width:                  100px;
+  height:                 100px;
+  -moz-border-radius:     50%;
+  -webkit-border-radius:  50%;
+  border-radius:          50%;
+  border:                 3px solid $col-grey-light;
+  margin:                 auto;
+}
+.speakertext {
+  margin:                 auto;
+}
+.speakertitle {
+  font-family:            $font-titles;
+  font-size:              $h4size;
 }

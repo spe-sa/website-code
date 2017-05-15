@@ -1,17 +1,40 @@
 <!-- This is the Mini Slider template. -->
+{% load cms_tags sekizai_tags %}
+<div class="col-xs-12 padZero">
+    <div id="jumboCarousel{{ instance.id }}" class="carousel slide miniCarousel" data-ride="carousel" data-interval="5000">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          {% for item in items %}
+              {% if item.image and item.image.url and item.isvisible %}
+                  {% if forloop.first %}
+                      <li data-target="#jumboCarousel{{ instance.id }}" data-slide-to="0" data-interval="5000" class="active"></li>
+                  {% else %}
+                      <li data-target="#jumboCarousel{{ instance.id }}" data-slide-to="{{ forloop.counter0 }}" data-interval="5000"></li>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+        </ol>
 
-{% for item in items %}
-    <p>
-    {{ item.order }}<br>
-    {{ item.item_list }}<br>
-    {{ item.image }}<br>
-    {{ item.title }}<br>
-    {{ item.text }}<br>
-    {{ item.external_link }}<br>
-    {{ item.internal_link }}<br>
-    {{ item.isvisible }}<br>
-    {{ item.issponsor }}<br>
-    {{ item.sponsorlevele }}<br>
-    {{ item.sponsoredevents }}<br>
-    </p>
-{% endfor %}
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox" style="height: {{ instance.pluginheight }}px">
+          {% for item in items %}
+              {% if item.image and item.image.url and item.isvisible %}
+                  {% if forloop.first %}
+                      <div class="item active" style="background-image: url({{ item.image.url }});
+                              background-position:{{ item.imageposition }}; background-size: cover; height: {{ instance.pluginheight }}px">
+                          <a href="{{ item.get_absolute_url }}">
+                          </a>
+                      </div>
+                  {% else %}
+                      <div class="item" style="background-image: url({{ item.image.url }});
+                              background-position:{{ item.imageposition }}; background-size: cover; height: {{ instance.pluginheight }}px">
+                          <a href="{{ item.get_absolute_url }}">
+                          </a>
+                      </div>
+                  {% endif %}
+              {% endif %}
+
+          {% endfor %}
+        </div>
+    </div>
+</div>

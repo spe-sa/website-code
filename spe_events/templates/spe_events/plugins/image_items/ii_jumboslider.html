@@ -1,15 +1,15 @@
 <!-- JumboSlider Template for Image Items Plugin. -->
 {% load cms_tags sekizai_tags %}
 <div class="col-xs-12 padZero">
-    <div id="jumboCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+    <div id="jumboCarousel{{ instance.id }}" class="carousel slide jumboCarousel" data-ride="carousel" data-interval="10000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
           {% for item in items %}
               {% if item.image and item.image.url and item.isvisible %}
                   {% if forloop.first %}
-                      <li data-target="#jumboCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
+                      <li data-target="#jumboCarousel{{ instance.id }}" data-slide-to="0" data-interval="10000" class="active"></li>
                   {% else %}
-                      <li data-target="#jumboCarousel" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
+                      <li data-target="#jumboCarousel{{ instance.id }}" data-slide-to="{{ forloop.counter0 }}" data-interval="10000"></li>
                   {% endif %}
               {% endif %}
           {% endfor %}
