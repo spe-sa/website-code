@@ -96,7 +96,6 @@ urlpatterns = i18n_patterns('',
     url(r'^forms/', include('djangocms_forms.urls')),
     url(r'^filer/', include('filer.urls')),
     url(r'^preferences/', include('spe_preferences.urls')),
-    url(r'^carousel/', include('carousel.urls')),
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     # ex: /ogf/  -> /ogf/ogf-main-page/
     url(r'^ogf/$', RedirectView.as_view(url='ogf-main-page/', permanent=True), name='ogf-main-page'),
