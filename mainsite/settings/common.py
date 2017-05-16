@@ -247,6 +247,7 @@ CMS_TEMPLATES = (
     ('print_base.html', 'Print Page'),
     ('bootstrap_full_width.html', 'Bootstrap Generic Full Width'),
     ('atce/atce_homepage.html', 'ATCE Homepage'),
+    ('atce/atce_subpage.html', 'ATCE Subpage'),
 )
 
 CMS_PERMISSION = True

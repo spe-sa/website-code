@@ -774,6 +774,18 @@
 		"oAP": "\/mainsite\/context_processors\/spe_context.pyc",
 		"oF": 0
 		},
+	"\/mainsite\/dashboards.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/dashboards.py",
+		"oF": 0
+		},
+	"\/mainsite\/dashboards.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/dashboards.pyc",
+		"oF": 0
+		},
 	"\/mainsite\/forms.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -910,12 +922,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/mainsite\/settings\/common.py",
-		"oF": 0
-		},
-	"\/mainsite\/settings\/common.pyc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/mainsite\/settings\/common.pyc",
 		"oF": 0
 		},
 	"\/mainsite\/settings\/dev.py": {
@@ -21997,6 +22003,12 @@
 		"oAP": "\/spe_blog\/templatetags\/removepub.py",
 		"oF": 0
 		},
+	"\/spe_blog\/templatetags\/removepub.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_blog\/templatetags\/removepub.pyc",
+		"oF": 0
+		},
 	"\/spe_blog\/templatetags\/tostring.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -24512,6 +24524,12 @@
 		"oAP": "\/spe_events\/templates\/atce\/atce_homepage.html",
 		"oF": 0
 		},
+	"\/spe_events\/templates\/atce\/atce_subpage.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/atce\/atce_subpage.html",
+		"oF": 0
+		},
 	"\/spe_events\/templates\/events_html5.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -24570,6 +24588,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_sponsor_conveyor.html",
+		"oF": 0
+		},
+	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_sponsor_conveyor_BACK.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_sponsor_conveyor_BACK.html",
 		"oF": 0
 		},
 	"\/spe_events\/templates\/spe_events\/plugins\/image_items\/ii_sponsor_panels.html": {
