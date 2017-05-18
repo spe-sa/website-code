@@ -9,6 +9,13 @@
 
     {% block css_base %}
         <link rel="stylesheet" type="text/css" media="all" href="{% static 'atce/css/mainstyle.css' %}" />
+            {#    <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/stylesheet.css' %}" media="screen">#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/pygment_trac.css' %}" media="screen">#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/prettify.css' %}" media="screen">#}
+        <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/carouselTicker.css' %}" media="screen">
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/print.css' %}" media="print">#}
+
+        <script src="{% static 'animate/carouselticker/jquery.carouselTicker.js' %}" type="text/javascript"></script>
     {% endblock css_base %}
 
     {# Add the page wrapper beginning here #}
@@ -66,4 +73,9 @@
     {# Add the page wrapper beginning here #}
     {% block wrap_end %}
         </div><!-- end Container -->
+        <script>
+            $(document).ready(function() {
+                $('.carouselTicker').carouselTicker();
+            });
+        </script>
     {% endblock wrap_end %}

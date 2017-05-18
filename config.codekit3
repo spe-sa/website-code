@@ -924,6 +924,12 @@
 		"oAP": "\/mainsite\/settings\/common.py",
 		"oF": 0
 		},
+	"\/mainsite\/settings\/common.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/settings\/common.pyc",
+		"oF": 0
+		},
 	"\/mainsite\/settings\/dev.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -983,6 +989,109 @@
 		"oA": 0,
 		"oAP": "\/mainsite\/static\/ad-sizes.html",
 		"oF": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/carouselTicker.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/carouselTicker-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/jquery.carouselTicker.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/jquery.carouselTicker-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/jquery.carouselTicker.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/jquery.carouselTicker.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/prettify.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/prettify-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/print.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/print-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/pygment_trac.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/pygment_trac-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/start.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/start-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/mainsite\/static\/animate\/carouselticker\/stylesheet.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/carouselticker\/stylesheet-min.css",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/mainsite\/static\/animate\/conveyor\/jquery-1.11.3.min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/conveyor\/jquery-1.11.3.min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/mainsite\/static\/animate\/conveyor\/jssor.slider-23.0.0.mini.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/conveyor\/jssor.slider-23.0.0.mini-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/mainsite\/static\/animate\/conveyor\/loading.gif": {
+		"ft": 4194304,
+		"iS": 4765,
+		"oA": 0,
+		"oAP": "\/mainsite\/static\/animate\/conveyor\/loading.gif",
+		"oF": 0,
+		"opt": 0
 		},
 	"\/mainsite\/static\/animate\/css\/animate.css": {
 		"aP": 1,
@@ -12614,32 +12723,6 @@
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
-		},
-	"\/mainsite\/static\/conveyor\/jquery-1.11.3.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/mainsite\/static\/conveyor\/jquery-1.11.3.min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/mainsite\/static\/conveyor\/jssor.slider-23.0.0.mini.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/mainsite\/static\/conveyor\/jssor.slider-23.0.0.mini-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/mainsite\/static\/conveyor\/loading.gif": {
-		"ft": 4194304,
-		"iS": 4765,
-		"oA": 0,
-		"oAP": "\/mainsite\/static\/conveyor\/loading.gif",
-		"oF": 0,
-		"opt": 0
 		},
 	"\/mainsite\/static\/cookiebar\/index.html": {
 		"ft": 8192,
