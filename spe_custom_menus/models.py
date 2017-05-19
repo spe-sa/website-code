@@ -81,7 +81,7 @@ class CustomMenuItems(SortableMixin):
     # ordering field
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
 
-    def get_link(self):
+    def get_absolute_url(self):
         link = "#"
         if self.internal_link:
             link = self.internal_link.get_absolute_url()
