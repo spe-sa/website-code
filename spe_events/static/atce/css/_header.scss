@@ -74,19 +74,24 @@
 }
 .dropdown-menu {
   li {
+    padding: 5px 0;
+    border-bottom: 1px solid $col-grey-light;
 
       a {
         padding:          10px 0 0 10px;
-        font-size:        $h3size;
+        font-size:        $h5size;
         font-weight:      $font-regular;
         color:            $col-atce-green;
         height:           58px;
-        //background-color: pink;
 
         @include text-shadow(0, 0, 0, rgba(0,0,0,0));
         &:hover { background: none }
 
       }
     &:hover { background-color: $col-grey-light; }
+    }li:first-child {
+    a {
+        padding:          10px 0 0 10px;
     }
+  }
 }

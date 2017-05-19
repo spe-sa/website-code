@@ -30,6 +30,7 @@ class Carousel(CMSPlugin):
 
 
 class CustomColumn(CMSPlugin):
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     device_count_range = (
         ('0', 'Not Set',),
         ('1', '1/12',),
@@ -308,6 +309,7 @@ class CustomColumn(CMSPlugin):
 
 
 class CustomRow(CMSPlugin):
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color')
     transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
@@ -323,10 +325,11 @@ class CustomRow(CMSPlugin):
                                      verbose_name="Element style")
 
     def __unicode__(self):
-        return u"Row with {0} items".format(self.cmsplugin_set.all().count())
+        return u"Row with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
 
 
 class Container(CMSPlugin):
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color')
     transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
@@ -343,7 +346,7 @@ class Container(CMSPlugin):
     is_fluid = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u"Container with {0} items".format(self.cmsplugin_set.all().count())
+        return u"Container with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
 
     @property
     def get_is_fluid(self):
