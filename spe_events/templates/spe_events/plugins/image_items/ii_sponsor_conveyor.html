@@ -12,7 +12,7 @@
             {% for item in items %}
                 {% if item.isvisible and item.issponsor %}
                     <li class="carouselTicker__item">
-                        <a href="{{ item.get_absolute_url }}"><img data-u="image" src="{{ item.image.url }}" /></a>
+                        <a href="{{ item.get_absolute_url }}"><img data-u="image" src="{{ item.get_image_url }}" /></a>
                     </li>
                 {% endif %}
             {% endfor %}

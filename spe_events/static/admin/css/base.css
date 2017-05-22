@@ -989,3 +989,7 @@ table#change-history tbody th {
 fieldset.collapsed h2 {
     background: #417690 !important;
 }
+.cms-modal {
+/*div.cms .cms-modal-open {*/
+    width: 900px !important;
+}

@@ -86,6 +86,8 @@ class ImageItemList(models.Model):
 
 class ImageItems(SortableMixin):
     item_list = SortableForeignKey(ImageItemList, verbose_name='Item List')
+    imageurl = models.CharField(max_length=500, null=True, blank=True, help_text=_('URL to Image, overides Django '
+                                                                                   'Filer Image if provided'))
     image = FilerImageField(blank=True, null=True, verbose_name=u'Image for This Item',
                             related_name="item_image")
     imageposition = models.CharField(max_length=255, choices=IMAGE_POSITIONS, default=DEFAULT_IMAGE_POSITION)
@@ -120,6 +122,14 @@ class ImageItems(SortableMixin):
 
     # ordering field
     order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    def get_image_url(self):
+        imagelink = "#"
+        if self.imageurl:
+            imagelink = self.imageurl
+        elif self.image:
+            imagelink = self.image.url
+        return imagelink
 
     def get_absolute_url(self):
         link = "#"

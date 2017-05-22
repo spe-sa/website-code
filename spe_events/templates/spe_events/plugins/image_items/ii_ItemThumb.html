@@ -3,7 +3,7 @@
 {% for item in items %}
     {% if item.image and item.image.url and item.isvisible and forloop.first %}
         <a href="{{ item.get_absolute_url }}"><div class="col-xs-12 padZero singleImage" style="
-                background-image: url({{ item.image.url }}); background-position:{{ item.imageposition }};
+                background-image: url({{ item.get_image_url }}); background-position:{{ item.imageposition }};
                 background-size: cover; height: {{ instance.pluginheight }}px;"></div></a>
     {% endif %}
 {% endfor %}
