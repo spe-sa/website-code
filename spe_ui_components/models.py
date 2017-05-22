@@ -431,7 +431,7 @@ class Tab(CMSPlugin):
     """
     An individual Tab for the TabHeader plugin.
     """
-    title = models.CharField(max_length=64)
+    title = models.CharField(max_length=100)
 
     def __unicode__(self):
         return u"{0}".format(self.title)
