@@ -918,18 +918,6 @@
 		"oAP": "\/mainsite\/settings\/__init__.pyc",
 		"oF": 0
 		},
-	"\/mainsite\/settings\/common.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/mainsite\/settings\/common.py",
-		"oF": 0
-		},
-	"\/mainsite\/settings\/common.pyc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/mainsite\/settings\/common.pyc",
-		"oF": 0
-		},
 	"\/mainsite\/settings\/dev.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -19204,12 +19192,6 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/request\/views.py",
-		"oF": 0
-		},
-	"\/requirements.txt": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/requirements.txt",
 		"oF": 0
 		},
 	"\/segmentation\/__init__.py": {
