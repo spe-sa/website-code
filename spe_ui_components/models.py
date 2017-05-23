@@ -407,24 +407,25 @@ class Panel(CMSPlugin):
     """
     An individual Panel plugin.
     """
-    title = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, blank=True, null=True)
     heading = models.CharField(max_length=64, blank=True, null=True, )
     footer = models.CharField(max_length=64, blank=True, null=True, )
     custom_class = models.CharField(max_length=64, blank=True, null=True, default='panel-default')
 
     def __unicode__(self):
-        return u"{0}".format(self.title)
+        return u"{0}".format(self.name)
 
 
 class TabHeader(CMSPlugin):
     """
     A plugin that has Tab classes as children.
     """
+    name = models.CharField(max_length=64, blank=True, null=True)
     type = models.CharField(max_length=255, choices=TYPES, default=DEFAULT_TYPE)
 
     def __unicode__(self):
         dictionary = dict(TYPES)
-        return u"{0} - {1} tabs".format(dictionary[self.type], self.cmsplugin_set.all().count())
+        return u"{0} - {1} - {2} tabs".format(self.name, dictionary[self.type], self.cmsplugin_set.all().count())
 
 
 class Tab(CMSPlugin):
