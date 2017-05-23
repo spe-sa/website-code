@@ -9,6 +9,22 @@ TYPES = (
     ('tabs/accordionheader.html', 'Accordion'),
 )
 
+DEFAULT_SPACER_WIDTH = 'col-xs-12'
+SPACER_WIDTH = (
+    (DEFAULT_SPACER_WIDTH, '12 Cols'),
+    ('col-xs-11', '11 Cols'),
+    ('col-xs-10', '10 Cols'),
+    ('col-xs-9', '9 Cols'),
+    ('col-xs-8', '8 Cols'),
+    ('col-xs-7', '7 Cols'),
+    ('col-xs-6', '6 Cols'),
+    ('col-xs-5', '5 Cols'),
+    ('col-xs-4', '4 Cols'),
+    ('col-xs-3', '3 Cols'),
+    ('col-xs-2', '2 Cols'),
+    ('col-xs-1', '1 Col'),
+)
+
 
 class CarouselHeader(CMSPlugin):
     """
@@ -436,3 +452,17 @@ class Tab(CMSPlugin):
 
     def __unicode__(self):
         return u"{0}".format(self.title)
+
+
+class SpacerPlug(CMSPlugin):
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH, verbose_name=u'Width '
+                                                                                                             u'in '
+                                                                                                             u'Boot'
+                                                                                                             u'strap '
+                                                                                                             u'Colu'
+                                                                                                             u'mns.',)
+    height = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Height in pixels.',)
+
+    def __unicode__(self):
+        return u"Spacer Plug: {0} width: {1}px height".format(self.width, self.height)

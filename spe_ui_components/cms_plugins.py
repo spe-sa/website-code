@@ -6,7 +6,7 @@ from .models import Jumbotron
 from .models import Modal, ModalBody, ModalFooter, ModalHeader
 from .models import Panel
 from .models import TabHeader, Tab
-from .models import CustomColumn, Container, CustomRow
+from .models import CustomColumn, Container, CustomRow, SpacerPlug
 
 
 class ContainerPlugin(CMSPluginBase):
@@ -227,6 +227,19 @@ class TabPlugin(CMSPluginBase):
         return context
 
 
+class SpacerPlugPlugin(CMSPluginBase):
+    model = SpacerPlug
+    name = "Spacer Plug"
+    module = 'Components'
+    render_template = "spacerplug/spacerplug.html"
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+
 plugin_pool.register_plugin(ContainerPlugin)
 plugin_pool.register_plugin(CustomColumnPlugin)
 plugin_pool.register_plugin(CustomRowPlugin)
@@ -240,3 +253,4 @@ plugin_pool.register_plugin(SPECarouselPlugin)
 plugin_pool.register_plugin(SPECarouselHeaderPlugin)
 plugin_pool.register_plugin(TabPlugin)
 plugin_pool.register_plugin(TabHeaderPlugin)
+plugin_pool.register_plugin(SpacerPlugPlugin)

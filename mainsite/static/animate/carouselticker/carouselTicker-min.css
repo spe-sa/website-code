@@ -8,7 +8,7 @@
   overflow: hidden; }
 
 .carouselTicker__item {
-  margin: 0 0 0 5px;
+  margin: 0 0 0 25px;
   float: left;
   /*border: 1px solid pink;*/
   width: 200px;
