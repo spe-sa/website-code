@@ -7,6 +7,10 @@
 /* =================================================================== */
 /* PANELS */
 
+.tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
+  padding:              15px;
+}
+
 .padTopBottom  {
   padding-top:            20px;
   padding-bottom:         20px;
