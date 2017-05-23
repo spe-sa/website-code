@@ -178,6 +178,23 @@ $itemboxpadding:  20px;
   font-size:              $h4size;
 }
 
+.tbelowimage {
+  width:                  100px;
+  height:                 100px;
+  //-moz-border-radius:     50%;
+  //-webkit-border-radius:  50%;
+  //border-radius:          50%;
+  //border:                 3px solid $col-grey-light;
+  margin:                 auto;
+}
+.tbelowtext {
+  margin:                 auto;
+}
+.tbelowtitle {
+  font-family:            $font-titles;
+  font-size:              $h4size;
+}
+
 .sponsorCoveyor {
   padding:                20px 0;
 }

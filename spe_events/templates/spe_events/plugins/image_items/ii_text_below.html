@@ -13,9 +13,9 @@
                 {% elif items.count == 1 %}
                     col-xs-12
                 {% endif %} " style="height: {{ instance.pluginheight }}px">
-                <div class="speakerimage" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover;"></div>
-                <div class="speakertext">
-                    <div class="speakertitle text-center">{{ item.title }}</div>
+                <div class="tbelowimage" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover;"></div>
+                <div class="tbelowtext">
+                    <div class="tbelowtitle text-center">{{ item.title }}</div>
                     <div class="text-center">{{ item.text | safe }}</div>
                 </div>
             </div>

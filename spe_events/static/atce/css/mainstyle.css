@@ -171,6 +171,12 @@ a:hover { text-decoration: none; }
 
 .speakertitle { font-family: "Montserrat", sans-serif; font-size: 18px; }
 
+.tbelowimage { width: 100px; height: 100px; margin: auto; }
+
+.tbelowtext { margin: auto; }
+
+.tbelowtitle { font-family: "Montserrat", sans-serif; font-size: 18px; }
+
 .sponsorCoveyor { padding: 20px 0; }
 
 .singleImage { -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; }
