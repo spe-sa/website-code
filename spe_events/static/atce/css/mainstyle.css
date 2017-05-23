@@ -117,6 +117,8 @@ a:hover { text-decoration: none; }
 
 .spacerRow { height: 30px; }
 
+.panel-group { margin: 0; }
+
 .panel-intro { border: 0; }
 
 .panel-intro .panel-body { padding: 0; }
@@ -198,15 +200,15 @@ a:hover { text-decoration: none; }
 
 .footerbar p { text-align: justify; }
 
-.footerbar h4 a { color: #67c18d; }
+.footerbar h4 a { color: white; }
 
-.footerbar h4 a:hover { color: white; }
+.footerbar h4 a:hover { color: #67c18d; }
 
 .footerbar .footerSocials { font-size: 50px; }
 
-.footerbar .footerSocials a { color: #67c18d; }
+.footerbar .footerSocials a { color: white; }
 
-.footerbar .footerSocials a:hover { color: white; }
+.footerbar .footerSocials a:hover { color: #67c18d; }
 
 .copyrightbar { height: 75px; background-color: #67c18d; padding: 25px 0 0 0; }
 
