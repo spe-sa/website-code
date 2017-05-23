@@ -105,6 +105,8 @@ a:hover { text-decoration: none; }
 /* Images */
 /* =================================================================== */
 /* PANELS */
+.padTopBottom { padding-top: 20px; padding-bottom: 20px; }
+
 .tiletitlerow h2 { margin: 20px 0; }
 
 .tiletitlehr { display: none; }
