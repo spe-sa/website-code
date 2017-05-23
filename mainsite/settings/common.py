@@ -190,6 +190,8 @@ INSTALLED_APPS = (
     'spe_custom_scrollspy',
     # 'statsy',
     'controlcenter',
+    'imagekit',
+    'django_countries',
 )
 
 LANGUAGES = (
@@ -338,6 +340,7 @@ CMS_PLACEHOLDER_CONF = {
                     'CustomRowPlugin',
                     'ScrollSpyHeaderPlugin',
                     'ScrollSpyPlugin',
+                    'SpacerPlugPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
