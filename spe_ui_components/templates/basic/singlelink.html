@@ -1,0 +1,14 @@
+{% load cms_tags %}
+
+{% if instance.isinbox %}<div class="singleLinkBox {{ instance.width }}" style="height:{{ instance.height }}px;background-color:{{ instance.bkg_color }}; ">{% endif %}
+{% if instance.isbutton %}
+<a href="{{ instance.get_absolute_url }}"
+            {% if instance.new_window %}
+                target="_blank"
+            {% endif %}
+    class="btn btn-default singleLink" role="button" style="background-color:{{ instance.bkg_color }};">{% else %}<a href="{{ instance.get_absolute_url }}"
+            {% if instance.new_window %}
+                target="_blank"
+            {% endif %}
+    class="singleLink" style="color:{{ instance.txt_color }}">{% endif %}{% if instance.iconurl %}<img src="{{ instance.iconurl }}" style="height:10px; width:10px;"/> {% elif intance.icon %}<img src="{{ instance.icon }}" style="height:10px; width:10px;"/> {% elif instance.fontawesome %}{{ instance.fontawesome | safe }} {% endif %}Text: {{ instance.text }}</a>
+{% if instance.isinbox %}</div>{% endif %}

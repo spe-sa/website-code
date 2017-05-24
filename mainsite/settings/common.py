@@ -341,6 +341,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ScrollSpyHeaderPlugin',
                     'ScrollSpyPlugin',
                     'SpacerPlugPlugin',
+                    'SingleLinkPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [

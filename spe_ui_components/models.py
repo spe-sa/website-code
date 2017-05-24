@@ -2,6 +2,10 @@ from django.db import models
 from cms.models import CMSPlugin
 from cms.models.fields import PlaceholderField
 from colorfield.fields import ColorField
+from filer.fields.image import FilerImageField
+from cms.models.fields import PageField
+
+from django.utils.translation import ugettext_lazy as _
 
 DEFAULT_TYPE = 'tabs/tabheader.html'
 TYPES = (
@@ -461,8 +465,56 @@ class SpacerPlug(CMSPlugin):
                                                                                                              u'Boot'
                                                                                                              u'strap '
                                                                                                              u'Colu'
-                                                                                                             u'mns.',)
-    height = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Height in pixels.',)
+                                                                                                             u'mns.', )
+    height = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Height in pixels.', )
 
     def __unicode__(self):
         return u"Spacer Plug: {0} width: {1}px height".format(self.width, self.height)
+
+
+class SingleLinkPlug(CMSPlugin):
+    text = models.CharField('Text', unique=False, max_length=100, blank=True, null=True)
+    iconurl = models.CharField(max_length=500, null=True, blank=True, help_text=_('URL of external icon, overides '
+                                                                                  'Django Filer Image if provided'))
+    iconimage = FilerImageField(blank=True, null=True, verbose_name=u'Image for This Icon',
+                                related_name="icon_image")
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    internal_link = PageField(
+        verbose_name=_('Internal link'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text=_('If provided, overrides the external link.'),
+    )
+    fontawesome = models.CharField('FontAwesome Icon', unique=False, max_length=100, blank=True, null=True)
+    isbutton = models.BooleanField(default=False, verbose_name="Is this a button?")
+    isinbox = models.BooleanField(default=False, verbose_name="Is this link in a box?")
+    height = models.CharField(verbose_name=u'Box height in pixels.', unique=False, max_length=10, blank=True, null=True)
+    width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH, verbose_name=u'Width n Bootstrap Columns.', )
+    bkg_color = ColorField(verbose_name='Background Color', default="#cccccc")
+    txt_color = ColorField(verbose_name='Text Color', default="#000000")
+    new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
+
+    def get_icon_url(self):
+        icon = "#"
+        if self.imageurl:
+            icon = self.iconurl
+        elif self.image:
+            icon = self.iconimage.url
+        return icon
+
+    def get_absolute_url(self):
+        link = "#"
+        if self.internal_link:
+            link = self.internal_link.get_absolute_url()
+        elif self.external_link:
+            link = self.external_link
+        return link
+
+    def __unicode__(self):
+        return u"Link: {0}".format(self.text)

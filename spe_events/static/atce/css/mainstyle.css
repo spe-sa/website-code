@@ -185,6 +185,10 @@ a:hover { text-decoration: none; }
 
 .byTheNumbersRow { padding: 20px 0; }
 
+@media (max-width: 1280px) { .nav-tabs.nav-justified > li { float: left; width: 50%; } }
+
+.singleLinkBox { border: 1px solid #e1e1e1; padding: 15px; -webkit-border-radius: 5px !important; -khtml-border-radius: 5px !important; -moz-border-radius: 5px !important; -ms-border-radius: 5px !important; -o-border-radius: 5px !important; border-radius: 5px !important; -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); -khtml-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
 /* =================================================================== */
 /* FOOTER STYLES FOR ATCE
 ====================================================================== */

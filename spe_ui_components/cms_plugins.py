@@ -6,7 +6,7 @@ from .models import Jumbotron
 from .models import Modal, ModalBody, ModalFooter, ModalHeader
 from .models import Panel
 from .models import TabHeader, Tab
-from .models import CustomColumn, Container, CustomRow, SpacerPlug
+from .models import CustomColumn, Container, CustomRow, SpacerPlug, SingleLinkPlug
 
 
 class ContainerPlugin(CMSPluginBase):
@@ -240,6 +240,19 @@ class SpacerPlugPlugin(CMSPluginBase):
         return context
 
 
+class SingleLinkPlugin(CMSPluginBase):
+    model = SingleLinkPlug
+    name = "Single Link"
+    module = 'Components'
+    render_template = "basic/singlelink.html"
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'instance': instance,
+        })
+        return context
+
+
 plugin_pool.register_plugin(ContainerPlugin)
 plugin_pool.register_plugin(CustomColumnPlugin)
 plugin_pool.register_plugin(CustomRowPlugin)
@@ -254,3 +267,4 @@ plugin_pool.register_plugin(SPECarouselHeaderPlugin)
 plugin_pool.register_plugin(TabPlugin)
 plugin_pool.register_plugin(TabHeaderPlugin)
 plugin_pool.register_plugin(SpacerPlugPlugin)
+plugin_pool.register_plugin(SingleLinkPlugin)
