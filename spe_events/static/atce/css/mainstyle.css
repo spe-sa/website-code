@@ -86,15 +86,13 @@ a:hover { text-decoration: none; }
 
 .navbar-nav li:first-child a { padding-left: 0; }
 
-.dropdown-menu li { padding: 5px 0; border-bottom: 1px solid #e1e1e1; }
+.dropdown-menu li { padding: 10px; border-bottom: 1px solid #e1e1e1; }
 
-.dropdown-menu li a { padding: 10px 0 0 10px; font-size: 15px; font-weight: 400; color: #67c18d; height: 58px; text-shadow: 0 0 0 transparent; }
+.dropdown-menu li a { padding: 10px 0 0 0; font-size: 15px; font-weight: 400; color: #67c18d; height: 58px; text-shadow: 0 0 0 transparent; }
 
 .dropdown-menu li a:hover { background: none; }
 
 .dropdown-menu li:hover { background-color: #e1e1e1; }
-
-.dropdown-menu li:first-child a { padding: 10px 0 0 10px; }
 
 /* =================================================================== */
 /* MAIN CONTENT STYLES FOR ATCE

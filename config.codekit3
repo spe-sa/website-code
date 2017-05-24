@@ -918,6 +918,18 @@
 		"oAP": "\/mainsite\/settings\/__init__.pyc",
 		"oF": 0
 		},
+	"\/mainsite\/settings\/common.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/settings\/common.py",
+		"oF": 0
+		},
+	"\/mainsite\/settings\/common.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/mainsite\/settings\/common.pyc",
+		"oF": 0
+		},
 	"\/mainsite\/settings\/dev.py": {
 		"ft": 8192,
 		"oA": 2,
@@ -19194,6 +19206,12 @@
 		"oAP": "\/request\/views.py",
 		"oF": 0
 		},
+	"\/requirements.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/requirements.txt",
+		"oF": 0
+		},
 	"\/segmentation\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -22929,6 +22947,18 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_custom_menus\/migrations\/0001_initial.pyc",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/migrations\/0002_custommenuitems_new_window.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/migrations\/0002_custommenuitems_new_window.py",
+		"oF": 0
+		},
+	"\/spe_custom_menus\/migrations\/0002_custommenuitems_new_window.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_menus\/migrations\/0002_custommenuitems_new_window.pyc",
 		"oF": 0
 		},
 	"\/spe_custom_menus\/migrations\/__init__.py": {
