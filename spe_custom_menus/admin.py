@@ -17,6 +17,7 @@ class MenuItemInLine(SortableStackedInline):
                 'level',
                 'internal_link',
                 'external_link',
+                'new_window',
             ),
         }),
     )
@@ -27,7 +28,7 @@ class MenuItemTabularInLine(SortableTabularInline):
     model = CustomMenuItems
     extra = 0
     proxy = True
-    exclude = ['title', 'internal_link', 'external_link', 'is_dropdown_node', 'depth', 'escapes', 'order']
+    exclude = ['title', 'internal_link', 'external_link', 'new_window', 'is_dropdown_node', 'depth', 'escapes', 'order']
 
 
 class CustomMenuAdmin(NonSortableParentAdmin):

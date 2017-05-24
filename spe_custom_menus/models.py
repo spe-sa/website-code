@@ -69,6 +69,7 @@ class CustomMenuItems(SortableMixin):
         on_delete=models.SET_NULL,
         help_text=_('If provided, overrides the external link.'),
     )
+    new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
     is_dropdown_node = models.BooleanField(default=False, editable=False)
     is_back_up = models.BooleanField(default=False, editable=False)
     is_dropdown_header = models.BooleanField(default=False, editable=False)

@@ -31,7 +31,11 @@
                         {% if item.is_dropdown_header %}
                             <li class="dropdown-header">{{ item.title }}</li>
                         {% else %}
-                            <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+                            <li><a href="{{ item.get_absolute_url }}"
+                            {% if item.new_window %}
+                                target="_blank"
+                            {% endif %}
+                            >{{ item.title }}</a></li>
                         {% endif %}
                     {% endif %}
                 {% if forloop.last %}
