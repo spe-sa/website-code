@@ -139,5 +139,11 @@
   }
 }
 .hamburger {
-  margin-top:  10px;
+  padding-top:  10px;
+  font-size:    40px;
+  color:        $col-white;
+
+  a {
+    color:      $col-white;
+  }
 }

@@ -107,7 +107,9 @@ a:hover { text-decoration: none; }
 
 .dropdown-menu li:hover { background-color: #e1e1e1; }
 
-.hamburger { margin-top: 10px; }
+.hamburger { padding-top: 10px; font-size: 40px; color: white; }
+
+.hamburger a { color: white; }
 
 /* =================================================================== */
 /* MAIN CONTENT STYLES FOR ATCE
