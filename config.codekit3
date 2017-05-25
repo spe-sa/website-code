@@ -25596,12 +25596,6 @@
 		"oAP": "\/spe_ui_components\/cms_plugins.py",
 		"oF": 0
 		},
-	"\/spe_ui_components\/cms_plugins.pyc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_ui_components\/cms_plugins.pyc",
-		"oF": 0
-		},
 	"\/spe_ui_components\/migrations\/0001_initial.py": {
 		"ft": 8192,
 		"oA": 2,
