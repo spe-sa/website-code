@@ -165,7 +165,7 @@ class CalendarEvent(models.Model):
     title = models.CharField('Event title', unique=True, max_length=100)
     slug = models.SlugField(editable=False)
     description = models.CharField('Description', max_length=1000)
-    location = models.CharField('Location', max_length=150)
+    location = models.CharField('Location', max_length=150, blank=True, null=True)
     start_date = models.DateField()
     start_time = models.TimeField()
     end_date = models.DateField()
