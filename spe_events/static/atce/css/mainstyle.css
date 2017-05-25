@@ -60,6 +60,19 @@ a:hover { text-decoration: none; }
   more info: http://www.findmebyip.com/litmus/#css3-properties
 
 ------------------------------------------------------------- */
+/* GLOBAL NAV */
+.global-nav { min-height: 31px; border-bottom: 1px solid black; background-color: black; margin: 0; }
+
+.global-nav ul { margin: 0; padding: 0 0 0 15px; list-style: none; }
+
+.global-nav ul li { float: left; white-space: nowrap; margin: 0; line-height: 18px; }
+
+.global-nav ul li a { display: block; text-decoration: none; font-size: 12px; font-weight: 700; line-height: 30px; color: #e1e1e1; padding: 0 14px; margin: 0 8px 0 0; }
+
+.global-nav ul li a:hover { color: white; background-color: black; }
+
+.global-nav ul li:first-child a { margin-left: -14px; }
+
 .topbar { background-color: black; color: white; height: 30px; font-size: 15px; padding: 3px 15px 0 15px; }
 
 .topbar a { color: white; }
@@ -86,7 +99,7 @@ a:hover { text-decoration: none; }
 
 .navbar-nav li:first-child a { padding-left: 0; }
 
-.dropdown-menu li { padding: 10px; border-bottom: 1px solid #e1e1e1; }
+.dropdown-menu li { padding: 10px; border-bottom: 1px solid #e1e1e1; white-space: nowrap; }
 
 .dropdown-menu li a { padding: 10px 0 0 0; font-size: 15px; font-weight: 400; color: #67c18d; height: 58px; text-shadow: 0 0 0 transparent; }
 
@@ -117,7 +130,7 @@ a:hover { text-decoration: none; }
 
 /* =================================================================== */
 /* PANELS */
-.tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou { padding: 15px; }
+.tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou { padding: 0 15px; }
 
 .tiletitlerow h2 { margin: 20px 0; }
 
@@ -184,6 +197,8 @@ a:hover { text-decoration: none; }
 .speakertext { margin: auto; }
 
 .speakertitle { font-family: "Montserrat", sans-serif; font-size: 18px; }
+
+.tbelowimagediv { margin: auto; }
 
 .tbelowimage { width: 100px; height: 100px; margin: auto; }
 

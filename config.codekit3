@@ -22306,6 +22306,18 @@
 		"oAP": "\/spe_custom_agenda\/migrations\/0002_auto_20170510_0836.pyc",
 		"oF": 0
 		},
+	"\/spe_custom_agenda\/migrations\/0003_auto_20170525_0933.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/migrations\/0003_auto_20170525_0933.py",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/migrations\/0003_auto_20170525_0933.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/migrations\/0003_auto_20170525_0933.pyc",
+		"oF": 0
+		},
 	"\/spe_custom_agenda\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -22899,6 +22911,18 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_custom_agenda\/templates\/cms_plugins\/agenda.html",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/views.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/views.py",
+		"oF": 0
+		},
+	"\/spe_custom_agenda\/views.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_custom_agenda\/views.pyc",
 		"oF": 0
 		},
 	"\/spe_custom_menus\/__init__.py": {
@@ -23896,6 +23920,30 @@
 		"oAP": "\/spe_events\/migrations\/0018_imageitems_imageurl.pyc",
 		"oF": 0
 		},
+	"\/spe_events\/migrations\/0019_calendarevent_calendareventitem.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0019_calendarevent_calendareventitem.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0019_calendarevent_calendareventitem.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0019_calendarevent_calendareventitem.pyc",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0020_auto_20170525_1005.py": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0020_auto_20170525_1005.py",
+		"oF": 0
+		},
+	"\/spe_events\/migrations\/0020_auto_20170525_1005.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/migrations\/0020_auto_20170525_1005.pyc",
+		"oF": 0
+		},
 	"\/spe_events\/migrations\/__init__.py": {
 		"ft": 8192,
 		"oA": 1,
@@ -24665,6 +24713,12 @@
 		"oAP": "\/spe_events\/templates\/events_html5_bootstrap.html",
 		"oF": 0
 		},
+	"\/spe_events\/templates\/spe_events\/plugins\/calendar_event.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/templates\/spe_events\/plugins\/calendar_event.html",
+		"oF": 0
+		},
 	"\/spe_events\/templates\/spe_events\/plugins\/event_menu.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -24759,6 +24813,12 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/spe_events\/views.py",
+		"oF": 0
+		},
+	"\/spe_events\/views.pyc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/spe_events\/views.pyc",
 		"oF": 0
 		},
 	"\/spe_links\/__init__.py": {

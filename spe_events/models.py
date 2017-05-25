@@ -117,6 +117,10 @@ class ImageItems(SortableMixin):
     issponsor = models.BooleanField(default=False)
     sponsorlevel = models.CharField(max_length=150, unique=False, null=True, blank=True)
     sponsoredevents = models.CharField(max_length=150, unique=False, null=True, blank=True)
+    imgheight = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Image height in pixels. (not '
+                                                                                    u'used everywhere)', )
+    imgwidth = models.CharField(max_length=10, blank=True, null=True, verbose_name=u'Image Width in pixels. (not used '
+                                                                                   u'everywhere)', )
 
     class Meta:
         ordering = ['order']

@@ -26,11 +26,28 @@
 
     {# adding block content_header to base cms template for overriding #}
     {% block content_header %}
-        <div class="row topbar">
-            <div class="col-md-1 col-md-offset-1"><a href="#">SPE</a></div>
-            <div class="col-md-1"><a href="#">About</a></div>
-            <div class="col-md-8 text-right"><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></div>
+
+
+
+{#        <div class="row topbar">#}
+{#            <div class="col-md-1 col-md-offset-1"><a href="#">SPE</a></div>#}
+{#            <div class="col-md-1"><a href="#">About</a></div>#}
+{#            <div class="col-md-8 text-right"><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></div>#}
+{#        </div>#}
+
+        <div class="global-nav row"><!--  navbar-fixed-top -->
+            <nav id="global-nav" class="col-sm-10 col-sm-offset-1">
+                <ul>
+                    <li><a href="https://www.spe.org/en/">SPE</a></li>
+                    <li><a href="http://www.spe.org/about/">About</a></li>
+                    <li><a href="http://www.spe.org/contact/">Contact Us</a></li>
+                    <li style="float: right;"><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                </ul>
+            </nav>
         </div>
+
+
+
         <div class="row logobar">
             <div class="col-md-5 col-md-offset-1 visible-md visible-lg mainLogo text-left"><img src="{% static 'atce/imgs/SPE_ATCE_Logo_Horiz.svg' %}" class="mainLogoImg img-responsive"/></div>
             <div class="col-md-5 col-md-offset-1 visible-xs visible-sm mainLogo text-center"><img src="{% static 'atce/imgs/SPE_ATCE_Logo_Horiz.svg' %}" class="mainLogoImg img-responsive" style="margin:auto;" /></div>

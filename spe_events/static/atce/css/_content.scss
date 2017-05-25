@@ -38,7 +38,7 @@
 /* PANELS */
 
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
-  padding:              15px;
+  padding:              0 15px;
 }
 
 .tiletitlerow {
@@ -210,7 +210,9 @@ $itemboxpadding:  20px;
   font-family:            $font-titles;
   font-size:              $h4size;
 }
-
+.tbelowimagediv {
+  margin:                 auto;
+}
 .tbelowimage {
   width:                  100px;
   height:                 100px;

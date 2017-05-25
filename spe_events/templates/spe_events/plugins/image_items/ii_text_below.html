@@ -13,7 +13,8 @@
                 {% elif items.count == 1 %}
                     col-xs-12
                 {% endif %} " style="height: {{ instance.pluginheight }}px">
-                <div class="tbelowimage" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover;"></div>
+{#                <div class="tbelowimage" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover;"></div>#}
+                <div class="tbelowimagediv" style="width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"><img src="{{ item.get_image_url }}" class="img-responsive"></div>
                 <div class="tbelowtext">
                     <div class="tbelowtitle text-center">{{ item.title }}</div>
                     <div class="text-center">{{ item.text | safe }}</div>

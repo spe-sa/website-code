@@ -4,6 +4,48 @@
 @import 'vars';
 @import "mixins";
 
+/* GLOBAL NAV */
+.global-nav {
+    min-height: 31px;
+    border-bottom: 1px solid $col-black;
+    background-color: $col-black;
+    margin: 0;
+
+    ul {
+        margin: 0;
+        padding: 0 0 0 15px;
+        list-style: none;
+
+        li {
+            float: left;
+            white-space: nowrap;
+            margin: 0;
+            line-height: 18px;
+
+            a {
+                display: block;
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 30px;
+                color: $col-grey-light;
+                padding: 0 14px;
+                margin: 0 8px 0 0;
+
+                &:hover { color:$col-white;background-color:$col-black; }
+            }
+        }
+
+        li:first-child a {
+            margin-left: -14px;
+        }
+    }
+
+    //#global-nav {
+    //    padding: 0;
+    //}
+}
+
 .topbar {
   background-color:   $col-black;
   color:              $col-white;
@@ -74,8 +116,9 @@
 }
 .dropdown-menu {
   li {
-    padding: 10px;
-    border-bottom: 1px solid $col-grey-light;
+    padding:              10px;
+    border-bottom:        1px solid $col-grey-light;
+    white-space:          nowrap;
 
       a {
         padding:          10px 0 0 0;
