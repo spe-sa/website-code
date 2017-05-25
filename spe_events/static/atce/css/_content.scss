@@ -99,7 +99,10 @@
 }
 .panel-tabs .nav-tabs li {
   background-color:   $col-subtab;
-  border:0;
+  border-top: 1px solid $col-grey-light;
+  border-left: 1px solid $col-grey-light;
+  border-right: 1px solid $col-grey-light;
+  border-bottom: 0;
 
   @include border-radius-separate(5px, 5px, 0, 0) ;
 }
