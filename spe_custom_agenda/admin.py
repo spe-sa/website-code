@@ -17,6 +17,7 @@ class AgendaItemInLine(admin.StackedInline):
                 'location',
                 'session_type',
                 'session_description',
+                'show_ical_download',
             ),
         }),
     )

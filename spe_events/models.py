@@ -7,6 +7,8 @@ from adminsortable.models import SortableMixin
 from filer.fields.image import FilerImageField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from django.template.defaultfilters import slugify
+
 from django.utils.translation import ugettext_lazy as _
 
 from mainsite.models import Tier1Discipline
@@ -153,3 +155,32 @@ class ImageItemsPlugin(CMSPlugin):
     def __unicode__(self):
         dictionary = dict(IMAGE_ITEM_TEMPLATES)
         return u"{0} using {1}".format(self.item_list, dictionary[self.template])
+
+
+class CalendarEvent(models.Model):
+    title = models.CharField('Event title', unique=True, max_length=100)
+    slug = models.SlugField(editable=False)
+    description = models.CharField('Description', max_length=1000)
+    location = models.CharField('Location', max_length=150)
+    start_date = models.DateField()
+    start_time = models.TimeField()
+    end_date = models.DateField()
+    end_time = models.TimeField()
+
+
+    class Meta:
+        verbose_name = 'Event Calendar Item'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(CalendarEvent, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return u"{0} with slug of {1}".format(self.title, self.slug)
+
+
+class CalendarEventItem(CMSPlugin):
+    event = models.ForeignKey(CalendarEvent, help_text="Select event calendar item for iCal export")
+
+    def __unicode__(self):
+        return u"{0}".format(self.event.title)

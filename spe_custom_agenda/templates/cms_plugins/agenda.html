@@ -83,11 +83,17 @@
                     </div>
                     </td>
                     <td>
-                        <div class="" agenda-event
-                        ">
+                        <div class="agenda-event">
                         {{ item.session_description | safe }}
                     </div>
                     </td>
+                    {% if item.show_ical_download %}
+                        <td>
+                            <a href="{% url 'agenda_ics_export' item.id %}">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </a>
+                        </td>
+                    {% endif %}
                     </tr>
                 {% endfor %}
     </tbody>

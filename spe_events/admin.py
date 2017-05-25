@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import EventType, ImageItemList, ImageItems
+from .models import EventType, ImageItemList, ImageItems, CalendarEvent
 
 from adminsortable.admin import NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
 
@@ -51,4 +51,5 @@ class CustomImageItemAdmin(NonSortableParentAdmin):
 
 
 admin.site.register(EventType)
+admin.site.register(CalendarEvent)
 admin.site.register(ImageItemList, CustomImageItemAdmin)

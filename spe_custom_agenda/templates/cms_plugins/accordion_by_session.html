@@ -66,6 +66,11 @@
                 <span class="col-md-4 text-right">{{ item.location }}</span>
             </button>
             <div class="panel col-md-9">
+                {% if item.show_ical_download %}
+                    <a href="{% url 'agenda_ics_export' item.id %}">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </a>
+                {% endif %}
                 <p>
                     {{ item.session_description | safe }}
                 </p>

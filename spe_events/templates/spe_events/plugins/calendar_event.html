@@ -1,0 +1,9 @@
+{% load sekizai_tags cms_tags %}
+
+<div id="ical-{{ instance.id }}">
+    <a href="{% url 'event_ics_export' instance.event.id %}">
+        {% for child in instance.child_plugin_instances %}
+            {% render_plugin child %}
+        {% endfor %}
+    </a>
+</div>

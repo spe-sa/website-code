@@ -41,6 +41,7 @@ class CustomAgenda(models.Model):
 class CustomAgendaItems(models.Model):
     custom_agenda = models.ForeignKey(CustomAgenda, verbose_name='Custom Agenda')
     title = models.CharField('Session Title', max_length=80)
+    slug = models.SlugField(editable=False)
     start_date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -52,12 +53,17 @@ class CustomAgendaItems(models.Model):
         null=True,
         verbose_name=u'Description of session:'
     )
+    show_ical_download = models.BooleanField(default=False, verbose_name='Show Calendar Download')
     is_new_day = models.BooleanField(default=False, editable=False)
     rowspan = models.PositiveIntegerField(default=1, editable=False)
 
     class Meta:
         ordering = ['start_date', 'start_time', 'end_time']
         verbose_name_plural = 'Custom Agenda Items'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(CustomAgendaItems, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u"{0} ({1} - {2}) - {3}".format(self.start_date.strftime('%a %Y-%m-%d'),

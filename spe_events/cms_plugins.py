@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.gis.geoip import GeoIP
 
-from .models import EventsByCurrentIPPlugin, ImageItems, ImageItemsPlugin
+from .models import EventsByCurrentIPPlugin, ImageItems, ImageItemsPlugin, CalendarEventItem
 from .settings import EVENT_PERSONALIZATION_SERVER
 from mainsite.common import get_context_variable
 
@@ -72,5 +72,20 @@ class ImageItemPluginInstance(CMSPluginBase):
         return context
 
 
+class CalendarEventItemPlugin(CMSPluginBase):
+    model = CalendarEventItem
+    name = "Calendar Event"
+    render_template = "spe_events/plugins/calendar_event.html"
+    allow_children = True
+    module = 'Events'
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'event_id': instance.event.id,
+            'instance': instance,
+        })
+        return context
+
 plugin_pool.register_plugin(ShowEventsByCurrentLocationPluginPlugin)
 plugin_pool.register_plugin(ImageItemPluginInstance)
+plugin_pool.register_plugin(CalendarEventItemPlugin)

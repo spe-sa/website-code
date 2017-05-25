@@ -4,11 +4,11 @@ from django.http import HttpResponse
 from django.contrib.sites.models import Site
 from django.shortcuts import get_object_or_404
 
-from .models import CalendarEvent
+from .models import CustomAgendaItems
 
 
-def export(request, event_id):
-    event = get_object_or_404(CalendarEvent, id = event_id)
+def export(request, agenda_id):
+    event = get_object_or_404(CustomAgendaItems, id = agenda_id)
 
     cal = Calendar()
     site = Site.objects.get_current()
@@ -23,10 +23,10 @@ def export(request, event_id):
     ical_event = Event()
     ical_event.add('location', event.location)
     ical_event.add('summary', event.title)
-    ical_event.add('description', event.description)
+    # ical_event.add('description', event.session_description)
     start = datetime.combine(event.start_date, event.start_time)
     ical_event.add('dtstart', start)
-    end = datetime.combine(event.end_date, event.end_time)
+    end = datetime.combine(event.start_date, event.end_time)
     ical_event.add('dtend', end and end or start)
     ical_event.add('dtstamp', end and end or start)
     ical_event['uid'] = '%d.event.events.%s' % (event.id, site_token)

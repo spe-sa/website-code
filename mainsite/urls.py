@@ -9,7 +9,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import RedirectView
-from controlcenter.views import controlcenter
 
 # Dashboard
 
@@ -83,7 +82,6 @@ urlpatterns = i18n_patterns('',
     url(r'^staff/articlesandbriefs/sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # url(r'^staff/report/', include('model_report.urls'), ),
     url(r'^staff/api/', include(api.urls)),
-    url(r'^staff/control/', controlcenter.urls),
     url(r'^staff/', include('spe_blog.urls_internal')),
     url(r'^spe_links/', include('spe_links.urls')),
     url(r'^briefs/', include('spe_blog.urls_brief')),
@@ -122,6 +120,8 @@ urlpatterns = i18n_patterns('',
     url(r'^promotion/membership/(?P<index>\d+)/$', 'spe_promotions.views.membership_select', ),
     url(r'^promotion/membership/no_discipline/(?P<index>\d+)/$', 'spe_promotions.views.membership_no_discipline', ),
     url(r'^promotion/membership/no_region/(?P<index>\d+)/$', 'spe_promotions.views.membership_no_region', ),
+    url(r'^events/(?P<event_id>\d+)/export/', 'spe_events.views.export', name="event_ics_export"),
+    url(r'^agenda/(?P<agenda_id>\d+)/export/', 'spe_custom_agenda.views.export', name="agenda_ics_export"),
     # url(r'^stats/', include('statsy.urls')),
 
     url(r'^', include('cms.urls')),
