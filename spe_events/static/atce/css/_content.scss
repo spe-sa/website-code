@@ -52,7 +52,8 @@
     background-color:       $col-grey-light;
 
     li {
-      //width:                100%;
+      //border-top:         1px solid $col-grey;
+      //background-color:   $col-grey-light;
     }
   }
   .nav-tabs>li>a, .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
@@ -65,6 +66,17 @@
   .tab-content {
     padding:                20px 10px 0 10px;
   }
+}
+.panel-tabs .nav-tabs {
+  background: none;
+  //border:0;
+
+}
+.panel-tabs .nav-tabs li {
+  background-color:   $col-subtab;
+  border:0;
+
+  @include border-radius-separate(5px, 5px, 0, 0) ;
 }
 .sponsorBar {
   //background-color:       $col-grey-light;
