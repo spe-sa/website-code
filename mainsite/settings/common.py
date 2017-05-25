@@ -189,7 +189,7 @@ INSTALLED_APPS = (
     'colorfield',
     'spe_custom_scrollspy',
     # 'statsy',
-    'controlcenter',
+    # 'controlcenter',
     'imagekit',
     'django_countries',
 )
@@ -342,6 +342,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ScrollSpyPlugin',
                     'SpacerPlugPlugin',
                     'SingleLinkPlugin',
+                    'CalendarEventItemPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
