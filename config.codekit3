@@ -23584,12 +23584,6 @@
 		"oAP": "\/spe_custom_menus\/templates\/spe_custom_menus\/bootstrap_menu.html",
 		"oF": 0
 		},
-	"\/spe_custom_menus\/templates\/spe_custom_menus\/YAMM_menu.html": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_custom_menus\/templates\/spe_custom_menus\/YAMM_menu.html",
-		"oF": 0
-		},
 	"\/spe_custom_menus\/templates\/spe_custom_menus\/zBACK_YAMM_menu.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -23954,18 +23948,6 @@
 		"ft": 8192,
 		"oA": 1,
 		"oAP": "\/spe_events\/migrations\/__init__.pyc",
-		"oF": 0
-		},
-	"\/spe_events\/models.py": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_events\/models.py",
-		"oF": 0
-		},
-	"\/spe_events\/models.pyc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/spe_events\/models.pyc",
 		"oF": 0
 		},
 	"\/spe_events\/settings.py": {
@@ -24588,19 +24570,6 @@
 		"oS": 2,
 		"uL": 1
 		},
-	"\/spe_events\/static\/atce\/css\/_header.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/spe_events\/static\/atce\/css\/_header.css",
-		"oF": 0,
-		"oS": 2,
-		"uL": 1
-		},
 	"\/spe_events\/static\/atce\/css\/_mixins.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -24639,16 +24608,6 @@
 		"oF": 0,
 		"oS": 2,
 		"uL": 1
-		},
-	"\/spe_events\/static\/atce\/css\/mainstyle.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/spe_events\/static\/atce\/css\/mainstyle-min.css",
-		"oF": 0,
-		"oS": 0
 		},
 	"\/spe_events\/static\/atce\/css\/mainstyle.scss": {
 		"aP": 0,
