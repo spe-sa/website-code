@@ -5,15 +5,40 @@
 
 
 /* =================================================================== */
+/* ROWS */
+
+.spacerRow {
+  height: 30px;
+}
+
+.sponsorBar {
+  padding:                20px 0;
+  border-top:             2px solid $col-grey-light;
+  border-bottom:          2px solid $col-grey-light;
+}
+
+
+.byTheNumbersBar {
+  background-color:       $col-atce-green;
+
+  .btNumIcon {
+    font-size:            50px;
+  }
+
+  h3 {
+    font-weight:          $font-light;
+    margin-bottom:        20px;
+  }
+}
+.byTheNumbersRow {
+  padding:                20px 0;
+}
+
+/* =================================================================== */
 /* PANELS */
 
 .tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
   padding:              15px;
-}
-
-.padTopBottom  {
-  padding-top:            20px;
-  padding-bottom:         20px;
 }
 
 .tiletitlerow {
@@ -28,9 +53,9 @@
   text-align:             center;
 }
 
-.spacerRow {
-  height: 30px;
-}
+/* =================================================================== */
+/* PANELS */
+
 .panel-group {
   margin:                 0;
 }
@@ -78,24 +103,10 @@
 
   @include border-radius-separate(5px, 5px, 0, 0) ;
 }
-.sponsorBar {
-  //background-color:       $col-grey-light;
-  padding:                20px 0;
-  border-top: 2px solid $col-grey-light;
-  border-bottom: 2px solid $col-grey-light;
-}
-.byTheNumbersBar {
-  background-color:       $col-atce-green;
 
-  .btNumIcon {
-    font-size:            50px;
-  }
 
-  h3 {
-    font-weight:          $font-light;
-    margin-bottom:        20px;
-  }
-}
+/* =================================================================== */
+/* COMPONENTS */
 
 $jumboSliderHeight:       500px;
 .jumboCarousel {
@@ -150,6 +161,9 @@ $jumboSliderHeight:       500px;
   }
 }
 
+/* =================================================================== */
+/* IMAGE ITEMS */
+
 $itemboxpadding:  20px;
 .itembox {
   padding:        $itemboxpadding;
@@ -176,6 +190,7 @@ $itemboxpadding:  20px;
     }
   }
 }
+
 .speakerRow {
   padding: 20px 0;
 }
@@ -199,10 +214,6 @@ $itemboxpadding:  20px;
 .tbelowimage {
   width:                  100px;
   height:                 100px;
-  //-moz-border-radius:     50%;
-  //-webkit-border-radius:  50%;
-  //border-radius:          50%;
-  //border:                 3px solid $col-grey-light;
   margin:                 auto;
 }
 .tbelowtext {
@@ -221,9 +232,6 @@ $itemboxpadding:  20px;
   @include border-radius(5px);
 }
 
-.byTheNumbersRow {
-  padding:                20px 0;
-}
 
 @media (max-width: 1280px) {
   .nav-tabs.nav-justified > li {
@@ -240,6 +248,10 @@ $itemboxpadding:  20px;
   @include box-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
 }
 
+
+/* =================================================================== */
+/* CUSTOM TABLES */
+
 .table-tab {
   border:                 1px solid $col-grey-light;
 
@@ -247,4 +259,13 @@ $itemboxpadding:  20px;
     border:               1px solid $col-grey-light;
     padding:              10px;
   }
+}
+
+
+/* =================================================================== */
+/* MISC */
+
+.padTopBottom  {
+  padding-top:            20px;
+  padding-bottom:         20px;
 }
