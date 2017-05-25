@@ -227,15 +227,24 @@ $itemboxpadding:  20px;
 
 @media (max-width: 1280px) {
   .nav-tabs.nav-justified > li {
-    float: left;
-    width: 50%;
+    float:                left;
+    width:                50%;
   }
 }
 
 .singleLinkBox {
-  border: 1px solid $col-grey-light;
-  padding: 15px;
+  border:                 1px solid $col-grey-light;
+  padding:                15px;
 
   @include border-radius(5px);
   @include box-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
+}
+
+.table-tab {
+  border:                 1px solid $col-grey-light;
+
+  td {
+    border:               1px solid $col-grey-light;
+    padding:              10px;
+  }
 }
