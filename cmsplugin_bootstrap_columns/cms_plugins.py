@@ -10,8 +10,8 @@ class BootStrapContainerPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['BootstrapRowPlugin']
     model = BootStrapContainer
-    module = "Bootstrap"
-    name = "Bootstrap Container"
+    module = "Depracated Bootstrap"
+    name = "Bootstrap Container (Depracated DO NOT USE)"
     render_template = "cmsplugin_bootstrap_columns/container.html"
 
     def render(self, context, instance, placeholder):
@@ -25,8 +25,8 @@ class BootstrapRowPlugin(CMSPluginBase):
     allow_children = True
     child_classes = ['BootstrapColumnPlugin']
     model = BootstrapRow
-    module = "Bootstrap"
-    name = "Bootstrap Row"
+    module = "Depracated Bootstrap"
+    name = "Bootstrap Row (Depracated DO NOT USE)"
     render_template = "cmsplugin_bootstrap_columns/row.html"
 
     def render(self, context, instance, placeholder):
@@ -62,8 +62,8 @@ class BootstrapColumnPlugin(CMSPluginBase):
         }),
     )
     model = BootstrapColumn
-    module = "Bootstrap"
-    name = "Bootstrap Column"
+    module = "Depracated Bootstrap"
+    name = "Bootstrap Column (Depracated DO NOT USE)"
     render_template = "cmsplugin_bootstrap_columns/column.html"
     require_parent = True
     parent_classes = ['BootstrapRowPlugin', 'BootStrapColumnPlugin']
