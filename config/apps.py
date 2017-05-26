@@ -48,3 +48,22 @@ class SpePollConfig(AppConfig):
     name = 'spe_polls'
     verbose_name = "Polls"
 
+
+class SpePromotions(AppConfig):
+    name = 'spe_promotions'
+    verbose_name = "SPE Promotions"
+
+
+class SpeBlogConfig(AppConfig):
+    name = 'spe_blog'
+    verbose_name = "Article, Blog and Brief"
+
+
+class SpeCustomAgendaConfig(AppConfig):
+    name = 'spe_custom_agenda'
+    verbose_name = "SPE Custom Agenda"
+
+
+class SpeCustomMenus(AppConfig):
+    name = 'spe_custom_menus'
+    verbose_name = "SPE Custom Menus"
