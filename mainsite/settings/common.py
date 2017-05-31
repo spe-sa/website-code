@@ -192,6 +192,7 @@ INSTALLED_APPS = (
     # 'controlcenter',
     'imagekit',
     'django_countries',
+    'spe_api',
 )
 
 LANGUAGES = (

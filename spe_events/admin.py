@@ -1,12 +1,14 @@
 from django.contrib import admin
 
 from .models import EventType, ImageItemList, ImageItems, CalendarEvent
+from .forms import ImageItemInLineForm
 
 from adminsortable.admin import NonSortableParentAdmin, SortableStackedInline, SortableTabularInline
 
 
 class ImageItemInLine(SortableStackedInline):
     model = ImageItems
+    form = ImageItemInLineForm
     extra = 0
     fieldsets = (
         ('Detail', {
@@ -27,6 +29,11 @@ class ImageItemInLine(SortableStackedInline):
         }),
     )
     exclude = ['order']
+
+    class Media:
+        js=(
+            'js/validate_urls.js',
+        )
 
 
 class ImageItemTabularInLine(SortableTabularInline):

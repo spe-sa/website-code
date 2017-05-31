@@ -30,6 +30,10 @@ class CustomerMiddleware(object):
         ext = os.path.splitext(path)[1]
         request.ext = ext
 
+        # we have a few exceptions we need to have our variables set for (see the urls.py)
+        if path == '/en/staff/articlesandbriefs/sitemap.xml' or path == '/staff/articlesandbriefs/sitemap.xml':
+            ext = ""
+
         if not ext:
             request.variables = get_context_variables(request)
             request.visitor = get_visitor(request)

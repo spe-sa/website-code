@@ -123,6 +123,7 @@ urlpatterns = i18n_patterns('',
     url(r'^events/(?P<event_id>\d+)/export/', 'spe_events.views.export', name="event_ics_export"),
     url(r'^agenda/(?P<agenda_id>\d+)/export/', 'spe_custom_agenda.views.export', name="agenda_ics_export"),
     # url(r'^stats/', include('statsy.urls')),
+    url(r'^api/', include('spe_api.urls')),
 
     url(r'^', include('cms.urls')),
 )
