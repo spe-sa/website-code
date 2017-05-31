@@ -37,7 +37,7 @@ class BootstrapColumnPlugin(CMSPluginBase):
     allow_children = True
     fieldsets = (
         (None, {
-            'fields': ('name', 'bkg_color', 'transparent', 'element_style', 'element_id',
+            'fields': ('title', 'bkg_color', 'transparent', 'element_style', 'element_id',
                        'mobile_device_width', 'small_device_width',
                        'medium_device_width', 'large_device_width')
         }),

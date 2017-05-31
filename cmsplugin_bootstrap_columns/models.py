@@ -7,7 +7,7 @@ from colorfield.fields import ColorField
 
 class BootStrapContainer(CMSPlugin):
     # title = models.CharField(max_length=255)
-    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    title = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
     transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
@@ -24,7 +24,7 @@ class BootStrapContainer(CMSPlugin):
     is_fluid = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return u"Container with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
+        return u"Container with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.title)
 
     @property
     def get_is_fluid(self):
@@ -37,7 +37,7 @@ class BootStrapContainer(CMSPlugin):
 
 class BootstrapRow(CMSPlugin):
     # title = models.CharField(max_length=255)
-    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    title = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
     transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
@@ -53,7 +53,7 @@ class BootstrapRow(CMSPlugin):
                                      verbose_name="Element style")
 
     def __unicode__(self):
-        return u"Row with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
+        return u"Row with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.title)
 
 
 
@@ -75,7 +75,7 @@ class BootstrapColumn(CMSPlugin):
     )
 
     # title = models.CharField(max_length=255)
-    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    title = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
     transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     mobile_device_width = models.CharField(max_length=255,
@@ -198,7 +198,7 @@ class BootstrapColumn(CMSPlugin):
     content = PlaceholderField('column_placeholder')
 
     def __unicode__(self):
-        return u"Column with {0} items".format(self.cmsplugin_set.all().count())
+        return u"Column with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.title)
 
     @property
     def get_mobile_width(self):
