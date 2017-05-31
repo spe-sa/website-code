@@ -6,76 +6,7 @@ from .models import Jumbotron
 from .models import Modal, ModalBody, ModalFooter, ModalHeader
 from .models import Panel
 from .models import TabHeader, Tab
-from .models import CustomColumn, Container, CustomRow, SpacerPlug, SingleLinkPlug
-
-
-class ContainerPlugin(CMSPluginBase):
-    allow_children = True
-    # child_classes = ['CustomRowPlugin']
-    model = Container
-    module = "Components"
-    name = "Container"
-    render_template = "basic/container.html"
-
-    def render(self, context, instance, placeholder):
-        context['instance'] = instance
-        return context
-
-
-class CustomRowPlugin(CMSPluginBase):
-    allow_children = True
-    child_classes = ['CustomColumnPlugin']
-    model = CustomRow
-    module = "Components"
-    name = "Bootstrap Row"
-    render_template = "basic/row.html"
-
-    def render(self, context, instance, placeholder):
-        context['instance'] = instance
-        return context
-
-
-class CustomColumnPlugin(CMSPluginBase):
-    allow_children = True
-    fieldsets = (
-        (None, {
-            'fields': ('name', 'bkg_color', 'transparent', 'element_style', 'element_id',
-                       'mobile_device_width', 'small_device_width',
-                       'medium_device_width', 'large_device_width')
-        }),
-        ('Hide on Viewport Size ', {
-            'classes': ('collapse',),
-            'fields': ('hide_on_mobile', 'hide_on_small', 'hide_on_medium',
-                       'hide_on_large')
-        }),
-        ('Viewport Offset', {
-            'classes': ('collapse',),
-            'fields': ('mobile_device_offset', 'small_device_offset',
-                       'medium_device_offset', 'large_device_offset')
-        }),
-        ('Viewport Pull', {
-            'classes': ('collapse',),
-            'fields': ('mobile_device_pull', 'small_device_pull',
-                       'medium_device_pull', 'large_device_pull')
-        }),
-        ('Viewport Push', {
-            'classes': ('collapse',),
-            'fields': ('mobile_device_push', 'small_device_push',
-                       'medium_device_push', 'large_device_push')
-        }),
-    )
-    model = CustomColumn
-    module = "Components"
-    name = "Bootstrap Column"
-    render_template = "basic/column.html"
-    require_parent = True
-
-    # parent_classes = ['CustomRowPlugin', 'CustomColumnPlugin']
-
-    def render(self, context, instance, placeholder):
-        context['instance'] = instance
-        context['placeholder'] = placeholder
-        return context
+from .models import SpacerPlug, SingleLinkPlug
 
 
 class JumbotronPlugin(CMSPluginBase):
@@ -253,9 +184,6 @@ class SingleLinkPlugin(CMSPluginBase):
         return context
 
 
-plugin_pool.register_plugin(ContainerPlugin)
-plugin_pool.register_plugin(CustomColumnPlugin)
-plugin_pool.register_plugin(CustomRowPlugin)
 plugin_pool.register_plugin(JumbotronPlugin)
 plugin_pool.register_plugin(ModalPlugin)
 plugin_pool.register_plugin(ModalBodyPlugin)

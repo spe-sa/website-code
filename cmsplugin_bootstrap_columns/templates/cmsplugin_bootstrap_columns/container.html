@@ -1,6 +1,15 @@
 {% load cms_tags %}
 
-<div class="{{instance.get_is_fluid}} {{instance.classes}}" id="{{instance.element_id}}" styles="{{instance.element_style}}">
+<style>
+    .style-{{ instance.id }} {
+    {% if not instance.transparent %}
+        background-color: {{ instance.bkg_color }};
+    {% endif %}
+    }
+</style>
+
+<div class="{{ instance.get_is_fluid }} {{ instance.classes }} style-{{ instance.id }}" id="{{ instance.element_id }}"
+     styles="{{ instance.element_style }}">
     {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}
     {% endfor %}

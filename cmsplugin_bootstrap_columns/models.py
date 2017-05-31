@@ -2,9 +2,14 @@ from cms.models.pluginmodel import CMSPlugin
 from cms.models.fields import PlaceholderField
 from django.db import models
 
+from colorfield.fields import ColorField
+
 
 class BootStrapContainer(CMSPlugin):
-    title = models.CharField(max_length=255)
+    # title = models.CharField(max_length=255)
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
                                help_text="""Classes to be applied to this
                                element""", verbose_name="Element Classes")
@@ -19,10 +24,7 @@ class BootStrapContainer(CMSPlugin):
     is_fluid = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return unicode(self.title)
-
-    def __str__(self):
-        return unicode(self.title)
+        return u"Container with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
 
     @property
     def get_is_fluid(self):
@@ -34,7 +36,10 @@ class BootStrapContainer(CMSPlugin):
 
 
 class BootstrapRow(CMSPlugin):
-    title = models.CharField(max_length=255)
+    # title = models.CharField(max_length=255)
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     classes = models.CharField(max_length=255, null=True, blank=True,
                                help_text="""Classes to be applied to this
                                element""", verbose_name="Element Classes")
@@ -48,10 +53,8 @@ class BootstrapRow(CMSPlugin):
                                      verbose_name="Element style")
 
     def __unicode__(self):
-        return unicode(self.title)
+        return u"Row with {0} items :: {1}".format(self.cmsplugin_set.all().count(), self.name)
 
-    def __str__(self):
-        return unicode(self.title)
 
 
 class BootstrapColumn(CMSPlugin):
@@ -71,7 +74,10 @@ class BootstrapColumn(CMSPlugin):
         ('12', '12/12',),
     )
 
-    title = models.CharField(max_length=255)
+    # title = models.CharField(max_length=255)
+    name = models.CharField('Name', unique=False, max_length=100, blank=True, null=True)
+    bkg_color = ColorField(verbose_name='Background Color', blank=True, null=True)
+    transparent = models.BooleanField(default=True, help_text='Transparent overrides selected color')
     mobile_device_width = models.CharField(max_length=255,
                                            choices=device_count_range,
                                            help_text="""The column width on
@@ -192,10 +198,7 @@ class BootstrapColumn(CMSPlugin):
     content = PlaceholderField('column_placeholder')
 
     def __unicode__(self):
-        return unicode(self.title)
-
-    def __str__(self):
-        return unicode(self.title)
+        return u"Column with {0} items".format(self.cmsplugin_set.all().count())
 
     @property
     def get_mobile_width(self):
