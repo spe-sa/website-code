@@ -156,7 +156,7 @@ INSTALLED_APPS = (
     'config.apps.MainsiteConfig',
     'segmentation',
     # 'smartsnippets',
-    'config.apps.SmartsnippetConfig',
+    #'config.apps.SmartsnippetConfig',
     'taggit',
     # 'spe_links',
     'config.apps.SpeLinkConfig',
@@ -305,7 +305,7 @@ CMS_PLACEHOLDER_CONF = {
                     'ShowTagTitlePlugin',
                     'ShowTopicTitlePlugin',
                     # snippets
-                    'SmartSnippetPlugin',
+                    #'SmartSnippetPlugin',
                     # events
                     'ShowEventsByCurrentLocationPluginPlugin',
                     'PollPlugin',
@@ -394,7 +394,7 @@ CMS_PLACEHOLDER_CONF = {
                 'ShowTagTitlePlugin',
                 'ShowTopicTitlePlugin',
                 # snippets
-                'SmartSnippetPlugin',
+                # 'SmartSnippetPlugin',
                 # events
                 'ShowEventsByCurrentLocationPluginPlugin',
                 'PollPlugin',

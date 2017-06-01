@@ -24,9 +24,9 @@ class RequestConfig(AppConfig):
     verbose_name = "Utility Request Configurations"
 
 
-class SmartsnippetConfig(AppConfig):
-    name = 'smartsnippets'
-    verbose_name = "Utility SmartSnippet Configurations"
+# class SmartsnippetConfig(AppConfig):
+#     name = 'smartsnippets'
+#     verbose_name = "Utility SmartSnippet Configurations"
 
 
 class SpeBlogConfig(AppConfig):
