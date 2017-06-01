@@ -167,7 +167,8 @@ class SingleLinkPlug(CMSPlugin):
     isbutton = models.BooleanField(default=False, verbose_name="Is this a button?")
     isinbox = models.BooleanField(default=False, verbose_name="Is this link in a box?")
     height = models.CharField(verbose_name=u'Box height in pixels.', unique=False, max_length=10, blank=True, null=True)
-    width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH, verbose_name=u'Width n Bootstrap Columns.', )
+    width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH,
+                             verbose_name=u'Width n Bootstrap Columns.', )
     bkg_color = ColorField(verbose_name='Background Color', default="#cccccc")
     txt_color = ColorField(verbose_name='Text Color', default="#000000")
     new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
