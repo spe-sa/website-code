@@ -1,6 +1,10 @@
 import os
 
 gettext = lambda s: s
+
+USE_I18N = True
+USE_L10N = True
+
 """
 Django settings for mainsite project.
 
@@ -200,6 +204,7 @@ LANGUAGES = (
     ('en', gettext('en')),
     ('es', gettext('es')),
     ('ru', gettext('ru')),
+    ('zh-cn', gettext('zh-cn')),
 )
 
 CMS_LANGUAGES = {
@@ -229,6 +234,13 @@ CMS_LANGUAGES = {
             'code': 'ru',
             'hide_untranslated': False,
             'name': gettext('ru'),
+            'redirect_on_fallback': True,
+        },
+{
+            'public': True,
+            'code': 'zh-cn',
+            'hide_untranslated': False,
+            'name': gettext('zh-cn'),
             'redirect_on_fallback': True,
         },
     ],
