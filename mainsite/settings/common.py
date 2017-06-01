@@ -2,8 +2,6 @@ import os
 
 gettext = lambda s: s
 
-USE_I18N = True
-USE_L10N = True
 
 """
 Django settings for mainsite project.
@@ -51,7 +49,6 @@ LANGUAGE_CODE = 'en'
 TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
-
 USE_L10N = True
 
 USE_TZ = True
