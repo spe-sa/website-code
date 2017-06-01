@@ -36,4 +36,3 @@ class SimpleEventPromotionResource(ModelResource):
         resource_name = 'event_promotion'
         # authorization = Authorization()
         allowed_methods = ['get']
-

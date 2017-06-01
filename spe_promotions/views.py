@@ -70,7 +70,7 @@ def no_discipline(request, index):
         object = SimpleEventNoDisciplinePromotion.objects.get(pk=index)
     except SimpleEventNoDisciplinePromotion.DoesNotExist:
         raise Http404("Promotion does not exist")
-    #   ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
+    # ip = request.META.get('HTTP_X_REAL_IP', '192.168.1.1')
     ip = get_ip(request)
     user_agent = request.META.get('HTTP_USER_AGENT', '')
     # if not request.user.is_authenticated() and not IPAddress(ip).is_private() and not any(
