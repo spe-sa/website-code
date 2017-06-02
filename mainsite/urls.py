@@ -57,6 +57,7 @@ admin.autodiscover()
 urlpatterns = i18n_patterns('',
     # url(r'/ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^filebrowser_filer/', include('ckeditor_filebrowser_filer.urls')),
     # ran into a problem where the ckeditor is not at the root
     # ex: /en/admin/spe_blog/article/add/ckeditor/upload/?CKEditor=id_introduction&CKEd...
     # url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',

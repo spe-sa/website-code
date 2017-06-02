@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     #    'mptt',
     'ckeditor',
     'ckeditor_uploader',
+    'ckeditor_filebrowser_filer',
     # 'cmsplugin_filer_image',
     'config.apps.FilerPluginConfig',
     'cmsplugin_filer_file',
@@ -600,12 +601,14 @@ THUMBNAIL_HIGH_RESOLUTION = True
 
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
+
 CKEDITOR_CONFIGS = {
     'default': {
         'language': '{{ language }}',
         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
         'toolbarCanCollapse': False,
-        'toolbar': [
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
             ['Undo', 'Redo'],
             ['cmsplugins'],
             ['-', 'ShowBlocks'],
@@ -617,7 +620,7 @@ CKEDITOR_CONFIGS = {
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
             ['CreateDiv', 'Blockquote', 'HorizontalRule'],
             ['Link', 'Unlink'],
-            ['Image', 'Youtube'],
+            ['FilerImage', 'Youtube'],
             ['Source', 'Preview'],
             ['Maximize'],
         ],
@@ -637,8 +640,9 @@ CKEDITOR_CONFIGS = {
                 'horizontalrule',
                 'image2',
                 'youtube',
+                'filerimage',
             ]),
-        'removePlugins': 'stylesheetparser',
+        'removePlugins': 'image',
         'skin': 'moono',
         'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
         'filebrowserBrowseUrl': '/ckeditor/browse/',
@@ -647,52 +651,114 @@ CKEDITOR_CONFIGS = {
             [
                 '&alpha;&beta;&gamma;&delta;&epsilon;&zeta;&eta;&theta;&iota;&kappa;&lambda;&mu;&nu;&xi;&omicron;&pi;&rho;&sigma;&sigma;&tau;&upsilon;&phi;&chi;&psi;&omega;&Delta;&euro;&lsquo;&rsquo;&ldquo;&rdquo;&ndash;&mdash;&iexcl;&cent;&pound;&curren;&yen;&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&reg;&macr;&deg;&sup2;&sup3;&acute;&micro;&para;&middot;&cedil;&sup1;&ordm;&raquo;&frac14;&frac12;&frac34;&iquest;&Agrave;&Aacute;&Acirc;&Atilde;&Auml;&Aring;&AElig;&Ccedil;&Egrave;&Eacute;&Ecirc;&Euml;&Igrave;&Iacute;&Icirc;&Iuml;&ETH;&Ntilde;&Ograve;&Oacute;&Ocirc;&Otilde;&Ouml;&times;&Oslash;&Ugrave;&Uacute;&Ucirc;&Uuml;&Yacute;&THORN;&szlig;&agrave;&aacute;&acirc;&atilde;&auml;&aring;&aelig;&ccedil;&egrave;&eacute;&ecirc;&euml;&igrave;&iacute;&icirc;&iuml;&eth;&ntilde;&ograve;&oacute;&ocirc;&otilde;&ouml;&divide;&oslash;&ugrave;&uacute;&ucirc;&uuml;&yacute;&thorn;&yuml;&OElig;&oelig;&#372;&#374;&#373;&#375;&sbquo;&#8219;&bdquo;&hellip;&trade;&#9658;&bull;&rarr;&rArr;&hArr;&diams;&asymp;',
             ]),
-    }, }
+    },
+}
 
-CKEDITOR_SETTINGS = {
-    'default': {
-        'language': '{{ language }}',
-        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-        'toolbarCanCollapse': False,
-        'toolbar': [
-            ['Undo', 'Redo'],
-            ['cmsplugins'],
-            ['-', 'ShowBlocks'],
-            ['Format', 'Styles'],
-            ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
-            ['Mathjax', 'SpecialChar'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
-            ['CreateDiv', 'Blockquote', 'HorizontalRule'],
-            ['Link', 'Unlink'],
-            ['Image', 'Youtube'],
-            ['Source', 'Preview'],
-            ['Maximize'],
-        ],
-        'extraPlugins': ','.join(
-            [
-                'widget',
-                'lineutils',
-                'clipboard',
-                'dialog',
-                'dialogui',
-                'mathjax',
-                'maximize',
-                'justify',
-                'div',
-                'specialchar',
-                'blockquote',
-                'horizontalrule',
-                'image2',
-                'youtube',
-            ]),
-        'removePlugins': 'stylesheetparser',
-        'skin': 'moono',
-        'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
-        'filebrowserBrowseUrl': '/ckeditor/browse/',
-        'filebrowserUploadUrl': '',
-    }, }
+# CKEDITOR_SETTINGS = {
+#     'default': {
+#         'toolbar': 'Custom',
+#         'toolbar_Custom': [
+#             ['FilerImage']
+#         ],
+#         'extraPlugins': 'filerimage',
+#         'removePlugins': 'image'
+#     },
+# }
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'language': '{{ language }}',
+#         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+#         'toolbarCanCollapse': False,
+#         'toolbar': [
+#             ['Undo', 'Redo'],
+#             ['cmsplugins'],
+#             ['-', 'ShowBlocks'],
+#             ['Format', 'Styles'],
+#             ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+#             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+#             ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+#             ['Mathjax', 'SpecialChar'],
+#             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+#             ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+#             ['Link', 'Unlink'],
+#             ['Image', 'Youtube'],
+#             ['Source', 'Preview'],
+#             ['Maximize'],
+#         ],
+#         'extraPlugins': ','.join(
+#             [
+#                 'widget',
+#                 'lineutils',
+#                 'clipboard',
+#                 'dialog',
+#                 'dialogui',
+#                 'mathjax',
+#                 'maximize',
+#                 'justify',
+#                 'div',
+#                 'specialchar',
+#                 'blockquote',
+#                 'horizontalrule',
+#                 'image2',
+#                 'youtube',
+#             ]),
+#         'removePlugins': 'stylesheetparser',
+#         'skin': 'moono',
+#         'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
+#         'filebrowserBrowseUrl': '/ckeditor/browse/',
+#         'filebrowserUploadUrl': '',
+#         'specialChars': ','.join(
+#             [
+#                 '&alpha;&beta;&gamma;&delta;&epsilon;&zeta;&eta;&theta;&iota;&kappa;&lambda;&mu;&nu;&xi;&omicron;&pi;&rho;&sigma;&sigma;&tau;&upsilon;&phi;&chi;&psi;&omega;&Delta;&euro;&lsquo;&rsquo;&ldquo;&rdquo;&ndash;&mdash;&iexcl;&cent;&pound;&curren;&yen;&brvbar;&sect;&uml;&copy;&ordf;&laquo;&not;&reg;&macr;&deg;&sup2;&sup3;&acute;&micro;&para;&middot;&cedil;&sup1;&ordm;&raquo;&frac14;&frac12;&frac34;&iquest;&Agrave;&Aacute;&Acirc;&Atilde;&Auml;&Aring;&AElig;&Ccedil;&Egrave;&Eacute;&Ecirc;&Euml;&Igrave;&Iacute;&Icirc;&Iuml;&ETH;&Ntilde;&Ograve;&Oacute;&Ocirc;&Otilde;&Ouml;&times;&Oslash;&Ugrave;&Uacute;&Ucirc;&Uuml;&Yacute;&THORN;&szlig;&agrave;&aacute;&acirc;&atilde;&auml;&aring;&aelig;&ccedil;&egrave;&eacute;&ecirc;&euml;&igrave;&iacute;&icirc;&iuml;&eth;&ntilde;&ograve;&oacute;&ocirc;&otilde;&ouml;&divide;&oslash;&ugrave;&uacute;&ucirc;&uuml;&yacute;&thorn;&yuml;&OElig;&oelig;&#372;&#374;&#373;&#375;&sbquo;&#8219;&bdquo;&hellip;&trade;&#9658;&bull;&rarr;&rArr;&hArr;&diams;&asymp;',
+#             ]),
+#     }, }
+#
+# CKEDITOR_SETTINGS = {
+#     'default': {
+#         'language': '{{ language }}',
+#         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+#         'toolbarCanCollapse': False,
+#         'toolbar': [
+#             ['Undo', 'Redo'],
+#             ['cmsplugins'],
+#             ['-', 'ShowBlocks'],
+#             ['Format', 'Styles'],
+#             ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+#             ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+#             ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+#             ['Mathjax', 'SpecialChar'],
+#             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+#             ['CreateDiv', 'Blockquote', 'HorizontalRule'],
+#             ['Link', 'Unlink'],
+#             ['Image', 'Youtube'],
+#             ['Source', 'Preview'],
+#             ['Maximize'],
+#         ],
+#         'extraPlugins': ','.join(
+#             [
+#                 'widget',
+#                 'lineutils',
+#                 'clipboard',
+#                 'dialog',
+#                 'dialogui',
+#                 'mathjax',
+#                 'maximize',
+#                 'justify',
+#                 'div',
+#                 'specialchar',
+#                 'blockquote',
+#                 'horizontalrule',
+#                 'image2',
+#                 'youtube',
+#             ]),
+#         'removePlugins': 'stylesheetparser',
+#         'skin': 'moono',
+#         'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
+#         'filebrowserBrowseUrl': '/ckeditor/browse/',
+#         'filebrowserUploadUrl': '',
+#     }, }
 
 DASHING = {
     'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
