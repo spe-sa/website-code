@@ -354,6 +354,7 @@ CMS_PLACEHOLDER_CONF = {
                     'SpacerPlugPlugin',
                     'SingleLinkPlugin',
                     'CalendarEventItemPlugin',
+                    'ImageItemPluginInstance',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
@@ -642,6 +643,7 @@ CKEDITOR_CONFIGS = {
                 'youtube',
                 'filerimage',
             ]),
+        'removePlugins': 'stylesheetparser',
         'removePlugins': 'image',
         'skin': 'moono',
         'filebrowserImageBrowseUrl': '/ckeditor/browse/?type=image',
