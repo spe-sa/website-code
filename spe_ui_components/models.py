@@ -84,7 +84,7 @@ class ModalFooter(CMSPlugin):
     """
 
     def __unicode__(self):
-        return u"{0} - {1} modal footer items".format(self.label, self.cmsplugin_set.all().count())
+        return u"{0} modal footer items".format(self.cmsplugin_set.all().count())
 
 
 class ModalHeader(CMSPlugin):
