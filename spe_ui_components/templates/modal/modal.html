@@ -5,7 +5,11 @@
     {{ instance.label }}
 </button>
 
-<div id="panel-modal-{{ instance.id }}" class="modal fade" tabindex="-1" role="dialog"">
+{% if instance.start_open %}
+    <div id="panel-modal-{{ instance.id }}" class="modal show" tabindex="-1" role="dialog">
+{% else %}
+    <div id="panel-modal-{{ instance.id }}" class="modal fade" tabindex="-1" role="dialog">
+{% endif %}
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         {% for child in instance.child_plugin_instances %}

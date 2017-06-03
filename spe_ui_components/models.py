@@ -63,6 +63,7 @@ class Modal(CMSPlugin):
     A plugin that has Modal classes as children.
     """
     label = models.CharField('Modal Button Label', max_length=35)
+    start_open = models.BooleanField(verbose_name='Start opened', default=False)
 
     def __unicode__(self):
         return u"{0} modal items".format(self.cmsplugin_set.all().count())
