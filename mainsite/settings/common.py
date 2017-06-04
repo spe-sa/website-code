@@ -639,7 +639,7 @@ CKEDITOR_CONFIGS = {
                 'specialchar',
                 'blockquote',
                 'horizontalrule',
-                'image2',
+                # 'image2',
                 'youtube',
                 'filerimage',
             ]),
