@@ -175,7 +175,7 @@ class SingleLinkPlugin(CMSPluginBase):
     model = SingleLinkPlug
     name = "Single Link"
     module = 'Components'
-    render_template = "basic/singlelink.html"
+    render_template = "singlelink/singlelink.html"
 
     def render(self, context, instance, placeholder):
         context.update({
