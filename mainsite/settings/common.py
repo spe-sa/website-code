@@ -607,6 +607,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'language': '{{ language }}',
         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'allowedContent': True,
         'toolbarCanCollapse': False,
         'toolbar': 'Custom',
         'toolbar_Custom': [
@@ -665,7 +666,7 @@ CKEDITOR_SETTINGS = {
         'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
         'toolbarCanCollapse': False,
         'toolbar': 'Custom',
-        'extraAllowedContent': 'class',
+        'allowedContent': True,
         'toolbar_Custom': [
             ['Undo', 'Redo'],
             ['cmsplugins'],
