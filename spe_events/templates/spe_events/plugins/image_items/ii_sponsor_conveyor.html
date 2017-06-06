@@ -10,7 +10,7 @@
     <div id="carouselTicker" class="carouselTicker">
         <ul class="carouselTicker__list">
             {% for item in items %}
-                {% if item.isvisible and item.issponsor %}
+                {% if item.isvisible %}
                     <li class="carouselTicker__item">
                         <a href="{{ item.get_absolute_url }}"><img data-u="image" src="{{ item.get_image_url }}" /></a>
                     </li>

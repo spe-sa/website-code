@@ -51,3 +51,7 @@ Thumbs.db
 *.codekit3
 
 spe_custom_agenda/models.py
+
+*.codekit3
+
+config.codekit3

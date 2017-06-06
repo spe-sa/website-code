@@ -20,29 +20,31 @@
           {% for item in items %}
               {% if item.image and item.image.url and item.isvisible %}
                   {% if forloop.first %}
-                      <a href="{{ item.get_absolute_url }}">
+{#                      <a href="{{ item.get_absolute_url }}">#}
                       <div class="item active" style="background-image: url({{ item.get_image_url }});
                               background-position:{{ item.imageposition }}; background-size: cover;">
-{#                          <a href="{{ item.get_absolute_url }}">#}
-                              <div class="carousel-caption">
-                                  <h1>{{ item.title }}</h1>
-                                  <h2>{{ item.text | safe }}</h2>
-                              </div>
-{#                          </a>#}
-                      </div>
-                      </a>
-                  {% else %}
-                      <a href="{{ item.get_absolute_url }}">
-                      <div class="item" style="background-image: url({{ item.get_image_url }});
-                              background-position:{{ item.imageposition }}; background-size: cover;">
                           <a href="{{ item.get_absolute_url }}">
+                              <div class="carousel-linkbox" style="height: 100%;"></div>
                               <div class="carousel-caption">
                                   <h1>{{ item.title }}</h1>
                                   <h2>{{ item.text | safe }}</h2>
                               </div>
                           </a>
                       </div>
-                      </a>
+{#                      </a>#}
+                  {% else %}
+{#                      <a href="{{ item.get_absolute_url }}">#}
+                      <div class="item" style="background-image: url({{ item.get_image_url }});
+                              background-position:{{ item.imageposition }}; background-size: cover;">
+                          <a href="{{ item.get_absolute_url }}">
+                              <div class="carousel-linkbox" style="height: 100%;"></div>
+                              <div class="carousel-caption">
+                                  <h1>{{ item.title }}</h1>
+                                  <h2>{{ item.text | safe }}</h2>
+                              </div>
+                          </a>
+                      </div>
+{#                      </a>#}
                   {% endif %}
               {% endif %}
 
