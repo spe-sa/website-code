@@ -606,7 +606,7 @@ CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_CONFIGS = {
     'default': {
         'language': '{{ language }}',
-        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML',
         'allowedContent': True,
         'toolbarCanCollapse': False,
         'toolbar': 'Custom',
@@ -663,7 +663,7 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_SETTINGS = {
     'default': {
         'language': '{{ language }}',
-        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'mathJaxLib': '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML',
         'toolbarCanCollapse': False,
         'toolbar': 'Custom',
         'allowedContent': True,
