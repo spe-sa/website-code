@@ -1,9 +1,16 @@
 <!-- This is the BOXES template. -->
 {# {{ instance.pluginheight }}px#}
 
+
+
 <div class="row">
     {% for item in items %}
         {% if item.isvisible %}
+            <style>
+                #boxh2{{ forloop.counter }} {
+                    display: inline-block;
+                }
+            </style>
             <div class="{% if items.count >= 4 %}
                     col-xs-6 col-sm-6 col-md-3 col-lg-3
                 {% elif items.count == 3 %}
@@ -12,13 +19,53 @@
                     col-xs-6 col-sm-6 col-md-6 col-lg-6
                 {% elif items.count == 1 %}
                     col-xs-12
-                {% endif %} itembox" style="height: {{ instance.pluginheight }}px">
-                <div class="" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover; height: 100%">
-                    <div class="panel-body">
-                        <h2>{{ item.title }}</h2>
+                {% endif %} itembox" {% if instance.pluginheight %}style="height: {{ instance.pluginheight }}px" {% endif %}>
+                <div id="imgbox{{ forloop.counter }}" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover; height: 100%">
+                    <div class="boxtitle">
+                        <h2 id="boxh2{{ forloop.counter }}">{{ item.title }}</h2>
                     </div>
                 </div>
             </div>
+            <script>
+                $(document).ready(function () {
+
+                    var h2fontsize = 25;
+                    var startingtextwidth = $('#boxh2{{ forloop.counter }}').innerWidth();
+                    var sizepercentage = 1;
+                    var scaledfontsize = h2fontsize;
+
+                    FunImageBox();
+
+                    $(window).on('resize', function(){
+                        FunImageBox();
+                    });
+
+
+                    // CONFUNCTION JUNCTION //
+                    function FunImageBox() {
+
+                        var imgboxwidth = $('#imgbox{{ forloop.counter }}').innerWidth() - 20;
+                        var boxh2width = $('#boxh2{{ forloop.counter }}').innerWidth();
+
+                        $('#boxwidth{{ forloop.counter }}').text('Box:' + imgboxwidth);
+                        $('#txtwidth{{ forloop.counter }}').text('Text: ' + boxh2width);
+
+                        if ( imgboxwidth < boxh2width) {
+
+                            sizepercentage = imgboxwidth / startingtextwidth;
+                            scaledfontsize = h2fontsize * sizepercentage;
+                            $('#boxh2{{ forloop.counter }}').css('fontSize', scaledfontsize);
+                            $('#notetext{{ forloop.counter }}').text('Scaled text size: ' + scaledfontsize);
+
+                        } else {
+
+                            $('#boxh2{{ forloop.counter }}').css('fontSize', h2fontsize);
+                            $('#notetext{{ forloop.counter }}').text('Full text size: ' + h2fontsize);
+                        }
+                    }
+                });
+            </script>
         {% endif %}
     {% endfor %}
 </div>
+

@@ -171,28 +171,34 @@ $itemboxpadding:  20px;
 .itembox {
   padding:        $itemboxpadding;
   position:       relative;
+  color:          $col-white;
 
   .panel, .innerbox {
     overflow:     hidden;
   }
 
-  .innerpanel, .panel-body {
+  .innerpanel, .boxtitle {
     position:     absolute;
     bottom:       $itemboxpadding;
     background:   $img-back-black-70 repeat center center / cover;
-    //width:        100%;
+    width: -webkit-calc(100% - #{$itemboxpadding*2});
+    width:    -moz-calc(100% - #{$itemboxpadding*2});
+    width:         calc(100% - #{$itemboxpadding*2});
 
-    .panel-body {
-      padding:      10px;
-    }
+
 
     h2 {
       color:        $col-white;
+      //color:        hotpink;
       margin:       0;
       padding:      0;
     }
   }
+  .boxtitle {
+    padding:      10px;
+  }
 }
+
 
 .speakerRow {
   padding: 20px 0;
