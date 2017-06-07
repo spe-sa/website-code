@@ -21,6 +21,7 @@ class ImageItemInLine(SortableStackedInline):
                 'text',
                 'external_link',
                 'internal_link',
+                'new_window',
                 'isvisible',
                 'issponsor',
                 'sponsorlevel',
@@ -40,8 +41,8 @@ class ImageItemTabularInLine(SortableTabularInline):
     model = ImageItems
     extra = 0
     proxy = True
-    exclude = ['title', 'imageurl', 'image', 'imageposition', 'text', 'external_link', 'internal_link', 'issponsor', 'sponsorlevel',
-               'sponsoredevents', 'order']
+    exclude = ['title', 'imageurl', 'image', 'imageposition', 'text', 'external_link', 'internal_link', 'new_window',
+               'issponsor', 'sponsorlevel', 'sponsoredevents', 'order']
 
 
 class CustomImageItemAdmin(NonSortableParentAdmin):

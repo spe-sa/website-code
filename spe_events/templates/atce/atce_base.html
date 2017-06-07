@@ -91,9 +91,12 @@
     {# Add the page wrapper beginning here #}
     {% block wrap_end %}
         </div><!-- end Container -->
-        <script>
+        <script type="text/javascript" charset="utf-8">
             $(document).ready(function() {
                 $('.carouselTicker').carouselTicker();
+
+                $(".tile-white img").addClass("img-responsive");
+                $(".tile-white img").removeClass("img-responsive");
             });
         </script>
     {% endblock wrap_end %}

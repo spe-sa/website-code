@@ -23,7 +23,7 @@
 {#                      <a href="{{ item.get_absolute_url }}">#}
                       <div class="item active" style="background-image: url({{ item.get_image_url }});
                               background-position:{{ item.imageposition }}; background-size: cover;">
-                          <a href="{{ item.get_absolute_url }}">
+                          <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}>
                               <div class="carousel-linkbox" style="height: 100%;"></div>
                               <div class="carousel-caption">
                                   <h1>{{ item.title }}</h1>
@@ -36,7 +36,7 @@
 {#                      <a href="{{ item.get_absolute_url }}">#}
                       <div class="item" style="background-image: url({{ item.get_image_url }});
                               background-position:{{ item.imageposition }}; background-size: cover;">
-                          <a href="{{ item.get_absolute_url }}">
+                          <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}>
                               <div class="carousel-linkbox" style="height: 100%;"></div>
                               <div class="carousel-caption">
                                   <h1>{{ item.title }}</h1>

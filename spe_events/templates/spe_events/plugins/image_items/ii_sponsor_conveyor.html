@@ -12,7 +12,7 @@
             {% for item in items %}
                 {% if item.isvisible %}
                     <li class="carouselTicker__item">
-                        <a href="{{ item.get_absolute_url }}"><img data-u="image" src="{{ item.get_image_url }}" /></a>
+                        <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}><img data-u="image" src="{{ item.get_image_url }}" /></a>
                     </li>
                 {% endif %}
             {% endfor %}

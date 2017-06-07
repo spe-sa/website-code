@@ -21,9 +21,12 @@
                     col-xs-12
                 {% endif %} itembox" {% if instance.pluginheight %}style="height: {{ instance.pluginheight }}px" {% endif %}>
                 <div id="imgbox{{ forloop.counter }}" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover; height: 100%">
-                    <div class="boxtitle">
-                        <h2 id="boxh2{{ forloop.counter }}">{{ item.title }}</h2>
-                    </div>
+                    <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %} >
+                        <div class="carousel-linkbox" style="height: 100%;"></div>
+                        <div class="boxtitle">
+                            <h2 id="boxh2{{ forloop.counter }}">{{ item.title }}</h2>
+                        </div>
+                    </a>
                 </div>
             </div>
             <script>
@@ -68,4 +71,3 @@
         {% endif %}
     {% endfor %}
 </div>
-

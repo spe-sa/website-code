@@ -113,6 +113,7 @@ class ImageItems(SortableMixin):
         on_delete=models.SET_NULL,
         help_text=_('If provided, overrides the external link.'),
     )
+    new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
     isvisible = models.BooleanField(default=True)
     issponsor = models.BooleanField(default=False)
     sponsorlevel = models.CharField(max_length=150, unique=False, null=True, blank=True)

@@ -23,13 +23,13 @@
 
                       <div class="item active" style="background-image: url({{ item.get_image_url }});
                               background-position:{{ item.imageposition }}; background-size: cover; height: {{ instance.pluginheight }}px">
-                          <a href="{{ item.get_absolute_url }}">
+                          <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}>
                               <div class="carousel-linkbox" style="height: 100%;"></div>
                           </a></div>
                   {% else %}
 
                       <div class="item" style="background-image: url({{ item.get_image_url }});
-                              background-position:{{ item.imageposition }}; background-size: cover; height: {{ instance.pluginheight }}px"><a href="{{ item.get_absolute_url }}">
+                              background-position:{{ item.imageposition }}; background-size: cover; height: {{ instance.pluginheight }}px"><a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}>
                               <div class="carousel-linkbox" style="height: 100%;"></div></a></div>
 
                   {% endif %}
