@@ -7,6 +7,8 @@
         {% if instance.height %}height: {{ instance.height }}px;{% endif %}
         {% if instance.boxwidth %}width: {{ instance.boxwidth }}px;{% endif %}
         border: {{ instance.bordersize }}px solid {{ instance.bordercol }};
+    {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
+    {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
     }
     .btn:hover {
         background-color: {{ instance.hv_bkg_color }};
