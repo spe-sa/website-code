@@ -3,6 +3,7 @@ from cms.models import CMSPlugin
 from cms.models.fields import PlaceholderField
 from colorfield.fields import ColorField
 from filer.fields.image import FilerImageField
+from filer.fields.file import FilerFileField
 from cms.models.fields import PageField
 
 from django.utils.translation import ugettext_lazy as _
@@ -151,12 +152,8 @@ class SingleLinkPlug(CMSPlugin):
                                                                                   'Django Filer Image if provided'))
     iconimage = FilerImageField(blank=True, null=True, verbose_name=u'Image for This Icon',
                                 related_name="icon_image")
-    external_link = models.URLField(
-        verbose_name=_('External link'),
-        blank=True,
-        max_length=2040,
-        help_text=_('Provide a valid URL to an external website.'),
-    )
+    iconsize = models.CharField(verbose_name=u'Icon Size in px.', unique=False, max_length=10, default=15)
+    fontawesome = models.CharField('FontAwesome Icon', unique=False, max_length=100, blank=True, null=True)
     internal_link = PageField(
         verbose_name=_('Internal link'),
         blank=True,
@@ -164,15 +161,29 @@ class SingleLinkPlug(CMSPlugin):
         on_delete=models.SET_NULL,
         help_text=_('If provided, overrides the external link.'),
     )
-    fontawesome = models.CharField('FontAwesome Icon', unique=False, max_length=100, blank=True, null=True)
-    isbutton = models.BooleanField(default=False, verbose_name="Is this a button?")
-    isinbox = models.BooleanField(default=False, verbose_name="Is this link in a box?")
-    height = models.CharField(verbose_name=u'Box height in pixels.', unique=False, max_length=10, blank=True, null=True)
-    width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH,
-                             verbose_name=u'Width n Bootstrap Columns.', )
+    filer = FilerFileField(blank=True, null=True, verbose_name=u'Internal Folders', related_name="internal_folders")
+    external_link = models.URLField(
+        verbose_name=_('External link'),
+        blank=True,
+        max_length=2040,
+        help_text=_('Provide a valid URL to an external website.'),
+    )
+    new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
+    # isbutton = models.BooleanField(default=False, verbose_name="Is this a button?")
+    # isinbox = models.BooleanField(default=False, verbose_name="Is this link in a box?")
+    height = models.CharField(verbose_name=u'Box height in px.', unique=False, max_length=10, blank=True, null=True)
+    boxwidth = models.CharField(verbose_name=u'Box width in px.', unique=False, max_length=10, blank=True, null=True)
+    # width = models.CharField(max_length=10, choices=SPACER_WIDTH, default=DEFAULT_SPACER_WIDTH,
+    #                          verbose_name=u'Width in Bootstrap Columns. (Now Defunct, will be deleted', )
+    fontsize = models.CharField(verbose_name=u'Font Size in px.', unique=False, max_length=10, blank=True, null=True)
+    padding = models.CharField(verbose_name=u'Padding in px.', unique=False, max_length=10, blank=True, null=True)
     bkg_color = ColorField(verbose_name='Background Color', default="#cccccc")
     txt_color = ColorField(verbose_name='Text Color', default="#000000")
-    new_window = models.BooleanField(verbose_name=_('Open in new window'), default=False)
+    bordercol = ColorField(verbose_name='Border Color', default="#e1e1e1")
+    hv_bkg_color = ColorField(verbose_name='Hover Background Color', default="#666666")
+    hv_txt_color = ColorField(verbose_name='Hover Text Color', default="#FFFFFF")
+    hv_bordercol = ColorField(verbose_name='Hover Border Color', default="#e1e1e1")
+    bordersize = models.CharField(verbose_name=u'Border Thichness in px.', unique=False, max_length=10, default=1)
 
     def get_icon_url(self):
         icon = "#"
@@ -186,6 +197,8 @@ class SingleLinkPlug(CMSPlugin):
         link = "#"
         if self.internal_link:
             link = self.internal_link.get_absolute_url()
+        elif self.filer:
+            link = self.filer.url
         elif self.external_link:
             link = self.external_link
         return link
