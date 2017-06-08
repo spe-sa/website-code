@@ -184,6 +184,7 @@ class SingleLinkPlug(CMSPlugin):
     hv_txt_color = ColorField(verbose_name='Hover Text Color', default="#FFFFFF")
     hv_bordercol = ColorField(verbose_name='Hover Border Color', default="#e1e1e1")
     bordersize = models.CharField(verbose_name=u'Border Thichness in px.', unique=False, max_length=10, default=1)
+    borderradius = models.CharField(verbose_name=u'Border Corner Radius in px.', unique=False, max_length=10, default=5)
     btnshadow = models.BooleanField(verbose_name=_('Drop Shadow for Button'), default=False)
     txtshadow = models.BooleanField(verbose_name=_('Drop Shadow for Text'), default=False)
 

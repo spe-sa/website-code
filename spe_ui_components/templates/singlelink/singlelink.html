@@ -9,6 +9,12 @@
         border: {{ instance.bordersize }}px solid {{ instance.bordercol }};
     {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
     {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
+        -webkit-border-radius: {{ instance.borderradius }}px !important;
+         -khtml-border-radius: {{ instance.borderradius }}px !important;
+           -moz-border-radius: {{ instance.borderradius }}px !important;
+            -ms-border-radius: {{ instance.borderradius }}px !important;
+             -o-border-radius: {{ instance.borderradius }}px !important;
+                border-radius: {{ instance.borderradius }}px !important;
     }
     .btn:hover {
         background-color: {{ instance.hv_bkg_color }};
