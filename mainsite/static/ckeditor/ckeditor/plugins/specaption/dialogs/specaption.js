@@ -104,7 +104,7 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
 						id: 'style',
 						type: 'text',
 						label: 'Style Attribute',
-						'default': 'border-style: none',
+						'default': 'border-style: none; background-color: white;',
                         setup: function(element) {
                             this.setValue(element.getAttribute('style'));
                         },
