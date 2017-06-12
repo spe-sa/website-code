@@ -5,7 +5,7 @@
         <!-- Indicators -->
         <ol class="carousel-indicators">
           {% for item in items %}
-              {% if item.image and item.image.url and item.isvisible %}
+              {% if item.isvisible %}
                   {% if forloop.first %}
                       <li data-target="#jumboCarousel{{ instance.id }}" data-slide-to="0" data-interval="10000" class="active"></li>
                   {% else %}
@@ -18,7 +18,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           {% for item in items %}
-              {% if item.image and item.image.url and item.isvisible %}
+              {% if item.isvisible %}
                   {% if forloop.first %}
 {#                      <a href="{{ item.get_absolute_url }}">#}
                       <div class="item active" style="background-image: url({{ item.get_image_url }});
