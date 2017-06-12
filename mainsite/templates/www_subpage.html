@@ -5,14 +5,10 @@
 
 {% block content %}
     <div class="row content-area">
-        <div class="col-sm-8 col-lg-7 col-lg-offset-1 areaContent">
-            {% placeholder "notice" %}
-            {% placeholder "content" %}
-        </div>
-        <div class="col-sm-4 col-lg-3 areaRightSide">
-            {% placeholder "aside" %}
-            {% placeholder "additional-content" %}
-        </div>
+        <div class="col-sm-8 col-lg-7 col-lg-offset-1 noticeArea">{% placeholder "notice" %}</div>
+        <div class="padTopBottom container-fluid">{% placeholder "Content Area One" %}</div>
+        <div class="padTopBottom container-fluid">{% placeholder "Content Area Two" %}</div>
+        <div class="padTopBottom container-fluid">{% placeholder "Content Area Three" %}</div>
     </div>
 
     {% include 'z_boostrap_size_indicator.html' %}
