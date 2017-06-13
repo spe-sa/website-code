@@ -13,7 +13,7 @@
         {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
         {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
         margin: auto;
-        white-space: normal;
+        {% if instance.textwrap %}white-space: normal;{% endif %}
         -webkit-border-radius: {{ instance.borderradius }}px !important;
          -khtml-border-radius: {{ instance.borderradius }}px !important;
            -moz-border-radius: {{ instance.borderradius }}px !important;
