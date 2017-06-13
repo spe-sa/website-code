@@ -156,7 +156,7 @@ class SingleLinkPlug(CMSPlugin):
     iconsize = models.CharField(verbose_name=u'Icon Size in px.', unique=False, max_length=10, default=15)
     fontawesome = models.CharField('FontAwesome Icon', unique=False, max_length=100, blank=True, null=True)
     iconbefore = models.BooleanField(verbose_name=_('Place Icons Before Link Text'), default=True)
-    iconafter = models.BooleanField(verbose_name=_('Place Icons Before Link Text'), default=False)
+    iconafter = models.BooleanField(verbose_name=_('Place Icons After Link Text'), default=False)
     internal_link = PageField(
         verbose_name=_('Internal link'),
         blank=True,
