@@ -1,26 +1,6 @@
 {% load cms_tags %}
 
 <style>
-{#    .btn {#}
-{#        background-color: {{ instance.bkg_color }};#}
-{#        color: {{ instance.txt_color }};#}
-{#        {% if instance.height %}height: {{ instance.height }}px;{% endif %}#}
-{#        {% if instance.boxwidth %}width: {{ instance.boxwidth }}px;{% endif %}#}
-{#        border: {{ instance.bordersize }}px solid {{ instance.bordercol }};#}
-{#    {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}#}
-{#    {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}#}
-{#        -webkit-border-radius: {{ instance.borderradius }}px !important;#}
-{#         -khtml-border-radius: {{ instance.borderradius }}px !important;#}
-{#           -moz-border-radius: {{ instance.borderradius }}px !important;#}
-{#            -ms-border-radius: {{ instance.borderradius }}px !important;#}
-{#             -o-border-radius: {{ instance.borderradius }}px !important;#}
-{#                border-radius: {{ instance.borderradius }}px !important;#}
-{#    }#}
-{#    .btn:hover {#}
-{#        background-color: {{ instance.hv_bkg_color }};#}
-{#        color: {{ instance.hv_txt_color }};#}
-{#        border-color: {{ instance.hv_bordercol }};#}
-{#    }#}
 
     #singleLink{{ instance.id }} {
         background-color:{{ instance.bkg_color }};
@@ -32,6 +12,8 @@
         {% if instance.padding %}padding: {{ instance.padding }}px;{% endif %}
         {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
         {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
+        margin: auto;
+        white-space: normal;
         -webkit-border-radius: {{ instance.borderradius }}px !important;
          -khtml-border-radius: {{ instance.borderradius }}px !important;
            -moz-border-radius: {{ instance.borderradius }}px !important;
@@ -44,10 +26,24 @@
         color: {{ instance.hv_txt_color }};
         border-color: {{ instance.hv_bordercol }};
     }
+.centeredBtn {
+    width: 100%;
+    text-align: center;
+}
 </style>
-{#btn btn-default singleLink#}
-<a href="{{ instance.get_absolute_url }}" {% if instance.new_window %}target="_blank"{% endif %} class="btn" id="singleLink{{ instance.id }}" role="button">
-{% if instance.iconurl %}<img src="{{ instance.iconurl }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
-{% if instance.iconimage.url %}<img src="{{ instance.iconimage.url }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
-{% if instance.fontawesome %}{{ instance.fontawesome | safe }}{% endif %} {{ instance.text }}</a>
+{% if instance.centered %}<div class="centeredBtn">{% endif %}
+    <a href="{{ instance.get_absolute_url }}" {% if instance.new_window %}target="_blank"{% endif %} class="btn" id="singleLink{{ instance.id }}" role="button">
+    {% if instance.iconbefore %}
+        {% if instance.iconurl %}<img src="{{ instance.iconurl }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
+        {% if instance.iconimage.url %}<img src="{{ instance.iconimage.url }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
+        {% if instance.fontawesome %}{{ instance.fontawesome | safe }}{% endif %}
+    {% endif %}
+        {{ instance.text }}
+    {% if instance.iconafter %}
+        {% if instance.iconurl %}<img src="{{ instance.iconurl }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
+        {% if instance.iconimage.url %}<img src="{{ instance.iconimage.url }}" style="height:{{ instance.iconsize }}px; width:{{ instance.iconsize }}px;"/>{% endif %}
+        {% if instance.fontawesome %}{{ instance.fontawesome | safe }}{% endif %}
+    {% endif %}
+    </a>
+{% if instance.centered %}</div>{% endif %}
 

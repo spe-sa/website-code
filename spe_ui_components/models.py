@@ -154,6 +154,8 @@ class SingleLinkPlug(CMSPlugin):
                                 related_name="icon_image")
     iconsize = models.CharField(verbose_name=u'Icon Size in px.', unique=False, max_length=10, default=15)
     fontawesome = models.CharField('FontAwesome Icon', unique=False, max_length=100, blank=True, null=True)
+    iconbefore = models.BooleanField(verbose_name=_('Place Icons Before Link Text'), default=True)
+    iconafter = models.BooleanField(verbose_name=_('Place Icons Before Link Text'), default=False)
     internal_link = PageField(
         verbose_name=_('Internal link'),
         blank=True,
@@ -187,6 +189,7 @@ class SingleLinkPlug(CMSPlugin):
     borderradius = models.CharField(verbose_name=u'Border Corner Radius in px.', unique=False, max_length=10, default=5)
     btnshadow = models.BooleanField(verbose_name=_('Drop Shadow for Button'), default=False)
     txtshadow = models.BooleanField(verbose_name=_('Drop Shadow for Text'), default=False)
+    centered = models.BooleanField(verbose_name=_('Centered Button'), default=False)
 
     def get_icon_url(self):
         icon = "#"
