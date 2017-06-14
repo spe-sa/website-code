@@ -139,7 +139,7 @@ INSTALLED_APPS = (
     'config.apps.FilerConfig',
     #    'mptt',
     'ckeditor',
-    # 'ckeditor_filebrowser_filer',
+    'ckeditor_filebrowser_filer',
     'ckeditor_uploader',
     # 'cmsplugin_filer_image',
     'config.apps.FilerPluginConfig',
