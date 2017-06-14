@@ -141,9 +141,16 @@
 .hamburger {
   padding-top:  10px;
   font-size:    40px;
-  color:        $col-white;
+  color:        $col-white !important;
 
   a {
-    color:      $col-white;
+    color:      $col-white !important;
+  }
+}
+
+#collapseHamMenu {
+  a {
+    color:      $col-white !important;
+    @include text-shadow(0, 0, 0, rgba(0,0,0,0));
   }
 }

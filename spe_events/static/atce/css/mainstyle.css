@@ -107,9 +107,11 @@ a:hover { text-decoration: none; }
 
 .dropdown-menu li:hover { background-color: #e1e1e1; }
 
-.hamburger { padding-top: 10px; font-size: 40px; color: white; }
+.hamburger { padding-top: 10px; font-size: 40px; color: white !important; }
 
-.hamburger a { color: white; }
+.hamburger a { color: white !important; }
+
+#collapseHamMenu a { color: white !important; text-shadow: 0 0 0 transparent; }
 
 /* =================================================================== */
 /* MAIN CONTENT STYLES FOR ATCE
@@ -225,6 +227,8 @@ a:hover { text-decoration: none; }
 .table-tab { border: 1px solid #e1e1e1; }
 
 .table-tab td { border: 1px solid #e1e1e1; padding: 10px; }
+
+.table-tab th { background-color: #e1e1e1; }
 
 /* =================================================================== */
 /* MISC */
