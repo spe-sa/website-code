@@ -3,6 +3,7 @@
 <style>
 
     #singleLink{{ instance.id }} {
+        margin: auto;
         background-color:{{ instance.bkg_color }};
         color:{{ instance.txt_color }};
         border: {{ instance.bordersize }}px solid {{ instance.bordercol }};
@@ -12,9 +13,9 @@
         {% if instance.padding %}padding: {{ instance.padding }}px;{% endif %}
         {% if instance.txtshadow %}text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
         {% if instance.btnshadow %}box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);{% endif %}
-        margin: auto;
-        text-align: left;
+        {% if instance.centeredtext %}text-align: center;{% else %}text-align: left;{% endif %}
         {% if instance.textwrap %}white-space: normal;{% endif %}
+        {% if instance.boldlink %}font-weight: bold;{% endif %}
         -webkit-border-radius: {{ instance.borderradius }}px !important;
          -khtml-border-radius: {{ instance.borderradius }}px !important;
            -moz-border-radius: {{ instance.borderradius }}px !important;

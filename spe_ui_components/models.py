@@ -149,6 +149,8 @@ class SpacerPlug(CMSPlugin):
 class SingleLinkPlug(CMSPlugin):
     text = models.CharField('Text', unique=False, max_length=100, blank=True, null=True)
     textwrap = models.BooleanField(verbose_name=_('Allow text to wrap'), default=True)
+    centeredtext = models.BooleanField(verbose_name=_('Centered Text Inside Button'), default=False)
+    boldlink = models.BooleanField(verbose_name=_('Bold Text'), default=False)
     iconurl = models.CharField(max_length=500, null=True, blank=True, help_text=_('URL of external icon, overides '
                                                                                   'Django Filer Image if provided'))
     iconimage = FilerImageField(blank=True, null=True, verbose_name=u'Image for This Icon',
