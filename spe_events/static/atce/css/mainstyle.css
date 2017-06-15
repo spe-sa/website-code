@@ -228,7 +228,7 @@ a:hover { text-decoration: none; }
 
 .table-tab td { border: 1px solid #e1e1e1; padding: 10px; }
 
-.table-tab th { background-color: #e1e1e1; }
+.table-tab th { background-color: #e1e1e1; padding: 10px; }
 
 /* =================================================================== */
 /* MISC */
