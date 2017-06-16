@@ -11,6 +11,8 @@
 	<link rel="icon" href="https://www.spe.org/static/favicon.ico" type="image/x-icon">
 
     {# Add Third-party plugins and apps here. Like JQuery & bootstrap #}
+    <!-- marketo scripts -->
+    {% render_block "marketo_scripts" %}
     {% block plugs_apps %}{% endblock plugs_apps %}
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'www/css/inline.css' %}" />
     {# Add Third-party fonts here. Like google fonts, TypeKit, FontAwesome #}
