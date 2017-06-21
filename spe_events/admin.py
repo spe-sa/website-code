@@ -15,6 +15,7 @@ class ImageItemInLine(SortableStackedInline):
             'classes': ('collapse',),
             'fields': (
                 'title',
+                'showtitle',
                 'imageurl',
                 'image',
                 'imageposition',

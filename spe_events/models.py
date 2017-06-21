@@ -95,6 +95,7 @@ class ImageItems(SortableMixin):
                             related_name="item_image")
     imageposition = models.CharField(max_length=255, choices=IMAGE_POSITIONS, default=DEFAULT_IMAGE_POSITION)
     title = models.CharField(max_length=150, unique=False)
+    showtitle = models.BooleanField(verbose_name=_('Show Title?'), default=True)
     text = RichTextUploadingField(
         max_length=60000,
         help_text=u'Text description of item.',
