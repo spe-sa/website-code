@@ -26,6 +26,7 @@ IMAGE_ITEM_TEMPLATES = (
     ('spe_events/plugins/image_items/ii_video.html', 'Video Item'),
     ('spe_events/plugins/image_items/ii_sponsor_conveyor.html', 'Sponsors - Conveyor'),
     ('spe_events/plugins/image_items/ii_sponsor_panels.html', 'Sponsors - Panels'),
+    ('spe_events/plugins/image_items/ii_parallax.html', 'Jumbotron Parallax'),
 )
 
 DEFAULT_IMAGE_POSITION = 'center center'
