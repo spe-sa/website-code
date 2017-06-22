@@ -1,0 +1,88 @@
+{% extends "events_html5_bootstrap.html" %}
+{% load cms_tags sekizai_tags menu_tags staticfiles %}
+
+
+
+    {% block web_fonts %}
+        {% include 'include_scripts.html' %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200, 300,400,400i,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'fontawesome/css/font-awesome.min.css' %}">
+    {% endblock web_fonts %}
+
+    {% block css_base %}
+        <link rel="stylesheet" type="text/css" media="all" href="{% static 'iptc/css/mainstyle.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'animate/carouselticker/carouselTicker.css' %}" media="screen">
+
+        <script src="{% static 'animate/carouselticker/jquery.carouselTicker.js' %}" type="text/javascript"></script>
+
+    {% endblock css_base %}
+
+    {# Add the page wrapper beginning here #}
+    {% block wrap_begin %}
+        <div class="container-fluid">
+    {% endblock wrap_begin %}
+
+    {# adding block content_header to base cms template for overriding #}
+    {% block content_header %}
+
+
+        <div class="global-nav row"><!--  navbar-fixed-top -->
+            <nav id="global-nav" class="col-sm-10 col-sm-offset-1">
+                <ul>
+                    <li><a href="https://www.spe.org/en/">SPE</a></li>
+                    <li><a href="http://www.spe.org/about/">About</a></li>
+                    <li><a href="http://www.spe.org/contact/">Contact Us</a></li>
+                    <li style="float: right;"><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="row logobar">
+            <div class="col-md-2 col-md-offset-1 visible-md visible-lg mainLogo text-left"><img src="{% static 'iptc/imgs/iptc_whitetxt.svg' %}" class="mainLogoImg img-responsive"/></div>
+            <div class="col-xs-5 col-sm-4 col-xs-offset-1 visible-xs visible-sm mainLogo text-center"><img src="{% static 'iptc/imgs/iptc_whitetxt.svg' %}" class="mainLogoImg img-responsive" style="margin:auto;" /></div>
+        </div>
+        <div class="row menubar">
+            <div class="col-md-10 col-md-offset-1">{% placeholder "Menu" %}</div>
+        </div>
+    {% endblock content_header %}
+
+    {# adding block content_footer to base cms template for overriding #}
+    {% block content_footer %}
+        <div class="row footerbar">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <p>The Society of Petroleum Engineers (SPE) is a not-for-profit organization. Income from this event will be invested back into SPE to support many other Society programs. When you attend an SPE event, you help provide even more opportunities for industry professionals to enhance their technical and professional competence. Scholarships, certification, the Distinguished Lecturer program, and SPE's energy education program Energy4me are just a few examples of programs that are supported by SPE.</p>
+                <p>&nbsp;</p>
+                <h3>Get In Touch</h3>
+                <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 1.972.952.9393 <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:service@spe.org">service@spe.org</a></h4>
+                <h4 class="footerSocials">
+                    <a href="https://www.facebook.com/spemembers"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                    <a href="http://www.linkedin.com/groups/Society-Petroleum-Engineers-57660/about"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/SPEtweets"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-square" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/spengineers/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </h4>
+                <span>facebook like & follow Twitter</span>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="row copyrightbar">
+            <div class="col-md-10 col-md-offset-1 text-center">
+                <p>Copyright &copy; 2017, Society of Petroleum Engineers. All rights reserved.</p>
+            </div>
+        </div>
+    {% endblock content_footer %}
+
+    {# Add the page wrapper beginning here #}
+    {% block wrap_end %}
+        </div><!-- end Container -->
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() {
+                $('.carouselTicker').carouselTicker();
+
+{#                $(".tile-white img").addClass("img-responsive");#}
+{#                $(".tile-white img").removeClass("img-responsive");#}
+            });
+        </script>
+    {% endblock wrap_end %}

@@ -1,0 +1,480 @@
+/* =================================================================== */
+/* ATCE Stylesheet
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+/* =================================================================== */
+/* BASE HTML
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+body {
+  font-family: "Open Sans", sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0 0 10px 0; }
+
+h1 {
+  font-size: 35px; }
+
+h2 {
+  font-size: 25px; }
+
+h3 {
+  font-size: 20px; }
+
+h4 {
+  font-size: 18px;
+  font-weight: 400; }
+
+h5 {
+  font-size: 15px;
+  font-weight: 300; }
+
+h6 {
+  font-size: 12px;
+  font-weight: 300; }
+
+p {
+  font-size: 15px;
+  font-weight: 400; }
+
+* {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0; }
+
+.row {
+  margin: 0; }
+
+.container-fluid {
+  padding: 0; }
+
+a:hover {
+  text-decoration: none; }
+
+.padZero {
+  padding: 0; }
+
+/* =================================================================== */
+/* IPTC HEADER & MENUS
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+/* -------------------------------------------------------------
+  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
+
+  List of CSS3 Sass Mixins File to be @imported and @included as you need
+
+  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
+  ENDING css files
+
+  note: All CSS3 Properties are being supported by Safari 5
+  more info: http://www.findmebyip.com/litmus/#css3-properties
+
+------------------------------------------------------------- */
+/* =================================================================== */
+/* GLOBAL NAV TOP ROW */
+.global-nav {
+  min-height: 31px;
+  border-bottom: 1px solid black;
+  background-color: black;
+  margin: 0; }
+  .global-nav ul {
+    margin: 0;
+    padding: 0 0 0 15px;
+    list-style: none; }
+    .global-nav ul li {
+      float: left;
+      white-space: nowrap;
+      margin: 0;
+      line-height: 18px; }
+      .global-nav ul li a {
+        display: block;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 30px;
+        color: #e1e1e1;
+        padding: 0 14px;
+        margin: 0 8px 0 0; }
+        .global-nav ul li a:hover {
+          color: white;
+          background-color: black; }
+    .global-nav ul li:first-child a {
+      margin-left: -14px; }
+
+/* =================================================================== */
+/* LOGO ROW */
+.logobar {
+  min-height: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #393939; }
+
+.mainLogo {
+  padding: 20px 0; }
+
+.mainLogoImg {
+  max-width: 400px; }
+
+/* =================================================================== */
+/* NAVIGATION MENU ROW */
+.menubar {
+  background-color: #6B3E63;
+  color: white;
+  padding: 0 10px 0 10px; }
+
+.navbar {
+  margin-bottom: 0;
+  min-height: 40px; }
+
+.navbar-nav li a {
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  height: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+  .navbar-nav li a:hover {
+    background-color: #A5639C; }
+
+.navbar-nav li:first-child a {
+  padding-left: 0; }
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+  background-color: #A5639C;
+  border-color: #A5639C; }
+
+.dropdown-menu li {
+  padding: 10px;
+  border-bottom: 1px solid #e1e1e1;
+  white-space: nowrap; }
+  .dropdown-menu li a {
+    padding: 10px 0 0 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: #759D3F;
+    height: 40px;
+    text-shadow: 0 0 0 transparent; }
+    .dropdown-menu li a:hover {
+      background: none; }
+  .dropdown-menu li:hover {
+    background-color: #A5639C; }
+    .dropdown-menu li:hover a {
+      color: #e1e1e1; }
+
+.hamburger {
+  padding-top: 10px;
+  font-size: 40px;
+  color: white !important; }
+  .hamburger a {
+    color: white !important; }
+
+#collapseHamMenu a {
+  color: white !important;
+  text-shadow: 0 0 0 transparent; }
+
+/* =================================================================== */
+/* MAIN CONTENT STYLES FOR ATCE
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+.horizontal-bar {
+  width: 100%;
+  border-bottom: 2px solid #e1e1e1;
+  margin: 10px 0;
+  padding-right: 20px; }
+
+/* =================================================================== */
+/* ROWS */
+.spacerRow {
+  height: 30px; }
+
+.sponsorBar {
+  padding: 20px 0;
+  border-top: 2px solid #e1e1e1;
+  border-bottom: 2px solid #e1e1e1; }
+
+.byTheNumbersBar {
+  background-color: #67c18d; }
+  .byTheNumbersBar .btNumIcon {
+    font-size: 50px; }
+  .byTheNumbersBar h3 {
+    font-weight: 300;
+    margin-bottom: 20px; }
+
+.byTheNumbersRow {
+  padding: 20px 0; }
+
+/* =================================================================== */
+/* PANELS */
+.tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
+  padding: 0 15px; }
+
+.tiletitlerow h2 {
+  margin: 20px 0; }
+
+.tiletitlehr {
+  display: none; }
+
+.tiletitles {
+  text-align: center; }
+
+/* =================================================================== */
+/* PANELS */
+.panel-group {
+  margin: 0; }
+
+.panel-intro {
+  border: 0; }
+  .panel-intro .panel-body {
+    padding: 0; }
+
+.panel-tabs {
+  border: 2px solid #e1e1e1;
+  padding: 0; }
+  .panel-tabs .panel-body {
+    padding: 0; }
+  .panel-tabs .nav-tabs {
+    background-color: #e1e1e1; }
+  .panel-tabs .nav-tabs > li > a, .panel-tabs .nav-tabs > li.active > a, .panel-tabs .nav-tabs > li.active > a:focus, .panel-tabs .nav-tabs > li.active > a:hover {
+    border: 0;
+    color: black; }
+  .panel-tabs .nav-tabs > li.active > a, .panel-tabs .nav-tabs > li.active > a:focus {
+    color: #0c4c93; }
+  .panel-tabs .tab-content {
+    padding: 20px 10px 0 10px; }
+
+.panel-tabs .nav-tabs {
+  background: none; }
+
+.panel-tabs .nav-tabs li {
+  background-color: #E8E8E8;
+  border-top: 1px solid #e1e1e1;
+  border-left: 1px solid #e1e1e1;
+  border-right: 1px solid #e1e1e1;
+  border-bottom: 0;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
+
+/* =================================================================== */
+/* COMPONENTS */
+.jumboCarousel .carousel-inner .item {
+  height: 500px; }
+
+.jumboCarousel .carousel-inner .carousel-caption {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjRDRjNENDRFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjRDRjNENDVFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMUM1RTY3RkUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMUM1RTY4MEUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Psa28LUAAAAbSURBVHjaYmRgYNjMQARgYiASjCqkjkKAAAMALY8Ax0pN8ckAAAAASUVORK5CYII=);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 50px; }
+
+.jumbotron {
+  margin: 0;
+  -webkit-border-radius: 0 !important;
+  -khtml-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+  border-radius: 0 !important; }
+
+.miniCarousel .carousel-inner .item {
+  -webkit-border-radius: 5px !important;
+  -khtml-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border-radius: 5px !important; }
+
+.carousel-indicators {
+  bottom: 0; }
+
+#registercol {
+  height: 100px;
+  padding: 25px 0; }
+  #registercol button {
+    background: #67c18d;
+    color: white;
+    padding: 10px 20px;
+    border-collapse: separate;
+    border: 0 solid #67c18d;
+    -webkit-border-radius: 5px !important;
+    -khtml-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    -ms-border-radius: 5px !important;
+    -o-border-radius: 5px !important;
+    border-radius: 5px !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
+/* =================================================================== */
+/* IMAGE ITEMS */
+.itembox {
+  padding: 20px;
+  position: relative;
+  color: white; }
+  .itembox .panel, .itembox .innerbox {
+    overflow: hidden; }
+  .itembox .innerpanel, .itembox .boxtitle {
+    position: absolute;
+    bottom: 20px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjRDRjNENDRFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjRDRjNENDVFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMUM1RTY3RkUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMUM1RTY4MEUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Psa28LUAAAAbSURBVHjaYmRgYNjMQARgYiASjCqkjkKAAAMALY8Ax0pN8ckAAAAASUVORK5CYII=) repeat center center/cover;
+    width: -webkit-calc(100% - 40px);
+    width: -moz-calc(100% - 40px);
+    width: calc(100% - 40px); }
+    .itembox .innerpanel h2, .itembox .boxtitle h2 {
+      color: white;
+      margin: 0;
+      padding: 0; }
+  .itembox .boxtitle {
+    padding: 10px; }
+
+.speakerRow {
+  padding: 20px 0; }
+
+.speakerimage {
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border: 3px solid #e1e1e1;
+  margin: auto; }
+
+.speakertext {
+  margin: auto; }
+
+.speakertitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px; }
+
+.tbelowimagediv {
+  margin: auto; }
+
+.tbelowimage {
+  width: 100px;
+  height: 100px;
+  margin: auto; }
+
+.tbelowtext {
+  margin: auto; }
+
+.tbelowtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px; }
+
+.sponsorCoveyor {
+  padding: 20px 0; }
+
+.singleImage {
+  -webkit-border-radius: 5px !important;
+  -khtml-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border-radius: 5px !important; }
+
+@media (max-width: 1280px) {
+  .nav-tabs.nav-justified > li {
+    float: left;
+    width: 50%; } }
+
+.singleLinkBox {
+  -webkit-border-radius: 5px !important;
+  -khtml-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border-radius: 5px !important;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -khtml-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
+/* =================================================================== */
+/* CUSTOM TABLES */
+.table-tab {
+  border: 1px solid #e1e1e1; }
+  .table-tab td {
+    border: 1px solid #e1e1e1;
+    padding: 10px; }
+  .table-tab th {
+    background-color: #e1e1e1;
+    padding: 10px; }
+
+/* =================================================================== */
+/* MISC */
+.padTopBottom {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+/* =================================================================== */
+/* FOOTER STYLES FOR ATCE
+====================================================================== */
+/* =================================================================== */
+/* VARIABLES
+====================================================================== */
+/* Images */
+.footerbar {
+  background-color: #393939;
+  padding: 20px 0 0 0;
+  color: white; }
+  .footerbar h3 {
+    font-family: "Ubuntu", sans-serif;
+    letter-spacing: 3px; }
+  .footerbar p {
+    text-align: justify; }
+  .footerbar h4 a {
+    color: white; }
+    .footerbar h4 a:hover {
+      color: #67c18d; }
+  .footerbar .footerSocials {
+    font-size: 50px; }
+    .footerbar .footerSocials a {
+      color: white; }
+      .footerbar .footerSocials a:hover {
+        color: #67c18d; }
+
+.copyrightbar {
+  height: 75px;
+  background-color: #67c18d;
+  padding: 25px 0 0 0; }
+
+/* -------------------------------------------------------------
+  Sass CSS3 Mixins! The Cross-Browser CSS3 Sass Library
+  By: Matthieu Aussaguel, http://www.mynameismatthieu.com, @matthieu_tweets
+
+  List of CSS3 Sass Mixins File to be @imported and @included as you need
+
+  The purpose of this library is to facilitate the use of CSS3 on different browsers avoiding HARD TO READ and NEVER
+  ENDING css files
+
+  note: All CSS3 Properties are being supported by Safari 5
+  more info: http://www.findmebyip.com/litmus/#css3-properties
+
+------------------------------------------------------------- */

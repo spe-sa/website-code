@@ -1,0 +1,68 @@
+/* =================================================================== */
+/* BASE HTML
+====================================================================== */
+
+//background: url(/folder/image.png) no-repeat center center / cover;
+
+@import 'vars';
+
+body {
+  font-family:            $font-main;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:            $font-titles;
+  font-weight:            $font-regular;
+  margin:                 0 0 10px 0;
+}
+
+h1 {
+  font-size:              $h1size;
+}
+h2 {
+  font-size:              $h2size;
+}
+h3 {
+  font-size:              $h3size;
+}
+h4 {
+  font-size:              $h4size;
+  font-weight:            $font-regular;
+}
+h5 {
+  font-size:              $h5size;
+  font-weight:            $font-light;
+}
+h6 {
+  font-size:              $h6size;
+  font-weight:            $font-light;
+}
+p {
+  font-size:              $psize;
+  font-weight:            $font-regular;
+}
+
+* {
+  -webkit-border-radius:  0;
+  -moz-border-radius:     0;
+  border-radius:          0;
+}
+
+.row {
+  //margin:0 !important;
+  margin:                 0;
+}
+.container-fluid {
+  padding:                0;
+}
+
+a {
+  &:hover {
+    text-decoration:      none;
+  }
+}
+
+.padZero {
+  padding:                0;
+}
+

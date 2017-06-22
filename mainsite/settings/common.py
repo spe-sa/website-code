@@ -261,6 +261,9 @@ CMS_TEMPLATES = (
     ('bootstrap_full_width.html', 'Bootstrap Generic Full Width'),
     ('atce/atce_homepage.html', 'ATCE Homepage'),
     ('atce/atce_subpage.html', 'ATCE Subpage'),
+    ('iptc/iptc_homepage.html', 'IPTC Homepage'),
+    ('iptc/iptc_subpage.html', 'IPTC Subpage'),
+    ('iptc/iptc_subpage_rightcol.html', 'IPTC Subpage Right Col'),
 )
 
 CMS_PERMISSION = True

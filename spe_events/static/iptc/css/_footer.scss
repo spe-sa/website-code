@@ -1,0 +1,45 @@
+/* =================================================================== */
+/* FOOTER STYLES FOR ATCE
+====================================================================== */
+@import 'vars';
+
+.footerbar {
+  background-color:   $col-grey-dark;
+  padding:            20px 0 0 0;
+  color:              $col-white;
+
+  h3 {
+    font-family:      $font-titles2;
+    letter-spacing:   3px;
+  }
+
+  p {
+    text-align:       justify;
+  }
+  h4 {
+    a {
+      color:          $col-white;
+
+      &:hover {
+        color:        $col-atce-green;
+      }
+    }
+  }
+  .footerSocials {
+    font-size:        50px;
+
+    a {
+      color:          $col-white;
+      &:hover {
+        color:        $col-atce-green;
+      }
+    }
+  }
+}
+
+.copyrightbar {
+  height:             75px;
+  background-color:   $col-atce-green;
+  padding:            25px 0 0 0;
+}
+
