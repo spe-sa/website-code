@@ -126,8 +126,6 @@ a:hover { text-decoration: none; }
 /* ROWS */
 .spacerRow { height: 30px; }
 
-.sponsorBar { padding: 20px 0; border-top: 2px solid #e1e1e1; border-bottom: 2px solid #e1e1e1; }
-
 .byTheNumbersBar { background-color: #67c18d; }
 
 .byTheNumbersBar .btNumIcon { font-size: 50px; }
@@ -213,6 +211,20 @@ a:hover { text-decoration: none; }
 .tbelowtext { margin: auto; }
 
 .tbelowtitle { font-family: "Montserrat", sans-serif; font-size: 18px; }
+
+/* =================================================================== */
+/* SPONSOR ROW & BAR */
+.sponsorBar { padding: 20px 0; border-top: 2px solid #e1e1e1; border-bottom: 2px solid #e1e1e1; }
+
+.carouselTicker__list { margin: 10px 0; padding: 0; list-style-type: none; overflow: hidden; }
+
+.carouselTicker__item { margin: 0 0 0 100px; float: left; /*border: 1px solid pink;*/ width: 200px; height: 100px; line-height: 100px; text-align: center; }
+
+.carouselTicker__loader { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+
+#carouselTicker .carouselTicker__item { width: 200px; height: 100px; line-height: 100px; }
+
+.carouselTicker__item img { vertical-align: top; width: 200px; height: 100px; }
 
 .sponsorCoveyor { padding: 20px 0; }
 

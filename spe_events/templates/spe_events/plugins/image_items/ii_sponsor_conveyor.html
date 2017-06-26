@@ -8,7 +8,7 @@
         <ul class="carouselTicker__list">
             {% for item in items %}
                 {% if item.isvisible %}
-                    <li class="carouselTicker__item">
+                    <li class="carouselTicker__item" style="/* width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px; */">
                         <a href="{{ item.get_absolute_url }}" {% if item.new_window %}target="_blank"{% endif %}><img data-u="image" src="{{ item.get_image_url }}" /></a>
                     </li>
                 {% endif %}

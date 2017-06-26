@@ -19,12 +19,6 @@
   height: 30px;
 }
 
-.sponsorBar {
-  padding:                20px 0;
-  //border-top:             2px solid $col-grey-light;
-  //border-bottom:          2px solid $col-grey-light;
-}
-
 
 .byTheNumbersBar {
   background-color:       $col-atce-green;
@@ -247,14 +241,59 @@ $itemboxpadding:  20px;
   font-size:              12px;
 }
 
-.sponsorCoveyor {
-  padding:                20px 0;
+
+/* =================================================================== */
+/* SPONSOR ROW & BAR */
+
+.sponsorBar {
+    background-color:     $col-grey-light;
+    padding:              20px 0;
 }
+.sponsorCoveyor {
+    padding:              20px 0;
+}
+.carouselTicker__list{
+    margin:               10px 0;
+    padding:              0 0 5px 0;
+    list-style-type:      none;
+    overflow:             hidden;
+}
+
+.carouselTicker__item{
+  margin:                 0 0 0 20px;
+  float:                  left;
+  width:                  240px;
+  height:                 140px;
+  line-height:            100px;
+  text-align:             center;
+  background-color:       $col-white;
+  padding:                20px !important;
+
+  @include border-radius(5px);
+  @include box-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
+}
+.carouselTicker__item img {
+    vertical-align:       top;
+    width:                200px;
+    height:               100px;
+}
+.carouselTicker__loader{
+  position:               absolute;
+  left:                   0;
+  right:                  0;
+  top:                    0;
+  bottom:                 0;
+}
+
+//#carouselTicker .carouselTicker__item {
+//    width: 200px;
+//    height: 100px;
+//    line-height: 100px;
+//}
 
 .singleImage {
   @include border-radius(5px);
 }
-
 
 @media (max-width: 1280px) {
   .nav-tabs.nav-justified > li {

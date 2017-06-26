@@ -2,42 +2,42 @@
  * CSS style for carouselTicker
  **/
 
-.carouselTicker__list{
-    margin: 10px 0;
-    padding: 0;
-    list-style-type: none;
-    overflow: hidden;
-}
+/*.carouselTicker__list{*/
+    /*margin: 10px 0;*/
+    /*padding: 0;*/
+    /*list-style-type: none;*/
+    /*overflow: hidden;*/
+/*}*/
 
-.carouselTicker__item{
-    margin: 0 0 0 100px;
-    float: left;
-    /*border: 1px solid pink;*/
-    width: 200px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-}
+/*.carouselTicker__item{*/
+    /*margin: 0 0 0 100px;*/
+    /*float: left;*/
+    /*!*border: 1px solid pink;*!*/
+    /*width: 200px;*/
+    /*height: 100px;*/
+    /*line-height: 100px;*/
+    /*text-align: center;*/
+/*}*/
 
-.carouselTicker__loader{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
+/*.carouselTicker__loader{*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+/*}*/
 
-#carouselTicker .carouselTicker__item {
-    /*width: auto;*/
-    /*height: auto;*/
-    /*line-height: normal;*/
-    width: 200px;
-    height: 100px;
-    line-height: 100px;
-}
+/*#carouselTicker .carouselTicker__item {*/
+    /*!*width: auto;*!*/
+    /*!*height: auto;*!*/
+    /*!*line-height: normal;*!*/
+    /*width: 200px;*/
+    /*height: 100px;*/
+    /*line-height: 100px;*/
+/*}*/
 
-.carouselTicker__item img {
-    vertical-align: top;
-    width: 200px;
-    height: 100px;
-}
+/*.carouselTicker__item img {*/
+    /*vertical-align: top;*/
+    /*width: 200px;*/
+    /*height: 100px;*/
+/*}*/

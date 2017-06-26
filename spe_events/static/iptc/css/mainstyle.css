@@ -206,9 +206,6 @@ a:hover {
 .spacerRow {
   height: 30px; }
 
-.sponsorBar {
-  padding: 20px 0; }
-
 .byTheNumbersBar {
   background-color: #67c18d; }
   .byTheNumbersBar .btNumIcon {
@@ -402,8 +399,54 @@ a:hover {
   margin: auto;
   font-size: 12px; }
 
+/* =================================================================== */
+/* SPONSOR ROW & BAR */
+.sponsorBar {
+  background-color: #e1e1e1;
+  padding: 20px 0; }
+
 .sponsorCoveyor {
   padding: 20px 0; }
+
+.carouselTicker__list {
+  margin: 10px 0;
+  padding: 0 0 5px 0;
+  list-style-type: none;
+  overflow: hidden; }
+
+.carouselTicker__item {
+  margin: 0 0 0 20px;
+  float: left;
+  width: 240px;
+  height: 140px;
+  line-height: 100px;
+  text-align: center;
+  background-color: white;
+  padding: 20px !important;
+  -webkit-border-radius: 5px !important;
+  -khtml-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border-radius: 5px !important;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -khtml-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
+
+.carouselTicker__item img {
+  vertical-align: top;
+  width: 200px;
+  height: 100px; }
+
+.carouselTicker__loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
 
 .singleImage {
   -webkit-border-radius: 5px !important;
