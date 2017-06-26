@@ -5,10 +5,13 @@
 
 {% block cms_content %}
 
-    <div class="padTopBottom container-fluid">{% placeholder "Content Area One" %}</div>
+    <div class="padTopBottom container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-md-offset-1">{% placeholder "Content Area One" %}</div>
+            <div class="col-sm-12 col-md-3">{% placeholder "Content Area One - Right Colum" %}</div>
+        </div>
+    </div>
 
-    <div class="padTopBottom container-fluid">{% placeholder "Content Area Two" %}</div>
-
-    <div class="padTopBottom container-fluid">{% placeholder "Content Area Three" %}</div>
+    <div class="padTopBottom container-fluid">{% placeholder "Content Area Two - Full Width" %}</div>
 
 {% endblock cms_content %}
