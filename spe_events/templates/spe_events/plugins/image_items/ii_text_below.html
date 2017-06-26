@@ -1,9 +1,10 @@
 <!-- This is the Text Below template. -->
 {# {{ instance.pluginheight }}px#}
 
-<div class="row">
+<div class="row textbelow">
     {% for item in items %}
         {% if item.isvisible %}
+
             <div class="{% if items.count >= 4 %}
                     col-xs-6 col-sm-6 col-md-3 col-lg-3
                 {% elif items.count == 3 %}
@@ -13,13 +14,37 @@
                 {% elif items.count == 1 %}
                     col-xs-12
                 {% endif %} " style="height: {{ instance.pluginheight }}px">
-{#                <div class="tbelowimage" style="background: url({{ item.get_image_url }}) no-repeat {{ item.imageposition }} / cover;"></div>#}
-                <div class="tbelowimagediv" style="width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"><img src="{{ item.get_image_url }}" class="img-responsive"></div>
+                <div class="tbelowimagediv" style="background-image: url({{ item.get_image_url }}); background-position:{{ item.imageposition }};
+                background-size: cover; width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"></div>
+{#                background-size: cover; width: 100%; height: 75%;"></div>#}
                 <div class="tbelowtext">
                     <div class="tbelowtitle text-center">{{ item.title }}</div>
                     <div class="text-center">{{ item.text | safe }}</div>
                 </div>
             </div>
+
         {% endif %}
     {% endfor %}
 </div>
+
+{#<div class="row textbelow">#}
+{#    {% for item in items %}#}
+{#        {% if item.isvisible %}#}
+{#            <div class="{% if items.count >= 4 %}#}
+{#                    col-xs-6 col-sm-6 col-md-3 col-lg-3#}
+{#                {% elif items.count == 3 %}#}
+{#                    col-xs-6 col-sm-6 col-md-4 col-lg-4#}
+{#                {% elif items.count == 2 %}#}
+{#                    col-xs-6 col-sm-6 col-md-6 col-lg-6#}
+{#                {% elif items.count == 1 %}#}
+{#                    col-xs-12#}
+{#                {% endif %} " style="height: {{ instance.pluginheight }}px">#}
+{#                <div class="tbelowimagediv" style="width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"><img src="{{ item.get_image_url }}" class="img-responsive"></div>#}
+{#                <div class="tbelowtext">#}
+{#                    <div class="tbelowtitle text-center">{{ item.title }}</div>#}
+{#                    <div class="text-center">{{ item.text | safe }}</div>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#</div>#}

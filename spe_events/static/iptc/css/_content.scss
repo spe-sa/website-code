@@ -21,8 +21,8 @@
 
 .sponsorBar {
   padding:                20px 0;
-  border-top:             2px solid $col-grey-light;
-  border-bottom:          2px solid $col-grey-light;
+  //border-top:             2px solid $col-grey-light;
+  //border-bottom:          2px solid $col-grey-light;
 }
 
 
@@ -229,18 +229,22 @@ $itemboxpadding:  20px;
 }
 .tbelowimagediv {
   margin:                 auto;
+  @include border-radius(5px);
+  @include box-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
 }
 .tbelowimage {
   width:                  100px;
   height:                 100px;
   margin:                 auto;
 }
-.tbelowtext {
-  margin:                 auto;
-}
 .tbelowtitle {
   font-family:            $font-titles;
   font-size:              $h4size;
+  padding-top:            20px;
+}
+.tbelowtext p {
+  margin:                 auto;
+  font-size:              12px;
 }
 
 .sponsorCoveyor {

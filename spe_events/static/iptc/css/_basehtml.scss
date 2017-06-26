@@ -62,7 +62,10 @@ a {
   }
 }
 
-.padZero {
+.padZero, #padZero {
   padding:                0;
 }
-
+#shadowRow {
+  height:                 40px;
+  background: $img-box-undershadow no-repeat top center;
+}

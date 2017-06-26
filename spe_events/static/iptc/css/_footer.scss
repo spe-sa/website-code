@@ -27,19 +27,30 @@
   }
   .footerSocials {
     font-size:        50px;
+    padding-top:      40px;
 
     a {
-      color:          $col-white;
+      color:          $col-iptc-green;
       &:hover {
-        color:        $col-atce-green;
+        color:        $col-white;
       }
     }
   }
 }
-
+.footerlogo {
+  padding: 10px;
+}
+.footertext {
+  padding:            55px 0;
+  a {
+    color:            $col-iptc-green;
+  }
+}
 .copyrightbar {
-  height:             75px;
-  background-color:   $col-atce-green;
-  padding:            25px 0 0 0;
+  height:             30px;
+  background-color:   $col-black;
+  padding:            8px 0 0 0;
+  color:              $col-grey;
+  font-size:          10px;
 }
 

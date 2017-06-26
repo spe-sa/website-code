@@ -51,25 +51,21 @@
     {# adding block content_footer to base cms template for overriding #}
     {% block content_footer %}
         <div class="row footerbar">
-            <div class="col-md-10 col-md-offset-1 text-center">
-                <p>The Society of Petroleum Engineers (SPE) is a not-for-profit organization. Income from this event will be invested back into SPE to support many other Society programs. When you attend an SPE event, you help provide even more opportunities for industry professionals to enhance their technical and professional competence. Scholarships, certification, the Distinguished Lecturer program, and SPE's energy education program Energy4me are just a few examples of programs that are supported by SPE.</p>
-                <p>&nbsp;</p>
-                <h3>Get In Touch</h3>
-                <h4><i class="fa fa-phone-square" aria-hidden="true"></i> 1.972.952.9393 <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:service@spe.org">service@spe.org</a></h4>
-                <h4 class="footerSocials">
-                    <a href="https://www.facebook.com/spemembers"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-                    <a href="http://www.linkedin.com/groups/Society-Petroleum-Engineers-57660/about"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    <a href="https://twitter.com/SPEtweets"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
-                    <a href="https://www.youtube.com/user/2012SPE"><i class="fa fa-youtube-square" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/spengineers/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                </h4>
-                <span>facebook like & follow Twitter</span>
-                <p>&nbsp;</p>
+            <div class="col-xs-4 col-xs-offset-4 col-sm-5 col-sm-offset-1 col-md-3 text-center footerlogo">
+                <img src="{% static 'iptc/imgs/iptc_whitetxt.svg' %}" class="mainLogoImg img-responsive"/>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 footerSocials text-center">
+                <a href="https://www.facebook.com/iptcnet.org"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/groups/IPTC-International-Petroleum-Technology-Conference-7403674"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/iptc_net_org"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-xs-12 col-md-3 text-center footertext">
+                Email us for more information:<br><a href="mailto:iptc@iptcnet.org">iptc@iptcnet.org</a>
             </div>
         </div>
         <div class="row copyrightbar">
             <div class="col-md-10 col-md-offset-1 text-center">
-                <p>Copyright &copy; 2017, Society of Petroleum Engineers. All rights reserved.</p>
+                <span class="footertext">Copyright &copy; 2017, Society of Petroleum Engineers. All rights reserved.</span>
             </div>
         </div>
     {% endblock content_footer %}
@@ -80,9 +76,6 @@
         <script type="text/javascript" charset="utf-8">
             $(document).ready(function() {
                 $('.carouselTicker').carouselTicker();
-
-{#                $(".tile-white img").addClass("img-responsive");#}
-{#                $(".tile-white img").removeClass("img-responsive");#}
             });
         </script>
     {% endblock wrap_end %}
