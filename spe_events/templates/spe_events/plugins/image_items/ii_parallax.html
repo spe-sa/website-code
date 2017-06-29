@@ -14,7 +14,8 @@
         {% if instance.pluginheight %}height: {{ instance.pluginheight }}px;{% else %}height: 600px;{% endif %}
 {#        background: url('{{ item.get_image_url }}') no-repeat fixed {{ item.imageposition }};#}
         background: url('{{ item.get_image_url }}') no-repeat fixed;
-        background-size: 120% auto;
+{#        background-size: 120% auto;#}
+        background-size: cover;
     }
 
     .art-inner{{ instance.id }}{

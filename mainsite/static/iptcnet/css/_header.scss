@@ -1,0 +1,145 @@
+/* =================================================================== */
+/* IPTC HEADER & MENUS
+====================================================================== */
+@import 'vars';
+@import "mixins";
+
+/* =================================================================== */
+/* GLOBAL NAV TOP ROW */
+.global-nav {
+    min-height: 31px;
+    border-bottom: 1px solid $col-black;
+    background-color: $col-black;
+    margin: 0;
+
+    ul {
+        margin: 0;
+        padding: 0 0 0 15px;
+        list-style: none;
+
+        li {
+            float: left;
+            white-space: nowrap;
+            margin: 0;
+            line-height: 18px;
+
+            a {
+                display: block;
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: 700;
+                line-height: 30px;
+                color: $col-grey-light;
+                padding: 0 14px;
+                margin: 0 8px 0 0;
+
+                &:hover { color:$col-white;background-color:$col-black; }
+            }
+        }
+
+        li:first-child a {
+            margin-left: -14px;
+        }
+    }
+
+    //#global-nav {
+    //    padding: 0;
+    //}
+}
+
+/* =================================================================== */
+/* LOGO ROW */
+.logobar {
+  min-height:         100px;
+  padding-left:       15px;
+  padding-right:      15px;
+  background-color:   $col-grey-dark;
+}
+.mainLogo {
+  padding:            20px 0;
+}
+.mainLogoImg {
+  max-width:          400px;
+}
+
+/* =================================================================== */
+/* NAVIGATION MENU ROW */
+.menubar {
+  background-color:   $col-iptc-green;
+  color:              $col-white;
+  padding:            0 10px 0 10px;
+}
+.navbar {
+  margin-bottom:      0;
+  min-height:         40px;
+}
+.navbar-nav {
+  li {
+
+    a {
+      padding-top:      10px;
+      font-size:        $h5size;
+      font-weight:      $font-regular;
+      color:            $col-white;
+      height:           40px;
+
+      @include text-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
+
+      &:hover { background-color: $col-iptc-purple-hover; }
+      }
+
+
+  }
+  li:first-child {
+    a {
+      padding-left:   0;
+    }
+  }
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color:     $col-iptc-purple-hover;
+    border-color:         $col-iptc-purple-hover;
+}
+.dropdown-menu {
+  li {
+    padding:              10px;
+    border-bottom:        1px solid $col-grey-light;
+    white-space:          nowrap;
+
+      a {
+        padding:          10px 0 0 0;
+        font-size:        $h5size;
+        font-weight:      $font-regular;
+        color:            $col-iptc-green;
+        height:           40px;
+
+        @include text-shadow(0, 0, 0, rgba(0,0,0,0));
+        &:hover { background: none; }
+
+      }
+    &:hover {
+      background-color: $col-iptc-purple-hover;
+      a { color: $col-grey-light; }
+    }
+    }li:first-child {
+    a {
+        //padding:          10px 0 0 10px;
+    }
+  }
+}
+.hamburger {
+  padding-top:  10px;
+  font-size:    40px;
+  color:        $col-white !important;
+
+  a {
+    color:      $col-white !important;
+  }
+}
+
+#collapseHamMenu {
+  a {
+    color:      $col-white !important;
+    @include text-shadow(0, 0, 0, rgba(0,0,0,0));
+  }
+}

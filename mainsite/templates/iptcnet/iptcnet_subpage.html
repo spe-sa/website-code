@@ -1,22 +1,14 @@
-{% extends "atce/atce_base.html" %}
+{% extends "iptcnet/iptcnet_base.html" %}
 {% load cms_tags sekizai_tags menu_tags staticfiles %}
 
 {% block title %}{% page_attribute "page_title" %}{% endblock title %}
 
 {% block cms_content %}
 
-    <div class="container-fluid">{% placeholder "Feature Slider" %}</div>
-
     <div class="padTopBottom container-fluid">{% placeholder "Content Area One" %}</div>
-
-    <div class="container-fluid sponsorBar">{% placeholder "Sponsor Band" %}</div>
 
     <div class="padTopBottom container-fluid">{% placeholder "Content Area Two" %}</div>
 
     <div class="padTopBottom container-fluid">{% placeholder "Content Area Three" %}</div>
-
-    <div class="padTopBottom container-fluid">{% placeholder "Content Area Four" %}</div>
-
-    <div class="container-fluid">{% placeholder "Map" %}</div>
 
 {% endblock cms_content %}
