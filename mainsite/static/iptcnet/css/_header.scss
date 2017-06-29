@@ -85,7 +85,7 @@
 
       @include text-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
 
-      &:hover { background-color: $col-iptc-purple-hover; }
+      &:hover { background-color: $col-iptc-green-hover; }
       }
 
 
@@ -97,8 +97,8 @@
   }
 }
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color:     $col-iptc-purple-hover;
-    border-color:         $col-iptc-purple-hover;
+    background-color:     $col-iptc-green-hover;
+    border-color:         $col-iptc-green-hover;
 }
 .dropdown-menu {
   li {
@@ -118,7 +118,7 @@
 
       }
     &:hover {
-      background-color: $col-iptc-purple-hover;
+      background-color: $col-iptc-green-hover;
       a { color: $col-grey-light; }
     }
     }li:first-child {

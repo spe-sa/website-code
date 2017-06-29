@@ -123,7 +123,7 @@ a:hover {
   min-height: 100px;
   padding-left: 15px;
   padding-right: 15px;
-  background-color: #393939; }
+  background-color: #282828; }
 
 .mainLogo {
   padding: 20px 0; }
@@ -150,14 +150,14 @@ a:hover {
   height: 40px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
   .navbar-nav li a:hover {
-    background-color: #A5639C; }
+    background-color: #94bb60; }
 
 .navbar-nav li:first-child a {
   padding-left: 0; }
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-  background-color: #A5639C;
-  border-color: #A5639C; }
+  background-color: #94bb60;
+  border-color: #94bb60; }
 
 .dropdown-menu li {
   padding: 10px;
@@ -173,7 +173,7 @@ a:hover {
     .dropdown-menu li a:hover {
       background: none; }
   .dropdown-menu li:hover {
-    background-color: #A5639C; }
+    background-color: #94bb60; }
     .dropdown-menu li:hover a {
       color: #e1e1e1; }
 
@@ -500,7 +500,7 @@ a:hover {
 ====================================================================== */
 /* Images */
 .footerbar {
-  background-color: #393939;
+  background-color: #282828;
   padding: 20px 0 0 0;
   color: white; }
   .footerbar h3 {
