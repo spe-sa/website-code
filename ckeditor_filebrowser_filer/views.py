@@ -87,6 +87,9 @@ def url_image(request, image_id, thumb_options=None, width=None, height=None):
     :param height: user-provided height
     :return: JSON serialized URL components ('url', 'width', 'height')
     """
+    if width == None or width == '' or height == None or height == '':
+        width = None
+        height = None
     image = File.objects.get(pk=image_id)
     if getattr(image, 'canonical_url', None):
         url = image.canonical_url

@@ -11,7 +11,7 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
                     {
                         type: 'text',
                         id: 'caption',
-                        label: 'Caption',
+                        label: 'Caption (preserves HTML)',
                         validate: CKEDITOR.dialog.validate.notEmpty( "Caption field cannot be empty." )
                         // NOTE: since this value is stored in a different element we have to do it on show and ok
                         // setup: function( element ) {
@@ -29,7 +29,7 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
 							[ 'Top', 'true' ],
 							[ 'Bottom', 'false' ]
 						],
-						'default': 'true',
+						'default': 'false',
 						onChange: function(api) {
 							console.log('select changed to: ' + this.getValue());
 						},
@@ -155,7 +155,7 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
                 element.append(caption_element);
             }
             else
-                this.getContentElement('tab-basic', 'caption').setValue(caption_element.getText());
+                this.getContentElement('tab-basic', 'caption').setValue(caption_element.getHtml());
 
             this.element = element;
             this.caption_element = caption_element;
@@ -169,7 +169,7 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
             var cap = this.getContentElement( 'tab-basic', 'caption' ).getValue();
             console.log('caption value: ' + cap);
 
-            this.caption_element.setText(cap);
+            this.caption_element.setHtml(cap);
 
             this.commitContent( this.element );
 
@@ -188,7 +188,12 @@ CKEDITOR.dialog.add( 'captionDialog', function( editor ) {
             }
             else {
                 // they may have changed the position so lets make sure it is right
-                this.caption_element.move(this.element, is_top)
+                var curhtml = this.caption_element.getHtml();
+                console.log('caption curhtml: ' + curhtml);
+                this.caption_element.move(this.element, is_top);
+                console.log('html after move: ' + this.caption_element.getHtml());
+                // this.caption_element.setHtml(curhtml);
+                // console.log('html after reset: ' + this.caption_element.getHtml());
             }
         }
     };

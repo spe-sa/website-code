@@ -6,6 +6,19 @@ CKEDITOR.plugins.add( 'specaption', {
         if ( editor.blockless )
             return;
 
+        // // adding a widget for the caption portion and removing from the dialog so it can contain html
+        // editor.widgets.add( 'specaption', {
+        //     template:   '<caption class="specaption-content">' +
+        //                 '</caption>',
+        //     editables: {
+			// 	caption: {
+			// 		selector: 'figcaption',
+			// 		allowedContent: 'br em strong sub sup u s; a[!href,target]'
+			// 	}
+			// }
+        //
+        // });
+        //
 		//editor.addCommand('specaption', new CKEDITOR.dialogCommand('specaptionDialog'));
         editor.addCommand('specaption', new CKEDITOR.dialogCommand('captionDialog'));
         editor.addCommand( 'removespecaption', {

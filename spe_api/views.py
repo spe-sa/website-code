@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.http import JsonResponse
 import requests, json
+from filer.models import File
 
 # Create your views here.
 class UrlValidation(View):
@@ -63,3 +64,46 @@ class UrlValidation(View):
         # except Exception as e:
         #     mystatus=500
         return JsonResponse({'valid': is_valid, 'results': dict_buffer})
+
+
+class FilerLookup(View):
+    def get(self, request):
+        myurl = request.GET.get("url", None)
+        myid = request.GET.get("id", None)
+
+        print('myurl: ' + str(myurl))
+        print('myid: ' + str(myid))
+        # use johns code here to lookup the real id value for the url if id is not a number
+
+        # if we didn't get an id passed we try to look one up by the url\
+        # todo: determine if we need to do something with the options that we are not using atm
+        # todo: consider doing 2 searches instead I suspect will be faster due to indexes
+        if (myid == None or myid == '') and myurl != None and myurl != '':
+            # try to look up the id by url or cononical url match
+            # most likely regular url if no id so start with that
+            # NOTE: trying file property looks like media is stripped
+            search_url = myurl
+            if search_url.startswith('/media/'):
+                search_url = myurl[7:]
+            images = File.objects.filter(file = search_url).get_real_instances()
+            if images == None or len(images) == 0:
+                # NOTE: i can't figure out how they get canonical_url since it is not stored; defaulting to looping
+                # image = File.objects.filter(image__canonical_url__iexact = myurl).all()
+                images = File.objects.all()
+                for image in images:
+                    if image.canonical_url == myurl:
+                        myid = image.id
+                        break
+            else:
+                myid = images[0].id
+
+            # images = File.objects.all()
+            # for image in images:
+            #     if image.canonical_url == myurl:
+            #         myid = image.id
+            #         break
+            #     if image.url == myurl:
+            #         myid = image.id
+            #         break
+
+        return JsonResponse({'id': myid})

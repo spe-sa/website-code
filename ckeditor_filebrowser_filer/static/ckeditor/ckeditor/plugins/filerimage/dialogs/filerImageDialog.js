@@ -61,7 +61,7 @@
 			{
 				type: 'text',
 				id: 'caption',
-				label: lang.caption,
+				label: 'Tooltip',
 				setup: function (element) {
 					this.setValue(element.getAttribute('title'));
 				},
@@ -79,11 +79,16 @@
 						id: 'alignment',
 						label: commonLang.align,
 						items: [
+							['None', ''],
 							[commonLang.alignLeft, 'left'],
 							[commonLang.alignRight, 'right']
 						],
+						default: '',
 						setup: function (element) {
-							this.setValue(element.getAttribute('align'));
+							var thisval = element.getAttribute('align');
+							if (thisval === null)
+								thisval = '';
+							this.setValue(thisval);
 						},
 						// Called by the main commitContent call on dialog confirmation.
 						commit: function (element) {
@@ -224,10 +229,12 @@
 				thumb_opt_id = thumb_sel_val + '/';
 			} else {
 				if (dialog.getContentElement('tab-basic', 'width')) {
-					width = dialog.getContentElement('tab-basic', 'width').getValue();
-					if (width == '') width = ''; else width += '/';
-					height = dialog.getContentElement('tab-basic', 'height').getValue();
-					if (height == '') height = ''; else height += '/';
+					width = dialog.getContentElement('tab-basic', 'width').getValue() + '/';
+					// width = dialog.getContentElement('tab-basic', 'width').getValue();
+					// if (width == '') width = ''; else width += '/';
+					height = dialog.getContentElement('tab-basic', 'height').getValue() + '/';
+					// height = dialog.getContentElement('tab-basic', 'height').getValue();
+					// if (height == '') height = ''; else height += '/';
 				}
 				else {
 					width = '';
@@ -275,6 +282,12 @@
 			minHeight: 200,
 
 			onShow: function () {
+				this.getContentElement('tab-basic','thumbnail_option').getElement().hide();
+				this.getContentElement('tab-basic','use_original_image').getElement().hide();
+				this.getContentElement('tab-basic','crop').getElement().hide();
+				this.getContentElement('tab-basic','upscale').getElement().hide();
+				this.getContentElement('tab-basic','use_autoscale').getElement().hide();
+
 				dialog = CKEDITOR.dialog.getCurrent();
 				var document = this.getElement().getDocument(),
 					id_image = document.getById('id_image' + idSuffix),
@@ -323,12 +336,35 @@
 
 				// Store the reference to the <img> element in an internal property, for later use.
 				this.element = element;
-
 				id_image.setValue(element.getAttribute('filer_id'));
 
 				// Invoke the setup methods of all dialog elements, so they can load the element attributes.
-				if (!this.insertMode)
-					this.setupContent(this.element);
+				if (!this.insertMode) {
+                    this.setupContent(this.element);
+
+					// sas 06.19.17 - adding some code to try and populate the filer_id from the url if we don't have one
+					var existing_id = element.getAttribute('filer_id');
+					var purl = this.getContentElement( 'tab-basic', 'url' ).getValue();
+					if ((existing_id === "" || existing_id === null) && (purl !== null) && (purl !== "")) {
+                        console.log('would have tried to make an ajax call here and wrappered everything in the success call.');
+						var pid = id_image.getValue();
+						var popt_thumb = this.getContentElement( 'tab-basic', 'thumbnail_option' ).getValue();
+                        var params = {
+                        	id: pid,
+							url: purl,
+							opt_thumb: popt_thumb
+						};
+                        // var pstr = jQuery.param(params);
+                        // console.log('calling jquery post with params: ' + pstr);
+                        console.log('jquery version: ' + jQuery.fn.jquery);
+                        jQuery.get("/api/filer/lookup/", params, function(data) {
+                        	console.log('data: ' + JSON.stringify(data));
+                        	if (data.id !== null && data.id !== "")
+                        		id_image.setValue(data.id);
+                        	console.log('id_image.getValue(): ' + id_image.getValue())
+						});
+                    }
+                }
 				else
 					id_image_clear.fire('click');
 			},
@@ -368,7 +404,15 @@
 						{
 							type: 'text',
 							id: 'css_style',
-							label: 'CSS'
+							label: 'Style',
+							setup: function (element) {
+								this.setValue(element.getAttribute('style'));
+							},
+							// Called by the main commitContent call on dialog confirmation.
+							commit: function (element) {
+								element.setAttribute('style', this.getValue());
+							}
+
 						}
 					]
 				}
