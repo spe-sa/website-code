@@ -201,6 +201,9 @@ a:hover {
   margin: 10px 0;
   padding-right: 20px; }
 
+.purpleBack {
+  background-color: #6B3E63; }
+
 /* =================================================================== */
 /* ROWS */
 .spacerRow {
@@ -369,6 +372,23 @@ a:hover {
 .speakertitle {
   font-family: "Montserrat", sans-serif;
   font-size: 18px; }
+
+.tBelowItem {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 25px;
+  -webkit-border-radius: 5px !important;
+  -khtml-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+  border-radius: 5px !important;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -khtml-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); }
 
 .tbelowimagediv {
   margin: auto;

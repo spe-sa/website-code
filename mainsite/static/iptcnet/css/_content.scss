@@ -10,7 +10,9 @@
     margin: 10px 0;
     padding-right: 20px;
 }
-
+.purpleBack {
+  background-color:     $col-iptc-purple;
+}
 
 /* =================================================================== */
 /* ROWS */
@@ -18,8 +20,6 @@
 .spacerRow {
   height: 30px;
 }
-
-
 .byTheNumbersBar {
   background-color:       $col-atce-green;
 
@@ -220,6 +220,13 @@ $itemboxpadding:  20px;
 .speakertitle {
   font-family:            $font-titles;
   font-size:              $h4size;
+}
+.tBelowItem {
+  background-color:       $col-white;
+  padding:                10px;
+  margin-bottom:          25px;
+  @include border-radius(5px);
+  @include box-shadow(1px, 1px, 2px, rgba(0,0,0,.4));
 }
 .tbelowimagediv {
   margin:                 auto;

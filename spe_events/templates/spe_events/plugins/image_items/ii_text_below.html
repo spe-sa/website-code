@@ -14,12 +14,14 @@
                 {% elif items.count == 1 %}
                     col-xs-12
                 {% endif %} " style="height: {{ instance.pluginheight }}px">
-                <div class="tbelowimagediv" style="background-image: url({{ item.get_image_url }}); background-position:{{ item.imageposition }};
-                background-size: cover; width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"></div>
-{#                background-size: cover; width: 100%; height: 75%;"></div>#}
-                <div class="tbelowtext">
-                    <div class="tbelowtitle text-center">{{ item.title }}</div>
-                    <div class="text-center">{{ item.text | safe }}</div>
+                <div class="tBelowItem">
+                    <div class="tbelowimagediv" style="background-image: url({{ item.get_image_url }}); background-position:{{ item.imageposition }};
+                    background-size: cover; width:{{ item.imgwidth }}px; height: {{ item.imgheight }}px"></div>
+    {#                background-size: cover; width: 100%; height: 75%;"></div>#}
+                    <div class="tbelowtext">
+                        <div class="tbelowtitle text-center">{{ item.title }}</div>
+                        <div class="text-center">{{ item.text | safe }}</div>
+                    </div>
                 </div>
             </div>
 
