@@ -154,3 +154,6 @@
     @include text-shadow(0, 0, 0, rgba(0,0,0,0));
   }
 }
+div.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+}
