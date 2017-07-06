@@ -8,7 +8,7 @@
 /* ********************************** */
 /* TOP BAR BLACK */
 #topbar {
-  background-color:     $col-brightred;
+  background-color:     $col-hsebluemd;
   min-height:           50px;
   color:                $col-white;
   font-weight:          $font-bold;
@@ -36,7 +36,7 @@
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-hsegreylt;
     }
 
   }
@@ -62,13 +62,13 @@
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-hsegreylt;
     }
 
   }
 
   #signin {
-    background-color:   $col-red;
+    background-color:   $col-hsebluemd;
     height:             50px;
     font-size:          14px;
     text-align:         center;
@@ -80,10 +80,10 @@
     }
 
     &:hover {
-      background-color: $col-white;
+      background-color: $col_hsebluemdhov;
 
       a {
-        color:          $col-brightred;
+        color:          $col-menuwhite;
       }
     }
   }
@@ -93,8 +93,8 @@
 /* ********************************** */
 /* LOGO MENU BAR GREY                 */
 #menubar {
-  background-color:     $col-blue;
-  min-height:           170px;
+  background-color:     $col-menuwhite;
+  //min-height:           170px;
 
   #mainLogo {
     padding-top:        50px;
@@ -119,14 +119,14 @@
 
     li a {
       display:          block;
-      color:            $col-menuwhite;
+      color:            $col-black;
       text-align:       center;
       text-decoration:  none;
       font-weight:      $font-bold;
     }
 
     li a:hover {
-      color:            $col-yellow;
+      color:            $col-hseforestgrn;
     }
   }
 }

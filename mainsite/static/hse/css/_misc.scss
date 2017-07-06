@@ -1,0 +1,38 @@
+/* =================================================================== */
+/* BASE HTML STYLES FOR HSE
+====================================================================== */
+
+.red {
+  color:              $col-brightred !important;
+}
+.yellow {
+  color:              $col-yellow !important;
+}
+.white {
+  color:              $col-white !important;
+}
+.greyback {
+  background-color:   $col-lightgrey;
+}
+.h2MarginB {
+  margin-bottom:      20px;
+}
+.separatorDotted {
+  border-top:         $dotted;
+  margin-top:         20px;
+  padding-top:        20px;
+}
+.padZero {
+  padding:            0;
+}
+.margZero {
+  margin:             0;
+}
+.sponsored {
+  padding:            3px 3px 3px 5px;
+  background-color:   $col-yellow;
+  color:              $col-black;
+  font-weight:        $font-bold;
+  font-size:          12px;
+  letter-spacing:     2px;
+}
