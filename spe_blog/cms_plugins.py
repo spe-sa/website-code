@@ -623,6 +623,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
+        context.update({'backtransp': instance.backtransp})
         context.update({'fixedheight': instance.fixedheight})
         context.update({'whitetext': instance.whitetext})
         context.update({'boxwidth': instance.boxwidth})

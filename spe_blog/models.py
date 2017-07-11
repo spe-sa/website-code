@@ -717,6 +717,7 @@ class ArticlesListingPlugin(CMSPlugin):
     # display
     template = models.CharField(max_length=255, choices=PLUGIN_TEMPLATES, default=DEFAULT_PLUGIN_TEMPLATE)
     backcol = ColorField("Background Color (for editorials only.)", blank=True, null=True, default='#ffffff')
+    backtransp = models.BooleanField("Transparent Background", default=False)
     # backcol = ColorField("Background Color (.for editorials only.)", blank=True, null=True)
     cnt = models.PositiveIntegerField(default=5, verbose_name=u'Number of Articles')
     order_by = models.CharField(max_length=20, choices=ORDER_BY, default=DEFAULT_ORDER_BY)

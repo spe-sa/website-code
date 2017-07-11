@@ -29,6 +29,10 @@
 .featured {
   padding:0 20px 0 0;
 }
+.featuredArea {
+  background-color: $col-hsebluedrk;
+  padding:  30px 0 10px 0;
+}
 .superFBack {
   //border:1px solid white;
   position:absolute;
@@ -505,7 +509,7 @@
   }
 }
 
-.featurecol, .editorialcol, .areaContent, .areaRightSide {
+.featurecol, .areaContent, .areaRightSide {
   padding:0;
 }
 .featurecol {

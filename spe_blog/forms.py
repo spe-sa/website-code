@@ -41,7 +41,7 @@ class ArticlesListSelectionForm(ModelForm):
         exclude = []
         fields = ['template', 'cnt', 'order_by', 'starting_with', 'in_last', 'published_in_last', 'publication', 'print_volume',
                   'print_issue',
-                  'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol',
+                  'categories', 'secondary_categories', 'all_url', 'all_text', 'backcol', 'backtransp',
                   'whitetext', 'boxtitle', 'personalized', 'discipline', 'fixedheight', 'boxwidth', 'boxheight']
 
 

@@ -1,6 +1,6 @@
 {% load i18n cms_tags sekizai_tags %}
 
-<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="background-color:{{ backcol }};">
+<div class="tile-editorial {% if fixedheight %}tile-editorial-fixed{% endif %} {% if whitetext %}tile-editorial-txtwht{% else %}tile-editorial-txtblck{% endif %} row" style="{% if backtransp %}background:none;{% else %}background-color:{{ backcol }};{% endif %}">
 {#    <p>Back Color: {{ backcol }}</p>#}
 {#    <p>White Text: {{ whitetext }}</p>#}
 {#    <p>Publication: {{ pubcode }}</p>#}
@@ -17,7 +17,6 @@
             <div class="col-xs-12 sideListBoxTitle">
                 <span class="boxTitleText col-xs-12" style="background-color:#e51837;">{{ boxtitle }} </span>
             </div>
-
         {% endif %}
     {% endif %}
 {% for article in articles %}
@@ -33,7 +32,7 @@
 
             <span class="sideListTitleTWA"><a href={{ article.get_absolute_url}}>{{ article.title }}</a></span><br>
         {% else %}
-            <div class="col-xs-12">
+            <div class="col-xs-12 padZero">
             <span class="sideListTitle2"><a href={{ article.get_absolute_url}}>{{ article.title|truncatewords:10 }}</a></span><br>
         {% endif %}
 

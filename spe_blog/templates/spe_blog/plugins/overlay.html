@@ -5,7 +5,7 @@
             <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
                 <div class="story-text">
                     <div class="storyTextContent">
-                        <h2>{{ article.title }}</h2>
+                        <h2>{{ pubcode }} || {{ article.title }}</h2>
                         <p>{{ article.teaser }}</p>
                         {% if article.sponsored %}
                         <p><span class="sponsored">SPONSORED</span></p>
@@ -19,3 +19,21 @@
 {% empty %}
     No Articles Found
 {% endfor %}
+
+{#thisPub = 'hsenow'#}
+<script type="text/javascript" charset="utf-8">
+    $( document ).ready(function() {
+
+        if (thisPub = 'hsenow') {
+{#            alert("THIS IS HSENOW");#}
+            var colHeight = $('.editorialcol').height();
+            $('.story-wrap').height(colHeight);
+
+            $( window ).resize(function() {
+                colHeight = $('.editorialcol').height();
+                $('.story-wrap').height(colHeight);
+            });
+        }
+
+    });
+</script>
