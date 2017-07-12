@@ -112,6 +112,18 @@ a:hover { text-decoration: none; }
 /* =================================================================== */
 /* MAIN CONTENT STYLES FOR jpt
 ====================================================================== */
+.bordhsegreen { border: 1px solid #77BB4E; }
+
+.bordhseforestgreen { border: 1px solid #3A9383; }
+
+.bordhseblue { border: 1px solid #33608d; }
+
+.bordhsepurple { border: 1px solid #745A91; }
+
+.bordhserouge { border: 1px solid #B5526A; }
+
+.bordhseorange { border: 1px solid #D1682C; }
+
 .content-area { padding: 0 15px; }
 
 .page-content { margin-top: 25px; }

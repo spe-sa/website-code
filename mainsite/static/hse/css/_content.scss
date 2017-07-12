@@ -3,6 +3,27 @@
 ====================================================================== */
 @import 'vars';
 
+.bordhsegreen {
+  border: 1px solid $col-hsegreen;
+}
+.bordhseforestgreen {
+  border: 1px solid $col-hseforestgrn;
+}
+.bordhseblue {
+  border: 1px solid $col-hseblue;
+}
+.bordhsepurple {
+  border: 1px solid $col-hsepurple;
+}
+.bordhserouge {
+  border: 1px solid $col-hserouge;
+}
+.bordhseorange {
+  border: 1px solid $col-hseorange;
+}
+
+
+
 .content-area {
   padding:          0 15px;
 }

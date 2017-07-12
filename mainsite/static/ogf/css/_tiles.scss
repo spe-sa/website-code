@@ -157,7 +157,7 @@
   min-height:           360px;
 
   .story-wrap {
-    height:             400px;
+    //height:             400px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -236,7 +236,7 @@
 .tile-editorial {
   background-color:     $col-ogfblack;
   padding:              15px;
-  margin-bottom:        15px;
+  //margin-bottom:        15px;
   overflow:             hidden;
 
   .title1, .title2, .excerpt, .authorBio {
@@ -245,7 +245,7 @@
   .title1 {
     font-size:          13px;
     font-weight:        $font-bold;
-    white-space:        nowrap;
+    //white-space:        nowrap;
   }
   .title2 {
     font-size:          20px;
