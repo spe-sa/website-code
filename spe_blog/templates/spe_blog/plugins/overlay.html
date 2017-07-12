@@ -2,7 +2,7 @@
     {% if article.picture and article.picture.url %}
         <article class="tile whiteback featured-story">
             <a href="{{ article.get_absolute_url }}">
-            <div class="story-wrap" style="background-image:url({{ article.picture.url }});">
+            <div class="story-wrap-feature" style="background-image:url({{ article.picture.url }});">
                 <div class="story-text">
                     <div class="storyTextContent">
                         <h2>{{ article.title }}</h2>
@@ -26,11 +26,11 @@
 
         if (thisPub == 'hsenow' || thisPub == 'ogfmag') {
             var colHeight = $('.editorialcol').height();
-            $('.story-wrap').height(colHeight);
+            $('.story-wrap-feature').height(colHeight);
 
             $( window ).resize(function() {
                 colHeight = $('.editorialcol').height();
-                $('.story-wrap').height(colHeight);
+                $('.story-wrap-feature').height(colHeight);
             });
         }
 
