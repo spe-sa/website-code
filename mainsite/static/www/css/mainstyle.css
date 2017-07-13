@@ -606,14 +606,20 @@ h4 { font-size: 16px; font-weight: 700; }
 
 .see-all-promo i { margin-left: 25px; }
 
-.gsc-control-cse div { position: static; width: 215px !important; }
-
 .gsc-input { height: 32px !important; padding: 0 !important; margin: 0 !important; background-color: #e0e4eb !important; }
 
-.gsc-input-box { border: none !important; background: none !important; height: 32px !important; padding: 0 !important; margin: 0 !important; }
+.gsc-input-box { border: none !important; background: none !important; height: 32px !important; padding: 0 0 0 5px !important; margin: 0 !important; }
 
 .gsc-input-box table, .gsc-input-box table td { border: none !important; background: none !important; height: 32px !important; padding: 0 !important; margin: 0 !important; }
 
-.gsc-search-button { margin: 0 !important; padding: 3px !important; background-color: #e0e4eb !important; }
+td.gsc-search-button { padding: 6px 8px 6px 8px !important; }
+
+.gsc-search-button { margin: 0 !important; background-color: #e0e4eb !important; color: #23406c !important; }
 
 .gsc-search-button input { color: #23406c !important; border: none !important; padding: 0 !important; margin: 0 !important; }
+
+.gsc-search-box-tools .gsc-search-box .gsc-input { padding: 0 !important; }
+
+table.gsc-search-box td.gsc-input { padding: 0 !important; }
+
+table.gsc-search-box td.gsc-input { padding: 0 !important; }

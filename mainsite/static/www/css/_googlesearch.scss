@@ -1,10 +1,10 @@
-.gsc-search-box {
-  //width: 235px;
-}
-.gsc-control-cse div {
-    position: static;
-    width: 215px !important;
-}
+//.gsc-search-box {
+//  width: 235px;
+//}
+//.gsc-control-cse div {
+//    position: static;
+//    width: 215px !important;
+//}
 .gsc-input {
   //width: 203px !important;
   height: 32px !important;
@@ -16,7 +16,7 @@
   border: none !important;
   background: none !important;
   height: 32px !important;
-  padding: 0 !important;
+  padding: 0 0 0 5px !important;
   margin: 0 !important;
 }
 .gsc-input-box table, .gsc-input-box table td {
@@ -26,12 +26,14 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+td.gsc-search-button {
+  //width: 28px !important;
+  padding: 6px 8px 6px 8px !important;
+}
 .gsc-search-button {
-  //width: 32px !important;
-  //height: 32px !important;
   margin: 0 !important;
-  padding: 3px !important;
   background-color: #e0e4eb !important;
+  color:  #23406c !important;
 
   input {
     //width: 32px !important;
@@ -41,4 +43,13 @@
     padding: 0 !important;
     margin: 0 !important;
   }
+}
+.gsc-search-box-tools .gsc-search-box .gsc-input {
+    padding: 0 !important;
+}
+table.gsc-search-box td.gsc-input {
+    padding: 0 !important;
+}
+table.gsc-search-box td.gsc-input {
+    padding: 0 !important;
 }
