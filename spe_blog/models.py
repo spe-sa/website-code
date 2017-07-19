@@ -42,6 +42,7 @@ PLUGIN_TEMPLATES = (
     ('spe_blog/plugins/twa_featured.html', 'TWA Featured Article Box'),
     ('spe_blog/plugins/tech_focus_main.html', 'Tech Focus Main'),
     ('spe_blog/plugins/tech_focus_related.html', 'Tech Focus Related'),
+    ('spe_blog/plugins/image_left_hse_featured.html', 'Image Left HSENow - Featured'),
     ('spe_blog/plugins/image_left_hse.html', 'Image Left HSENow'),
     # ('spe_blog/plugins/side_list.html', 'TWA Article List'),
 )

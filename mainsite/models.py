@@ -5,6 +5,7 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from filer.fields.image import FilerImageField
 from django.conf import settings
+from colorfield.fields import ColorField
 from mainsite.widgets import ColorPickerWidget
 
 # from django.core.urlresolvers import reverse
@@ -15,6 +16,7 @@ from mainsite.widgets import ColorPickerWidget
 
 from cms.models import CMSPlugin
 import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -58,14 +60,14 @@ LINK_TARGETS = (
 )
 
 
-class ColorField(models.CharField):
-    def __init__(self, *args, **kwargs):
-        kwargs['max_length'] = 10
-        super(ColorField, self).__init__(*args, **kwargs)
-
-    def formfield(self, **kwargs):
-        kwargs['widget'] = ColorPickerWidget
-        return super(ColorField, self).formfield(**kwargs)
+# class ColorField(models.CharField):
+#     def __init__(self, *args, **kwargs):
+#         kwargs['max_length'] = 10
+#         super(ColorField, self).__init__(*args, **kwargs)
+#
+#     def formfield(self, **kwargs):
+#         kwargs['widget'] = ColorPickerWidget
+#         return super(ColorField, self).formfield(**kwargs)
 
 
 class Web_Region(models.Model):
@@ -421,6 +423,7 @@ class AdSpeedZonePlugin(CMSPlugin):
 class TitleBarPlugin(CMSPlugin):
     title = models.CharField(max_length=100)
     # ADDED
+    # bkg_color = ColorField(verbose_name='Background Color', default="#cccccc", null=True)
     backcol = ColorField("Background Color", blank=True, null=True)
     textcol = ColorField("Text Color", blank=True, null=True)
 

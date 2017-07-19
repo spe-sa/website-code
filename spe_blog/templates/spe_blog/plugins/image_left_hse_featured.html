@@ -1,15 +1,19 @@
 {% load i18n %}
 
 {% for article in articles %}
-    <article class="imgLeftBody story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %} dontPrintMe"
+    <article class="imgLeftCompact story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %} dontPrintMe"
                 style="min-height: 75px">
         <a href="{{ article.get_absolute_url }}">
             <div class="story-wrap row">
-                {% if article.picture and article.picture.url and forloop.first %}
-                    <figure class="thumb col-sm-3">
-                        <div class="img-wrap" style="background-image: url({{ article.picture.url }});"></div>
-                    </figure>
-                    <div class="col-sm-9">
+                {% if article.picture and article.picture.url %}
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-sm-12">
+                    {% else %}
+                        <figure class="thumb col-sm-3">
+                            <div class="img-wrap" style="background-image: url({{ article.picture.url }});"></div>
+                        </figure>
+                        <div class="col-sm-9">
+                    {% endif %}
                 {% else %}
                     <div class="col-sm-12">
                 {% endif %}
@@ -21,7 +25,7 @@
                     </div>
                     {% endif %}
                     {% if article.sponsored %}
-                        <p><span class="sponsored">SPONSORED</span></p>
+                    <p><span class="sponsored">SPONSORED</span></p>
                     {% endif %}
                 </div>
             </div>

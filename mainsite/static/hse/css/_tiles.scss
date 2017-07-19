@@ -4,7 +4,6 @@
 @import 'vars';
 
 .tile, .tile-blue, .tile-white, .tile-alert {
-  //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
   min-width:            150px;
@@ -101,10 +100,8 @@
 }
 .featured-story {
   padding:              0;
-  //min-height:           360px;
 
   .story-wrap, .story-wrap-feature {
-    //min-height:         360px;
     color:              $col-white;
     background-size:    cover;
     position:           relative;
@@ -176,11 +173,11 @@
 .tiletitles {
   margin:               0 0 20px 0;
   padding:              10px;
+  font-weight:          300;
 }
 .tile-curntIssue {
   min-height:           150px;
 
-  //box-shadow:           0 1px 2px $col-boxshadow;
   margin-bottom:        20px;
   padding:              15px;
 
@@ -231,7 +228,6 @@
 
   .carousel-inner {
     height:             360px;
-    //border:             1px solid hotpink;
 
     .item {
       img {
@@ -241,10 +237,79 @@
       .carousel-caption {
         background:     $img-back-black-50 repeat top left fixed;
         width:          100%;
-        top: 200px;
-        left: 0;
+        top:            200px;
+        left:           0;
         padding-bottom: 30px;
       }
     }
+  }
+}
+.imgLeftCompact {
+  color:            $col-white;
+  margin-bottom:    10px;
+  padding-top:      10px;
+  padding-bottom:   10px;
+  border-bottom:    1px dotted $col-white;
+
+  a {
+    color:          $col-white;
+
+    &:hover {
+      color:        $col-hsegreylt;
+    }
+  }
+
+  .img-wrap {
+    background-size:  cover;
+    height:           75px;
+  }
+  .pub-cat-left {
+    font-weight:      600;
+  }
+  .pub-date-left {
+    color:            $col-hsegreylt;
+    font-weight:      600;
+  }
+  &:first-child {}
+  &:last-child {
+    margin-bottom:    0;
+    border-bottom:    none;
+  }
+  &:hover {
+    background-color: $col-hsegreydrk;
+  }
+}
+.imgLeftBody {
+  color:            $col-black;
+  margin-bottom:    10px;
+  padding-top:      10px;
+  padding-bottom:   10px;
+  border-bottom:    1px dotted $col-hsegreylt;
+
+  a {
+    color:          $col-black;
+
+    &:hover {
+      //color:        $col-hsegreylt;
+    }
+  }
+  .img-wrap {
+    background-size:  cover;
+    height:           75px;
+  }
+  .pub-cat-left {
+    font-weight:      600;
+  }
+  .pub-date-left {
+    color:            $col-hsegreylt;
+    font-weight:      600;
+  }
+  &:first-child {}
+  &:last-child {
+    margin-bottom:    10px;
+    border-bottom:    none;
+  }
+  &:hover {
+    background-color: $col-notsolightgrey;
   }
 }
