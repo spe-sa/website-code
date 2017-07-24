@@ -30,16 +30,16 @@
     {% block content_header %}
 
 
-        <div class="global-nav row"><!--  navbar-fixed-top -->
-            <nav id="global-nav" class="col-sm-10 col-sm-offset-1">
-                <ul>
-                    <li><a href="https://www.spe.org/en/">SPE</a></li>
-                    <li><a href="http://www.spe.org/about/">About</a></li>
-                    <li><a href="http://www.spe.org/contact/">Contact Us</a></li>
-                    <li style="float: right;"><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>
-                </ul>
-            </nav>
-        </div>
+{#        <div class="global-nav row"><!--  navbar-fixed-top -->#}
+{#            <nav id="global-nav" class="col-sm-10 col-sm-offset-1">#}
+{#                <ul>#}
+{#                    <li><a href="https://www.spe.org/en/">SPE</a></li>#}
+{#                    <li><a href="http://www.spe.org/about/">About</a></li>#}
+{#                    <li><a href="http://www.spe.org/contact/">Contact Us</a></li>#}
+{#                    <li style="float: right;"><a href="{{ login.url }}" id="global_login" class="loginLink"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ login.label }}</a></li>#}
+{#                </ul>#}
+{#            </nav>#}
+{#        </div>#}
 
         <div class="row logobar">
             <div class="col-md-2 col-md-offset-1 visible-md visible-lg mainLogo text-left"><img src="{% static 'iptcnet/imgs/iptc_whitetxt.svg' %}" class="mainLogoImg img-responsive"/></div>
@@ -62,7 +62,8 @@
                 <a href="https://twitter.com/iptc_net_org"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
             </div>
             <div class="col-xs-12 col-md-3 text-center footertext">
-                Email us for more information:<br><a href="mailto:iptc@iptcnet.org">iptc@iptcnet.org</a>
+                <p>Email us for more information:<br><a href="mailto:iptc@iptcnet.org">iptc@iptcnet.org</a></p>
+                <p><a href="/en/iptcnet/privacy-policy/">Privacy Policy</a></p>
             </div>
         </div>
         <div class="row copyrightbar">

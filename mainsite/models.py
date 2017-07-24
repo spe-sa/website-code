@@ -49,6 +49,7 @@ TEXT_CLASS = (
     ('tile-transparent', 'Transparent'),
     ('tile-greenbar', 'White Box - Green Bar'),
     ('tile-bluebar', 'White Box - Blue Bar'),
+    ('tile-white-text', 'White Text'),
     (DEFAULT_TEXT_CLASS, 'White Box'),
 )
 

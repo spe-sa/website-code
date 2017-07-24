@@ -222,7 +222,7 @@ a:hover {
 
 /* =================================================================== */
 /* PANELS */
-.tile, .tile-blue, .tile-white, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
+.tile, .tile-blue, .tile-white, .tile-white-text, .tile-alert, .tile-transparent, .tile-poll, .eventsNearYou {
   padding: 0 15px; }
 
 .tiletitlerow h2 {
@@ -233,6 +233,12 @@ a:hover {
 
 .tiletitles {
   text-align: center; }
+
+.tile-white table td {
+  padding: 10px; }
+
+.tile-white-text {
+  color: white; }
 
 /* =================================================================== */
 /* PANELS */

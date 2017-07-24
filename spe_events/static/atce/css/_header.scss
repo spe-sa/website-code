@@ -124,20 +124,21 @@
         padding:          10px 0 0 0;
         font-size:        $h5size;
         font-weight:      $font-regular;
-        color:            $col-atce-green;
+        color:            $col-atce-green !important;
         height:           58px;
 
         @include text-shadow(0, 0, 0, rgba(0,0,0,0));
         &:hover { background: none }
 
       }
-    &:hover { background-color: $col-grey-light; }
+    &:hover { background-color: $col-atce-greenhover; }
     }li:first-child {
     a {
         //padding:          10px 0 0 10px;
     }
   }
 }
+
 .hamburger {
   padding-top:  10px;
   font-size:    40px;
@@ -147,12 +148,22 @@
     color:      $col-white !important;
   }
 }
+
 #collapseHamMenu {
+  .megarow {
+    background-color: white;
+  }
+
+  li {
+    //background-color: $col-atce-green;
+  }
+
   a {
-    color:      $col-white !important;
+    //color:      $col-white !important;
     @include text-shadow(0, 0, 0, rgba(0,0,0,0));
   }
 }
+
 div.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
 }
