@@ -392,14 +392,14 @@
                 <div id="search">
                     <div class="GoogleSiteSearch">
                         <div class="form-wrapper">
-                            <form class="searchForm" action="/sitemap/search.php" method="post" accept-charset="utf-8">
-                                <input type="search" name="q" id="gssTextInput" placeholder="Search">
-                                <input type="submit" value="" id="gssSubmitButton">
-                            </form>
+{#                            <form class="searchForm" action="/sitemap/search.php" method="post" accept-charset="utf-8">#}
+{#                                <input type="search" name="q" id="gssTextInput" placeholder="Search">#}
+{#                                <input type="submit" value="" id="gssSubmitButton">#}
+{#                            </form>#}
 {#                            {{ variables.is_local_ip }}#}
 {#                            {{ variables.cip }}#}
 
-                            {% if variables.is_local_ip == True %}
+{#                            {% if variables.is_local_ip == True %}#}
                             <div class="gse-search" style="width: 350px">
                                 <!-- These styles fix CSE and Bootstrap 3 conflict -->
                                 <style type="text/css">
@@ -435,7 +435,7 @@
                                 </script>
                                 <gcse:search></gcse:search>
                             </div>
-                            {% endif %}
+{#                            {% endif %}#}
 
                             <div class="betaSearch" style="font-weight:bold;font-size:12px">
                                 <a href="https://search.spe.org"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i> Try our Beta Search</a>
