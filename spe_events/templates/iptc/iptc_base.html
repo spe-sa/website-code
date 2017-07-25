@@ -1,7 +1,12 @@
 {% extends "events_html5_bootstrap.html" %}
 {% load cms_tags sekizai_tags menu_tags staticfiles %}
 
-
+    {% block google_scripts %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM- N64VZH"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endblock %}
 
     {% block web_fonts %}
         {% with googlecategory="Events" %}
@@ -57,9 +62,9 @@
                 <img src="{% static 'iptc/imgs/iptc_whitetxt.svg' %}" class="mainLogoImg img-responsive"/>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4 footerSocials text-center">
-                <a href="https://www.facebook.com/iptcnet.org"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com/groups/IPTC-International-Petroleum-Technology-Conference-7403674"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                <a href="https://twitter.com/iptc_net_org"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/iptcnet.org" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/company/iptc---international-petroleum-technology-conference" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/iptc_net_org" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
             </div>
             <div class="col-xs-12 col-md-3 text-center footertext">
                 <p>Email us for more information:<br><a href="mailto:iptc@iptcnet.org">iptc@iptcnet.org</a></p>

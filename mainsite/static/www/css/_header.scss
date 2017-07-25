@@ -177,13 +177,13 @@
   margin:     33px 0 30px 0;
 }
 #search select { display:none; } /* Not displaying select box in header search. Is displayed on SRP. */
-#search .searchForm { width:235px;height:32px;margin:0;border-radius:5px;background-color:$col-lightgrey; }
+#search .searchForm { width:235px;height:32px;margin:0;border-radius:5px;background-color:#e0e4eb; }
 #search .GoogleSiteSearch #gssTextInput { float:left;font-size:14px;border:none;-webkit-appearance:none;background:none;width:197px;margin:7px 0 0 0;height:20px;outline:none; }
 #search .GoogleSiteSearch #gssSubmitButton { float:left;width:19px;height:17px;background-position:0 -812px;border:none;padding:0;margin:7px 0 0 10px; }
-#search ::-webkit-input-placeholder { color: $col-lightgrey; }
-#search :-moz-placeholder { color: $col-lightgrey; }
-#search ::-moz-placeholder { color: $col-lightgrey; }
-#search :-ms-input-placeholder { color: $col-lightgrey; }
+#search ::-webkit-input-placeholder { color: #e0e4eb; }
+#search :-moz-placeholder { color: #e0e4eb; }
+#search ::-moz-placeholder { color: #e0e4eb; }
+#search :-ms-input-placeholder { color: #e0e4eb; }
 
 .navbar-toggle {
     border:none;
