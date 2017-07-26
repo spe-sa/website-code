@@ -623,3 +623,5 @@ td.gsc-search-button { padding: 6px 8px 6px 8px !important; }
 table.gsc-search-box td.gsc-input { padding: 0 !important; }
 
 table.gsc-search-box td.gsc-input { padding: 0 !important; }
+
+.gse-search { width: 300px; }
