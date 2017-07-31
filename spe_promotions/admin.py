@@ -14,6 +14,8 @@ from .models import (
     SimpleMembershipPromotion,
 )
 
+import reversion
+
 
 def blank_timezone(modeladmin, request, queryset):
     for x in queryset.all():
@@ -34,7 +36,8 @@ def custom_titled_filter(title):
     return Wrapper
 
 
-class SimpleEventPromotionAdmin(admin.ModelAdmin):
+class SimpleEventPromotionAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('event', 'start', 'end', 'event_type__name')
     list_filter = (('event_type__name', custom_titled_filter('Event Type')),
                    ('disciplines__name', custom_titled_filter('Disciplines')),
@@ -47,31 +50,36 @@ class SimpleEventPromotionAdmin(admin.ModelAdmin):
     actions = [blank_timezone, ]
 
 
-class NotLoggedInMessageAdmin(admin.ModelAdmin):
+class NotLoggedInMessageAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('event', 'start', 'end')
     fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
-class NonMemberMessageAdmin(admin.ModelAdmin):
+class NonMemberMessageAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('event', 'start', 'end')
     fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
-class MemberNoDisciplineMessageAdmin(admin.ModelAdmin):
+class MemberNoDisciplineMessageAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('event', 'start', 'end')
     fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
-class MemberNoRegionMessageAdmin(admin.ModelAdmin):
+class MemberNoRegionMessageAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('event', 'start', 'end')
     fields = ['event', 'teaser', 'click_url', 'picture', 'start', 'end']
     readonly_fields = ['hits', 'impressions', 'last_impression']
 
 
-class SimpleMembershipPromotionAdmin(admin.ModelAdmin):
+class SimpleMembershipPromotionAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('title', 'start', 'end')
     readonly_fields = ['hits', 'impressions', 'last_impression']
 

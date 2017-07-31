@@ -43,3 +43,13 @@ admin.site.register(Countries)
 admin.site.register(Regions)
 admin.site.register(Web_Region)
 admin.site.register(Web_Region_Country)
+
+
+# Reversion Control for User Accounts
+
+from reversion.helpers import patch_admin
+from cms.models import User
+from cms.models import Group
+
+patch_admin(User)
+patch_admin(Group)

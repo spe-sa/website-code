@@ -112,6 +112,7 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.language.LanguageCookieMiddleware',
     'mainsite.middleware.visitor.CustomerMiddleware',
     'mainsite.middleware.visitor.VisitorMiddleware',
+    'reversion.middleware.RevisionMiddleware',
     'request.middleware.RequestMiddleware',
 )
 
@@ -195,6 +196,8 @@ INSTALLED_APPS = (
     'imagekit',
     'django_countries',
     'spe_api',
+    # 'aldryn_bootstrap3',
+    # 'djangocms_history', # for DjangoCMS 3.4 upgrade (history is now separate)
 )
 
 LANGUAGES = (
@@ -245,7 +248,6 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
-    # Customize this
     ('www_3col.html', 'WWW 3 Column page & Homepage'),
     ('www_subpage.html', 'WWW SubPage'),
     ('ogf_home.html', 'OGF Homepage'),
@@ -361,6 +363,33 @@ CMS_PLACEHOLDER_CONF = {
                     'SingleLinkPlugin',
                     'CalendarEventItemPlugin',
                     'ImageItemPluginInstance',
+                    # 'Bootstrap3RowCMSPlugin',
+                    # 'Bootstrap3ColumnCMSPlugin',
+                    # 'Bootstrap3BlockquoteCMSPlugin',
+                    # 'Bootstrap3CiteCMSPlugin',
+                    # 'Bootstrap3ButtonCMSPlugin',
+                    # 'Bootstrap3CodeCMSPlugin',
+                    # 'Bootstrap3ImageCMSPlugin',
+                    # 'Bootstrap3ResponsiveCMSPlugin',
+                    # 'Bootstrap3IconCMSPlugin',
+                    # 'Bootstrap3LabelCMSPlugin',
+                    # 'Bootstrap3JumbotronCMSPlugin',
+                    # 'Bootstrap3AlertCMSPlugin',
+                    # 'Bootstrap3ListGroupCMSPlugin',
+                    # 'Bootstrap3ListGroupItemCMSPlugin',
+                    # 'Bootstrap3PanelCMSPlugin',
+                    # 'Bootstrap3PanelHeadingCMSPlugin',
+                    # 'Bootstrap3PanelBodyCMSPlugin',
+                    # 'Bootstrap3PanelFooterCMSPlugin',
+                    # 'Bootstrap3WellCMSPlugin',
+                    # 'Bootstrap3TabCMSPlugin',
+                    # 'Bootstrap3TabItemCMSPlugin',
+                    # 'Bootstrap3AccordionCMSPlugin',
+                    # 'Bootstrap3AccordionItemCMSPlugin',
+                    # 'Bootstrap3CarouselCMSPlugin',
+                    # 'Bootstrap3CarouselSlideCMSPlugin',
+                    # 'Bootstrap3SpacerCMSPlugin',
+                    # 'Bootstrap3FileCMSPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
@@ -863,3 +892,6 @@ ADMIN_SHORTCUTS_SETTINGS = {
 CONTROLCENTER_DASHBOARDS = (
     'mainsite.dashboards.MyDashboard',
 )
+
+
+CMS_SEO_FIELDS = True

@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Article, Category, SecondaryCategory, Publication, Issue, Editorial
 from .models import Brief, ArticleDetailPage, BriefDetailPage, TopicsPage, TagsPage, Blog
 
+import reversion
+
 
 # from mainsite.models import Tier1Discipline
 
@@ -16,7 +18,8 @@ class BlogAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('id', 'title')
     list_filter = ('publication__code', 'date',)
     prepopulated_fields = {"slug": ("title",)}
@@ -136,7 +139,8 @@ class ArticleEditorAdmin(ArticleAdmin):
     actions = [make_published]
 
 
-class BriefAdmin(admin.ModelAdmin):
+class BriefAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     search_fields = ('id', 'title')
     list_filter = ('publication__code', 'date',)
     prepopulated_fields = {"slug": ("title",)}
