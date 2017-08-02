@@ -13,3 +13,11 @@ for logger in LOGGING['loggers']:
     if LOGGING['loggers'][logger]['level'] == 'DEBUG':
         LOGGING['loggers'][logger]['level'] = 'ERROR'
 
+
+# Cache Durations
+
+CMS_CACHE_DURATIONS = {
+    'content': 3600,
+    'menus': 3600,
+    'permission': 3600,
+}

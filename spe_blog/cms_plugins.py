@@ -67,7 +67,7 @@ class BlogPluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    cache = False
+    cache = True
     module = _('Article')
     text_enabled = False
     render_template = 'spe_blog/plugins/blog_posts.html'
@@ -139,7 +139,8 @@ class ArticlePluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Article')
     render_template = 'spe_blog/plugins/image_left.html'
     text_enabled = False
@@ -149,6 +150,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
     model = ArticleDetailPlugin
     name = _("Article Details")
     module = _('Article Page Components')
+    cache = False
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -278,7 +280,8 @@ class BriefPluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Article')
     render_template = 'spe_blog/plugins/brief_interest.html'
     text_enabled = False
@@ -288,6 +291,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
     model = BriefDetailPlugin
     name = _("Brief Details")
     module = _('Article Page Components')
+    cache = False
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -374,7 +378,8 @@ class ArticleAndBriefPluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Article')
     render_template = 'spe_blog/plugins/brief_interest.html'
     text_enabled = False
@@ -410,7 +415,8 @@ class TopicsPluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Article')
     render_template = 'spe_blog/plugins/topics_list.html'
     text_enabled = False
@@ -517,6 +523,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
     model = BriefListingPlugin
     name = _("Brief Listing")
     form = BriefsListSelectionForm
+    cache = False
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')
@@ -566,6 +573,7 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
     model = ArticlesListingPlugin
     name = _("Articles Listing")
     form = ArticlesListSelectionForm
+    cache = False
 
     def render(self, context, instance, placeholder):
         request = context.get('request')
@@ -641,7 +649,8 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
 class ShowIssuesByPublicationPlugin(CMSPluginBase):
     model = IssuesByPublicationPlugin
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Publications')
     name = _('Issues by Publication Listing')
     text_enabled = False
@@ -679,7 +688,8 @@ class ShowBreadCrumbPlugin(CMSPluginBase):
 class ShowIssuesByYearPlugin(CMSPluginBase):
     model = IssuesByYearPlugin
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Publications')
     name = _('Issues by Year Listing')
     text_enabled = False
@@ -695,6 +705,7 @@ class ShowTagsDetailPlugin(CMSPluginBase):
 
     model = TagsDetailPlugin
     allow_children = False
+    # cache = False
     cache = False
     module = _('Article Page Components')
     name = _('Tags Details')
@@ -723,7 +734,8 @@ class ShowTagTitlePlugin(CMSPluginBase):
     model = CMSPlugin
     name = _("Tag Title")
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Article')
     text_enabled = False
     render_template = 'spe_blog/plugins/topic_title_plugin.html'
@@ -742,7 +754,8 @@ class ShowTagTitlePlugin(CMSPluginBase):
 class ShowIssueCoverPlugin(CMSPluginBase):
     model = IssueCoverPlugin
     allow_children = False
-    cache = False
+    # cache = False
+    cache = True
     module = _('Publications')
     name = _('Issue Cover Plugin')
     text_enabled = False

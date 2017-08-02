@@ -65,3 +65,11 @@ MIDDLEWARE_CLASSES += (
 #     }
 # }
 
+
+# Cache Durations
+
+CMS_CACHE_DURATIONS = {
+    'content': 1,
+    'menus': 1,
+    'permission': 1,
+}

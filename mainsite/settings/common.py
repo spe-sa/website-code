@@ -98,6 +98,7 @@ TEMPLATES = [
 ]
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -114,6 +116,7 @@ MIDDLEWARE_CLASSES = (
     'mainsite.middleware.visitor.VisitorMiddleware',
     'reversion.middleware.RevisionMiddleware',
     'request.middleware.RequestMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 INSTALLED_APPS = (
@@ -893,5 +896,7 @@ CONTROLCENTER_DASHBOARDS = (
     'mainsite.dashboards.MyDashboard',
 )
 
+
+# Ensure SEO Fileds are Turned on
 
 CMS_SEO_FIELDS = True
