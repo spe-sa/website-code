@@ -9,12 +9,16 @@
         position: relative;
     }
 
-    .art-header{{ instance.id }}{
+    .art-header{{ instance.id }} {
         width: 100%;
         {% if instance.pluginheight %}height: {{ instance.pluginheight }}px;{% else %}height: 600px;{% endif %}
-{#        background: url('{{ item.get_image_url }}') no-repeat fixed {{ item.imageposition }};#}
         background: url('{{ item.get_image_url }}') no-repeat fixed;
-{#        background-size: 120% auto;#}
+        background-size: cover;
+    }
+    .art-header-nopara{{ instance.id }} {
+        width: 100%;
+        {% if instance.pluginheight %}height: {{ instance.pluginheight }}px;{% else %}height: 600px;{% endif %}
+        background: url('{{ item.get_image_url }}') no-repeat center center;
         background-size: cover;
     }
 
@@ -26,7 +30,6 @@
         color: white;
         text-align: center;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjRDRjNENDRFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjRDRjNENDVFMTczMTFFNUJFNkU5MUM4MjdCMDRGOUMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMUM1RTY3RkUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMUM1RTY4MEUxNzMxMUU1QkU2RTkxQzgyN0IwNEY5QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Psa28LUAAAAbSURBVHjaYmRgYNjMQARgYiASjCqkjkKAAAMALY8Ax0pN8ckAAAAASUVORK5CYII=);
-{#        border: 1px solid hotpink;#}
     }
 
     .art-title{{ instance.id }}{
@@ -68,41 +71,30 @@
     });
 </script>
 
-<div class="wrap{{ instance.id }}">
+<div class="hidden-xs hidden-sm wrap{{ instance.id }}">
 
-<header class="art-header{{ instance.id }}">
-    {% if item.showtitle %}
-        <div class="art-inner{{ instance.id }}">
-            <h1 class="art-title{{ instance.id }}">{{ item.title }}</h1>
-        </div>
-    {% endif %}
-</header>
+    <header class="art-header{{ instance.id }}">
+        {% if item.showtitle %}
+            <div class="art-inner{{ instance.id }}">
+                <h1 class="art-title{{ instance.id }}">{{ item.title }}</h1>
+            </div>
+        {% endif %}
+    </header>
 
 </div>
 
-<!--
-<hr>
+<div class="visible-xs visible-sm wrap{{ instance.id }}">
 
-    <p>
-        {{ instance.id }}<br>
-        {{ instance.pluginheight }}px<br>
-        {{ items.count }}<br>
-        {{ forloop.counter }}<br>
-        {{ item.order }}<br>
-        {{ item.item_list }}<br>
-        Get_Image: {{ item.get_image_url }}<br>
-        Image.URL: {{ item.image.url }}<br>
-        {{ item.imageposition }}<br>
-        {{ item.title }}<br>
-        {{ item.text }}<br>
-        {{ item.get_absolute_url }}<br>
-        {{ item.isvisible }}<br>
-        {{ item.issponsor }}<br>
-        {{ item.sponsorlevele }}<br>
-        {{ item.sponsoredevents }}<br>
-        {{ item.new_window }}<br>
-    </p>
--->
+    <div class="art-header-nopara{{ instance.id }}">
+        {% if item.showtitle %}
+            <div class="art-inner{{ instance.id }}">
+                <h1 class="art-title{{ instance.id }}">{{ item.title }}</h1>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
 {% endfor %}
 
 

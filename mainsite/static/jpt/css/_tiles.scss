@@ -435,7 +435,6 @@
     background-color:   $col-blue;
     color:              $col-white;
   }
-
 }
 .tile-poi {
   padding:              15px;
@@ -443,6 +442,7 @@
 
   .poipic {
     padding:            0;
+    height:             120px;
   }
   .poiblurb {
     color:              $col-black;

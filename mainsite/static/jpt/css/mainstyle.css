@@ -658,7 +658,7 @@ table th, table td { padding: 5px; }
 
 .tile-poi { padding: 15px; background-color: #f2efea; }
 
-.tile-poi .poipic { padding: 0; }
+.tile-poi .poipic { padding: 0; height: 120px; }
 
 .tile-poi .poiblurb { color: #2a2a2a; }
 
