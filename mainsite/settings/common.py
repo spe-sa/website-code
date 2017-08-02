@@ -901,10 +901,11 @@ CONTROLCENTER_DASHBOARDS = (
 
 CMS_SEO_FIELDS = True
 
+# Django Base CACHE setup
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'mainsite',
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'mainsite',
+#     }
+# }
