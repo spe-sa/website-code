@@ -10,7 +10,7 @@ class SpeLinkPluginPublisher(CMSPluginBase):
     module = _("Links")
     name = _("Links Plugin")  # name of the plugin in the interface
     render_template = "spe_links/plugins/links_plugin.html"
-    cache = False
+    cache = True
 
     def render(self, context, instance, placeholder):
         if instance.category and instance.category.id:
