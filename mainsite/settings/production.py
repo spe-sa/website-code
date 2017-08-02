@@ -19,5 +19,5 @@ for logger in LOGGING['loggers']:
 CMS_CACHE_DURATIONS = {
     'content': 3600,
     'menus': 3600,
-    'permission': 3600,
+    'permissions': 3600,
 }

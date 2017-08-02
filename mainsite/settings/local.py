@@ -71,5 +71,5 @@ MIDDLEWARE_CLASSES += (
 CMS_CACHE_DURATIONS = {
     'content': 1,
     'menus': 1,
-    'permission': 1,
+    'permissions': 1,
 }
