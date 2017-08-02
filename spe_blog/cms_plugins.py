@@ -150,7 +150,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
     model = ArticleDetailPlugin
     name = _("Article Details")
     module = _('Article Page Components')
-    cache = False
+    cache = True
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -291,7 +291,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
     model = BriefDetailPlugin
     name = _("Brief Details")
     module = _('Article Page Components')
-    cache = False
+    cache = True
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -523,7 +523,6 @@ class ShowBriefListingPlugin(BriefPluginBase):
     model = BriefListingPlugin
     name = _("Brief Listing")
     form = BriefsListSelectionForm
-    cache = False
 
     def render(self, context, instance, placeholder):
         # request = context.get('request')

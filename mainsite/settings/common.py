@@ -900,3 +900,11 @@ CONTROLCENTER_DASHBOARDS = (
 # Ensure SEO Fileds are Turned on
 
 CMS_SEO_FIELDS = True
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'mainsite',
+    }
+}
