@@ -3,23 +3,20 @@
 # import json
 import re
 import urlparse
+from datetime import datetime
+from datetime import timedelta
 from itertools import chain
 from operator import attrgetter
 
-# from netaddr import IPAddress
-
 from cms.models import CMSPlugin
-from django.shortcuts import get_object_or_404
-from django.http import Http404
-from django.utils import timezone
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.utils.translation import ugettext_lazy as _
 from django.db import connection
 from django.db.models import Q
-from datetime import datetime
-from datetime import timedelta
-
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 # from cms.models.pluginmodel import CMSPlugin
 # from django.contrib.gis.geoip import GeoIP
 from taggit.models import Tag
@@ -27,7 +24,16 @@ from taggit.models import Tag
 from mainsite.common import (
     get_context_variable,
     get_visitor, get_ip)
-
+from .forms import (
+    ArticleSelectionForm,
+    BriefSelectionForm,
+    ArticleAndBriefSelectionForm,
+    EditorialSelectionForm,
+    TopicsListSelectionForm,
+    BriefsListSelectionForm,
+    ArticlesListSelectionForm,
+    BlogSelectionForm
+)
 from .models import (
     Article, ArticlesPlugin, ArticlesListingPlugin, ArticleDetailPlugin, ArticleViews,
     Brief, BriefPlugin, BriefListingPlugin, BriefDetailPlugin, BriefViews, TagsDetailPlugin,
@@ -41,19 +47,11 @@ from .models import (
     BlogPluginModel, BlogListingPluginModel, Blog
 )
 
-from .forms import (
-    ArticleSelectionForm,
-    BriefSelectionForm,
-    ArticleAndBriefSelectionForm,
-    EditorialSelectionForm,
-    TopicsListSelectionForm,
-    BriefsListSelectionForm,
-    ArticlesListSelectionForm,
-    BlogSelectionForm
-)
+# from netaddr import IPAddress
 
-
-exclude_agents = ['bot', 'spider', 'crawl', 'search', 'python', 'miketest', '8legs', 'ltx71', 'icevikatam', 'goldfire', 'fetch', 'archive', 'metauri', 'go-http-client', 'jetty', 'java', 'php', 'drupal', 'coldfusion', 'idg/uk', 'default', 'downnotifier', 'jakarta', 'grammarly', 'check', 'scoutjet' ]
+exclude_agents = ['bot', 'spider', 'crawl', 'search', 'python', 'miketest', '8legs', 'ltx71', 'icevikatam', 'goldfire',
+                  'fetch', 'archive', 'metauri', 'go-http-client', 'jetty', 'java', 'php', 'drupal', 'coldfusion',
+                  'idg/uk', 'default', 'downnotifier', 'jakarta', 'grammarly', 'check', 'scoutjet']
 
 
 def getPublicationCode(pub):
@@ -121,7 +119,8 @@ class BlogListingPlugin(BlogPluginBase):
                 if ex.message:
                     error = ex.message
         # queryset = queryset.filter(Q(tags__name__icontains='www'))
-        queryset = queryset.order_by('-publication_date')[instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+        queryset = queryset.order_by('-publication_date')[
+                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'posts': queryset})
         context.update({'laf': instance.look_and_feel})
         if (error):
@@ -150,7 +149,7 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
     model = ArticleDetailPlugin
     name = _("Article Details")
     module = _('Article Page Components')
-    cache = True
+    cache = False
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -291,7 +290,7 @@ class ShowBriefDetailPlugin(BriefPluginBase):
     model = BriefDetailPlugin
     name = _("Brief Details")
     module = _('Article Page Components')
-    cache = True
+    cache = False
 
     def render(self, context, instance, placeholder):
         now = timezone.now()
@@ -384,14 +383,17 @@ class ArticleAndBriefPluginBase(CMSPluginBase):
     render_template = 'spe_blog/plugins/brief_interest.html'
     text_enabled = False
 
+
 class ShowArticleAndBriefPlugin(ArticleAndBriefPluginBase):
     model = ArticleAndBriefMixPlugin
     name = _("Selected Mixed Articles and Briefs ")
     form = ArticleAndBriefSelectionForm
 
     def render(self, context, instance, placeholder):
-        queryset1 = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(instance.order_by)
-        queryset2 = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(instance.order_by)
+        queryset1 = Article.objects.filter(published=True).filter(id__in=instance.articles.all()).order_by(
+            instance.order_by)
+        queryset2 = Brief.objects.filter(published=True).filter(id__in=instance.briefs.all()).order_by(
+            instance.order_by)
         result_list = sorted(
             chain(queryset1, queryset2),
             key=attrgetter(instance.order_by[1:]),
@@ -470,17 +472,20 @@ class ShowTopicsListingPlugin(TopicsPluginBase):
             if q and q[0][0] == 'topic':
                 pk = int(q[0][1])
                 if pk:
-                    art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
+                    art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(
+                        publication=instance.publication).filter(
                         topics__pk=pk).order_by(instance.order_by)[
-                            instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+                          instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
                 else:
                     raise Http404("Topic not found")
             else:
-                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
+                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(
+                    publication=instance.publication).filter(
                     topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
                       instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         else:
-            art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
+            art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(
+                publication=instance.publication).filter(
                 topics__pk__in=instance.topics.all()).order_by(instance.order_by).distinct()[
                   instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'articles': art})
@@ -550,7 +555,7 @@ class ShowBriefListingPlugin(BriefPluginBase):
             qs = qs.filter(print_issue=instance.print_issue)
 
         qs = qs.order_by(instance.order_by)[
-                 instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
+             instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         # NOTE: add other querysets if the publication and discipline is set; need 1 for each combination
         context.update({'articles': qs})
         context.update({'backcol': instance.backcol})
@@ -578,7 +583,6 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         request = context.get('request')
         visitor = get_visitor(request)
 
-
         # NOTE: change this to be set in the context globally and stored server side
         ducode = None
         dcode = None
@@ -600,10 +604,10 @@ class ShowArticlesListingPlugin(ArticlePluginBase):
         # else:
         #     qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff)
         if instance.order_by == "-article_hits":
-            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(), article_last_viewed__gte=cutoff_1, date__gte=cutoff_2)
+            qs = Article.objects.filter(published=True).filter(date__lte=datetime.now(),
+                                                               article_last_viewed__gte=cutoff_1, date__gte=cutoff_2)
         else:
             qs = Article.objects.filter(published=True).filter(date__lte=datetime.now())
-
 
         if instance.publication:
             qs = qs.filter(publication=instance.publication)
@@ -658,7 +662,8 @@ class ShowIssuesByPublicationPlugin(CMSPluginBase):
     # render_plugin = False
 
     def render(self, context, instance, placeholder):
-        queryset = Issue.objects.filter(publication=instance.publication).filter(active=True).filter(date__lte=datetime.now()).order_by('-date')[
+        queryset = Issue.objects.filter(publication=instance.publication).filter(active=True).filter(
+            date__lte=datetime.now()).order_by('-date')[
                    instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
         context.update({'publication': instance.publication})
         context.update({'issues': queryset})
@@ -701,7 +706,6 @@ class ShowIssuesByYearPlugin(CMSPluginBase):
 
 
 class ShowTagsDetailPlugin(CMSPluginBase):
-
     model = TagsDetailPlugin
     allow_children = False
     # cache = False
@@ -718,7 +722,8 @@ class ShowTagsDetailPlugin(CMSPluginBase):
         if q and q[0][0] == 'tag':
             pk = int(q[0][1])
             if pk:
-                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(publication=instance.publication).filter(
+                art = Article.objects.all().filter(published=True).filter(date__lte=datetime.now()).filter(
+                    publication=instance.publication).filter(
                     tags__pk=pk).order_by(instance.order_by)[
                       instance.starting_with - 1:instance.starting_with + instance.cnt - 1]
             else:
@@ -770,6 +775,7 @@ class ShowIssueCoverPlugin(CMSPluginBase):
         context.update({'show_subscribe_url': instance.publication.subscription_url})
         self.render_template = instance.template
         return context
+
 
 plugin_pool.register_plugin(BlogPlugin)
 plugin_pool.register_plugin(BlogListingPlugin)
