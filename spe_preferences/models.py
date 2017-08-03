@@ -213,5 +213,5 @@ class ContactPreference(models.Model):
     submitted_via = models.URLField(max_length=180, verbose_name="Submission Referral URL", blank=True)
 
     def __str__(self):
-        return "[uvi=" + self.user_vid_cookie + " uea=" + self.user_email_given + " ulc=" + self.user_loc_given + " uci=" + self.user_cid + "] cvp=" + str(self.promo_contact_via_pmail) + " cve=" + str(self.promo_contact_via_email) + " ts=" + str(self.when_submitted)
+        return "[uvi=" + self.user_vid_cookie + " uea=" + self.user_email_given + " ulc=" + self.user_loc_given + " uci=" + self.user_cid_given + "]  cvp=" + str(self.promo_contact_via_pmail) + " cve=" + str(self.promo_contact_via_email) + " ts=" + str(self.when_submitted)
 
