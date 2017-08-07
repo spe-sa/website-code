@@ -40,20 +40,20 @@
 
         <div class="row searchbar collapse" id="collapseSearch">
             <div class="col-sm-12 text-right">
-                <form class="form-inline">
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </form>
+{#                <form class="form-inline">#}
+{#                    <div class="input-group">#}
+{#                        <input type="text" class="form-control">#}
+{#                        <span class="input-group-btn">#}
+{#                            <button class="btn btn-default" type="button">Go!</button>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                </form>#}
 
 {#                            {{ variables.is_local_ip }}#}
 {#                            {{ variables.cip }}#}
 
                             {% if variables.is_local_ip == True %}
-                            <div class="gse-search" style="width: 350px">
+                            <div class="gse-search" style="width: 350px;float:right;">
                                 <!-- These styles fix CSE and Bootstrap 3 conflict -->
                                 <style type="text/css">
                                     .gsc-adBlock {

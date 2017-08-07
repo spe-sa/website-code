@@ -49,24 +49,24 @@
         </div>
 
         <div class="row searchbar collapse dontPrintMe" id="collapseSearch">
-            <div class="col-sm-12 text-right">
-                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">
-                    <div class="input-group">
-                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>
-                        <input type="hidden" id="gssscope" name="scope" value="twa"/>
-                        <!-- sas comment -->
-                        <span class="input-group-btn">
+            <div class="col-sm-10 col-sm-offset-1 text-right">
+{#                <form class="form-inline" action="/sitemap/search.php" method="post" accept-charset="utf-8">#}
+{#                    <div class="input-group">#}
+{#                        <input class="form-control" type="search" name="q" id="gssTextInput" placeholder="Search"/>#}
+{#                        <input type="hidden" id="gssscope" name="scope" value="twa"/>#}
+{#                        <!-- sas comment -->#}
+{#                        <span class="input-group-btn">#}
 {#                            <button class="btn btn-default" type="button">Go!</button>#}
-                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>
-                        </span>
-                    </div>
-                </form>
+{#                            <input class="btn btn-default" type="submit" name="submit" value="Go!" id="gssSubmitButton"/>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                </form>#}
 
 {#                            {{ variables.is_local_ip }}#}
 {#                            {{ variables.cip }}#}
 
                             {% if variables.is_local_ip == True %}
-                            <div class="gse-search" style="width: 350px">
+                            <div class="gse-search" style="width: 350px;float:right;">
                                 <!-- These styles fix CSE and Bootstrap 3 conflict -->
                                 <style type="text/css">
                                     .gsc-adBlock {
