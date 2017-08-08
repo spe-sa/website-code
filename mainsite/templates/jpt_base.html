@@ -1,6 +1,13 @@
 {% extends "generic_base.html" %}
 {% load cms_tags sekizai_tags %}
-{% load menu_tags %}
+{% load menu_tags staticfiles %}
+
+{% block favicon %}
+{#    <link rel="icon" href="{% static 'jpt/img/favicon.ico' %}" type="image/x-icon">#}
+    <link rel="shortcut icon" href="{% static 'jpt/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'jpt/img/favicon.ico' %}" type="image/x-icon">
+{% endblock favicon %}
+{#<link rel="icon" href="{% static 'jpt/img/favicon.ico' %}" type="image/x-icon">#}
 
 {% block web_fonts %}
 

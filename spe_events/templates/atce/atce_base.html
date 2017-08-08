@@ -1,7 +1,10 @@
 {% extends "events_html5_bootstrap.html" %}
 {% load cms_tags sekizai_tags menu_tags staticfiles %}
 
-
+{% block favicon %}
+    <link rel="shortcut icon" href="{% static 'atce/imgs/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'atce/imgs/favicon.ico' %}" type="image/x-icon">
+{% endblock favicon %}
 
     {% block web_fonts %}
 

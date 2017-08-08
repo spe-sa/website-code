@@ -1,5 +1,10 @@
 {% extends "generic_base.html" %}
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags staticfiles %}
+
+{% block favicon %}
+    <link rel="shortcut icon" href="{% static 'twa/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'twa/img/favicon.ico' %}" type="image/x-icon">
+{% endblock favicon %}
 
 {% block web_fonts %}
 
