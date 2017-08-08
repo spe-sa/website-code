@@ -263,6 +263,8 @@ class Publication(models.Model):
                                    on_delete=models.SET_NULL)
     tags_url = models.ForeignKey(TagsPage, verbose_name="URL for tags page", blank=True, null=True,
                                  on_delete=models.SET_NULL)
+    part_of_professional_membership = models.BooleanField(verbose_name='Part of professional membership', default=False)
+    part_of_student_membership = models.BooleanField(verbose_name='Part of student membership', default=False)
     active = models.BooleanField(default=True)
 
     def __unicode__(self):

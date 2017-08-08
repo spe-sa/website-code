@@ -221,17 +221,21 @@ class ShowArticleDetailPlugin(ArticlePluginBase):
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
             visitor = get_visitor(request)
-            if visitor and visitor.is_professional_member():
+            if visitor and visitor.is_professional_member() and instance.article.publication.part_of_professional_membership:
                 show_paybox = False
             if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
+                show_paybox = False
+            if visitor and visitor.is_student_member() and instance.article.publication.part_of_student_membership:
                 show_paybox = False
         is_readable = art.is_readable()
         if not is_readable:
             if visitor is None:
                 visitor = get_visitor(request)
-            if visitor and visitor.is_professional_member():
+            if visitor and visitor.is_professional_member() and instance.article.publication.part_of_professional_membership:
                 is_readable = True
             if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
+                is_readable = True
+            if visitor and visitor.is_student_member() and instance.article.publication.part_of_student_membership:
                 is_readable = True
         is_loggedout = True
         if visitor:
@@ -333,17 +337,21 @@ class ShowBriefDetailPlugin(BriefPluginBase):
         if show_paybox:
             # check if this person has a membership or subscription to the publication and set to false instead
             visitor = get_visitor(request)
-            if visitor and visitor.is_professional_member():
+            if visitor and visitor.is_professional_member() and instance.article.publication.part_of_professional_membership:
                 show_paybox = False
             if visitor and visitor.has_subscription(getPublicationCode(instance.brief.publication)):
+                show_paybox = False
+            if visitor and visitor.is_student_member() and instance.article.publication.part_of_student_membership:
                 show_paybox = False
         is_readable = art.is_readable()
         if not is_readable:
             if visitor is None:
                 visitor = get_visitor(request)
-            if visitor and visitor.is_professional_member():
+            if visitor and visitor.is_professional_member() and instance.article.publication.part_of_professional_membership:
                 is_readable = True
             if visitor and visitor.has_subscription(getPublicationCode(instance.article.publication)):
+                is_readable = True
+            if visitor and visitor.is_student_member() and instance.article.publication.part_of_student_membership:
                 is_readable = True
         context.update({'is_readable': is_readable})
         context.update({'show_paybox': show_paybox})
