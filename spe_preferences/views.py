@@ -146,13 +146,13 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
             # cp_form.user_loc_cookie=user_loc_cookie
             # cp_form.when_submitted = timezone.now()
 
+# TODO re-factor this -- it works but screams that there must be a cleaner way -- maybe a simple flag to evaluate '0' as false, or at least do one chunk to loop over the fields instead of having a copied chunk for each one
             if request.POST.get('promo_contact_via_pmail', None) == '1':
                 cvp = 1
             elif request.POST.get('promo_contact_via_pmail', None) == '0':
                 cvp = 0
             else:
                 cvp = None
-            f.promo_contact_via_pmail = cvp
 
             if request.POST.get('promo_contact_via_email', None) == '1':
                 cve = 1
@@ -160,7 +160,42 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                 cve = 0
             else:
                 cve = None
-            f.promo_contact_via_email = cve
+
+            if request.POST.get('email_sub_jpt', None) == '1':
+                jpt = 1
+            elif request.POST.get('email_sub_jpt', None) == '0':
+                jpt = 0
+            else:
+                jpt = None
+
+            if request.POST.get('email_sub_ogf', None) == '1':
+                ogf = 1
+            elif request.POST.get('email_sub_ogf', None) == '0':
+                ogf = 0
+            else:
+                ogf = None
+
+            if request.POST.get('email_sub_hse', None) == '1':
+                hse = 1
+            elif request.POST.get('email_sub_hse', None) == '0':
+                hse = 0
+            else:
+                hse = None
+
+            if request.POST.get('email_sub_twa', None) == '1':
+                twa = 1
+            elif request.POST.get('email_sub_twa', None) == '0':
+                twa = 0
+            else:
+                twa = None
+
+            if request.POST.get('email_sub_rdn', None) == '1':
+                rdn = 1
+            elif request.POST.get('email_sub_rdn', None) == '0':
+                rdn = 0
+            else:
+                rdn = None
+
 
             #            esubs = request.POST.get('email_subscription_choices', None)
 #            m = ContactPreference()
@@ -187,13 +222,13 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
             gc = urllib.unquote_plus(str(request.COOKIES.get('first_name')))
             fc = urllib.unquote_plus(str(request.COOKIES.get('last_name')))
             m = ContactPreference(
-                promo_contact_via_pmail=f.promo_contact_via_pmail,
-                promo_contact_via_email=f.promo_contact_via_email,
-                email_sub_jpt=f.email_sub_jpt,
-                email_sub_ogf=f.email_sub_ogf,
-                email_sub_hse=f.email_sub_hse,
-                email_sub_twa=f.email_sub_twa,
-                email_sub_rdn=f.email_sub_rdn,
+                promo_contact_via_pmail=cvp,
+                promo_contact_via_email=cve,
+                email_sub_jpt=jpt,
+                email_sub_ogf=ogf,
+                email_sub_hse=hse,
+                email_sub_twa=twa,
+                email_sub_rdn=rdn,
                 user_email_given=f.user_email_given,
                 user_cid_given=f.user_cid_given,
                 user_loc_given=f.user_loc_given,

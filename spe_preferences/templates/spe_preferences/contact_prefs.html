@@ -250,7 +250,7 @@ TABLE, DL {
     <div class="well">
 
         <div id="form_panel">
-        <h2 class="findTitle">Tell Us How You'd Like Us to Communicate With You</h2>
+            <h2 class="findTitle">Tell Us How You'd Like Us to Communicate <span onclick="qp1()">With</span> <span onclick="qp0()">You</span></h2>
         <p>We'd like to ensure that SPE always communicates with you according to your preferences. For that, we need your input.</p>
 
             <form id="contact_form" method="POST" class="contact-form form-horizontal">{% csrf_token %}
@@ -979,8 +979,16 @@ function xlog(text){
     else return true;
 }
 
+function qp0() {
+    $('#id_promo_contact_via_pmail_n, #id_promo_contact_via_email_n, #id_email_sub_jpt_n, #id_email_sub_ogf_n, #id_email_sub_hse_n, #id_email_sub_twa_n, #id_email_sub_rdn_n').click();
+}
+
+function qp1() {
+    $('#id_promo_contact_via_pmail_y, #id_promo_contact_via_email_y, #id_email_sub_jpt_y, #id_email_sub_ogf_y, #id_email_sub_hse_y, #id_email_sub_twa_y, #id_email_sub_rdn_y').click();
+}
+
 function gather_form_data() {
-	var inputs = $("INPUT[type=radio]:checked, INPUT[type=text], SELECT OPTION:selected");
+	var inputs = $("INPUT[type=radio]:checked, INPUT[type=text], SELECT OPTION:selected", '#contact_form');
 	var array_of_objects = $.map(inputs, function(el, i)
 	{
 		var k = false, v = false;
@@ -990,7 +998,10 @@ function gather_form_data() {
 		if ( k && v.length > 0 ) o[k] = v;
 		return o;
 	});
-	return JSON.stringify( array_of_objects ).replace(/,\{\}/g,'').replace(/\[\{\}/g,'[').replace(/,\{\}/g,'');
+	var output = JSON.stringify( array_of_objects ).replace(/,\{\}/g,'').replace(/\[\{\}/g,'[').replace(/,\{\}/g,'').replace(/:"(-?[0-9.]+)"/g,':$1');
+	return output;
+
+//	return JSON.stringify( array_of_objects ).replace(/,\{\}/g,'').replace(/\[\{\}/g,'[').replace(/,\{\}/g,'');
 //	return '{ "contact_prefs": ' + JSON.stringify( array_of_objects ).replace(/,\{\}/g,'').replace(/\[\{\}/g,'[').replace(/,\{\}/g,'') + ' }';
 }
 
