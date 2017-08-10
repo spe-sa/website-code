@@ -425,8 +425,8 @@ class TopicsPluginBase(CMSPluginBase):
         abstract = True
 
     allow_children = False
-    # cache = False
-    cache = True
+    cache = False
+    # cache = True
     module = _('Article')
     render_template = 'spe_blog/plugins/topics_list.html'
     text_enabled = False
