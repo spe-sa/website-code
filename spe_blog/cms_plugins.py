@@ -436,6 +436,7 @@ class ShowTopicsListPlugin(TopicsPluginBase):
     model = TopicsListPlugin
     name = _("Topics Listing")
     form = TopicsListSelectionForm
+    cache = True
 
     def render(self, context, instance, placeholder):
         cursor = connection.cursor()
