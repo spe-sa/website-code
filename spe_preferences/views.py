@@ -240,6 +240,8 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                 user_loc_cookie=lc,
                 user_name1_cookie=gc,
                 user_name2_cookie=fc,
+                user_viewport_x=f.user_viewport_x,
+                user_viewport_y=f.user_viewport_y,
                 when_submitted=timezone.now()
             )
             m.save()
