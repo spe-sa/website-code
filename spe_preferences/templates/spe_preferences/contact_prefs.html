@@ -238,6 +238,11 @@ TABLE, DL {
         background: #ded;
         color: #070;
     }
+    DIV.well {
+        width: 81%;
+        margin: 0 auto;
+    }
+
 </style>
     {%  endaddtoblock %}
 
@@ -732,10 +737,10 @@ TABLE, DL {
 
     {% if login.authenticated %}
 
-<input id="id_user_name1" name="user_name1_given" type="hidden" >
-<input id="id_user_name2" name="user_name2_given" type="hidden" >
-<input id="id_user_cid_given" name="user_cid_given" type="hidden" >
-<input id="id_user_loc_given" name="user_loc_given" type="hidden" >
+        <input id="id_user_name1" name="user_name1_given" type="hidden" >
+        <input id="id_user_name2" name="user_name2_given" type="hidden" >
+        <input id="id_user_cid_given" name="user_cid_given" type="hidden" >
+        <input id="id_user_loc_given" name="user_loc_given" type="hidden" >
 
     {% else %}
 
@@ -751,7 +756,7 @@ TABLE, DL {
 {#<p><label for="id_user_loc_geo_ip">User Location/Country (geo-IP):</label> <input id="id_user_loc_geo_ip" maxlength="90" name="user_loc_geo_ip" type="text"></p>#}
 {#<p><label for="id_user_loc_geo_ua">User Location/Country (geo-UA):</label> <input id="id_user_loc_geo_ua" maxlength="90" name="user_loc_geo_ua" type="text"></p>#}
 <dt><label for="id_user_loc_given">Location/Country:</label></dt> <dd><input id="id_user_loc_given" maxlength="90" name="user_loc_given" type="text" ></dd>
-{#<p><label for="id_user_mid_given">Marketo ID# (given):</label> <input id="id_user_mid_given" maxlength="18" name="user_mid_given" type="text"></p>#}
+{#<dt><label for="id_user_mid_given">Marketo ID#:</label></dt> <dd><input id="id_user_mid_given" maxlength="18" name="user_mid_given" type="text"></dd>#}
 {#<p><label for="id_user_agent_hash">User Agent (hash):</label> <input id="id_user_agent_hash" maxlength="40" name="user_agent_hash" type="text"></p>#}
 {#<p><label for="id_user_agent_text">User Agent (full):</label> <input id="id_user_agent_text" maxlength="40" name="user_agent_text" type="text"></p>#}
 {#<p><label for="id_user_viewport_x">Viewport Width:</label> <input id="id_user_viewport_x" name="user_viewport_x" type="number"></p>#}
@@ -763,8 +768,9 @@ TABLE, DL {
 
 <button id="save_button" type="submit" class="save btn btn-default"> Save Contact Preferences </button>
 
-            <input type="hidden" id="user_viewport_x" name="user_viewport_x" />
-            <input type="hidden" id="user_viewport_y" name="user_viewport_y" />
+            <input id="id_user_mid_given" name="user_mid_given" type="hidden" >
+            <input id="user_viewport_x" name="user_viewport_x" type="hidden" />
+            <input id="user_viewport_y" name="user_viewport_y" type="hidden" />
             </form>
 
             {% if users_found.count > 1 %}

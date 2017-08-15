@@ -234,6 +234,7 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
                 user_loc_given=f.user_loc_given,
                 user_name1_given=f.user_name1_given,
                 user_name2_given=f.user_name2_given,
+                user_mid_given=f.user_mid_given,
                 user_vid_cookie=vc,
                 user_email_cookie=ec,
                 user_cid_cookie=cc,
@@ -301,7 +302,13 @@ def contact_prefs(request):  #, user_vid=False, user_email=False, user_cid=False
             )
 
     elif request.method == "GET":
-        f = ContactPrefsForm(request.GET)
+        precid = request.GET.get('cusid', '(no Marketo cusID/Personify #)')
+        premid = request.GET.get('mktid', '(no Marketo mktID #)')
+        preloc = request.GET.get('country', '(no Marketo locID/country code)')
+        prepop = {'user_cid_given':precid, 'user_mid_given':premid, 'user_loc_given':preloc}
+
+        f = ContactPrefsForm(request.GET, initial=prepop)
+#        f = ContactPrefsForm(request.GET, user_loc_given=preloc)
 #        f.user_loc_given = Countries()
 
         # cp_form.user_vid_given = user_vid_cookie
