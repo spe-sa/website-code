@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}This is my new project home page{% endblock title %} {% render_block "title2" %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
+    <meta name="description" content="{% page_attribute meta_description %}"/>
 {% block favicon %}
 	<link rel="shortcut icon" href="https://www.spe.org/static/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="https://www.spe.org/static/favicon.ico" type="image/x-icon">
