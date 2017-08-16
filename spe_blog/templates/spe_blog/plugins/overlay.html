@@ -24,7 +24,7 @@
 <script type="text/javascript" charset="utf-8">
     $( document ).ready(function() {
 
-        if (thisPub == 'hsenow' || thisPub == 'ogfmag') {
+        if (window.thisPub !== undefined && (thisPub === 'hsenow' || thisPub === 'ogfmag')) {
             var colHeight = $('.editorialcol').height();
             $('.story-wrap-feature').height(colHeight);
 
