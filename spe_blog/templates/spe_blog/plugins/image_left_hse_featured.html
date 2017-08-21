@@ -17,7 +17,8 @@
                 {% else %}
                     <div class="col-sm-12">
                 {% endif %}
-                    <p><span class="pub-cat-left">{{ article.secondary_category }}</span> <span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>
+{#                    <p><span class="pub-cat-left">{{ article.secondary_category }}</span> <span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>#}
+                    <p><span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>
                     <span class="spantitle">{{ article.title }}</span>
                     {% if article.onlineonly %}
                     <div class="col-sm-12 onlineonly">
