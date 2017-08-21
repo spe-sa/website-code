@@ -1,5 +1,7 @@
 {% load cms_tags sekizai_tags tz removepub tostring %}
 
+
+
 <!-- ARTICLE DETAIL BEGIN -->
 {% addtoblock "title2" %}{{ article.title }}{% endaddtoblock %}
 
@@ -32,6 +34,16 @@
             {% endif %}
         {% endif %}
         {% if article.publication.code != 'JPT' %}
+            {% if article.publication.code == 'HSE' %}
+                <style>
+                    .tiletitlehr {
+                        display: block !important;
+                    }
+                .tiletitles {
+                    padding-left: 0;
+                }
+                </style>
+            {% endif %}
             <hr class="tiletitlehr">
         {% endif %}
         <h2 class="tiletitles">{{ article.title }}</h2>
@@ -42,6 +54,7 @@
     </div>
     {% endif %}
     <div class="row">
+
         <div class="col-sm-12 tiletitlehr"></div>
         <div class="col-xs-7 col-sm-7 col-md-8 articleAuthorBox">
             {% if article.author %}{{ article.author }} | {% endif %}<span class="articleDate">{{ article.date|date:"d F Y" }}</span>
