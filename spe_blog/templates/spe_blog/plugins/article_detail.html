@@ -48,10 +48,12 @@
         {% endif %}
         <h2 class="tiletitles">{{ article.title }}</h2>
     </div>
-    {% if article.onlineonly %}
-    <div class="col-sm-12 onlineonly text-right">
-        <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
-    </div>
+    {% if article.publication.code != 'HSE' %}
+        {% if article.onlineonly %}
+            <div class="col-sm-12 onlineonly text-right">
+                <h4><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</h4>
+            </div>
+        {% endif %}
     {% endif %}
     <div class="row">
 
@@ -164,6 +166,8 @@
     </div>
 {% endif %}
 </div>
+
+{% if show_related_articles %}
 <div class="dontPrintMe">
     {# glenda wants the 3 most related topics articles #}
     {% if topic_articles %}
@@ -172,34 +176,68 @@
             <h2 class="tiletitles">Related Articles</h2>
         </div>
         {% for article in topic_articles %}
-            <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}"
-                        style="min-height: 150px">
-            <a href="{{ article.get_absolute_url }}">
-                <div class="story-wrap row">
-                    {% if article.picture and article.picture.url %}
-                        <figure class="thumb col-sm-6">
-        {#                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>#}
-                            <div class="img-wrap detailImgWrapLeft" style="background-image: url({{ article.picture.url }})"></div>
-                        </figure>
-                        <div class="story-text col-sm-6">
-                    {% else %}
-                        <div class="story-text col-sm-12">
-                    {% endif %}
-                        <span class="pub-date">{{ article.date|date:"d F Y" }}
-{#                        sideListLock#}
-                        </span>
-                        <h3>{{ article.title }}</h3>
-                        {% if article.sponsored %}
-                        <p><span class="sponsored">SPONSORED</span></p>
+
+        {% if article.publication.code == 'HSE' %}
+            <article class="imgLeftBody story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %} relatedArticle dontPrintMe"
+                style="min-height: 75px; max-width:600px;">
+                <a href="{{ article.get_absolute_url }}">
+                    <div class="story-wrap row">
+                        {% if article.picture and article.picture.url %}
+                            {% if forloop.counter|divisibleby:2 %}
+                                <div class="col-sm-12">
+                            {% else %}
+                                <figure class="thumb col-sm-3">
+                                    <div class="img-wrap" style="background-image: url({{ article.picture.url }});"></div>
+                                </figure>
+                                <div class="col-sm-9">
+                            {% endif %}
+                        {% else %}
+                            <div class="col-sm-12">
                         {% endif %}
-                        <p>{{ article.teaser }}</p>
+        {#                    <p><span class="pub-cat-left">{{ article.secondary_category }}</span> <span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>#}
+                            <p><span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>
+                            <span class="spantitle">{{ article.title }}</span>
+                            {% if article.sponsored %}
+                            <p><span class="sponsored">SPONSORED</span></p>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </article>
+        {% else %}
+            <article class="tile whiteback story{% if not article.published %} unpublished{% endif %}{% if article.future %} future{% endif %}" style="min-height: 150px">
+                <a href="{{ article.get_absolute_url }}">
+                    <div class="story-wrap row">
+                        {% if article.picture and article.picture.url %}
+                            <figure class="thumb col-sm-6">
+            {#                    <div class="img-wrap"><img src="{{ article.picture.url }}" class="img-responsive"/></div>#}
+                                <div class="img-wrap detailImgWrapLeft" style="background-image: url({{ article.picture.url }})"></div>
+                            </figure>
+                            <div class="story-text col-sm-6">
+                        {% else %}
+                            <div class="story-text col-sm-12">
+                        {% endif %}
+                            <span class="pub-date">{{ article.date|date:"d F Y" }}
+    {#                        sideListLock#}
+                            </span>
+                            <h3>{{ article.title }}</h3>
+                            {% if article.sponsored %}
+                            <p><span class="sponsored">SPONSORED</span></p>
+                            {% endif %}
+                            <p>{{ article.teaser }}</p>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        {% endif %}
+
+
         {% endfor %}
     {% endif %}
 </div>
+{% endif %}
+
+
 <!-- ARTICLE DETAIL END -->
 
     <script type="text/javascript" charset="utf-8">
