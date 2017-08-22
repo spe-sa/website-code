@@ -613,3 +613,31 @@
 .articleBodyText img {
   margin:               10px;
 }
+
+.topicListBox, .topicListColumnL, .topicListColumnR, .topicListColumnOne {
+  padding:              0 !important;
+}
+.topicListBox {
+  background-color:     $col-lightgrey2;
+  border-top:           5px solid $col-hsepurple;
+
+  .topicListItem {
+    border:             1px dotted $col-boxshadow;
+    padding:            5px;
+
+    &:hover {
+      background-color: $col-notsolightgrey;
+    }
+
+    p {
+      margin:           0;
+    }
+
+  }
+}
+.topicListItem3 {
+  border:             1px dotted $col-boxshadow;
+  padding:            5px;
+  display:            inline-block;
+  width:              32%;
+}

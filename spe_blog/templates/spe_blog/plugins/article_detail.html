@@ -83,6 +83,8 @@
                     <li><a href="/en/ogf/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
                 {% elif article.publication.code == 'JPT' %}
                     <li><a href="/en/jpt/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
+                {% elif article.publication.code == 'HSE' %}
+                    <li><a href="/en/hsenow/topics/?topic={{ topic.id }}">{{ topic }}</a></li>
                 {% else %}
                     <li><a href="/en/ogf/topics/?topic={{ topic.id }}">{{ publication.code }} - {{ topic }}</a></li>
                 {% endif %}

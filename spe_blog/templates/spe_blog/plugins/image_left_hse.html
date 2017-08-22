@@ -16,11 +16,11 @@
 {#                    <p><span class="pub-cat-left">{{ article.secondary_category }}</span> <span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>#}
                     <p><span class="pub-date-left">{{ article.date|date:"d F Y" }}</span></p>
                     <span class="spantitle">{{ article.title }}</span>
-                    {% if article.onlineonly %}
-                    <div class="col-sm-12 onlineonly">
-                        <span class="spanonlineonly"><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</span>
-                    </div>
-                    {% endif %}
+{#                    {% if article.onlineonly %}#}
+{#                    <div class="col-sm-12 onlineonly">#}
+{#                        <span class="spanonlineonly"><i class="fa fa-podcast" aria-hidden="true"></i> Online Only Content</span>#}
+{#                    </div>#}
+{#                    {% endif %}#}
                     {% if article.sponsored %}
                         <p><span class="sponsored">SPONSORED</span></p>
                     {% endif %}
