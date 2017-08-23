@@ -53,9 +53,9 @@
 <h2>{{ title }}</h2>
 <hr/>
 {% for item in items %}
-    {% if item.is_new_day %}
+    {% ifchanged %}
         <h3>{{ item.start_date | date:"l" }}, {{ item.start_date | date:"F" }} {{ item.start_date | date:"d" }}</h3>
-    {% endif %}
+    {% endifchanged %}
     <row class="col-md-12">
         <h5 class="col-md-3 time">
             {{ item.start_time | date:"H:i" }} - {{ item.end_time | date:"H:i" }}

@@ -54,8 +54,7 @@ class CustomAgendaItems(models.Model):
         verbose_name=u'Description of session:'
     )
     show_ical_download = models.BooleanField(default=False, verbose_name='Show Calendar Download')
-    is_new_day = models.BooleanField(default=False, editable=False)
-    rowspan = models.PositiveIntegerField(default=1, editable=False)
+
 
     class Meta:
         ordering = ['start_date', 'start_time', 'end_time']
