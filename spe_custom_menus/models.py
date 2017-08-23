@@ -100,6 +100,34 @@ class CustomMenusPlugin(CMSPlugin):
     custom_menu = models.ForeignKey(CustomMenus,
                                     help_text="Select a menu you created in Admin or use '+' to add a new menu")
 
+    def save(self, *args, **kwargs):
+        menu_items = CustomMenuItems.objects.filter(custom_menu=self.custom_menu)
+        previous_is_child = 0
+        for item in reversed(menu_items):
+            item.is_dropdown_node = previous_is_child
+            if item.level == 2 or item.level == 3:
+                previous_is_child = 1
+                item.is_dropdown_node = 0
+            else:
+                previous_is_child = 0
+        previous_is_child = 0
+        for item in menu_items:
+            if item.level == 3:
+                item.is_dropdown_header = True
+            if item.level == 4:
+                item.is_divider = True
+            if previous_is_child and item.level == 1:
+                item.is_back_up = 1
+            else:
+                item.is_back_up = 0
+            if item.level == 2 or item.level == 3:
+                previous_is_child = 1
+            else:
+                previous_is_child = 0
+        for item in menu_items:
+            item.save()
+        super(CustomMenusPlugin, self).save(*args, **kwargs)
+
     def __unicode__(self):
         dictionary = dict(MENU_TEMPLATES)
         return u"{0} using {1}".format(self.custom_menu, dictionary[self.template])
