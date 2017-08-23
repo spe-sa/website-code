@@ -201,6 +201,13 @@ INSTALLED_APPS = (
     'spe_api',
     # 'aldryn_bootstrap3',
     # 'djangocms_history', # for DjangoCMS 3.4 upgrade (history is now separate)
+    # 'parler',
+    # 'aldryn_categories',
+    # 'contract_repository',
+    # 'import_export',
+    # 'controlcenter',
+    # 'cmsplugin_nvd3',
+    # 'beacon',
 )
 
 LANGUAGES = (
@@ -393,6 +400,7 @@ CMS_PLACEHOLDER_CONF = {
                     # 'Bootstrap3CarouselSlideCMSPlugin',
                     # 'Bootstrap3SpacerCMSPlugin',
                     # 'Bootstrap3FileCMSPlugin',
+                    # 'NVD3CMSPlugin',
                     ],
         'child_classes': {
             'SegmentLimitPlugin': [
@@ -782,6 +790,11 @@ ADMIN_SHORTCUTS = [
                 'title': 'WWW',
             },
             {
+                'url': '/hsenow/home/',
+                'open_new_window': True,
+                'title': 'HSE',
+            },
+            {
                 'url': '/jpt/jpt-main-page',
                 'open_new_window': True,
                 'title': 'JPT',
@@ -877,6 +890,7 @@ ADMIN_SHORTCUTS_CLASS_MAPPINGS = [
     ['ogf', 'home'],
     ['jpt', 'home'],
     ['twa', 'home'],
+    ['hse', 'home'],
     ['search', 'ok'],
     ['timeline', 'clock'],
     ['discipline', 'user'],
