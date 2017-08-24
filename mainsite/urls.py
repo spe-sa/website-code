@@ -57,7 +57,7 @@ admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
     # url(r'/ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^iptcnet/2014/', 'mainsite.views.status_code_410', ),
+    # url(r'^iptcnet/2014/', 'mainsite.views.status_code_410', ),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^filebrowser_filer/', include('ckeditor_filebrowser_filer.urls')),
     # ran into a problem where the ckeditor is not at the root
