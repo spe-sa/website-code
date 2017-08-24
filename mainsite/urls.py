@@ -10,6 +10,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import RedirectView
 
+
 # Dashboard
 
 from dashing.utils import router
@@ -56,6 +57,7 @@ admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
     # url(r'/ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^iptcnet/2014/', 'mainsite.views.status_code_410', ),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^filebrowser_filer/', include('ckeditor_filebrowser_filer.urls')),
     # ran into a problem where the ckeditor is not at the root
@@ -125,7 +127,6 @@ urlpatterns = i18n_patterns('',
     url(r'^agenda/(?P<agenda_id>\d+)/export/', 'spe_custom_agenda.views.export', name="agenda_ics_export"),
     # url(r'^stats/', include('statsy.urls')),
     url(r'^api/', include('spe_api.urls')),
-
     url(r'^', include('cms.urls')),
 )
 
