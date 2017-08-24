@@ -73,3 +73,5 @@ CMS_CACHE_DURATIONS = {
     'menus': 1,
     'permissions': 1,
 }
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

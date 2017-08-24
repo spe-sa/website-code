@@ -2,8 +2,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader, RequestContext  # ,Context,
+from django.core.mail import EmailMessage
+from django.conf import settings
 
-from .forms import FakeLoginForm
+from .forms import FakeLoginForm, EmailForm
 
 
 def login(request):
@@ -112,3 +114,34 @@ def status_code_500(request):
 
 def test_gtm(request):
     return render(request, 'test.html', { })
+
+# view to do ad submissions
+# NOTE: currently set to email later will actually talk to adspeed via api
+def send_email(request):
+    if request.method != 'POST':
+        form = EmailForm()
+        return render(request, 'ads/submit_ad.html', {'email_form': form})
+
+    form = EmailForm(data=request.POST)
+    if form.is_valid():
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        email = form.cleaned_data['email']
+        attach = None
+        if request.FILES and request.FILES['attach']:
+            attach = request.FILES['attach']
+        try:
+            mail = EmailMessage(subject, message, settings.EMAIL_DEFAULT_FROM, [email])
+            if attach:
+                mail.attach(attach.name, attach.read(), attach.content_type)
+            mail.send()
+            return render(request, 'ads/submit_ad.html', {'message': 'Sent email to %s' % email})
+        except (ValueError, TypeError, AttributeError, KeyError):
+            raise
+        except:
+            return render(request, 'ads/submit_ad.html', {'message': 'Either the attachment is too  big or corrupt'})
+
+
+    else:
+        return render(request, 'ads/submit_ad.html', {'message': 'Unable to send email. Form did not validate', 'email_form': form})
+        # return render(request, 'ads/submit_ad.html', {'message': 'Unable to send email. Please try again later'})

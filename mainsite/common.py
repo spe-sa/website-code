@@ -3,6 +3,8 @@ from netaddr import IPAddress
 from mainsite.models import Web_Region_Country, Customer
 from django.conf import settings
 from django.db.models.fields import CharField
+from django.db import models
+from adminsortable.models import SortableMixin
 
 import logging, bleach
 
@@ -278,7 +280,7 @@ def sanitize(value):
 
 
 def to_bool(s):
-    if s == None:
+    if s is None:
         return False
     if s == 'True' or s == '1' or s == 1:
         return True
@@ -286,3 +288,20 @@ def to_bool(s):
         return False
     else:
         return s
+
+
+class TimeStampedModel(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class SortableTimeStampedModel(SortableMixin):
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    sort_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
+
+    class Meta:
+        abstract = True

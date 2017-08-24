@@ -22,3 +22,10 @@ class ArticleCreationForm(BaseFormMixin, forms.ModelForm):
          model = Article
          exclude = ['auto_tags']
 
+
+# adding a form for submitting ads on site
+class EmailForm(forms.Form):
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=100)
+    attach = forms.Field(widget = forms.FileInput, required=False)
+    message = forms.CharField(widget = forms.Textarea)
